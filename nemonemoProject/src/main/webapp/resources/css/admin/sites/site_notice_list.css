@@ -1,0 +1,89 @@
+@charset "EUC-KR";
+
+.notice-table tr th,
+.notice-table tr td{
+    text-align: center;
+}
+
+.notice-table tr th textarea{
+    width: 100%;
+}
+
+.notice-table tr td {
+    padding-right: 14px;
+}
+
+
+.notice-table--center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.notice-flex {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.notice-flex:first-child {
+    margin-right: 5px;
+}
+
+.notice-flex--center {
+    display: flex;
+    flex: 1 1 0%;
+    justify-content: center;
+}
+
+.notice-flex--column {
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.notice-flex--center > button {
+    color: white;
+}
+
+#notice-modal-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.modal-flex--column > * {
+    border-bottom: 1px solid #AAAAAA;
+    margin-top: 15px;
+}
+
+.modal-flex--column:first-child {
+    margin-top: 0;
+}
+
+.modal-flex--column > :last-child {
+    border-bottom: 0;
+}
+
+.modal-flex--body {
+    display:flex;
+    flex-flow: column wrap;
+    flex: 1 1 0%;
+    justify-content: center;
+}
+
+.modal-row--title {
+    display:flex;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.modal-row--content {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 1 0%;
+}
+
+.input-group-addon {
+    background-color: transparent;
+}

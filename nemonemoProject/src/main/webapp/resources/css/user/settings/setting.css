@@ -1,0 +1,372 @@
+@charset "UTF-8";
+
+/* Modal Font */
+/* 로그아웃 */
+h2{
+    font-size : 18px;
+    font-family : "Noto Sans KR";
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.4;
+    
+}
+/* 로그아웃 하시겠습니까? 텍스트 */
+p{
+    white-space: pre-wrap;
+    word-break: keep-all;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    font-size : 15px;
+    font-family : "Noto Sans KR";
+}
+/* 취소 버튼 */
+.cancel_logout{
+    width : 120px;
+    height : 48px;
+    font-size : 16px;
+    background-color : #F4F4FA;
+    border: none;
+}
+/* 확인 버튼 */
+.confirm_logout{
+    width : 120px;
+    height : 48px;
+    margin-left : 8px;
+    font-size : 16px;
+    background-color : #FF5058;
+    border: none;
+}
+
+/* 로그아웃 팝업 버튼 그룹 align */
+.logout_button_group {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    margin-top: 40px;
+}
+
+.modal-content{
+    align-content: center;
+}
+
+/* modal 끝 */
+
+.settings-body {
+    min-width: 1236px;
+    background-color: #f9f9f9;
+    
+}
+.settings-contents {
+    height: 100vh;
+    width: 100%;
+    max-width: 540px;
+    display: block;
+    background: rgb(255, 255, 255);
+    margin: auto;
+}
+
+.settings-header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    max-width: 540px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    height: 50px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0px 10px;
+}
+
+.settings-back {
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.settings-header > img {
+    vertical-align: bottom;
+    border-style: none;
+}
+
+.settings-button-group {
+    padding-top: 62px;
+    width: 100%;
+}
+.settings-button-group > button {
+    height: 4rem;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 15px;
+    justify-content: space-between;
+    padding: 0px 1rem;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(234, 233, 241);
+    width: 100%; 
+}
+.settings-button-group button::after{
+    content: "";
+    background-size: 14px 14px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNEQ0RCRTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTYgMjBhLjk5NC45OTQgMCAwIDAgLjc0OC0uMzM3bDgtOWEuOTk5Ljk5OSAwIDAgMCAwLTEuMzI4bC04LTlhMSAxIDAgMCAwLTEuNDk0IDEuMzI4TDEyLjY2NCAxMGwtNy40MSA4LjMzNkEuOTk5Ljk5OSAwIDAgMCA2IDIwIi8+Cjwvc3ZnPgo=);
+    width: 14px;
+    height: 14px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* box-sizing: border-box; */
+}
+
+.settings-button-group a {
+    height: 4rem;
+    width: 94%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 15px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 0px 1rem;
+    border-bottom: 1px solid rgb(234, 233, 241);
+}
+
+
+.settings-button-group > a {
+    color: rgb(33, 33, 33);
+    cursor: pointer;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.settings-button-group a::after {
+    content: "";
+    background-size: 14px 14px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNEQ0RCRTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTYgMjBhLjk5NC45OTQgMCAwIDAgLjc0OC0uMzM3bDgtOWEuOTk5Ljk5OSAwIDAgMCAwLTEuMzI4bC04LTlhMSAxIDAgMCAwLTEuNDk0IDEuMzI4TDEyLjY2NCAxMGwtNy40MSA4LjMzNkEuOTk5Ljk5OSAwIDAgMCA2IDIwIi8+Cjwvc3ZnPgo=);
+    width: 14px;
+    height: 14px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.bhrHq {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+    display: none;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+}
+.fvJsKK {
+    width: 18.5rem;
+    background: rgb(255, 255, 255);
+    padding: 1.5rem;
+    border-radius: 2px;
+}
+
+.hjhMEM {
+    font-size: 18px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.fvJsKK > h2{
+    margin: 0px;
+}
+
+
+.DjFIB {
+    white-space: pre-wrap;
+    word-break: keep-all;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.DjFIB > p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.cgQsvV {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.cgQsvV > button:first-child {
+    margin-left: 0.5rem;
+}
+
+.cgQsvV > button {
+    flex: 1 1 0%;
+}
+
+.cgQsvV button {
+    height: 3rem;
+    text-align: center;
+    font-size: 1rem;
+}
+button, [type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: button;
+}
+
+.jehDlc {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background: rgb(255, 80, 88);
+}
+
+.cgQsvV > button {
+    flex: 1 1 0%;
+}
+
+.cgQsvV button {
+    height: 3rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: button;
+}
+
+.hEiBhT {
+    background-color: rgb(244, 244, 250);
+    color: rgb(114, 112, 127);
+}
+
+
+
+
+.kOkvtK {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.fvJsKK {
+    width: 18.5rem;
+    background: rgb(255, 255, 255);
+    padding: 1.5rem;
+    border-radius: 2px;
+}
+
+.hjhMEM {
+    font-size: 18px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.4;
+}
+.DjFIB {
+    white-space: pre-wrap;
+    word-break: keep-all;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.cgQsvV {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.cgQsvV > button:first-child {
+    margin-left: 0.5rem;
+}
+
+.cgQsvV > button {
+    flex: 1 1 0%;
+}
+
+.cgQsvV button {
+    height: 3rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: button;
+}
+
+.jehDlc {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background: rgb(255, 80, 88);
+}
+
+
+button, [type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: button;
+}
+
+.hEiBhT {
+    background-color: rgb(244, 244, 250);
+    color: rgb(114, 112, 127);
+}
+
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1500; /* 최상위 */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow : auto; 
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+/* Modal Content Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 296px; 
+    height : 223.2px;                        
+}
+

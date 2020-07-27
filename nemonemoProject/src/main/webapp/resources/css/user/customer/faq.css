@@ -1,0 +1,176 @@
+@charset "UTF-8";
+
+.faq-body {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 18px 0px 100px;
+    left: -10%;
+    background-color: #f9f9f9;
+}
+.faq-body-div {
+    width: 1024px;
+}
+
+.faq-nav {
+    height: 44px;
+    display: flex;
+    background: rgb(255, 255, 255);
+}
+
+.faq-nav-not-selected {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 600;
+    position: relative;
+    flex: 1 1 0%;
+}
+
+.faq-nav > a {
+    color: rgb(33, 33, 33);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.faq-nav-selected {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 600;
+    position: relative;
+    color: rgb(255, 80, 88);
+    flex: 1 1 0%;
+}
+
+.faq-nav-selected-bar {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: rgb(255, 80, 88);
+}
+
+.faq-main {
+    display: block;
+}
+
+.faq-menu {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    background: rgb(238, 238, 238);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+}
+
+.faq-menu > a{
+    text-decoration: none;
+}
+
+.faq-menu-selected {
+    width: 340px;
+    height: 41px;
+    margin-bottom: 1px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 13px;
+    color: rgb(255, 80, 88);
+    background: rgb(250, 250, 250);
+}
+
+.faq-menu-not-selected {
+    width: 340px;
+    height: 41px;
+    margin-bottom: 1px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 13px;
+    color: rgb(102, 102, 102);
+    background: rgb(250, 250, 250);
+}
+
+.faq-menu > ol, ul, li {
+    list-style: none;
+}
+
+.faq-list-art {
+    position: relative;
+    will-change: height;
+    overflow: hidden;
+    transition: height 300ms ease-out 0s;
+}
+
+.faq-list-btn {
+    height: 75px;
+    width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0px 20px;
+    background: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    cursor: pointer;
+    outline: none;
+    border:none;
+    border: solid #f9f9f9 2px;
+}
+
+.faq-list-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 14px;
+    flex: 1 1 0%;
+}
+
+.faq-list-title >h1 {
+    font-size: 14px;
+}
+.faq-list-arrow {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAQCAYAAAAI0W+oAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAXNJREFUeNqslK1Pw1AUxV9fmoq5Ldl/MCSaBLkEAQkIPgxzTUABjoRMsAJmCQ4HJGAAw8yCwGFQaCyOKSpgZmIGzk1OyU1Zu7fRm/yWvtvec1777p0XRVFgjLkGZ+DFFBtzYBeEPn5uwAZYAPPgrSCTGngAVRBY/HTBNxOPoFKASYVaVWp3xegWRGoX97KDf5gE1KhxfSwelosTGkrUwRXwpjDxWFvnWjSP5CIxktcLwRPXDdCawqjFWkOtkNq/RhJDsKaa4VAVuUSDNYYa69Q0aSOJL7AI4hGfIS/0546p8akfsCOKZDfLYMCD7aiDzWrjDp8dsPbPiNiMYhncLX7fsmrVdCQjUeaz21lDb3N2egeaqeErqfsl5pK3barOnchIog3O1d/JBc9BuGTO8LqdJ+Q7HPQemOGBS2e9M7+p2nhnnIiLkbToKngGs+BA3XvlveE4Ees4I32wBD5ULmau7yLgTzCQPbAC9rk+Zc4pfgQYAOZsSsrHKCoBAAAAAElFTkSuQmCC);
+    background-size: cover;
+    width: 13px;
+    height: 8px;
+    will-change: transform;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: transform 300ms ease-out 0s;
+}
+
+.faq-list-content {
+    line-height: 1.4;
+    padding: 25px 18px;
+    background: rgb(250, 250, 250);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    display: none;
+}
+
+.faq-list-btn{
+    border: none;
+}
+
+
+.faq-list-li {
+    margin-bottom: 3px;
+}
+
+.faq-list-ul{
+	list-style: none;
+	width: 1024px;
+}
