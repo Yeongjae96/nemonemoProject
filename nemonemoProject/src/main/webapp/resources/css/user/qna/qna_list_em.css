@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+.total-nav {
+    height: 44px;
+    display: flex;
+    background: rgb(255, 255, 255);
+}
+
+.total-nav-selected {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 600;
+    position: relative;
+    color: rgb(255, 80, 88);
+    flex: 1 1 0%;
+}
+.total-nav-selected > a {
+
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.total-nav-selected > a {
+    background-color: transparent;
+}
+
+.total-nav-selected-bar {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: rgb(255, 80, 88);
+}
+.total-nav-not-selected {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 600;
+    position: relative;
+    flex: 1 1 0%;
+}
+
+.total-nav > a {
+    color: rgb(33, 33, 33);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.total-nav > a {
+    background-color: transparent;
+}
+
+.qna-list-em-body {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 18px 0px 100px;
+}
+.qna-list-em-main {
+    width: 1024px;
+    display: block;
+}
+
+.qna-list-em-nav {
+    height: 44px;
+    display: flex;
+    background: rgb(255, 255, 255);
+}
+.qna-list-em-nav-not-selected {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 600;
+    position: relative;
+    flex: 1 1 0%;
+    text-decoration: none;
+    color: black;
+}
+
+.qna-list-em-body > a {
+    color: rgb(33, 33, 33);
+    cursor: pointer;
+    text-decoration: none;
+    background-color: transparent;
+}
+.qna-list-em-nav-selected {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 600;
+    position: relative;
+    color: rgb(255, 80, 88);
+    flex: 1 1 0%;
+    text-decoration: none;
+}
+.qna-list-em-nav-selected-bar {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: rgb(255, 80, 88);
+}
+
+.qna-list-em-nav-selected-bar {
+    margin-top: 10px;
+}

@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+/********** footer **********/
+    footer {
+        background-color: white;
+        color : #999999;
+        margin-bottom : 24px;
+        font : 13px "Noto Sans KR", sans-serif;
+      }
+
+      .footer_menu {
+      display: flex;
+      padding-left : 250px;
+      padding-right : 250px;
+      justify-content: space-evenly;
+      font-size: 13px;
+      color: rgb(77, 77, 77);      
+      
+    }
+  
+ 
+
+    /* footer 메뉴 구분*/
+    .menu_list::after {
+        content: "";
+        position: relative;
+        top: 0px;
+        right: 0px;
+        width: 1px;
+        height: 14px;
+        box-sizing: border-box;
+        border-right: 1px solid rgb(204, 204, 204);
+        padding-right : 85px;
+        
+    }
+
+    #about{
+        color : black;
+        margin-left : 5px;
+        margin-bottom : 35px;
+        font-size : 14px;
+        font-family : 'Noto Sans KR'
+    }
+
+    #about-sns{
+        width : 150px;
+        float : right;
+
+    }
+
+    .footer_copyright{
+        padding-left : 250px;
+        padding-right : 250px;
+    }
+    

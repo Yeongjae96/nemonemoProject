@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.service-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    max-width: 1160px;
+}
+.service-container > h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.service-section {
+    line-height: 1.625rem;
+    display: block;
+}
+
+.service-section > h3{
+    margin: 1.5rem 0 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
