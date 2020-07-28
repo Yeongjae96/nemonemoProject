@@ -18,7 +18,7 @@
 <!-- 라이브러리 -->
 <script
 	src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
-<script src="<c:url value="/resources/vendor/fontawsome/js/all.js"/>"></script>
+<script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -26,10 +26,10 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
+<!-- services 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7f60851ef3536c185d43dc653f4abb8d&libraries=services"></script>
 <!-- 해당 페이지 JS파일 -->
-<script
-	src="<c:url value="/resources/js/user/products/products_new.js"/>"></script>
-
+<script src="<c:url value="/resources/js/user/products/products_new.js"/>"></script>
 
 </head>
 <body>
@@ -77,7 +77,7 @@
 						<ul class="flex-container">
 							<li class="products-main-item">
 								<div class="products-title--div">
-									상품이미지<span>*</span><small>(1/8)</small>
+									상품이미지<span>*</span><small>(0/8)</small>
 								</div>
 								<div class="products-content--div">
 									<ul class="image-registry__list" id="imageList">
@@ -85,13 +85,13 @@
 											id="fileName" accept="image/jpg, image/jpeg, image/png"
 											multiple="multiple" name="file">
 										</li>
-										<!-- 사진올렸을때의 예시 -->
+										<!-- 사진올렸을때의 예시 
 										<li draggable="false" class="image-registry--user">
 											<div class="text-registry--representive">대표이미지</div> <img
 											src="https://media.bunjang.co.kr/images/crop/491549662_w404.jpg"
 											alt="상품이미지">
 											<button type="button" class="btn-image--cancle"></button>
-										</li>
+										</li> -->
 									</ul>
 									<div class="image-introduce">
 										<b>* 상품 이미지는 640x640에 최적화 되어 있습니다.</b><br> - 이미지는 상품등록 시
@@ -127,7 +127,7 @@
 								</div>
 								<div class="products-content--div">
 									<div class="products-category__div1">
-										<div class="products-category__div2">
+										<div class="products-category__div2" id="lgCategory">
 											<ul class="products-category-list">
 												<li class="products-category-item">
 													<button type="button" class="products-category-btn">
@@ -195,7 +195,7 @@
 												</li>
 											</ul>
 										</div>
-										<div class="products-category__div2">
+										<div class="products-category__div2" id="mdCategory">
 											<ul class="products-category-list">
 												<li class="products-category-item">
 													<button type="button" class="products-category-btn">
@@ -230,7 +230,7 @@
 														남성화</button>
 												</li>
 												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
+													<button type="bZutton" class="products-category-btn">
 														모자</button>
 												</li>
 												<li class="products-category-item">
@@ -239,9 +239,9 @@
 												</li>
 											</ul>
 										</div>
-										<div class="products-category__div2">소분류 선택</div>
+										<div class="products-category__div2" id="smCategory">소분류 선택</div>
 									</div>
-									<h3 class="products-category__guide">
+									<h3 class="products-category__guide" id="selectedCategory">
 										선택한 카테고리 : <b>패션잡화</b>
 									</h3>
 								</div>
@@ -253,13 +253,13 @@
 								</div>
 								<div class="products-content--div">
 									<div class="products-location--div">
-										<button type="button" class="sc-iUpOdG gBDQop">내 위치</button>
-										<button type="button" class="sc-iUpOdG gBDQop">최근 지역</button>
-										<button type="button" class="sc-iUpOdG gBDQop">지하철 검색</button>
-										<button type="button" class="sc-iUpOdG gBDQop">주소 검색</button>
+										<button type="button" class="" id="myLocationBtn">내 위치</button>
+										<button type="button" class="">최근 지역</button>
+										<button type="button" class="">지하철 검색</button>
+										<button type="button" class="">주소 검색</button>
 									</div>
-									<input readonly="" placeholder="선호 거래 지역을 검색해주세요."
-										class="products-location--input" value="경기도 의정부시 신곡2동">
+									<input readonly placeholder="선호 거래 지역을 검색해주세요."
+										class="products-location--input" value="" id="myLocationInput">
 								</div>
 							</li>
 							<!-- 상태 -->
@@ -302,9 +302,11 @@
 								<div class="products-content--div">
 									<div class="products-price--div">
 										<input type="text" placeholder="숫자만 입력해주세요."
-											class="sc-bCQtTp fxwwLL" value=""> 원
+											class="" value="" id="priceInput"> 원
 									</div>
-									<div id="price-validation-text" class="invisible">100원 이상
+									<div id="price-validation-text" class="invisible">
+										<i class="fas fa-ban"></i>
+									100원 이상
 										입력해주세요.</div>
 									<div class="products-delivery-price--div">
 										<div class="products-delivery-price--div2">
@@ -326,7 +328,7 @@
 							<li class="products-main-item">
 								<div class="products-title--div">설명</div>
 								<div class="products-content--div">
-									<textarea placeholder="상품 설명을 입력해주세요." rows="6" class=""></textarea>
+									<textarea placeholder="상품 설명을 입력해주세요." rows="6" id="contentInputd "></textarea>
 									<div class="products-content--size">0/2000</div>
 								</div>
 							</li>
@@ -336,12 +338,28 @@
 								<div class="products-content--div">
 									<div class="products-tag--div">
 										<div class="products-tag--div2">
+										
+											<!-- TAG INPUT태그 -->
 											<div class="products-tag--div3">
 												<input type="text" placeholder="연관태그를 입력해주세요. (최대 5개)"
-													value="">
+													value="" id="tagInput">
 											</div>
 										</div>
 									</div>
+									<ul class="products-tag-comment-list">
+										<li class="products-tag-comment-item">
+											<p>태그는 띄어쓰기로 구분되며 최대 9자 까지 입력할 수 있습니다.</p>
+										</li>
+										<li class="products-tag-comment-item">
+											<p>태그는 검색의 부가정보로 사용 되지만, 검색 결과 노출을 보장하지는 않습니다.</p>
+										</li>
+										<li class="products-tag-comment-item">
+											<p>검색 광고는 태그정보를 기준으로 노출됩니다.</p>
+										</li>
+										<li class="products-tag-comment-item">
+											<p>상품과 직접 관련이 없는 다른 상품명, 브랜드, 스팸성 키워드 등을 입력하면 노출이 중단되거나 상품이 삭제될 수 있습니다.</p>
+										</li>
+									</ul>
 								</div>
 							</li>
 

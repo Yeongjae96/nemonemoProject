@@ -4,9 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="" alias=""></typeAlias>
+		<typeAlias type="com.nemo.user.products.vo.ProductsVO" alias="productsVO"/>
 	</typeAliases>
-	<mappers>
-		<mapper resource="#package/#mapper.xml" />
-	</mappers>
+	<!-- <mappers>
+		<mapper resource="mapper/productsSql.xml" />
+	</mappers> -->
 </configuration>

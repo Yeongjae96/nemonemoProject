@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Refresh" content="0;url='<c:url value="/index.do"/>'"/>
+<meta http-equiv="Refresh" content="0;url='index.do'"/>
 <title></title>
 </head>
 <body>
-a
+
 </body>
 </html>
