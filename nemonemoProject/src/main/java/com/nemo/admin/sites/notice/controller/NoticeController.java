@@ -30,6 +30,7 @@ import com.nemo.admin.sites.notice.vo.NoticeVO;
  * 20. 07.29 			김영재				초기설정
  */
 @Controller
+@RequestMapping("/sites/notice")
 public class NoticeController {
 	
 	@Autowired private InsertNoticeService insertNoticeService;
@@ -38,7 +39,7 @@ public class NoticeController {
 	@Autowired private SelectNoticeService selectNoticeService;
 	@Autowired private UpdateNoticeService updateNoticeService;
 	
-	@RequestMapping(value = "/sites/notice", method= {RequestMethod.GET})
+	@RequestMapping(value = "/", method= {RequestMethod.GET})
 	public ModelAndView noticePage(NoticeVO vo) {
 	
 		ModelAndView mav = new ModelAndView("sites/site_notice_list");
@@ -48,7 +49,7 @@ public class NoticeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/sites/notice/edit", method= {RequestMethod.GET})
+	@RequestMapping(value = "/edit", method= {RequestMethod.GET})
 	public ModelAndView noticeEdit(@RequestParam int noticeNo) {
 		
 		ModelAndView mav = new ModelAndView("sites/site_notice_edit");
@@ -59,7 +60,7 @@ public class NoticeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/sites/notice/edit", method= {RequestMethod.POST})
+	@RequestMapping(value = "/edit", method= {RequestMethod.POST})
 	public ModelAndView noticeEditAction(NoticeVO vo) {
 		
 		//Service 
@@ -68,7 +69,7 @@ public class NoticeController {
 		return new ModelAndView("redirect:/sites/notice.mdo");
 	}
 	
-	@RequestMapping(value = "/sites/notice/new", method= {RequestMethod.POST})
+	@RequestMapping(value = "/new", method= {RequestMethod.POST})
 	public ModelAndView noticeInsertAction(NoticeVO vo) {
 		
 		int result = insertNoticeService.insertNotice(vo);
@@ -77,7 +78,7 @@ public class NoticeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/sites/notice/delete", method= {RequestMethod.POST})
+	@RequestMapping(value = "/delete", method= {RequestMethod.POST})
 	public ModelAndView noticeDeleteAction(@RequestParam int noticeNo) {
 		System.out.println("controll's noticeNo : " + noticeNo);
 		deleteNoticeService.deleteNotice(noticeNo);
@@ -85,8 +86,6 @@ public class NoticeController {
 		ModelAndView mav = new ModelAndView("redirect:/sites/notice.mdo");
 		return mav;
 	}
-	
-	
 	
 	
 	
