@@ -23,11 +23,34 @@
 
 	</insert>
 
+	<delete id="deleteNotice" parameterType="int" >
+		DELETE FROM notice_tb WHERE notice_no = #{noticeNo}
+	</delete>
+
 	<select id="getNoticeList"
 		parameterType="com.nemo.admin.sites.notice.vo.NoticeVO"
 		resultMap="noticeMap">
 		SELECT *
 		FROM notice_tb 
 	</select>
+	
+	<select id="getNotice"
+		parameterType="int"
+		resultMap="noticeMap">
+			
+		SELECT *
+		FROM notice_tb
+		WHERE notice_no = #{noticeNo}
+	</select>
+	
+	<update id="updateNotice" parameterType="com.nemo.admin.sites.notice.vo.NoticeVO">
+	
+		UPDATE notice_tb 
+		SET notice_title = #{noticeTitle}, notice_content = #{noticeContent}
+		WHERE notice_no = #{noticeNo} 
+		
+	</update>
+
+
 
 </mapper>

@@ -39,6 +39,7 @@
 	href="<c:url value="/resources/vendor/common/stylesheets/theme-red.css"/>">
 
 
+
 </head>
 <body class="theme-red">
 
@@ -70,24 +71,24 @@
 							<h2>공지사항 수정하기</h2>
 						</div>
 						<div class="body">
-							<form id="" method="POST" action="notice_edit.mdo">
+							<form id="noticeEditForm" method="POST" action="edit.mdo">
 								<div class="form-group form-float">
 									<div class="form-line">
 										<input type="text" class="form-control"
-											name="editnotice-title" minlength="3" required> <label
+											name="noticeTitle" minlength="3" required value="${noticeVO.noticeTitle}"> <label
 											class="form-label">공지사항 제목</label>
 									</div>
 									<div class="help-info">제목을 수정하세요</div>
 								</div>
 								<div class="form-group form-float">
 									<div class="form-line">
-										<textarea class="form-control" name="editnotice-content"
-											style="width: 100%; height: 300px; border: 1px;" required></textarea>
+										<textarea class="form-control" name="noticeContent"
+											style="width: 100%; height: 300px; border: 1px;" required>${noticeVO.noticeContent}</textarea>
 										<label class="form-label">공지사항 내용</label>
 									</div>
 									<div class="help-info">공지사항을 수정하세요</div>
 								</div>
-
+								<input type="hidden" name="noticeNo" value="${param.noticeNo}"/>
 								<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
 							</form>
 						</div>

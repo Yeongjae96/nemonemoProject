@@ -19,6 +19,7 @@
 		p:password="${jdbc.password}"
 		destroy-method="close"
 	/>
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

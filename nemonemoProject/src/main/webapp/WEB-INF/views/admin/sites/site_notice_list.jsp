@@ -108,8 +108,8 @@
                                             <textarea style="width: 100%;">${notice.noticeContent}
                                         </textarea></td>
                                         <td>${notice.noticeYmd}</td>
-                                        <td class ="text-center"><button type="button" class ="notice-upd-btn">수정</button>
-                                            <button type="button" class ="notice-del-btn">삭제</button></td>
+                                        <td class ="text-center"><button type="button" class ="notice-upd-btn" data-noticeNo="${notice.noticeNo}">수정</button>
+                                            <button type="button" class ="notice-del-btn" data-noticeNo="${notice.noticeNo}">삭제</button></td>
                                     </tr>
                                     <!-- <tr>
                                         <td>공지1</td>
