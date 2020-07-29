@@ -92,6 +92,7 @@
                                 <h3>공지 관리</h3>
                                 <thead>
                                     <tr>
+                                    	<th>공지 번호></th>
                                         <th>공지 제목</th>
                                         <th>내용</th>
                                         <th>게시일</th>
@@ -99,7 +100,18 @@
                                     </tr>
                                 </thead>
                                 <tbody id="result">
-                                    <tr>
+                                	<c:forEach var="notice" items="${noticeList}">
+                                   <tr>
+                                   		<td>${notice.noticeNo }</td>
+                                        <td>${notice.noticeTitle}</td>
+                                        <td>
+                                            <textarea style="width: 100%;">${notice.noticeContent}
+                                        </textarea></td>
+                                        <td>${notice.noticeYmd}</td>
+                                        <td class ="text-center"><button type="button" class ="notice-upd-btn">수정</button>
+                                            <button type="button" class ="notice-del-btn">삭제</button></td>
+                                    </tr>
+                                    <!-- <tr>
                                         <td>공지1</td>
                                         <td>
                                             <textarea style="width: 100%;">이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금은 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권이 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서...
@@ -107,7 +119,8 @@
                                         <td>2020-05-20</td>
                                         <td class ="text-center"><button type="button" class ="notice-upd-btn">수정</button>
                                             <button type="button" class ="notice-del-btn">삭제</button></td>
-                                    </tr>
+                                    </tr> -->
+                                    </c:forEach>
                                 </tbody>
                             </table>
                             <div class="notice-flex">
@@ -126,16 +139,22 @@
                         <div class="modal-content">
                             <!-- modal header-->
                             <div class="modal-header">
-                                <h4 class="modal-title">공지사항 등록</h4>
+                                <h2 class="modal-title">공지사항 등록</h2>
                             </div>
-
+				
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="InputNoticeName">공지사항 제목</label>
-                                    <input type="text" class="form-control" id="noticeTitle" placeholder="Enter Notice_title">
-                                    <label for="InputNoticeName">공지사항 내용</label>
-                                    <textarea class="form-control" style="min-width: 100%" id="noticeContent"></textarea>
-                                </div>
+	                           	<form method="POST" action="notice/new.mdo" name="noticeForm">
+	                                <div class="form-group">
+	                                	<div class="notice-registry--title">
+		                                    <label for="InputNoticeName">공지사항 제목</label>
+		                                    <input type="text" class="form-control" name="noticeTitle" id="noticeTitle" placeholder="제목을 입력해주세요">
+	                                	</div>
+	                                	<div class="notice-registry--content">
+		                                    <label for="InputNoticeName">공지사항 내용</label>
+	                                	</div>
+		                                    <textarea class="form-contr ol" id="noticeContent" name="noticeContent" placeholder="내용을 입력해주세요"></textarea>
+	                                </div>
+                                </form>
                             </div>
                             
                             <div class="modal-footer">
