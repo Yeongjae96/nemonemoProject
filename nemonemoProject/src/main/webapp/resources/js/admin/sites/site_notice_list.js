@@ -43,6 +43,17 @@ $(function () {
     
     $('.notice-upd-btn').click(function() {
     	window.location.href="notice_edit.mdo"
-    })
+    });
+    
+    
+    
+    $('#NoticeInsert').click(function() {
+    	insertNotice();
+    });
 });
+
+/* form data submit */
+function insertNotice() {
+	noticeForm.submit();
+}
     

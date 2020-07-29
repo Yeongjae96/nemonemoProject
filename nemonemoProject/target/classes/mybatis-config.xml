@@ -6,7 +6,8 @@
 	<typeAliases>
 		<typeAlias type="com.nemo.user.products.vo.ProductsVO" alias="productsVO"/>
 	</typeAliases>
-	<!-- <mappers>
-		<mapper resource="mapper/productsSql.xml" />
-	</mappers> -->
+	<mappers>
+		<!-- <mapper resource="mapper/productsSql.xml" /> -->
+		<mapper resource="mapper/admin/sites/notice/NoticeDAOMybatis.xml"/>
+	</mappers>
 </configuration>
