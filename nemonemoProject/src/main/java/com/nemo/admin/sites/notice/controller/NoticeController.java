@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nemo.admin.sites.notice.service.DeleteNoticeService;
 import com.nemo.admin.sites.notice.service.InsertNoticeService;
 import com.nemo.admin.sites.notice.service.SelectNoticeListService;
+import com.nemo.admin.sites.notice.service.SelectNoticeService;
+import com.nemo.admin.sites.notice.service.UpdateNoticeService;
 import com.nemo.admin.sites.notice.vo.NoticeVO;
 
 /**
@@ -28,21 +32,12 @@ import com.nemo.admin.sites.notice.vo.NoticeVO;
 @Controller
 public class NoticeController {
 	
-	@Autowired
-	private InsertNoticeService insertNoticeService;
-	@Autowired
-	private SelectNoticeListService selectNoticeListService;
+	@Autowired private InsertNoticeService insertNoticeService;
+	@Autowired private SelectNoticeListService selectNoticeListService;
+	@Autowired private DeleteNoticeService deleteNoticeService;
+	@Autowired private SelectNoticeService selectNoticeService;
+	@Autowired private UpdateNoticeService updateNoticeService;
 	
-	/**
-	 * @메소드이름 : noticePage
-	 * @작성일 : 2020. 7. 29.
-	 * @작성자 : Yeong
-	 * @Param :
-	 * @param vo
-	 * @return :  
-	 * @Method설명 : 
-	 *
-	 */
 	@RequestMapping(value = "/sites/notice", method= {RequestMethod.GET})
 	public ModelAndView noticePage(NoticeVO vo) {
 	
@@ -54,14 +49,21 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/sites/notice/edit", method= {RequestMethod.GET})
-	public ModelAndView noticeEdit() {
-		return new ModelAndView("sites/site_notice_edit");
+	public ModelAndView noticeEdit(@RequestParam int noticeNo) {
+		
+		ModelAndView mav = new ModelAndView("sites/site_notice_edit");
+		NoticeVO noticeVO = selectNoticeService.getNotice(noticeNo);
+		
+		mav.addObject("noticeVO", noticeVO);
+		
+		return mav;
 	}
 	
 	@RequestMapping(value = "/sites/notice/edit", method= {RequestMethod.POST})
-	public ModelAndView noticeEditAction() {
+	public ModelAndView noticeEditAction(NoticeVO vo) {
 		
 		//Service 
+		updateNoticeService.updateNotice(vo);
 		
 		return new ModelAndView("redirect:/sites/notice.mdo");
 	}
@@ -74,4 +76,18 @@ public class NoticeController {
 		mav.addObject("result", result);
 		return mav;
 	}
+	
+	@RequestMapping(value = "/sites/notice/delete", method= {RequestMethod.POST})
+	public ModelAndView noticeDeleteAction(@RequestParam int noticeNo) {
+		System.out.println("controll's noticeNo : " + noticeNo);
+		deleteNoticeService.deleteNotice(noticeNo);
+		
+		ModelAndView mav = new ModelAndView("redirect:/sites/notice.mdo");
+		return mav;
+	}
+	
+	
+	
+	
+	
 }

@@ -23,20 +23,18 @@ public class NoticeDAOMybatis implements NoticeDAO {
 
 	@Override
 	public int deleteNotice(int noticeNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("dao: " + noticeNo);
+		return session.delete("com.nemo.admin.sites.notice.repository.impl.NoticeDAOMybatis.deleteNotice", noticeNo);
 	}
 
 	@Override 
 	public int updateNotice(NoticeVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.update("com.nemo.admin.sites.notice.repository.impl.NoticeDAOMybatis.updateNotice", vo);
 	}
 
 	@Override
 	public NoticeVO getNotice(int noticeNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return session.selectOne("com.nemo.admin.sites.notice.repository.impl.NoticeDAOMybatis.getNotice", noticeNo);
 	}
 
 	@Override
