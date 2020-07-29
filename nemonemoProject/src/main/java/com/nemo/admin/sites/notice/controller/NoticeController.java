@@ -39,13 +39,12 @@ public class NoticeController {
 	@Autowired private SelectNoticeService selectNoticeService;
 	@Autowired private UpdateNoticeService updateNoticeService;
 	
-	@RequestMapping(value = "/", method= {RequestMethod.GET})
+	@RequestMapping(value = "/list", method= {RequestMethod.GET})
 	public ModelAndView noticePage(NoticeVO vo) {
 	
 		ModelAndView mav = new ModelAndView("sites/site_notice_list");
 		List<NoticeVO> data = selectNoticeListService.getNoticeList(vo);
 		mav.addObject("noticeList", data);
-		System.out.println("controller : " + mav.getModel().get("noticeList"));
 		return mav;
 	}
 	
@@ -66,24 +65,23 @@ public class NoticeController {
 		//Service 
 		updateNoticeService.updateNotice(vo);
 		
-		return new ModelAndView("redirect:/sites/notice.mdo");
+		return new ModelAndView("redirect:/sites/notice/list.mdo");
 	}
 	
 	@RequestMapping(value = "/new", method= {RequestMethod.POST})
 	public ModelAndView noticeInsertAction(NoticeVO vo) {
 		
 		int result = insertNoticeService.insertNotice(vo);
-		ModelAndView mav = new ModelAndView("redirect:/sites/notice.mdo");
+		ModelAndView mav = new ModelAndView("redirect:/sites/notice/list.mdo");
 		mav.addObject("result", result);
 		return mav;
 	}
 	
 	@RequestMapping(value = "/delete", method= {RequestMethod.POST})
 	public ModelAndView noticeDeleteAction(@RequestParam int noticeNo) {
-		System.out.println("controll's noticeNo : " + noticeNo);
 		deleteNoticeService.deleteNotice(noticeNo);
 		
-		ModelAndView mav = new ModelAndView("redirect:/sites/notice.mdo");
+		ModelAndView mav = new ModelAndView("redirect:/sites/notice/list.mdo");
 		return mav;
 	}
 	

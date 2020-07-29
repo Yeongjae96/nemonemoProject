@@ -23,7 +23,6 @@ public class NoticeDAOMybatis implements NoticeDAO {
 
 	@Override
 	public int deleteNotice(int noticeNo) {
-		System.out.println("dao: " + noticeNo);
 		return session.delete("com.nemo.admin.sites.notice.repository.impl.NoticeDAOMybatis.deleteNotice", noticeNo);
 	}
 
@@ -40,7 +39,6 @@ public class NoticeDAOMybatis implements NoticeDAO {
 	@Override
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {
 		List<NoticeVO> list = session.selectList("com.nemo.admin.sites.notice.repository.impl.NoticeDAOMybatis.getNoticeList", vo);
-		System.out.println("DAO : " + list);
 		return list;
 	}
 
