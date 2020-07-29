@@ -43,7 +43,7 @@ $(function () {
     
     $('.notice-upd-btn').click(function() {
     	const noticeNo = $(this)[0].dataset.noticeno;
-    	window.location.href="notice/edit.mdo?noticeNo="+noticeNo;
+    	window.location.href="edit.mdo?noticeNo="+noticeNo;
     });
     
     
@@ -68,7 +68,7 @@ $(function () {
     	// 제이쿼리를 이용해서 동적 dom 생성( document.createElement('form') )
     	// attr(속성 부여) -> ('','') -> 단일속성, {} -> 다중속성 
     	$form = $('<form></form>').attr({
-    		action: "notice/delete.mdo",
+    		action: "delete.mdo",
     		method: "POST"
     	});
     	// attr(속성 부여) -> ('','') -> 단일속성, {} -> 다중속성 

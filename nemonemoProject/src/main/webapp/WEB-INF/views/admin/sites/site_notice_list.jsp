@@ -143,7 +143,7 @@
                             </div>
 				
                             <div class="modal-body">
-	                           	<form method="POST" action="notice/new.mdo" name="noticeForm">
+	                           	<form method="POST" action="new.mdo" name="noticeForm">
 	                                <div class="form-group">
 	                                	<div class="notice-registry--title">
 		                                    <label for="InputNoticeName">공지사항 제목</label>
