@@ -9,6 +9,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/admin/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	
+	
 	<!--  관리자에 관련된  빈 컨테이너 -->
 	<context:component-scan base-package="com.nemo.admin" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>

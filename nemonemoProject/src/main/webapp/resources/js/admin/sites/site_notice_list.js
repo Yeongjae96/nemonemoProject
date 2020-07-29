@@ -40,5 +40,9 @@ $(function () {
         }
 
     });
+    
+    $('.notice-upd-btn').click(function() {
+    	window.location.href="notice_edit.mdo"
+    })
 });
     

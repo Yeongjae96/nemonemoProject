@@ -254,7 +254,7 @@
 								<div class="products-content--div">
 									<div class="products-location--div">
 										<button type="button" class="" id="myLocationBtn">내 위치</button>
-										<button type="button" class="">최근 지역</button>
+										<button type="button" class="" id="myRecentBtn">최근 지역</button>
 										<button type="button" class="">지하철 검색</button>
 										<button type="button" class="">주소 검색</button>
 									</div>
@@ -375,6 +375,28 @@
 							</li>
 						</ul>
 					</section>
+					
+					<!-- 최근거래 모달창 -->
+					<div class="products-modal__recent">
+						<section class="modal-recent__area">
+							<header>
+								최근지역
+								<button type="button" class="modal-recent__close" id="recentModalClose">
+									<i class="fas fa-times"></i>
+								</button>
+							</header>
+							<ul>
+								<li>
+									<!-- 예시 데이터 -->
+									<button class="modal-recent__btn">
+										경기도 의정부시 
+									</button>
+								</li>
+							</ul>
+						</section>
+					</div>
+					
+					
 					<!-- 꼭 읽어주세요! 이용가이드 ... -->
 					<h3 class="products-footer--h3">
 						<span> <!-- 이미지가 들어가야할 부분 --></span> 꼭 읽어주세요 <a href="#"

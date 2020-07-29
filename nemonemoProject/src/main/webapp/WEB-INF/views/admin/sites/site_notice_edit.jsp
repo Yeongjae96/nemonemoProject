@@ -17,7 +17,7 @@
 
 <!-- Google Fonts -->
 <link
-	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+	href="https://fotnts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" type="text/css">
@@ -70,7 +70,7 @@
 							<h2>공지사항 수정하기</h2>
 						</div>
 						<div class="body">
-							<form id="form_advanced_validation" method="POST">
+							<form id="" method="POST" action="notice_edit.mdo">
 								<div class="form-group form-float">
 									<div class="form-line">
 										<input type="text" class="form-control"
