@@ -5,11 +5,12 @@ $(function() {
 		readURL(this);
 	});
 	
-	$('#myLocationBtn').click(getPlaceFromCoords); // 내위치 클릭시 내위치구하는 함수
 	$('#priceInput').on('keyup', priceValidationKeyUpCheck);
 	$('#tagInput').on('keyup', hashTagEvent);
 	$('#tagInput').on('keydown', function(event) {if(event.keyCode == 13)event.preventDefault();});
-	
+	$('#myLocationBtn').click(getPlaceFromCoords); // 내위치 클릭시 내위치구하는 함수
+	$('#recentModalClose').click(function() {closeModal($('.products-modal__recent'))});
+	$('#myRecentBtn').click(function() {openModal($('.products-modal__recent'))});
 });
 
 
@@ -34,6 +35,19 @@ const data = {
 			}
 		],
 }
+
+
+/* 모달창 켜기 */
+function openModal($target) {
+	$target.fadeIn();
+}
+
+/* 모달창 끄기 */
+function closeModal($target) {
+	$target.fadeOut();
+}
+
+
 /* 카테고리 클릭 시 이벤트 */
 function categoryInit(categories) {
 	
@@ -42,7 +56,7 @@ function categoryInit(categories) {
 // if(v.constructor == Array) {
 // $.each(v, function(k2, v2) {
 // console.log('key : ', k2, 'value : ', v2 );
-//				AZXXX 
+// AZXXX
 // }
 // });
 }

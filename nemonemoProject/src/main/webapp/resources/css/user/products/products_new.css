@@ -767,3 +767,84 @@ b {
 }
 
 /* Products 상품등록 페이지 끝 */
+
+/* 최근 지역 모달 창 */
+.products-modal__recent {
+	width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+
+.modal-recent__area {
+	display: block;
+	width: 30rem;
+    background: rgb(255, 255, 255);
+    border-radius: 2px;
+    margin-bottom:0px!important;
+}
+
+.modal-recent__area header {
+	height: 4.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    justify-content: space-between;
+    margin: 0px 1.5rem;
+    border-bottom: 2px solid rgb(30, 29, 41);
+}
+
+.modal-recent__close {
+	background-size: 20px 20px;
+    width: 2rem;
+    height: 2rem;
+}
+
+.modal-recent__close > svg {
+    width: 20px;
+    height: 20px;
+}
+
+.modal-recent__area ul {
+	margin-top: 0.5rem;
+    max-height: 25rem;
+    overflow-y: auto;
+    padding: 0.5rem 0px;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+.modal-recent__area ul li {
+	display: block;
+    height: 3rem;
+    width: 100%;
+}
+
+.modal-recent__btn {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	width: 100%;
+    height: 100%;
+    padding: 0px 1.5rem;
+    font-size: 1rem;
+    align-items: center;
+}
+.modal-recent__btn:hover {
+    background: rgb(244, 244, 250);
+} 
+
+
+
+
+
+
+
