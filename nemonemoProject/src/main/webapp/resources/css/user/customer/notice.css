@@ -1,72 +1,14 @@
 @charset "UTF-8";
+
+body {
+    background-color: rgb(249, 249, 249);
+	
+}
 .notice-body  {
 	display: flex;
 	width: 1024px;
-	background-color: #f9f9f9;
-	margin-top: 40px;
-	padding-left: 20%;
-	padding-right: 20%;
-	}
-
-.notice-body-div {
-    width: 1024px;
-    
-}
-.notice-nav {
-    height: 44px;
-    display: flex;
-    background: rgb(255, 255, 255);
-}
-
-.notice-nav-selected {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    font-weight: 600;
-    position: relative;
-    color: rgb(255, 80, 88)!important;
-    flex: 1 1 0%;
-    border-bottom: 2px solid red;
-}
-.notice-nav-selected > a {
-
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.notice-nav-selected > a {
-    background-color: transparent;
-}
-
-.notice-nav-selected-bar {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    height: 2px;
-    background: rgb(255, 80, 88);
-}
-.notice-nav-not-selected {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    font-weight: 600;
-    position: relative;
-    flex: 1 1 0%;
-}
-
-.notice-nav > a {
-    color: rgb(33, 33, 33);
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.notice-nav > a {
-    background-color: transparent;
+	padding: 18px 0px 100px;
+	margin: 0 auto;
 }
 
 .notice-main {
@@ -77,6 +19,7 @@
     margin-top: 12px;
     width: 1024px;
     overflow: hidden;
+    padding: 0;
 }
 
 .notice-main > ol, ul, li {
@@ -96,7 +39,7 @@
     display: block;
 }
 
-
+/* 
 .notice-list-art > button {
     cursor: pointer;
     outline: none;
@@ -115,11 +58,11 @@
     line-height: 1.15;
     text-rendering: auto;
     background-color: white;
-    /* margin: 8px 8px 0px 8px; */
+    margin: 8px 8px 0px 8px;
     border: solid 1px #EEEEEE;
     width: 98%;
 }
-
+ */
 
 .notice-list-title {
     display: flex;
@@ -152,13 +95,9 @@
     padding: 0px 20px;
     background: rgb(255, 255, 255);
     border-bottom: 1px solid rgb(238, 238, 238);
-    background-color: transparent;
+    background-color: white;
     cursor: pointer;
     outline: none;
-    border-width: 0px;
-    border-style: initial;
-    border-color: initial;
-    border-image: initial;
     text-transform: none;
     direction: ltr;
     text-align: left;
@@ -171,13 +110,7 @@
     margin: 0px;
     text-rendering: auto;
 }
-.notice-list-title {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 14px;
-    flex: 1 1 0%;
-}
+
 .notice-list-li{
     font-size: 14px;
     font-weight: 400;
@@ -209,6 +142,7 @@
 
 .notice-list-title > h1{
     font-size: 14px;
+    font-weight: 600;
 }
 
 .notice-list-content{
