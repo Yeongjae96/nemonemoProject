@@ -90,21 +90,31 @@
 							class="table table-bordered table-striped table-hover display">
 							<thead>
 								<tr>
+									<th>일련번호</th>
 									<th>약관 제목</th>
-									<th>내용</th>
 									<th>필수여부</th>
-									<th>약관 시작일</th>
+									<th>삭제여부</th>
+									<th>약관등록일</th>
+									<th>작성자</th>
+									<th>약관수정일</th>
+									<th>수정자</th>
 								</tr>
 							</thead>
 							<tbody id="result">
-								<tr>
-									<th>개인정보 이용</th>
-									<th><a
-										href="https://terms.bunjang.co.kr/terms/service.html">필수
-											이용 약관</a></th>
-									<th>Y</th>
-									<th>2020-07-07</th>
-								</tr>
+								<c:forEach var="terms" items="${termsList}">
+									<tr>
+										<td>${terms.termsNo}</td>
+										<td><a href="terms">
+											필수 이용 약관</a>
+										</td>
+										<td>${terms.termsRequiredFl}</td>
+										<td>${terms.termsDeleteFl}</td>
+										<td>${terms.termsRegistryYmd}</td>
+										<td>${terms.adminRegistryId}</td>
+										<td>${terms.termsModifyYmd}</td>
+										<td>${terms.adminModifyId}</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 						<div class="serviceUse-flex">

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nemo.user.customer.repository.impl">
+
+	<resultMap type="com.nemo.user.customer.vo.UserNoticeVO" id="noticeMap">
+		<id column="notice_no" property="noticeNo"/>
+		<result column="notice_title" property="noticeTitle"/>
+		<result column="notice_content" property="noticeContent"/>
+		<result column="notice_ymd" property="noticeYmd"/>
+	</resultMap>
+
+
+	<select id="getNoticeList" resultMap="noticeMap">
+		SELECT 
+			notice_no, 
+			notice_title, 
+			nvl(notice_modify_ymd, notice_registry_ymd) as notice_ymd
+		FROM notice_tb
+		ORDER BY notice_ymd desc, notice_no desc
+	</select>
+
+</mapper>

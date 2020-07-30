@@ -8,10 +8,10 @@
 <title>네모내모 | 자주묻는 질문</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
-<link rel="stylesheet" href="<c:url value="/resources/css/user/customer/faq.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/user/customer/customer_nav.css"/>">
 
 <!-- 페이지 CSS  -->
-<link rel="stylesheet" href="<c:url value="/resources/css/user/sign/signin.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/user/customer/faq.css"/>">
 
 
 <!-- 라이브러리 -->
@@ -23,11 +23,15 @@
 
 <!-- 해당 페이지 JS파일 -->
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
+
 <script>
 	$(function() {
 		$('.faq-list-btn').click(function() {
 			$(this).next().slideToggle();
+			$(this).children('span').toggleClass('faq-rotate-180');
 		});
+		
+		$('.notice-nav-not-selected').eq(2).attr('class', 'notice-nav-selected');
 	});
 </script>
 
@@ -51,14 +55,8 @@
 	<section>
 		<div class="faq-body">
 			<div class="faq-body-div">
-				<!-- faq navbar -->
-				<nav class="faq-nav">
-					<a class="faq-nav-not-selected" href="notice.html">공지사항</a>
-					<a class="faq-nav-not-selected" href="policy.html">운영정책</a>
-					<a class="faq-nav-selected" href="faq1.html">자주묻는 질문</a>
-					<a class="faq-nav-not-selected" href="#">1:1문의</a>
-				</nav>
-				
+				<!-- customer 공통 nav -->
+				<jsp:include page="/WEB-INF/views/user/customer/common/customer_nav.jsp"/>
 				<!-- faq main -->
 				<main class="faq-main">
 					<div class="faq-main-div">

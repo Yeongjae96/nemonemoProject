@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nemo.admin.sites.terms.repository.impl.TermsDAOMybatis">
+	
+	<resultMap id="termsMap" type="com.nemo.admin.sites.terms.vo.TermsVO" >
+		<id column="terms_no" property="termsNo"/>
+		<result column="admin_registry_id" property="adminRegistryId"/>
+		<result column="admin_modify_id" property="adminModifyId"/>
+		<result column="terms_title" property="termsTitle"/>
+		<result column="terms_content" property="termsContent"/>
+		<result column="terms_required_fl" property="termsRequiredFl"/>
+		<result column="terms_delete_fl" property="termsDeleteFl"/>
+		<result column="terms_registry_ymd" property="termsRegistryYmd"/>
+		<result column="terms_modify_ymd" property="termsModifyYmd"/>
+	</resultMap>
+	
+	<select id="getTermsList" parameterType="com.nemo.admin.sites.terms.vo.TermsVO"
+	resultMap="termsMap">
+		SELECT *
+		FROM terms_tb
+		ORDER BY TERMS_NO
+	</select>
+	
+	<select id="getTerms" parameterType="int"
+	resultMap="termsMap">
+		SELECT *
+		FROM terms_tb
+		WHERE terms_no = #{termsNo}
+	</select>
+	
+	<insert id="insertTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
+		INSERT INTO terms_tb
+		VALUES
+		(
+			terms_sq.nextval, 
+			#{adminRegistryId}, 
+			#{termsTitle}, 
+			#{termsContent}, 
+			#{termsRequiredFl}
+		)
+	</insert>
+	
+	<delete id="deleteTerms" parameterType="int">
+		DELETE FROM
+			terms_tb
+		WHERE
+			terms_no = #{termsNo}
+	</delete>
+	
+	<update id="updateTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
+		UPDATE terms_tb
+		SET 
+			admin_modify_id = #{adminModifyId},
+			terms_title = #{termsTitle},
+			terms_content= #{termsContent},
+			terms_required_fl = #{termsRequiredFl},
+			terms_delete_fl = #{termsDeleteFl},
+			terms_modify_ymd = #{termsModifyYmd}
+		WHERE
+			terms_no = #{termsNo}
+	</update>
+
+</mapper>

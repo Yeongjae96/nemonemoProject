@@ -96,6 +96,7 @@
                                         <th>공지 제목</th>
                                         <th>내용</th>
                                         <th>게시일</th>
+                                        <th>수정일</th>
                                         <th>수정/삭제</th>
                                     </tr>
                                 </thead>
@@ -107,7 +108,8 @@
                                         <td>
                                             <textarea style="width: 100%;">${notice.noticeContent}
                                         </textarea></td>
-                                        <td>${notice.noticeYmd}</td>
+                                        <td>${notice.noticeRegistryYmd}</td>
+                                        <td>${notice.noticeModifyYmd}</td>
                                         <td class ="text-center"><button type="button" class ="notice-upd-btn" data-noticeNo="${notice.noticeNo}">수정</button>
                                             <button type="button" class ="notice-del-btn" data-noticeNo="${notice.noticeNo}">삭제</button></td>
                                     </tr>

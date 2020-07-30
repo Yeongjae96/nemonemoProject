@@ -39,7 +39,7 @@ const data = {
 
 /* 모달창 켜기 */
 function openModal($target) {
-	$target.fadeIn();
+	$target.css('display','flex').hide().fadeIn();
 }
 
 /* 모달창 끄기 */
