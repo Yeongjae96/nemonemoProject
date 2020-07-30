@@ -31,6 +31,6 @@ public class CustomerDAOMybatis implements CustomerDAO{
 	
 	@Override
 	public List<UserNoticeVO> getNoticeList() {
-		return session.selectList("com.nemo.user.customer.repository.impl.getNoticeList");
+		return session.selectList("com.nemo.user.customer.repository.impl.CustomerDAOMybatis.getNoticeList");
 	}
 }

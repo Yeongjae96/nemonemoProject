@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.nemo.user.customer.repository.impl">
+<mapper namespace="com.nemo.user.customer.repository.impl.CustomerDAOMybatis">
 
 	<resultMap type="com.nemo.user.customer.vo.UserNoticeVO" id="noticeMap">
 		<id column="notice_no" property="noticeNo"/>
@@ -15,7 +15,8 @@
 	<select id="getNoticeList" resultMap="noticeMap">
 		SELECT 
 			notice_no, 
-			notice_title, 
+			notice_title,
+			notice_content,
 			nvl(notice_modify_ymd, notice_registry_ymd) as notice_ymd
 		FROM notice_tb
 		ORDER BY notice_ymd desc, notice_no desc

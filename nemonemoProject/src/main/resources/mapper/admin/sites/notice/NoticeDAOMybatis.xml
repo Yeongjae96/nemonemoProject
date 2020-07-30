@@ -21,7 +21,6 @@
 		<selectKey keyProperty="noticeNo" keyColumn="NOTICE_NO" resultType="Integer" order="AFTER">
 			SELECT NOTICE_SQ.currval FROM dual
 		</selectKey>
-
 	</insert>
 
 	<delete id="deleteNotice" parameterType="int" >
