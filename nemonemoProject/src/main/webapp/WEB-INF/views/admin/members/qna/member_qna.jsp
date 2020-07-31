@@ -40,7 +40,7 @@
 
 <!-- 개인 CSS -->
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/admin/members/member_care.css"/>">
+	href="<c:url value="/resources/css/admin/members/qna/member_qna.css"/>">
 
 <!-- JQuery DataTable Css -->
 <link rel="stylesheet"
@@ -198,7 +198,7 @@
 		src="<c:url value ="/resources/vendor/puglins/jquery-datatable/jquery-datatable.js"/>"></script>
 	<!-- 개인 JS -->
 	<script
-		src="<c:url value ="/resources/js/admin/members/member_care.js"/>"></script>
+		src="<c:url value ="/resources/js/admin/members/qna/member_qna.js"/>"></script>
 
 
 </body>
