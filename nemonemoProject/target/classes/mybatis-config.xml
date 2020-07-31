@@ -9,6 +9,7 @@
 	<mappers>
 		<!-- Admin -->
 		<!-- <mapper resource="mapper/productsSql.xml" /> -->
+		<mapper resource="mapper/admin/management/ManagementDAOMybatis.xml"/>
 		<mapper resource="mapper/admin/sites/notice/NoticeDAOMybatis.xml"/>
 		<mapper resource="mapper/admin/sites/terms/TermsDAOMybatis.xml"/>
 		<!-- User -->
