@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nemo.admin.sites.coupon.repository.impl.CouponDAOMybatis">
+
+	<resultMap id="couponMap" type="com.nemo.admin.sites.coupon.vo.CouponVO" >
+		<id column="coupon_cd" property="couponCd"/>
+		<result column="coupon_nm" property="couponNm"/>
+		<result column="coupon_content" property="couponContent"/>
+		<result column="coupon_srt_ymd" property="couponSrtYmd"/>
+		<result column="coupon_end_ymd" property="couponEndYmd"/>
+		<result column="coupon_dis_price" property="couponDisPrice"/>
+	</resultMap>
+
+	<insert id="insertCoupon"
+		parameterType="com.nemo.admin.sites.coupon.vo.CouponVO">
+		
+		INSERT INTO coupon_tb
+		VALUES (#{couponCd}, #{couponNm}, #{couponContent}, #{couponSrtYmd}, #{couponEndYmd}, #{couponDisPrice})
+		
+		<!-- <selectKey keyProperty="couponCd" keyColumn="coupon_CD" resultType="Integer" order="AFTER">
+			SELECT coupon_SQ.currval FROM dual
+		</selectKey> 
+ 		-->
+ 		
+	</insert>
+
+	<select id="getCouponList"
+		parameterType="com.nemo.admin.sites.coupon.vo.CouponVO"
+		resultMap="couponMap">
+		SELECT *
+		FROM coupon_tb
+	</select>
+	
+	
+	<delete id="deleteCoupon" parameterType="String" >
+		DELETE FROM coupon_tb WHERE coupon_cd = #{couponCd}
+	</delete>
+	
+	<select id="getCoupon"
+		parameterType="String"
+		resultMap="couponMap">
+			
+		SELECT *
+		FROM coupon_tb
+		WHERE coupon_cd = #{couponCd}
+	</select>
+	
+	<update id="updateCoupon" parameterType="com.nemo.admin.sites.coupon.vo.CouponVO">
+	
+		UPDATE coupon_tb 
+		SET coupon_nm = #{couponNm}, coupon_content = #{couponContent}, 
+		coupon_srt_ymd = #{couponSrtYmd}, coupon_end_ymd = #{couponEndYmd}, 
+		coupon_dis_price = #{couponDisPrice}
+		WHERE coupon_cd = #{couponCd} 
+		
+	</update>
+	
+
+</mapper>
