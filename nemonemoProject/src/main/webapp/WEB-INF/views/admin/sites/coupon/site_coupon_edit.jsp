@@ -67,45 +67,45 @@
 			</div>
 
 			<!-- Advanced Validation -->
-			<div class="row clearfix">
+			<div class="">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
 						<div class="header">
 							<h2>쿠폰 수정</h2>
 						</div>
 						<div class="body">
-							<form id="form_advanced_validation" method="POST">
+							<form id="couponEditForm" method="POST" action="edit.mdo">
 								<div class="form-group form-float">
 									<div class="form-line">
-										<input type="text" class="form-control" name="editevent-title"
-											min="2" max="200" required> <label class="form-label">이벤트
-											제목</label>
+										<input type="text" class="form-control" name="couponNm"
+											min="2" max="200" required value="${couponVO.couponNm}"> <label class="form-label">쿠폰명</label>
 									</div>
-									<div class="help-info">제목을 수정하세요</div>
+									<div class="help-info">쿠폰명 수정</div>
 								</div>
 								<div class="form-group form-float">
 									<div class="form-line">
-										<input type="url" class="form-control" name="editevent-link"
-											required> <label class="form-label">이벤트 링크</label>
+										<input type="url" class="form-control" name="couponContent"
+											required value="${couponVO.couponContent}" > <label class="form-label">쿠폰내용</label>
 									</div>
-									<div class="help-info">http://, https://, ftp:// etc로
-										시작하는 링크를 적으세요</div>
-								</div>
-								<div class="form-group form-float">
-									<div class="form-line">
-										<input type="text" class="form-control" name="editevent-image"
-											required> <label class="form-label">이벤트 이미지</label>
-									</div>
-									<div class="help-info">http://, https://, ftp:// etc로
-										시작하는 이미지링크를 적으세요</div>
+									<div class="help-info">쿠폰내용 수정</div>
 								</div>
 								<div class="form-group form-float" style="margin-top: 30px;">
-									<label class="form-label">표시 여부</label> <select
-										class="selectpicker">
-										<option value="Y">Y</option>
-										<option value="N">N</option>
-									</select>
+									<label
+									for="coupon-start">등록일</label> <input type="text" name="couponSrtYmd" id="couponSrtYmd"
+									class="form-control" value="${couponVO.couponSrtYmd}" placeholder="등록일 수정"><br>
+
+								<label for="coupon-end">종료일</label> <input type="text" name="couponEndYmd" id="couponEndYmd"
+									class="form-control" value="${couponVO.couponEndYmd}"
+									placeholder="종료일 수정"><br>
 								</div>
+								<div class="form-group form-float">
+									<div class="form-line">
+										<input type="text" class="form-control" name="couponDisPrice"
+											required value="${couponVO.couponDisPrice}"> <label class="form-label">혜택 금액</label>
+									</div>
+									<div class="help-info">혜택금액 수정</div>
+								</div>
+								<input type="hidden" name="couponCd" value="${param.couponCd}"/>
 								<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
 							</form>
 						</div>
@@ -125,10 +125,10 @@
 	<script
 		src="<c:url value ="/resources/vendor/plugins/bootstrap/js/bootstrap.js"/>"></script>
 
-	<!-- Select Plugin Js -->
+	<%-- <!-- Select Plugin Js -->
 	<script
 		src="<c:url value ="/resources/vendor/plugins/bootstrap-select/js/bootstrap-select.js"/>"></script>
-
+ --%>
 
 	<!-- Slimscroll Plugin Js -->
 	<script
@@ -142,9 +142,13 @@
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
 		
-	 <!-- select picker -->
-	<script src="<c:url value ="/resources/vendor/plugins/bootstrap-select/js/bootstrap-select.js"/>"></script>
-
+	<!-- 개인 JS -->
+	<script
+		src="<c:url value ="/resources/js/admin/sites/site_coupon_list.js"/>"></script>
+		
+	<!-- Date picker bootstrap -->
+	<script
+		src="<c:url value ="/resources/vendor/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"/>"></script>
 
 
 </body>

@@ -1,5 +1,7 @@
 package com.nemo.admin.sites.notice.service.impl;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ public class InsertNoticeServiceImpl implements InsertNoticeService {
 	
 	@Override
 	public int insertNotice(NoticeVO vo) {
+		vo.setNoticeRegistryYmd(new Date(System.currentTimeMillis()));
 		return noticeDAO.insertNotice(vo);
 	}
 

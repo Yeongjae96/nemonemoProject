@@ -15,7 +15,7 @@
 	<insert id="insertNotice"
 		parameterType="com.nemo.admin.sites.notice.vo.NoticeVO">
 		
-		INSERT INTO notice_tb 
+		INSERT INTO notice_tb(notice_no, notice_title, notice_content, notice_registry_ymd) 
 		VALUES (notice_sq.nextval, #{noticeTitle}, #{noticeContent}, #{noticeRegistryYmd}) 
 		
 		<selectKey keyProperty="noticeNo" keyColumn="NOTICE_NO" resultType="Integer" order="AFTER">
