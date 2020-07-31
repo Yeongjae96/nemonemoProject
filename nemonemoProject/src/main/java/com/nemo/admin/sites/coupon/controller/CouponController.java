@@ -45,7 +45,7 @@ public class CouponController {
 	@RequestMapping(value = "/list", method= {RequestMethod.GET})
 	public ModelAndView CouponPage(CouponVO vo) {
 	
-		ModelAndView mav = new ModelAndView("sites/site_coupon_list");
+		ModelAndView mav = new ModelAndView("sites/coupon/site_coupon_list");
 		List<CouponVO> data = selectCouponListService.getCouponList(vo);
 		mav.addObject("couponList", data);
 		System.out.println("리턴 데이터 : "+ data);
@@ -55,7 +55,7 @@ public class CouponController {
 	@RequestMapping(value = "/edit", method= {RequestMethod.GET})
 	public ModelAndView CouponEdit(@RequestParam String couponCd) {
 		
-		ModelAndView mav = new ModelAndView("sites/site_coupon_edit");
+		ModelAndView mav = new ModelAndView("sites/coupon/site_coupon_edit");
 		CouponVO CouponVO = selectCouponService.getCoupon(couponCd);
 		
 		mav.addObject("couponVO", CouponVO);
