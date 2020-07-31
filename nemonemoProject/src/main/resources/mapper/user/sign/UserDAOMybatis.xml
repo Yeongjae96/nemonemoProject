@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nemo.user.sign.signup.repository.impl.UserDAOMybatis">
+	
+	<resultMap type="com.nemo.user.sign.signup.vo.UserVO" id="userMap">
+		<id column="user_no" property="userNo"/>
+		<result column="user_phone" property="userPhone"></result>
+		<result column="user_pw" property="userPw"/>
+	</resultMap>
+	
+	
+	
+	<insert id="insertUser" parameterType="com.nemo.user.sign.signup.vo.UserVO">
+		INSERT INTO
+			USER_TB2
+				(
+					USER_NO,
+					USER_PHONE
+				)
+			VALUES ( USER_SQ.nextval, #{userPhone} )
+	</insert>
+	
+	
+	<select id="getPass" parameterType="String" resultType="String">
+		SELECT USER_PW FROM user_tb2 WHERE user_phone = #{userPhone}
+	</select>
+	
+
+</mapper>

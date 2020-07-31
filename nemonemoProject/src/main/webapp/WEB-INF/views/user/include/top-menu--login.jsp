@@ -202,7 +202,9 @@
 		</style>
 	
 	<script>
-	
+		$(function() {
+			
+		});
 	</script>	
 	
 	</head>
@@ -259,14 +261,14 @@
                 </div> <!-- sns 로그인 박스 -->
                 <div class="login-btw-input"></div>
                 <div class="input-div">
-                    <form>
+                    <form action="<c:url value="/sign/signin.do"/>" method="POST">
                         <div class="tel-input">
-                            <input type="text" placeholder="휴대폰번호 *숫자만 허용" autocomplete="username" value="">
+                            <input type="text" placeholder="휴대폰번호 *숫자만 허용" autocomplete="username" value="" name="userPhone">
                         </div>
                         <div class="pw-input">
-                            <input type="password" placeholder="비밀번호" autocomplete="current-password" value="">
+                            <input type="password" placeholder="비밀번호" autocomplete="current-password" value="" name="userPw">
                         </div>
-                        <button type="submit" disabled="" class="login-submit-btn">번개장터 이용하기</button>
+                        <button type="submit" class="login-submit-btn">번개장터 이용하기</button>
                     </form>
                 </div>
                 <div class="login-info">

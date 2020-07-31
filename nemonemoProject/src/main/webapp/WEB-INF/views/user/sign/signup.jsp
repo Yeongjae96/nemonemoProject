@@ -15,11 +15,12 @@
 
 <!-- 라이브러리 -->
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
-<script src="<c:url value="/resources/vendor/fontawsome/js/all.js"/>"></script>
+<script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
 <!-- 해당 페이지 JS파일 -->
+<script> var contextPath = "${pageContext.request.contextPath}" </script>
 <script src="<c:url value="/resources/js/user/sign/signup.js"/>"></script>
 
 </head>
@@ -193,7 +194,7 @@
                         <div class="fyi">*선택항목은 동의하지 않아도 회원가입이 가능합니다</div>
                     </div>
                 </div>
-                <button disabled="" class="signin-btn">가입하기</button>
+                <button class="signin-btn" id="signupBtn">가입하기</button>
             </div>
         </div>
     </div>
