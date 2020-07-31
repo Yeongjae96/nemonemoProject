@@ -67,84 +67,31 @@ $(function () {
   // // ...
   // });
 
-  
-  $('#signupBtn').click(function() {
-	  console.log('contextPath : ',contextPath);
-	   const $form = $('<form></form>').attr({
-	 method: 'POST',
-	 action: contextPath+'/sign/signup.do'
-  });
-  
-  
-	  const value = $('#phoneNumber').val()
-	  
-	  const $phoneInput = $('<input/>').attr({
-		 type: 'hidden',
-		 value: value,
-		 name: 'userPhone'
-	  });
-	  
-	  console.log('form : ',$form);
-	  console.log('input : ',$phoneInput);
-	  console.log('value : ',value);
-	  
-	  $form.append($phoneInput);
-	  $('body').append($form);
-	  $form[0].submit();
 
-  });
 
+
+  /* phoneNumber id에 해당하는 값을 가져와서 realNumber로 바꿔준다. */
+  function getPhoneNumberFromUserInput() {
+    const number = $('#phoneNumber').val();
+    let realNumber;
+    if (number.length == 10) {
+    } else if (number.length == 11) {
+      realNumber = `+82-${number.substring(1, 3)}-${number.substring(3, 7)}-${number.substring(7)}`;
+    } else {
+      realNumber = null;
+    }
+    console.log(`${number} -> ${realNumber}`);
+    return realNumber;
+  }
+
+  function validation(id, regExp) {
+    const phone = $(`#${id}`).val();
+    console.log(phone);
+
+    if (regExp.test(phone)) {
+      console.log('정상적인 번호입니다.');
+      return false;
+    }
+    return true;
+  }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* phoneNumber id에 해당하는 값을 가져와서 realNumber로 바꿔준다. */
-function getPhoneNumberFromUserInput() {
-  const number = $('#phoneNumber').val();
-  let realNumber;
-  if (number.length == 10) {
-  } else if (number.length == 11) {
-    realNumber = `+82-${number.substring(1, 3)}-${number.substring(3, 7)}-${number.substring(7)}`;
-  } else {
-    realNumber = null;
-  }
-  console.log(`${number} -> ${realNumber}`);
-  return realNumber;
-}
-
-function validation(id, regExp) {
-  const phone = $(`#${id}`).val();
-  console.log(phone);
-
-  if (regExp.test(phone)) {
-    console.log('정상적인 번호입니다.');
-    return false;
-  }
-  return true;
-}

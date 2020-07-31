@@ -3,9 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<settings>
-		<setting name="logImpl" value="LOG4J"/>
-	</settings>
 	<typeAliases>
 		<typeAlias type="com.nemo.user.products.vo.ProductsVO" alias="productsVO"/>
 	</typeAliases>
@@ -15,9 +12,8 @@
 		<mapper resource="mapper/admin/management/ManagementDAOMybatis.xml"/>
 		<mapper resource="mapper/admin/sites/notice/NoticeDAOMybatis.xml"/>
 		<mapper resource="mapper/admin/sites/terms/TermsDAOMybatis.xml"/>
-		<mapper resource="mapper/admin/sites/coupon/CouponDAOMybatis.xml"/>
 		<!-- User -->
 		<mapper resource="mapper/user/customer/CustomerDAOMybatis.xml"/>
-		<mapper resource="mapper/user/sign/UserDAOMybatis.xml"/>
+		<mapper resource="mapper/admin/sites/coupon/CouponDAOMybatis.xml"/>
 	</mappers>
 </configuration>
