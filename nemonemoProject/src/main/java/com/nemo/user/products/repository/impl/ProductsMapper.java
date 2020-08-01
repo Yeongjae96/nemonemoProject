@@ -1,10 +1,10 @@
 package com.nemo.user.products.repository.impl;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-import com.nemo.user.products.repository.ProductsDAO;
+import com.nemo.user.products.repository.IProductsMapper;
 import com.nemo.user.products.vo.ProductsVO;
 
 /**
@@ -19,14 +19,8 @@ import com.nemo.user.products.vo.ProductsVO;
  * DATE		 AUTHOR			NOTE
  * -------	--------	-------------	
  */
-@Repository
-public class ProductsDAOMybatis implements ProductsDAO{
+@Mapper
+public interface ProductsMapper extends IProductsMapper{
 	
-	@Autowired
-	private SqlSessionTemplate sqlSession;
 	
-	@Override
-	public int insertProducts(ProductsVO vo) {
-		return sqlSession.insert("Products.insert", vo);
-	}
 }
