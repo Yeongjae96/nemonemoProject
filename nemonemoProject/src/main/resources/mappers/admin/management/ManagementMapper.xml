@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.nemo.admin.management.repository.impl.ManagementDAOMybatis">
+<mapper namespace="com.nemo.admin.management.repository.impl.ManagementMapper">
 
 	<resultMap id="managementMap" type="com.nemo.admin.management.vo.ManagementVO" >
 		<id column="admin_no" property="adminNo"/>
@@ -17,7 +17,6 @@
 		
 		INSERT INTO ADMIN_ACCOUNT_TB 
 		VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}) 
-		xs
 		<!-- 
 		리턴값을 주기 위한
 		<selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" order="AFTER">
@@ -25,12 +24,6 @@
 		</selectKey> -->
 
 	</insert>
-	
-	<!-- 패스워드 체크  조회 결과타입 int로 설정 : 아이디가 있으면 count는 1 없으면 0-->
-	<select id="idChk" resultType="int">
-		SELECT COUNT(*) FROM ADMIN_ACCOUNT_TB
-		WHERE ADMIN_ID = #{adminId}
-	</select>
 
 
 

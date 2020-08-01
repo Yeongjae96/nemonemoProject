@@ -5,19 +5,9 @@
 <configuration>
 	<settings>
 		<setting name="logImpl" value="LOG4J"/>
+		<setting name="cacheEnabled" value="false" />
+        <setting name="useGeneratedKeys" value="true" />
+        <setting name="defaultExecutorType" value="REUSE" />
 	</settings>
-	<typeAliases>
-		<typeAlias type="com.nemo.user.products.vo.ProductsVO" alias="productsVO"/>
-	</typeAliases>
-	<mappers>
-		<!-- Admin -->
-		<!-- <mapper resource="mapper/productsSql.xml" /> -->
-		<mapper resource="mapper/admin/management/ManagementDAOMybatis.xml"/>
-		<mapper resource="mapper/admin/sites/notice/NoticeDAOMybatis.xml"/>
-		<mapper resource="mapper/admin/sites/terms/TermsDAOMybatis.xml"/>
-		<mapper resource="mapper/admin/sites/coupon/CouponDAOMybatis.xml"/>
-		<!-- User -->
-		<mapper resource="mapper/user/customer/CustomerDAOMybatis.xml"/>
-		<mapper resource="mapper/user/sign/UserDAOMybatis.xml"/>
-	</mappers>
+	
 </configuration>

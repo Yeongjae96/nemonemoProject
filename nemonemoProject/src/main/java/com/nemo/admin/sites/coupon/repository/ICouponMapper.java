@@ -5,7 +5,7 @@ import java.util.List;
 import com.nemo.admin.sites.coupon.vo.CouponVO;
 import com.nemo.admin.sites.notice.vo.NoticeVO;
 
-public interface CouponDAO {
+public interface ICouponMapper {
 	public int insertCoupon(CouponVO vo);
 	public int deleteCoupon(String couponCd);
 	public int updateCoupon(CouponVO vo);

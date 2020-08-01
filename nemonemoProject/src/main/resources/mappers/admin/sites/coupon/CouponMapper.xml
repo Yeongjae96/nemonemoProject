@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.nemo.admin.sites.coupon.repository.impl.CouponDAOMybatis">
+<mapper namespace="com.nemo.admin.sites.coupon.repository.impl.CouponMapper">
 
 	<resultMap id="couponMap" type="com.nemo.admin.sites.coupon.vo.CouponVO" >
 		<id column="coupon_cd" property="couponCd"/>

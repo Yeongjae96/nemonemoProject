@@ -17,6 +17,6 @@ import com.nemo.user.customer.vo.UserNoticeVO;
  * -------			--------			-------------	
  * 20.07.30		김영재				customer 초기설정
  */
-public interface CustomerDAO {
+public interface ICustomerMapper {
 	public List<UserNoticeVO> getNoticeList();
 }

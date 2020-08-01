@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.nemo.admin.sites.terms.vo.TermsVO;
 
-public interface TermsDAO {
+public interface ITermsMapper {
 	public int insertTerms(TermsVO vo);
 	public int deleteTerms(int termsNo);
 	public int updateTemrs(TermsVO vo);

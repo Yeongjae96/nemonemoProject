@@ -2,7 +2,7 @@ package com.nemo.admin.management.repository;
 
 import com.nemo.admin.management.vo.ManagementVO;
 
-public interface ManagementDAO {
+public interface IManagementMapper {
 	
 	// 회원 가입
 	public int insertAdmin(ManagementVO vo);

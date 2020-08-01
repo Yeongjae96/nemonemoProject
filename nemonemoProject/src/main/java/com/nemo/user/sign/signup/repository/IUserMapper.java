@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.nemo.user.sign.signup.vo.UserVO;
 
-public interface UserDAO {
+public interface IUserMapper {
 	public int insertUser(UserVO vo);
 	public int updateUser(UserVO vo);
 	public int deleteUser(int userNo);

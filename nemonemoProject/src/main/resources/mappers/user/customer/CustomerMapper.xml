@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.nemo.user.customer.repository.impl.CustomerDAOMybatis">
+<mapper namespace="com.nemo.user.customer.repository.impl.CustomerMapper">
 
-	<resultMap type="com.nemo.user.customer.vo.UserNoticeVO" id="noticeMap">
+	<resultMap id="noticeMap" type="com.nemo.user.customer.vo.UserNoticeVO" >
 		<id column="notice_no" property="noticeNo"/>
 		<result column="notice_title" property="noticeTitle"/>
 		<result column="notice_content" property="noticeContent"/>

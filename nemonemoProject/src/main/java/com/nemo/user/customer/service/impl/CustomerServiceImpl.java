@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nemo.user.customer.repository.CustomerDAO;
+import com.nemo.user.customer.repository.impl.CustomerMapper;
 import com.nemo.user.customer.service.CustomerService;
 import com.nemo.user.customer.vo.UserNoticeVO;
 
@@ -26,7 +26,7 @@ import com.nemo.user.customer.vo.UserNoticeVO;
 public class CustomerServiceImpl implements CustomerService{
 	
 	@Autowired
-	private CustomerDAO customerDAO;
+	private CustomerMapper customerDAO;
 	
 	@Override
 	public List<UserNoticeVO> getNoticeList() {

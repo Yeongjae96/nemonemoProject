@@ -5,7 +5,8 @@ import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nemo.admin.sites.coupon.repository.CouponDAO;
+import com.nemo.admin.sites.coupon.repository.ICouponMapper;
+import com.nemo.admin.sites.coupon.repository.impl.CouponMapper;
 import com.nemo.admin.sites.coupon.service.InsertCouponService;
 import com.nemo.admin.sites.coupon.vo.CouponVO;
 
@@ -14,7 +15,7 @@ import com.nemo.admin.sites.coupon.vo.CouponVO;
 public class InsertCouponServiceImpl implements InsertCouponService {
 	
 	@Autowired
-	private CouponDAO couponDAO;
+	private CouponMapper couponDAO;
 
 	@Override
 	public int insertCoupon(CouponVO vo) {

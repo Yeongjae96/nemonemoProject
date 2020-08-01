@@ -4,7 +4,7 @@ package com.nemo.admin.management.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nemo.admin.management.repository.ManagementDAO;
+import com.nemo.admin.management.repository.impl.ManagementMapper;
 import com.nemo.admin.management.service.InsertAdminService;
 import com.nemo.admin.management.vo.ManagementVO;
 
@@ -12,7 +12,7 @@ import com.nemo.admin.management.vo.ManagementVO;
 public class InsertAdminServiceImpl implements InsertAdminService{
 	
 	@Autowired
-	private ManagementDAO managementDAO;
+	private ManagementMapper managementDAO;
 	
 	@Override
 	public int insertAdmin(ManagementVO vo) {

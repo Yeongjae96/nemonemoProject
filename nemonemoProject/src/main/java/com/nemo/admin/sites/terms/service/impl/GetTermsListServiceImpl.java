@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nemo.admin.sites.terms.repository.TermsDAO;
+import com.nemo.admin.sites.terms.repository.ITermsMapper;
+import com.nemo.admin.sites.terms.repository.impl.TermsMapper;
 import com.nemo.admin.sites.terms.service.GetTermsListService;
 import com.nemo.admin.sites.terms.vo.TermsVO;
 
@@ -13,7 +14,7 @@ import com.nemo.admin.sites.terms.vo.TermsVO;
 public class GetTermsListServiceImpl implements GetTermsListService {
 
 	@Autowired
-	private TermsDAO termsDAO;
+	private TermsMapper termsDAO;
 	
 	@Override
 	public List<TermsVO> getTermsList() {

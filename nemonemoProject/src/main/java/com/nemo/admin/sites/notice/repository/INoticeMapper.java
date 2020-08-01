@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.nemo.admin.sites.notice.vo.NoticeVO;
 
-public interface NoticeDAO {
+public interface INoticeMapper {
 	public int insertNotice(NoticeVO vo);
 	public int deleteNotice(int noticeNo);
 	public int updateNotice(NoticeVO vo);

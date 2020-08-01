@@ -15,7 +15,7 @@ import com.nemo.user.products.vo.ProductsVO;
  * DATE		 AUTHOR			NOTE
  * -------	--------	-------------	
  */
-@
-public interface ProductsDAO {
+
+public interface IProductsMapper {
 	public int insertProducts(ProductsVO vo);
 }

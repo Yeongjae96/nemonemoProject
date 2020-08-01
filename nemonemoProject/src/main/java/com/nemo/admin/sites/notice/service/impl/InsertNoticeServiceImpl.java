@@ -5,7 +5,8 @@ import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nemo.admin.sites.notice.repository.NoticeDAO;
+import com.nemo.admin.sites.notice.repository.INoticeMapper;
+import com.nemo.admin.sites.notice.repository.impl.NoticeMapper;
 import com.nemo.admin.sites.notice.service.InsertNoticeService;
 import com.nemo.admin.sites.notice.vo.NoticeVO;
 
@@ -13,7 +14,7 @@ import com.nemo.admin.sites.notice.vo.NoticeVO;
 public class InsertNoticeServiceImpl implements InsertNoticeService {
 
 	@Autowired
-	private NoticeDAO noticeDAO;
+	private NoticeMapper noticeDAO;
 	
 	@Override
 	public int insertNotice(NoticeVO vo) {

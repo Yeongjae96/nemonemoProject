@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="products">
+<mapper namespace="com.nemo.user.products.repository.impl.ProductsMapper">
 
-	<insert id="insert" parameterType="productsVO">
+	<insert id="insertProducts" parameterType="com.nemo.user.products.vo.ProductsVO">
 		<selectKey keyColumn="#테이블 키이름" keyProperty="#VO키 이름" order="BEFORE" resultType="int">
 			SELECT MAX(#테이블 키이름) + 1 AS "PRODUCDTS_NO" FROM #테이블명
 		</selectKey>

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nemo.common.ContextUtil;
-import com.nemo.user.sign.signup.repository.UserDAO;
+import com.nemo.user.sign.signup.repository.impl.UserMapper;
 import com.nemo.user.sign.signup.service.UserService;
 import com.nemo.user.sign.signup.vo.UserVO;
 
@@ -14,7 +14,7 @@ import com.nemo.user.sign.signup.vo.UserVO;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserDAO userDAO;
+	private UserMapper userDAO;
 	
 	@Override
 	public int insertUser(UserVO vo) {
