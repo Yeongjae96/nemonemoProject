@@ -41,14 +41,14 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST">
+                <form id="sign_in" method="POST" action="login.mdo">
                     <div class="msg"><b>로그인 하기</b></div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="아이디를 입력하세요" required autofocus>
+                            <input type="text" class="form-control" name="adminId" placeholder="아이디를 입력하세요" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -56,7 +56,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="비밀번호를 입력하세요" required>
+                            <input type="password" class="form-control" name="adminPw" placeholder="비밀번호를 입력하세요" required>
                         </div>
                     </div>
                     <div class="row">
@@ -99,7 +99,7 @@
 
 
 	<!-- 개인 JS -->
-	<script src="<c:url value ="/resources/js/admin/management/ad_sign_in.js"/>"></script>
+	<script src="<c:url value ="/resources/js/admin/management/ad_login.js"/>"></script>
 </body>
 
 </html>

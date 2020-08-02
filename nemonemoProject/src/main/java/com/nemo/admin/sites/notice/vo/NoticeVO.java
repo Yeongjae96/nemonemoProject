@@ -14,7 +14,7 @@ import java.sql.Date;
  * DATE			 AUTHOR			NOTE
  * -------		--------		-------------	
  * 20.07.29 	  이혜인			테이블 명세서에 따른 초기세팅
- * 20.07.30	  김영재			테이블 컬럼 수정에 따른 컬럼명 변경 및 추가(regYmd, modYmd)
+ * 20.07.30	  	  김영재			테이블 컬럼 수정에 따른 컬럼명 변경 및 추가(regYmd, modYmd)
  */
 
 public class NoticeVO {

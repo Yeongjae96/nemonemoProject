@@ -53,7 +53,7 @@ public class ManagementVO {
 	
 	@Override
 	public String toString() {
-		return "ManagementVO [adminNo=" + adminNo + ", adminId=" + adminId + ", adminPw=" + adminPw + ", adminEmail="
+		return "ManagementVO [직원번호=" + adminNo + ", 직원아이디=" + adminId + ", 직원비밀번호=" + adminPw + ", 직원이메일="
 				+ adminEmail + "]";
 	}
 	

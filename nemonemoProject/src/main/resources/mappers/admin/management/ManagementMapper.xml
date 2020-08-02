@@ -24,6 +24,15 @@
 		</selectKey> -->
 
 	</insert>
+	
+	<select id="loginAdmin" resultType="com.nemo.admin.management.vo.ManagementVO" 
+			parameterType="com.nemo.admin.management.vo.ManagementVO">
+        SELECT * FROM 
+        	ADMIN_ACCOUNT_TB 
+        WHERE 
+        	ADMIN_ID=#{adminId} and ADMIN_PW=#{adminPw}
+    </select>
+	
 
 
 

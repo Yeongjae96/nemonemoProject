@@ -100,7 +100,7 @@
 		src="<c:url value ="/resources/vendor/plugins/jquery-validation/jquery.validate.js"/>"></script>
 
 	<!-- 개인 JS -->
-	<script src="<c:url value ="/resources/js/admin/management/ad_sign_up.js"/>"></script>
+	<script src="<c:url value ="/resources/js/admin/management/ad_signup.js"/>"></script>
 	
 </body>
 
