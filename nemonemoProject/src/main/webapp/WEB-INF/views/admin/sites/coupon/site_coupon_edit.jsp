@@ -84,7 +84,7 @@
 								</div>
 								<div class="form-group form-float">
 									<div class="form-line">
-										<input type="url" class="form-control" name="couponContent"
+										<input class="form-control" name="couponContent"
 											required value="${couponVO.couponContent}" > <label class="form-label">쿠폰내용</label>
 									</div>
 									<div class="help-info">쿠폰내용 수정</div>
