@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.nemo.admin.management.vo.ManagementVO;
 
-public interface GetAdminListService {
+public interface SelectAdminListService {
 	public List<ManagementVO> getAdminList(ManagementVO vo);
 
 }

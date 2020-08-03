@@ -40,7 +40,7 @@
 
 <!-- 개인 CSS -->
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/admin/sites/site_coupon_list.css"/>">
+	href="<c:url value="/resources/css/admin/management/ad_profile.css"/>">
 
 <!-- JQuery DataTable Css -->
 <link rel="stylesheet"
@@ -85,9 +85,9 @@
 
 				</div>
 				<div class="modal-footer">
-					<button id="del-confirm" type="button"
+					<button id="admin-del-confirm" type="button"
 						class="btn btn-link waves-effect" data-dismiss="modal">삭제</button>
-					<button type="button" class="btn btn-link waves-effect"
+					<button id="admin-del-cancel" type="button" class="btn btn-link waves-effect"
 						data-dismiss="modal">취소</button>
 				</div>
 			</div>
@@ -106,10 +106,9 @@
 					<div class="card">
 						<div class="body">
 							<div class="table-responsive">
-								<table id="admin-list"
+								<table id="admin-table"
 									class="table table-bordered table-striped table-hover display">
 									<h3>직원 관리</h3>
-
 									<thead>
 										<tr>
 											<th>직원 번호</th>
@@ -127,13 +126,13 @@
 												<td class="text-center">
 													<!-- 직원수정  -->
 													<button type="button"
-														class="btn bg-red waves-effect admin-upd-btn"
+														class="btn bg-blue waves-effect admin-upd-btn"
 														data-target="#admin_upd_btn" 
 														data-toggle="modal"
-														data-adminId="${admin.adminId}">수정</button>
+														data-adminNo="${admin.adminNo}">수정</button>
 													<button type="button"
-														class="btn bg-blue waves-effect admin-del-btn"
-														data-adminId="${admin.adminId}">삭제</button>
+														class="btn bg-red waves-effect admin-del-btn"
+														data-adminNo="${admin.adminNo}">삭제</button>
 												</td>
 											</tr>
 										</c:forEach>
@@ -146,11 +145,11 @@
 			</div>
 			
 			<!-- 직원 수정 -->
-			<div class="modal fade" id="coupon_in" role="dialog">
+ 			<div class="modal fade" id="coupon_in" role="dialog">
 				<div class="modal-dialog">
-					<!-- Modal 내용-->
+					Modal 내용
 					<div class="modal-content">
-						<!-- modal header-->
+						modal header
 						<div class="modal-header">
 							<h4 class="modal-title">직원 수정</h4>
 						</div>
@@ -159,7 +158,7 @@
 							<form method="POST" action="new.mdo" name="adminForm">
 								<div class="form-group">
 									<label for="adminEmail">이메일</label> 
-									<input type="text" class="form-control" name="adminEmail" id="adminEmail" placeholder=""> 
+									<input type="text" class="form-control" name="adminEmail" id="adminEmail" placeholder="이메일을 입력해 주세요"> 
 								</div>
 							</form>
 						</div>
@@ -225,7 +224,7 @@
 
 	<!-- 개인 JS -->
 	<script
-		src="<c:url value ="/resources/js/admin/sites/site_coupon_list.js"/>"></script>
+		src="<c:url value ="/resources/js/admin/management/ad_profile.js"/>"></script>
 
 	<!-- Date picker bootstrap -->
 	<script

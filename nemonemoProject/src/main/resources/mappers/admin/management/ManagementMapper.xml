@@ -12,6 +12,7 @@
 		<result column="admin_email" property="adminEmail"/>
 	</resultMap>
 
+	
 	<insert id="insertAdmin"
 		parameterType="com.nemo.admin.management.vo.ManagementVO">
 		
@@ -31,6 +32,22 @@
         	ADMIN_ACCOUNT_TB 
         WHERE 
         	ADMIN_ID=#{adminId} and ADMIN_PW=#{adminPw}
+    </select>
+    
+    <select id="getAdminList"
+    	parameterType="com.nemo.admin.management.vo.ManagementVO"
+    	resultMap="managementMap">
+    	SELECT * FROM
+    		ADMIN_ACCOUNT_TB
+    </select>
+    
+    <!-- 삭제 -->
+    
+    <select id="deleteAdmin" parameterType="int" resultType="com.nemo.admin.management.vo.ManagementVO">	
+    	SELECT * FROM 
+    		ADMIN_ACCOUNT_TB
+    	WHERE
+    		ADMIN_NO = #{adminNo}
     </select>
 	
 

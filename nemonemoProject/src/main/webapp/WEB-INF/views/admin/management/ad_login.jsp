@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4">
+                        <div class="col-xs-4" style="margin-left : 30%;">
                             <button class="btn btn-block bg-pink waves-effect" type="submit">로그인</button>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                             <a href="signup.mdo">회원가입</a>
                         </div>
                         <div class="col-xs-6 align-right">
-                            <a href="forgot-password.html">비밀번호찾기</a>
+                            <a href="forgotpw.mdo">비밀번호찾기</a>
                         </div>
                     </div>
                 </form>

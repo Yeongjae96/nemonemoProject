@@ -5,15 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nemo.admin.management.service.GetAdminListService;
+import com.nemo.admin.management.service.DeleteAdminService;
 import com.nemo.admin.management.service.InsertAdminService;
 import com.nemo.admin.management.service.LoginAdminService;
+import com.nemo.admin.management.service.SelectAdminListService;
+import com.nemo.admin.management.service.UpdateAdminService;
 import com.nemo.admin.management.vo.ManagementVO;
-import com.nemo.admin.sites.notice.vo.NoticeVO;
 
 
 /**
@@ -30,20 +33,23 @@ import com.nemo.admin.sites.notice.vo.NoticeVO;
  * DATE				 AUTHOR			NOTE
  * -------			--------		-------------	
  * 20. 07.30 		    손예린			초기설정
- * 
+ * 20. 08.02		    손예린			비밀번호 찾기 modelAndView 추가 및 로그인 암호화
+ * 					    손예린			profile READ, UPDATE, DELETE
  * 
  */
 
 
 @Controller
+@RequestMapping("/management")
 public class ManagementController {
 
 	@Autowired private InsertAdminService insertAdminService;
 	@Autowired private LoginAdminService loginAdminService;
-	@Autowired private GetAdminListService getAdminListService;
+	@Autowired private SelectAdminListService selectAdminListService;
+	@Autowired private DeleteAdminService deleteAdminService;
 
 	/* 회원가입  */
-	@RequestMapping(value = "/management/signup", method = { RequestMethod.GET })
+	@RequestMapping(value = "/signup", method = { RequestMethod.GET })
 	public ModelAndView signupPage(ManagementVO vo) {
 
 		ModelAndView mav = new ModelAndView("management/ad_signup");
@@ -51,7 +57,7 @@ public class ManagementController {
 	}
 	
 	/* 로그인  */
-	@RequestMapping(value = "/management/login", method = { RequestMethod.GET })
+	@RequestMapping(value = "/login", method = { RequestMethod.GET })
 	public ModelAndView loginPage(ManagementVO vo) {
 		ModelAndView mav = new ModelAndView("management/ad_login");
 		return mav;
@@ -59,23 +65,30 @@ public class ManagementController {
 	}
 
 	/* 메인화면 띄우기 */
-	@RequestMapping(value = "/management/adminmain", method = { RequestMethod.GET })
+	@RequestMapping(value = "/adminmain", method = { RequestMethod.GET })
 	public ModelAndView managementMainPage(ManagementVO vo) {
 		ModelAndView mav = new ModelAndView("management/ad_main");
 		return mav;
 	}
 	
+	/* 비밀번호 찾기 띄우기 */
+	@RequestMapping(value ="/forgotpw", method = {RequestMethod.GET})
+	public ModelAndView forgotpwPage() {
+		ModelAndView mav = new ModelAndView("management/ad_forgot_password");
+		return mav;
+	}
+	
 	/* 어드민 프로필 페이지 띄우기 */
-	@RequestMapping(value ="/management/profile", method = {RequestMethod.GET})
+	@RequestMapping(value ="/profile", method = {RequestMethod.GET})
 	public ModelAndView profilePage(ManagementVO vo) {
 		ModelAndView mav = new ModelAndView("management/ad_profile");
-		List<ManagementVO> data = getAdminListService.getAdminList(vo);
+		List<ManagementVO> data = selectAdminListService.getAdminList(vo);
 		mav.addObject("adminList", data);
 		return mav;
 		
 	}	
 	
-	@RequestMapping(value = "/management/signup", method = { RequestMethod.POST })
+	@RequestMapping(value = "/signup", method = { RequestMethod.POST })
 	public ModelAndView signupAction(ManagementVO vo) {
 		// 비밀번호 암호화
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -85,9 +98,19 @@ public class ManagementController {
 		ModelAndView mav = new ModelAndView("redirect:/management/login.mdo");
 		return mav;
 	}
+	
+	@RequestMapping(value ="/delete", method= {RequestMethod.POST})
+	public ModelAndView adminDeleteAction(@RequestParam int adminNo) {
+		deleteAdminService.deleteAdmin(adminNo);
+		
+		ModelAndView mav = new ModelAndView("redirect:/management/profile.mdo");
+		return mav;
+	}
 
+	
+	
 	/* 로그인하기 */
-	@RequestMapping(value = "/management/login", method = RequestMethod.POST)
+	@PostMapping("/management/login")
 	public ModelAndView loginAdmin(ManagementVO vo) {
 		System.out.println("Controller : " + vo);
 		loginAdminService.loginAdmin(vo);

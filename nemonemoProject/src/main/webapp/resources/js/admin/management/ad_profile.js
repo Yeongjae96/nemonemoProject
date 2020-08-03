@@ -1,8 +1,4 @@
-﻿/**
- * 
- */
-
-
+﻿
 /* 모달 팝업 */
 function open_pop(e) {
     $('.smallModal').show();
@@ -12,12 +8,8 @@ function close_pop(flag) {
     $('#myModal').hide();
 };
 
-$('#어드민 회원가입 했을 때').find('.modal-body tbody').append('<tr>').append('<td>new row<td>');
-
-var table = $('#admin-list');
-
 $(function () {
-    $('#admin-list tbody').on('click','.admin-del-btn', function(){
+    $('#admin-table tbody').on('click','.admin-del-btn', function(){
         var selected = this;
         $('#smallModal').modal("toggle");
         if($('#admin-del-confirm').click(function(){
@@ -51,14 +43,9 @@ $(function () {
 
     });
     
-    $('.admin-upd-btn').click(function() {
-		const adminNo = $(this)[0].dataset.adminno;
-		window.location.href="profile.mdo?adminno="+adminNo;
-		alert('관리자 업데이트 하러 !!');
-	});
     
     /* 어드민 삭제  */
-	$('.admin-del-btn').click(function() {
+	$('.admin-del-confirm').click(function() {
 		const adminNo = $(this)[0].dataset.adminno;
 		console.log(adminNo);
 		
@@ -79,18 +66,6 @@ $(function () {
 		$('body').append($form);
 		$form[0].submit();
 		$form.remove();
-	});
-    
-//
-//    $('#CouponInsert').click(function() {
-//    	insertCoupon();
-//    });
-//    
-//    
+	});  
 });
 
-
-/* form data submit */
-function insertCoupon() {
-	couponForm.submit();
-}

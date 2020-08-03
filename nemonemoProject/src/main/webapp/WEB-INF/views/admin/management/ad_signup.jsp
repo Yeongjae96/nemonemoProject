@@ -76,7 +76,7 @@
                     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit" id="ad_signup_submit">회원가입</button>
 
                     <div class="m-t-25 m-b--5 align-center">
-                        <a href="signin.mdo">이미 가입하셨나요??</a>
+                        <a href="login.mdo">이미 가입하셨나요??</a>
                     </div>
                 </form>
             </div>
