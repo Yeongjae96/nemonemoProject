@@ -5,7 +5,7 @@
 	<resultMap type="com.nemo.admin.sites.faq.vo.FaqCategoryVO" id="faqCategoryMap">
 		<id column="FAQ_CATEGORY_NO" property="faqCategoryNo"/>
 		<result column="FAQ_CATEGORY_NM" property="faqCategoryName"/>
-		<result column="FAQ_CATEGORY_REGISTRY_YMD" property="faqCategoryRegistryYmd"/>
+		<result column="FAQ_CATEGORY_REG_YMD" property="faqCategoryRegYmd"/>
 		<result column="FAQ_CATEGORY_USE_FL" property="faqCategoryUseFl"/>
 	</resultMap>
 	
@@ -36,7 +36,7 @@
 		SELECT
 			FAQ_CATEGORY_NO,
 			FAQ_CATEGORY_NM,
-			FAQ_CATEGORY_REGISTRY_YMD,
+			FAQ_CATEGORY_REG_YMD,
 			FAQ_CATEGORY_USE_FL
 		FROM 
 			FAQ_CATEGORY_TB

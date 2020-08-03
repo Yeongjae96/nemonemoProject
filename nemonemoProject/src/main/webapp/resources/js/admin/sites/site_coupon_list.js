@@ -54,7 +54,6 @@ $(function () {
     $('.coupon-upd-btn').click(function() {
 		const couponCd = $(this)[0].dataset.couponcd;
 		window.location.href="edit.mdo?couponCd="+couponCd;
-		alert('눌렸음');
 	});
     
     /* 삭제 버튼 기능 */

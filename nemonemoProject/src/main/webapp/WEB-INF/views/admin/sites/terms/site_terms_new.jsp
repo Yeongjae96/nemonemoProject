@@ -69,27 +69,32 @@
                             <h1>이용약관 등록</h1>
                         </div>
                         <div class="body">
-                            <form id="terms-form" method="POST">
+                            <form id="termsForm" method="POST">
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                     <label class="form-label">약관명</label>
-                                        <input type="text" class="form-control" id="serviceUse_title" name="serviceUse_title" minlength="3" required>
-                                        
-                                    </div>             
+                                        <input type="text" class="form-control" id="termsTitle" name="termsTitle" minlength="3" required>   
+                                    </div>           
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                    <label class="form-label">등록자 ID</label>
+                                        <input type="text" class="form-control" id="adminRegistryId" name="adminRegistryId" required>   
+                                    </div>           
                                 </div>
                                 <div class="form-group form-float" style="margin-top: 30px;">
                                     <label class="form-label">표시 여부</label>
-                                    <select class="selectpicker">
+                                    <select class="selectpicker" id="termsRequiredFl" name="termsRequiredFl">
                                         <option value="Y">Y</option>
-                                        <option value="Y">S</option>
+                                        <option value="S">S</option>
                                         <option value="N">N</option>
                                     </select>
                                 </div> 
                                 <div class="form-group form-float">
-									<textarea cols="120" rows="20" name="serviceUse_content" id="serviceUse_content" ></textarea>     
+									<textarea cols="120" rows="20" name="termsContent" id="termsContent" ></textarea>     
                                 </div>
                                
-                                <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                                <button class="btn btn-primary waves-effect" type="submit" id="termsInsert">등록하기</button>
                             </form>
                         </div>
                     </div>
@@ -119,16 +124,16 @@
 		<!-- Dateppicker bootstrap -->
     	<script src="<c:url value ="/resources/vendor/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"/>"></script>
     	
-    	<!-- 개인 JS -->
-		<script src="<c:url value ="/resources/js/admin/sites/site_terms.js"/>"></script>	
-		
 		<!-- smartEditor -->
-		<script src="<c:url value ="/resources/vendor/SmartEditor/js/HuskyEZCreator.js"/>"></script>
+		<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script>
+    	<!-- 개인 JS -->
+		
+    	
 		<script>
 		var oEditors = [];
 		   nhn.husky.EZCreator.createInIFrame({
 		      oAppRef: oEditors,
-		      elPlaceHolder: "serviceUse_content",
+		      elPlaceHolder: "termsContent",
 		      //SmartEditor2Skin.html 파일이 존재하는 경로
 		      sSkinURI : "../../resources/vendor/SmartEditor/SmartEditor2Skin.html", 
 		      htParams : {
@@ -142,13 +147,17 @@
 		               
 		          }
 		      }, 
-		      fOnAppLoad : function(){
+		      /* fOnAppLoad : function(){
 		          //textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
-		          oEditors.getById["serviceUse_content"].exec("PASTE_HTML", ["약관을 입력해주세요."]);
-		      },
+		          oEditors.getById["termsContent"].exec("PASTE_HTML", ["약관을 입력해주세요."]);
+		      }, */
 		      fCreator: "createSEditor2"  
-	});
-	</script>
+			});
+		   $('#termsInsert').click(function() {
+		    	oEditors.getById["termsContent"].exec("UPDATE_CONTENTS_FIELD", []);	
+		    	termsForm.submit();
+		    }); 
+		</script>
 		
 	
 </body>

@@ -66,29 +66,31 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h1>이용약관 등록</h1>
+                            <h2>이용약관</h2>
                         </div>
                         <div class="body">
-                            <form id="terms-form" method="POST">
+                            <form id="form_advanced_validation" method="POST">
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                    <label class="form-label">약관명</label>
-                                        <input type="text" class="form-control" id="serviceUse_title" name="serviceUse_title" minlength="3" required>
-                                        
-                                    </div>             
+                                        <input type="text" class="form-control" name="editserviceUse-title" minlength="3" required>
+                                        <label class="form-label">약관 이름</label>
+                                    </div>
+                                    <div class="help-info">약관 이름을 적으세요</div>
                                 </div>
-                                <div class="form-group form-float" style="margin-top: 30px;">
+                                <div class="form-group form-float">
+                                                   
+                                        <label for="InputNoticeName">약관 내용</label>
+									<textarea cols="120" rows="20" name="serviceUse_content" id="serviceUse_content" ></textarea>
+                                    
+                                </div>
+                               <!--  <div class="form-group form-float" style="margin-top: 30px;">
                                     <label class="form-label">표시 여부</label>
                                     <select class="selectpicker">
                                         <option value="Y">Y</option>
                                         <option value="Y">S</option>
                                         <option value="N">N</option>
                                     </select>
-                                </div> 
-                                <div class="form-group form-float">
-									<textarea cols="120" rows="20" name="serviceUse_content" id="serviceUse_content" ></textarea>     
-                                </div>
-                               
+                                </div> -->
                                 <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
                             </form>
                         </div>
@@ -106,6 +108,7 @@
    			 	
         <!-- Select Plugin Js -->
  		<script src="<c:url value ="/resources/vendor/plugins/bootstrap-select/js/bootstrap-select.js"/>"></script>
+
 
         <!-- Slimscroll Plugin Js -->
  		<script src="<c:url value ="/resources/vendor/plugins/jquery-slimscroll/jquery.slimscroll.js"/>"></script>
@@ -125,12 +128,13 @@
 		<!-- smartEditor -->
 		<script src="<c:url value ="/resources/vendor/SmartEditor/js/HuskyEZCreator.js"/>"></script>
 		<script>
+
 		var oEditors = [];
 		   nhn.husky.EZCreator.createInIFrame({
 		      oAppRef: oEditors,
 		      elPlaceHolder: "serviceUse_content",
 		      //SmartEditor2Skin.html 파일이 존재하는 경로
-		      sSkinURI : "../../resources/vendor/SmartEditor/SmartEditor2Skin.html", 
+		      sSkinURI : "resources/vendor/SmartEditor/SmartEditor2Skin.html", 
 		      htParams : {
 		          // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 		          bUseToolbar : true,             
@@ -146,7 +150,8 @@
 		          //textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
 		          oEditors.getById["serviceUse_content"].exec("PASTE_HTML", ["약관을 입력해주세요."]);
 		      },
-		      fCreator: "createSEditor2"  
+		      fCreator: "createSEditor2"
+		      
 	});
 	</script>
 		

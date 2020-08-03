@@ -92,7 +92,7 @@
                                 <h3>공지 관리</h3>
                                 <thead>
                                     <tr>
-                                    	<th>공지 번호></th>
+                                    	<th>공지 번호</th>
                                         <th>공지 제목</th>
                                         <th>내용</th>
                                         <th>게시일</th>
@@ -196,7 +196,6 @@
 
         <!-- Custom Js -->
         <script src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
-        <script src="<c:url value ="/resources/vendor/puglins/jquery-datatable/jquery-datatable.js"/>"></script>
         
         <!-- 개인 JS -->
 		<script src="<c:url value ="/resources/js/admin/sites/site_notice_list.js"/>"></script>

@@ -1,5 +1,7 @@
 package com.nemo.admin.sites.terms.service.impl;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ public class InsertTermsServiceImpl implements InsertTermsService{
 	
 	@Override
 	public int insertTerms(TermsVO vo) {
+		vo.setTermsRegistryYmd(new Date(System.currentTimeMillis()));
 		return termsDAO.insertTerms(vo);
 	}
 }
