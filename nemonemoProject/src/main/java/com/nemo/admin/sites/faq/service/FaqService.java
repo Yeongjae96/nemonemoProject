@@ -1,5 +1,10 @@
 package com.nemo.admin.sites.faq.service;
 
+import java.util.List;
+
+import com.nemo.admin.sites.faq.vo.AdminFaqRequestVO;
+import com.nemo.admin.sites.faq.vo.AdminFaqResponseVO;
+
 /**
  * @제목 : Faq 서비스
  * @패키지이름 : com.nemo.admin.sites.faq.service
@@ -13,5 +18,6 @@ package com.nemo.admin.sites.faq.service;
  * -------	--------	-------------	
  */
 public interface FaqService {
-	
+	public int insertFaq(AdminFaqRequestVO vo);
+	public List<AdminFaqResponseVO> getFaqList(String useFlagMode);
 }

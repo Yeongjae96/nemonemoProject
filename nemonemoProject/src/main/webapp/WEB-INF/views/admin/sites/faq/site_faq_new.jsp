@@ -33,6 +33,8 @@
 <!-- common CSS -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/admin/common/style.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/admin/sites/faq/site_faq_new.css"/>">
 
 <!--  테마 색상  -->
 <link rel="stylesheet"
@@ -60,7 +62,6 @@
 	<section class="content">
 		<div class="container-fluid">
 			<div class="block-header">
-				<h2>공지사항 수정</h2>
 			</div>
 
 			<!-- Advanced Validation -->
@@ -68,28 +69,32 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
 						<div class="header">
-							<h2>공지사항 수정하기</h2>
+							<h2>자주묻는 질문 등록</h2>
 						</div>
 						<div class="body">
-							<form id="noticeEditForm" method="POST" action="edit.mdo">
-								<div class="form-group form-float">
-									<div class="form-line">
-										<input type="text" class="form-control"
-											name="noticeTitle" minlength="3" required value="${noticeVO.noticeTitle}"> <label
-											class="form-label">공지사항 제목</label>
-									</div>
-									<div class="help-info">제목을 수정하세요</div>
+							<form id="faqNewForm" method="POST" action="new.mdo" class="faq-form">
+								<div class="faq-row">
+									<label class="">FAQ 카테고리</label>
+									<select class="faq-category--list" name="faqCategoryNo">
+										
+									</select>
 								</div>
-								<div class="form-group form-float">
-									<div class="form-line">
-										<textarea class="form-control" name="noticeContent"
-											style="width: 100%; height: 300px; border: 1px;" required>${noticeVO.noticeContent}</textarea>
-										<label class="form-label">공지사항 내용</label>
+								<div class="faq-row">
+									<label class="">FAQ 제목</label>
+									<div class="input-area">
+										<input id="inputTitle" type="text" name="faqTitle"/>
+										<div class="input-size">
+											<span id="size">0</span>/30									
+										</div>
 									</div>
-									<div class="help-info">공지사항을 수정하세요</div>
 								</div>
-								<input type="hidden" name="noticeNo" value="${param.noticeNo}"/>
-								<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+								<div class="faq-row">
+									<label class="">FAQ 내용</label>
+								</div>
+									<textarea id="faqContent" cols="120" rows="20" name="faqContent"></textarea>
+								<div class="faq-row">
+									<button id="newBtn" class="new-btn btn btn-success">등록</button>
+								</div>
 							</form>
 						</div>
 					</div>
@@ -98,11 +103,6 @@
 		</div>
 	</section>
 	<!-------------------------------------SECTION ---------------------------------------->
-
-
-
-
-
 
 
 	<!-- Jquery Core Js -->
@@ -124,7 +124,40 @@
 	<!-- Custom Js -->
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
-
-
+	
+	<script src="<c:url value ="/resources/js/admin/sites/faq/site_faq_new.js"/>"></script>
+	<!-- smartEditor -->
+	<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script>
+	<script>
+		var oEditors = [];
+		   nhn.husky.EZCreator.createInIFrame({
+		      oAppRef: oEditors,
+		      elPlaceHolder: "faqContent",
+		      //SmartEditor2Skin.html 파일이 존재하는 경로
+		      sSkinURI : "../../resources/vendor/smarteditor/SmartEditor2Skin.html", 
+		      htParams : {
+		          // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+		          bUseToolbar : true,             
+		          // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+		          bUseVerticalResizer : true,     
+		          // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+		          bUseModeChanger : true,         
+		          fOnBeforeUnload : function(){
+		               
+		          }
+		      }, 
+		      /* fOnAppLoad : function(){
+		          //textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
+		          oEditors.getById["termsContent"].exec("PASTE_HTML", ["약관을 입력해주세요."]);
+		      }, */
+		      fCreator: "createSEditor2"  
+			});
+		   $('#newBtn').click(function() {
+		    	oEditors.getById["faqContent"].exec("UPDATE_CONTENTS_FIELD", []);	
+		    	const faqForm = document.getElementById('faqNewForm');
+		    	faqForm.submit();
+		    }); 
+		</script>
+	
 </body>
 </html>

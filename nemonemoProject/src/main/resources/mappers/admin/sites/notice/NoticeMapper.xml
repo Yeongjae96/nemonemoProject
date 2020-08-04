@@ -8,15 +8,24 @@
 		<id column="notice_no" property="noticeNo"/>
 		<result column="notice_title" property="noticeTitle"/>
 		<result column="notice_content" property="noticeContent"/>
-		<result column="notice_registry_ymd" property="noticeRegistryYmd"/>
-		<result column="notice_modify_ymd" property="noticeModifyYmd"/>
+		<result column="notice_reg_ymd" property="noticeRegYmd"/>
+		<result column="notice_edit_ymd" property="noticeEditYmd"/>
 	</resultMap>
 
 	<insert id="insertNotice"
 		parameterType="com.nemo.admin.sites.notice.vo.NoticeVO">
 		
-		INSERT INTO notice_tb(notice_no, notice_title, notice_content, notice_registry_ymd) 
-		VALUES (notice_sq.nextval, #{noticeTitle}, #{noticeContent}, #{noticeRegistryYmd}) 
+		INSERT INTO notice_tb (
+			notice_no, 
+			notice_title, 
+			notice_content, 
+			notice_reg_ymd
+		) VALUES (
+			notice_sq.nextval, 
+			#{noticeTitle}, 
+			#{noticeContent}, 
+			#{noticeRegYmd}
+		) 
 		
 		<selectKey keyProperty="noticeNo" keyColumn="NOTICE_NO" resultType="Integer" order="AFTER">
 			SELECT NOTICE_SQ.currval FROM dual
@@ -37,7 +46,6 @@
 	<select id="getNotice"
 		parameterType="int"
 		resultMap="noticeMap">
-			
 		SELECT *
 		FROM notice_tb
 		WHERE notice_no = #{noticeNo}
@@ -46,9 +54,12 @@
 	<update id="updateNotice" parameterType="com.nemo.admin.sites.notice.vo.NoticeVO">
 	
 		UPDATE notice_tb 
-		SET notice_title = #{noticeTitle}, notice_content = #{noticeContent}, notice_modify_ymd = sysdate
-		WHERE notice_no = #{noticeNo} 
-		
+		SET 
+			notice_title = #{noticeTitle}, 
+			notice_content = #{noticeContent}, 
+			notice_edit_ymd = sysdate
+		WHERE 
+			notice_no = #{noticeNo} 
 	</update>
 
 

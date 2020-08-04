@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+.header > h2 {
+	font-size: 2.5rem!important;
+	font-weight: bold!important;
+	margin: 0!important;
+	color: #555555!important;
+}
+
+
+.body #faqNewForm {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 0%;
+	justify-content: center;
+}
+
+.faq-row {
+	height: 50px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 25px;
+	border-bottom: 1px solid #AAAAAA;
+	padding-bottom: 10px;
+}
+
+.faq-row > select {
+	border: 1px solid #CCCCCC;
+	width: 80%;
+	padding: 0 15px;
+	height: 100%;
+}	
+
+.faq-row > label {
+	height: 100%;
+	width: 15%;
+	font-size: 16px;
+	margin-right: 20px;
+	margin-bottom: 0px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+
+.input-area {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 80%;
+	height: 100%;
+	border: 1px solid #CCCCCC;
+	padding: 0 15px;
+}
+
+.input-area > input {
+	width: 100%;
+}
+
+.input-area:focus {
+	border: 1px solid #333;
+}
+
+.input-area > * {
+	border: 0px;
+}
+
+.input-area > .input-size {
+	margin-left: 15px;
+	font-size: 16px;
+	font-weight: 300;
+}
+
+.faq-row > textarea {
+	height: 100%;
+	width: 80%;
+	resize: none;
+	border: 1px solid #CCCCCC;
+	padding: 0 15px;
+}
+
+#faqNewForm .faq-row:nth-child(3) {
+	border-bottom: 0;
+	padding-bottom: 30px;
+	margin-bottom: 0;
+}
+
+#faqNewForm .faq-row:last-child {
+	border-bottom: 0;
+}
+
+
+#faqContent {
+	width: 100%;
+	min-height: 400px;
+}
+
+.new-btn {
+	width: 100%;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 20px!important;
+	font-weight: bold;
+	min-height: 40px;
+}
+
+

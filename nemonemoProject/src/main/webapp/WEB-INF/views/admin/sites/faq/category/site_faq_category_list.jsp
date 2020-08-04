@@ -106,7 +106,7 @@
                                    <tr>
                                         <td>${faqCategory.faqCategoryNo}</td>
                                         <td>${faqCategory.faqCategoryName}</td>
-                                        <td>${faqCategory.faqCategoryRegistryYmd}</td>
+                                        <td>${faqCategory.faqCategoryRegYmd}</td>
                                         <td>
                                         	<c:if test="${faqCategory.faqCategoryUseFl eq 'Y'}">
                                         		<span style="color:blue;" data-faqno="${faqCategory.faqCategoryNo}">사용</span>

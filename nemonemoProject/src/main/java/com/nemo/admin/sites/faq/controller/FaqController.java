@@ -1,24 +1,28 @@
 package com.nemo.admin.sites.faq.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nemo.admin.sites.faq.vo.FaqVO;
+import com.nemo.admin.sites.faq.service.FaqService;
+import com.nemo.admin.sites.faq.vo.AdminFaqRequestVO;
 
 @Controller
 @RequestMapping("/sites/faq")
 public class FaqController {
 	
-//	@Autowired
-//	private f
+	@Autowired
+	private FaqService faqService;
 	
 	@GetMapping("/list")
-	public ModelAndView faqListPage() {
+	public ModelAndView faqListPage(@RequestParam(required = false, defaultValue = "N") String useFlagMode) {
 		
 		ModelAndView mav = new ModelAndView("sites/faq/site_faq_list");
+		mav.addObject("faqList", faqService.getFaqList(useFlagMode));
 		return mav;
 	}
 	
@@ -29,8 +33,9 @@ public class FaqController {
 	}
 	
 	@PostMapping("/new")
-	public ModelAndView faqNewAction(FaqVO vo) {
-		
+	public ModelAndView faqNewAction(AdminFaqRequestVO vo) {
+		System.out.println(vo);
+		faqService.insertFaq(vo);
 		ModelAndView mav = new ModelAndView("redirect:/sites/faq/list.mdo");
 		return mav;
 	}

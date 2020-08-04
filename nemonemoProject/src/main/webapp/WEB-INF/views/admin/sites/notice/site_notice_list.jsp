@@ -30,7 +30,7 @@
 	<link rel="stylesheet" href="<c:url value="/resources/vendor/common/stylesheets/theme-red.css"/>">
 	
 	<!-- 개인 CSS -->
-	<link rel="stylesheet" href="<c:url value="/resources/css/admin/sites/site_notice_list.css"/>">
+	<link rel="stylesheet" href="<c:url value="/resources/css/admin/sites/notice/site_notice_list.css"/>">
 	
 	<!-- JQuery DataTable Css -->
 	<link rel="stylesheet" href="<c:url value="/resources/vendor/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"/>">
@@ -108,8 +108,8 @@
                                         <td>
                                             <textarea style="width: 100%;">${notice.noticeContent}
                                         </textarea></td>
-                                        <td>${notice.noticeRegistryYmd}</td>
-                                        <td>${notice.noticeModifyYmd}</td>
+                                        <td>${notice.noticeRegYmd}</td>
+                                        <td>${notice.noticeEditYmd}</td>
                                         <td class ="text-center"><button type="button" class ="notice-upd-btn" data-noticeNo="${notice.noticeNo}">수정</button>
                                             <button type="button" class ="notice-del-btn" data-noticeNo="${notice.noticeNo}">삭제</button></td>
                                     </tr>
@@ -198,7 +198,7 @@
         <script src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
         
         <!-- 개인 JS -->
-		<script src="<c:url value ="/resources/js/admin/sites/site_notice_list.js"/>"></script>
+		<script src="<c:url value ="/resources/js/admin/sites/notice/site_notice_list.js"/>"></script>
 
 	
 </body>
