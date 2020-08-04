@@ -15,14 +15,15 @@ import java.sql.Date;
  * -------		--------		-------------	
  * 20.07.29 	  이혜인			테이블 명세서에 따른 초기세팅
  * 20.07.30	  김영재			테이블 컬럼 수정에 따른 컬럼명 변경 및 추가(regYmd, modYmd)
+ * 20.08.03	  김영재			테이블 컬럼 수정에 따른 컬럼명 변경(RegYmd, EditYmd)
  */
 
 public class NoticeVO {
 	private int noticeNo;
 	private String noticeTitle;
 	private String noticeContent;
-	private Date noticeRegistryYmd;
-	private Date noticeModifyYmd;
+	private Date noticeRegYmd;
+	private Date noticeEditYmd;
 	public int getNoticeNo() {
 		return noticeNo;
 	}
@@ -41,21 +42,22 @@ public class NoticeVO {
 	public void setNoticeContent(String noticeContent) {
 		this.noticeContent = noticeContent;
 	}
-	public Date getNoticeRegistryYmd() {
-		return noticeRegistryYmd;
+	public Date getNoticeRegYmd() {
+		return noticeRegYmd;
 	}
-	public void setNoticeRegistryYmd(Date noticeRegistryYmd) {
-		this.noticeRegistryYmd = noticeRegistryYmd;
+	public void setNoticeRegYmd(Date noticeRegYmd) {
+		this.noticeRegYmd = noticeRegYmd;
 	}
-	public Date getNoticeModifyYmd() {
-		return noticeModifyYmd;
+	public Date getNoticeEditYmd() {
+		return noticeEditYmd;
 	}
-	public void setNoticeModifyYmd(Date noticeModifyYmd) {
-		this.noticeModifyYmd = noticeModifyYmd;
+	public void setNoticeEditYmd(Date noticeEditYmd) {
+		this.noticeEditYmd = noticeEditYmd;
 	}
 	@Override
 	public String toString() {
 		return "NoticeVO [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", noticeRegistryYmd=" + noticeRegistryYmd + ", noticeModifyYmd=" + noticeModifyYmd + "]";
+				+ ", noticeRegYmd=" + noticeRegYmd + ", noticeEditYmd=" + noticeEditYmd + "]";
 	}
+	
 }

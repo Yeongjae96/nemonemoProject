@@ -66,23 +66,16 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>이용약관</h2>
+                            <h1>이용약관 등록</h1>
                         </div>
                         <div class="body">
-                            <form id="form_advanced_validation" method="POST">
+                            <form id="terms-form" method="POST">
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="editserviceUse-title" minlength="3" required>
-                                        <label class="form-label">약관 이름</label>
-                                    </div>
-                                    <div class="help-info">약관 이름을 적으세요</div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="url" class="form-control" name="editserviceUse-link" required>
-                                        <label class="form-label">약관 링크</label>
-                                    </div>
-                                    <div class="help-info">http://, https://, ftp:// etc로 시작하는 링크를 적으세요</div>
+                                    <label class="form-label">약관명</label>
+                                        <input type="text" class="form-control" id="serviceUse_title" name="serviceUse_title" minlength="3" required>
+                                        
+                                    </div>             
                                 </div>
                                 <div class="form-group form-float" style="margin-top: 30px;">
                                     <label class="form-label">표시 여부</label>
@@ -91,7 +84,11 @@
                                         <option value="Y">S</option>
                                         <option value="N">N</option>
                                     </select>
+                                </div> 
+                                <div class="form-group form-float">
+									<textarea cols="120" rows="20" name="serviceUse_content" id="serviceUse_content" ></textarea>     
                                 </div>
+                               
                                 <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
                             </form>
                         </div>
@@ -100,21 +97,15 @@
                 </div>
             </div>          
     </section>
-	
-	
-	
-	
-	
-	
-			<!-- Jquery Core Js -->
-    		<script src="<c:url value ="/resources/vendor/plugins/jquery/jquery.js"/>"></script>
+    
+		<!-- Jquery Core Js -->
+    	<script src="<c:url value ="/resources/vendor/plugins/jquery/jquery.js"/>"></script>
     		
-    		<!-- Bootstrap Core Js -->
-			<script src="<c:url value ="/resources/vendor/plugins/bootstrap/js/bootstrap.js"/>"></script>
+    	<!-- Bootstrap Core Js -->
+		<script src="<c:url value ="/resources/vendor/plugins/bootstrap/js/bootstrap.js"/>"></script>
    			 	
         <!-- Select Plugin Js -->
  		<script src="<c:url value ="/resources/vendor/plugins/bootstrap-select/js/bootstrap-select.js"/>"></script>
-
 
         <!-- Slimscroll Plugin Js -->
  		<script src="<c:url value ="/resources/vendor/plugins/jquery-slimscroll/jquery.slimscroll.js"/>"></script>
@@ -128,7 +119,37 @@
 		<!-- Dateppicker bootstrap -->
     	<script src="<c:url value ="/resources/vendor/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"/>"></script>
     	
-
+    	<!-- 개인 JS -->
+		<script src="<c:url value ="/resources/js/admin/sites/site_terms.js"/>"></script>	
+		
+		<!-- smartEditor -->
+		<script src="<c:url value ="/resources/vendor/SmartEditor/js/HuskyEZCreator.js"/>"></script>
+		<script>
+		var oEditors = [];
+		   nhn.husky.EZCreator.createInIFrame({
+		      oAppRef: oEditors,
+		      elPlaceHolder: "serviceUse_content",
+		      //SmartEditor2Skin.html 파일이 존재하는 경로
+		      sSkinURI : "../../resources/vendor/SmartEditor/SmartEditor2Skin.html", 
+		      htParams : {
+		          // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+		          bUseToolbar : true,             
+		          // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+		          bUseVerticalResizer : true,     
+		          // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+		          bUseModeChanger : true,         
+		          fOnBeforeUnload : function(){
+		               
+		          }
+		      }, 
+		      fOnAppLoad : function(){
+		          //textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
+		          oEditors.getById["serviceUse_content"].exec("PASTE_HTML", ["약관을 입력해주세요."]);
+		      },
+		      fCreator: "createSEditor2"  
+	});
+	</script>
+		
 	
 </body>
 </html>

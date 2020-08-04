@@ -17,11 +17,10 @@
 		
 		INSERT INTO ADMIN_ACCOUNT_TB 
 		VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}) 
-		<!-- 
-		리턴값을 주기 위한
+		
 		<selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" order="AFTER">
 			SELECT ADMIN_sq.currval FROM dual
-		</selectKey> -->
+		</selectKey>
 
 	</insert>
 

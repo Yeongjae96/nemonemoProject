@@ -5,7 +5,7 @@ import java.sql.Date;
 public class FaqCategoryVO {
 	private int faqCategoryNo;
 	private String faqCategoryName;
-	private Date faqCategoryRegistryYmd;
+	private Date faqCategoryRegYmd;
 	private String faqCategoryUseFl;
 	
 	public int getFaqCategoryNo() {
@@ -20,11 +20,12 @@ public class FaqCategoryVO {
 	public void setFaqCategoryName(String faqCategoryName) {
 		this.faqCategoryName = faqCategoryName;
 	}
-	public Date getFaqCategoryRegistryYmd() {
-		return faqCategoryRegistryYmd;
+	
+	public Date getFaqCategoryRegYmd() {
+		return faqCategoryRegYmd;
 	}
-	public void setFaqCategoryRegistryYmd(Date faqCategoryRegistryYmd) {
-		this.faqCategoryRegistryYmd = faqCategoryRegistryYmd;
+	public void setFaqCategoryRegYmd(Date faqCategoryRegYmd) {
+		this.faqCategoryRegYmd = faqCategoryRegYmd;
 	}
 	public String getFaqCategoryUseFl() {
 		return faqCategoryUseFl;
@@ -32,11 +33,13 @@ public class FaqCategoryVO {
 	public void setFaqCategoryUseFl(String faqCategoryUseFl) {
 		this.faqCategoryUseFl = faqCategoryUseFl;
 	}
+	
 	@Override
 	public String toString() {
 		return "FaqCategoryVO [faqCategoryNo=" + faqCategoryNo + ", faqCategoryName=" + faqCategoryName
-				+ ", faqCategoryRegistryYmd=" + faqCategoryRegistryYmd + ", faqCategoryUseFl=" + faqCategoryUseFl + "]";
+				+ ", faqCategoryRegYmd=" + faqCategoryRegYmd + ", faqCategoryUseFl=" + faqCategoryUseFl + "]";
 	}
+	
 	
 	
 }

@@ -18,7 +18,7 @@ public class InsertNoticeServiceImpl implements InsertNoticeService {
 	
 	@Override
 	public int insertNotice(NoticeVO vo) {
-		vo.setNoticeRegistryYmd(new Date(System.currentTimeMillis()));
+		vo.setNoticeRegYmd(new Date(System.currentTimeMillis()));
 		return noticeDAO.insertNotice(vo);
 	}
 

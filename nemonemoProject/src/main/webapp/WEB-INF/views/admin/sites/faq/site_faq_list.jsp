@@ -119,7 +119,7 @@
 									<thead>
                                     <tr>
                                     	<th width="15%">질문 번호</th>
-										<th width="15%">카테고리 코드</th>
+										<th width="15%">카테고리 명</th>
 										<th width="40%">제목</th>
 										<th width="15%">등록일</th>
 										<th width="15%">관리버튼</th>
@@ -129,8 +129,9 @@
                                 	<c:forEach var="faq" items="${faqList}">
                                    <tr>
                                         <td>${faq.faqNo}</td>
-                                        <td>${faq.faqCategoryCd}</td>
+                                        <td>${faq.faqCategoryName}</td>
                                         <td>${faq.faqTitle}</td>
+                                        <td>${faq.faqRegYmd}</td>
                                         <td class ="text-center">
 	                                        <button type="button" class ="faq-upd-btn" data-faqno="${faq.faqNo}">수정</button>
 	                                        <button type="button" class ="faq-del-btn" data-faqno="${faq.faqNo}">삭제</button>

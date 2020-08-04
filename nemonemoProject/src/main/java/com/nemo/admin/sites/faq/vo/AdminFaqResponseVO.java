@@ -14,9 +14,9 @@ import java.sql.Date;
  * DATE		 AUTHOR			NOTE
  * -------	--------	-------------	
  */
-public class FaqVO {
+public class AdminFaqResponseVO {
 	private int faqNo;
-	private int faqCategoryNo;
+	private String faqCategoryName;
 	private String faqTitle;
 	private String faqContent;
 	private String faqUseFlag;
@@ -28,11 +28,11 @@ public class FaqVO {
 		this.faqNo = faqNo;
 	}
 	
-	public int getFaqCategoryNo() {
-		return faqCategoryNo;
+	public String getFaqCategoryName() {
+		return faqCategoryName;
 	}
-	public void setFaqCategoryNo(int faqCategoryNo) {
-		this.faqCategoryNo = faqCategoryNo;
+	public void setFaqCategoryName(String faqCategoryName) {
+		this.faqCategoryName = faqCategoryName;
 	}
 	public String getFaqTitle() {
 		return faqTitle;
