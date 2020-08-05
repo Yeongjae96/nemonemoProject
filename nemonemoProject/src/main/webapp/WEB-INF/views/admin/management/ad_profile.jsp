@@ -60,16 +60,13 @@
 	</header>
 
 
-
-
-
 	<% 
 		/* 각 페이지의 SECTION */
 	%>
 
 	<!-------------------------------------------SECTION--------------------------------------------------->
 
-	<!-- 직원 삭제 경고창 모달 -->
+	<!-- 직원 중지 경고창 모달 -->
 	<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
@@ -78,22 +75,21 @@
 						id="smallModalLabel">주의</h3>
 				</div>
 				<div class="modal-body">
-					<h1 class="text-center">직원삭제</h1>
+					<h1 class="text-center">활동중지</h1>
 					<h5 class="text-center">확인 버튼을 누르시면</h5>
-					<h5 class="text-center">해당 직원은 삭제 됩니다.</h5>
-					<h5 class="text-center">삭제 하시겠습니까?</h5>
+					<h5 class="text-center">해당 직원의 활동은 중지됩니다.</h5>
 
 				</div>
 				<div class="modal-footer">
 					<button id="admin-del-confirm" type="button"
-						class="btn btn-link waves-effect" data-dismiss="modal">삭제</button>
+						class="btn btn-link waves-effect" data-dismiss="modal">확인</button>
 					<button id="admin-del-cancel" type="button" class="btn btn-link waves-effect"
 						data-dismiss="modal">취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 직원 삭제 경고창 모달 끝-->
+	<!-- 직원 중지 경고창 모달 끝-->
 
 
 	<section class="content">
@@ -114,7 +110,9 @@
 											<th>직원 번호</th>
 											<th>아이디</th>
 											<th>이메일</th>
-											<th>수정/삭제</th>
+											<th>활동상태</th>
+											<th>활동중지</th>
+											
 										</tr>
 									</thead>
 									<tbody id="result">
@@ -123,16 +121,12 @@
 												<td>${admin.adminNo}</td>
 												<td>${admin.adminId}</td>
 												<td>${admin.adminEmail}</td>
+												<td>${admin.adminUse}</td>
 												<td class="text-center">
-													<!-- 직원수정  -->
-													<button type="button"
-														class="btn bg-blue waves-effect admin-upd-btn"
-														data-target="#admin_upd_btn" 
-														data-toggle="modal"
-														data-adminNo="${admin.adminNo}">수정</button>
 													<button type="button"
 														class="btn bg-red waves-effect admin-del-btn"
-														data-adminNo="${admin.adminNo}">삭제</button>
+														<%-- data-adminUse="${admin.adminUse}" --%>
+														data-adminNo ="${admin.adminNo}">중지</button>
 												</td>
 											</tr>
 										</c:forEach>
@@ -143,35 +137,8 @@
 					</div>
 				</div>
 			</div>
-			
-			<!-- 직원 수정 -->
- 			<div class="modal fade" id="coupon_in" role="dialog">
-				<div class="modal-dialog">
-					Modal 내용
-					<div class="modal-content">
-						modal header
-						<div class="modal-header">
-							<h4 class="modal-title">직원 수정</h4>
-						</div>
 
-						<div class="modal-body">
-							<form method="POST" action="new.mdo" name="adminForm">
-								<div class="form-group">
-									<label for="adminEmail">이메일</label> 
-									<input type="text" class="form-control" name="adminEmail" id="adminEmail" placeholder="이메일을 입력해 주세요"> 
-								</div>
-							</form>
-						</div>
 
-						<div class="modal-footer">
-							<button type="button" class="btn btn-success"
-								data-dismiss="modal" value="Upload" id="adminInsert">업데이트</button>
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">취소</button>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</section>
 
@@ -219,8 +186,6 @@
 	<!-- Custom Js -->
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
-	<script
-		src="<c:url value ="/resources/vendor/puglins/jquery-datatable/jquery-datatable.js"/>"></script>
 
 	<!-- 개인 JS -->
 	<script

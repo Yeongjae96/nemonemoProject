@@ -17,6 +17,14 @@
 	</properties>
 
 	<dependencies>
+	
+		<!-- 제이슨 예린 테스트 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.6</version>
+		</dependency>
+
 
 		<!-- 파일업로드를 쓰기 위함 -->
 		<dependency>
@@ -31,13 +39,13 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.7</version>
 		</dependency>
-		
+
 		<!-- 비밀번호 암호화 -->
 		<dependency>
-          <groupId>org.springframework.security</groupId>
-          <artifactId>spring-security-web</artifactId>
-          <version>5.3.3.RELEASE</version>
-      	</dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.3.3.RELEASE</version>
+		</dependency>
 
 		<!-- mybatis -->
 		<dependency>

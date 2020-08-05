@@ -10,14 +10,15 @@
 		<result column="admin_id" property="adminId"/>
 		<result column="admin_pw" property="adminPw"/>
 		<result column="admin_email" property="adminEmail"/>
+		<result column="admin_use" property ="adminUse"/>
 	</resultMap>
 
 	
 	<insert id="insertAdmin"
 		parameterType="com.nemo.admin.management.vo.ManagementVO">
 		
-		INSERT INTO ADMIN_ACCOUNT_TB 
-		VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}) 
+		INSERT INTO ADMIN_TB
+		VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}, #{adminUse}) 
 		<!-- 
 		리턴값을 주기 위한
 		<selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" order="AFTER">
@@ -29,26 +30,36 @@
 	<select id="loginAdmin" resultType="com.nemo.admin.management.vo.ManagementVO" 
 			parameterType="com.nemo.admin.management.vo.ManagementVO">
         SELECT * FROM 
-        	ADMIN_ACCOUNT_TB 
+        	ADMIN_TB 
         WHERE 
         	ADMIN_ID=#{adminId} and ADMIN_PW=#{adminPw}
     </select>
     
+    <select id="idCheck" 
+    	parameterType="com.nemo.admin.management.vo.ManagementVO">
+    	SELECT COUNT(*) FROM 
+    		ADMIN_TB
+    	WHERE
+    		 ADMIN_ID = #{adminId}
+    </select>
+    
     <select id="getAdminList"
-    	parameterType="com.nemo.admin.management.vo.ManagementVO"
-    	resultMap="managementMap">
+    		parameterType="com.nemo.admin.management.vo.ManagementVO"
+    		resultMap="managementMap">
     	SELECT * FROM
-    		ADMIN_ACCOUNT_TB
+    		ADMIN_TB
     </select>
     
     <!-- 삭제 -->
     
-    <select id="deleteAdmin" parameterType="int" resultType="com.nemo.admin.management.vo.ManagementVO">	
-    	SELECT * FROM 
-    		ADMIN_ACCOUNT_TB
+    <update id="deleteAdmin"
+    		parameterType="com.nemo.admin.management.vo.ManagementVO">	
+    	UPDATE 
+    		ADMIN_TB
+    	SET admin_use ='N'
     	WHERE
     		ADMIN_NO = #{adminNo}
-    </select>
+    </update>
 	
 
 

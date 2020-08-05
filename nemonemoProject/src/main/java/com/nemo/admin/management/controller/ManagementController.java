@@ -2,20 +2,24 @@ package com.nemo.admin.management.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.admin.management.service.DeleteAdminService;
+import com.nemo.admin.management.service.IdCheckService;
 import com.nemo.admin.management.service.InsertAdminService;
 import com.nemo.admin.management.service.LoginAdminService;
 import com.nemo.admin.management.service.SelectAdminListService;
-import com.nemo.admin.management.service.UpdateAdminService;
 import com.nemo.admin.management.vo.ManagementVO;
 
 
@@ -47,6 +51,7 @@ public class ManagementController {
 	@Autowired private LoginAdminService loginAdminService;
 	@Autowired private SelectAdminListService selectAdminListService;
 	@Autowired private DeleteAdminService deleteAdminService;
+	@Autowired private IdCheckService idCheckService;
 
 	/* 회원가입  */
 	@RequestMapping(value = "/signup", method = { RequestMethod.GET })
@@ -99,18 +104,42 @@ public class ManagementController {
 		return mav;
 	}
 	
-	@RequestMapping(value ="/delete", method= {RequestMethod.POST})
-	public ModelAndView adminDeleteAction(@RequestParam int adminNo) {
-		deleteAdminService.deleteAdmin(adminNo);
-		
+	@RequestMapping(value ="/profile/delete", method= {RequestMethod.POST})
+	public ModelAndView adminDeleteAction(ManagementVO vo) {
+		deleteAdminService.deleteAdmin(vo);
+		System.out.println("활동중지 : " + vo);
 		ModelAndView mav = new ModelAndView("redirect:/management/profile.mdo");
 		return mav;
 	}
+	
 
 	
+	/* 로그인 중복검사 테스트 - 예린 */
+	//AJAX를 사용하면 jsp 파일이 필요없기 때문에 메서드 앞에 어노테이션 @ResponseBody 추가
+	@ResponseBody
+	// 아이디 중복확인은 다른 페이지로 이동하지 않고, 가입페이지에서만 작동
+	@RequestMapping(value ="/signup/idcheck", method ={RequestMethod.POST}) 
+	public int adminIdCheck(HttpServletRequest req) {
+		System.out.println("아이디 체크");
+		
+		String adminId = req.getParameter("adminId");
+		ManagementVO idChecked = idCheckService.idCheck(adminId);
+		System.out.println("Controller : " + idChecked);
+		
+		int result = 0;
+		// 결과가 있다면 입력한 내용과 테이블에 있는 아이디가 일치하는 것이니까 중복 되는 것! 결과가 없다면  중복되지 않는 아이디.
+		if(idChecked != null) {
+			result = 1;
+		}
+		return result; // 이 컨트롤러의 return을 ajax data로..!!
+		
+		
+	}
+	
+
 	
 	/* 로그인하기 */
-	@PostMapping("/management/login")
+	@PostMapping("/login")
 	public ModelAndView loginAdmin(ManagementVO vo) {
 		System.out.println("Controller : " + vo);
 		loginAdminService.loginAdmin(vo);
@@ -119,4 +148,7 @@ public class ManagementController {
 	}
 	
 
+
 }
+
+

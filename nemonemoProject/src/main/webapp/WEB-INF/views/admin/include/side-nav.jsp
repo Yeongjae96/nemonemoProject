@@ -18,9 +18,9 @@
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>직원관리</a></li>
+                            <li><a href="/nemonemoProject/management/profile.mdo"><i class="material-icons">person</i>직원관리</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>관리자추가</a></li>                  
+                            <li><a href="/nemonemoProject/management/signup.mdo"><i class="material-icons">group</i>관리자추가</a></li>                  
                             <li role="separator" class="divider"></li>
                             <li><a href="javascript:void(0);"><i class="material-icons">input</i>로그아웃</a></li>
                         </ul>

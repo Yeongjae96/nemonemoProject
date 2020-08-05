@@ -1,21 +1,18 @@
 ﻿
-/* 모달 팝업 */
-function open_pop(e) {
-    $('.smallModal').show();
-};
-// 모달 팝업 클로즈
-function close_pop(flag) {
-    $('#myModal').hide();
-};
+
+var table = $('#admin-table');
 
 $(function () {
     $('#admin-table tbody').on('click','.admin-del-btn', function(){
         var selected = this;
         $('#smallModal').modal("toggle");
-        if($('#admin-del-confirm').click(function(){
-            $(selected).closest('tr').remove();
-        }));
     });
+    // del-btn 의 adminno 값을 del-confirm에게 전달
+    $('.admin-del-btn').click(function() {
+    	$('#admin-del-confirm').data('adminno', $(this).data('adminno'));
+    });
+    $('#admin-del-confirm').click(deleteBtnEvent);
+        
 
     table.dataTable({
         language: {
@@ -43,29 +40,39 @@ $(function () {
 
     });
     
-    
-    /* 어드민 삭제  */
-	$('.admin-del-confirm').click(function() {
-		const adminNo = $(this)[0].dataset.adminno;
-		console.log(adminNo);
-		
-		$form = $('<form></form>').attr({
-			action: "delete.mdo",
-			method: "POST"
-		});
-		// attr(속성 부여) -> ('','') -> 단일속성, {} -> 다중속성 
-		// input의 name은 파라미터의 키값, value는 값
-		$input = $('<input/>').attr({
-			type: 'hidden',
-			name: 'adminNo',
-			value: adminNo,
-		});
-		
-		/* form안에 만든 input값을 넣어줌 */
-		$form.append($input);
-		$('body').append($form);
-		$form[0].submit();
-		$form.remove();
-	});  
+    function deleteBtnEvent() {
+        	alert("해당 고객 선택");
+        	const adminNo = $(this).data('adminno');
+    		alert(adminNo);
+    		console.log($(this));
+    		$form = $('<form></form>').attr({
+    			action: "profile/delete.mdo",
+    			method: "POST"
+    		});
+    	
+    		$input = $('<input/>').attr({
+    			type: 'hidden',
+    			name: 'adminNo',
+    			value: adminNo,
+    		});
+    		
+    		$form.append($input);
+    		$('body').append($form);
+    		$form[0].submit();
+    }    
 });
+
+
+$(function () {
+    $('#admin-table tbody').on('click','.admin-upd-btn', function(){
+        var selected = this;
+        $('#admin_upd_modal').modal("toggle");
+        if($('#admin_upd_btn').click(function(){
+            console.log("수정하겠습니다!");
+        }));
+    });
+});
+
+
+    
 

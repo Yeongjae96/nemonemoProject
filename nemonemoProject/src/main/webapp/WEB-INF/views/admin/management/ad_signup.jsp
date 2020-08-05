@@ -46,7 +46,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="adminId" placeholder="아이디를 입력하세요" required autofocus>
+                            <input type="text" class="form-control" name="adminId" id = "adminId" placeholder="아이디를 입력하세요" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -55,6 +55,7 @@
                         </span>
                         <div class="form-line">
                             <input type="email" class="form-control" name="adminEmail" placeholder="이메일을 입력하세요" required>
+                            <input type="hidden" name="adminUse" value="Y">
                         </div>
                     </div>
                     <div class="input-group">
@@ -73,8 +74,7 @@
                             <input type="password" class="form-control" id="pwd2" name="adminPwConfirm" minlength="6" placeholder="비밀번호 중복확인" required>
                         </div>
                     </div>
-                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit" id="ad_signup_submit">회원가입</button>
-
+                    <button class="btn btn-block btn-lg bg-pink waves-effect ad_signup_submit" type="submit">회원가입</button>
                     <div class="m-t-25 m-b--5 align-center">
                         <a href="login.mdo">이미 가입하셨나요??</a>
                     </div>

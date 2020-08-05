@@ -24,7 +24,14 @@ public class ManagementVO {
 	private String adminId;
 	private String adminPw;
 	private String adminEmail;
+	private String adminUse;
 	
+	public String getAdminUse() {
+		return adminUse;
+	}
+	public void setAdminUse(String adminUse) {
+		this.adminUse = adminUse;
+	}
 	public int getAdminNo() {
 		return adminNo;
 	}
@@ -53,8 +60,8 @@ public class ManagementVO {
 	
 	@Override
 	public String toString() {
-		return "ManagementVO [직원번호=" + adminNo + ", 직원아이디=" + adminId + ", 직원비밀번호=" + adminPw + ", 직원이메일="
-				+ adminEmail + "]";
+		return "ManagementVO [직원번호=" + adminNo + ", 직원아이디=" + adminId + ", 직원비밀번호=" + adminPw + ", 직원이메일 ="
+				+ adminEmail + ", 고용상태 = " + adminUse + "]";
 	}
 	
 	

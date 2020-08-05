@@ -59,7 +59,6 @@ $(function () {
 //    	console.log(this === $(this)[0]);
     
     /* 삭제 버튼 기능 */
-
     /* 삭제 버튼을 누르면 해당 익명 함수를 실행해라 */
     $('.notice-del-btn').click(function() {
     	// 누른 버튼의 dataset(data-*)에 속성값인 noticeno를 noticeNo 변수에 담아라.
