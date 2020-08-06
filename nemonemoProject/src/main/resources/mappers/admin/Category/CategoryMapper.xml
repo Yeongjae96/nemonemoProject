@@ -33,13 +33,13 @@
 	<select id="getCategoryList"
 		parameterType="com.nemo.admin.members.report.category.vo.ReportCategoryVO"
 		resultMap="categoryMap">
-		SELECT *
+		SELECT * 
 		FROM REPORT_CATE_TB
 	</select>
 
 	<delete id="deleteCategory" parameterType="int">
-		DELETE FROM
-		REPORT_CATE_TB WHERE REPORT_CATE_NO = #{reportCategoryNO}
+		DELETE FROM REPORT_CATE_TB 
+		WHERE REPORT_CATE_NO = #{reportCategoryNO}
 	</delete>
 
 
@@ -48,11 +48,8 @@
 		parameterType="com.nemo.admin.members.report.category.vo.ReportCategoryVO">
 
 		UPDATE REPORT_CATE_TB
-		SET REPORT_CATE_NAME =
-		#{reportCategoryName, jdbcType=VARCHAR}
-		WHERE
-		REPORT_CATE_NO =
-		#{reportCategoryNO, jdbcType=NUMERIC}
+		SET REPORT_CATE_NAME = #{reportCategoryName, jdbcType=VARCHAR}
+		WHERE REPORT_CATE_NO = #{reportCategoryNO, jdbcType=NUMERIC}
 
 	</update>
 
