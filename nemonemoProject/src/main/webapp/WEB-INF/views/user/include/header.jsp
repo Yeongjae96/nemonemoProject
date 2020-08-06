@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="main_header container-md">
+<div class="main_header container-fluid">
 	<div class="flex">
 		<!-- 로고 영역 -->
 		<a href="<c:url value="/index.do"/>" id="main-logo-area"><img

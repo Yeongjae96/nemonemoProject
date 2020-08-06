@@ -1,12 +1,11 @@
 @charset "UTF-8";
 
-.header > h2 {
-	font-size: 2.5rem!important;
-	font-weight: bold!important;
-	margin: 0!important;
-	color: #555555!important;
+.header>h2 {
+	font-size: 2.5rem !important;
+	font-weight: bold !important;
+	margin: 0 !important;
+	color: #555555 !important;
 }
-
 
 .body #faqNewForm {
 	width: 100%;
@@ -26,14 +25,14 @@
 	padding-bottom: 10px;
 }
 
-.faq-row > select {
+.faq-row>select {
 	border: 1px solid #CCCCCC;
 	width: 80%;
 	padding: 0 15px;
 	height: 100%;
-}	
+}
 
-.faq-row > label {
+.faq-row>label {
 	height: 100%;
 	width: 15%;
 	font-size: 16px;
@@ -43,7 +42,6 @@
 	flex-direction: row;
 	align-items: center;
 }
-
 
 .input-area {
 	display: flex;
@@ -56,7 +54,7 @@
 	padding: 0 15px;
 }
 
-.input-area > input {
+.input-area>input {
 	width: 100%;
 }
 
@@ -64,17 +62,17 @@
 	border: 1px solid #333;
 }
 
-.input-area > * {
+.input-area>* {
 	border: 0px;
 }
 
-.input-area > .input-size {
+.input-area>.input-size {
 	margin-left: 15px;
 	font-size: 16px;
 	font-weight: 300;
 }
 
-.faq-row > textarea {
+.faq-row>textarea {
 	height: 100%;
 	width: 80%;
 	resize: none;
@@ -82,16 +80,15 @@
 	padding: 0 15px;
 }
 
-#faqNewForm .faq-row:nth-child(3) {
+#faqEditForm .faq-row:nth-child(4) {
 	border-bottom: 0;
 	padding-bottom: 30px;
 	margin-bottom: 0;
 }
 
-#faqNewForm .faq-row:last-child {
+#faqEditForm .faq-row:last-child {
 	border-bottom: 0;
 }
-
 
 #faqContent {
 	width: 100%;
@@ -103,16 +100,46 @@
 	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 20px!important;
+	font-size: 20px !important;
 	font-weight: bold;
 	min-height: 40px;
 }
 
-.header h2 > span {
+.header h2>span {
 	color: #EE5058;
 }
 
 .btn-area {
 	margin-bottom: 15px;
-	
+}
+
+.radio-area {
+	display: flex;
+	flex-direction: flex-start;
+}
+
+.radio-area :first-child {
+	margin-right: 50px;	
+}
+
+.radio-area label {
+	font-size: 16px;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+}
+
+.radio-area label:hover {
+	color: #EE5058;
+	cursor: pointer;
+}
+
+.radio-area input[type="radio"] {
+	position: static!important;
+	opacity: 1!important;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: 10px;
+	width: 16px;
+	height: 16px;
 }

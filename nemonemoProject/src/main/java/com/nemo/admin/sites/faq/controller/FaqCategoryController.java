@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import com.nemo.admin.sites.faq.service.FaqCategoryCheckService;
 import com.nemo.admin.sites.faq.service.FaqCategoryService;
 import com.nemo.admin.sites.faq.service.FaqCategoryUseFlagService;
 import com.nemo.admin.sites.faq.vo.FaqCategoryVO;
@@ -36,25 +38,26 @@ public class FaqCategoryController {
 	public FaqCategoryService faqCategoryService;
 	@Autowired
 	public FaqCategoryUseFlagService faqCategoryUseFlagService;
+	@Autowired
+	public FaqCategoryCheckService faqCategoryCheckService;
 	
 	@GetMapping("/list")
 	public ModelAndView faqCategoryPage(@RequestParam(required = false, defaultValue = "N") String faqCategoryUseFlMode) {
 		
 		ModelAndView mav = new ModelAndView("sites/faq/category/site_faq_category_list");
 		List<FaqCategoryVO> faqCategoryList = faqCategoryService.getFaqCategoryList(faqCategoryUseFlMode);
-		System.out.println(faqCategoryList);
 		mav.addObject("faqCategoryList",faqCategoryList);
 		return mav;
 	}
 	
 	
-	
-	
 	@PostMapping("/new")
 	public ModelAndView faqCategoryNewAction(FaqCategoryVO vo) {
-	
-		faqCategoryService.insertFaqCategory(vo);
-		ModelAndView mav = new ModelAndView("redirect:/sites/faq/category/list.mdo");
+		ModelAndView mav = new ModelAndView();
+		RedirectView redirectView = new RedirectView("/sites/faq/category/list.mdo");
+		redirectView.setExposeModelAttributes(false);
+		mav.addObject("operResult", faqCategoryService.insertFaqCategory(vo) == 0 ? "fail" : "success");
+		mav.setView(redirectView);
 		return mav;
 	}
 	
@@ -81,7 +84,6 @@ public class FaqCategoryController {
 	@PostMapping("/flag")
 	@ResponseBody
 	public int faqCategoryFlagEditPostJSON(@RequestParam Map<String, Object> useFlagUpdateParamMap) {
-		System.out.println(useFlagUpdateParamMap);
 		return faqCategoryUseFlagService.updateUseFlag(useFlagUpdateParamMap);
 	}
 	
@@ -89,6 +91,13 @@ public class FaqCategoryController {
 	@ResponseBody
 	public int faqCategoryDeletePostJSON(@RequestParam int faqCategoryNo) {
 		return faqCategoryService.deleteFaqCategory(faqCategoryNo);
+	}
+	
+	
+	@GetMapping("/checkName")
+	@ResponseBody
+	public boolean faqCategoryCheckName(@RequestParam String faqCategoryName) {
+		return faqCategoryCheckService.checkFaqCategoryName(faqCategoryName);
 	}
 	
 }	

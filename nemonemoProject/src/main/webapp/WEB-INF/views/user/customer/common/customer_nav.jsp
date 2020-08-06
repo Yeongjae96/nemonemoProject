@@ -5,6 +5,6 @@
 <nav class="notice-nav">
 	<a class="notice-nav-not-selected" href="<c:url value="/customer/notice.do"/>">공지사항</a>
 	<a class="notice-nav-not-selected" href="<c:url value="/customer/policy.do"/>">운영정책</a>
-	<a class="notice-nav-not-selected" href="<c:url value="/customer/faq/1.do"/>">자주묻는 질문</a>
+	<a class="notice-nav-not-selected" href="<c:url value="/customer/faq/start.do"/>">자주묻는 질문</a>
 	<a class="notice-nav-not-selected" href="#">1:1문의</a>
 </nav>

@@ -172,11 +172,16 @@ header {
 }
 
 .main_header {
+	display: flex;
+	flex-direction:column;
+	justify-content:center;
 	padding-top: 35px;
 	background-color: white;
 	border-bottom: 1px solid rgb(238, 238, 238);
 	position: sticky;
 	height: 146px;
+	padding-left: 0px!important;
+	align-items: center;
 }
 
 button, input {

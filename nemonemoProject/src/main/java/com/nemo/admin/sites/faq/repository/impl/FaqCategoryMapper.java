@@ -10,4 +10,5 @@ import com.nemo.admin.sites.faq.repository.IFaqCategoryMapper;
 public interface FaqCategoryMapper extends IFaqCategoryMapper {
 	
 	public int useFlagUpdate(Map<String, Object> useFlagUpdateParamMap);
+	public int checkCategoryName(String faqCategoryName);
 }

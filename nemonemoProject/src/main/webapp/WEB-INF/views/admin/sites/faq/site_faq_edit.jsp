@@ -17,7 +17,7 @@
 
 <!-- Google Fonts -->
 <link
-	href="https://fotnts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" type="text/css">
@@ -34,7 +34,7 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/admin/common/style.css"/>">
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/admin/sites/faq/site_faq_new.css"/>">
+	href="<c:url value="/resources/css/admin/sites/faq/site_faq_edit.css"/>">
 
 <!--  테마 색상  -->
 <link rel="stylesheet"
@@ -71,11 +71,11 @@
 								<button id="backBtn" class="btn btn-danger">뒤로 돌아가기</button>
 						</div>
 					<div class="card">
+						
 						<div class="header">
-							<h2>자주묻는 질문 <span>등록</span></h2>
+							<h2>자주묻는 질문 <span>수정</span></h2>
 						</div>
 						<div class="body">
-							<form id="faqNewForm" method="POST" action="new.mdo" class="faq-form">
 								<div class="faq-row">
 									<label class="">FAQ 카테고리</label>
 									<select class="faq-category--list" name="faqCategoryNo">
@@ -92,13 +92,19 @@
 									</div>
 								</div>
 								<div class="faq-row">
+									<label class="">FAQ 사용 여부</label>
+									<div class="radio-area">
+										<label><input type="radio" value="Y" name="useFlag"/>사용</label> 
+										<label><input type="radio" value="N" name="useFlag"/>미사용</label> 
+									</div>
+								</div>
+								<div class="faq-row">
 									<label class="">FAQ 내용</label>
 								</div>
 									<textarea id="faqContent" cols="120" rows="20" name="faqContent"></textarea>
 								<div class="faq-row">
-									<button id="newBtn" class="new-btn btn btn-success">등록</button>
+									<button id="newBtn" class="new-btn btn btn-success">수정</button>
 								</div>
-							</form>
 						</div>
 					</div>
 				</div>
@@ -128,54 +134,11 @@
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
 	
-	<script src="<c:url value ="/resources/js/admin/sites/faq/site_faq_new.js"/>"></script>
 	<!-- smartEditor -->
 	<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script>
-	<script>
-		var oEditors = [];
-		   nhn.husky.EZCreator.createInIFrame({
-		      oAppRef: oEditors,
-		      elPlaceHolder: "faqContent",
-		      //SmartEditor2Skin.html 파일이 존재하는 경로
-		      sSkinURI : "../../resources/vendor/smarteditor/SmartEditor2Skin.html", 
-		      htParams : {
-		          // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-		          bUseToolbar : true,             
-		          // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-		          bUseVerticalResizer : true,     
-		          // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-		          bUseModeChanger : true,         
-		          fOnBeforeUnload : function(){
-		               
-		          }
-		      }, 
-		      /* fOnAppLoad : function(){
-		          //textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
-		          oEditors.getById["termsContent"].exec("PASTE_HTML", ["약관을 입력해주세요."]);
-		      }, */
-		      fCreator: "createSEditor2"  
-			});
-		   $('#newBtn').click(function() {
-		    	oEditors.getById["faqContent"].exec("UPDATE_CONTENTS_FIELD", []);	
-		    	const faqForm = document.getElementById('faqNewForm');
-		    	
-		    	if(checkNull('inputTitle', '제목') || checkNull('faqContent', '내용')) return false;
-		    	
-		    	faqForm.submit();
-		    }); 
-		   /* 빈칸 유효성 검사 */
-	    	function checkNull(id, idName) {
-	    		const target = document.getElementById(id);
-	    		
-	    		if(target.value.length == 0) {
-	    			alert(`${idName}을 입력해주세요`);
-	    			target.focus();
-	    			return true;
-	    		}
-	    		return false;
-	    	}
+	<script>var contextPath = "${pageContext.request.contextPath}";</script>
+	<script src="<c:url value ="/resources/js/admin/sites/faq/site_faq_edit.js"/>"></script>
 
-		</script>
 	
 </body>
 </html>
