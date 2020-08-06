@@ -32,6 +32,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
+	
 	@GetMapping("/notice")
 	public ModelAndView noticePage() {
 		
@@ -48,11 +49,19 @@ public class CustomerController {
 		return mav;
 	}
 	
-	/* 관리자 페이지가 나오면 기능 구현 잠정 보류 */
+	
+	@GetMapping("/faq/start")
+	public ModelAndView faqStartPage() {
+		
+		int start = customerService.getFaqCategoryStartNum();
+		ModelAndView mav = new ModelAndView("redirect:/customer/faq/"+start + ".do");
+		return mav;
+	}
+	
 	@GetMapping("/faq/{faqNo}")
 	public ModelAndView faqPage(@PathVariable int faqNo) {
 		
-		ModelAndView mav = new ModelAndView("customer/faq/faq"+faqNo);
+		ModelAndView mav = new ModelAndView("customer/faq/faq");
 		return mav;
 	}
 	

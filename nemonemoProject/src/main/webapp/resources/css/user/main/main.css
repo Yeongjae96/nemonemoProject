@@ -308,13 +308,7 @@
   /* 사이드배너 끝 */
 
     /* 메인헤더 */
-    .main_header{
-        padding-top : 35px;
-        background-color: white;
-        border-bottom: 1px solid rgb(238, 238, 238);
-        position : sticky;  
-        height : 146px;
-    }
+  
     
     /* 검색창 */
     button, input {

@@ -2,6 +2,8 @@ package com.nemo.user.customer.repository;
 
 import java.util.List;
 
+import com.nemo.user.customer.faq.vo.BaseUserFaqCategoryVO;
+import com.nemo.user.customer.faq.vo.BaseUserFaqVO;
 import com.nemo.user.customer.vo.UserNoticeVO;
 
 /**
@@ -18,5 +20,5 @@ import com.nemo.user.customer.vo.UserNoticeVO;
  * 20.07.30		김영재				customer 초기설정
  */
 public interface ICustomerMapper {
-	public List<UserNoticeVO> getNoticeList();
+	
 }

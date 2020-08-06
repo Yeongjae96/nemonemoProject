@@ -1,25 +1,32 @@
 $(function() {
 	getFaqCategory();
 	sizeCheck('inputTitle', 'size', 30);
+	$('#backBtn').click(function() {history.go(-1)});
 	
 });
 
 /* FAQ 카테고리 불러오기 */
 function getFaqCategory() {
+	var deferred = $.Deferred();
 	/* AJAX 요청 */
 	$.ajax({
 		url: 'category/listJson.mdo', // 요청 URL
 		method: 'GET', // 요청 방식
 		dataType: 'json', // ㅇ
 	}).done(function(data) {
+		const $frag = $(document.createDocumentFragment());
 		$.each(data, function(i, e) {
 			$option = $('<option></option').attr('value', e.faqCategoryNo).text(e.faqCategoryName);
-			$('.faq-category--list').append($option);
+			$frag.append($option);
 		});
-	}).fail(function(data) {
+		$('.faq-category--list').append($frag);
+		deferred.resolve(data);
+	})
+	.fail(function(err) {
 		alert('목록 불러오기에 실패하였습니다.');
+		deferred.reject(err);
 	});
-	
+	return deferred.promise();
 };
 
 /* 제목 size check */
@@ -40,20 +47,5 @@ function sizeCheck(textId, sizeId, size) {
 	});
 }
 
-/* 텍스트 에디터로 인해 만들다 말음 
-function newBtnClickSetEvent(btnId) {
-	const $btnId = $(`#${btnId}`);
-	$btnId.click(function() {
-		const param = {
-			faqCategoryNo: $('.faq-category--list option:selected').val(),
-			faqTitle: $('#inputTitle'),
-			faqContent
-		};
-		$.ajax({
-			url: 'new.do',
-			method: 'post',
-			data: 
-		});
-	});
-}*/
+
 

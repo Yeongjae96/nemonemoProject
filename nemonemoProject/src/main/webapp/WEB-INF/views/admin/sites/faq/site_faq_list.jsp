@@ -69,33 +69,7 @@
 
 	<!-------------------------------------------SECTION--------------------------------------------------->
 
-	<!-- 컨텐츠 -->
-	<!-- 모달 시작-->
-	<!-- 
-	<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h3 class="modal-title text-center modal-col-red"
-						id="smallModalLabel">주의</h3>
-				</div>
-				<div class="modal-body">
-					<h1 class="text-center">쿠폰삭제</h1>
-					<h5 class="text-center">확인 버튼을 누르시면</h5>
-					<h5 class="text-center">해당 쿠폰은 삭제 됩니다.</h5>
-					<h5 class="text-center">삭제 하시겠습니까?</h5>
-
-				</div>
-				<div class="modal-footer">
-					<button id="del-confirm" type="button"
-						class="btn btn-link waves-effect" data-dismiss="modal">삭제</button>
-					<button type="button" class="btn btn-link waves-effect"
-						data-dismiss="modal">취소</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	-->
+	
 	<section class="content">
 		<div class="container-fluid">
 			<div class="block-header">
@@ -118,23 +92,32 @@
 									<h3>자주 묻는 질문(FAQ) 정보</h3>
 									<thead>
                                     <tr>
-                                    	<th width="15%">질문 번호</th>
-										<th width="15%">카테고리 명</th>
+                                    	<th width="10%">질문 번호</th>
+										<th width="10%">카테고리 명</th>
 										<th width="40%">제목</th>
-										<th width="15%">등록일</th>
-										<th width="15%">관리버튼</th>
+										<th width="10%">등록일</th>
+										<th width="10%">사용여부</th>
+										<th width="10%">관리버튼</th>
                                     </tr>
                                 </thead>
                                 <tbody id="result">
                                 	<c:forEach var="faq" items="${faqList}">
-                                   <tr>
+                                   <tr data-faqno="${faq.faqNo}">
                                         <td>${faq.faqNo}</td>
                                         <td>${faq.faqCategoryName}</td>
-                                        <td>${faq.faqTitle}</td>
+                                        <td><span class="faq--title">${faq.faqTitle}</span></td>
                                         <td>${faq.faqRegYmd}</td>
+                                        <td>
+                                        	<c:if test="${faq.faqUseFlag eq 'Y'}">
+                                        		<span style="color:blue;">사용</span>
+                                        	</c:if>
+                                        	<c:if test="${faq.faqUseFlag ne 'Y'}">
+                                        		<span style="color:#EE5058; font-weight: bold;"">미사용</span>
+                                        	</c:if>
+                                        </td>
                                         <td class ="text-center">
-	                                        <button type="button" class ="faq-upd-btn" data-faqno="${faq.faqNo}">수정</button>
-	                                        <button type="button" class ="faq-del-btn" data-faqno="${faq.faqNo}">삭제</button>
+	                                        <button type="button" class ="faq-upd-btn btn btn-success" data-faqno="${faq.faqNo}">수정</button>
+	                                      	<button type="button" class ="faq-del-btn btn btn-danger" data-faqno="${faq.faqNo}" data-toggle="modal" data-target="#faq_delete" id="faqDeleteBtn">삭제</button>
 										</td>
                                     </tr>
                                     </c:forEach>
@@ -145,44 +128,25 @@
 					</div>
 				</div>
 			</div>
-			<!-- Modal -->
-			<div class="modal fade" id="faq_category_in" role="dialog">
+			
+                
+                <!-- 삭제하시겠습니까 모달 -->
+                <div class="modal fade" id="faq_delete" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content">
                             <!-- modal header-->
                             <div class="modal-header">
-                                <h2 class="modal-title">자주묻는질문(FAQ) 등록</h2>
+                                <h2 class="modal-title" id="faqDeleteModal"><span></span>을 정말 삭제하시겠습니까?</h2>
                             </div>
-				
                             <div class="modal-body">
-	                           	<form method="POST" action="new.mdo" name="faqForm">
-	                                <div class="form-group">
-	                                	<div class="faq-registry--title">
-		                                    <label for="InputfaqName">제목</label>
-		                                    <input type="text" class="faq-reg-title--input" name="faqTitle" id="faqTitle" placeholder="제목을 입력해주세요">
-	                                	</div>
-	                                	<div class="faq-registry--category">
-	                                		<label for="">카테고리</label>
-	                                		<select id="categoryList">
-	                                			
-	                                		</select>
-	                                	</div>
-	                                	<div class="faq-registry--content">
-		                                    <label for="InputfaqName">내용</label>
-	                                	</div>
-		                                    <textarea class="form-contr ol" id="faqContent" name="faqContent" placeholder="내용을 입력해주세요"></textarea>
-	                                </div>
-                                </form>
-                            </div>
-                            
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal" id="faqInsert">등록</button>
+	                           	<button type="button" class="btn btn-danger" data-dismiss="modal" id="faqDelete">삭제</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
                             </div>
                          </div>
                     </div>
                 </div>
+                
 		</div>
 	</section>
 

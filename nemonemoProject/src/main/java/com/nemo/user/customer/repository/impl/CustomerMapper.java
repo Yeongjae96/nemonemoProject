@@ -1,8 +1,13 @@
 package com.nemo.user.customer.repository.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
+import com.nemo.user.customer.faq.vo.BaseUserFaqCategoryVO;
+import com.nemo.user.customer.faq.vo.BaseUserFaqVO;
 import com.nemo.user.customer.repository.ICustomerMapper;
+import com.nemo.user.customer.vo.UserNoticeVO;
 
 
 /**
@@ -21,4 +26,8 @@ import com.nemo.user.customer.repository.ICustomerMapper;
 @Mapper
 public interface CustomerMapper extends ICustomerMapper{
 	
+	public List<UserNoticeVO> getNoticeList();
+	public List<BaseUserFaqVO> getSelectFaqList(int faqCategoryNo);
+	public List<BaseUserFaqCategoryVO> getFaqCategoryList();
+	public int getFaqCategoryStartNum();
 }

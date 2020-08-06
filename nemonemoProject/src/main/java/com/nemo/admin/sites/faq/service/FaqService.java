@@ -2,8 +2,8 @@ package com.nemo.admin.sites.faq.service;
 
 import java.util.List;
 
-import com.nemo.admin.sites.faq.vo.AdminFaqRequestVO;
 import com.nemo.admin.sites.faq.vo.AdminFaqResponseVO;
+import com.nemo.admin.sites.faq.vo.BaseFaqVO;
 
 /**
  * @제목 : Faq 서비스
@@ -18,6 +18,9 @@ import com.nemo.admin.sites.faq.vo.AdminFaqResponseVO;
  * -------	--------	-------------	
  */
 public interface FaqService {
-	public int insertFaq(AdminFaqRequestVO vo);
+	public int insertFaq(BaseFaqVO vo);
+	public int updateFaq(BaseFaqVO vo);
+	public int deleteFaq(int faqNo);
 	public List<AdminFaqResponseVO> getFaqList(String useFlagMode);
+	public AdminFaqResponseVO getFaq(int faqNo);
 }

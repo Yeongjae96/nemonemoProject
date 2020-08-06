@@ -57,20 +57,23 @@
 			<div class="faq-body-div">
 				<!-- customer 공통 nav -->
 				<jsp:include page="/WEB-INF/views/user/customer/common/customer_nav.jsp"/>
-				<!-- faq main -->
+				<!-- faq main -->	
 				<main class="faq-main">
 					<div class="faq-main-div">
 						<nav class="faq-menu">
-							<a class="faq-menu-selected" href="#">상점&amp;상품</a>
-							<a class="faq-menu-not-selected" href="#">거래</a>
-							<a class="faq-menu-not-selected" href="#">안전거래</a>
-							<a class=" faq-menu-not-selected" href="#">계정문의</a>
-							<a class=" faq-menu-not-selected" href="#">택배</a>
-							<a class="faq-menu-not-selected" href="#">운영정책</a>
-							<a class=" faq-menu-not-selected" href="#">UP플러스</a>
-							<a class=" faq-menu-not-selected" href="#">똑똑한 판매팁</a>
-							<a class="faq-menu-not-selected" href="#">안전한 구매팁</a>
+						<c:forEach var="faqMenu" items="faqMenuList">
 							<a class="faq-menu-not-selected" href="#">이용제한</a>
+							<a class="faq-menu-not-selected" href="#">이용제한</a>
+							<a class="faq-menu-selected" href="#">이용제한</a>
+							<a class="faq-menu-not-selected" href="#">이용제한</a>
+							<a class="faq-menu-not-selected" href="#">이용제한</a>
+							<a class="faq-menu-not-selected" href="#">이용제한</a>
+							<a class="faq-menu-not-selected" href="#">이용제한</a>
+							<a class="faq-menu-not-selected" href="#">이용제한</a>
+							<a class="faq-menu-not-selected" href="#">이용제한</a>
+							<a class="faq-menu-not-selected" href="#">이용제한</a>
+							<a class="faq-menu-not-selected" href="#">이용제한</a>
+						</c:forEach>
 						</nav>
 
 						<ul class="faq-list-ul">

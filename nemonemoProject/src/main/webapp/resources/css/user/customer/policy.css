@@ -2,13 +2,13 @@
 
 section {
     background-color: rgb(249, 249, 249);
-	
+    
 }
 
 .policy-body {
+	
     display: flex;
     padding: 18px 0px 100px;
-    float: center;
     width: 1024px;
     margin: 0 auto;
 }

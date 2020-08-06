@@ -2,7 +2,7 @@
 
 body {
     background-color: rgb(249, 249, 249);
-	
+    overflow-y: scroll;
 }
 .notice-body  {
 	display: flex;
@@ -12,7 +12,6 @@ body {
 }
 
 .notice-main {
-    display: block;
     width: 1024px;
 }
 .notice-list {

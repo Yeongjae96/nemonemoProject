@@ -8,6 +8,7 @@
 	
 	<resultMap type="com.nemo.admin.sites.faq.vo.AdminFaqResponseVO" id="faqResponseMap">
 		<id column="faq_no" property="faqNo"/>
+		<result column="faq_category_no" property="faqCategoryNo"/>
 		<result column="faq_category_nm" property="faqCategoryName"/>
 		<result column="faq_title" property="faqTitle"/>
 		<result column="faq_content" property="faqContent"/>
@@ -18,7 +19,7 @@
 	
 	
 	
-	<insert id="insertFaq" parameterType="com.nemo.admin.sites.faq.vo.AdminFaqRequestVO">
+	<insert id="insertFaq" parameterType="com.nemo.admin.sites.faq.vo.BaseFaqVO">
 		
 		INSERT INTO faq_tb (
 			FAQ_NO,
@@ -44,4 +45,42 @@
 		WHERE faq_use_fl = 'Y'
 		</if>
 	</select>
+	
+	<select id="getFaq" parameterType="int" resultMap="faqResponseMap">
+		SELECT 
+			faq.*,
+			cate.faq_category_nm
+		FROM faq_tb faq
+		inner join (faq_category_tb cate)
+		on (faq.faq_category_no = cate.faq_category_no)
+		WHERE faq_no = #{faqNo}
+	</select>
+	
+	<update id="updateFaq" parameterType="com.nemo.admin.sites.faq.vo.BaseFaqVO">
+		UPDATE faq_tb
+		SET 
+			faq_category_no = #{faqCategoryNo},
+			faq_title = #{faqTitle},
+			faq_content = #{faqContent},
+			faq_use_fl = #{faqUseFlag}
+		WHERE
+			faq_no = #{faqNo}
+	</update>
+	
+	<update id="updateUseFlag" parameterType="com.nemo.admin.sites.faq.vo.BaseFaqVO">
+		UPDATE faq_tb
+		SET
+			faq_use_fl = #{faqUseFlag}
+		WHERE 
+			faq_no = #{faqNo}
+	</update>
+	
+	<delete id="deleteFaq" parameterType="int">
+		DELETE FROM faq_tb
+		WHERE faq_no = #{faqNo}
+	</delete>
+	
+	
+	
+	
 </mapper>
