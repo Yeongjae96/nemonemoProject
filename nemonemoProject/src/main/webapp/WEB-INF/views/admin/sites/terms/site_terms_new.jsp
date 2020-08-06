@@ -71,22 +71,36 @@
                         <div class="body">
                             <form id="termsForm" method="POST">
                                 <div class="form-group form-float">
-                                    <div class="form-line">
+                                    <!-- <div class="form-line">
                                     <label class="form-label">약관명</label>
                                         <input type="text" class="form-control" id="termsTitle" name="termsTitle" minlength="3" required>   
-                                    </div>           
+                                    </div>            -->
+                                    <div class="form-group form-float" style="margin-top: 30px;">
+                                    <label class="form-label">약관 항목</label>
+                                    <select class="selectpicker" id="termsTitle" name="termsTitle">
+                                    	<option value="이용약관">이용약관</option>
+                                        <option value="개인정보처리방침">개인정보처리방침</option>
+                                        <option value="위치기반서비스이용약관">위치기반서비스 이용약관</option>
+                                    </select>
+                                </div> 
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                    <label class="form-label">등록자 ID</label>
-                                        <input type="text" class="form-control" id="adminRegistryId" name="adminRegistryId" required>   
+                                    <label class="form-label">등록자 ID(추후 세션으로 대체할 예정)</label>
+                                        <input type="text" class="form-control" id="adminRegId" name="adminRegId" required>   
                                     </div>           
                                 </div>
                                 <div class="form-group form-float" style="margin-top: 30px;">
-                                    <label class="form-label">표시 여부</label>
-                                    <select class="selectpicker" id="termsRequiredFl" name="termsRequiredFl">
+                                    <label class="form-label">필수 여부</label>
+                                    <select class="selectpicker" id="termsRequiredFl" name="termsRequiredFl" >
                                         <option value="Y">Y</option>
-                                        <option value="S">S</option>
+                                        <option value="N">N</option>
+                                    </select>
+                                </div> 
+                                <div class="form-group form-float" style="margin-top: 30px;">
+                                    <label class="form-label">노출 여부</label>
+                                    <select class="selectpicker" id="termsDeleteFl" name="termsDeleteFl">
+                                        <option value="Y">Y</option>
                                         <option value="N">N</option>
                                     </select>
                                 </div> 

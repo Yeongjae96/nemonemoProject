@@ -82,30 +82,28 @@ public class TermsController {
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.GET})
-	public ModelAndView TermsEdit(@RequestParam int TermsNo) {
+	public ModelAndView TermsEdit(@RequestParam int termsNo) {
 		
 		ModelAndView mav = new ModelAndView("sites/terms/site_terms_edit");
-		TermsVO TermsVO = getTermsService.getTerms(TermsNo);
+		TermsVO TermsVO = getTermsService.getTerms(termsNo);
 		
-		mav.addObject("TermsVO", TermsVO);
+		mav.addObject("termsVO", TermsVO);
 		
 		return mav;
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.POST})
-	public ModelAndView TermsEditAction(TermsVO vo) {
-		
+	public ModelAndView TermsEditAction(TermsVO vo) {	
 		//Service 
 		updateTermsService.updateTerms(vo);
-		
 		return new ModelAndView("redirect:/sites/terms/list.mdo");
 	}
 
 	@RequestMapping(value = "/delete", method= {RequestMethod.POST})
-	public ModelAndView TermsDeleteAction(@RequestParam int TermsNo) {
-		deleteTermsService.deleteTerms(TermsNo);
-		
+	public ModelAndView TermsDeleteAction(@RequestParam int termsNo) {
+		deleteTermsService.deleteTerms(termsNo);
 		ModelAndView mav = new ModelAndView("redirect:/sites/terms/list.mdo");
 		return mav;
 	}	
+	
 }

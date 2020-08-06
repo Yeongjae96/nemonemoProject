@@ -1,25 +1,26 @@
-/**
- * 
- */
 
-
-$('#terms-add-btn').click(function() {
-	window.location.href="new.mdo";
+$('.terms-upd-btn').click(function() {
+	const termsno = $(this)[0].dataset.termsno;
+	window.location.href="edit.mdo?termsNo="+termsno;
+	SetSelectBox();
 	
 });
 
-$('#serviceUse_in').find('.modal-body tbody').append('<tr>').append('<td>new row<td>');
-
-$('#terms-upd-btn').click(function() {
-	alert('수정버튼');
-	const termsNo = $(this)[0].dataset.termsNo;
-	window.location.href="edit.mdo?termsNo="+termsNo;
+$('#terms-add-btn').click(function() {
+	window.location.href="new.mdo";
 });
 
 
-$('#terms-del-btn').click(function() {
-	alert('삭제버튼');
-	const termsNo = $(this)[0].dataset.termsNo;
+
+$('#serviceUse_in').find('.modal-body tbody').append('<tr>').append('<td>new row<td>');
+
+
+
+/* 삭제 버튼 기능 */
+/* 삭제 버튼을 누르면 해당 익명 함수를 실행해라 */
+$('.terms-del-btn').click(function() {
+	// 누른 버튼의 dataset(data-*)에 속성값인 termsno를 termsNo 변수에 담아라.
+	const termsNo = $(this)[0].dataset.termsno;
 	console.log(termsNo);
 	
 	// 제이쿼리를 이용해서 동적 dom 생성( document.createElement('form') )
@@ -43,7 +44,6 @@ $('#terms-del-btn').click(function() {
 	$form.remove();
 });
 
-
 var table = $('#serviceUse-table');
 
 $(function () {
@@ -54,9 +54,6 @@ $(function () {
             $(selected).closest('tr').remove();
         }));
     });
-    
-    
-    
     
     table.dataTable({
         language: {
@@ -84,7 +81,8 @@ $(function () {
 
     });
     
-   
+    
+    
 //    $('#termsInsert').click(function() {
 //    	alert('에디터 내용이 넘어가야되는데');
 //    	oEditors.getById["termsContent"].exec("UPDATE_CONTENTS_FIELD", []);	

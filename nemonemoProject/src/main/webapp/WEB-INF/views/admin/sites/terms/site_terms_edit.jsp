@@ -66,30 +66,49 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h1>이용약관 등록</h1>
+                            <h1>이용약관 수정</h1>
                         </div>
                         <div class="body">
-                            <form id="terms-form" method="POST">
+                            <form id="termsEditForm" method="POST" action="edit.mdo">
+                                <div class="form-group form-float">
+                                    <!-- <div class="form-line">
+                                    <label class="form-label">약관명</label>
+                                        <input type="text" class="form-control" id="termsTitle" name="termsTitle" minlength="3" required>   
+                                    </div>            -->
+                                    <div class="form-group form-float" style="margin-top: 30px;">
+                                    <label class="form-label">약관 항목</label>
+                                    <select class="selectpicker" id="termsTitle" name="termsTitle">
+                                    	<option value="이용약관" <c:if test="${termsVO.termsTitle eq '이용약관'}">selected</c:if>>이용약관</option>
+                                        <option value="개인정보처리방침" <c:if test="${termsVO.termsTitle eq '개인정보처리방침'}">selected</c:if>>개인정보처리방침</option>
+                                        <option value="위치기반서비스이용약관" <c:if test="${termsVO.termsTitle eq '위치기반서비스이용약관'}">selected</c:if>>위치기반서비스이용약관</option>
+                                    </select>
+                                </div> 
+                                </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                    <label class="form-label">약관명</label>
-                                        <input type="text" class="form-control" id="serviceUse_title" name="serviceUse_title" minlength="3" required>
-                                        
-                                    </div>             
+                                    <label class="form-label">등록자 ID(추후 세션으로 대체할 예정)</label>
+                                        <input type="text" value= "${termsVO.adminRegId}" class="form-control" id="adminRegId" name="adminRegId" required>   
+                                    </div>           
                                 </div>
                                 <div class="form-group form-float" style="margin-top: 30px;">
-                                    <label class="form-label">표시 여부</label>
-                                    <select class="selectpicker">
-                                        <option value="Y">Y</option>
-                                        <option value="Y">S</option>
-                                        <option value="N">N</option>
+                                    <label class="form-label">필수 여부</label>
+                                    <select class="selectpicker" id="termsRequiredFl" name="termsRequiredFl">
+                                        <option value="Y" <c:if test="${termsVO.termsRequiredFl eq 'Y'}">selected</c:if>>Y</option>
+                                        <option value="N" <c:if test="${termsVO.termsRequiredFl eq 'N'}">selected</c:if>>N</option>
+                                    </select>
+                                </div> 
+                                <div class="form-group form-float" style="margin-top: 30px;">
+                                    <label class="form-label">노출 여부</label>
+                                    <select class="selectpicker" id="termsDeleteFl" name="termsDeleteFl">
+                                        <option value="Y" <c:if test="${termsVO.termsDeleteFl eq 'Y'}">selected</c:if>>Y</option>
+                                        <option value="N" <c:if test="${termsVO.termsDeleteFl eq 'N'}">selected</c:if>>N</option>
                                     </select>
                                 </div> 
                                 <div class="form-group form-float">
-									<textarea cols="120" rows="20" name="serviceUse_content" id="serviceUse_content" ></textarea>     
+									<textarea cols="120" rows="20" name="termsContent" id="termsContent" ></textarea>     
                                 </div>
-                               
-                                <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                               <input type="hidden" name="termsNo" value="${param.termsNo}"/>
+                                <button class="btn btn-primary waves-effect" type="submit" id="termsInsert">등록하기</button>
                             </form>
                         </div>
                     </div>
@@ -128,7 +147,7 @@
 		var oEditors = [];
 		   nhn.husky.EZCreator.createInIFrame({
 		      oAppRef: oEditors,
-		      elPlaceHolder: "serviceUse_content",
+		      elPlaceHolder: "termsContent",
 		      //SmartEditor2Skin.html 파일이 존재하는 경로
 		      sSkinURI : "../../resources/vendor/SmartEditor/SmartEditor2Skin.html", 
 		      htParams : {
@@ -142,13 +161,36 @@
 		               
 		          }
 		      }, 
-		      fOnAppLoad : function(){
+		       fOnAppLoad : function(){
 		          //textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
-		          oEditors.getById["serviceUse_content"].exec("PASTE_HTML", ["약관을 입력해주세요."]);
-		      },
+		          //oEditors.getById["termsContent"].exec("PASTE_HTML", ["약관을 입력해주세요."]);
+		    	  
+		    	   
+		      }, 
 		      fCreator: "createSEditor2"  
-	});
-	</script>
+			});
+		   
+		   $('#termsInsert').click(function() {
+				oEditors.getById["termsContent"].exec("UPDATE_CONTENTS_FIELD", []);	 	
+		    	termsEditForm.submit();
+		    });
+		   
+		   /* $.ajax({
+			   type:"POST",
+			   url :"URL",
+			   dataType : "json",
+			   data : {"termsContent"},
+			   error:function(){
+				   alert('ajax 오류...');
+			   },
+			   success:function(data){
+				   oEditors.getById["termsContent"].exec("SET_IR",[""]);
+				   oEditors.getById["termsContent"].exec("PASTE_HTML",[data.template]);
+			   }
+		   }); */
+
+
+		</script>
 		
 	
 </body>
