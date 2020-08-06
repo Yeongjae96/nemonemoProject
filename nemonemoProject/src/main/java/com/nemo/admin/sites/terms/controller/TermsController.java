@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.admin.sites.terms.service.DeleteTermsService;
@@ -47,7 +49,7 @@ public class TermsController {
 				
 		ModelAndView mav = new ModelAndView("sites/terms/site_terms_list");
 		mav.addObject("termsList", termsList);
-		
+		System.out.println(" 리턴 데이터2 : "+ termsList);
 		return mav;
 	}
 	
@@ -63,6 +65,47 @@ public class TermsController {
 		
 	}
 	
+	@GetMapping("/new")
+	public ModelAndView termsNewPage() {
+		ModelAndView mav = new ModelAndView("sites/terms/site_terms_new");
+		return mav;
 	
+	}
 	
+	@RequestMapping(value = "/new", method= {RequestMethod.POST})
+	public ModelAndView TermsInsertAction(TermsVO vo) {
+		
+		int result = insertTermsService.insertTerms(vo);
+		ModelAndView mav = new ModelAndView("redirect:/sites/terms/list.mdo");
+		mav.addObject("result", result);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/edit", method= {RequestMethod.GET})
+	public ModelAndView TermsEdit(@RequestParam int TermsNo) {
+		
+		ModelAndView mav = new ModelAndView("sites/terms/site_terms_edit");
+		TermsVO TermsVO = getTermsService.getTerms(TermsNo);
+		
+		mav.addObject("TermsVO", TermsVO);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/edit", method= {RequestMethod.POST})
+	public ModelAndView TermsEditAction(TermsVO vo) {
+		
+		//Service 
+		updateTermsService.updateTerms(vo);
+		
+		return new ModelAndView("redirect:/sites/terms/list.mdo");
+	}
+
+	@RequestMapping(value = "/delete", method= {RequestMethod.POST})
+	public ModelAndView TermsDeleteAction(@RequestParam int TermsNo) {
+		deleteTermsService.deleteTerms(TermsNo);
+		
+		ModelAndView mav = new ModelAndView("redirect:/sites/terms/list.mdo");
+		return mav;
+	}	
 }

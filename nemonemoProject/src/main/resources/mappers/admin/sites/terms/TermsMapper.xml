@@ -31,15 +31,21 @@
 	</select>
 	
 	<insert id="insertTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
-		INSERT INTO terms_tb
+		INSERT INTO terms_tb(terms_no, terms_title, admin_registry_id, terms_required_fl, terms_content, terms_registry_ymd)
 		VALUES
 		(
 			terms_sq.nextval, 
-			#{adminRegistryId}, 
 			#{termsTitle}, 
-			#{termsContent}, 
-			#{termsRequiredFl}
+			#{adminRegistryId}, 
+			#{termsRequiredFl},
+			#{termsContent},
+			#{termsRegistryYmd}
+			
 		)
+		<selectKey keyProperty="termsNo" keyColumn="TERMS_NO" resultType="Integer" order="AFTER">
+			SELECT terms_SQ.currval FROM dual
+		</selectKey>
+		
 	</insert>
 	
 	<delete id="deleteTerms" parameterType="int">

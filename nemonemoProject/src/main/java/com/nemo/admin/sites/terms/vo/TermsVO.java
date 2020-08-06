@@ -1,5 +1,7 @@
 package com.nemo.admin.sites.terms.vo;
 
+import java.sql.Date;
+
 /**
  * @제목 : 약관 VO 객체
  * @패키지이름 : com.nemo.admin.sites.terms.vo
@@ -22,8 +24,8 @@ public class TermsVO {
 	private String termsContent;
 	private String termsRequiredFl;
 	private String termsDeleteFl;
-	private String termsRegistryYmd;
-	private String termsModifyYmd;
+	private Date termsRegistryYmd;
+	private Date termsModifyYmd;
 	
 	public int getTermsNo() {
 		return termsNo;
@@ -67,19 +69,18 @@ public class TermsVO {
 	public void setTermsDeleteFl(String termsDeleteFl) {
 		this.termsDeleteFl = termsDeleteFl;
 	}
-	public String getTermsRegistryYmd() {
+	public Date getTermsRegistryYmd() {
 		return termsRegistryYmd;
 	}
-	public void setTermsRegistryYmd(String termsRegistryYmd) {
+	public void setTermsRegistryYmd(Date termsRegistryYmd) {
 		this.termsRegistryYmd = termsRegistryYmd;
 	}
-	public String getTermsModifyYmd() {
+	public Date getTermsModifyYmd() {
 		return termsModifyYmd;
 	}
-	public void setTermsModifyYmd(String termsModifyYmd) {
+	public void setTermsModifyYmd(Date termsModifyYmd) {
 		this.termsModifyYmd = termsModifyYmd;
 	}
-	
 	@Override
 	public String toString() {
 		return "TermsVO [termsNo=" + termsNo + ", adminRegistryId=" + adminRegistryId + ", adminModifyId="

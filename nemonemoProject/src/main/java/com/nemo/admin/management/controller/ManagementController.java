@@ -51,7 +51,6 @@ public class ManagementController {
 
 	@RequestMapping(value = "/management/signup", method = { RequestMethod.POST })
 	public ModelAndView signupAction(ManagementVO vo) {
-		System.out.println("Controller : " + vo);
 		insertAdminService.insertAdmin(vo);
 		ModelAndView mav = new ModelAndView("redirect:/management/signin.mdo");
 		return mav;

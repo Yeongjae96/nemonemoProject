@@ -14,6 +14,11 @@
 		VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}) 
 		
 
+		<selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" order="AFTER">
+			SELECT ADMIN_sq.currval FROM dual
+		</selectKey>
+
+
 	</insert>
 
 
