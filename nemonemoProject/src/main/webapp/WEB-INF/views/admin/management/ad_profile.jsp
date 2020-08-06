@@ -94,9 +94,9 @@
 
 	<section class="content">
 		<div class="container-fluid">
-			<div class="block-header">
+<!-- 			<div class="block-header">
 				<h1>관리자 정보</h1>
-			</div>
+			</div> -->
 			<div class="row clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
@@ -105,6 +105,7 @@
 								<table id="admin-table"
 									class="table table-bordered table-striped table-hover display">
 									<h3>직원 관리</h3>
+									<hr>
 									<thead>
 										<tr>
 											<th>직원 번호</th>

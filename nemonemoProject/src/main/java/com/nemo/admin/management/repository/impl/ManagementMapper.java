@@ -6,5 +6,7 @@ import com.nemo.admin.management.repository.IManagementMapper;
 
 @Mapper
 public interface ManagementMapper extends IManagementMapper{
+	public int idCheck(String adminId);
 }
+
 

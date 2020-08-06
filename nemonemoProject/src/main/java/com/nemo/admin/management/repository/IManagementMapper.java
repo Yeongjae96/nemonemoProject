@@ -12,6 +12,5 @@ public interface IManagementMapper {
 	public int updateAdmin(ManagementVO vo);
 	public ManagementVO getAdmin(String adminId);
 	public List<ManagementVO> getAdminList(ManagementVO vo);
-	public ManagementVO idCheck(String adminId);
 
 }

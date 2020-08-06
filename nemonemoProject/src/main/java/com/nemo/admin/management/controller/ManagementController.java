@@ -2,13 +2,9 @@ package com.nemo.admin.management.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -114,30 +110,22 @@ public class ManagementController {
 	
 
 	
-	/* 로그인 중복검사 테스트 - 예린 */
-	//AJAX를 사용하면 jsp 파일이 필요없기 때문에 메서드 앞에 어노테이션 @ResponseBody 추가
+	/* 로그인 중복검사 테스트 - 예린  */
+	//AJAX 메서드 앞에 어노테이션 @ResponseBody 추가
 	@ResponseBody
-	// 아이디 중복확인은 다른 페이지로 이동하지 않고, 가입페이지에서만 작동
-	@RequestMapping(value ="/signup/idcheck", method ={RequestMethod.POST}) 
-	public int adminIdCheck(HttpServletRequest req) {
-		System.out.println("아이디 체크");
+	@RequestMapping(value ="/signup/idcheck", method = {RequestMethod.POST}) 
+	public int adminIdCheck(ManagementVO vo) {
 		
-		String adminId = req.getParameter("adminId");
-		ManagementVO idChecked = idCheckService.idCheck(adminId);
-		System.out.println("Controller : " + idChecked);
-		
-		int result = 0;
-		// 결과가 있다면 입력한 내용과 테이블에 있는 아이디가 일치하는 것이니까 중복 되는 것! 결과가 없다면  중복되지 않는 아이디.
-		if(idChecked != null) {
-			result = 1;
-		}
-		return result; // 이 컨트롤러의 return을 ajax data로..!!
-		
+		System.out.println("아이디 체크 컨트롤러 시작");		
+		String id = vo.getAdminId(); 
+		System.out.println("getParam " + id);
+		int idChecked = idCheckService.idCheck(id);
+		System.out.println("Controller : " + idChecked); 
+	
+		return idChecked; // 이 컨트롤러의 return을 ajax data로..!!
 		
 	}
-	
-
-	
+		
 	/* 로그인하기 */
 	@PostMapping("/login")
 	public ModelAndView loginAdmin(ManagementVO vo) {

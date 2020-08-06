@@ -36,9 +36,9 @@
     </select>
     
     <select id="idCheck" 
-    	parameterType="com.nemo.admin.management.vo.ManagementVO">
+    	parameterType="String" resultType="int">
     	SELECT COUNT(*) FROM 
-    		ADMIN_TB
+    		ADMIN_TB 
     	WHERE
     		 ADMIN_ID = #{adminId}
     </select>
