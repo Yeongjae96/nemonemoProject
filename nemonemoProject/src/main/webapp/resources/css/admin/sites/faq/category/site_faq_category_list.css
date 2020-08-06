@@ -244,3 +244,13 @@ th{
 .faq-category-reg-content--input {
 	background-color: transparent;
 }
+
+#checkInput {
+	display:none;
+	text-align:center;
+	margin: 0px;
+	border: 0px;
+	font-size:16px;
+	font-weight: bold;
+	color: #EE5058;
+}

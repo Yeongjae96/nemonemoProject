@@ -14,50 +14,17 @@ import java.sql.Date;
  * DATE		 AUTHOR			NOTE
  * -------	--------	-------------	
  */
-public class AdminFaqResponseVO {
-	private int faqNo;
+public class AdminFaqResponseVO extends BaseFaqVO{
 	private String faqCategoryName;
-	private String faqTitle;
-	private String faqContent;
-	private String faqUseFlag;
-	private Date faqRegYmd;
-	public int getFaqNo() {
-		return faqNo;
-	}
-	public void setFaqNo(int faqNo) {
-		this.faqNo = faqNo;
-	}
-	
+
 	public String getFaqCategoryName() {
 		return faqCategoryName;
 	}
+
 	public void setFaqCategoryName(String faqCategoryName) {
 		this.faqCategoryName = faqCategoryName;
 	}
-	public String getFaqTitle() {
-		return faqTitle;
-	}
-	public void setFaqTitle(String faqTitle) {
-		this.faqTitle = faqTitle;
-	}
-	public String getFaqContent() {
-		return faqContent;
-	}
-	public void setFaqContent(String faqContent) {
-		this.faqContent = faqContent;
-	}
-	public String getFaqUseFlag() {
-		return faqUseFlag;
-	}
-	public void setFaqUseFlag(String faqUseFlag) {
-		this.faqUseFlag = faqUseFlag;
-	}
-	public Date getFaqRegYmd() {
-		return faqRegYmd;
-	}
-	public void setFaqRegYmd(Date faqRegYmd) {
-		this.faqRegYmd = faqRegYmd;
-	}
+	
 	
 	
 }

@@ -70,5 +70,10 @@
 		WHERE faq_category_no = #{faqCategoryNo, jdbcType=NUMERIC}
 	</update>
 	
-	
+	<!-- 카테고리 이름 중복 검색 -->
+	<select id="checkCategoryName" parameterType="String" resultType="int">
+		SELECT count(1)
+		FROM faq_category_tb
+		WHERE faq_category_nm = #{faqCategoryName}
+	</select>
 </mapper>

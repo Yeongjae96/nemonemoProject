@@ -30,6 +30,8 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Override
 	public List<UserNoticeVO> getNoticeList() {
-		return customerDAO.getNoticeList()	;
+		return customerDAO.getNoticeList();
 	}
+	
+	
 }

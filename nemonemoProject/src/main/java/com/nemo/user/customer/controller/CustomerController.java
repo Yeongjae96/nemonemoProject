@@ -1,6 +1,7 @@
 package com.nemo.user.customer.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nemo.user.customer.service.CustomerFaqService;
 import com.nemo.user.customer.service.CustomerService;
 import com.nemo.user.customer.vo.UserNoticeVO;
 
@@ -31,6 +33,8 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private CustomerFaqService customerFaqService;
 	
 	@GetMapping("/notice")
 	public ModelAndView noticePage() {
@@ -48,11 +52,24 @@ public class CustomerController {
 		return mav;
 	}
 	
-	/* 관리자 페이지가 나오면 기능 구현 잠정 보류 */
-	@GetMapping("/faq/{faqNo}")
-	public ModelAndView faqPage(@PathVariable int faqNo) {
+	
+	@GetMapping("/faq/start")
+	public ModelAndView faqStartPage() {
 		
-		ModelAndView mav = new ModelAndView("customer/faq/faq"+faqNo);
+		int start = customerFaqService.getFaqCategoryStartNum();
+		ModelAndView mav = new ModelAndView("redirect:/customer/faq/"+start + ".do");
+		return mav;
+	}
+	
+	@GetMapping("/faq/{faqCategoryNo}")
+	public ModelAndView faqPage(@PathVariable int faqCategoryNo) {
+			
+		Map<String, Object> resultList = customerFaqService.getFaqCategoryListAndSelectFaqList(faqCategoryNo);
+		
+		ModelAndView mav = new ModelAndView("customer/faq/faq");
+		mav.addObject("faqCategoryList", resultList.get("faqCategoryList"));
+		mav.addObject("selectFaqList", resultList.get("selectFaqList"));
+		
 		return mav;
 	}
 	
