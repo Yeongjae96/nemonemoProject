@@ -17,6 +17,7 @@ import com.nemo.admin.management.vo.ManagementVO;
  */
 
 public interface DeleteAdminService {
+
 	public int deleteAdmin(ManagementVO vo);
 
 }

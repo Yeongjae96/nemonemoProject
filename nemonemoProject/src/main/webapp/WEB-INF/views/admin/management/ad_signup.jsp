@@ -31,6 +31,7 @@
 
     </head>
 
+
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
@@ -41,6 +42,7 @@
             <div class="body">
                 <form id="ad_sign_up" method="POST" action="signup.mdo">
                     <div class="msg"><b>Sign Up</b></div>
+                    <input type="hidden" name="adminUse" value="Y">
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
@@ -55,7 +57,6 @@
                         </span>
                         <div class="form-line">
                             <input type="email" class="form-control" name="adminEmail" placeholder="이메일을 입력하세요" required>
-                            <input type="hidden" name="adminUse" value="Y">
                         </div>
                     </div>
                     <div class="input-group">
@@ -102,7 +103,8 @@
 	<!-- 개인 JS -->
 	<script> var contextPath = "${pageContext.request.contextPath}"; </script>
 	<script src="<c:url value ="/resources/js/admin/management/ad_signup.js"/>"></script>
-	
+	<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+
 </body>
 
 </html>

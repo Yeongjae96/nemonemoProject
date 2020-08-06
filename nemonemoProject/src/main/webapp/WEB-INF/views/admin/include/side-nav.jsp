@@ -13,7 +13,11 @@
                     <img src="images/bungaeLogo.png" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">adminid</div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<c:if test="${admin != null}">
+							<p>${admin.adminId}님 안녕하세요.</p>
+						</c:if>
+					</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="true">keyboard_arrow_down</i>
@@ -162,5 +166,4 @@
         </aside>
         <!-- #END# Left Sidebar -->
       </section>
-
 
