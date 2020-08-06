@@ -109,6 +109,7 @@
                                 </div>
                                <input type="hidden" name="termsNo" value="${param.termsNo}"/>
                                 <button class="btn btn-primary waves-effect" type="submit" id="termsInsert">등록하기</button>
+
                             </form>
                         </div>
                     </div>
@@ -189,7 +190,6 @@
 
 
 		</script>
-		
-	
+
 </body>
 </html>

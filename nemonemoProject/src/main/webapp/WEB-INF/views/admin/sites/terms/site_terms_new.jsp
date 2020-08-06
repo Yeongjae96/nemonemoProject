@@ -143,6 +143,7 @@
 		
 		<!-- smartEditor -->
 		<script src="<c:url value ="/resources/vendor/SmartEditor/js/HuskyEZCreator.js"/>"></script>
+
 		<script>
 		var oEditors = [];
 		   nhn.husky.EZCreator.createInIFrame({

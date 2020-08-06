@@ -36,17 +36,13 @@
 	
 	
 	<insert id="insertTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
+
 		INSERT INTO terms_tb(terms_no, terms_title, admin_reg_id, terms_required_fl, terms_delete_fl, terms_content, terms_reg_ymd)
-		VALUES
-		(
-			terms_sq.nextval, 
-			#{termsTitle}, 
 			#{adminRegId}, 
 			#{termsRequiredFl},
 			#{termsDeleteFl},
 			#{termsContent},
 			#{termsRegYmd}
-			
 		)
 		<selectKey keyProperty="termsNo" keyColumn="TERMS_NO" resultType="Integer" order="AFTER">
 			SELECT terms_SQ.currval FROM dual

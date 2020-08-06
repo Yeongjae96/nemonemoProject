@@ -95,10 +95,13 @@ public class ManagementController {
 	//	// 회원가입 post
 	@RequestMapping(value = "/signup", method = { RequestMethod.POST })
 	public ModelAndView signupAction(ManagementVO vo) {
+<<<<<<< HEAD
 		// 비밀번호 암호화
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		vo.setAdminPw(encoder.encode(vo.getAdminPw()));
 		System.out.println("회원가입 정보 : " + vo);
+=======
+>>>>>>> cb9bd5033492b6468783b41ec911f78ebb137972
 		insertAdminService.insertAdmin(vo);
 		ModelAndView mav = new ModelAndView("redirect:/management/login.mdo");
 		return mav;

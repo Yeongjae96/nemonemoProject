@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
 .notice-table tr th,
 .notice-table tr td{
@@ -103,7 +103,7 @@
 
 .modal-content {
 	padding: 40px;
-	min-height: 750px;
+	min-height: 500px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;

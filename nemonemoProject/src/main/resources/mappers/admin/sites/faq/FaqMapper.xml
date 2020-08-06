@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.admin.sites.faq.repository.impl.FaqMapper">
+	
+	<sql id="faqColumn">
+		faq_no, faq_category_no, faq_title, faq_content, faq_reg_ymd, faq_use_fl
+	</sql>
+	
+	<resultMap type="com.nemo.admin.sites.faq.vo.AdminFaqResponseVO" id="faqResponseMap">
+		<id column="faq_no" property="faqNo"/>
+		<result column="faq_category_nm" property="faqCategoryName"/>
+		<result column="faq_title" property="faqTitle"/>
+		<result column="faq_content" property="faqContent"/>
+		<result column="faq_reg_ymd" property="faqRegYmd"/>
+		<result column="faq_use_fl" property="faqUseFlag"/>
+	</resultMap>
+	
+	
+	
+	
+	<insert id="insertFaq" parameterType="com.nemo.admin.sites.faq.vo.AdminFaqRequestVO">
+		
+		INSERT INTO faq_tb (
+			FAQ_NO,
+			FAQ_CATEGORY_NO,
+			FAQ_TITLE,
+			FAQ_CONTENT
+		) VALUES (
+			faq_sq.nextval,
+			#{faqCategoryNo},
+			#{faqTitle},
+			#{faqContent}
+		)
+	</insert>
+
+	<select id="getFaqList" parameterType="String" resultMap="faqResponseMap">
+		SELECT 
+			faq.*,
+			cate.faq_category_nm
+		FROM faq_tb faq
+		inner join (faq_category_tb cate)
+		on (faq.faq_category_no = cate.faq_category_no)
+		<if test='useFlagMode == "Y"'>
+		WHERE faq_use_fl = 'Y'
+		</if>
+	</select>
+</mapper>

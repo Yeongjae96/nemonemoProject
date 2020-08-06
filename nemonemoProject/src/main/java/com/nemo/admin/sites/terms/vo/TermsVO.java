@@ -28,6 +28,7 @@ public class TermsVO {
 	private String termsDeleteFl;
 	private Date termsRegYmd;
 	private Date termsEditYmd;
+	
 	public int getTermsNo() {
 		return termsNo;
 	}

@@ -105,5 +105,4 @@ public class TermsController {
 		ModelAndView mav = new ModelAndView("redirect:/sites/terms/list.mdo");
 		return mav;
 	}	
-	
 }

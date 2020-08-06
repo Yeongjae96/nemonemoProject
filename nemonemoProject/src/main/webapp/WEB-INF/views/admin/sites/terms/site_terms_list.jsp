@@ -212,5 +212,6 @@
 	
 	<!-- 개인 JS -->
 	<script src="<c:url value ="/resources/js/admin/sites/site_terms.js?v=<%=System.currentTimeMillis() %>"/>"></script>	
+
 </body>
 </html>
