@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper
+	namespace="com.nemo.admin.members.report.repository.impl.ReportCategoryMapper">
+
+
+
+	<resultMap id="categoryMap"
+		type="com.nemo.admin.members.report.category.vo.ReportCategoryVO">
+		<id column="REPORT_CATE_NO" property="reportCategoryNO" />
+		<result column="REPORT_CATE_NAME" property="reportCategoryName" />
+		<result column="REPORT_CATE_PARENT_NO"
+			property="reportCategoryTopCategoryCode" />
+		<result column="REPORT_CATE_DEL_FL"
+			property="reportCategoryUseFl" />
+	</resultMap>
+
+
+	<insert id="insertCategory"
+		parameterType="com.nemo.admin.members.report.category.vo.ReportCategoryVO">
+
+		INSERT INTO SINGO_CATEGORY_TB2
+		VALUES (singo_sq.nextval,
+		#{reportCategoryCODE}, #{reportCategoryTopCategory},
+		#{reportCategoryContents})
+
+	</insert>
+
+
+	<select id="getCategoryList"
+		parameterType="com.nemo.admin.members.report.category.vo.ReportCategoryVO"
+		resultMap="categoryMap">
+		SELECT *
+		FROM REPORT_CATE_TB
+	</select>
+
+	<delete id="deleteCategory" parameterType="int">
+		DELETE FROM
+		REPORT_CATE_TB WHERE REPORT_CATE_NO = #{reportCategoryNO}
+	</delete>
+
+
+
+	<update id="updateCategory"
+		parameterType="com.nemo.admin.members.report.category.vo.ReportCategoryVO">
+
+		UPDATE REPORT_CATE_TB
+		SET REPORT_CATE_NAME =
+		#{reportCategoryName, jdbcType=VARCHAR}
+		WHERE
+		REPORT_CATE_NO =
+		#{reportCategoryNO, jdbcType=NUMERIC}
+
+	</update>
+
+
+	<select id="getCategory" parameterType="int"
+		resultMap="categoryMap">
+		
+		SELECT *
+		FROM REPORT_CATE_TB 
+		WHERE REPORT_CATE_NO = #{reportCategoryNO}
+	</select>
+
+
+
+</mapper>

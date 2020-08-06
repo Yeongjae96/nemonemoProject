@@ -5,23 +5,14 @@
 
 <mapper namespace="com.nemo.admin.management.repository.impl.ManagementMapper">
 
-	<resultMap id="managementMap" type="com.nemo.admin.management.vo.ManagementVO" >
-		<id column="admin_no" property="adminNo"/>
-		<result column="admin_id" property="adminId"/>
-		<result column="admin_pw" property="adminPw"/>
-		<result column="admin_email" property="adminEmail"/>
-	</resultMap>
+
 
 	<insert id="insertAdmin"
 		parameterType="com.nemo.admin.management.vo.ManagementVO">
 		
 		INSERT INTO ADMIN_ACCOUNT_TB 
 		VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}) 
-		<!-- 
-		리턴값을 주기 위한
-		<selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" order="AFTER">
-			SELECT ADMIN_sq.currval FROM dual
-		</selectKey> -->
+		
 
 	</insert>
 
