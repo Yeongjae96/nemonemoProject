@@ -20,9 +20,9 @@
 	resultMap="termsMap">
 		SELECT *
 		FROM terms_tb
-		<!-- <if test='faqCategoryUseFlMode == "Y"'>
+		<!-- <if test='terms_delete_fl == "N"'>
       	WHERE 
-        	FAQ_CATEGORY_USE_FL = 'Y'
+        	TEMRS_DELETE_FL = 'N'
       	</if> -->
 		ORDER BY TERMS_NO
 	</select>

@@ -164,8 +164,6 @@
 		       fOnAppLoad : function(){
 		          //textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
 		          //oEditors.getById["termsContent"].exec("PASTE_HTML", ["약관을 입력해주세요."]);
-		    	  
-		    	   
 		      }, 
 		      fCreator: "createSEditor2"  
 			});
@@ -175,19 +173,19 @@
 		    	termsEditForm.submit();
 		    });
 		   
-		   /* $.ajax({
-			   type:"POST",
-			   url :"URL",
-			   dataType : "json",
-			   data : {"termsContent"},
-			   error:function(){
-				   alert('ajax 오류...');
-			   },
-			   success:function(data){
-				   oEditors.getById["termsContent"].exec("SET_IR",[""]);
-				   oEditors.getById["termsContent"].exec("PASTE_HTML",[data.template]);
-			   }
-		   }); */
+		   /* $(function(){
+			    $.ajax({
+			        type:"POST", 
+			        url: "./editor_template.jsp",
+			        success: function(data){
+			            $(".termsContent").html(data);
+			            setConfig(content); // 에디터 초기화시 글이 수정모드일 경우 본문영역의 내용을 파라미터로 가져간다.
+			        }, 
+			        error : function(request, status, error) {
+			            alert("다음 에디터 로딩 에러");
+			        }
+			    }); 
+			}); */
 
 
 		</script>
