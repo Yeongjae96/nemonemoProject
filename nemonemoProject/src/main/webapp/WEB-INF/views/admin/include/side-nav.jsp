@@ -13,14 +13,18 @@
                     <img src="images/bungaeLogo.png" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">adminid</div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<c:if test="${admin != null}">
+							<p>${admin.adminId}님 안녕하세요.</p>
+						</c:if>
+					</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>직원관리</a></li>
+                            <li><a href="profilelist.mdo"><i class="material-icons">person</i>직원관리</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>관리자추가</a></li>                  
+                            <li><a href="signup.mdo"><i class="material-icons">group</i>관리자추가</a></li>                  
                             <li role="separator" class="divider"></li>
                             <li><a href="javascript:void(0);"><i class="material-icons">input</i>로그아웃</a></li>
                         </ul>

@@ -31,6 +31,7 @@
 
     </head>
 
+
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
@@ -41,13 +42,18 @@
             <div class="body">
                 <form id="ad_sign_up" method="POST" action="signup.mdo">
                     <div class="msg"><b>Sign Up</b></div>
+                    <input type="hidden" name="adminUse" value="Y">
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="adminId" placeholder="아이디를 입력하세요" required autofocus>
+                            <input type="text" class="form-control" id="adminId" name="adminId" placeholder="아이디를 입력하세요" required autofocus>
                         </div>
+                        <button type="button" class="idCheck">중복확인</button>
+                        <p class="result">
+                        	<span class=msg>아이디를 확인해주세요</span>
+                        </p>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -101,7 +107,30 @@
 
 	<!-- 개인 JS -->
 	<script src="<c:url value ="/resources/js/admin/management/ad_signup.js"/>"></script>
-	
+	<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+	<script> 
+			$(".idCheck").click(function() {
+			var query = {
+				adminId : $("#adminId").val()
+			};
+
+			$.ajax({
+				url : "/nemonemoProject/management/idCheck",
+				type : "post",
+				data : query,
+				success : function(data) {
+
+					if (data == 1) {
+						$(".result .msg").text("사용 불가");
+						$(".result .msg").attr("style", "color:#f00");
+					} else {
+						$(".result .msg").text("사용 가능");
+						$(".result .msg").attr("style", "color:#00f");
+					}
+				}
+			}); // ajax 끝
+		});
+	</script>
 </body>
 
 </html>

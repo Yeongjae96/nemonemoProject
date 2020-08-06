@@ -7,6 +7,7 @@ import com.nemo.admin.management.repository.impl.ManagementMapper;
 import com.nemo.admin.management.service.LoginAdminService;
 import com.nemo.admin.management.vo.ManagementVO;
 
+
 /**
  * @제목 : 로그인 서비스
  * @패키지이름 : com.nemo.admin.management.service.impl
@@ -27,12 +28,14 @@ import com.nemo.admin.management.vo.ManagementVO;
 public class LoginAdminServiceImpl implements LoginAdminService {
 
 	@Autowired
-	private ManagementMapper managementDAO;; 
+	private ManagementMapper managementDAO;
 	
 	@Override
-	public ManagementVO loginAdmin(ManagementVO vo) {
-		
-		return managementDAO.loginAdmin(vo);
+	public ManagementVO loginAdmin(ManagementVO vo){
+		System.out.println("serv : " + vo.toString());
+		ManagementVO result = managementDAO.loginAdmin(vo);
+		System.out.println("serv result : " + result);
+		return result;
 	}
 
 

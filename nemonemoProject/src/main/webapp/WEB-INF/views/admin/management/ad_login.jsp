@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	request.setCharacterEncoding("utf-8");
+	String id = request.getParameter("adminId");
+	String pw = request.getParameter("adminPw");
+%>
 <!DOCTYPE html>
 <html>
 
@@ -41,38 +46,44 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST" action="login.mdo">
-                    <div class="msg"><b>로그인 하기</b></div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="adminId" placeholder="아이디를 입력하세요" required autofocus>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="adminPw" placeholder="비밀번호를 입력하세요" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-4" style="margin-left : 30%;">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">로그인</button>
-                        </div>
-                    </div>
-                    <div class="row m-t-15 m-b--20">
-                        <div class="col-xs-6">
-                            <a href="signup.mdo">회원가입</a>
-                        </div>
-                        <div class="col-xs-6 align-right">
-                            <a href="forgotpw.mdo">비밀번호찾기</a>
-                        </div>
-                    </div>
-                </form>
+                <form id="loginAdmin" method="POST" action="login.mdo">
+						<div class="msg">
+							<b>로그인 하기</b>
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon"> <i class="material-icons">person</i>
+							</span>
+							<div class="form-line">
+								<input type="text" class="form-control" id="adminId"
+									name="adminId" placeholder="아이디를 입력하세요" required autofocus>
+							</div>
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon"> <i class="material-icons">lock</i>
+							</span>
+							<div class="form-line">
+								<input type="password" class="form-control"
+									name="adminPw" minlength="6" placeholder="비밀번호를 입력하세요" required>
+							</div>
+						</div>
+						<button class="btn btn-block btn-lg bg-pink waves-effect" type="submit" id="ad_login_submit">로그인</button>
+						<!-- <div class="row">
+							<div class="col-xs-4" style="margin-left: 30%;">
+								<button class="btn btn-block bg-pink waves-effect" type="submit" value="로그인">로그인</button>
+							</div>
+						</div> -->
+						<div class="row m-t-15 m-b--20">
+							<div class="col-xs-6">
+								<a href="signup.mdo">회원가입</a>
+							</div>
+							<div class="col-xs-6 align-right">
+								<a href="forgotpw.mdo">비밀번호찾기</a>
+							</div>
+						</div>
+					<c:if test="${msg == false}">
+						<p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>
+					</c:if>
+				</form>
             </div>
         </div>
     </div>
@@ -100,6 +111,7 @@
 
 	<!-- 개인 JS -->
 	<script src="<c:url value ="/resources/js/admin/management/ad_login.js"/>"></script>
+	
 </body>
 
 </html>

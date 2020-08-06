@@ -5,51 +5,64 @@
 
 <mapper namespace="com.nemo.admin.management.repository.impl.ManagementMapper">
 
-	<resultMap id="managementMap" type="com.nemo.admin.management.vo.ManagementVO" >
-		<id column="admin_no" property="adminNo"/>
-		<result column="admin_id" property="adminId"/>
-		<result column="admin_pw" property="adminPw"/>
-		<result column="admin_email" property="adminEmail"/>
-	</resultMap>
+   <resultMap id="managementMap" type="com.nemo.admin.management.vo.ManagementVO" >
+      <id column="admin_no" property="adminNo"/>
+      <result column="admin_id" property="adminId"/>
+      <result column="admin_pw" property="adminPw"/>
+      <result column="admin_email" property="adminEmail"/>
+      <result column="admin_use" property ="adminUse"/>
+   </resultMap>
+   
+   <insert id="insertAdmin"
+      parameterType="com.nemo.admin.management.vo.ManagementVO">
+      
+      INSERT INTO ADMIN_TB
+      VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}, #{adminUse}) 
+      <!-- 
+      리턴값을 주기 위한
+      <selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" order="AFTER">
+         SELECT ADMIN_sq.currval FROM dual
+      </selectKey> -->
 
-	
-	<insert id="insertAdmin"
-		parameterType="com.nemo.admin.management.vo.ManagementVO">
-		
-		INSERT INTO ADMIN_ACCOUNT_TB 
-		VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}) 
-		<!-- 
-		리턴값을 주기 위한
-		<selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" order="AFTER">
-			SELECT ADMIN_sq.currval FROM dual
-		</selectKey> -->
+   </insert>
+   
+   <select id="loginAdmin" parameterType="com.nemo.admin.management.vo.ManagementVO" resultMap="managementMap">
+         SELECT 
+         	admin_no,
+         	admin_id,
+         	admin_pw,
+         	admin_email,
+         	admin_use
+         FROM 
+         ADMIN_TB 
+         WHERE admin_id=#{adminId}
+	</select>
+	<!-- WHERE admin_id=#{adminId} AND admin_pw=RPAD(#{adminPw}, 60, ' ') -->
+	<!--  WHERE admin_id=#{adminId} AND admin_pw=#{adminPw} -->
 
-	</insert>
-	
-	<select id="loginAdmin" resultType="com.nemo.admin.management.vo.ManagementVO" 
-			parameterType="com.nemo.admin.management.vo.ManagementVO">
-        SELECT * FROM 
-        	ADMIN_ACCOUNT_TB 
-        WHERE 
-        	ADMIN_ID=#{adminId} and ADMIN_PW=#{adminPw}
-    </select>
+    <!-- 아이디 중복 체크 -->
+	<select id="idCheck" parameterType="com.nemo.admin.management.vo.ManagementVO" resultType="com.nemo.admin.management.vo.ManagementVO">
+		SELECT admin_id FROM ADMIN_TB
+		WHERE admin_id=#{adminId}
+	</select>
     
     <select id="getAdminList"
-    	parameterType="com.nemo.admin.management.vo.ManagementVO"
-    	resultMap="managementMap">
-    	SELECT * FROM
-    		ADMIN_ACCOUNT_TB
+       parameterType="com.nemo.admin.management.vo.ManagementVO"
+       resultMap="managementMap">
+       SELECT * FROM
+          ADMIN_TB
+      	ORDER BY admin_no DESC
     </select>
     
     <!-- 삭제 -->
     
-    <select id="deleteAdmin" parameterType="int" resultType="com.nemo.admin.management.vo.ManagementVO">	
-    	SELECT * FROM 
-    		ADMIN_ACCOUNT_TB
-    	WHERE
-    		ADMIN_NO = #{adminNo}
-    </select>
-	
+    <delete id="deleteAdmin" parameterType="int">   
+       DELETE FROM 
+          ADMIN_TB
+       WHERE
+          ADMIN_NO = #{adminNo}
+    </delete>
+   
 
 
 

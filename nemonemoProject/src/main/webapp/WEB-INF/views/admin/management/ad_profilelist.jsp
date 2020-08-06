@@ -47,7 +47,32 @@
 	href="<c:url value="/resources/vendor/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"/>">
 
 
-
+<script>
+//삭제 버튼 누르면 삭제할 것이냐고 묻고 삭제한다고 하면 주소이동(BoardController의 remove 메소드 호출)
+	$(document).ready(function(){
+			var formObj = $("form[name='readForm']");
+			
+			// 수정 
+/* 			$(".update_btn").on("click", function(){
+				formObj.attr("action", "/board/updateView");
+				formObj.attr("method", "get");
+				formObj.submit();				
+			})
+			 */
+			// 삭제
+			$(".btn-remove").on("click", function(){
+				formObj.attr("action", "/management/remove");
+				formObj.attr("method", "post");
+				formObj.submit();
+			})
+			
+	/* 		// 취소
+			$(".list_btn").on("click", function(){
+				
+				location.href = "/board/list";
+			}) */
+		})
+</script>
 </head>
 <body class="theme-red">
 
@@ -70,7 +95,7 @@
 	<!-------------------------------------------SECTION--------------------------------------------------->
 
 	<!-- 직원 삭제 경고창 모달 -->
-	<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+	<!-- <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -85,14 +110,14 @@
 
 				</div>
 				<div class="modal-footer">
-					<button id="admin-del-confirm" type="button"
+					<button id="btn-remove" type="button"
 						class="btn btn-link waves-effect" data-dismiss="modal">삭제</button>
 					<button id="admin-del-cancel" type="button" class="btn btn-link waves-effect"
 						data-dismiss="modal">취소</button>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- 직원 삭제 경고창 모달 끝-->
 
 
@@ -130,9 +155,11 @@
 														data-target="#admin_upd_btn" 
 														data-toggle="modal"
 														data-adminNo="${admin.adminNo}">수정</button>
-													<button type="button"
+													<%-- <button type="button"
 														class="btn bg-red waves-effect admin-del-btn"
-														data-adminNo="${admin.adminNo}">삭제</button>
+														id="btn-remove"
+														data-adminNo="${admin.adminNo}">삭제</button> --%>
+													<button type="submit" class="delete_btn">삭제</button>
 												</td>
 											</tr>
 										</c:forEach>
@@ -229,3 +256,8 @@
 	<!-- Date picker bootstrap -->
 	<script
 		src="<c:url value ="/resources/vendor/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"/>"></script>
+	
+	
+	
+	</body>
+</html>

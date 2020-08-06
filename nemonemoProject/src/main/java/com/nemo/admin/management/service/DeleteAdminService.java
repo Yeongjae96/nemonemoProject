@@ -15,6 +15,6 @@ package com.nemo.admin.management.service;
  */
 
 public interface DeleteAdminService {
-	public int deleteAdmin(int adminNo);
+	public void deleteAdmin(int adminNo);
 
 }
