@@ -47,10 +47,14 @@
     flex: 1 1 0%;
 }
 
+.bold {
+	font-weight: bold;
+}
+
 .faq-nav-selected-bar {
     position: absolute;
     bottom: 0px;
-    left: 0px;
+/*     left: 0px; */
     width: 100%;
     height: 2px;
     background: rgb(255, 80, 88);
@@ -89,6 +93,7 @@
     font-size: 13px;
     color: rgb(255, 80, 88);
     background: rgb(250, 250, 250);
+    font-weight: bold;
 }
 
 .faq-menu-not-selected {
@@ -129,6 +134,10 @@
     outline: none;
     border:none;
     border: solid #f9f9f9 2px;
+}
+
+.faq-list-btn:focus {
+	outline:0;
 }
 
 .faq-list-title {

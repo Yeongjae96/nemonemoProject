@@ -19,16 +19,12 @@ import com.nemo.admin.sites.faq.service.FaqCategoryUseFlagService;
 import com.nemo.admin.sites.faq.vo.FaqCategoryVO;
 
 /**
- * @제목 : 자주묻는 질문 카테고리 컨트롤러
+ * @제목 : 관리자 자주묻는 질문 카테고리 컨트롤러
  * @패키지이름 : com.nemo.admin.sites.faq.controller
  * @파일이름 : FaqCategoryController.java
  * @작성일 : 2020. 8. 2.
  * @이름 : Yeong
  * @프로그램설명 : 자주묻는질문 카테고리에 대한 url 요청을 처리하고 응답해준다.
- * == 수정 정보 ==
- *
- * DATE		 AUTHOR			NOTE
- * -------	--------	-------------	
  */
 @Controller
 @RequestMapping("sites/faq/category")

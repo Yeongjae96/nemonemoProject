@@ -11,7 +11,7 @@ import com.nemo.admin.sites.faq.vo.BaseFaqVO;
  * @파일이름 : FaqService.java
  * @작성일 : 2020. 8. 1.
  * @이름 : Yeong
- * @프로그램설명 : 
+ * @프로그램설명 : FAQ테이블의 간단한 CRUD 서비스 인터페이스
  * == 수정 정보 ==
  *
  * DATE		 AUTHOR			NOTE

@@ -16,25 +16,14 @@
 
 <!-- 라이브러리 -->
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
-<script src="<c:url value="/resources/vendor/fontawsome/js/all.js"/>"></script>
+<script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- 해당 페이지 JS파일 -->
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
-
-<script>
-	$(function() {
-		$('.faq-list-btn').click(function() {
-			$(this).next().slideToggle();
-			$(this).children('span').toggleClass('faq-rotate-180');
-		});
-		
-		$('.notice-nav-not-selected').eq(2).attr('class', 'notice-nav-selected');
-	});
-</script>
-
+<script src="<c:url value="/resources/js/user/customer/faq.js"/>"></script>
 
 </head>
 <body>
@@ -61,107 +50,27 @@
 				<main class="faq-main">
 					<div class="faq-main-div">
 						<nav class="faq-menu">
-						<c:forEach var="faqMenu" items="faqMenuList">
-							<a class="faq-menu-not-selected" href="#">이용제한</a>
-							<a class="faq-menu-not-selected" href="#">이용제한</a>
-							<a class="faq-menu-selected" href="#">이용제한</a>
-							<a class="faq-menu-not-selected" href="#">이용제한</a>
-							<a class="faq-menu-not-selected" href="#">이용제한</a>
-							<a class="faq-menu-not-selected" href="#">이용제한</a>
-							<a class="faq-menu-not-selected" href="#">이용제한</a>
-							<a class="faq-menu-not-selected" href="#">이용제한</a>
-							<a class="faq-menu-not-selected" href="#">이용제한</a>
-							<a class="faq-menu-not-selected" href="#">이용제한</a>
-							<a class="faq-menu-not-selected" href="#">이용제한</a>
+						<c:forEach var="faqCategory" items="${faqCategoryList}">
+							<a class="faq-menu-not-selected" data-categoryno="${faqCategory.faqCategoryNo}" href="${faqCategory.faqCategoryNo}.do">${faqCategory.faqCategoryName}</a>
 						</c:forEach>
 						</nav>
 
 						<ul class="faq-list-ul">
+						<c:forEach var="faq" items="${selectFaqList}">
 							<li class="faq-list-li">
 								<article class="faq-list-art">
 									<button class="faq-list-btn">
 										<div class="faq-list-title">
-											<h1>[거래] 반드시 체크해야할 거래사기 유형</h1>
+											<h1>${faq.faqTitle}</h1>
 										</div>
 										<span class="faq-list-arrow"></span>
 									</button>
 									<div class="faq-list-content">
-										<br>
-											<strong style="box-sizing: border-box;"	data-renderer-mark="true">[최신 사기 수법 안내]</strong>
-										<br>
-										<br>새상품은 받은날로부터 7일 이내 반품 및 환불이 가능합니다. (판매자가 사업자 일 경우 해당) 상품이
-											불량이라면 동일한 상품으로 교환이나 환불을 받아보시고, 변심이시라면 왕복택배비는 구매자께서 부담하셔야 합니다.<br>
-										<br>&lt;반품기간 및 반품운송비&gt;<br>
-										<br>: 상품상세설명에 반품불가라고 표기하더라도 관련법이 우선하므로 구매자의 반품시 이를 받아주어야 함.<br>
-										<br>- 구매자 단순변심 : 상품 수령 후 7일 이내 (구매자 반품비 부담)<br>
-										<br>- 표시/광고와 상이 : 상품 수령 후 3개월 이내 또는 사실을 안 날로부터 30일 이내 (판매자 반품비 부담)<br>
+										${faq.faqContent}
 									</div>
 								</article>
 							</li>
-		
-							<li class="faq-list-li">
-								<article class="faq-list-art">
-									<button class="faq-list-btn">
-										<div class="faq-list-title">
-											<h1>[거래] 반드시 체크해야할 거래사기 유형</h1>
-										</div>
-										<span class="faq-list-arrow"></span>
-									</button>
-									<div class="faq-list-content">
-										<br>
-											<strong style="box-sizing: border-box;"	data-renderer-mark="true">[최신 사기 수법 안내]</strong>
-										<br>
-										<br>새상품은 받은날로부터 7일 이내 반품 및 환불이 가능합니다. (판매자가 사업자 일 경우 해당) 상품이
-											불량이라면 동일한 상품으로 교환이나 환불을 받아보시고, 변심이시라면 왕복택배비는 구매자께서 부담하셔야 합니다.<br>
-										<br>&lt;반품기간 및 반품운송비&gt;<br>
-										<br>: 상품상세설명에 반품불가라고 표기하더라도 관련법이 우선하므로 구매자의 반품시 이를 받아주어야 함.<br>
-										<br>- 구매자 단순변심 : 상품 수령 후 7일 이내 (구매자 반품비 부담)<br>
-										<br>- 표시/광고와 상이 : 상품 수령 후 3개월 이내 또는 사실을 안 날로부터 30일 이내 (판매자 반품비 부담)<br>
-									</div>
-								</article>
-							</li>
-							<li class="faq-list-li">
-								<article class="faq-list-art">
-									<button class="faq-list-btn">
-										<div class="faq-list-title">
-											<h1>[거래] 반드시 체크해야할 거래사기 유형</h1>
-										</div>
-										<span class="faq-list-arrow"></span>
-									</button>
-									<div class="faq-list-content">
-										<br>
-											<strong style="box-sizing: border-box;"	data-renderer-mark="true">[최신 사기 수법 안내]</strong>
-										<br>
-										<br>새상품은 받은날로부터 7일 이내 반품 및 환불이 가능합니다. (판매자가 사업자 일 경우 해당) 상품이
-											불량이라면 동일한 상품으로 교환이나 환불을 받아보시고, 변심이시라면 왕복택배비는 구매자께서 부담하셔야 합니다.<br>
-										<br>&lt;반품기간 및 반품운송비&gt;<br>
-										<br>: 상품상세설명에 반품불가라고 표기하더라도 관련법이 우선하므로 구매자의 반품시 이를 받아주어야 함.<br>
-										<br>- 구매자 단순변심 : 상품 수령 후 7일 이내 (구매자 반품비 부담)<br>
-										<br>- 표시/광고와 상이 : 상품 수령 후 3개월 이내 또는 사실을 안 날로부터 30일 이내 (판매자 반품비 부담)<br>
-									</div>
-								</article>
-							</li>
-							<li class="faq-list-li">
-								<article class="faq-list-art">
-									<button class="faq-list-btn">
-										<div class="faq-list-title">
-											<h1>[거래] 반드시 체크해야할 거래사기 유형</h1>
-										</div>
-										<span class="faq-list-arrow"></span>
-									</button>
-									<div class="faq-list-content">
-										<br>
-											<strong style="box-sizing: border-box;"	data-renderer-mark="true">[최신 사기 수법 안내]</strong>
-										<br>
-										<br>새상품은 받은날로부터 7일 이내 반품 및 환불이 가능합니다. (판매자가 사업자 일 경우 해당) 상품이
-											불량이라면 동일한 상품으로 교환이나 환불을 받아보시고, 변심이시라면 왕복택배비는 구매자께서 부담하셔야 합니다.<br>
-										<br>&lt;반품기간 및 반품운송비&gt;<br>
-										<br>: 상품상세설명에 반품불가라고 표기하더라도 관련법이 우선하므로 구매자의 반품시 이를 받아주어야 함.<br>
-										<br>- 구매자 단순변심 : 상품 수령 후 7일 이내 (구매자 반품비 부담)<br>
-										<br>- 표시/광고와 상이 : 상품 수령 후 3개월 이내 또는 사실을 안 날로부터 30일 이내 (판매자 반품비 부담)<br>
-									</div>
-								</article>
-							</li>
+						</c:forEach>
 						</ul>
 					</div>
 				</main>

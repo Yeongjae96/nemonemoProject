@@ -10,6 +10,14 @@ import com.nemo.admin.sites.faq.service.FaqService;
 import com.nemo.admin.sites.faq.vo.AdminFaqResponseVO;
 import com.nemo.admin.sites.faq.vo.BaseFaqVO;
 
+/**
+ * @제목 : Faq 서비스 구현체
+ * @패키지이름 : com.nemo.admin.sites.faq.service.impl
+ * @파일이름 : FaqServiceImpl.java
+ * @작성일 : 2020. 8. 6.
+ * @이름 : Yeong
+ * @프로그램설명 : FAQ 테이블 CRUD 구현체 
+ */
 @Service
 public class FaqServiceImpl implements FaqService {
 

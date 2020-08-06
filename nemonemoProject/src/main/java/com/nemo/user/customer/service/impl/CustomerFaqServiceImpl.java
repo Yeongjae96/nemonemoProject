@@ -1,13 +1,16 @@
 package com.nemo.user.customer.service.impl;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nemo.user.customer.faq.vo.BaseUserFaqCategoryVO;
 import com.nemo.user.customer.faq.vo.BaseUserFaqVO;
-import com.nemo.user.customer.repository.impl.CustomerMapper;
+import com.nemo.user.customer.repository.impl.CustomerFaqMapper;
 import com.nemo.user.customer.service.CustomerFaqService;
 
 @Service
@@ -22,13 +25,19 @@ public class CustomerFaqServiceImpl implements CustomerFaqService{
 	}
 
 	@Override
-	public List<BaseUserFaqVO> getFaqList(int faqCategoryNo) {
-		return customerFaqMapper.getSelectFaqList(faqCategoryNo);
-	}
-
-	@Override
-	public List<BaseUserFaqCategoryVO> getFaqCategoryList() {
-		return customerFaqMapper.getFaqCategoryList();
+	@Transactional
+	public Map<String, Object> getFaqCategoryListAndSelectFaqList(int faqCategoryNo) {
+		
+		List<BaseUserFaqCategoryVO> faqCategoryList = customerFaqMapper.getFaqCategoryList();
+		System.out.println("faqCategoryList : " + faqCategoryList );
+		List<BaseUserFaqVO> selectFaqList = customerFaqMapper.getSelectFaqList(faqCategoryNo);
+		System.out.println("selectFaqList : " + selectFaqList);
+		
+		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
+		resultMap.put("faqCategoryList", faqCategoryList);
+		resultMap.put("selectFaqList", selectFaqList);
+		
+		return resultMap;
 	}
 		
 }

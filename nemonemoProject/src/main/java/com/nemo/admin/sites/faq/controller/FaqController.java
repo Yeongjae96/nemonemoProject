@@ -14,6 +14,14 @@ import com.nemo.admin.sites.faq.service.FaqUseFlagService;
 import com.nemo.admin.sites.faq.vo.AdminFaqResponseVO;
 import com.nemo.admin.sites.faq.vo.BaseFaqVO;
 
+/**
+ * @제목 : 관리자 FAQ 컨트롤러
+ * @패키지이름 : com.nemo.admin.sites.faq.controller
+ * @파일이름 : FaqController.java
+ * @작성일 : 2020. 8. 6.
+ * @이름 : Yeong
+ * @프로그램설명 : site/faq에 해당하는 모든 경로를 맵핑시켜준다.
+ */
 @Controller
 @RequestMapping("/sites/faq")
 public class FaqController {
