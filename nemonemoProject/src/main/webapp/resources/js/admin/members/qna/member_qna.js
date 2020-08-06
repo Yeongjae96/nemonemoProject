@@ -2,7 +2,7 @@
 
 /* 한국어 처리 */
 $(function () {
-    const table = $('#mem-care-list').DataTable({
+    const table = $('#qna-table').DataTable({
         responsive: true,
         // ajax: "category_example.json",
         //   buttons: {              

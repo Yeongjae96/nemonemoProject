@@ -43,10 +43,7 @@
 		<jsp:include page="/WEB-INF/views/admin/include/header.jsp"/>
 		<jsp:include page="/WEB-INF/views/admin/include/side-nav.jsp"/>		
 	</header>
-	
-	
-	
-	
+		
 
 	<% 
 		/* 각 페이지의 SECTION */
@@ -58,7 +55,7 @@
 		<div class="container-fluid">
 			<div class="card">
 				<div class="header">
-					<h1>1:1 문의</h1>
+					<p>1:1 문의</p>
 				</div>
 				<div class="row clearfix">
 					<div>
