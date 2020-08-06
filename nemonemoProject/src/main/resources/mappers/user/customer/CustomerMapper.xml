@@ -11,7 +11,7 @@
 		<result column="notice_ymd" property="noticeYmd"/>
 	</resultMap>
 
-
+	
 	<select id="getNoticeList" resultMap="noticeMap">
 		SELECT 
 			notice_no, 
@@ -22,11 +22,5 @@
 		ORDER BY notice_ymd desc, notice_no desc
 	</select>
 
-	<select id="getFaqCategoryStartNum" resultType="int">
-	
-		SELECT min(faq_category_no)
-		FROM faq_category_tb
-	
-	</select>
 
 </mapper>
