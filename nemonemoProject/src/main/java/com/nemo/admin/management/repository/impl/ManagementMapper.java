@@ -7,6 +7,5 @@ import com.nemo.admin.management.vo.ManagementVO;
 
 @Mapper
 public interface ManagementMapper extends IManagementMapper{
-	public ManagementVO idCheck(String adminId) throws Exception;
 }
 

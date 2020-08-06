@@ -3,66 +3,72 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.nemo.admin.management.repository.impl.ManagementMapper">
+<mapper
+	namespace="com.nemo.admin.management.repository.impl.ManagementMapper">
 
-   <resultMap id="managementMap" type="com.nemo.admin.management.vo.ManagementVO" >
-      <id column="admin_no" property="adminNo"/>
-      <result column="admin_id" property="adminId"/>
-      <result column="admin_pw" property="adminPw"/>
-      <result column="admin_email" property="adminEmail"/>
-      <result column="admin_use" property ="adminUse"/>
-   </resultMap>
-   
-   <insert id="insertAdmin"
-      parameterType="com.nemo.admin.management.vo.ManagementVO">
-      
-      INSERT INTO ADMIN_TB
-      VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}, #{adminUse}) 
-      <!-- 
-      리턴값을 주기 위한
-      <selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" order="AFTER">
-         SELECT ADMIN_sq.currval FROM dual
-      </selectKey> -->
+	<resultMap id="managementMap"
+		type="com.nemo.admin.management.vo.ManagementVO">
+		<id column="admin_no" property="adminNo" />
+		<result column="admin_id" property="adminId" />
+		<result column="admin_pw" property="adminPw" />
+		<result column="admin_email" property="adminEmail" />
+		<result column="admin_use" property="adminUse" />
+	</resultMap>
 
-   </insert>
-   
-   <select id="loginAdmin" parameterType="com.nemo.admin.management.vo.ManagementVO" resultMap="managementMap">
-         SELECT 
-         	admin_no,
-         	admin_id,
-         	admin_pw,
-         	admin_email,
-         	admin_use
-         FROM 
-         ADMIN_TB 
-         WHERE admin_id=#{adminId}
-	</select>
-	<!-- WHERE admin_id=#{adminId} AND admin_pw=RPAD(#{adminPw}, 60, ' ') -->
-	<!--  WHERE admin_id=#{adminId} AND admin_pw=#{adminPw} -->
+	<insert id="insertAdmin" parameterType="com.nemo.admin.management.vo.ManagementVO">
 
-    <!-- 아이디 중복 체크 -->
-	<select id="idCheck" parameterType="com.nemo.admin.management.vo.ManagementVO" resultType="com.nemo.admin.management.vo.ManagementVO">
-		SELECT admin_id FROM ADMIN_TB
+		INSERT INTO ADMIN_TB
+		VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}, #{adminUse})
+		<!-- 리턴값을 주기 위한 <selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" 
+			order="AFTER"> SELECT ADMIN_sq.currval FROM dual </selectKey> -->
+	</insert>
+
+	<select id="loginAdmin"
+		parameterType="com.nemo.admin.management.vo.ManagementVO"
+		resultMap="managementMap">
+		SELECT
+		admin_no,
+		admin_id,
+		admin_pw,
+		admin_email,
+		admin_use
+		FROM
+		ADMIN_TB
 		WHERE admin_id=#{adminId}
 	</select>
-    
-    <select id="getAdminList"
-       parameterType="com.nemo.admin.management.vo.ManagementVO"
-       resultMap="managementMap">
-       SELECT * FROM
-          ADMIN_TB
-      	ORDER BY admin_no DESC
-    </select>
-    
-    <!-- 삭제 -->
-    
-    <delete id="deleteAdmin" parameterType="int">   
-       DELETE FROM 
-          ADMIN_TB
-       WHERE
-          ADMIN_NO = #{adminNo}
-    </delete>
-   
+	<!-- WHERE admin_id=#{adminId} AND admin_pw=RPAD(#{adminPw}, 60, ' ') -->
+	<!-- WHERE admin_id=#{adminId} AND admin_pw=#{adminPw} -->
+
+
+
+	<select id="idCheck"
+		parameterType="com.nemo.admin.management.vo.ManagementVO">
+		SELECT COUNT(*) FROM
+		ADMIN_TB
+		WHERE
+		ADMIN_ID = #{adminId}
+	</select>
+
+	<select id="getAdminList"
+
+		parameterType="com.nemo.admin.management.vo.ManagementVO"
+		resultMap="managementMap">
+		SELECT * FROM
+		ADMIN_TB
+
+	</select>
+
+	<!-- 삭제 -->
+
+	<update id="deleteAdmin"
+		parameterType="com.nemo.admin.management.vo.ManagementVO">
+		UPDATE
+		ADMIN_TB
+		SET admin_use ='N'
+		WHERE
+		ADMIN_NO = #{adminNo}
+	</update>
+
 
 
 

@@ -2,7 +2,6 @@ package com.nemo.admin.management.controller;
 
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,20 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nemo.admin.management.service.DeleteAdminService;
-import com.nemo.admin.management.service.idCheckAdminService;
+import com.nemo.admin.management.service.IdCheckService;
 import com.nemo.admin.management.service.InsertAdminService;
 import com.nemo.admin.management.service.LoginAdminService;
 import com.nemo.admin.management.service.SelectAdminListService;
-import com.nemo.admin.management.service.UpdateAdminService;
 import com.nemo.admin.management.vo.ManagementVO;
 
 
@@ -55,8 +51,7 @@ public class ManagementController {
 	@Autowired private LoginAdminService loginAdminService;
 	@Autowired private SelectAdminListService selectAdminListService;
 	@Autowired private DeleteAdminService deleteAdminService;
-	@Autowired private idCheckAdminService idcheckAdminService;
-	
+	@Autowired private IdCheckService idCheckService;
 
 	
 	
@@ -91,9 +86,9 @@ public class ManagementController {
 	}
 	
 	/* 어드민 프로필 페이지 띄우기 */
-	@RequestMapping(value ="/profilelist", method = {RequestMethod.GET})
+	@RequestMapping(value ="/profile", method = {RequestMethod.GET})
 	public ModelAndView profilePage(ManagementVO vo) {
-		ModelAndView mav = new ModelAndView("management/ad_profilelist");
+		ModelAndView mav = new ModelAndView("management/ad_profile");
 		List<ManagementVO> data = selectAdminListService.getAdminList(vo);
 		mav.addObject("adminList", data);
 		return mav;
@@ -111,13 +106,15 @@ public class ManagementController {
 		return mav;
 	}
 	
-	@RequestMapping(value ="/delete", method= {RequestMethod.POST})
-	public ModelAndView adminDeleteAction(@RequestParam int adminNo) {
-		deleteAdminService.deleteAdmin(adminNo);
-		
-		ModelAndView mav = new ModelAndView("redirect:/management/profilelist.mdo");
+
+	@RequestMapping(value ="/profile/delete", method= {RequestMethod.POST})
+	public ModelAndView adminDeleteAction(ManagementVO vo) {
+		deleteAdminService.deleteAdmin(vo);
+		System.out.println("활동중지 : " + vo);
+		ModelAndView mav = new ModelAndView("redirect:/management/profile.mdo");
 		return mav;
 	}
+	
 
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -147,30 +144,31 @@ public class ManagementController {
 		}
 	}
 	
-	// 회원 확인
+
+	/* 로그인 중복검사 테스트 - 예린 */
+	//AJAX를 사용하면 jsp 파일이 필요없기 때문에 메서드 앞에 어노테이션 @ResponseBody 추가
 	@ResponseBody
-	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
-	public int idCheck(HttpServletRequest req) throws Exception {
+	// 아이디 중복확인은 다른 페이지로 이동하지 않고, 가입페이지에서만 작동
+	@RequestMapping(value ="/signup/idcheck", method ={RequestMethod.POST}) 
+	public int adminIdCheck(HttpServletRequest req) {
+		System.out.println("아이디 체크");
+		
+		String adminId = req.getParameter("adminId");
+		int idChecked = idCheckService.idCheck(adminId);
+		System.out.println("Controller : " + idChecked);
+		
+		int result = 0;
+		// 결과가 있다면 입력한 내용과 테이블에 있는 아이디가 일치하는 것이니까 중복 되는 것! 결과가 없다면  중복되지 않는 아이디.
+		if(idChecked != 0) {
+			result = 1;
+		}
+		return result; // 이 컨트롤러의 return을 ajax data로..!!
+		
+		
+	}
 	
-	 
-	 String adminId = req.getParameter("adminId");
-	 ManagementVO idCheck =  idcheckAdminService.idCheck(adminId);
-	 System.out.println(adminId);
-	 System.out.println(idCheck);
-	 int result = 0;
-	 if(idCheck != null) {
-	  result = 1;
-	 } 
-	 return result;
-	}
 
-	// 유저 삭제
-	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	public String delete(ManagementVO vo) throws Exception {
-
-		deleteAdminService.deleteAdmin(vo.getAdminNo());
-		System.out.println(vo);
-		return "redirect:/management/profilelist.mdo";
-	}
 
 }
+
+

@@ -1,5 +1,7 @@
 package com.nemo.admin.management.service;
 
+import com.nemo.admin.management.vo.ManagementVO;
+
 /**
  * @제목 : 약관 삭제 서비스 인터페이스
  * @패키지이름 : com.nemo.admin.management.service
@@ -15,6 +17,7 @@ package com.nemo.admin.management.service;
  */
 
 public interface DeleteAdminService {
-	public void deleteAdmin(int adminNo);
+
+	public int deleteAdmin(ManagementVO vo);
 
 }

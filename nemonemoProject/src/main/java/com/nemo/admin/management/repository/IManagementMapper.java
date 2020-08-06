@@ -12,9 +12,12 @@ public interface IManagementMapper {
 	
 	public int insertAdmin(ManagementVO vo);
 	public ManagementVO loginAdmin(ManagementVO vo);
-	public void deleteAdmin(int adminNo);
+
+	public int deleteAdmin(ManagementVO vo);
 //	public int updateAdmin(ManagementVO vo);
 //	public ManagementVO getAdmin(String adminId);
+
 	public List<ManagementVO> getAdminList(ManagementVO vo);
+	public int idCheck(String adminId);
 
 }
