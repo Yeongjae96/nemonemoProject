@@ -1,5 +1,6 @@
 //로그인 폼 검사
 $(function () {
+	console.log($('#ad_sign_up'));
 	$('#ad_sign_up').validate({
 		rules: {
 			'adminPwConfirm': {
@@ -37,7 +38,7 @@ $(function(){
 			success : function(data){ // data -> ajax의 결과값이 저장되는 변수
 				if(data > 0){
 					alert("아이디가 중복되어 사용할 수 없습니다.");
-					document.getElementById("adminId").focus();
+					document.getElementById('adminId').focus();
 					
 				}else{
 					alert("회원가입을 축하합니다.");

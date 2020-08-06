@@ -9,15 +9,14 @@ import com.nemo.admin.management.service.IdCheckService;
 @Service
 public class IdCheckServiceImpl implements IdCheckService{
 
-   @Autowired
-   private ManagementMapper managementDAO;
+	@Autowired
+	private ManagementMapper managementDAO;
+
+	@Override
+	public int idCheck(String adminId) {
+		return managementDAO.idCheck(adminId);
+	}
 
 
-   @Override
-   public int idCheck(String adminId) {
-      return managementDAO.idCheck(adminId);
-   }
-
-   
 
 }

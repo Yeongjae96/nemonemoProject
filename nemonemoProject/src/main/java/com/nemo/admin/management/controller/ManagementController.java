@@ -24,7 +24,6 @@ import com.nemo.admin.management.vo.ManagementVO;
 
 /**
  * 
- * 
  * @제목 : 관리자 계정 컨트롤러
  * @패키지이름 : com.nemo.admin.management.controller
  * @파일이름 : ManagementController.java
@@ -37,7 +36,7 @@ import com.nemo.admin.management.vo.ManagementVO;
  * -------			--------		-------------	
  * 20. 07.30 		    손예린			초기설정
  * 20. 08.02		    손예린			비밀번호 찾기 modelAndView 추가 및 로그인 암호화
- * 					    손예린			profile READ, UPDATE, DELETE
+ * 					    손예린			profile READ, UPDATE
  * 
  */
 
@@ -123,14 +122,11 @@ public class ManagementController {
 		//사용가능여부 체크
 		String check = "Y";
 		//세션
-		HttpSession session = req.getSession();
-		
+		HttpSession session = req.getSession();		
 		//로그인
-		ManagementVO login = loginAdminService.loginAdmin(vo);
-		
+		ManagementVO login = loginAdminService.loginAdmin(vo);		
 		//암호화된 비밀번호 매칭
-		boolean pwdMatch = encoder.matches(vo.getAdminPw(),login.getAdminPw());
-		
+		boolean pwdMatch = encoder.matches(vo.getAdminPw(),login.getAdminPw());		
 		//조건문
 		//로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
 		if(login != null && pwdMatch==true && login.getAdminUse().equals(check)) {
@@ -153,7 +149,7 @@ public class ManagementController {
 	
 		System.out.println("아이디 체크 컨트롤러 시작");		
 		String id = vo.getAdminId(); 
-		System.out.println("getParam " + id);
+		System.out.println("어드민 아이디 " + id);
 		int idChecked = idCheckService.idCheck(id);
 		System.out.println("Controller : " + idChecked); 
 	

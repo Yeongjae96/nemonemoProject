@@ -97,13 +97,11 @@
 		src="<c:url value ="/resources/vendor/plugins/node-waves/waves.js"/>"></script>
 
 	<!-- Validation Plugin Js -->
-	<script
-		src="<c:url value ="/resources/vendor/plugins/jquery-validation/jquery.validate.js"/>"></script>
+	<script src="<c:url value ="/resources/vendor/plugins/jquery-validation/jquery.validate.js"/>"></script>
 
 	<!-- 개인 JS -->
 	<script> var contextPath = "${pageContext.request.contextPath}"; </script>
 	<script src="<c:url value ="/resources/js/admin/management/ad_signup.js"/>"></script>
-	<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 
 </body>
 
