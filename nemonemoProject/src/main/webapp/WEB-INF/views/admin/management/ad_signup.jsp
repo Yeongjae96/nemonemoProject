@@ -31,6 +31,7 @@
 
     </head>
 
+
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
@@ -41,12 +42,13 @@
             <div class="body">
                 <form id="ad_sign_up" method="POST" action="signup.mdo">
                     <div class="msg"><b>Sign Up</b></div>
+                    <input type="hidden" name="adminUse" value="Y">
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="adminId" placeholder="아이디를 입력하세요" required autofocus>
+                            <input type="text" class="form-control" name="adminId" id = "adminId" placeholder="아이디를 입력하세요" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -73,10 +75,9 @@
                             <input type="password" class="form-control" id="pwd2" name="adminPwConfirm" minlength="6" placeholder="비밀번호 중복확인" required>
                         </div>
                     </div>
-                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit" id="ad_signup_submit">회원가입</button>
-
+                    <button class="btn btn-block btn-lg bg-pink waves-effect ad_signup_submit">회원가입</button>
                     <div class="m-t-25 m-b--5 align-center">
-                        <a href="signin.mdo">이미 가입하셨나요??</a>
+                        <a href="login.mdo">이미 가입하셨나요??</a>
                     </div>
                 </form>
             </div>
@@ -96,12 +97,12 @@
 		src="<c:url value ="/resources/vendor/plugins/node-waves/waves.js"/>"></script>
 
 	<!-- Validation Plugin Js -->
-	<script
-		src="<c:url value ="/resources/vendor/plugins/jquery-validation/jquery.validate.js"/>"></script>
+	<script src="<c:url value ="/resources/vendor/plugins/jquery-validation/jquery.validate.js"/>"></script>
 
 	<!-- 개인 JS -->
-	<script src="<c:url value ="/resources/js/admin/management/ad_sign_up.js"/>"></script>
-	
+	<script> var contextPath = "${pageContext.request.contextPath}"; </script>
+	<script src="<c:url value ="/resources/js/admin/management/ad_signup.js"/>"></script>
+
 </body>
 
 </html>

@@ -68,7 +68,7 @@
                     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">비밀번호 찾기</button>
 
                     <div class="row m-t-20 m-b--5 align-center">
-                        <a href="sign-in.html">로그인 하기</a>
+                        <a href="login.mdo">로그인 하기</a>
                     </div>
                 </form>
             </div>
