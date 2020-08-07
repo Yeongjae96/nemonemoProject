@@ -127,6 +127,7 @@
 
 		</div>
 	</section>
+	
 	<!-------------------------------------------SECTION--------------------------------------------------->
 
 
@@ -153,14 +154,14 @@
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
 
 
-	<!-- 개인 JS -->
-	<%-- 	<script
-		src="<c:url value ="/resources/js/admin/members/member_care_reply.js"/>"></script> --%>
-
 	<!-- smartEditor -->
-	<script
-		src="<c:url value ="/resources/vendor/SmartEditor/js/HuskyEZCreator.js"/>"></script>
-	<script>
+	<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script>
+	<script> var contextPath = "${pageContext.request.contextPath}";</script>
+	<!-- 개인 JS -->
+	<script src="<c:url value ="/resources/js/admin/members/qna/member_qna_reply.js"/>"></script>
+
+	
+<script>
 		var oEditors = [];
 		   nhn.husky.EZCreator.createInIFrame({
 		      oAppRef: oEditors,
@@ -190,7 +191,7 @@
 		    	termsEditForm.submit();
 		    });
 		   
-		   /* $(function(){
+		    $(function(){
 			    $.ajax({
 			        type:"POST", 
 			        url: "./editor_template.jsp",
@@ -202,7 +203,7 @@
 			            alert("다음 에디터 로딩 에러");
 			        }
 			    }); 
-			}); */
+			});
 
 
 		</script>
