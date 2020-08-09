@@ -29,6 +29,8 @@
 <!-- services 라이브러리 불러오기 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7f60851ef3536c185d43dc653f4abb8d&libraries=services"></script>
 <!-- 해당 페이지 JS파일 -->
+
+<script> this.contextPath = "<c:url value="/"/>"</script>
 <script src="<c:url value="/resources/js/user/products/products_new.js"/>"></script>
 
 </head>
@@ -112,12 +114,12 @@
 									<div class="products-title__div">
 										<div class="products-content--div">
 											<input type="text" placeholder="상품 제목을 입력해주세요."
-												class="products-title__input" value="">
+												class="products-title__input" id="productsTitleInput">
 											<button type="button"
 												class="products-title__cancel invisible"></button>
 										</div>
 										<div class="products-title__size">
-											<span id="products-title--size">0/40</span>
+											<span id="products-title--size">0</span>/40
 										</div>
 									</div>
 								</div>
@@ -129,119 +131,21 @@
 								</div>
 								<div class="products-content--div">
 									<div class="products-category__div1">
-										<div class="products-category__div2" id="lgCategory">
-											<ul class="products-category-list">
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														패션잡화</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														여성의류</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														남성의류</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														디지털/가전</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														도서/티켓/취미/애완</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														생활/문구/가구/식품</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														유아동/출산</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														스타굿즈</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														스포츠/레저</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">뷰티/미용</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">기타</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">차량/오토바이</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">구인구직</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">재능</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">번개나눔</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">지역
-														서비스</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">원룸/함께살아요</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">커뮤니티</button>
-												</li>
+										<div class="products-category__div2">
+											<ul class="products-category-list" id="lgCategory">
+											<li class="products-category-nothing">대분류 선택</li>
 											</ul>
 										</div>
-										<div class="products-category__div2" id="mdCategory">
-											<ul class="products-category-list">
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														여성가방</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														운동화/캐주얼화</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														여셩화</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														지갑</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														시계</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														남성가방</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														벨트/장갑/스타킹/기타</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														남성화</button>
-												</li>
-												<li class="products-category-item">
-													<button type="bZutton" class="products-category-btn">
-														모자</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														안경/선글라스</button>
-												</li>
+										<div class="products-category__div2">
+											<ul class="products-category-list" id="mdCategory">
+												<li class="products-category-nothing">중분류 선택</li>
 											</ul>
 										</div>
-										<div class="products-category__div2" id="smCategory">소분류 선택</div>
+										<div class="products-category__div2">
+											<ul class="products-category-list" id="smCategory">
+												<li class="products-category-nothing">소분류 선택</li>
+											</ul>
+										</div>
 									</div>
 									<h3 class="products-category__guide" id="selectedCategory">
 										선택한 카테고리 : <b>패션잡화</b>

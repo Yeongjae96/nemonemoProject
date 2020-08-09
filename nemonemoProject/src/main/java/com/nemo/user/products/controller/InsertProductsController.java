@@ -2,8 +2,11 @@ package com.nemo.user.products.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.user.products.service.InsertProductsService;
@@ -29,13 +32,13 @@ public class InsertProductsController{
 	@Autowired
 	private InsertProductsService insertProductsService;
 	
-	@RequestMapping(value = "/new", method = {RequestMethod.GET})
+	@GetMapping("/new")
 	public ModelAndView newPage() {
 		ModelAndView mav = new ModelAndView("products/products_new");
 		return mav;
 	}
 	
-	@RequestMapping(value = "/new", method= {RequestMethod.POST})
+	@PostMapping("/new")
 	public ModelAndView newAction(UserBaseProductsVO vo) {
 		
 		insertProductsService.insertProducts(vo);
