@@ -187,3 +187,9 @@
 	width: 1024px;
 	padding-left:0px;
 }
+
+
+a.faq-menu-not-selected:hover,
+a.faq-menu-selected:hover {
+	color: #EE5058;
+}

@@ -5,7 +5,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nemo.user.products.repository.IProductsMapper;
-import com.nemo.user.products.vo.ProductsVO;
+import com.nemo.user.products.vo.UserBaseProductsVO;
 
 /**
  * @제목 : 상품 DAO 마이바티스

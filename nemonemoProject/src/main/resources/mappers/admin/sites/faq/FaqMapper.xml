@@ -19,7 +19,7 @@
 	
 	
 	
-	<insert id="insertFaq" parameterType="com.nemo.admin.sites.faq.vo.BaseFaqVO">
+	<insert id="insertFaq" parameterType="com.nemo.admin.sites.faq.vo.AdminBaseFaqVO">
 		
 		INSERT INTO faq_tb (
 			FAQ_NO,
@@ -56,7 +56,7 @@
 		WHERE faq_no = #{faqNo}
 	</select>
 	
-	<update id="updateFaq" parameterType="com.nemo.admin.sites.faq.vo.BaseFaqVO">
+	<update id="updateFaq" parameterType="com.nemo.admin.sites.faq.vo.AdminBaseFaqVO">
 		UPDATE faq_tb
 		SET 
 			faq_category_no = #{faqCategoryNo},
@@ -67,7 +67,7 @@
 			faq_no = #{faqNo}
 	</update>
 	
-	<update id="updateUseFlag" parameterType="com.nemo.admin.sites.faq.vo.BaseFaqVO">
+	<update id="updateUseFlag" parameterType="com.nemo.admin.sites.faq.vo.AdminBaseFaqVO">
 		UPDATE faq_tb
 		SET
 			faq_use_fl = #{faqUseFlag}

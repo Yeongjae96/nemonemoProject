@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.user.products.service.InsertProductsService;
-import com.nemo.user.products.vo.ProductsVO;
+import com.nemo.user.products.vo.UserBaseProductsVO;
 
 /**
  * @제목 : Products 컨트롤러
@@ -36,7 +36,7 @@ public class InsertProductsController{
 	}
 	
 	@RequestMapping(value = "/new", method= {RequestMethod.POST})
-	public ModelAndView newAction(ProductsVO vo) {
+	public ModelAndView newAction(UserBaseProductsVO vo) {
 		
 		insertProductsService.insertProducts(vo);
 		

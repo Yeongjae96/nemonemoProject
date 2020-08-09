@@ -3,7 +3,7 @@ package com.nemo.admin.sites.faq.repository;
 import java.util.List;
 
 import com.nemo.admin.sites.faq.vo.AdminFaqResponseVO;
-import com.nemo.admin.sites.faq.vo.BaseFaqVO;
+import com.nemo.admin.sites.faq.vo.AdminBaseFaqVO;
 
 /**
  * @제목 : FAQ 테이블의 기본 매퍼
@@ -15,9 +15,9 @@ import com.nemo.admin.sites.faq.vo.BaseFaqVO;
  */
 public interface IFaqMapper {
 
-	public int insertFaq(BaseFaqVO vo);
+	public int insertFaq(AdminBaseFaqVO vo);
 	public int deleteFaq(int faqNo);
-	public int updateFaq(BaseFaqVO vo);
+	public int updateFaq(AdminBaseFaqVO vo);
 	public AdminFaqResponseVO getFaq(int faqNo);
 	public List<AdminFaqResponseVO> getFaqList(String useFlagMode);
 	

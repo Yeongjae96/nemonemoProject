@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.admin.products.repository.impl.ProductsCategoryMapper">
+
+	<resultMap id="productsCateMap" type="com.nemo.admin.products.vo.AdminBaseProductsCategoryVO">
+		<id column="product_cate_no" property="productCateNo"/>
+		<result column="admin_reg_id" property="adminRegId"/>
+		<result column="admin_edit_id" property="adminEditId"/>
+		<result column="product_cate_type" property="productCateType"/>
+		<result column="product_cate_large" property="productCateLarge"/>
+		<result column="product_cate_medium" property="productCateMedium"/>
+		<result column="product_cate_small" property="productCateSmall"/>
+		<result column="product_cate_order" property="productCateOrder"/>
+		<result column="product_cate_del_fl" property="productCateDelFl"/>
+		<result column="product_cate_reg_ymd" property="productCateRegYmd"/>
+		<result column="product_cate_edit_ymd" property="productCateEditYmd"/>
+	</resultMap>
+	
+	<insert id="insertProductsCategory" parameterType="com.nemo.admin.products.vo.AdminBaseProductsCategoryVO">
+		
+		<selectKey keyProperty="productCateNo" resultType="int" order="BEFORE">
+			SELECT PRODUCT_CATE_SQ.nextval
+			FROM DUAL
+		</selectKey>
+		
+		INSERT INTO product_cate_tb (
+			product_cate_no,
+			product_cate_type,
+			admin_reg_id,
+		<choose>
+			<when test='productCateType == "L"'>
+				product_cate_large
+			</when>
+			<when test='productCateType == "M"'>
+				product_cate_large,
+				product_cate_medium
+			</when>
+			<when test='productCateType == "S"'>
+				product_cate_large,
+				product_cate_medium,
+				product_cate_small
+			</when>
+		</choose>
+		) VALUES (
+			#{productCateNo},
+			#{productCateType},
+		<if test="adminRegId != null">
+			#{adminRegId},
+		</if>
+		<if test="adminRegId == null">
+			'1',
+		</if>
+		<choose>
+			<when test='productCateType == "L"'>
+				#{productCateLarge}
+			</when>
+			<when test='productCateType == "M"'>
+				#{productCateLarge},
+				#{productCateMedium}
+			</when>
+			<when test='productCateType == "S"'>
+				#{productCateLarge},
+				#{productCateMedium},
+				#{productCateSmall}
+			</when>
+		</choose>
+		)
+	</insert>
+	
+	<select id="getCategoryList" parameterType="String" resultMap="productsCateMap">
+		SELECT * 
+		FROM product_cate_tb
+		ORDER BY 
+			product_cate_order desc,
+			product_cate_no desc
+	</select>
+	
+	<select id="getProductsCategory" parameterType="int" resultMap="productsCateMap">
+		SELECT *
+		FROM product_cate_tb
+		WHERE product_cate_no = #{productCateNo}
+	</select>
+	
+	<update id="updateProductsCategory" parameterType="com.nemo.admin.products.vo.AdminBaseProductsCategoryVO">
+		UPDATE product_cate_tb
+		<set>
+			product_cate_type = #{productCateType},
+			product_cate_large = #{productCateLarge},
+			product_cate_del_fl = #{productCateDelFl},
+			product_cate_edit_ymd = sysdate,
+			<if test='productCateType == "M"'>
+			product_cate_medium = #{productCateMedium},				
+			</if>
+			<if test='productCateType == "S"'>
+			product_cate_medium = #{productCateMedium},				
+			product_cate_small = #{productCateSmall},
+			</if>
+			<if test="productCateOrder != null">
+			product_cate_order = #{productCateOrder}
+			</if>
+			<if test="adminEditId != null">
+				admin_edit_id = #{adminEditId}
+			</if>
+		</set>
+		WHERE product_cate_no = #{productCateNo}
+	</update>
+	
+	<delete id="deleteProductsCategory" parameterType="int">
+		DELETE FROM product_cate_tb
+		WHERE product_cate_no = #{productCateNo}
+	</delete>
+	
+	<update id="changeUseFlagCategoryJson" parameterType="com.nemo.admin.products.vo.AdminBaseProductsCategoryVO">
+		UPDATE product_cate_tb
+		SET product_cate_del_fl = #{productCateDelFl}
+		WHERE product_cate_no = #{productCateNo}
+	</update>
+
+</mapper>

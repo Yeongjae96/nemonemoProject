@@ -4,7 +4,7 @@
 
 <mapper namespace="com.nemo.admin.sites.notice.repository.impl.NoticeMapper">
 
-	<resultMap id="noticeMap" type="com.nemo.admin.sites.notice.vo.NoticeVO" >
+	<resultMap id="noticeMap" type="com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO" >
 		<id column="notice_no" property="noticeNo"/>
 		<result column="notice_title" property="noticeTitle"/>
 		<result column="notice_content" property="noticeContent"/>
@@ -13,7 +13,7 @@
 	</resultMap>
 
 	<insert id="insertNotice"
-		parameterType="com.nemo.admin.sites.notice.vo.NoticeVO">
+		parameterType="com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO">
 		
 		INSERT INTO notice_tb (
 			notice_no, 
@@ -37,7 +37,7 @@
 	</delete>
 
 	<select id="getNoticeList"
-		parameterType="com.nemo.admin.sites.notice.vo.NoticeVO"
+		parameterType="com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO"
 		resultMap="noticeMap">
 		SELECT *
 		FROM notice_tb 
@@ -51,7 +51,7 @@
 		WHERE notice_no = #{noticeNo}
 	</select>
 	
-	<update id="updateNotice" parameterType="com.nemo.admin.sites.notice.vo.NoticeVO">
+	<update id="updateNotice" parameterType="com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO">
 	
 		UPDATE notice_tb 
 		SET 

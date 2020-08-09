@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.user.customer.service.CustomerFaqService;
 import com.nemo.user.customer.service.CustomerService;
-import com.nemo.user.customer.vo.UserNoticeVO;
+import com.nemo.user.customer.vo.UserBaseNoticeVO;
 
 /**
  * @제목 : 유저 Customer 컨트롤러
@@ -39,7 +39,7 @@ public class CustomerController {
 	@GetMapping("/notice")
 	public ModelAndView noticePage() {
 		
-		List<UserNoticeVO> noticeList = customerService.getNoticeList();
+		List<UserBaseNoticeVO> noticeList = customerService.getNoticeList();
 		ModelAndView mav = new ModelAndView("customer/notice");
 		mav.addObject("noticeList", noticeList);
 		return mav;

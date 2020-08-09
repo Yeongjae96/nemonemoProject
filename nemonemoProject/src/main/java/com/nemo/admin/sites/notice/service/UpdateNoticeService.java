@@ -1,7 +1,7 @@
 package com.nemo.admin.sites.notice.service;
 
-import com.nemo.admin.sites.notice.vo.NoticeVO;
+import com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO;
 
 public interface UpdateNoticeService {
-	public int updateNotice(NoticeVO vo);
+	public int updateNotice(AdminBaseNoticeVO vo);
 }

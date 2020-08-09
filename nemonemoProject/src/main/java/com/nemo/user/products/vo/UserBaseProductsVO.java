@@ -1,5 +1,7 @@
 package com.nemo.user.products.vo;
 
+import lombok.Data;
+
 /**
  * @제목 : 상품 정보 VO
  * @패키지이름 : com.nemo.user.products.vo
@@ -14,6 +16,8 @@ package com.nemo.user.products.vo;
  * 20.07.27 	  김영재				테이블 명세서에 따른 초기세팅
  */
 
-public class ProductsVO {
-	
+@Data
+public class UserBaseProductsVO {
+	private int productNo;
+	private String productImageUrl;
 }

@@ -18,7 +18,7 @@ import java.sql.Date;
  * 20.08.03	  김영재			테이블 컬럼 수정에 따른 컬럼명 변경(RegYmd, EditYmd)
  */
 
-public class NoticeVO {
+public class AdminBaseNoticeVO {
 	private int noticeNo;
 	private String noticeTitle;
 	private String noticeContent;

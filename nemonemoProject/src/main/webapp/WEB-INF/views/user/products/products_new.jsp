@@ -48,6 +48,8 @@
 		/* 각 페이지의 특성! */
 	%>
 	<section>
+		<input multiple="multiple" name="files[]" id="files" type="file" style="display:none"/>
+
 		<!-- 상품등록 메뉴바 -->
 		<div
 			class="container-fluid d-flex justify-content-center border-bottom">

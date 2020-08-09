@@ -519,8 +519,6 @@
 
       .footer_menu {
       display: flex;
-      padding-left : 250px;
-      padding-right : 250px;
       justify-content: space-evenly;
       font-size: 13px;
       color: rgb(77, 77, 77);      
@@ -551,12 +549,6 @@
         margin-bottom : 35px;
         font-size : 14px;
         font-family : 'Noto Sans KR'
-    }
-
-
-    .footer_copyright{
-        padding-left : 250px;
-        padding-right : 250px;
     }
     
 

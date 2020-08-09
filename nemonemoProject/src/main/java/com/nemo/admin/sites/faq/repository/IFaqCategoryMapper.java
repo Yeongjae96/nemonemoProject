@@ -2,7 +2,7 @@ package com.nemo.admin.sites.faq.repository;
 
 import java.util.List;
 
-import com.nemo.admin.sites.faq.vo.FaqCategoryVO;
+import com.nemo.admin.sites.faq.vo.AdminBaseFaqCategoryVO;
 
 /**
  * @제목 : FAQ 카테고리 테이블의 기본 매퍼
@@ -14,9 +14,9 @@ import com.nemo.admin.sites.faq.vo.FaqCategoryVO;
  */
 public interface IFaqCategoryMapper {
 	
-	public int insertFaqCategory(FaqCategoryVO vo);
-	public int updateFaqCategory(FaqCategoryVO vo);
+	public int insertFaqCategory(AdminBaseFaqCategoryVO vo);
+	public int updateFaqCategory(AdminBaseFaqCategoryVO vo);
 	public int deleteFaqCategory(int faqCategoryNo);
-	public FaqCategoryVO getFaqCategory(int faqCategoryNo);
-	public List<FaqCategoryVO> getFaqCategoryList(String faqCategoryUseFlMode);
+	public AdminBaseFaqCategoryVO getFaqCategory(int faqCategoryNo);
+	public List<AdminBaseFaqCategoryVO> getFaqCategoryList(String faqCategoryUseFlMode);
 }

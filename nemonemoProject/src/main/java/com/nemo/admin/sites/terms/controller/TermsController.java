@@ -16,7 +16,7 @@ import com.nemo.admin.sites.terms.service.GetTermsListService;
 import com.nemo.admin.sites.terms.service.GetTermsService;
 import com.nemo.admin.sites.terms.service.InsertTermsService;
 import com.nemo.admin.sites.terms.service.UpdateTermsService;
-import com.nemo.admin.sites.terms.vo.TermsVO;
+import com.nemo.admin.sites.terms.vo.AdminBaseTermsVO;
 
 /**
  * @제목 : 약관 컨트롤러
@@ -45,7 +45,7 @@ public class TermsController {
 	@GetMapping("/list")
 	public ModelAndView termsListPage() {
 		
-		List<TermsVO> termsList = getTermsListService.getTermsList();
+		List<AdminBaseTermsVO> termsList = getTermsListService.getTermsList();
 				
 		ModelAndView mav = new ModelAndView("sites/terms/site_terms_list");
 		mav.addObject("termsList", termsList);
@@ -56,7 +56,7 @@ public class TermsController {
 	@GetMapping("/content/{termsNo}")
 	public ModelAndView termsContentPage(@PathVariable int termsNo) {
 		
-		TermsVO termsVO = getTermsService.getTerms(termsNo);
+		AdminBaseTermsVO termsVO = getTermsService.getTerms(termsNo);
 		
 		ModelAndView mav = new ModelAndView("sites/site_terms");
 		mav.addObject("termsVO", termsVO);
@@ -73,7 +73,7 @@ public class TermsController {
 	}
 	
 	@RequestMapping(value = "/new", method= {RequestMethod.POST})
-	public ModelAndView TermsInsertAction(TermsVO vo) {
+	public ModelAndView TermsInsertAction(AdminBaseTermsVO vo) {
 		
 		int result = insertTermsService.insertTerms(vo);
 		ModelAndView mav = new ModelAndView("redirect:/sites/terms/list.mdo");
@@ -85,7 +85,7 @@ public class TermsController {
 	public ModelAndView TermsEdit(@RequestParam int TermsNo) {
 		
 		ModelAndView mav = new ModelAndView("sites/terms/site_terms_edit");
-		TermsVO TermsVO = getTermsService.getTerms(TermsNo);
+		AdminBaseTermsVO TermsVO = getTermsService.getTerms(TermsNo);
 		
 		mav.addObject("TermsVO", TermsVO);
 		
@@ -93,7 +93,7 @@ public class TermsController {
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.POST})
-	public ModelAndView TermsEditAction(TermsVO vo) {
+	public ModelAndView TermsEditAction(AdminBaseTermsVO vo) {
 		
 		//Service 
 		updateTermsService.updateTerms(vo);

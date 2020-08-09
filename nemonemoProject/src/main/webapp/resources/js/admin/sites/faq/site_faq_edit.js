@@ -132,7 +132,7 @@ function initEditor(data1, data2) {
 	      oAppRef: oEditors,
 	      elPlaceHolder: "faqContent",
 	      //SmartEditor2Skin.html 파일이 존재하는 경로
-	      sSkinURI : (contextPath.length == 0 ? '/' : contextPath) +"resources/vendor/smarteditor/SmartEditor2Skin.html", 
+	      sSkinURI : (contextPath.length == 0 ? '/' : contextPath+"/") +"resources/vendor/smarteditor/SmartEditor2Skin.html", 
 	      htParams : {
 	          // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 	          bUseToolbar : true,             

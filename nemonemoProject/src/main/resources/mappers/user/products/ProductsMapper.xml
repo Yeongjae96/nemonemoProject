@@ -4,7 +4,7 @@
 
 <mapper namespace="com.nemo.user.products.repository.impl.ProductsMapper">
 
-	<insert id="insertProducts" parameterType="com.nemo.user.products.vo.ProductsVO">
+	<insert id="insertProducts" parameterType="com.nemo.user.products.vo.UserBaseProductsVO">
 		<selectKey keyColumn="#테이블 키이름" keyProperty="#VO키 이름" order="BEFORE" resultType="int">
 			SELECT MAX(#테이블 키이름) + 1 AS "PRODUCDTS_NO" FROM #테이블명
 		</selectKey>

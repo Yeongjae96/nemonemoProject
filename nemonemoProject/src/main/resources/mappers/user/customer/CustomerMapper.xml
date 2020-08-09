@@ -4,7 +4,7 @@
 
 <mapper namespace="com.nemo.user.customer.repository.impl.CustomerMapper">
 
-	<resultMap id="noticeMap" type="com.nemo.user.customer.vo.UserNoticeVO" >
+	<resultMap id="noticeMap" type="com.nemo.user.customer.vo.UserBaseNoticeVO" >
 		<id column="notice_no" property="noticeNo"/>
 		<result column="notice_title" property="noticeTitle"/>
 		<result column="notice_content" property="noticeContent"/>

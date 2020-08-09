@@ -1,6 +1,6 @@
 package com.nemo.admin.sites.terms.service;
 
-import com.nemo.admin.sites.terms.vo.TermsVO;
+import com.nemo.admin.sites.terms.vo.AdminBaseTermsVO;
 
 /**
  * @제목 : 약관 추가 인터페이스
@@ -16,5 +16,5 @@ import com.nemo.admin.sites.terms.vo.TermsVO;
  * 	20.07.30 	김영재				terms 초기설정
  */
 public interface InsertTermsService {
-	public int insertTerms(TermsVO vo);
+	public int insertTerms(AdminBaseTermsVO vo);
 }

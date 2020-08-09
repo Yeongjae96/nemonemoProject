@@ -1,5 +1,4 @@
-let index = 0;
-let countIndex = 0;
+
 $(function() {
 	$('#fileName').on('change', function() {
 		readURL(this);
@@ -12,29 +11,6 @@ $(function() {
 	$('#recentModalClose').click(function() {closeModal($('.products-modal__recent'))});
 	$('#myRecentBtn').click(function() {openModal($('.products-modal__recent'))});
 });
-
-
-
-const data = {
-		categories : [
-			{
-				id: '400',
-				title: '패션잡화',
-				url: 'aa',
-				categories : [{
-					id: '400010',
-					title: '여성가방',
-					categories: [{
-						id: '400010100',
-						title: '숄더백'
-					}, {
-						id: '400010200',
-						title: '가방'
-					}]
-				}]
-			}
-		],
-}
 
 
 /* 모달창 켜기 */
@@ -61,7 +37,7 @@ function categoryInit(categories) {
 // });
 }
 
-/* */
+/* 태그생성 */
 function hashTagEvent(event) {
 	if(event.keyCode != 13) return false;
 	
@@ -76,18 +52,17 @@ function hashTagEvent(event) {
 		$ul = $('.products-tag-hash--ul');
 	}
 	
-	
 	const $li = $('<li></li>').addClass('products-tag-hash--li');
-	const $btn = $('<button></button>').addClass('products-tag-hash--btn-text').text(`#${$(this).val()}`);
-	const $closeBtn = $('<button></button>').addClass('products-tag-hash--btn-close');
+	const $btn = $('<button></button>').addClass('products-tag-hash--btn-text').text(`#${$(this).val()}`).click(editTag);
+	const $closeBtn = $('<button></button>').addClass('products-tag-hash--btn-close').click(deleteTag);
 	const $fas = $('<i></i>').addClass('fas fa-times');
 	
-	
+	const $frag = $(document.createDocumentFragment());
+	$frag.append($li);
 	$closeBtn.append($fas);
 	$li.append($btn, $closeBtn);
 	
-	
-	$ul.append($li);
+	$ul.append($frag);
 	$(this).val('');
 }
 
@@ -119,51 +94,48 @@ function priceValidationKeyUpCheck(event) {
 	}
 }
 
+var imgarr = [];
 
+/* 태그 삭제 */
+function deleteTag(e) {
+	e.preventDefault();
+}
+
+
+/* 태그 수정 */
+function editTag(e) {
+	e.preventDefault();
+}
+
+var fileBuffer = [];
 /* 사진 미리 보기 함수 */
 function readURL(input) {
 	if(input.files && input.files[0]) {
 		var reader = new FileReader();
 		reader.onload = function(e) {
-			
 			if($('.image-registry--user').length >= 8) {
 				alert('사진은 최대 8장 까지 올릴 수 있습니다.');
 				return;
 			}
-			
-			const $li = $('<li></li>');
-			$li.attr({
-				draggable: 'false',
-			});
-			$li.addClass('image-registry--user');
-			
-			const $image = $('<img/>');
-			$image.attr({
-				'src': e.target.result,
-				alt: '상품이미지'
-			});
+	        Array.prototype.push.apply(fileBuffer, input.files);
 			const $div = $('<div></div>');
+			
 			if($('.image-registry--user').length == 0){
+				index=0;
 				$div.addClass('text-registry--representive').text('대표이미지');		
 			}
-// const $input = $('<input type="hidden" name="fileN"'+`
-// id="input_file_${index++}" `+'/>');
-// $li.append($input);
+			const $li = $('<li></li>').attr({draggable: 'false'}).addClass('image-registry--user');
+			const $image = $('<img/>').attr({'src': e.target.result, alt: '상품이미지'});
 			const $closeBtn = $('<button></button>');
 			
-			$closeBtn.attr('type', 'button');
-			$closeBtn.addClass('btn-image--cancle');
-			$closeBtn.click(deleteImage);
-			
-			
-			$li.append($div);
-			$li.append($image);
-			$li.append($closeBtn);
+			$closeBtn.attr('type', 'button').addClass('btn-image--cancle').click(deleteImage);
+			$li.append($div, $image, $closeBtn);
 			
 			$('#imageList').append($li);
-			console.log(input.files[0]);
 			
+			//전역변수 배열 데이터 추가
 			$('.products-title--div small').text(`(${$('.image-registry--user').length}/8)`);
+			console.log("fileBuffer : ", fileBuffer);
 		}
 		reader.readAsDataURL(input.files[0]);
 	}
@@ -171,15 +143,12 @@ function readURL(input) {
 
 /* 사진 삭제 함수 */
 function deleteImage() {
-// console.log('index : ' + index);
-	console.log($(this).closest('li').data('index') + "aaaa");
-	
+	/* 배열 내의 파일 제거 */
+	 const fileIndex = $(this).closest('li').index();
+     fileBuffer.splice(fileIndex-1,1);
+     
 	if($(this).closest('li').children('div').hasClass('text-registry--representive')) {
-		const $pre = $(this).closest('li').next().find('div');
-		console.log($(this).closest('li'));
-		console.log($(this).closest('li').next());
-		console.log($pre);
-		$($pre).addClass('text-registry--representive').text('대표이미지');
+		const $pre = $(this).closest('li').next().find('div').addClass('text-registry--representive').text('대표이미지');
 	}
 	$(this).closest('li').remove();
 	$('.products-title--div small').text(`(${$('.image-registry--user').length}/8)`);

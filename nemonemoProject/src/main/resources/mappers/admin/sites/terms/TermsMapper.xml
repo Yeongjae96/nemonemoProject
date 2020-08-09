@@ -4,7 +4,7 @@
 
 <mapper namespace="com.nemo.admin.sites.terms.repository.impl.TermsMapper">
 	
-	<resultMap id="termsMap" type="com.nemo.admin.sites.terms.vo.TermsVO" >
+	<resultMap id="termsMap" type="com.nemo.admin.sites.terms.vo.AdminBaseTermsVO" >
 		<id column="terms_no" property="termsNo"/>
 		<result column="admin_registry_id" property="adminRegistryId"/>
 		<result column="admin_modify_id" property="adminModifyId"/>
@@ -16,7 +16,7 @@
 		<result column="terms_modify_ymd" property="termsModifyYmd"/>
 	</resultMap>
 	
-	<select id="getTermsList" parameterType="com.nemo.admin.sites.terms.vo.TermsVO"
+	<select id="getTermsList" parameterType="com.nemo.admin.sites.terms.vo.AdminBaseTermsVO"
 	resultMap="termsMap">
 		SELECT *
 		FROM terms_tb
@@ -30,7 +30,7 @@
 		WHERE terms_no = #{termsNo}
 	</select>
 	
-	<insert id="insertTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
+	<insert id="insertTerms" parameterType="com.nemo.admin.sites.terms.vo.AdminBaseTermsVO">
 		INSERT INTO terms_tb(terms_no, terms_title, admin_registry_id, terms_required_fl, terms_content, terms_registry_ymd)
 		VALUES
 		(
@@ -55,7 +55,7 @@
 			terms_no = #{termsNo}
 	</delete>
 	
-	<update id="updateTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
+	<update id="updateTerms" parameterType="com.nemo.admin.sites.terms.vo.AdminBaseTermsVO">
 		UPDATE terms_tb
 		SET 
 			admin_modify_id = #{adminModifyId},

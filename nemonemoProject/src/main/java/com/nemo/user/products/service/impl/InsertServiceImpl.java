@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.nemo.user.products.repository.impl.ProductsMapper;
 import com.nemo.user.products.service.InsertProductsService;
-import com.nemo.user.products.vo.ProductsVO;
+import com.nemo.user.products.vo.UserBaseProductsVO;
 
 /**
  * @제목 : 제품 등록 서비스 구현
@@ -26,7 +26,7 @@ public class InsertServiceImpl implements InsertProductsService{
 	private ProductsMapper productsDAO;
 	
 	@Override
-	public int insertProducts(ProductsVO vo) {
+	public int insertProducts(UserBaseProductsVO vo) {
 		return productsDAO.insertProducts(vo);
 	}
 }

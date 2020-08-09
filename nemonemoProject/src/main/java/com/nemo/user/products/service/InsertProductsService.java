@@ -1,6 +1,6 @@
 package com.nemo.user.products.service;
 
-import com.nemo.user.products.vo.ProductsVO;
+import com.nemo.user.products.vo.UserBaseProductsVO;
 
 
 /**
@@ -16,5 +16,5 @@ import com.nemo.user.products.vo.ProductsVO;
  * -------	--------	-------------	
  */
 public interface InsertProductsService {
-	public int insertProducts(ProductsVO vo);
+	public int insertProducts(UserBaseProductsVO vo);
 }

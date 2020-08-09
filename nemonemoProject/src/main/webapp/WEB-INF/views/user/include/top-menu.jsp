@@ -8,5 +8,3 @@
 <c:if test="${not empty sessionScope[userPhone]}">
 	<jsp:include page="/WEB-INF/views/user/include/top-menu--logout.jsp"/>
 </c:if>
-
-<script> console.log('${sessionScope[userPhone]}');</script>

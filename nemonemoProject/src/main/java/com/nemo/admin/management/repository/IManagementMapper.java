@@ -7,6 +7,6 @@ public interface IManagementMapper {
 	// 회원 가입
 	public int insertAdmin(ManagementVO vo);
 	// 로그인
-	public ManagementVO loginAdmin(int adminNo);
+//	public ManagementVO loginAdmin(int adminNo);
 
 }

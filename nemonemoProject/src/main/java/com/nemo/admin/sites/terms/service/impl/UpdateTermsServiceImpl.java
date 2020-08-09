@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.nemo.admin.sites.terms.repository.ITermsMapper;
 import com.nemo.admin.sites.terms.repository.impl.TermsMapper;
 import com.nemo.admin.sites.terms.service.UpdateTermsService;
-import com.nemo.admin.sites.terms.vo.TermsVO;
+import com.nemo.admin.sites.terms.vo.AdminBaseTermsVO;
 
 @Service
 public class UpdateTermsServiceImpl implements UpdateTermsService {
@@ -15,8 +15,8 @@ public class UpdateTermsServiceImpl implements UpdateTermsService {
 	private TermsMapper termsDAO;
 	
 	@Override
-	public int updateTerms(TermsVO vo) {
-		return termsDAO.updateTemrs(vo);
+	public int updateTerms(AdminBaseTermsVO vo) {
+		return termsDAO.updateTerms(vo);
 	}
 
 }

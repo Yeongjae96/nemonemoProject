@@ -2,9 +2,9 @@ package com.nemo.user.customer.repository;
 
 import java.util.List;
 
-import com.nemo.user.customer.faq.vo.BaseUserFaqCategoryVO;
-import com.nemo.user.customer.faq.vo.BaseUserFaqVO;
-import com.nemo.user.customer.vo.UserNoticeVO;
+import com.nemo.user.customer.faq.vo.UserBaseFaqCategoryVO;
+import com.nemo.user.customer.faq.vo.UserBaseFaqVO;
+import com.nemo.user.customer.vo.UserBaseNoticeVO;
 
 /**
  * @제목 : Customer DAO Interface

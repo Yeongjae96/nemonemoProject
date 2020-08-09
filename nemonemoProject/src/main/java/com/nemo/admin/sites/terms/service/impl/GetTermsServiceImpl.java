@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.nemo.admin.sites.terms.repository.ITermsMapper;
 import com.nemo.admin.sites.terms.repository.impl.TermsMapper;
 import com.nemo.admin.sites.terms.service.GetTermsService;
-import com.nemo.admin.sites.terms.vo.TermsVO;
+import com.nemo.admin.sites.terms.vo.AdminBaseTermsVO;
 
 @Service
 public class GetTermsServiceImpl implements GetTermsService {
@@ -15,7 +15,7 @@ public class GetTermsServiceImpl implements GetTermsService {
 	private TermsMapper termsDAO;
 	
 	@Override
-	public TermsVO getTerms(int termsNo) {
+	public AdminBaseTermsVO getTerms(int termsNo) {
 		// TODO Auto-generated method stub
 		return termsDAO.getTerms(termsNo);
 	}

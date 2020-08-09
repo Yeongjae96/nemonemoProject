@@ -14,7 +14,7 @@ import com.nemo.admin.sites.notice.service.InsertNoticeService;
 import com.nemo.admin.sites.notice.service.SelectNoticeListService;
 import com.nemo.admin.sites.notice.service.SelectNoticeService;
 import com.nemo.admin.sites.notice.service.UpdateNoticeService;
-import com.nemo.admin.sites.notice.vo.NoticeVO;
+import com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO;
 
 /**
  * @제목 : 공지사항 컨트롤러
@@ -40,10 +40,10 @@ public class NoticeController {
 	@Autowired private UpdateNoticeService updateNoticeService;
 	
 	@RequestMapping(value = "/list", method= {RequestMethod.GET})
-	public ModelAndView noticePage(NoticeVO vo) {
+	public ModelAndView noticePage(AdminBaseNoticeVO vo) {
 	
 		ModelAndView mav = new ModelAndView("sites/notice/site_notice_list");
-		List<NoticeVO> data = selectNoticeListService.getNoticeList(vo);
+		List<AdminBaseNoticeVO> data = selectNoticeListService.getNoticeList(vo);
 		mav.addObject("noticeList", data);
 		return mav;
 	}
@@ -52,7 +52,7 @@ public class NoticeController {
 	public ModelAndView noticeEdit(@RequestParam int noticeNo) {
 		
 		ModelAndView mav = new ModelAndView("sites/notice/site_notice_edit");
-		NoticeVO noticeVO = selectNoticeService.getNotice(noticeNo);
+		AdminBaseNoticeVO noticeVO = selectNoticeService.getNotice(noticeNo);
 		
 		mav.addObject("noticeVO", noticeVO);
 		
@@ -60,7 +60,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.POST})
-	public ModelAndView noticeEditAction(NoticeVO vo) {
+	public ModelAndView noticeEditAction(AdminBaseNoticeVO vo) {
 		
 		//Service 
 		updateNoticeService.updateNotice(vo);
@@ -69,7 +69,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/new", method= {RequestMethod.POST})
-	public ModelAndView noticeInsertAction(NoticeVO vo) {
+	public ModelAndView noticeInsertAction(AdminBaseNoticeVO vo) {
 		
 		int result = insertNoticeService.insertNotice(vo);
 		ModelAndView mav = new ModelAndView("redirect:/sites/notice/list.mdo");

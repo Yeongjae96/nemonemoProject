@@ -3,7 +3,7 @@ package com.nemo.admin.sites.coupon.repository;
 import java.util.List;
 
 import com.nemo.admin.sites.coupon.vo.CouponVO;
-import com.nemo.admin.sites.notice.vo.NoticeVO;
+import com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO;
 
 public interface ICouponMapper {
 	public int insertCoupon(CouponVO vo);

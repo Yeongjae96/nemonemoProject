@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.nemo.admin.sites.faq.repository.impl.FaqMapper;
 import com.nemo.admin.sites.faq.service.FaqService;
 import com.nemo.admin.sites.faq.vo.AdminFaqResponseVO;
-import com.nemo.admin.sites.faq.vo.BaseFaqVO;
+import com.nemo.admin.sites.faq.vo.AdminBaseFaqVO;
 
 /**
  * @제목 : Faq 서비스 구현체
@@ -25,7 +25,7 @@ public class FaqServiceImpl implements FaqService {
 	private FaqMapper faqMapper;
 	
 	@Override
-	public int insertFaq(BaseFaqVO vo) {
+	public int insertFaq(AdminBaseFaqVO vo) {
 		return faqMapper.insertFaq(vo);
 	}
 
@@ -40,7 +40,7 @@ public class FaqServiceImpl implements FaqService {
 	}
 	
 	@Override
-	public int updateFaq(BaseFaqVO vo) {
+	public int updateFaq(AdminBaseFaqVO vo) {
 		return faqMapper.updateFaq(vo);
 	}
 	
