@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.admin.members.qna.repository.impl.QnaCategoryMapper">
+	
+	<resultMap type="com.nemo.admin.members.qna.vo.QnaCategoryVO" id="qnaCategoryMap">
+		<id column="QNA_CATE_SQ" property="qnaCategorySq"/>
+		<result column="QNA_CATE_PARENT_NAME" property="qnaCategoryParent"/>
+		<result column="QNA_CATE_NAME" property="qnaCategoryName"/>
+		<result column="QNA_CATE_USE_FL" property="qnaCategoryUseFl"/>
+	</resultMap>
+	
+	<!-- 카테고리 리스트 조회 -->
+	<select id="getQnaCategoryList" parameterType="String" resultMap="qnaCategoryMap">
+		SELECT
+			QNA_CATE_SQ,
+			QNA_CATE_PARENT_NAME,
+			QNA_CATE_NAME,
+			QNA_CATE_USE_FL
+		FROM 
+			QNA_CATE_TB
+ 		<if test='qnaCategoryUseFlMode == "Y"'>
+		WHERE 
+			QNA_CATE_USE_FL = 'Y'
+		</if>
+	</select>
+	
+	<!-- 카테고리 ROW 셀렉트 -->
+	<select id="getQnaCategory" resultMap="qnaCategoryMap">
+		SELECT
+			*
+		FROM
+			qna_cate_tb
+		WHERE
+			qna_cate_sq = #{qnaCategorySq}
+	</select>
+
+
+	<!-- 카테고리 추가 -->
+	<insert id="insertQnaCategory" parameterType="com.nemo.admin.members.qna.vo.QnaCategoryVO">
+		INSERT INTO QNA_CATE_TB
+		VALUES (QNA_CATE_SQ.nextval, #{qnaCategoryParent}, #{qnaCategoryName}, #{qnaCategoryUseFl})
+	</insert>
+	
+	<!-- 카테고리 이름 수정 -->
+	<update id="updateQnaCategory" parameterType="com.nemo.admin.members.qna.vo.QnaCategoryVO">
+		UPDATE 
+			QNA_CATE_TB
+		SET 
+			QNA_CATE_PARENT_NAME = #{qnaCategoryParent},
+			QNA_CATE_NAME = #{qnaCategoryName}, 
+			QNA_CATE_USE_FL = #{qnaCategoryUseFl}
+			
+		WHERE 
+			QNA_CATE_SQ = #{qnaCategorySq}
+	</update>
+	
+	<!-- 카테고리 삭제 -->
+	<delete id="deleteQnaCategory" parameterType="int">
+		DELETE FROM 
+			qna_cate_tb
+		WHERE 
+			qna_cate_sq = #{qnaCategorySq}
+	</delete>
+	
+	
+</mapper>

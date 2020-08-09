@@ -84,9 +84,9 @@ public class ManagementController {
 		List<ManagementVO> data = selectAdminListService.getAdminList(vo);
 		mav.addObject("adminList", data);
 		return mav;
-		
 	}	
-	//	// 회원가입 post
+	
+	/* 회원가입 post */
 	@RequestMapping(value = "/signup", method = { RequestMethod.POST })
 	public ModelAndView signupAction(ManagementVO vo) {
 		// 비밀번호 암호화

@@ -1,3 +1,4 @@
+
 package com.nemo.user.customer.controller;
 
 import java.util.List;
@@ -7,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nemo.user.customer.qna.service.CustomerQnaService;
+import com.nemo.user.customer.qna.vo.UserBaseQnaCategoryVO;
 import com.nemo.user.customer.service.CustomerFaqService;
 import com.nemo.user.customer.service.CustomerService;
 import com.nemo.user.customer.vo.UserNoticeVO;
@@ -35,6 +39,7 @@ public class CustomerController {
 	private CustomerService customerService;
 	@Autowired
 	private CustomerFaqService customerFaqService;
+
 	
 	@GetMapping("/notice")
 	public ModelAndView noticePage() {

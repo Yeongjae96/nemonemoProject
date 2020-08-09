@@ -9,6 +9,7 @@ public class BaseFaqVO {
 	private String faqContent;
 	private String faqUseFlag;
 	private Date faqRegYmd;
+	
 	public int getFaqNo() {
 		return faqNo;
 	}
@@ -45,6 +46,7 @@ public class BaseFaqVO {
 	public void setFaqRegYmd(Date faqRegYmd) {
 		this.faqRegYmd = faqRegYmd;
 	}
+	
 	@Override
 	public String toString() {
 		return "BaseFaqVO [faqNo=" + faqNo + ", faqCategoryNo=" + faqCategoryNo + ", faqTitle=" + faqTitle

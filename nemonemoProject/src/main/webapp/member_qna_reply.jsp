@@ -76,7 +76,7 @@
 											<tr>
 												<th>상점명 <i class="material-icons">check</i></th>
 												<td>공룡이네</td>
-												
+								
 											</tr>
 											<tr>
 												<th>카테고리 <i class="material-icons">check</i></th>
@@ -95,8 +95,7 @@
 												<td><a class="btn" href="상대경로" download="">download</a></td>
 											</tr>
 											<tr>
-												<th>답변상태</th>
-												
+												<th>답변상태</th>		
 												<td><input type="radio" name="jb-radio"
 													id="delay_reply" class="custom-control-input"> <label
 													class="custom-control-label" for="delay_reply">답변대기</label>
@@ -113,7 +112,6 @@
 										</thead>
 									</table>
 								</div>
-							
 								<div class="btn-layout">
 									<button class="btn bg-success waves-effect m-r-20" type="submit">저장하기</button>
 									<button class="btn btn-danger waves-effect m-r-20">취소</button>
@@ -153,60 +151,13 @@
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
 
-
 	<!-- smartEditor -->
 	<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script>
 	<script> var contextPath = "${pageContext.request.contextPath}";</script>
 	<!-- 개인 JS -->
 	<script src="<c:url value ="/resources/js/admin/members/qna/member_qna_reply.js"/>"></script>
 
-	
-<script>
-		var oEditors = [];
-		   nhn.husky.EZCreator.createInIFrame({
-		      oAppRef: oEditors,
-		      elPlaceHolder: "qnaReplyContent",
-		      //SmartEditor2Skin.html 파일이 존재하는 경로
-		      sSkinURI : "resources/vendor/SmartEditor/SmartEditor2Skin.html", 
-		      htParams : {
-		          // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-		          bUseToolbar : true,             
-		          // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-		          bUseVerticalResizer : true,     
-		          // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-		          bUseModeChanger : true,         
-		          fOnBeforeUnload : function(){
-		               
-		          }
-		      }, 
-		       fOnAppLoad : function(){
-		          //textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
-		          //oEditors.getById["termsContent"].exec("PASTE_HTML", ["약관을 입력해주세요."]);
-		      }, 
-		      fCreator: "createSEditor2"  
-			});
-		   
-		   $('#termsInsert').click(function() {
-				oEditors.getById["qnaReplyContent"].exec("UPDATE_CONTENTS_FIELD", []);	 	
-		    	termsEditForm.submit();
-		    });
-		   
-		    $(function(){
-			    $.ajax({
-			        type:"POST", 
-			        url: "./editor_template.jsp",
-			        success: function(data){
-			            $(".termsContent").html(data);
-			            setConfig(content); // 에디터 초기화시 글이 수정모드일 경우 본문영역의 내용을 파라미터로 가져간다.
-			        }, 
-			        error : function(request, status, error) {
-			            alert("다음 에디터 로딩 에러");
-			        }
-			    }); 
-			});
 
-
-		</script>
 
 
 </body>

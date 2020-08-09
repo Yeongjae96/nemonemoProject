@@ -4,11 +4,6 @@
 $(function () {
     const table = $('#qna-table').DataTable({
         responsive: true,
-        // ajax: "category_example.json",
-        //   buttons: {              
-        //     name: 'primary',
-        //     buttons: [ 'copy', 'csv', 'excel', 'pdf'],
-        // },
         "language": {
             "decimal":        "",
             "emptyTable":     "표에서 사용할 수있는 데이터가 없습니다.",
@@ -35,6 +30,48 @@ $(function () {
 
 });
 
+/* 카테고리 추가 시 체크하는 기능 */
+$('#qnaCategoryContent').keyup(function() {
+	$(this).prop('autocomplete', false);
+	if($.trim($(this).val()).length == 0) {
+		$checkInput.prop('disabled', true); 
+		$('#checkInput').text('값을 입력해주십시오');
+		$('#checkInput').show();
+		return;
+	}
+	if(delayTimer) window.clearTimeout(delayTimer);
+	delayTimer = window.setTimeout(getCheckResult, 200);
+});
+	
+/* 추가 기능 */
+$('#faqCategoryInsert').click(function() {
+	document.faqCategoryForm.submit();
+});
+
+/* 뒤로돌아가기 버튼 */
+$('#faqBtn').click(function() {
+	window.location.href="../list.mdo";
+});
+
+/* 사용 미사용 누르면 바뀌는 클릭 이벤트*/
+$('#result > tr > td > span').click(function() {
+	$.ajax({
+		url: 'flag.mdo',
+		method:'post',
+		data: {
+			faqCategoryNo: $(this).data('faqno'),
+			faqCategoryUseFl: $(this).text() == "사용" ? "N" : "Y"
+		}
+	}).done(function(data) {
+		alert('사용여부를 변경합니다.');
+		window.location.reload(true);
+	}).fail(function(error) {
+		alert('사용 여부 설정에 실패하였습니다.')
+	});
+});
+
+
+
 $(function () {
     $('#mem-care-list tbody').on('click', '.to_reply', function(){
 
@@ -44,14 +81,3 @@ $(function () {
 
 
 
-// $.ajax({
-
-//     url: "member_care_tdetail.html", // 클라이언트가 요청을 보낼 서버의 URL 주소
-
-//     data: { name: "홍길동" },                // HTTP 요청과 함께 서버로 보낼 데이터
-
-//     type: "GET",                             // HTTP 요청 방식(GET, POST)
-
-//     dataType: "json"                         // 서버에서 보내줄 데이터의 타입
-
-// })

@@ -2,3 +2,9 @@ td{
     display:table-cell; 
     vertical-align:middle;
 }
+
+.qna_btn_flex {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}

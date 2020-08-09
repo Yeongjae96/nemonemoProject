@@ -50,7 +50,7 @@
 </head>
 <body class="theme-red">
 
-	<% 
+	<%
 		/* 공통 Header and Nav */
 	%>
 	<header>
@@ -59,24 +59,26 @@
 	</header>
 
 
-	<% 
+	<%
 		/* 각 페이지의 SECTION */
 	%>
 
 	<!-------------------------------------------SECTION--------------------------------------------------->
 	<section class="content">
 		<div class="container-fluid">
-			<!-- mem-list -->
+			<!-- member-qna-list -->
 			<div class="row clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
 						<div class="header">
 							<h1>고객문의함</h1>
 						</div>
-
+						<div class="qna_btn_flex">
+							<button type="button" id="qna-cate-btn" class="btn bg-blue waves-effect m-r-20"> 카테고리 관리 </button>
+						</div>
 						<div class="body">
 							<div class="table-responsive">
-								<table id="mem-care-list"
+								<table id="qna-table"
 									class="table table-bordered table-striped table-hover dataTable display text-center">
 									<h4>1:1 고객센터</h4>
 									<thead>
@@ -90,58 +92,28 @@
 											<th>처리</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td class="col-md-1">1</td>
-											<td class="col-md-2">상점1102호</td>
-											<td>거래신고</td>
-											<td>사기당했어요 <span class="label label-warning">New</span>
+									<tbody id ="result">
+										<c:forEach var="qna" items="${qnaList}">
+										<tr data-qnano="${qna.qnano}">
+											<td class="col-md-1">${qna.qnaNo}</td>
+											<td class="col-md-2">${qna.qnaStore}</td>
+											<td>${qna.qnaCateName}</td>
+											<td>${qna.qnaTitle} 
 											</td>
-											<td>2019/05/07</td>
-											<td class="col-md-1"><span class="label label-default">미완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">답변하기</button></td>
+											<td>${qna.regDate}
+											<span class="label label-warning">New</span>
+											</td>
+											<td class="col-md-1">
+											<c:if test="${qna.qnaReplyFlag eq 'Y'}">
+												<span class="label label-primary">답변완료</span>
+                                        	</c:if>
+                                        	<c:if test="${qna.qnaReplyFlag ne 'Y'}">
+                                        		<span class="label label-default">미완료</span>
+                                        	</c:if>
+                                        	</td>
+											<td><button type="button" class="btn bg-indigo waves-affect to_reply" >답변하기</button></td>
 										</tr>
-										<tr>
-											<td>1</td>
-											<td>상점1102호</td>
-											<td>거래신고</td>
-											<td>사기당했어요</td>
-											<td>2019/05/07</td>
-											<td class="col-md-1"><span class="label label-primary">답변완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">답변하기</button></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>상점1102호</td>
-											<td>거래신고</td>
-											<td>사기당했어요</td>
-											<td>2019/05/07</td>
-											<td class="col-md-1"><span class="label label-primary">답변완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">답변하기</button></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>상점1102호</td>
-											<td>거래신고</td>
-											<td>사기당했어요</td>
-											<td>2019/05/07</td>
-											<td class="col-md-1"><span class="label label-primary">답변완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">답변하기</button></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>상점1102호</td>
-											<td>거래신고</td>
-											<td>사기당했어요</td>
-											<td>2019/05/07</td>
-											<td class="col-md-1"><span class="label label-default">미완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">답변하기</button></td>
-										</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -149,6 +121,40 @@
 					</div>
 				</div>
 			</div>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="faq_category_in" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <!-- modal header-->
+                            <div class="modal-header">
+                                <h2 class="modal-title" id="qnaCategoryModalTitle">QNA 카테고리 등록</h2>
+                            </div>
+				
+                            <div class="modal-body">
+	                           	<form method="POST" action="new.mdo" name="qnaCategoryForm">
+	                                <div class="form-group">
+	                                	<div class="qna-category-registry--content">
+		                                    <label for="categoryName">카테고리 명</label>
+		                                    <input type="text" class="qna-category-reg-content--input" name="qnaCategoryName" id="qnaCategoryContent" placeholder="카테고리 이름을 입력해주세요">
+	                                	</div>
+	                                	<div id="checkInput">
+	                                		이미 사용하고 있는 카테고리 이름입니다.
+	                                	</div>
+	                                </div>
+                                </form>
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal" id="qnaCategoryInsert" disabled>등록</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+                
+                <!-- Modal -->
 		</div>
 	</section>
 	<!-------------------------------------------SECTION--------------------------------------------------->
@@ -174,6 +180,8 @@
 	<!-- Jquery DataTable Plugin Js -->
 	<script
 		src="<c:url value ="/resources/vendor/plugins/jquery-datatable/jquery.dataTables.js"/>"></script>
+
+
 	<script
 		src="<c:url value ="/resources/vendor/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"/>"></script>
 	<script

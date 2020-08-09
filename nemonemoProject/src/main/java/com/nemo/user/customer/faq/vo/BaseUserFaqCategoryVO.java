@@ -32,6 +32,7 @@ public class BaseUserFaqCategoryVO {
 	public void setFaqCategoryUseFlag(String faqCategoryUseFlag) {
 		this.faqCategoryUseFlag = faqCategoryUseFlag;
 	}
+	
 	@Override
 	public String toString() {
 		return "BaseUserFaqCategoryVO [faqCategoryNo=" + faqCategoryNo + ", faqCategoryName=" + faqCategoryName

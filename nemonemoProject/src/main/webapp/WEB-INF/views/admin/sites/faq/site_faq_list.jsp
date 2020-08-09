@@ -59,10 +59,6 @@
 		<jsp:include page="/WEB-INF/views/admin/include/side-nav.jsp" />
 	</header>
 
-
-
-
-
 	<% 
 		/* 각 페이지의 SECTION */
 	%>
@@ -127,9 +123,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			
-                
+			</div>       
                 <!-- 삭제하시겠습니까 모달 -->
                 <div class="modal fade" id="faq_delete" role="dialog">
                     <div class="modal-dialog">
