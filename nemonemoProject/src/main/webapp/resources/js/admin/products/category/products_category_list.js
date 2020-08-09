@@ -4,32 +4,135 @@ $(function() {
 	initTable();
 	initButtonEvent();
 	getCategoryList()
-	.then(initButtonEvent)
 	.then(initRegModal)
 	.then(initUpdModal);
+	initDelModal();
 });
 
+/* 삭제 모달  */
+function initDelModal() {
+	$('#productCategoryDelete').click(function() {
+		$.ajax({
+			url: 'deleteJson.mdo',
+			method: 'post',
+			data: {
+				productsCateNo: $('#product_category_delete').data('no')
+			}
+		}).done(function(success) {
+			alert('삭제에 성공하였습니다.');
+			location.reload(true);
+		}).fail(function(error) {
+			alert('삭제에 실패하였습니다.');
+		});
+	});
+}
+
+
 /* 테이블 버튼 이벤트 */
-function initButtonEvent(data) {
+function initButtonEvent(list) {
 	return new Promise(function(resolve, reject) {
+		// 수정 버튼
 		$('.product-category-upd-btn').click(function() {
 			$.ajax({
-				url: '',
-				method: 'post',
+				url: 'getCateJson.mdo',
+				method: 'get',
 				data: {
-					
-				}
+					productCateNo: $(this).closest('tr').data('no')
+				},
+				dataType: 'json'
 			}).done(function(data) {
+				const $radio = $('input[name=categoryUpdateType]');
+				const $lgCate = $('#productUpdateLgCategory');
+				const $mdCate = $('#productUpdateMdCategory');
+				const $input = $('#productUpdateCategoryContent');
+				const $cateNo = $('#updateCategoryNo');
 				
+				// 카테고리 번호
+				$cateNo.val(data.productCateNo).prop('disabled', true);
+				// 분류 타입
+				$radio.each(function(i, e) {if(data.productCateType == e.value) {$(e).click(); return false;}});
+				// 사용 여부
+				const delFlagIndex = data.productCateDelFl == 'Y' ? 0 : 1;
+				$('input[name=cateUseType]').eq(delFlagIndex).prop('checked', true);
+				
+				let prevText;
+				// 대분류, 중, 소에 따른 값 뿌리기
+				if(data.productCateType == 'L') {
+					$input.val(data.productCateLarge);
+				} else if(data.productCateType == 'M') {
+					bindCate('productUpdateLgCategory', data.productCateLarge);
+					$input.val(data.productCateMedium);
+				} else {
+					bindCate('productUpdateLgCategory', data.productCateLarge);
+					bindCate('productUpdateMdCategory', data.productCateMedium);
+					$input.val(data.productCateSmall);
+				}
+				prevText = $input.val();
+				$input.on('keyup', function() {
+					const $checkInput = $('#updateCheckInput');
+					const $this = $(this);
+					if($this.val() == prevText || !$this.val().length) {
+						$('#productCategoryUpdate').prop('disabled', true);
+						$checkInput.text('수정될 수 없는 제목입니다.').show();
+					} else {
+						$('#productCategoryUpdate').prop('disabled', false);
+						$checkInput.hide();
+					}
+				});
+				resolve(list);
+			}).fail(function(err) {
+				alert('데이터 불러오기에 실패하였습니다.');
+				reject(err);
 			});
 		});
-		resolve(data);
+		
+		// 삭제 버튼
+		$('.product-category-del-btn').click(function() {
+			const $this = $(this);
+			const no = $this.closest('tr').data('no');
+			const title = $this.closest('tr').children('td:eq(4)').text();
+			$('#productDeleteModal span').text(`${no}번 (${title})`);
+			$('#product_category_delete')[0].dataset.no = no;
+		});
+		
+		//미사용, 사용 누르면 바뀌는 토글 기능 
+		$('#useFlagTd span').click(function() {
+			const $this = $(this);
+			const changeValue = $this.text() == '미사용' ? 'Y' : 'N';
+			$.ajax({
+				url: 'changeUseFl.mdo',
+				method: 'post',
+				data: {
+					productCateNo: $this.closest('tr').data('no'),
+					productCateDelFl: changeValue
+				}
+			}).done(function(success) {
+				alert('상태 변경에 성공하였습니다.')
+				location.reload(true);
+			}).fail(function(error) {
+				alert('상태 변경에 실패하였습니다.')
+			});
+		});
+		
+		//상품으로 돌아가기 버튼
+		$('#productBtn').click(function() {
+			window.location.href="../list.mdo";
+		});
+		
+		function bindCate(selectID, data) {
+			$(`#${selectID}`).children('option').each(function(i, e) {
+				if(e.value == data) {
+					$(e).prop('selected', true);
+					return false;
+				}
+			});
+		}
 	});
 }
 
 /* 수정 모달 설정 */
 function initUpdModal(data) {
-	return new Promise(function(resovle, reject) {
+	return new Promise(function(resolve, reject) {
 		// 키 이벤트
 		$('#productUpdateCategoryContent').on('keyup', function() {contentKeyEvent.call(this, 'productCategoryUpdate')});
 		/*
@@ -42,6 +145,7 @@ function initUpdModal(data) {
 				cateArr: data,
 				lgID: 'productUpdateLgCategory',
 				mdID: 'productUpdateMdCategory',
+				inputID: 'productUpdateCategoryContent',
 				radioName: 'categoryUpdateType',
 				actionID: 'productCategoryUpdate',
 				action: productUpdateAction
@@ -49,9 +153,42 @@ function initUpdModal(data) {
 		initCategoryBox(obj);
 		function productUpdateAction() {
 			
+			$type = $('input[name=categoryUpdateType]:checked');
+			$useFl = $('input[name=cateUseType]:checked');
+			$lgCate = $('#productUpdateLgCategory');
+			$mdCate = $('#productUpdateMdCategory');
+			$input = $('#productUpdateCategoryContent');
+			
+			const param = {};
+			
+			param.productCateNo = $('#updateCategoryNo').val();
+			param.productCateType = $type.val();
+			param.productCateDelFl = $useFl.val();
+			//param.productCateOrder 순서는 어떻게 정하지..?
+			if(param.productCateType == 'L') {
+				param.productCateLarge = $input.val();
+			} else if(param.productCateType == 'M') {
+				param.productCateLarge = $lgCate.text();
+				param.productCateMedium = $input.val();
+			} else {
+				param.productCateLarge = $lgCate.text();
+				param.productCateMedium = $mdCate.text();
+				param.productCateSmall = $input.val();
+			}
+			// 업데이트 통신
+			$.ajax({
+				url: 'updateJson.mdo',
+				method: 'post',
+				data: param
+			}).done(function(success) {
+				alert('수정에 성공하였습니다.');
+				location.reload(true);
+				resolve(success);
+			}).fail(function(error) {
+				alert('수정에 실패하였습니다.');
+				reject(error);
+			});
 		}
-		
-		resolve(data);
 	});
 }
 
@@ -65,6 +202,7 @@ function initRegModal(data) {
 				 cateArr: data,
 				 lgID: 'productLgCategory',
 				 mdID: 'productMdCategory',
+				 inputID: 'productCategoryContent',
 				 radioName:'categoryType',
 			     actionID: 'productCategoryInsert',
 			     action: productCategoryInsertAction
@@ -115,6 +253,7 @@ function initRegModal(data) {
  * OBJ 속성값 obj.cateArr : 대중소분류 모든 카테고리 값(JSON) 
  * obj.lgID : 대분류 select ID 
  * obj.mdID : 중분류 select ID 
+ * obj.inputID : 입력칸
  * obj.radioName : radio버튼 NAME 
  * actionID: 모달 버튼ID, action: 버튼 누를시
  * CallBack함수
@@ -128,8 +267,10 @@ function initCategoryBox(obj){
 	const $mdCate = $(`#${obj.mdID}`);
 	const $radioName = $(`input[name=${obj.radioName}]`).change(radioChangeEvent);
 	const $frag = $(document.createDocumentFragment());
+	const $input = $(`#${obj.inputID}`);
+	const $actionID = $(`#${obj.actionID}`);
 	
-	$(`#${obj.actionID}`).click(obj.action);
+	$actionID.click(obj.action);
 	
 	if(lgCateArr.length > 0) {
 		$lgCate.empty();
@@ -178,22 +319,15 @@ function initCategoryBox(obj){
 			$lgCateDiv.show();
 			$mdCateDiv.show();
 		}
+		$input.val('');
+		$actionID.prop('disabled', true);
 	}
 	
 	// 초기설정
 	(function() {
-		console.log($radioName);
-		console.log($radioName.eq(0));
 		$radioName.eq(0).trigger('click');
 	}());
 }
-
-
-
-
-
-
-
 
 
 /* NULL CHECK */
