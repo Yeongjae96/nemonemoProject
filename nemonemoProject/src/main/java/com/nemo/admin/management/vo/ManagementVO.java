@@ -18,14 +18,11 @@
 
 package com.nemo.admin.management.vo;
 
-
-import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class ManagementVO implements Serializable{
+public class ManagementVO {
 
-	private static final long serialVersionUID = 1L;
 	private int adminNo;
 	private String adminId;
 	private String adminPw;
