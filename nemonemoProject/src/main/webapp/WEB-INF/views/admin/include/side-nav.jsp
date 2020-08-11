@@ -25,11 +25,11 @@
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="/nemonemoProject/management/profile.mdo"><i class="material-icons">person</i>직원관리</a></li>
+                            <li><a href="<c:url value="/management/profile.mdo"/>"><i class="material-icons">person</i>직원관리</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="/nemonemoProject/management/signup.mdo"><i class="material-icons">group</i>관리자추가</a></li>                  
+                            <li><a href="<c:url value="/management/signup.mdo"/>"><i class="material-icons">group</i>관리자추가</a></li>                  
                             <li role="separator" class="divider"></li>
-                            <li><a href="logout.mdo"><i class="material-icons">input</i>로그아웃</a></li>
+                            <li><a href="<c:url value="/management/logout.mdo"/>"><i class="material-icons">input</i>로그아웃</a></li>
                         </ul>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                                 <a href="#">배너(광고) 관리</a>
                             </li>
                             <li>
-                                <a href="/nemonemoProject/sites/notice/list.mdo">공지사항 관리</a>
+                                <a href="<c:url value="/sites/notice/list.mdo"/>">공지사항 관리</a>
                             </li>
                             <li>
                                 <a href="#">이용약관 관리</a>
