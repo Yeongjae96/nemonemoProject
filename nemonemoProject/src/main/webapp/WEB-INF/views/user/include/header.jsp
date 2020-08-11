@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="main_header container-md">
+<div class="main_header container-fluid">
 	<div class="flex">
 		<!-- 로고 영역 -->
 		<a href="<c:url value="/index.do"/>" id="main-logo-area"><img
@@ -94,20 +94,22 @@
 <div id="myModal" class="modal">
 
 	<!-- 모달 내용 -->
-	<div class="modal-content">
-		<div class="logout_h2">
-			<h2>로그아웃</h2>
-			<p>로그아웃 시 6개월 이상 경과된 번개톡 대화 내용이 모두 삭제됩니다. 계속하시겠습니까?</p>
-		</div>
-		<div class=logout_button_group>
-			<div>
-				<button id="model-cancel" class="cancel_logout">취소</button>
+	<form method="post" action="sign/logout.do">
+		<div class="modal-content">
+			<div class="logout_h2">
+				<h2>로그아웃</h2>
+				<p>로그아웃 시 6개월 이상 경과된 번개톡 대화 내용이 모두 삭제됩니다. 계속하시겠습니까?</p>
 			</div>
-			<div>
-				<button class="confirm_logout">확인</button>
+			<div class=logout_button_group>
+				<div>
+					<button id="model-cancel" class="cancel_logout">취소</button>
+				</div>
+				<div>
+					<button class="confirm_logout" type="submit">확인</button>
+				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 
 </div>
 <!--End Modal-->

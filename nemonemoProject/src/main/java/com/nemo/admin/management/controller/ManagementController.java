@@ -30,13 +30,7 @@ import com.nemo.admin.management.vo.ManagementVO;
  * @작성일 : 2020. 7. 30.
  * @이름 : Yerin, Dong, Seoungil
  * @프로그램설명 : 관리자 페이지의 경로를 잡아주는 컨트롤러
- * == 수정 정보 ==
- *
- * DATE				 AUTHOR			NOTE
- * -------			--------		-------------	
- * 20. 07.30 		    손예린			초기설정
- * 20. 08.02		    손예린			비밀번호 찾기 modelAndView 추가 및 로그인 암호화
- * 					    손예린			profile READ, UPDATE
+ * 
  * 
  */
 
@@ -90,17 +84,15 @@ public class ManagementController {
 		List<ManagementVO> data = selectAdminListService.getAdminList(vo);
 		mav.addObject("adminList", data);
 		return mav;
-		
 	}	
-	//	// 회원가입 post
+	
+	/* 회원가입 post */
 	@RequestMapping(value = "/signup", method = { RequestMethod.POST })
 	public ModelAndView signupAction(ManagementVO vo) {
-
 		// 비밀번호 암호화
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		vo.setAdminPw(encoder.encode(vo.getAdminPw()));
-		System.out.println("회원가입 정보 : " + vo);
-
+		//System.out.println("회원가입 정보 : " + vo);
 		insertAdminService.insertAdmin(vo);
 		ModelAndView mav = new ModelAndView("redirect:/management/login.mdo");
 		return mav;
@@ -119,24 +111,31 @@ public class ManagementController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginAdminaction(ManagementVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
-		//인코딩
+		// 인코딩
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		//사용가능여부 체크
+		// 사용가능여부 체크
 		String check = "Y";
-		//세션
-		HttpSession session = req.getSession();		
-		//로그인
-		ManagementVO login = loginAdminService.loginAdmin(vo);		
-		//암호화된 비밀번호 매칭
-		boolean pwdMatch = encoder.matches(vo.getAdminPw(),login.getAdminPw());		
-		//조건문
-		//로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
-		if(login != null && pwdMatch==true && login.getAdminUse().equals(check)) {
-			session.setAttribute("admin", login);
-			return "redirect:/management/adminmain.mdo";
-		}else {
-			session.setAttribute("admin", null);
-			rttr.addFlashAttribute("msg", false);
+		// 세션
+		HttpSession session = req.getSession();
+		System.out.println(req.getContextPath());
+		// 로그인
+		// 예외처리 보함
+		try {
+			ManagementVO login = loginAdminService.loginAdmin(vo);
+			// 암호화된 비밀번호 매칭
+			boolean pwdMatch = encoder.matches(vo.getAdminPw(), login.getAdminPw());
+			// 조건문
+			// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
+			if (login != null && pwdMatch == true && login.getAdminUse().equals(check)) {
+				session.setAttribute("admin", login);
+				System.out.println("세션값 : " + session.getAttribute("admin"));
+				return "redirect:/management/adminmain.mdo";
+			} else {
+				session.setAttribute("admin", null);
+				rttr.addFlashAttribute("msg", false);
+				return "redirect:/management/login.mdo";
+			}
+		} catch (Exception e) {
 			return "redirect:/management/login.mdo";
 		}
 	}
@@ -159,18 +158,13 @@ public class ManagementController {
 		
 	}
 
-		
-	/* 로그인하기 */
-//	@PostMapping("/login")
-//	public ModelAndView loginAdmin(ManagementVO vo) {
-//		System.out.println("Controller : " + vo);
-//		loginAdminService.loginAdmin(vo);
-//		ModelAndView mav = new ModelAndView("redirect:/management/adminmain.mdo");
-//		return mav;
-//	}
-
-	
-
+	//로그아웃
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		ModelAndView mv = new ModelAndView("redirect:/management/login.mdo");
+		return mv;
+	}
 
 }
 

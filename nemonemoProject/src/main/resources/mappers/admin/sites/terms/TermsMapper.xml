@@ -69,11 +69,7 @@
       		<if test="terms_delete_fl.equals('Y')">terms_delete_fl = 'N'</if>
       	</set> -->
       	
-      	<!-- <set>
-	      <if test="terms_delete_fl == 'N'.toString()">terms_delete_fl = 'Y'</if>
-	      <if test="terms_delete_fl == 'Y'.toString()">terms_delete_fl = 'N'</if>
-	    </set> -->
-		
+      	
 		WHERE
 			terms_no = #{termsNo}
 	</delete>

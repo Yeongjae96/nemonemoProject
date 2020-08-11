@@ -242,3 +242,50 @@ th{
 }
 
 
+#faq_delete .modal-body {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+
+#faqDeleteModal span {
+	color: #EE5058;
+	margin-right: 15px;
+}
+
+#faq_delete .modal-dialog {
+	display: flex;
+	flex: 1 1 0%;
+}
+
+#faq_delete .modal-content {
+	width: 100%;
+	min-width: 700px;
+	min-height: 0px;
+}
+
+#faqDelete {
+	margin-right: 15px;
+}
+
+#faq_delete .modal-content .modal-body button {
+	width: 75px;
+	height: 50px;
+	font-size: 2rem;
+	font-weight: bold;	
+}
+
+.faq--title {
+	color: #4AA8D8;
+	font-weight: bold;	
+}
+
+.faq--title:hover {
+	color: #EE5058;
+	cursor: pointer;
+}
+
+#result > tr > td:nth-child(5) > span {
+	cursor: pointer;
+}

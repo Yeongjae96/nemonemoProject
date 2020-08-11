@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>공지사항</title>
 <!-- 공통 CSS -->
@@ -50,7 +51,6 @@
 				<jsp:include page="/WEB-INF/views/user/customer/common/customer_nav.jsp"/>
 				<main class="notice-main">
 					<ul class="notice-list">
-					
 					<c:forEach var="notice" items="${noticeList}">
 						<li class="notice-list-li">
 							<article class="notice-list-art">

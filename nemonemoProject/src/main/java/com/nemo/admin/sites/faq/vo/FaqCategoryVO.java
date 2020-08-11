@@ -3,6 +3,7 @@ package com.nemo.admin.sites.faq.vo;
 import java.sql.Date;
 
 public class FaqCategoryVO {
+	
 	private int faqCategoryNo;
 	private String faqCategoryName;
 	private Date faqCategoryRegYmd;
@@ -20,7 +21,6 @@ public class FaqCategoryVO {
 	public void setFaqCategoryName(String faqCategoryName) {
 		this.faqCategoryName = faqCategoryName;
 	}
-	
 	public Date getFaqCategoryRegYmd() {
 		return faqCategoryRegYmd;
 	}

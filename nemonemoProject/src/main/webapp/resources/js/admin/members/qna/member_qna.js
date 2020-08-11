@@ -2,13 +2,8 @@
 
 /* 한국어 처리 */
 $(function () {
-    const table = $('#mem-care-list').DataTable({
+    const table = $('#qna-table').DataTable({
         responsive: true,
-        // ajax: "category_example.json",
-        //   buttons: {              
-        //     name: 'primary',
-        //     buttons: [ 'copy', 'csv', 'excel', 'pdf'],
-        // },
         "language": {
             "decimal":        "",
             "emptyTable":     "표에서 사용할 수있는 데이터가 없습니다.",
@@ -32,26 +27,21 @@ $(function () {
             },
         },
     });
+        
 
 });
 
-$(function () {
-    $('#mem-care-list tbody').on('click', '.to_reply', function(){
 
-        location.href="member_care_reply.html";
+
+$(function () {
+    $('#qna-table tbody').on('click', '.to_reply', function(){
+    	alert("눌렸다!");
+
+        location.href="/nemonemoProject/members/qna/reply.mdo";
     });
 });
 
 
 
-// $.ajax({
 
-//     url: "member_care_tdetail.html", // 클라이언트가 요청을 보낼 서버의 URL 주소
 
-//     data: { name: "홍길동" },                // HTTP 요청과 함께 서버로 보낼 데이터
-
-//     type: "GET",                             // HTTP 요청 방식(GET, POST)
-
-//     dataType: "json"                         // 서버에서 보내줄 데이터의 타입
-
-// })

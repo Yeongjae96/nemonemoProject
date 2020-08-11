@@ -17,38 +17,31 @@
 	</properties>
 
 	<dependencies>
-	
 		<!-- lombok -->
 		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>1.18.12</version>
-		    <scope>provided</scope>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.12</version>
+			<scope>provided</scope>
 		</dependency>
+
 		
-		<!-- 제이슨 예린 테스트 -->
+		<!-- JSON 쓰기 위함 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.6</version>
+			<version>2.11.1</version>
 		</dependency>
 
-		<!-- JSON 쓰기 위함 -->
-		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.11.1</version>
-		</dependency>
-		
 
-		<!--  파일 암호화를 쓰기 위함 -->
+		<!-- 파일 암호화를 쓰기 위함 -->
 		<dependency>
-          <groupId>org.springframework.security</groupId>
-          <artifactId>spring-security-web</artifactId>
-          <version>5.3.3.RELEASE</version>
-      </dependency>
-		
-		
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.3.3.RELEASE</version>
+		</dependency>
+
+
 		<!-- 파일업로드를 쓰기 위함 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>

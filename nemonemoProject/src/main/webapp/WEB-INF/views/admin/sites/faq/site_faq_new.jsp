@@ -67,9 +67,12 @@
 			<!-- Advanced Validation -->
 			<div class="row clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="btn-area clearfix">
+								<button id="backBtn" class="btn btn-danger">뒤로 돌아가기</button>
+						</div>
 					<div class="card">
 						<div class="header">
-							<h2>자주묻는 질문 등록</h2>
+							<h2>자주묻는 질문 <span>등록</span></h2>
 						</div>
 						<div class="body">
 							<form id="faqNewForm" method="POST" action="new.mdo" class="faq-form">
@@ -155,8 +158,23 @@
 		   $('#newBtn').click(function() {
 		    	oEditors.getById["faqContent"].exec("UPDATE_CONTENTS_FIELD", []);	
 		    	const faqForm = document.getElementById('faqNewForm');
+		    	
+		    	if(checkNull('inputTitle', '제목') || checkNull('faqContent', '내용')) return false;
+		    	
 		    	faqForm.submit();
 		    }); 
+		   /* 빈칸 유효성 검사 */
+	    	function checkNull(id, idName) {
+	    		const target = document.getElementById(id);
+	    		
+	    		if(target.value.length == 0) {
+	    			alert(`${idName}을 입력해주세요`);
+	    			target.focus();
+	    			return true;
+	    		}
+	    		return false;
+	    	}
+
 		</script>
 	
 </body>

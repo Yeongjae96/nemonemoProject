@@ -5,7 +5,7 @@
 
 <mapper
 	namespace="com.nemo.admin.management.repository.impl.ManagementMapper">
-
+  
 	<resultMap id="managementMap"
 		type="com.nemo.admin.management.vo.ManagementVO">
 		<id column="admin_no" property="adminNo" />
@@ -15,20 +15,17 @@
 		<result column="admin_use" property="adminUse" />
 	</resultMap>
 
+
 	<!-- 회원가입  -->
 	<insert id="insertAdmin"
 		parameterType="com.nemo.admin.management.vo.ManagementVO">
-		
-		INSERT INTO ADMIN_ACCOUNT_TB 
-		VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}) 
-		
-		<selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" order="AFTER">
-			SELECT ADMIN_sq.currval FROM dual
-		</selectKey>
+
 		INSERT INTO ADMIN_TB
 		VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}, #{adminUse})
 		<!-- 리턴값을 주기 위한 <selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" 
 			order="AFTER"> SELECT ADMIN_sq.currval FROM dual </selectKey> -->
+
+
 	</insert>
 	
 	<!--  관리자 로그인 	-->
