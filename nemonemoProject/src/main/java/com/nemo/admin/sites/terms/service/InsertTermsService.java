@@ -16,5 +16,6 @@ import com.nemo.admin.sites.terms.vo.TermsVO;
  * 	20.07.30 	김영재				terms 초기설정
  */
 public interface InsertTermsService {
+	public int renewTerms(TermsVO vo);
 	public int insertTerms(TermsVO vo);
 }

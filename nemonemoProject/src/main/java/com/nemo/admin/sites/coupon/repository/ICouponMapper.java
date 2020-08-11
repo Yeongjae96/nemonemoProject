@@ -7,8 +7,8 @@ import com.nemo.admin.sites.notice.vo.NoticeVO;
 
 public interface ICouponMapper {
 	public int insertCoupon(CouponVO vo);
-	public int deleteCoupon(String couponCd);
+	public int deleteCoupon(int couponNo);
 	public int updateCoupon(CouponVO vo);
-	public CouponVO getCoupon(String couponCd);
+	public CouponVO getCoupon(int couponNo);
 	public List<CouponVO> getCouponList(CouponVO vo);
 }

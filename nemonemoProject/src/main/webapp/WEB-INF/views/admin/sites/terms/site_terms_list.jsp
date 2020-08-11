@@ -91,14 +91,14 @@
 							<thead>
 								<tr>
 									<th>일련번호</th>
-									<th>약관 제목</th>
+									<th>약관유형</th>
 									<th>필수여부</th>
 									<th>노출여부</th>
 									<th>약관등록일</th>
 									<th>작성자</th>
 									<th>약관수정일</th>
 									<th>수정자</th>
-									<th>수정</th>
+									<th>갱신</th>
 								</tr>
 							</thead>
 							<tbody id="result">
@@ -108,7 +108,24 @@
 										<!-- <td><a href="terms">
 											필수 이용 약관</a>
 										</td> -->
-										<td>${terms.termsTitle}</td>
+										<td>
+											<a class="terms-upd-btn" data-termsno="${terms.termsNo}">
+											<b>
+											<%-- <c:choose>
+											    <c:when test="${termsVO.termsTitle eq 'S'}">
+											        이용약관
+											    </c:when>
+											    <c:when test="${termsVO.termsTitle eq 'P'}">
+											        개인정보처리방침
+											    </c:when>
+											    <c:otherwise>
+											        위치기반서비스 이용약관
+											    </c:otherwise>
+											</c:choose> --%>
+											${terms.termsTitle }
+											</b>
+											</a>
+										</td>
 										<td>${terms.termsRequiredFl}</td>
 										<%-- <td><a class="terms-del-btn" data-termsNo="${terms.termsNo}">${terms.termsDeleteFl }</a></td> --%>
 										<td>${terms.termsDeleteFl}</td> 
@@ -116,9 +133,11 @@
 										<td>${terms.adminRegId}</td>
 										<td>${terms.termsEditYmd}</td>
 										<td>${terms.adminEditId}</td>
-										<td class ="text-center">
-											<button type="button" class="terms-upd-btn" data-termsno="${terms.termsNo}">약관 수정</button>
-										</td>
+										<td>
+											<c:if test="${terms.termsDeleteFl == 'Y'}">
+	    										<a class="terms-renew" data-termsNo="${terms.termsNo}"><b>약관 갱신</b></a>
+											</c:if>
+										</td>	
 									</tr>
 								</c:forEach>
 							</tbody>

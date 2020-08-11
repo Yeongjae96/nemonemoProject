@@ -77,8 +77,9 @@
 							<form id="couponEditForm" method="POST" action="edit.mdo">
 								<div class="form-group form-float">
 									<div class="form-line">
-										<input type="text" class="form-control" name="couponNm"
-											min="2" max="200" required value="${couponVO.couponNm}"> <label class="form-label">쿠폰명</label>
+										<input type="text" class="form-control" name="couponName"
+											min="2" max="200" required value="${couponVO.couponName}" > 
+											<label class="form-label">쿠폰명</label>
 									</div>
 									<div class="help-info">쿠폰명 수정</div>
 								</div>
@@ -89,14 +90,12 @@
 									</div>
 									<div class="help-info">쿠폰내용 수정</div>
 								</div>
-								<div class="form-group form-float" style="margin-top: 30px;">
-									<label
-									for="coupon-start">등록일</label> <input type="text" name="couponSrtYmd" id="couponSrtYmd"
-									class="form-control" value="${couponVO.couponSrtYmd}" placeholder="등록일 수정"><br>
-
-								<label for="coupon-end">종료일</label> <input type="text" name="couponEndYmd" id="couponEndYmd"
-									class="form-control" value="${couponVO.couponEndYmd}"
-									placeholder="종료일 수정"><br>
+								<div class="form-group form-float">
+									<div class="form-line">
+										<input type="text" class="form-control" name="couponPrd"
+											required value="${couponVO.couponPrd}"> <label class="form-label">쿠폰 기한</label>
+									</div>
+									<div class="help-info">쿠폰기한 수정</div>
 								</div>
 								<div class="form-group form-float">
 									<div class="form-line">
@@ -105,7 +104,7 @@
 									</div>
 									<div class="help-info">혜택금액 수정</div>
 								</div>
-								<input type="hidden" name="couponCd" value="${param.couponCd}"/>
+								<input type="hidden" name="couponNo" value="${param.couponNo}"/>
 								<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
 							</form>
 						</div>
@@ -144,7 +143,7 @@
 		
 	<!-- 개인 JS -->
 	<script
-		src="<c:url value ="/resources/js/admin/sites/site_coupon_list.js"/>"></script>
+		src="<c:url value ="/resources/js/admin/sites/site_coupon_list.js?v=<%=System.currentTimeMillis() %>"/>"></script>
 		
 	<!-- Date picker bootstrap -->
 	<script

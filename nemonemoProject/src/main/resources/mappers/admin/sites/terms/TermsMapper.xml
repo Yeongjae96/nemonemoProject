@@ -36,14 +36,23 @@
 	
 	
 	<insert id="insertTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
-
-		INSERT INTO terms_tb(terms_no, terms_title, admin_reg_id, terms_required_fl, terms_delete_fl, terms_content, terms_reg_ymd)
+		INSERT INTO terms_tb (
+			terms_no,
+			terms_title,
+			admin_reg_id,
+			terms_required_fl,
+			terms_delete_fl,
+			terms_content,
+			terms_reg_ymd
+		) VALUES (
+			terms_sq.nextval,
+			#{termsTitle},
 			#{adminRegId}, 
 			#{termsRequiredFl},
 			#{termsDeleteFl},
 			#{termsContent},
 			#{termsRegYmd}
-		)
+		) 
 		<selectKey keyProperty="termsNo" keyColumn="TERMS_NO" resultType="Integer" order="AFTER">
 			SELECT terms_SQ.currval FROM dual
 		</selectKey>
@@ -73,13 +82,18 @@
 		UPDATE terms_tb
 		SET 
 			<!-- admin_edit_id = #{adminEditId}, -->
-			terms_title = #{termsTitle},
 			terms_content= #{termsContent},
-			terms_required_fl = #{termsRequiredFl},
-			terms_delete_fl = #{termsDeleteFl},
 			terms_edit_ymd = #{termsEditYmd}
 		WHERE
 			terms_no = #{termsNo}
 	</update>
 
+
+	<update id="renewTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
+		UPDATE terms_tb
+		SET
+			terms_delete_fl = 'N'
+		WHERE
+			terms_title = #{termsTitle} AND terms_delete_fl = 'Y' 
+	</update>
 </mapper>

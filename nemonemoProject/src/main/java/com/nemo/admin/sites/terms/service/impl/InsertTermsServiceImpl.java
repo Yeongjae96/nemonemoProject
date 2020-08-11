@@ -17,8 +17,13 @@ public class InsertTermsServiceImpl implements InsertTermsService {
 	private TermsMapper termsDAO;
 
 	@Override
+	public int renewTerms(TermsVO vo) {
+		return termsDAO.renewTerms(vo);
+	}
+	
+	@Override
 	public int insertTerms(TermsVO vo) {
 		vo.setTermsRegYmd(new Date(System.currentTimeMillis()));
 		return termsDAO.insertTerms(vo);
-	}
+	}	
 }

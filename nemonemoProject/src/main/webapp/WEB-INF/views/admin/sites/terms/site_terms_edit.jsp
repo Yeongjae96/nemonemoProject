@@ -76,12 +76,23 @@
                                         <input type="text" class="form-control" id="termsTitle" name="termsTitle" minlength="3" required>   
                                     </div>            -->
                                     <div class="form-group form-float" style="margin-top: 30px;">
-                                    <label class="form-label">약관 항목</label>
-                                    <select class="selectpicker" id="termsTitle" name="termsTitle">
+                                    <label class="form-label">약관 항목 </label><br>
+                                   <%--  <select class="selectpicker" id="termsTitle" name="termsTitle">
                                     	<option value="이용약관" <c:if test="${termsVO.termsTitle eq '이용약관'}">selected</c:if>>이용약관</option>
                                         <option value="개인정보처리방침" <c:if test="${termsVO.termsTitle eq '개인정보처리방침'}">selected</c:if>>개인정보처리방침</option>
                                         <option value="위치기반서비스이용약관" <c:if test="${termsVO.termsTitle eq '위치기반서비스이용약관'}">selected</c:if>>위치기반서비스이용약관</option>
-                                    </select>
+                                    </select> --%>
+                                    <h4><label><c:choose>
+											    <c:when test="${termsVO.termsTitle eq 'L'}">
+											        위치기반서비스 이용약관
+											    </c:when>
+											    <c:when test="${termsVO.termsTitle eq 'P'}">
+											        개인정보처리방침
+											    </c:when>
+											    <c:otherwise>
+											        이용약관
+											    </c:otherwise>
+											</c:choose></label></h4>
                                 </div> 
                                 </div>
                                 <div class="form-group form-float">
@@ -90,7 +101,7 @@
                                         <input type="text" value= "${termsVO.adminRegId}" class="form-control" id="adminRegId" name="adminRegId" required>   
                                     </div>           
                                 </div>
-                                <div class="form-group form-float" style="margin-top: 30px;">
+                               <%--  <div class="form-group form-float" style="margin-top: 30px;">
                                     <label class="form-label">필수 여부</label>
                                     <select class="selectpicker" id="termsRequiredFl" name="termsRequiredFl">
                                         <option value="Y" <c:if test="${termsVO.termsRequiredFl eq 'Y'}">selected</c:if>>Y</option>
@@ -103,13 +114,13 @@
                                         <option value="Y" <c:if test="${termsVO.termsDeleteFl eq 'Y'}">selected</c:if>>Y</option>
                                         <option value="N" <c:if test="${termsVO.termsDeleteFl eq 'N'}">selected</c:if>>N</option>
                                     </select>
-                                </div> 
+                                </div>  --%>
                                 <div class="form-group form-float">
-									<textarea cols="120" rows="20" name="termsContent" id="termsContent" ></textarea>     
+									<textarea cols="120" rows="20" name="termsContent" id="termsContent" >${termsVO.termsContent}</textarea>     
                                 </div>
                                <input type="hidden" name="termsNo" value="${param.termsNo}"/>
-                                <button class="btn btn-primary waves-effect" type="submit" id="termsInsert">등록하기</button>
-
+                                <button class="btn btn-primary waves-effect" type="submit" id="termsInsert">수정하기</button>
+                                
                             </form>
                         </div>
                     </div>
@@ -139,18 +150,19 @@
 		<!-- Dateppicker bootstrap -->
     	<script src="<c:url value ="/resources/vendor/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"/>"></script>
     	
+    	<!-- smartEditor -->
+		<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script>
+    	
     	<!-- 개인 JS -->
 		<script src="<c:url value ="/resources/js/admin/sites/site_terms.js"/>"></script>	
 		
-		<!-- smartEditor -->
-		<script src="<c:url value ="/resources/vendor/SmartEditor/js/HuskyEZCreator.js"/>"></script>
 		<script>
 		var oEditors = [];
 		   nhn.husky.EZCreator.createInIFrame({
 		      oAppRef: oEditors,
 		      elPlaceHolder: "termsContent",
 		      //SmartEditor2Skin.html 파일이 존재하는 경로
-		      sSkinURI : "../../resources/vendor/SmartEditor/SmartEditor2Skin.html", 
+		      sSkinURI : "../../resources/vendor/smarteditor/SmartEditor2Skin.html", 
 		      htParams : {
 		          // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 		          bUseToolbar : true,             
@@ -164,7 +176,7 @@
 		      }, 
 		       fOnAppLoad : function(){
 		          //textarea 내용을 에디터상에 바로 뿌려주고자 할때 사용
-		          //oEditors.getById["termsContent"].exec("PASTE_HTML", ["약관을 입력해주세요."]);
+		          oEditors.getById["termsContent"].exec("PASTE_HTML", [""]);
 		      }, 
 		      fCreator: "createSEditor2"  
 			});

@@ -16,7 +16,6 @@ public class GetTermsServiceImpl implements GetTermsService {
 	
 	@Override
 	public TermsVO getTerms(int termsNo) {
-		// TODO Auto-generated method stub
 		return termsDAO.getTerms(termsNo);
 	}
 

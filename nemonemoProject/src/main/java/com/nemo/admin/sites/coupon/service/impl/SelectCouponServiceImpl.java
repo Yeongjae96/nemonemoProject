@@ -15,9 +15,9 @@ public class SelectCouponServiceImpl implements SelectCouponService{
 	private CouponMapper couponDAO;
 	
 	@Override
-	public CouponVO getCoupon(String couponCd) {
+	public CouponVO getCoupon(int couponNo) {
 
-		return couponDAO.getCoupon(couponCd);
+		return couponDAO.getCoupon(couponNo);
 	}
 
 }

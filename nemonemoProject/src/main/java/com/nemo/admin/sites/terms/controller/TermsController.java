@@ -15,6 +15,7 @@ import com.nemo.admin.sites.terms.service.DeleteTermsService;
 import com.nemo.admin.sites.terms.service.GetTermsListService;
 import com.nemo.admin.sites.terms.service.GetTermsService;
 import com.nemo.admin.sites.terms.service.InsertTermsService;
+import com.nemo.admin.sites.terms.service.RenewTermsService;
 import com.nemo.admin.sites.terms.service.UpdateTermsService;
 import com.nemo.admin.sites.terms.vo.TermsVO;
 
@@ -29,8 +30,10 @@ import com.nemo.admin.sites.terms.vo.TermsVO;
  * == 수정 정보 ==
  *
  * DATE		 	AUTHOR			NOTE
- * -------		--------			-------------
- * 	20.07.30 	김영재				terms 초기설정
+ * -------		--------		-------------
+ * 	20.07.30 	김영재			terms 초기설정
+ *  20.08.06	이혜인			삭제여부 기능 추가
+ *  20.08.09	이혜인			갱신 기능 추가
  */
 @Controller
 @RequestMapping("/sites/terms")
@@ -40,7 +43,8 @@ public class TermsController {
 	@Autowired private GetTermsListService getTermsListService;
 	@Autowired private GetTermsService getTermsService;
 	@Autowired private UpdateTermsService updateTermsService;
-	@Autowired private DeleteTermsService deleteTermsService;
+	@Autowired private RenewTermsService renewTermsService;
+	
 	
 	@GetMapping("/list")
 	public ModelAndView termsListPage() {
@@ -53,40 +57,28 @@ public class TermsController {
 		return mav;
 	}
 	
-	@GetMapping("/content/{termsNo}")
-	public ModelAndView termsContentPage(@PathVariable int termsNo) {
-		
-		TermsVO termsVO = getTermsService.getTerms(termsNo);
-		
-		ModelAndView mav = new ModelAndView("sites/site_terms");
-		mav.addObject("termsVO", termsVO);
-		
-		return mav;
-		
-	}
-	
 	@GetMapping("/new")
 	public ModelAndView termsNewPage() {
 		ModelAndView mav = new ModelAndView("sites/terms/site_terms_new");
 		return mav;
-	
 	}
 	
-	@RequestMapping(value = "/new", method= {RequestMethod.POST})
+	@RequestMapping(value = {"/new", "/renew"}, method= {RequestMethod.POST})
 	public ModelAndView TermsInsertAction(TermsVO vo) {
 		
+		renewTermsService.renewTerms(vo);
 		int result = insertTermsService.insertTerms(vo);
 		ModelAndView mav = new ModelAndView("redirect:/sites/terms/list.mdo");
+		
 		mav.addObject("result", result);
+		
 		return mav;
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.GET})
 	public ModelAndView TermsEdit(@RequestParam int termsNo) {
-		
 		ModelAndView mav = new ModelAndView("sites/terms/site_terms_edit");
 		TermsVO TermsVO = getTermsService.getTerms(termsNo);
-		
 		mav.addObject("termsVO", TermsVO);
 		
 		return mav;
@@ -94,15 +86,15 @@ public class TermsController {
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.POST})
 	public ModelAndView TermsEditAction(TermsVO vo) {	
-		//Service 
 		updateTermsService.updateTerms(vo);
 		return new ModelAndView("redirect:/sites/terms/list.mdo");
 	}
-
-	@RequestMapping(value = "/delete", method= {RequestMethod.POST})
-	public ModelAndView TermsDeleteAction(@RequestParam int termsNo) {
-		deleteTermsService.deleteTerms(termsNo);
-		ModelAndView mav = new ModelAndView("redirect:/sites/terms/list.mdo");
+	
+	@RequestMapping(value = "/renew", method= {RequestMethod.GET})
+	public ModelAndView TermsRenew(@RequestParam int termsNo) {		
+		ModelAndView mav = new ModelAndView("sites/terms/site_terms_renew");
+		TermsVO TermsVO = getTermsService.getTerms(termsNo);
+		mav.addObject("termsVO", TermsVO);
 		return mav;
-	}	
+	}
 }
