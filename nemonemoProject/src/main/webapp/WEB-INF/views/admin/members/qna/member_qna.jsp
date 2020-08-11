@@ -73,38 +73,40 @@
 						<div class="header">
 							<h1>고객문의함</h1>
 						</div>
-						<div class="qna_btn_flex">
-							<button type="button" id="qna-cate-btn" class="btn bg-blue waves-effect m-r-20"> 카테고리 관리 </button>
-						</div>
 						<div class="body">
+							
 							<div class="table-responsive">
 								<table id="qna-table"
 									class="table table-bordered table-striped table-hover dataTable display text-center">
 									<h4>1:1 고객센터</h4>
+									<button type="button" id="qna-cate-btn" class="btn bg-blue waves-effect m-r-20"> 카테고리 관리 </button>
 									<thead>
 										<tr>
 											<th>번호</th>
-											<th>상점명</th>
+											<th>아이디</th>
 											<th>분류</th>
 											<th>작성날짜</th>
+											<th>답변날짜</th>
 											<th>답변상태</th>
 											<th>처리</th>
 										</tr>
 									</thead>
 									<tbody id ="result">
 										<c:forEach var="qna" items="${qnaList}">
-										<tr data-qnano="${qna.qnano}">
+										<tr data-qnano="">
 											<td class="col-md-1">${qna.qnaNo}</td>
-											<td class="col-md-2">${qna.qnaStore}</td>
-											<td>${qna.qnaCateName}</td>
-											<td>${qna.regDate}
+											<td class="col-md-2">${qna.qnaRegId}</td>
+											<td>${qna.qnaCategoryName}</td>
+											<td>${qna.qnaRegYmd}
 											<span class="label label-warning">New</span>
 											</td>
+											<td>${qna.qnaReplyYmd}
+											</td>
 											<td class="col-md-1">
-											<c:if test="${qna.qnaReplyFlag eq 'Y'}">
+											<c:if test="${qna.qnaReplyFl eq 'Y'}">
 												<span class="label label-primary">답변완료</span>
                                         	</c:if>
-                                        	<c:if test="${qna.qnaReplyFlag ne 'Y'}">
+                                        	<c:if test="${qna.qnaReplyFl ne 'Y'}">
                                         		<span class="label label-default">미완료</span>
                                         	</c:if>
                                         	</td>

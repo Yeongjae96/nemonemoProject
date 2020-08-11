@@ -3,8 +3,10 @@ td{
     vertical-align:middle;
 }
 
-.qna_btn_flex {
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: space-between;
+
+
+#qna-cate-btn{
+	float:right;
+	margin-right: 5px;
+	margin-bottom:30px;
 }

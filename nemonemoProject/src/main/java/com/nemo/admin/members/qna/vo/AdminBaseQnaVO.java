@@ -10,7 +10,7 @@ import lombok.Data;
  * @파일이름 : AdminBaseQnaVO.java
  * @작성일 : 2020. 8. 7
  * @이름 : Yerin
- * @프로그램설명 : Admin 페이지에 Qna 테이블 row값
+ * @프로그램설명 :
  * 
  *
  */
@@ -18,10 +18,14 @@ import lombok.Data;
 @Data
 public class AdminBaseQnaVO {
 	private int qnaNo;
-	private String qnaStore;
-	private String qnaCateNo;
-	private String qnaTitle;
+	private int qnaGroup;
+	private String qnaRegId;
+	private String qnaReplyId;
+	private String qnaCategoryNo;
+	private String qnaCategoryName;
+	private String qnaContent;
 	private Date qnaRegYmd;
-	private String qnaReplyFlag;
+	private Date qnaReplyYmd;
+	private String qnaReplyFl;
 
 }

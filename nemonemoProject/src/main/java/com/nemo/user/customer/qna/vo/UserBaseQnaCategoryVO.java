@@ -9,7 +9,7 @@ import lombok.Data;
  * @파일이름 : UserBaseFaqCategoryVO.java
  * @작성일 : 2020. 8. 9
  * @이름 : Yerin
- * @프로그램설명 : FAQ 테이블 값 로우하나를 뜻함
+ * @프로그램설명 : QNA 테이블 값 로우하나를 뜻함
  *  
  */
 

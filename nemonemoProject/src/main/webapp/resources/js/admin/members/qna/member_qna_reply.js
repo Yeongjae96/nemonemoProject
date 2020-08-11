@@ -3,7 +3,7 @@ var oEditors = [];
 		      oAppRef: oEditors,
 		      elPlaceHolder: "qnaReplyContent",
 		      							//SmartEditor2Skin.html 파일이 존재하는 경로
-		      sSkinURI : (contextPath.length == 0 ? '/' : contextPath + "/") +"resources/vendor/smarteditor/SmartEditor2Skin.html",
+		      sSkinURI : (contextPath.length == 0 ? '/' : contextPath + '/') +"resources/vendor/smarteditor/SmartEditor2Skin.html",
 		      htParams : {
 		          bUseToolbar : true,             
 		          bUseVerticalResizer : true,     

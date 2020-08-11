@@ -104,25 +104,25 @@
 									<tbody id="result">
 										<c:forEach var="qnaCategory" items="${qnaCategoryList}">
 											<tr>
-												<td>${qnaCategory.qnaCategorySq}</td>
+												<td>${qnaCategory.qnaCategoryNo}</td>
 												<td>${qnaCategory.qnaCategoryParent}</td>
 												<td>${qnaCategory.qnaCategoryName}</td>
 												<td><c:if test="${qnaCategory.qnaCategoryUseFl eq 'Y'}">
 														<span style="color: blue;"
-															data-qnasq="${qnaCategory.qnaCategorySq}">사용</span>
+															data-qnano="${qnaCategory.qnaCategoryNo}">사용함</span>
 													</c:if> <c:if test="${qnaCategory.qnaCategoryUseFl ne 'Y'}">
 														<span style="color: #EE5058; font-weight: bold;"
-															data-qnasq="${qnaCategory.qnaCategorySq}">미사용</span>
+															data-qnano="${qnaCategory.qnaCategoryNo}">사용안함</span>
 													</c:if></td>
 												<td class="text-center">
 													<button type="button" data-toggle="modal"
 														data-target="#qna_category_update"
 														class="qna-category-upd-btn btn btn-success"
-														data-qnasq="${qnaCategory.qnaCategorySq}">수정</button>
+														data-qnano="${qnaCategory.qnaCategoryNo}">수정</button>
 													<button type="button"
 														class="qna-category-del-btn btn btn-danger"
 														data-toggle="modal" data-target="#qna_category_delete"
-														data-qnasq="${qnaCategory.qnaCategorySq}">삭제</button>
+														data-qnano="${qnaCategory.qnaCategoryNo}">삭제</button>
 												</td>
 											</tr>
 										</c:forEach>
@@ -187,7 +187,7 @@
                             <div class="modal-body">
                                 <div class="form-group">
 	                               		 <div class="qna-category-registry--content">
-	                               		 	<input type="hidden" id="qnaUpdateSq">
+	                               		 	<input type="hidden" id="qnaUpdateNo">
 		                                    <label for="categoryName">대분류</label>
 		                                   <input type="text" class="qna-category-reg-content--input" name="qnaCategoryParent" id="qnaCateParentUpd" placeholder="대분류 이름을 입력해주세요">
 	                                	</div>

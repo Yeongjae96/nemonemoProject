@@ -14,6 +14,6 @@ public interface CustomerQnaMapper extends ICustomerQnaMapper{
 	/* 카테고리 */
 	public List<UserBaseQnaCategoryVO> getQnaCategoryParentList();
 	public List<UserBaseQnaCategoryVO> getQnaCategoryNameList();
-	
+	public List<UserBaseQnaCategoryVO> getQnaCategoryList();
 		
 }

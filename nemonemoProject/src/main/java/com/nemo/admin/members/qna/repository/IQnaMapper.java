@@ -1,5 +1,9 @@
 package com.nemo.admin.members.qna.repository;
 
+import java.util.List;
+
+import com.nemo.admin.members.qna.vo.AdminBaseQnaVO;
+
 /**
  * @제목 : QNA 테이블의 기본 매퍼
  * @패키지이름 : com.nemo.admin.members.qna.repository
@@ -10,8 +14,7 @@ package com.nemo.admin.members.qna.repository;
  */
 
 public interface IQnaMapper {
-	public int insertQna();
-	public int deleteQna();
-	public int updateQna();
+	public List<AdminBaseQnaVO> getQnaList(AdminBaseQnaVO vo);
+	public AdminBaseQnaVO getQna(AdminBaseQnaVO vo);
 
 }

@@ -31,19 +31,7 @@ $(function () {
         }
 
     });
-    
-    /* 카테고리 추가 시 체크하는 기능 */
-/*    $('#qnaCategoryContent').keyup(function() {
-    	$(this).prop('autocomplete', false);
-    	if($.trim($(this).val()).length == 0) {
-			$checkInput.prop('disabled', true); 
-			$('#checkInput').text('값을 입력해주십시오');
-			$('#checkInput').show();
-			return;
-    	}
-    	if(delayTimer) window.clearTimeout(delayTimer);
-    	delayTimer = window.setTimeout(getCheckResult, 200);
-    });*/
+        
     
     /* update 모달 update 이벤트*/
 (function updateModal() {
@@ -52,10 +40,10 @@ $(function () {
     		$.ajax({
     			url: 'edit.mdo',
     			method: 'GET',
-    			data: {qnaCategorySq: $(this).data('qnasq')},
+    			data: {qnaCategoryNo: $(this).data('qnano')},
     			dataType:'json'
     		}).done(function(data, result) {
-    			$('#qnaUpdateNo').val(data.qnaCategorySq);
+    			$('#qnaUpdateNo').val(data.qnaCategoryNo);
     			$('#qnaCateParentUpd').val(data.qnaCategoryParent);
     			$('#qnaCateNameUpd').val(data.qnaCategoryName);
     			$('#qnaCategoryUseFl').val(data.qnaCategoryUseFl)
@@ -65,7 +53,7 @@ $(function () {
     						url: 'edit.mdo',
     						method: 'post',
     						data: {
-    							qnaCategorySq: data.qnaCategorySq,
+    							qnaCategoryNo: data.qnaCategoryNo,
     							qnaCategoryParent : $('#qnaCateParentUpd').val(),
     							qnaCategoryName: $('#qnaCateNameUpd').val(),
     							qnaCategoryUseFl: data.qnaCategoryUseFl
@@ -95,7 +83,7 @@ $(function () {
 	let selectedCateNo;
 	
 	$('.qna-category-del-btn').click(function() {
-		selectedCateNo = $(this).data('qnasq');
+		selectedCateNo = $(this).data('qnano');
 		
 		$('.modal-title > span').text(`${selectedCateNo}번`);
 	});
@@ -105,7 +93,7 @@ $(function () {
 			url: 'delete.mdo',
 			method: 'POST',
 			data: {
-				qnaCategorySq: selectedCateNo
+				qnaCategoryNo: selectedCateNo
 			},
 			dataType: 'json'
 		}).done(function(data) {
@@ -134,8 +122,8 @@ $(function () {
     		url: 'flag.mdo',
     		method:'post',
     		data: {
-    			qnaCategorySq: $(this).data('qnasq'),
-    			qnaCategoryUseFl: $(this).text() == "사용" ? "N" : "Y"
+    			qnaCategoryNo: $(this).data('qnano'),
+    			qnaCategoryUseFl: $(this).text() == "사용함" ? "N" : "Y"
     		}
     	}).done(function(data) {
     		alert('사용여부를 변경합니다.');

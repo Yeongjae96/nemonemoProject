@@ -5,6 +5,7 @@
     -webkit-box-pack: center;
     justify-content: center;
     padding: 18px 0px 100px;
+    background: rgb(249, 249, 249);
 }
 
 .consulting_list_main{
@@ -83,7 +84,8 @@ a {
     padding: 0px 20px;
     background: rgb(255, 255, 255);
     border-bottom: 1px solid rgb(238, 238, 238);
-    background-color: transparent;
+    border : none;
+/*     background-color: transparent;
     cursor: pointer;
     outline: none;
     border-width: 0px;
@@ -100,8 +102,15 @@ a {
     font-size: 100%;
     line-height: 1.15;
     margin: 0px;
-    text-rendering: auto;
+    text-rendering: auto; */
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0px;
+}
+
 
 .consulting_list_ul_article1_button_div{
     display: flex;
@@ -221,7 +230,7 @@ a {
     border-bottom: 0px;
 }
 
-.notice-list {
+/* .notice-list {
     margin-top: 12px;
     width: 1024px;
     overflow: hidden;
@@ -237,7 +246,7 @@ a {
 
 .notice-list-art {
     position: relative;
-    /* height: 1295px; */
+    height: 1295px;
     will-change: height;
     overflow: hidden;
     transition: height 300ms ease-out 0s;
@@ -263,7 +272,7 @@ a {
     line-height: 1.15;
     text-rendering: auto;
     background-color: white;
-    /* margin: 8px 8px 0px 8px; */
+    margin: 8px 8px 0px 8px;
     border: solid 1px #EEEEEE;
     width: 98%;
 }
@@ -369,7 +378,7 @@ a {
     border-bottom: 1px solid rgb(238, 238, 238);
     display: none;
 }
-
+ */
 
 .total-nav {
     height: 44px;
@@ -385,9 +394,11 @@ a {
     justify-content: center;
     font-weight: 600;
     position: relative;
-    color: rgb(255, 80, 88);
+    font-color: rgb(255, 80, 88);
     flex: 1 1 0%;
 }
+
+
 .total-nav-selected > a {
 
     cursor: pointer;
@@ -416,7 +427,7 @@ a {
     position: relative;
     flex: 1 1 0%;
 }
-
+/* 
 .total-nav > a {
     color: rgb(33, 33, 33);
     cursor: pointer;
@@ -425,4 +436,4 @@ a {
 
 .total-nav > a {
     background-color: transparent;
-}
+} */

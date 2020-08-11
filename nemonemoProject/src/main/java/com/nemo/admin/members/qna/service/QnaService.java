@@ -1,5 +1,9 @@
 package com.nemo.admin.members.qna.service;
 
+import java.util.List;
+
+import com.nemo.admin.members.qna.vo.AdminBaseQnaVO;
+
 /**
  * @제목 : Qna 서비스
  * @패키지이름 : com.nemo.admin.members.qna.service
@@ -10,7 +14,10 @@ package com.nemo.admin.members.qna.service;
  * 
  */
 
-public interface QnaService {
-	
+public interface QnaService {	
+	//public int insertQna(UserBaseQnaVO vo);
+	//public int updateQna(UserBaseQnaVO vo);
+	public List<AdminBaseQnaVO> getQnaList(AdminBaseQnaVO vo);
+	public AdminBaseQnaVO getQna(AdminBaseQnaVO vo);
 
 }

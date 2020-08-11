@@ -1,6 +1,7 @@
 package com.nemo.admin.members.qna.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.admin.members.qna.service.QnaCategoryService;
+import com.nemo.admin.members.qna.service.QnaCategoryUseFlagService;
 import com.nemo.admin.members.qna.vo.QnaCategoryVO;
 
 /**
@@ -24,14 +26,16 @@ import com.nemo.admin.members.qna.vo.QnaCategoryVO;
  * 
  */
 @Controller
-@RequestMapping("members/qna/category")
+@RequestMapping("/members/qna/category")
 public class QnaCategoryController {
 	
 	@Autowired
 	public QnaCategoryService qnaCategoryService;
+	@Autowired
+	public QnaCategoryUseFlagService qnaCategoryUseFlagService;
 	
 	@GetMapping("/list")
-	public ModelAndView qnaCategoryPage(@RequestParam(required = false, defaultValue="Y") String qnaCategoryUseFlMode) {
+	public ModelAndView qnaCategoryPage(@RequestParam(required = false, defaultValue="N") String qnaCategoryUseFlMode) {
 		
 		ModelAndView mav = new ModelAndView("members/qna/category/member_qna_category_list");
 		List<QnaCategoryVO> qnaCategoryList = qnaCategoryService.getQnaCategoryList(qnaCategoryUseFlMode);
@@ -58,9 +62,9 @@ public class QnaCategoryController {
 	/* 카테고리 수정 */
 	@GetMapping("/edit")
 	@ResponseBody
-	public QnaCategoryVO qnaCategoryEditJSON(@RequestParam int qnaCategorySq) {
-		System.out.println("수정할 번호 : " + qnaCategorySq);
-		return qnaCategoryService.getQnaCategory(qnaCategorySq);
+	public QnaCategoryVO qnaCategoryEditJSON(@RequestParam int qnaCategoryNo) {
+		System.out.println("수정할 번호 : " + qnaCategoryNo);
+		return qnaCategoryService.getQnaCategory(qnaCategoryNo);
 	}
 	
 	@PostMapping("/edit")
@@ -73,8 +77,16 @@ public class QnaCategoryController {
 	/* 카테고리 삭제 */
 	@PostMapping("/delete")
 	@ResponseBody
-	public int qnaCategoryDeletePostJSON(@RequestParam int qnaCategorySq) {
-		return qnaCategoryService.deleteQnaCategory(qnaCategorySq);
+	public int qnaCategoryDeletePostJSON(@RequestParam int qnaCategoryNo) {
+		return qnaCategoryService.deleteQnaCategory(qnaCategoryNo);
+	}
+	
+	/* 사용여부 */	
+	@PostMapping("/flag")
+	@ResponseBody
+	public int qnaCategoryFlagEditPostJSON(@RequestParam Map<String, Object> useFlagUpdateParamMap) {
+		System.out.println("사용여부" + useFlagUpdateParamMap);
+		return qnaCategoryUseFlagService.updateUseFlag(useFlagUpdateParamMap);
 	}
 	
 	

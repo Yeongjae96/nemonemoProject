@@ -3,8 +3,8 @@
 <mapper namespace="com.nemo.admin.members.qna.repository.impl.QnaCategoryMapper">
 	
 	<resultMap type="com.nemo.admin.members.qna.vo.QnaCategoryVO" id="qnaCategoryMap">
-		<id column="QNA_CATE_SQ" property="qnaCategorySq"/>
-		<result column="QNA_CATE_PARENT_NAME" property="qnaCategoryParent"/>
+		<id column="QNA_CATE_NO" property="qnaCategoryNo"/>
+		<result column="QNA_CATE_PARENT" property="qnaCategoryParent"/>
 		<result column="QNA_CATE_NAME" property="qnaCategoryName"/>
 		<result column="QNA_CATE_USE_FL" property="qnaCategoryUseFl"/>
 	</resultMap>
@@ -12,8 +12,8 @@
 	<!-- 카테고리 리스트 조회 -->
 	<select id="getQnaCategoryList" parameterType="String" resultMap="qnaCategoryMap">
 		SELECT
-			QNA_CATE_SQ,
-			QNA_CATE_PARENT_NAME,
+			QNA_CATE_NO,
+			QNA_CATE_PARENT,
 			QNA_CATE_NAME,
 			QNA_CATE_USE_FL
 		FROM 
@@ -31,7 +31,7 @@
 		FROM
 			qna_cate_tb
 		WHERE
-			qna_cate_sq = #{qnaCategorySq}
+			qna_cate_no = #{qnaCategoryNo}
 	</select>
 
 
@@ -46,12 +46,22 @@
 		UPDATE 
 			QNA_CATE_TB
 		SET 
-			QNA_CATE_PARENT_NAME = #{qnaCategoryParent},
+			QNA_CATE_PARENT = #{qnaCategoryParent},
 			QNA_CATE_NAME = #{qnaCategoryName}, 
 			QNA_CATE_USE_FL = #{qnaCategoryUseFl}
 			
 		WHERE 
-			QNA_CATE_SQ = #{qnaCategorySq}
+			QNA_CATE_NO = #{qnaCategoryNo}
+	</update>
+	
+	<!-- 카테고리 사용 여부  -->
+	<update id="useFlagUpdate" parameterType="map">
+		UPDATE 
+			QNA_CATE_TB
+		SET 
+			QNA_CATE_USE_FL = #{qnaCategoryUseFl, jdbcType=VARCHAR} 
+		WHERE 
+			QNA_CATE_NO = #{qnaCategoryNo, jdbcType=NUMERIC}
 	</update>
 	
 	<!-- 카테고리 삭제 -->
@@ -59,7 +69,7 @@
 		DELETE FROM 
 			qna_cate_tb
 		WHERE 
-			qna_cate_sq = #{qnaCategorySq}
+			qna_cate_no = #{qnaCategoryNo}
 	</delete>
 	
 	

@@ -8,11 +8,10 @@
 <title>Insert title here</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
-<link rel="stylesheet" href="<c:url value="/resources/css/user/qna/qna_list.css"/>">
+
 
 <!-- 페이지 CSS  -->
-<link rel="stylesheet" href="<c:url value="/resources/css/user/sign/signin.css"/>">
-
+<link rel="stylesheet" href="<c:url value="/resources/css/user/customer/qna/qna_list.css"/>">
 
 <!-- 라이브러리 -->
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>

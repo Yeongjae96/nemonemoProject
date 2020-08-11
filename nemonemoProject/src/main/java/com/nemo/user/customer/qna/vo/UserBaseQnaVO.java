@@ -14,6 +14,7 @@ public class UserBaseQnaVO {
 	private String qnaRegId;
 	private String qnaReplyId;
 	private String qnaContent;
+	private String qnaCategoryName;
 	private Date qnaRegDate;
 	private Date qnaReplyDate;
 	private String qnaReplyFl;

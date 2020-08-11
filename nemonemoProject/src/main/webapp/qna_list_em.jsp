@@ -8,10 +8,10 @@
 <title>번개장터 | 1:1상담</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
-<link rel="stylesheet" href="<c:url value="/resources/css/user/qna/qna_list_em.css"/>">
+
 
 <!-- 페이지 CSS  -->
-<link rel="stylesheet" href="<c:url value="/resources/css/user/sign/signin.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/user/customer/qna/qna_list_em.css"/>">
 
 
 

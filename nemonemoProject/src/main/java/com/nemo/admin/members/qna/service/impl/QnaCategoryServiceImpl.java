@@ -28,8 +28,8 @@ public class QnaCategoryServiceImpl implements QnaCategoryService {
 	}
 
 	@Override
-	public QnaCategoryVO getQnaCategory(int qnaCategorySq) {
-		return qnaCategoryMapper.getQnaCategory(qnaCategorySq);
+	public QnaCategoryVO getQnaCategory(int qnaCategoryNo) {
+		return qnaCategoryMapper.getQnaCategory(qnaCategoryNo);
 	}
 
 	@Override

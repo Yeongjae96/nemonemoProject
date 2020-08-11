@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nemo.user.customer.qna.repository.impl.CustomerQnaMapper;
-import com.nemo.user.customer.qna.service.CustomerQnaService;
+import com.nemo.user.customer.qna.service.CustomerQnaCategoryService;
 import com.nemo.user.customer.qna.vo.UserBaseQnaCategoryVO;
 
 @Service
-public class CustomerQnaServiceImpl implements CustomerQnaService{
+public class CustomerQnaCategoryServiceImpl implements CustomerQnaCategoryService{
 	
 	@Autowired
 	private CustomerQnaMapper customerQnaMapper;
@@ -27,6 +27,10 @@ public class CustomerQnaServiceImpl implements CustomerQnaService{
 		List<UserBaseQnaCategoryVO> qnaCategoryNameList = customerQnaMapper.getQnaCategoryNameList();
 		System.out.println(qnaCategoryNameList);
 		return qnaCategoryNameList;
+	}
+	
+	public List<UserBaseQnaCategoryVO> getQnaCategoryList(UserBaseQnaCategoryVO vo) {
+		return customerQnaMapper.getQnaCategoryList();
 	}
 	
 

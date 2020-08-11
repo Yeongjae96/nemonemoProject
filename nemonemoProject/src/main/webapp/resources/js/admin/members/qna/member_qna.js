@@ -27,57 +27,21 @@ $(function () {
             },
         },
     });
+        
 
-});
-
-/* 카테고리 추가 시 체크하는 기능 */
-$('#qnaCategoryContent').keyup(function() {
-	$(this).prop('autocomplete', false);
-	if($.trim($(this).val()).length == 0) {
-		$checkInput.prop('disabled', true); 
-		$('#checkInput').text('값을 입력해주십시오');
-		$('#checkInput').show();
-		return;
-	}
-	if(delayTimer) window.clearTimeout(delayTimer);
-	delayTimer = window.setTimeout(getCheckResult, 200);
-});
-	
-/* 추가 기능 */
-$('#faqCategoryInsert').click(function() {
-	document.faqCategoryForm.submit();
-});
-
-/* 뒤로돌아가기 버튼 */
-$('#faqBtn').click(function() {
-	window.location.href="../list.mdo";
-});
-
-/* 사용 미사용 누르면 바뀌는 클릭 이벤트*/
-$('#result > tr > td > span').click(function() {
-	$.ajax({
-		url: 'flag.mdo',
-		method:'post',
-		data: {
-			faqCategoryNo: $(this).data('faqno'),
-			faqCategoryUseFl: $(this).text() == "사용" ? "N" : "Y"
-		}
-	}).done(function(data) {
-		alert('사용여부를 변경합니다.');
-		window.location.reload(true);
-	}).fail(function(error) {
-		alert('사용 여부 설정에 실패하였습니다.')
-	});
 });
 
 
 
 $(function () {
-    $('#mem-care-list tbody').on('click', '.to_reply', function(){
+    $('#qna-table tbody').on('click', '.to_reply', function(){
+    	alert("눌렸다!");
 
-        location.href="member_care_reply.html";
+        location.href="/nemonemoProject/members/qna/reply.mdo";
     });
 });
+
+
 
 
 
