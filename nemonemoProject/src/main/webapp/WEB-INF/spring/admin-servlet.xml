@@ -23,4 +23,10 @@
 	</context:component-scan>
 	
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/sites/**" />
+			<bean class="com.nemo.admin.commons.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

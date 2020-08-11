@@ -18,8 +18,11 @@
 
 package com.nemo.admin.management.vo;
 
-public class ManagementVO {
+import java.io.Serializable;
 
+public class ManagementVO implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private int adminNo;
 	private String adminId;
 	private String adminPw;
