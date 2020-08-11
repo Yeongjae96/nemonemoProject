@@ -223,7 +223,7 @@
                 <!-- 오른쪽 네비 -->
                 <button class="btn-layout" onClick="open_pop();">로그인</button>
                 <div class="login-btw-signin"></div>
-                <button class="btn-layout">회원가입</button>
+                <button class="btn-layout" onclick="location.href='sign/signup.do'">회원가입</button>
 
             </div>
 
@@ -263,7 +263,7 @@
                 <div class="input-div">
                     <form action="<c:url value="/sign/signin.do"/>" method="POST">
                         <div class="tel-input">
-                            <input type="text" placeholder="휴대폰번호 *숫자만 허용" autocomplete="username" value="" name="userPhone">
+                            <input type="text" placeholder="이메일 입력" autocomplete="userEmail" value="" name="userEmail">
                         </div>
                         <div class="pw-input">
                             <input type="password" placeholder="비밀번호" autocomplete="current-password" value="" name="userPw">
@@ -278,7 +278,7 @@
                     </div>
                 <div class="sign-up-anchor">
                     아직 계정이 없으세요?
-                    <a href="#">회원가입하기</a>
+                    <a href="signup.do">회원가입하기</a>
                 </div>
             </div>
         </div>

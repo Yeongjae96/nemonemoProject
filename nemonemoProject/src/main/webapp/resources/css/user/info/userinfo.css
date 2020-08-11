@@ -52,7 +52,7 @@ label {
 }
 
 .signin-img{
-        width: 40px;
+        width: 60px;
         display: flex;
         height: 100%;
         -webkit-box-pack: center;
@@ -62,11 +62,22 @@ label {
         flex-shrink: 0;
 }
 
-.input-box .verify {
+.upuser-in{
+        width: 60px;
+        display: flex;
+        height: 100%;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        flex-shrink: 0;
+}
+
+.input-box .zipcode {
     background-color: #EE5058;
     cursor: pointer;
 }
-.input-box .verify--active {
+.input-box .zipcode--active {
     background-color: rgb(179, 179, 179);
     cursor: pointer;
 }
@@ -266,13 +277,12 @@ label {
 .fyi{
     color: rgb(136, 136, 136);
 }
-.signup-btn:disabled {
+.updateuser-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
 }
 
-.signup-btn{
-
+.updateuser-btn{
         color: rgb(255, 255, 255);
         width: 100%;
         height: 56px;
