@@ -105,7 +105,6 @@ $(function () {
 }());
 
 
-
 /* update 모달 update 이벤트*/
 (function updateModal() {
 	$('.faq-category-upd-btn').click(function() {
