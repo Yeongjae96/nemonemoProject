@@ -50,7 +50,7 @@
 </head>
 <body class="theme-red">
 
-	<%
+	<% 
 		/* 공통 Header and Nav */
 	%>
 	<header>
@@ -58,65 +58,70 @@
 		<jsp:include page="/WEB-INF/views/admin/include/side-nav.jsp" />
 	</header>
 
-	<%
+	<% 
 		/* 각 페이지의 SECTION */
 	%>
 
 
-
 	<!-------------------------------------------SECTION--------------------------------------------------->
-
 	<section class="content">
 		<div class="container-fluid">
 			<!-- mem-list -->
 			<div class="row clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
-
 						<div class="header">
-							<h1>신고 카테고리 관리</h1>
-							<button type="button" class="btn bg-pink waves-effect m-r-20"
-								data-toggle="modal" data-target="#registryModal">신고
-								카테고리</button>
-							<button type="button" class="btn bg-pink waves-effect m-r-20"
-								onclick="location.href = 'listgo.mdo' ">신고 목록 이동</button>
+							<h1>신고관리</h1>
 						</div>
 
 						<div class="body">
-
+							<button type="button" class="btn bg-pink waves-effect m-r-20"
+								data-toggle="modal" data-target="#registryModal"
+								onclick="location.href = 'redirect:/members/report/listgo.mdo' ">신고
+								카테고리</button>
 							<div class="table-responsive">
 								<table id="mem-report-list"
 									class="table table-bordered table-striped table-hover dataTable display text-center">
-									<h4>신고 카테고리 관리</h4>
+									<h4>상점 신고목록</h4>
 									<thead>
 										<tr>
-											<th style="width: 20%">카테고리 번호</th>
-											<th style="width: 20%">카테고리 이름</th>
-											<th style="width: 20%">상위 카테고리 번호</th>
-											<th style="width: 20%">사용여부</th>
-											<th style="width: 20%">수정/삭제</th>
-
-
+											<th style="width: 10%">신고번호</th>
+											<th style="width: 10%">상품코드</th>
+											<th style="width: 10%">상점코드</th>
+											<th style="width: 10%">신고 카테고리</th>
+											<th style="width: 10%">신고자</th>
+											<th style="width: 10%">신고 대상</th>
+											<th style="width: 10%">신고 내용</th>
+											<th style="width: 10%">신고 날짜</th>
+											<th style="width: 10%">처리상태</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="reportCategory" items="${reportCategoryList}">
-											<tr>
-												<td>${reportCategory.reportCategoryNO}</td>
-												<td><textarea style="width: 100%;">${reportCategory.reportCategoryName}
-                                       			 </textarea></td>
-												<td>${reportCategory.reportCategoryTopCategoryCode}</td>
-												<td>${reportCategory.reportCategoryUseFl}</td>
-												<td class="text-center"><button type="button"
-														class="Category-upd-btn" data-reportCategoryNO="${reportCategory.reportCategoryNO}">수정</button>
+										<tr>
+											<td class="col-md-1">1</td>
+											<td class="col-md-1">상점1102호</td>
+											<!-- 해당 상점 정보 수정하기로 이동-->
+											<td>어플광고</td>
+											<td>2019/05/07</td>
+											<td>호랑이네</td>
+											<td>-</td>
+											<td><a href="www.naver.com" alt="글">해당 글</a></td>
+											<td class="col-md-1"><span class="label label-default">미완료</span></td>
+											<td class="col-md-1"><span class="label label-default">미완료</span></td>
+										</tr>
+										<tr>
+											<td class="col-md-1">1</td>
+											<td class="col-md-2">공룡이네</td>
+											<td>-</td>
+											<td>2019/05/07<span class="label label-warning">
+													New</span></td>
+											<td>호랑이네</td>
+											<td>-</td>
+											<td><a href="www.daum.net" alt="글">해당 글</a></td>
+											<td class="col-md-1"><span class="label label-primary">처리완료</span></td>
+												<td class="col-md-1"><span class="label label-primary">처리완료</span></td>
+										</tr>
 
-													<button type="button" class="Category-del-btn"
-														data-reportCategoryNO="${reportCategory.reportCategoryNO}">삭제</button></td>
-
-
-
-											</tr>
-										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -125,94 +130,6 @@
 				</div>
 			</div>
 		</div>
-
-
-
-		<!-- 등록 카테고리 -->
-
-		<form action="add.mdo" method="post">
-			<div class="modal fade" id="registryModal" tabindex="-1"
-				role="dialog">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<div class="modal-flex--center">
-								<h3 class="modal-title" id="category-modal-title">신고 카테고리
-									등록</h3>
-							</div>
-						</div>
-						<div class="modal-body">
-							<div class="modal-flex--column">
-								<div class="modal-flex--body">
-									<p>
-										<strong>분류</strong>
-									</p>
-
-									<div class="modal-row--content">
-										<div class="input-group input-group-lg">
-											<span class="input-group-addon"> <input type="radio"
-												class="with-gap" id="top-category" name="reportCategoryCODE"
-												value="1" onclick="div_OnOff(this.value,'con');"> <label
-												for="top-category">대분류</label> <input type="radio"
-												class="with-gap" id="mid-category" name="reportCategoryCODE"
-												value="2"> <label for="mid-category">소분류</label>
-
-
-											</span>
-
-										</div>
-									</div>
-								</div>
-
-
-								<div id="con">
-									<div class="modal-flex--body" id="hiden1">
-										<p>
-											<strong>분류</strong>
-										</p>
-										<!-- 각종 카테고리가 들어가야함 -->
-
-										<select class="form-control show-tick"
-											id="lg-category--select" name="reportCategoryTopCategory">
-											<option>광고(상점홍보, 낚시글, 도배글)</option>
-											<option>물품정보 부정확(카테고리, 가격, 사진)</option>
-											<option>거래 금지 품목(담배, 주류, 장물)</option>
-											<option>언어폭력(비방, 욕설, 성희롱)</option>
-
-
-										</select>
-									</div>
-
-									<div class="modal-flex--body" id="hiden2">
-										<p>
-											<strong>카테고리 명</strong>
-										</p>
-
-										<div class="form-group form-group-lg">
-											<div class="form-line">
-												<input type="text" name="reportCategoryContents"
-													class="form-control" placeholder="카테고리명을 입력해주세요" />
-											</div>
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<div class="modal-flex--center">
-								<input type="submit" class="btn btn-link waves-effect bg-blue"
-									id="categoryModalRegistryBtn" value="등록" />
-								<button type="button" class="btn btn-link waves-effect bg-red"
-									data-dismiss="modal">취소</button>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</form>
-
 	</section>
 	<!-------------------------------------------SECTION--------------------------------------------------->
 

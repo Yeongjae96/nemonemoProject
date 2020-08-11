@@ -39,6 +39,10 @@
 	href="<c:url value="/resources/vendor/common/stylesheets/theme-red.css"/>">
 
 
+<!-- alert CDN -->	
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 
 </head>
 <body class="theme-red">
@@ -60,7 +64,7 @@
 	<section class="content">
 		<div class="container-fluid">
 			<div class="block-header">
-				<h2>카테고리 수정</h2>
+				<h2>신고 조치 관리</h2>
 			</div>
 
 			<!-- Advanced Validation -->
@@ -68,27 +72,33 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
 						<div class="header">
-							<h2>카테고리 수정하기</h2>
+							<h2>조치 상태 변경</h2>
 						</div>
 						<div class="body">
 							<form id="reportEditForm" method="POST" action="edit.mdo">
 								
-								<div class="form-group form-float">
-									<div class="form-line">
-										<textarea class="form-control" name="reportCategoryName"
-											style="width: 100%; height: 300px; border: 1px;" required>${reportCategoryVO.reportCategoryName}</textarea>
-										<label class="form-label">카테고리 내용</label>
-									</div>
-									<div class="help-info">카테고리을 수정하세요</div>
-								</div>
-								<input type="hidden" name="reportCategoryNO" value="${param.reportCategoryNO}"/>
-								<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+								  <div class="form-group form-float" style="margin-top: 30px;">
+                                    <label class="form-label">조치 상태</label>
+                                    <select class="selectpicker" id="reportST" name="reportST">
+                                        <option value="Y" <c:if test="${reportListVO.reportST eq 'Y'}">selected</c:if>>Y</option>
+                                        <option value="N" <c:if test="${reportListVO.reportST eq 'N'}">selected</c:if>>N</option>
+                                    </select>
+                                    
+                                </div>
+							
+								<input type="hidden" name="reportNO" value="${param.reportNO}"/>
+								<button class="btn btn-primary waves-effect" type="submit">조치확인</button>
+							
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
+		
+	
+		
 	</section>
 	<!-------------------------------------SECTION ---------------------------------------->
 
@@ -117,6 +127,11 @@
 	<!-- Custom Js -->
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
+		
+		<!-- 개인 JS -->
+	<script
+		src="<c:url value ="/resources/js/admin/members/member_report_list_js"/>"></script>
+		
 
 
 </body>

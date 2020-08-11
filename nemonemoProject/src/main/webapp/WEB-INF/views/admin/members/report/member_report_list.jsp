@@ -50,7 +50,7 @@
 </head>
 <body class="theme-red">
 
-	<% 
+	<%
 		/* 공통 Header and Nav */
 	%>
 	<header>
@@ -58,7 +58,7 @@
 		<jsp:include page="/WEB-INF/views/admin/include/side-nav.jsp" />
 	</header>
 
-	<% 
+	<%
 		/* 각 페이지의 SECTION */
 	%>
 
@@ -71,56 +71,55 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
 						<div class="header">
-							<h1>신고관리</h1>
+							<h1>신고 관리</h1>
 						</div>
 
 						<div class="body">
-							<button type="button" class="btn bg-pink waves-effect m-r-20"
-								data-toggle="modal" data-target="#registryModal"
-								onclick="location.href = 'member_report_singo.jsp' ">신고
-								카테고리</button>
+							<button type="button" id="reportCategoryBtn"
+								class="btn bg-pink waves-effect m-r-20">신고 카테고리 관리</button>
 							<div class="table-responsive">
 								<table id="mem-report-list"
 									class="table table-bordered table-striped table-hover dataTable display text-center">
 									<h4>상점 신고목록</h4>
 									<thead>
 										<tr>
-											<th>신고번호</th>
-											<th>상점</th>
-											<th>사유</th>
-											<!-- 소분류 -->
-											<th>신고일</th>
+											<th>신고 번호</th>
+											<th>상점 코드</th>
+											<th>상품 코드</th>
+											<th>신고 카테고리</th>
 											<th>신고자</th>
-											<th>기타내용</th>
-											<!-- 사용자가 쓴 메모 내용 -->
-											<th>관련URL</th>
-											<th>처리</th>
+											<th>신고대상 유형</th>
+											<th>신고 내용</th>
+											<th>신고 날짜</th>
+											<th>조치 상태</th>
+											<th>조치 관리자</th>
+											<th>조치 날짜</th>
+											<th>조치 하기</th>
+										
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td class="col-md-1">1</td>
-											<td class="col-md-1">상점1102호</td>
-											<!-- 해당 상점 정보 수정하기로 이동-->
-											<td>어플광고</td>
-											<td>2019/05/07</td>
-											<td>호랑이네</td>
-											<td>-</td>
-											<td><a href="www.naver.com" alt="글">해당 글</a></td>
-											<td class="col-md-1"><span class="label label-default">미완료</span></td>
-										</tr>
-										<tr>
-											<td class="col-md-1">1</td>
-											<td class="col-md-2">공룡이네</td>
-											<td>-</td>
-											<td>2019/05/07<span class="label label-warning">
-													New</span></td>
-											<td>호랑이네</td>
-											<td>-</td>
-											<td><a href="www.daum.net" alt="글">해당 글</a></td>
-											<td class="col-md-1"><span class="label label-primary">처리완료</span></td>
-										</tr>
+										<c:forEach var="reportli" items="${reportList}">
+											<tr>
 
+												<td>${reportli.reportNO}</td>
+												<td>${reportli.reportStoreNO}</td>
+												<td>${reportli.reportProductNO}</td>
+												<td>${reportli.reportCateNO}</td>
+												<td>${reportli.reportSender}</td>
+												<td>${reportli.reportType}</td>
+												<td>${reportli.reportContent}</td>
+												<td>${reportli.reportRegDate}</td>
+												<td>${reportli.reportST}</td>
+												<td>${reportli.adminActId}</td>
+												<td>${reportli.reportActDt}</td>
+												<td class="text-center"><button type="button" id="listup"
+														class="list-upd-btn" data-reportno="${reportli.reportNO}">조치하기</button></td>
+													<!-- <span class="label label-default">미완료</span></td> -->
+											</tr>
+											
+											
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -129,6 +128,12 @@
 				</div>
 			</div>
 		</div>
+
+
+
+
+
+
 	</section>
 	<!-------------------------------------------SECTION--------------------------------------------------->
 
@@ -177,7 +182,7 @@
 
 	<!-- 개인 JS -->
 	<script
-		src="<c:url value ="/resources/js/admin/members/member_report.js"/>"></script>
+		src="<c:url value ="/resources/js/admin/members/member_report_list.js"/>"></script>
 
 
 </body>

@@ -47,9 +47,13 @@
 	<update id="updateCategory"
 		parameterType="com.nemo.admin.members.report.category.vo.ReportCategoryVO">
 
-		UPDATE REPORT_CATE_TB
-		SET REPORT_CATE_NAME = #{reportCategoryName, jdbcType=VARCHAR}
-		WHERE REPORT_CATE_NO = #{reportCategoryNO, jdbcType=NUMERIC}
+		UPDATE 
+			REPORT_CATE_TB
+		SET 
+			REPORT_CATE_NAME = #{reportCategoryName},
+			REPORT_CATE_DEL_FL = #{reportCategoryUseFl}
+		WHERE 
+			REPORT_CATE_NO = #{reportCategoryNO, jdbcType=NUMERIC}
 
 	</update>
 
