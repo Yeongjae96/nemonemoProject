@@ -24,6 +24,7 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10485760"/>
 		<property name="maxInMemorySize" value="1048576"/>
+		<property name="defaultEncoding" value="UTF-8"/>
 	</bean>
 	
 	<context:component-scan base-package="com.nemo">
@@ -31,5 +32,5 @@
 	</context:component-scan>
 	<!-- <mvc:annotation-driven /> -->
 	
-	
+
 </beans>

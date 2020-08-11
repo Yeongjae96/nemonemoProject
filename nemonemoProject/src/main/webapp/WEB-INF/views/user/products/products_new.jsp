@@ -22,13 +22,15 @@
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<c:url value="/resources/vendor/jquery/jquery.form.min.js"/>"></script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
 <!-- services 라이브러리 불러오기 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7f60851ef3536c185d43dc653f4abb8d&libraries=services"></script>
 <!-- 해당 페이지 JS파일 -->
+
+<script> this.contextPath = "<c:url value="/"/>"</script>
 <script src="<c:url value="/resources/js/user/products/products_new.js"/>"></script>
 
 </head>
@@ -64,7 +66,7 @@
 				</div>
 			</nav>
 		</div>
-		<form action="#" method="post" enctype="multipart/form-data">
+		<form action="#" method="post" enctype="multipart/form-data" id="newForm">
 			<!-- 상품등록 메인 컨텐츠 -->
 			<div class="container-fluid d-flex justify-content-center">
 				<main class="flex-container">
@@ -81,17 +83,9 @@
 								</div>
 								<div class="products-content--div">
 									<ul class="image-registry__list" id="imageList">
-										<li class="image-registry__item">이미지 등록<input type="file"
-											id="fileName" accept="image/jpg, image/jpeg, image/png"
-											multiple="multiple" name="file">
+										<li class="image-registry__item">이미지 등록
+										<input type="file" multiple="multiple" id="inputFile" name="">
 										</li>
-										<!-- 사진올렸을때의 예시 
-										<li draggable="false" class="image-registry--user">
-											<div class="text-registry--representive">대표이미지</div> <img
-											src="https://media.bunjang.co.kr/images/crop/491549662_w404.jpg"
-											alt="상품이미지">
-											<button type="button" class="btn-image--cancle"></button>
-										</li> -->
 									</ul>
 									<div class="image-introduce">
 										<b>* 상품 이미지는 640x640에 최적화 되어 있습니다.</b><br> - 이미지는 상품등록 시
@@ -110,12 +104,12 @@
 									<div class="products-title__div">
 										<div class="products-content--div">
 											<input type="text" placeholder="상품 제목을 입력해주세요."
-												class="products-title__input" value="">
+												class="products-title__input" id="productsTitleInput" name="productName">
 											<button type="button"
 												class="products-title__cancel invisible"></button>
 										</div>
 										<div class="products-title__size">
-											<span id="products-title--size">0/40</span>
+											<span id="products-title--size">0</span>/40
 										</div>
 									</div>
 								</div>
@@ -127,122 +121,24 @@
 								</div>
 								<div class="products-content--div">
 									<div class="products-category__div1">
-										<div class="products-category__div2" id="lgCategory">
-											<ul class="products-category-list">
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														패션잡화</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														여성의류</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														남성의류</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														디지털/가전</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														도서/티켓/취미/애완</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														생활/문구/가구/식품</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														유아동/출산</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														스타굿즈</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														스포츠/레저</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">뷰티/미용</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">기타</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">차량/오토바이</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">구인구직</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">재능</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">번개나눔</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">지역
-														서비스</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">원룸/함께살아요</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">커뮤니티</button>
-												</li>
+										<div class="products-category__div2">
+											<ul class="products-category-list" id="lgCategory">
+											<li class="products-category-nothing">대분류 선택</li>
 											</ul>
 										</div>
-										<div class="products-category__div2" id="mdCategory">
-											<ul class="products-category-list">
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														여성가방</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														운동화/캐주얼화</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														여셩화</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														지갑</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														시계</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														남성가방</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														벨트/장갑/스타킹/기타</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														남성화</button>
-												</li>
-												<li class="products-category-item">
-													<button type="bZutton" class="products-category-btn">
-														모자</button>
-												</li>
-												<li class="products-category-item">
-													<button type="button" class="products-category-btn">
-														안경/선글라스</button>
-												</li>
+										<div class="products-category__div2">
+											<ul class="products-category-list" id="mdCategory">
+												<li class="products-category-nothing">중분류 선택</li>
 											</ul>
 										</div>
-										<div class="products-category__div2" id="smCategory">소분류 선택</div>
+										<div class="products-category__div2">
+											<ul class="products-category-list" id="smCategory">
+												<li class="products-category-nothing">소분류 선택</li>
+											</ul>
+										</div>
 									</div>
 									<h3 class="products-category__guide" id="selectedCategory">
-										선택한 카테고리 : <b>패션잡화</b>
+										선택한 카테고리 : <b></b>
 									</h3>
 								</div>
 							</li>
@@ -259,7 +155,7 @@
 										<button type="button" class="">주소 검색</button>
 									</div>
 									<input readonly placeholder="선호 거래 지역을 검색해주세요."
-										class="products-location--input" value="" id="myLocationInput">
+										class="products-location--input" value="" id="myLocationInput" name="productDealArea">
 								</div>
 							</li>
 							<!-- 상태 -->
@@ -270,9 +166,9 @@
 								<div class="products-content--div d-flex align-items-end mt-2">
 									<div class="products-status--div">
 										<label for="중고상품" class="products-status--label"> <input
-											id="중고상품" type="radio" value="0" name="status">중고상품
+											id="중고상품" type="radio" value="N" name="productUsedSt">중고상품
 										</label> <label for="새상품" class="products-status--label"> <input
-											id="새상품" type="radio" value="0" name="status">새상품
+											id="새상품" type="radio" value="Y" name="productUsedSt">새상품
 										</label>
 									</div>
 								</div>
@@ -286,9 +182,9 @@
 								<div class="products-content--div d-flex align-items-end mt-2">
 									<div class="products-status--div">
 										<label for="교환불가" class="products-status--label"> <input
-											id="교환불가" type="radio" value="0" name="exchange">교환불가
+											id="교환불가" type="radio" value="N" name="productExchSt">교환불가
 										</label> <label for="교환가능" class="products-status--label"> <input
-											id="교환가능" type="radio" value="0" name="exchange">교환가능
+											id="교환가능" type="radio" value="Y" name="productExchSt">교환가능
 										</label>
 									</div>
 								</div>
@@ -302,7 +198,7 @@
 								<div class="products-content--div">
 									<div class="products-price--div">
 										<input type="text" placeholder="숫자만 입력해주세요."
-											class="" value="" id="priceInput"> 원
+											class="" id="priceInput" name="productPrice"> 원
 									</div>
 									<div id="price-validation-text" class="invisible">
 										<i class="fas fa-ban"></i>
@@ -312,7 +208,7 @@
 										<div class="products-delivery-price--div2">
 											<label for="freesShipping"
 												class="products-delivery-price--label"> <input
-												id="freesShipping" type="checkbox">무료배송
+												id="freeShipping" type="checkbox">무료배송
 											</label>
 										</div>
 										<div class="sc-bAtgIc jaIdBw">
@@ -328,8 +224,8 @@
 							<li class="products-main-item">
 								<div class="products-title--div">설명</div>
 								<div class="products-content--div">
-									<textarea placeholder="상품 설명을 입력해주세요." rows="6" id="contentInputd "></textarea>
-									<div class="products-content--size">0/2000</div>
+									<textarea placeholder="상품 설명을 입력해주세요." rows="6" id="contentInput" name="productInfo"></textarea>
+									<div class="products-content--size"><span id="explainSize">0</span>/2000</div>
 								</div>
 							</li>
 							<!-- 연관 태그 -->
@@ -338,7 +234,6 @@
 								<div class="products-content--div">
 									<div class="products-tag--div">
 										<div class="products-tag--div2">
-										
 											<!-- TAG INPUT태그 -->
 											<div class="products-tag--div3">
 												<input type="text" placeholder="연관태그를 입력해주세요. (최대 5개)"
@@ -348,7 +243,7 @@
 									</div>
 									<ul class="products-tag-comment-list">
 										<li class="products-tag-comment-item">
-											<p>태그는 띄어쓰기로 구분되며 최대 9자 까지 입력할 수 있습니다.</p>
+											<p>태그는 띄어쓰기로 구분되며 최대 8자 까지 입력할 수 있습니다.</p>
 										</li>
 										<li class="products-tag-comment-item">
 											<p>태그는 검색의 부가정보로 사용 되지만, 검색 결과 노출을 보장하지는 않습니다.</p>
@@ -369,7 +264,7 @@
 								<div class="products-title--div">수량</div>
 								<div class="products-content--div">
 									<div class="products-count--div">
-										<input type="text" class="products-count--input" value="">개
+										<input id= "quantityInput" type="text" class="products-count--input" name="productQty" placeholder="수량을 입력해주세요">개
 									</div>
 								</div>
 							</li>
@@ -385,14 +280,14 @@
 									<i class="fas fa-times"></i>
 								</button>
 							</header>
-							<ul>
+							<!-- <ul>
 								<li>
-									<!-- 예시 데이터 -->
+									예시 데이터
 									<button class="modal-recent__btn">
 										경기도 의정부시 
 									</button>
 								</li>
-							</ul>
+							</ul> -->
 						</section>
 					</div>
 					
@@ -410,7 +305,7 @@
 					<div id="products-footer">
 						<div class="products-footer-div">
 							<!-- jquery로 서브밋 걸기 -->
-							<button type="button" class="products-footer-btn">등록하기</button>
+							<button id="productRegBtn" class="products-footer-btn">등록하기</button>
 						</div>
 					</div>
 

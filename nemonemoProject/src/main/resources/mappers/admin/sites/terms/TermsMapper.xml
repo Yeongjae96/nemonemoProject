@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nemo.admin.sites.terms.repository.impl.TermsMapper">
+	
+	<resultMap id="termsMap" type="com.nemo.admin.sites.terms.vo.TermsVO" >
+		<id column="terms_no" property="termsNo"/>
+		<result column="admin_reg_id" property="adminRegId"/>
+		<result column="admin_edit_id" property="adminEditId"/>
+		<result column="terms_title" property="termsTitle"/>
+		<result column="terms_content" property="termsContent"/>
+		<result column="terms_required_fl" property="termsRequiredFl"/>
+		<result column="terms_delete_fl" property="termsDeleteFl"/>
+		<result column="terms_reg_ymd" property="termsRegYmd"/>
+		<result column="terms_edit_ymd" property="termsEditYmd"/>
+	</resultMap>
+	
+	<select id="getTermsList" parameterType="com.nemo.admin.sites.terms.vo.TermsVO"
+	resultMap="termsMap">
+		SELECT *
+		FROM terms_tb
+		<!-- <if test='terms_delete_fl == "N"'>
+      	WHERE 
+        	TEMRS_DELETE_FL = 'N'
+      	</if> -->
+		ORDER BY TERMS_NO
+	</select>
+	
+	<select id="getTerms" parameterType="int"
+	resultMap="termsMap">
+		SELECT *
+		FROM terms_tb
+		WHERE terms_no = #{termsNo}
+	</select>
+	
+	<insert id="insertTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
+		INSERT INTO terms_tb (
+			terms_no,
+			terms_title,
+			admin_reg_id,
+			terms_required_fl,
+			terms_delete_fl,
+			terms_content,
+			terms_reg_ymd
+		) VALUES (
+			terms_sq.nextval,
+			#{termsTitle},
+			#{adminRegId}, 
+			#{termsRequiredFl},
+			#{termsDeleteFl},
+			#{termsContent},
+			#{termsRegYmd}
+		) 
+		<selectKey keyProperty="termsNo" keyColumn="TERMS_NO" resultType="Integer" order="AFTER">
+			SELECT terms_SQ.currval FROM dual
+		</selectKey>
+		
+	</insert>
+	
+	<delete id="deleteTerms" parameterType="int">
+		UPDATE 
+			terms_tb
+		SET
+			terms_delete_fl = 'N'	
+		<!-- <set>
+      		<if test="terms_delete_fl.equals('N')">terms_delete_fl = 'Y'</if>
+      		<if test="terms_delete_fl.equals('Y')">terms_delete_fl = 'N'</if>
+      	</set> -->
+      	
+      	
+		WHERE
+			terms_no = #{termsNo}
+	</delete>
+	
+	<update id="updateTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
+		UPDATE terms_tb
+		SET 
+			<!-- admin_edit_id = #{adminEditId}, -->
+			terms_content= #{termsContent},
+			terms_edit_ymd = #{termsEditYmd}
+		WHERE
+			terms_no = #{termsNo}
+	</update>
+
+
+	<update id="renewTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
+		UPDATE terms_tb
+		SET
+			terms_delete_fl = 'N'
+		WHERE
+			terms_title = #{termsTitle} AND terms_delete_fl = 'Y' 
+	</update>
+</mapper>

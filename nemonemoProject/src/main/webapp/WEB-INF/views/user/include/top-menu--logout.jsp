@@ -17,9 +17,11 @@
     height: 40px;
     border-bottom: 1px solid rgb(238, 238, 238);
     background: rgb(255, 255, 255);
-    padding-top : 0px;
-    padding-bottom : 0px;
+   	padding: 0px;
+}
 
+.top-nav button:focus{
+	outline: 0;
 }
 
 .top-menus{
@@ -34,6 +36,7 @@
     flex-shrink: 0;
 }
 
+
 .btn-layout{
     display: flex;
     -webkit-box-align: center;
@@ -43,6 +46,7 @@
     position: relative;
     line-height: 1.4;
     padding: 0px 15px;
+    
 }
 
 
@@ -245,7 +249,7 @@
                     <div class="dropdown-position">
                         <a class="cs" href="#">고객센터</a>
                         <div class="cs-box">
-                            <a class="cs-menu" href="#">공지사항</a>
+                            <a class="cs-menu" href="<c:url value="/customer/notice.do"/>">공지사항</a>
                             <a class="cs-menu" href="#">운영정책</a>
                             <a class="cs-menu" href="#">자주묻는 질문</a>
                             <a class="cs-menu" href="#">1:1상담하기</a>

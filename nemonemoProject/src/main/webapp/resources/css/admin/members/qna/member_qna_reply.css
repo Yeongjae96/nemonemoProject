@@ -1,0 +1,17 @@
+  
+#qna_rpl_title{
+    font-size : 25px;
+    font-family : "Noto Sans KR";
+    margin-bottom: 1rem;
+    font-weight: bold;
+    
+}
+ .btn-layout{
+    display : flex;
+    justify-content: center;
+}
+
+
+.table > thead > tr > th{
+	vertical-align: middle !important;
+}

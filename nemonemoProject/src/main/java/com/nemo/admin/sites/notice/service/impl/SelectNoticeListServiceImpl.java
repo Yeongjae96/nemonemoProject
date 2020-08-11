@@ -5,19 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nemo.admin.sites.notice.repository.NoticeDAO;
+import com.nemo.admin.sites.notice.repository.INoticeMapper;
+import com.nemo.admin.sites.notice.repository.impl.NoticeMapper;
 import com.nemo.admin.sites.notice.service.SelectNoticeListService;
-import com.nemo.admin.sites.notice.vo.NoticeVO;
+import com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO;
 
 
 @Service
 public class SelectNoticeListServiceImpl implements SelectNoticeListService{
 
 	@Autowired
-	private NoticeDAO noticeDAO;
+	private NoticeMapper noticeDAO;
 	
 	@Override
-	public List<NoticeVO> getNoticeList(NoticeVO vo) {
+	public List<AdminBaseNoticeVO> getNoticeList(AdminBaseNoticeVO vo) {
 		return noticeDAO.getNoticeList(vo);
 	}
 	

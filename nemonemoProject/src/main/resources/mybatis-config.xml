@@ -3,11 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<typeAliases>
-		<typeAlias type="com.nemo.user.products.vo.ProductsVO" alias="productsVO"/>
-	</typeAliases>
-	<mappers>
-		<!-- <mapper resource="mapper/productsSql.xml" /> -->
-		<mapper resource="mapper/admin/sites/notice/NoticeDAOMybatis.xml"/>
-	</mappers>
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+		<setting name="cacheEnabled" value="false" />
+        <setting name="useGeneratedKeys" value="true" />
+        <setting name="defaultExecutorType" value="REUSE" />
+	</settings>
 </configuration>

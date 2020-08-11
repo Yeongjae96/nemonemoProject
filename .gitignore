@@ -64,8 +64,8 @@ local.properties
 
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
-#.project
-
+.project
+.classpath
 ### Eclipse Patch ###
 # Spring Boot Tooling
 .sts4-cache/
@@ -168,3 +168,9 @@ $RECYCLE.BIN/
 
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,eclipse,maven,java,java-web
+Servers/Tomcat v9.0 Server at localhost-config/catalina.policy
+Servers/Tomcat v9.0 Server at localhost-config/catalina.properties
+Servers/Tomcat v9.0 Server at localhost-config/context.xml
+Servers/Tomcat v9.0 Server at localhost-config/server.xml
+Servers/Tomcat v9.0 Server at localhost-config/tomcat-users.xml
+Servers/Tomcat v9.0 Server at localhost-config/web.xml

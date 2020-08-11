@@ -14,9 +14,50 @@
 		<org.springframework-version>5.2.7.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.9.5</org.aspectj-version>
 		<org.slf4j-version>1.7.30</org.slf4j-version>
+		 <jcloverslf4j.version>1.7.6</jcloverslf4j.version>
+		 <logback.version>1.1.1</logback.version>
 	</properties>
 
 	<dependencies>
+
+		<!-- 로그 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${jcloverslf4j.version}</version>
+		</dependency>
+
+		<!-- 로그 -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<!-- lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.12</version>
+			<scope>provided</scope>
+		</dependency>
+
+		
+		<!-- JSON 쓰기 위함 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.1</version>
+		</dependency>
+
+
+		<!-- 파일 암호화를 쓰기 위함 -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.3.3.RELEASE</version>
+		</dependency>
+
 
 		<!-- 파일업로드를 쓰기 위함 -->
 		<dependency>
@@ -30,6 +71,13 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.7</version>
+		</dependency>
+
+		<!-- 비밀번호 암호화 -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.3.3.RELEASE</version>
 		</dependency>
 
 		<!-- mybatis -->

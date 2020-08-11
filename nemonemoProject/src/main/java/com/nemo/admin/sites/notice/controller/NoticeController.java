@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.admin.sites.notice.service.DeleteNoticeService;
@@ -14,7 +17,7 @@ import com.nemo.admin.sites.notice.service.InsertNoticeService;
 import com.nemo.admin.sites.notice.service.SelectNoticeListService;
 import com.nemo.admin.sites.notice.service.SelectNoticeService;
 import com.nemo.admin.sites.notice.service.UpdateNoticeService;
-import com.nemo.admin.sites.notice.vo.NoticeVO;
+import com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO;
 
 /**
  * @제목 : 공지사항 컨트롤러
@@ -40,40 +43,32 @@ public class NoticeController {
 	@Autowired private UpdateNoticeService updateNoticeService;
 	
 	@RequestMapping(value = "/list", method= {RequestMethod.GET})
-	public ModelAndView noticePage(NoticeVO vo) {
+	public ModelAndView noticePage(AdminBaseNoticeVO vo) {
 	
-		ModelAndView mav = new ModelAndView("sites/site_notice_list");
-		List<NoticeVO> data = selectNoticeListService.getNoticeList(vo);
+		ModelAndView mav = new ModelAndView("sites/notice/site_notice_list");
+		List<AdminBaseNoticeVO> data = selectNoticeListService.getNoticeList(vo);
 		mav.addObject("noticeList", data);
 		return mav;
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.GET})
 	public ModelAndView noticeEdit(@RequestParam int noticeNo) {
-		
-		ModelAndView mav = new ModelAndView("sites/site_notice_edit");
-		NoticeVO noticeVO = selectNoticeService.getNotice(noticeNo);
-		
-		mav.addObject("noticeVO", noticeVO);
-		
+		ModelAndView mav = new ModelAndView("sites/notice/site_notice_edit");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.POST})
-	public ModelAndView noticeEditAction(NoticeVO vo) {
-		
+	public ModelAndView noticeEditAction(AdminBaseNoticeVO vo) {
 		//Service 
 		updateNoticeService.updateNotice(vo);
-		
 		return new ModelAndView("redirect:/sites/notice/list.mdo");
 	}
 	
 	@RequestMapping(value = "/new", method= {RequestMethod.POST})
-	public ModelAndView noticeInsertAction(NoticeVO vo) {
+	public ModelAndView noticeInsertAction(AdminBaseNoticeVO vo) {
 		
-		int result = insertNoticeService.insertNotice(vo);
+		insertNoticeService.insertNotice(vo);
 		ModelAndView mav = new ModelAndView("redirect:/sites/notice/list.mdo");
-		mav.addObject("result", result);
 		return mav;
 	}
 	
@@ -85,6 +80,21 @@ public class NoticeController {
 		return mav;
 	}
 	
+	@GetMapping("/new")
+	public ModelAndView noticeNewPage() {
+		ModelAndView mav = new ModelAndView("sites/notice/site_notice_new");
+		return mav;
+	}
 	
+	
+	@PostMapping("/flag")
+	public @ResponseBody int delFlag(AdminBaseNoticeVO vo) {
+		return updateNoticeService.updateDelFl(vo);
+	}
+	
+	@GetMapping("/getNoticeJson")
+	public @ResponseBody AdminBaseNoticeVO getNoticeJson(@RequestParam int noticeNo) {
+		return selectNoticeService.getNotice(noticeNo);
+	}
 	
 }
