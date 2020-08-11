@@ -4,7 +4,7 @@
 
 <mapper namespace="com.nemo.user.products.repository.impl.ProductsMapper">
 
-	<resultMap id="productMap" type="com.nemo.user.products.vo.UserNewProductsVO">
+	<resultMap id="productMap" type="com.nemo.user.products.vo.UserBaseProductsVO">
 		<id column="product_no" property="productNo"/>	
 		<result column="product_seller" property="productSeller"/>
 		<result column="product_cate_no" property="productCateNo"/>
@@ -61,9 +61,17 @@
 			#{productTag},
 			#{productQty}
 		)
-		
-	
 	</insert>
+	
+	<select id="selectCategoryProducts" parameterType="int" resultMap="productMap">
+		
+		SELECT *
+		FROM 
+			product_cate_tb
+		WHERE
+			
+		
+	</select>
 	
 	
 </mapper>

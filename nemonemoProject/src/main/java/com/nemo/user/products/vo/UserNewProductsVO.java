@@ -13,5 +13,4 @@ import lombok.ToString;
 @ToString(callSuper =  true)
 public class UserNewProductsVO extends UserBaseProductsVO {
 	private List<MultipartFile> productImages;
-
 }
