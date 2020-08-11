@@ -39,8 +39,8 @@
 	href="<c:url value="/resources/vendor/common/stylesheets/theme-red.css"/>">
 
 <!-- 개인 CSS -->
-<%-- <link rel="stylesheet"
-	href="<c:url value="/resources/css/admin/sites/site_terms.css"/>"> --%>
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/admin/sites/site_terms.css"/>"> 
 
 <!-- JQuery DataTable Css -->
 <link rel="stylesheet"
@@ -91,34 +91,49 @@
 							<thead>
 								<tr>
 									<th>일련번호</th>
-									<th>약관 제목</th>
+									<th>약관유형</th>
 									<th>필수여부</th>
-									<th>삭제여부</th>
+									<th>노출여부</th>
 									<th>약관등록일</th>
 									<th>작성자</th>
 									<th>약관수정일</th>
 									<th>수정자</th>
-									<th>수정/삭제</th>
+									<th>갱신</th>
 								</tr>
 							</thead>
 							<tbody id="result">
 								<c:forEach var="terms" items="${termsList}">
 									<tr>
 										<td>${terms.termsNo}</td>
-										<!-- <td><a href="terms">
-											필수 이용 약관</a>
-										</td> -->
-										<td>${terms.termsTitle}</td>
-										<td>${terms.termsRequiredFl}</td>
-										<td>${terms.termsDeleteFl}</td>
-										<td>${terms.termsRegistryYmd}</td>
-										<td>${terms.adminRegistryId}</td>
-										<td>${terms.termsModifyYmd}</td>
-										<td>${terms.adminModifyId}</td>
 										<td>
-										<button type="button" class="btn bg-pink waves-effect m-r-20" id ="terms-upd-btn" data-couponCd="${terms.termsNo}">수정</button>
-                                        <button type="button" class="btn bg-pink waves-effect m-r-20" id ="terms-del-btn" data-couponCd="${terms.termsNo}">삭제</button>
+											<a class="terms-upd-btn" data-termsno="${terms.termsNo}">
+											<b>
+											<c:choose>
+											    <c:when test="${terms.termsTitle eq 'S'}">
+											        이용약관
+											    </c:when>
+											    <c:when test="${terms.termsTitle eq 'P'}">
+											        개인정보처리방침
+											    </c:when>
+											    <c:otherwise>
+											        위치기반서비스 이용약관
+											    </c:otherwise>
+											</c:choose>
+											
+											</b>
+											</a>
 										</td>
+										<td>${terms.termsRequiredFl}</td>
+										<td>${terms.termsDeleteFl}</td> 
+										<td>${terms.termsRegYmd}</td>
+										<td>${terms.adminRegId}</td>
+										<td>${terms.termsEditYmd}</td>
+										<td>${terms.adminEditId}</td>
+										<td>
+											<c:if test="${terms.termsDeleteFl == 'Y'}">
+	    										<a class="terms-renew" data-termsNo="${terms.termsNo}"><b>약관 갱신</b></a>
+											</c:if>
+										</td>	
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -134,36 +149,6 @@
 
 				</div>
 			</div>
-			<!-- Modal -->
-			<!-- <div class="modal fade" id="seriveUse_in" role="dialog">
-				<div class="modal-dialog">
-					Modal content
-					<div class="modal-content">
-						modal header
-						<div class="modal-header">
-							<h4 class="modal-title">이용약관 등록</h4>
-						</div>
-
-						<div class="modal-body">
-							<form method="POST" action="new.mdo" name="couponForm">
-							<div class="form-group">
-								<label for="InputNoticeName">이용약관 제목</label> 
-								<input type="text" class="form-control" id="serviceUse_title" placeholder="약관명 입력"> 
-									<label for="InputNoticeName">약관 내용</label>
-									<textarea rows="20" cols="50" name="serviceUse_content" id="serviceUse_content" ></textarea>	
-								</div>
-							</form>
-						</div>
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-success"
-								data-dismiss="modal" value="Upload" id="service_in">등록</button>
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">취소</button>
-						</div>
-					</div>
-				</div>
-			</div> -->
 		</div>
 	</section>
 	<!-------------------------------------------SECTION--------------------------------------------------->
@@ -211,6 +196,7 @@
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
 	
 	<!-- 개인 JS -->
-	<script src="<c:url value ="/resources/js/admin/sites/site_terms.js"/>"></script>	
+	<script src="<c:url value ="/resources/js/admin/sites/site_terms.js?v=<%=System.currentTimeMillis() %>"/>"></script>	
+
 </body>
 </html>

@@ -83,3 +83,9 @@
 .input-group-addon {
     background-color: transparent;
 }
+
+button{
+	border : none;
+	outline: none;
+	
+}

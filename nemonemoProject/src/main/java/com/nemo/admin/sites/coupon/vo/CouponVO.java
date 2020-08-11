@@ -1,55 +1,25 @@
 package com.nemo.admin.sites.coupon.vo;
 
-import java.sql.Date;
+import lombok.Data;
 
+/**
+ * @제목 : 쿠폰 VO 객체
+ * @패키지이름 : com.nemo.admin.sites.coupon.vo
+ * @파일이름 : CouponVO.java
+ * @작성일 : 2020. 8. 10.
+ * @이름 : Hyein
+ * @프로그램설명 : 쿠폰 테이블의 하나의 행값을 나타내는 값 객체
+ * == 수정 정보 ==
+ *
+ * DATE		 	AUTHOR			NOTE
+ * -------		--------		-------------
+ *  20.08.10	이혜인			lombok 라이브러리 추가 및 DB변경사항 적용 
+ */
+@Data
 public class CouponVO {
-	private String couponCd;
-	private String couponNm;
+	private int couponNo;
+	private String couponName;
 	private String couponContent;
-	private String couponSrtYmd;
-	private String couponEndYmd;
+	private String couponPrd;
 	private String couponDisPrice;
-	public String getCouponCd() {
-		return couponCd;
-	}
-	public void setCouponCd(String couponCd) {
-		this.couponCd = couponCd;
-	}
-	public String getCouponNm() {
-		return couponNm;
-	}
-	public void setCouponNm(String couponNm) {
-		this.couponNm = couponNm;
-	}
-	public String getCouponContent() {
-		return couponContent;
-	}
-	public void setCouponContent(String couponContent) {
-		this.couponContent = couponContent;
-	}
-	public String getCouponSrtYmd() {
-		return couponSrtYmd;
-	}
-	public void setCouponSrtYmd(String couponSrtYmd) {
-		this.couponSrtYmd = couponSrtYmd;
-	}
-	public String getCouponEndYmd() {
-		return couponEndYmd;
-	}
-	public void setCouponEndYmd(String couponEndYmd) {
-		this.couponEndYmd = couponEndYmd;
-	}
-	public String getCouponDisPrice() {
-		return couponDisPrice;
-	}
-	public void setCouponDisPrice(String couponDisPrice) {
-		this.couponDisPrice = couponDisPrice;
-	}
-	@Override
-	public String toString() {
-		return "CouponVO [couponCd=" + couponCd + ", couponNm=" + couponNm + ", couponContent=" + couponContent
-				+ ", couponSrtYmd=" + couponSrtYmd + ", couponEndYmd=" + couponEndYmd + ", couponDisPrice="
-				+ couponDisPrice + "]";
-	}
-	
 }

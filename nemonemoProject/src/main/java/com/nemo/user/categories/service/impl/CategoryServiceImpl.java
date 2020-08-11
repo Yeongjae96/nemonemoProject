@@ -3,15 +3,18 @@ package com.nemo.user.categories.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.nemo.common.constrants.DirectoryName;
+import com.nemo.common.util.FileUtil;
 import com.nemo.user.categories.service.CategoryService;
 import com.nemo.user.categories.service.UserCategoryProductVO;
 import com.nemo.user.products.repository.impl.ProductsImageMapper;
 import com.nemo.user.products.repository.impl.ProductsMapper;
 import com.nemo.user.products.repository.impl.UserProductsCategoryMapper;
 import com.nemo.user.products.vo.UserBaseProductsCategoryVO;
-import com.nemo.user.products.vo.UserBaseProductsVO;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
@@ -28,7 +31,8 @@ public class CategoryServiceImpl implements CategoryService {
 		List<UserBaseProductsCategoryVO> categoryList = categoryMapper.getAllCategoryList();
 		
 		// 2. 상품 리스트
-		List<UserBaseProductsVO> productList = productMapper;
+//		List<UserBaseProductsVO> productList = productMapper;
+		
 		
 		// 3. 상품 이미지 리스트
 		

@@ -13,9 +13,9 @@ import com.nemo.user.categories.service.CategoryService;
 @RequestMapping("/categories")
 public class CategoriesController {
 
-	@Autowired
-	private CategoryService categoryService;
-	
+//	@Autowired
+//	private CategoryService categoryService;
+//	
 	@GetMapping("/")
 	public ModelAndView goHome() {
 		return new ModelAndView("redirect:/");

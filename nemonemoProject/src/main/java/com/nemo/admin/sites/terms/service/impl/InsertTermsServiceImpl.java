@@ -5,20 +5,24 @@ import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nemo.admin.sites.terms.repository.ITermsMapper;
 import com.nemo.admin.sites.terms.repository.impl.TermsMapper;
 import com.nemo.admin.sites.terms.service.InsertTermsService;
-import com.nemo.admin.sites.terms.vo.AdminBaseTermsVO;
+import com.nemo.admin.sites.terms.vo.TermsVO;
 
 @Service
-public class InsertTermsServiceImpl implements InsertTermsService{
-	
+public class InsertTermsServiceImpl implements InsertTermsService {
+
 	@Autowired
 	private TermsMapper termsDAO;
+
+	@Override
+	public int renewTerms(TermsVO vo) {
+		return termsDAO.renewTerms(vo);
+	}
 	
 	@Override
-	public int insertTerms(AdminBaseTermsVO vo) {
-		vo.setTermsRegistryYmd(new Date(System.currentTimeMillis()));
+	public int insertTerms(TermsVO vo) {
+		vo.setTermsRegYmd(new Date(System.currentTimeMillis()));
 		return termsDAO.insertTerms(vo);
-	}
+	}	
 }

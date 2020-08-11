@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="UTF-8">
+
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>네모내모</title>
@@ -35,7 +36,6 @@
 	<!-- JQuery DataTable Css -->
 	<link rel="stylesheet" href="<c:url value="/resources/vendor/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"/>">
 	
-	
 </head>
 <body class="theme-red">
 
@@ -43,12 +43,13 @@
 		/* 공통 Header and Nav */
 	%>
 	<header>
-		<jsp:include page="/WEB-INF/views/admin/include/header.jsp"/>
-		<jsp:include page="/WEB-INF/views/admin/include/side-nav.jsp"/>		
+		<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
+		<jsp:include page="/WEB-INF/views/admin/include/side-nav.jsp" />
 	</header>
 	<% 
 		/* 각 페이지의 SECTION */
 	%>
+
 	
 	  <!-------------------------------------------SECTION--------------------------------------------------->
         <section class="content">
@@ -99,40 +100,6 @@
                         <!-- 등록 수정 분류-->
                     </div>
                 </div>
-                <!--
-                <div class="modal fade" id="notice_in" role="dialog">
-                    <div class="modal-dialog">
-                        Modal content
-                        <div class="modal-content">
-                            modal header
-                            <div class="modal-header">
-                                <h2 class="modal-title">공지사항 등록</h2>
-                            </div>
-				
-                            <div class="modal-body">
-	                           	<form method="POST" action="new.mdo" name="noticeForm">
-	                                <div class="form-group">
-	                                	<div class="notice-registry--title">
-		                                    <label for="InputNoticeName">공지사항 제목</label>
-		                                    <input type="text" class="form-control" name="noticeTitle" id="noticeTitle" placeholder="제목을 입력해주세요">
-	                                	</div>
-	                                	<div class="notice-registry--content">
-		                                    <label for="InputNoticeName">공지사항 내용</label>
-	                                	</div>
-	                                	<div class="notice-editor clearfix">
-		                                    <textarea class="form-control" id="noticeContent" name="noticeContent" placeholder="내용을 입력해주세요" cols="100" rows="20" ></textarea>
-	                                	</div>
-	                                </div>
-                                </form>
-                            </div>
-                            
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal" id="NoticeInsert">등록</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCancel">취소</button>
-                            </div>
-                         </div>
-                    </div>
-                </div> -->
             </div>
         </section>
         <!-------------------------------------------SECTION--------------------------------------------------->
@@ -171,6 +138,5 @@
 		<script src="<c:url value ="/resources/js/admin/sites/notice/site_notice_list.js"/>"></script>
 		
 
-	
 </body>
 </html>

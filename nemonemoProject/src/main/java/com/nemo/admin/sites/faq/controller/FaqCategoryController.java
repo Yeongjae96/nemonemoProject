@@ -25,7 +25,9 @@ import com.nemo.admin.sites.faq.vo.AdminBaseFaqCategoryVO;
  * @작성일 : 2020. 8. 2.
  * @이름 : Yeong
  * @프로그램설명 : 자주묻는질문 카테고리에 대한 url 요청을 처리하고 응답해준다.
+ * 
  */
+
 @Controller
 @RequestMapping("sites/faq/category")
 public class FaqCategoryController {
@@ -46,14 +48,9 @@ public class FaqCategoryController {
 		return mav;
 	}
 	
-	
-	@PostMapping("/new")
 	public ModelAndView faqCategoryNewAction(AdminBaseFaqCategoryVO vo) {
-		ModelAndView mav = new ModelAndView();
-		RedirectView redirectView = new RedirectView("/sites/faq/category/list.mdo");
-		redirectView.setExposeModelAttributes(false);
-		mav.addObject("operResult", faqCategoryService.insertFaqCategory(vo) == 0 ? "fail" : "success");
-		mav.setView(redirectView);
+		faqCategoryService.insertFaqCategory(vo);
+		ModelAndView mav = new ModelAndView("redirect:/sites/faq/category/list.mdo");
 		return mav;
 	}
 	

@@ -64,6 +64,7 @@ $(function () {
     	const noticeNo = $(this)[0].dataset.noticeno;
     	console.log(noticeNo);
     	
+    	const $frag = document.createDocumentFragment();
     	// 제이쿼리를 이용해서 동적 dom 생성( document.createElement('form') )
     	// attr(속성 부여) -> ('','') -> 단일속성, {} -> 다중속성 
     	$form = $('<form></form>').attr({
@@ -79,8 +80,9 @@ $(function () {
     	});
     	
     	/* form안에 만든 input값을 넣어주겠다. */
+    	$frag.append($form);
     	$form.append($input);
-    	$('body').append($form);
+    	$('body').append($frag);
     	$form[0].submit();
     	$form.remove();
     });

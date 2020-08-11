@@ -12,10 +12,7 @@ import com.nemo.admin.sites.faq.vo.AdminBaseFaqVO;
  * @작성일 : 2020. 8. 1.
  * @이름 : Yeong
  * @프로그램설명 : FAQ테이블의 간단한 CRUD 서비스 인터페이스
- * == 수정 정보 ==
- *
- * DATE		 AUTHOR			NOTE
- * -------	--------	-------------	
+ * 
  */
 public interface FaqService {
 	public int insertFaq(AdminBaseFaqVO vo);

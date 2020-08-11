@@ -2,7 +2,7 @@ package com.nemo.admin.sites.terms.service;
 
 import java.util.List;
 
-import com.nemo.admin.sites.terms.vo.AdminBaseTermsVO;
+import com.nemo.admin.sites.terms.vo.TermsVO;
 
 /**
  * @제목 : 약관 전체조회 서비스 인터페이스
@@ -18,5 +18,5 @@ import com.nemo.admin.sites.terms.vo.AdminBaseTermsVO;
  * 	20.07.30 	김영재				terms 초기설정
  */
 public interface GetTermsListService {
-	public List<AdminBaseTermsVO> getTermsList();
+	public List<TermsVO> getTermsList();
 }

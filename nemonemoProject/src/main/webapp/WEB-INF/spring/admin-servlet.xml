@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
+	<mvc:annotation-driven></mvc:annotation-driven> 
 	
 	<mvc:annotation-driven/>	
 	
@@ -24,4 +25,10 @@
 	</context:component-scan>
 	
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/sites/**" />
+			<bean class="com.nemo.admin.commons.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

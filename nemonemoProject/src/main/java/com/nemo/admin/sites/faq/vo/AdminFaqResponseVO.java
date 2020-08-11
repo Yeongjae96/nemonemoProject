@@ -11,8 +11,7 @@ import lombok.ToString;
  * @작성일 : 2020. 8. 1.
  * @이름 : Yeong
  * @프로그램설명 : FAQ 테이블 값 로우하나를 뜻함
- */
-
+*/
 @Getter
 @Setter
 @ToString(callSuper=true)
