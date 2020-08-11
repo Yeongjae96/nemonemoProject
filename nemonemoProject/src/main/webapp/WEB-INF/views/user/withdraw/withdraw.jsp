@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +12,10 @@
 
 <!-- 페이지 CSS  -->
 
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="https://assets.bunjang.co.kr/static/bundle/css/6b29cf2da9df.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="https://assets.bunjang.co.kr/static/bundle/css/6b29cf2da9df.css"/>">
 
 <!-- 라이브러리 -->
-<script
-	src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
+<script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
 
 
 <!-- 해당 페이지 JS파일 -->
@@ -84,6 +82,7 @@
 								</div>
 							</form>
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -139,10 +138,10 @@
 
 
 		<div id="fb-root" class=" fb_reset">
-			<div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
-				<div></div>
-			</div>
-		</div>
+        <div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+            <div></div>
+        </div>
+    </div>
 	</section>
 
 </body>

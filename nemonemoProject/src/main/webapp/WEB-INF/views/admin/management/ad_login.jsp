@@ -46,7 +46,7 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="loginAdmin" onsubmit="return checks()" method="POST" action="login.mdo">
+                <form id="loginAdmin" method="POST" action="login.mdo">
 						<div class="msg">
 							<b>로그인 하기</b>
 						</div>
@@ -63,11 +63,15 @@
 							</span>
 							<div class="form-line">
 								<input type="password" class="form-control"
-									name="adminPw" id="adminPw" minlength="6" placeholder="비밀번호를 입력하세요" required>
+									name="adminPw" minlength="6" placeholder="비밀번호를 입력하세요" required>
 							</div>
 						</div>
 						<button class="btn btn-block btn-lg bg-pink waves-effect" type="submit" id="ad_login_submit">로그인</button>
-
+						<!-- <div class="row">
+							<div class="col-xs-4" style="margin-left: 30%;">
+								<button class="btn btn-block bg-pink waves-effect" type="submit" value="로그인">로그인</button>
+							</div>
+						</div> -->
 						<div class="row m-t-15 m-b--20">
 							<div class="col-xs-6">
 								<a href="signup.mdo">회원가입</a>

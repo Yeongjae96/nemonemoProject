@@ -17,9 +17,6 @@
 						<c:if test="${admin != null}">
 							<p>${admin.adminId}님 안녕하세요.</p>
 						</c:if>
-						<c:if test="${admin == null}">
-							<p>로그인 해주시길 바랍니다</p>
-						</c:if>
 					</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
@@ -29,7 +26,7 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="/nemonemoProject/management/signup.mdo"><i class="material-icons">group</i>관리자추가</a></li>                  
                             <li role="separator" class="divider"></li>
-                            <li><a href="logout.mdo"><i class="material-icons">input</i>로그아웃</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>로그아웃</a></li>
                         </ul>
                     </div>
                 </div>
@@ -80,7 +77,7 @@
                                 <a href="#">배너(광고) 관리</a>
                             </li>
                             <li>
-                                <a href="/nemonemoProject/sites/notice/list.mdo">공지사항 관리</a>
+                                <a href="#">공지사항 관리</a>
                             </li>
                             <li>
                                 <a href="#">이용약관 관리</a>

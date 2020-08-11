@@ -266,12 +266,12 @@ label {
 .fyi{
     color: rgb(136, 136, 136);
 }
-.signup-btn:disabled {
+.signin-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
 }
 
-.signup-btn{
+.signin-btn{
 
         color: rgb(255, 255, 255);
         width: 100%;
