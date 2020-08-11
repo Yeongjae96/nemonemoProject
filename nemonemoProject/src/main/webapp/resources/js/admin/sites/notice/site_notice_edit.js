@@ -2,55 +2,28 @@ var contentData;
 
 
 $(function() {
-	$.when(getFaqCategory(), getArticle()).done(initEditor);
+	$.when(getArticle()).done(initEditor);
 	sizeCheck('inputTitle', 'size', 30);
 	$('#backBtn').click(function() {history.go(-1)});
 	$('#newBtn').click(postUpdateAction);
 });
 
-/* FAQ 카테고리 불러오기 */
-function getFaqCategory() {
-	var deferred = $.Deferred();
-	/* AJAX 요청 */
-	$.ajax({
-		url: 'category/listJson.mdo', // 요청 URL
-		method: 'GET', // 요청 방식
-		dataType: 'json', // ㅇ
-	}).done(function(data) {
-		const $frag = $(document.createDocumentFragment());
-		$.each(data, function(i, e) {
-			$option = $('<option></option').attr('value', e.faqCategoryNo).text(e.faqCategoryName);
-			$frag.append($option);
-		});
-		$('.faq-category--list').append($frag);
-		deferred.resolve(data);
-	})
-	.fail(function(err) {
-		alert('목록 불러오기에 실패하였습니다.');
-		deferred.reject(err);
-	});
-	return deferred.promise();
-};
-
-
 /* 게시물 가져오기 */
 function getArticle(data) {
-	const paramName = getParam('faqNo');
+	const paramName = getParam('noticeNo');
 	var deferred = $.Deferred();
 	$.ajax({
-		url: 'getFaqJson.mdo',
+		url: 'getNoticeJson.mdo',
 		method: 'GET',
-		data: {faqNo: paramName},
+		data: {noticeNo: paramName},
 		dataType: 'json'
 	}).done(function(data) {
-		// 카테고리 선택
-		$('.faq-category--list option[value='+data.faqCategoryNo+']').prop('selected', true);
 		// 제목 불러오기
-		const $inputTitle = $('#inputTitle').val(data.faqTitle);
+		const $inputTitle = $('#inputTitle').val(data.noticeTitle);
 		// 제목 size 불러오기
 		$('#size').text($inputTitle.val().length);
 		// 사용여부 불러오기
-		const $target = data.faqUseFlag == 'Y' ? $('.radio-area label input').eq(0) : $('.radio-area label input').eq(1);
+		const $target = data.noticeDelFl == 'N' ? $('.radio-area label input').eq(0) : $('.radio-area label input').eq(1);
 		$target.prop('checked', true);
 		// 내용 불러오기
 		deferred.resolve(data);
@@ -83,11 +56,10 @@ function postUpdateAction() {
 	if(checkNull('inputTitle', '제목') || checkNull('faqContent', '내용')) return false;
 	
 	const param = {
-		faqNo: getParam('faqNo'),
-		faqCategoryNo: $('.faq-category--list option:selected').val(),
-		faqTitle: $('#inputTitle').val(),
-		faqContent: $('#faqContent').val(),
-		faqUseFlag: $('.radio-area input[type="radio"]:checked').val()
+		noticeNo: getParam('noticeNo'),
+		noticeTitle: $('#inputTitle').val(),
+		noticeContent: $('#faqContent').val(),
+		noticeFlag: $('.radio-area input[type="radio"]:checked').val()
 	};
 	
 	$.ajax({
@@ -97,7 +69,7 @@ function postUpdateAction() {
 	})
 	.done(function(data) {
 		alert('수정에 성공하였습니다.');
-		window.location.href=`${contextPath}/sites/faq/list.mdo`;
+		window.location.href=`${contextPath}/sites/notice/list.mdo`;
 	}).fail(function(err) {
 		alert('수정에 실패하였습니다.');
 	});
@@ -115,6 +87,7 @@ function getParam(param) {
 	return paramName;
 }
 
+/* null값 체크 */
 function checkNull(id, msg) {
 	const $target = $(`#${id}`);
 	if($target.val().length == 0) {
@@ -127,8 +100,8 @@ function checkNull(id, msg) {
 
 /* 스마트 에디터 init (불러올때 값을 불러옴) */
 var oEditors = [];
-function initEditor(data1, data2) {
-	const contentData = data2.faqContent;
+function initEditor(data2) {
+	const contentData = data2.noticeContent;
 	   nhn.husky.EZCreator.createInIFrame({
 	      oAppRef: oEditors,
 	      elPlaceHolder: "faqContent",

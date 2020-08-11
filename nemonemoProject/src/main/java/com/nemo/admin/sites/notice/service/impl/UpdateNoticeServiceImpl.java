@@ -19,4 +19,11 @@ public class UpdateNoticeServiceImpl implements UpdateNoticeService{
 		return noticeDAO.updateNotice(vo);
 	}
 
+	@Override
+	public int updateDelFl(AdminBaseNoticeVO vo) {
+		return noticeDAO.updateDelFl(vo);
+	}
+	
+	
+
 }

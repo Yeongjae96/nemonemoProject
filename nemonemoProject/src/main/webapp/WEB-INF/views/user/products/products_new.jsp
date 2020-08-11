@@ -22,8 +22,8 @@
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<c:url value="/resources/vendor/jquery/jquery.form.min.js"/>"></script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
 <!-- services 라이브러리 불러오기 -->
@@ -50,8 +50,6 @@
 		/* 각 페이지의 특성! */
 	%>
 	<section>
-		<input multiple="multiple" name="files[]" id="files" type="file" style="display:none"/>
-
 		<!-- 상품등록 메뉴바 -->
 		<div
 			class="container-fluid d-flex justify-content-center border-bottom">
@@ -68,7 +66,7 @@
 				</div>
 			</nav>
 		</div>
-		<form action="#" method="post" enctype="multipart/form-data">
+		<form action="#" method="post" enctype="multipart/form-data" id="newForm">
 			<!-- 상품등록 메인 컨텐츠 -->
 			<div class="container-fluid d-flex justify-content-center">
 				<main class="flex-container">
@@ -85,17 +83,9 @@
 								</div>
 								<div class="products-content--div">
 									<ul class="image-registry__list" id="imageList">
-										<li class="image-registry__item">이미지 등록<input type="file"
-											id="fileName" accept="image/jpg, image/jpeg, image/png"
-											multiple="multiple" name="file">
+										<li class="image-registry__item">이미지 등록
+										<input type="file" multiple="multiple" id="inputFile" name="">
 										</li>
-										<!-- 사진올렸을때의 예시 
-										<li draggable="false" class="image-registry--user">
-											<div class="text-registry--representive">대표이미지</div> <img
-											src="https://media.bunjang.co.kr/images/crop/491549662_w404.jpg"
-											alt="상품이미지">
-											<button type="button" class="btn-image--cancle"></button>
-										</li> -->
 									</ul>
 									<div class="image-introduce">
 										<b>* 상품 이미지는 640x640에 최적화 되어 있습니다.</b><br> - 이미지는 상품등록 시
@@ -114,7 +104,7 @@
 									<div class="products-title__div">
 										<div class="products-content--div">
 											<input type="text" placeholder="상품 제목을 입력해주세요."
-												class="products-title__input" id="productsTitleInput">
+												class="products-title__input" id="productsTitleInput" name="productName">
 											<button type="button"
 												class="products-title__cancel invisible"></button>
 										</div>
@@ -148,7 +138,7 @@
 										</div>
 									</div>
 									<h3 class="products-category__guide" id="selectedCategory">
-										선택한 카테고리 : <b>패션잡화</b>
+										선택한 카테고리 : <b></b>
 									</h3>
 								</div>
 							</li>
@@ -165,7 +155,7 @@
 										<button type="button" class="">주소 검색</button>
 									</div>
 									<input readonly placeholder="선호 거래 지역을 검색해주세요."
-										class="products-location--input" value="" id="myLocationInput">
+										class="products-location--input" value="" id="myLocationInput" name="productDealArea">
 								</div>
 							</li>
 							<!-- 상태 -->
@@ -176,9 +166,9 @@
 								<div class="products-content--div d-flex align-items-end mt-2">
 									<div class="products-status--div">
 										<label for="중고상품" class="products-status--label"> <input
-											id="중고상품" type="radio" value="0" name="status">중고상품
+											id="중고상품" type="radio" value="N" name="productUsedSt">중고상품
 										</label> <label for="새상품" class="products-status--label"> <input
-											id="새상품" type="radio" value="0" name="status">새상품
+											id="새상품" type="radio" value="Y" name="productUsedSt">새상품
 										</label>
 									</div>
 								</div>
@@ -192,9 +182,9 @@
 								<div class="products-content--div d-flex align-items-end mt-2">
 									<div class="products-status--div">
 										<label for="교환불가" class="products-status--label"> <input
-											id="교환불가" type="radio" value="0" name="exchange">교환불가
+											id="교환불가" type="radio" value="N" name="productExchSt">교환불가
 										</label> <label for="교환가능" class="products-status--label"> <input
-											id="교환가능" type="radio" value="0" name="exchange">교환가능
+											id="교환가능" type="radio" value="Y" name="productExchSt">교환가능
 										</label>
 									</div>
 								</div>
@@ -208,7 +198,7 @@
 								<div class="products-content--div">
 									<div class="products-price--div">
 										<input type="text" placeholder="숫자만 입력해주세요."
-											class="" value="" id="priceInput"> 원
+											class="" id="priceInput" name="productPrice"> 원
 									</div>
 									<div id="price-validation-text" class="invisible">
 										<i class="fas fa-ban"></i>
@@ -218,7 +208,7 @@
 										<div class="products-delivery-price--div2">
 											<label for="freesShipping"
 												class="products-delivery-price--label"> <input
-												id="freesShipping" type="checkbox">무료배송
+												id="freeShipping" type="checkbox">무료배송
 											</label>
 										</div>
 										<div class="sc-bAtgIc jaIdBw">
@@ -234,8 +224,8 @@
 							<li class="products-main-item">
 								<div class="products-title--div">설명</div>
 								<div class="products-content--div">
-									<textarea placeholder="상품 설명을 입력해주세요." rows="6" id="contentInputd "></textarea>
-									<div class="products-content--size">0/2000</div>
+									<textarea placeholder="상품 설명을 입력해주세요." rows="6" id="contentInput" name="productInfo"></textarea>
+									<div class="products-content--size"><span id="explainSize">0</span>/2000</div>
 								</div>
 							</li>
 							<!-- 연관 태그 -->
@@ -244,7 +234,6 @@
 								<div class="products-content--div">
 									<div class="products-tag--div">
 										<div class="products-tag--div2">
-										
 											<!-- TAG INPUT태그 -->
 											<div class="products-tag--div3">
 												<input type="text" placeholder="연관태그를 입력해주세요. (최대 5개)"
@@ -254,7 +243,7 @@
 									</div>
 									<ul class="products-tag-comment-list">
 										<li class="products-tag-comment-item">
-											<p>태그는 띄어쓰기로 구분되며 최대 9자 까지 입력할 수 있습니다.</p>
+											<p>태그는 띄어쓰기로 구분되며 최대 8자 까지 입력할 수 있습니다.</p>
 										</li>
 										<li class="products-tag-comment-item">
 											<p>태그는 검색의 부가정보로 사용 되지만, 검색 결과 노출을 보장하지는 않습니다.</p>
@@ -275,7 +264,7 @@
 								<div class="products-title--div">수량</div>
 								<div class="products-content--div">
 									<div class="products-count--div">
-										<input type="text" class="products-count--input" value="">개
+										<input id= "quantityInput" type="text" class="products-count--input" name="productQty" placeholder="수량을 입력해주세요">개
 									</div>
 								</div>
 							</li>
@@ -291,14 +280,14 @@
 									<i class="fas fa-times"></i>
 								</button>
 							</header>
-							<ul>
+							<!-- <ul>
 								<li>
-									<!-- 예시 데이터 -->
+									예시 데이터
 									<button class="modal-recent__btn">
 										경기도 의정부시 
 									</button>
 								</li>
-							</ul>
+							</ul> -->
 						</section>
 					</div>
 					
@@ -316,7 +305,7 @@
 					<div id="products-footer">
 						<div class="products-footer-div">
 							<!-- jquery로 서브밋 걸기 -->
-							<button type="button" class="products-footer-btn">등록하기</button>
+							<button id="productRegBtn" class="products-footer-btn">등록하기</button>
 						</div>
 					</div>
 

@@ -1,16 +1,18 @@
 package com.nemo.user.products.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.user.products.service.InsertProductsService;
 import com.nemo.user.products.vo.UserBaseProductsVO;
+import com.nemo.user.products.vo.UserNewProductsVO;
 
 /**
  * @제목 : Products 컨트롤러
@@ -27,7 +29,9 @@ import com.nemo.user.products.vo.UserBaseProductsVO;
  */
 @Controller
 @RequestMapping("/products")
-public class InsertProductsController{
+public class UserNewProductsController{
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	private InsertProductsService insertProductsService;
@@ -38,13 +42,10 @@ public class InsertProductsController{
 		return mav;
 	}
 	
-	@PostMapping("/new")
-	public ModelAndView newAction(UserBaseProductsVO vo) {
-		
-		insertProductsService.insertProducts(vo);
-		
-		ModelAndView mav = new ModelAndView("products/products_new");
-		return mav;
+	@PostMapping("/newJson")
+	public @ResponseBody int newAction(UserNewProductsVO vo) {
+		logger.info("{} 출력",  vo);
+		return insertProductsService.insertProducts(vo);
 	}
 	
 

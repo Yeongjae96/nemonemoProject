@@ -376,7 +376,7 @@ function initTable() {
 	    "language": {
 	        "decimal":        "",
 	        "emptyTable":     "표에서 사용할 수있는 데이터가 없습니다.",
-	        "info":           "총 _TOTAL_명  _START_에서 _END_까지 표시",
+	        "info":           "총 _TOTAL_명  _START_ 개에서 _END_ 개까지 표시",
 	        "infoEmpty":      "0 개 항목 중 0 ~ 0 개 표시",
 	        "infoFiltered":   "(_MAX_ 총 항목에서 필터링 됨)",
 	        "infoPostFix":    "",

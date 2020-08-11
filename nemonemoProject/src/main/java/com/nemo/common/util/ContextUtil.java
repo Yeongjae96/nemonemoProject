@@ -1,4 +1,4 @@
-package com.nemo.common;
+package com.nemo.common.util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

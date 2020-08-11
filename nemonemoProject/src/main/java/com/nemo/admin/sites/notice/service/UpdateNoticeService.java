@@ -4,4 +4,5 @@ import com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO;
 
 public interface UpdateNoticeService {
 	public int updateNotice(AdminBaseNoticeVO vo);
+	public int updateDelFl(AdminBaseNoticeVO vo);
 }

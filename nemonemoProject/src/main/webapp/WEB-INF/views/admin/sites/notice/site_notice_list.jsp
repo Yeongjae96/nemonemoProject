@@ -58,47 +58,53 @@
                         <h1>공지사항 관리</h1>
                     </div>
                     <div class="notice-flex">
-                      	<button type="button" class="btn bg-pink waves-effect" data-toggle="modal" data-target="#notice_in">공지사항 등록</button>
+                      	<button id="regBtn" class="btn bg-pink waves-effect" data-toggle="modal" data-target="#notice_in">공지사항 등록</button>
                     </div>
                     <!--헤더끝-->
                     <div class="body">
                         <div class="table-responsive" style="overflow-x: hidden;">
                             <table id="notice-table" class="table table-bordered table-striped table-hover display">
                                 <thead>
-                                    <tr>
-                                    	<th width="10%">공지 번호</th>
-                                        <th width="15%">공지 제목</th>
-                                        <th width="45%">내용</th>
+                                    <tr class="notice-tr">
+                                    	<th width="15%">공지 번호</th>
+                                        <th width="20%">공지 제목</th>
                                         <th width="10%">게시일</th>
                                         <th width="10%">수정일</th>
-                                        <th width="10%">수정/삭제</th>
+                                        <th width="10%">사용여부</th>
+                                        <th width="15%">수정/삭제</th>
                                     </tr>
                                 </thead>
                                 <tbody id="result">
                                 	<c:forEach var="notice" items="${noticeList}">
-                                   <tr>
+                                   <tr class="notice-tr" data-no="${notice.noticeNo}">
                                    		<td>${notice.noticeNo }</td>
-                                        <td>${notice.noticeTitle}</td>
-                                        <td>${notice.noticeContent}</td>
+                                        <td><a class="edit-link" href="edit.mdo?noticeNo=${notice.noticeNo}">${notice.noticeTitle}</a></td>
                                         <td>${notice.noticeRegYmd}</td>
                                         <td>${notice.noticeEditYmd}</td>
-                                        <td class ="text-center"><button type="button" class ="notice-upd-btn" data-noticeNo="${notice.noticeNo}">수정</button>
-                                            <button type="button" class ="notice-del-btn" data-noticeNo="${notice.noticeNo}">삭제</button></td>
+                                        <td>
+                                        	<c:if test="${notice.noticeDelFl eq 'N'}">
+                                        		<span style="color:blue;">사용</span>
+                                        	</c:if>
+                                        	<c:if test="${notice.noticeDelFl ne 'N'}">
+                                        		<span style="color:#EE5058; font-weight: bold;">미사용</span>
+                                        	</c:if>
+                                        </td>
+                                        <td class ="text-center"><button class ="notice-upd-btn btn btn-success" data-noticeNo="${notice.noticeNo}">수정</button>
+                                            <button class="notice-del-btn btn btn-danger" data-noticeNo="${notice.noticeNo}">삭제</button></td>
                                     </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
                         </div>
                         <!-- 등록 수정 분류-->
-
                     </div>
                 </div>
-                <!-- Modal -->
+                <!--
                 <div class="modal fade" id="notice_in" role="dialog">
                     <div class="modal-dialog">
-                        <!-- Modal content-->
+                        Modal content
                         <div class="modal-content">
-                            <!-- modal header-->
+                            modal header
                             <div class="modal-header">
                                 <h2 class="modal-title">공지사항 등록</h2>
                             </div>
@@ -113,18 +119,20 @@
 	                                	<div class="notice-registry--content">
 		                                    <label for="InputNoticeName">공지사항 내용</label>
 	                                	</div>
-		                                    <textarea class="form-control" id="noticeContent" name="noticeContent" placeholder="내용을 입력해주세요"></textarea>
+	                                	<div class="notice-editor clearfix">
+		                                    <textarea class="form-control" id="noticeContent" name="noticeContent" placeholder="내용을 입력해주세요" cols="100" rows="20" ></textarea>
+	                                	</div>
 	                                </div>
                                 </form>
                             </div>
                             
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal" id="NoticeInsert">등록</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCancel">취소</button>
                             </div>
                          </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
         <!-------------------------------------------SECTION--------------------------------------------------->
@@ -157,6 +165,9 @@
         <script src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
         
         <!-- 개인 JS -->
+		<!-- smartEditor -->
+		<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script>
+		<script>var contextPath = "${pageContext.request.contextPath}";</script>
 		<script src="<c:url value ="/resources/js/admin/sites/notice/site_notice_list.js"/>"></script>
 		
 

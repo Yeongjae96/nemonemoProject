@@ -1,33 +1,58 @@
+const fileBuffer = []; // 파일저장용 전역변수
+let lastClickCategoryNo;
 
 $(function() {
 	initImageArea();
 	initTitleArea();
 	initCategoryArea();
+	initDealArea();
+	initRadioArea();
 	initRecentModal();
 	initPriceArea();
+	initExplainArea();
 	initTagArea();
-	initDealArea();
-	
+	initQuantityArea();
+	initRegBtn();
 });
 
 /* 이미지 영역 */
 function initImageArea() {
-	$('#fileName').on('change', function() {
-		readURL(this);
-	});
+	$('#inputFile').on('change', readURL);
 	
-	var imgarr = [];
-	var fileBuffer = [];
+	
 	/* 사진 미리 보기 함수 */
-	function readURL(input) {
+	function readURL() {
+		const maxSize = 10 * 1024 * 1024;//10MB
+
+		const input = this;
 		if(input.files && input.files[0]) {
 			var reader = new FileReader();
+
+			if($('.image-registry--user').length + input.files.length > 8) {
+				alert('사진은 최대 8장 까지 올릴 수 있습니다.');
+				return false;
+			}
+			let index = 0;
 			reader.onload = function(e) {
-				if($('.image-registry--user').length >= 8) {
-					alert('사진은 최대 8장 까지 올릴 수 있습니다.');
-					return;
+				
+				const fileSize = input.files[index].size;
+				if(fileSize > maxSize) {
+					alert('이미지파일 사이즈는 10MB 이내로 등록 가능합니다. ');
+					return false;
 				}
-		        Array.prototype.push.apply(fileBuffer, input.files);
+				
+				
+				if(index >= input.files.length) {
+					return false;
+				}
+				const image = input.files[index];
+				// 파일 유효성 검사
+				const fileEx = image.name.slice(image.name.lastIndexOf(".")+1).toLowerCase();
+				if(fileEx != "jpg" && fileEx != "png" && fileEx != "gif" && fileEx != "bmp" && fileEx != "jpeg") {
+					alert('파일은 이미지파일(jpg, jpeg, png, gif, bmp)만 가능합니다.');
+					return false;
+				}
+				fileBuffer.push(image);
 				const $div = $('<div></div>');
 				
 				if($('.image-registry--user').length == 0){
@@ -35,7 +60,7 @@ function initImageArea() {
 					$div.addClass('text-registry--representive').text('대표이미지');		
 				}
 				const $li = $('<li></li>').attr({draggable: 'false'}).addClass('image-registry--user');
-				const $image = $('<img/>').attr({'src': e.target.result, alt: '상품이미지'});
+				const $image = $('<img/>').attr({'src': this.result, alt: '상품이미지'});
 				const $closeBtn = $('<button></button>');
 				
 				$closeBtn.attr('type', 'button').addClass('btn-image--cancle').click(deleteImage);
@@ -43,11 +68,13 @@ function initImageArea() {
 				
 				$('#imageList').append($li);
 				
-				//전역변수 배열 데이터 추가
+				// 전역변수 배열 데이터 추가
 				$('.products-title--div small').text(`(${$('.image-registry--user').length}/8)`);
-				console.log("fileBuffer : ", fileBuffer);
+				
+				reader.readAsDataURL(input.files[index++]);
 			}
-			reader.readAsDataURL(input.files[0]);
+			reader.readAsDataURL(input.files[index]);
+			console.log(fileBuffer);
 		}
 	}
 
@@ -62,12 +89,13 @@ function initImageArea() {
 		}
 		$(this).closest('li').remove();
 		$('.products-title--div small').text(`(${$('.image-registry--user').length}/8)`);
+
 	};
 }
 
 /* 제목 영역 */
 function initTitleArea() {
-	const $title = $('#productsTitleInput')
+	const $title = $('#productsTitleInput');
 	const sizeObj = {};
 	sizeObj.textId = 'productsTitleInput';
 	sizeObj.sizeId = 'products-title--size';
@@ -79,11 +107,12 @@ function initTitleArea() {
 
 /* 카테고리 영역 함수 */
 function initCategoryArea() {
-	// id lg|md|smCategory 안에 li 
-	//(.products-category-item|.products-category-nothing)을 넣는것
+	// id lg|md|smCategory 안에 li
+	// (.products-category-item|.products-category-nothing)을 넣는것
 	
 	getCategoryList().then(categorySetting);
 	
+	/* 리스트 불러 오기 */
 	function getCategoryList() {
 		return new Promise(function(resolve, reject) {
 			$.ajax({
@@ -96,17 +125,21 @@ function initCategoryArea() {
 		});
 	}
 	
+	/* 카테고리 셋팅 하기 */
 	function categorySetting(data) {
 		return new Promise(function(resolve, reject) {
 			
+			// 대중소 분류 배열
 			const lgCateArr = data.filter(e => e.productCateType == 'L');
 			const mdCateArr = data.filter(e => e.productCateType == 'M');
 			const smCateArr = data.filter(e => e.productCateType == 'S');
 			
+			// 대중소 영역 ul
 			const $lgCate = $('#lgCategory');
 			const $mdCate = $('#mdCategory');
 			const $smCate = $('#smCategory');
 			
+			// 공통함수를 쓰기 위한 속성값
 			const cateLgObj = {
 					arr: lgCateArr,
 					cateType: 'l',
@@ -115,6 +148,7 @@ function initCategoryArea() {
 					nothingText: '대분류 선택'
 			}
 			
+			// 공통함수를 쓰기 위한 속성값
 			const cateMdObj = {
 					cateType: 'm',
 					cateID: 'mdCategory',
@@ -122,6 +156,7 @@ function initCategoryArea() {
 					nothingText: '중분류 선택'
 			}
 			
+			// 공통함수를 쓰기 위한 속성값
 			const cateSmObj = {
 					cateType: 's',
 					cateID: 'smCategory',
@@ -132,21 +167,24 @@ function initCategoryArea() {
 			// 라지 카테고리 실행
 			initCategoryList(cateLgObj);
 
-			// 이전에 눌렀던 버튼들 
+			// 이전에 눌렀던 버튼들
 			let prevLgClass;
 			let prevMdClass;
 			let prevSmClass;
 			
-			// 대 분류 눌렀을 때
+			// 대 분류 클릭 이벤트
 			function lgAction(event) {
-				// 기본 셋팅 
+				// 기본 셋팅
 				event.preventDefault();
 				const $this = $(this);
-				// 필터 걸고 중분류 발생
+				
+				lastClickCategoryNo = $this.data('cateno');
+				
+				// 클릭한 대분류값에 해당하는 중분류 값 뿌려주기
 				cateMdObj.arr = mdCateArr.filter(e => $this.text() == e.productCateLarge);
 				initCategoryList(cateMdObj);
 				
-				// 소분류 비우기 
+				// 소분류 비우기
 				listEmpty('smCategory', '소분류 선택');
 				
 				// 클릭된 거 selected 붙여주기 + 이전에 클릭했던거 토글해주기
@@ -163,6 +201,8 @@ function initCategoryArea() {
 				event.preventDefault();
 				const $this = $(this);
 				
+				lastClickCategoryNo = $this.data('cateno');
+				
 				cateSmObj.arr = smCateArr.filter(e => $(this).text() == e.productCateMedium);
 				initCategoryList(cateSmObj);
 				toggleSelect($this);
@@ -177,6 +217,8 @@ function initCategoryArea() {
 			function smAction(evnet) {
 				event.preventDefault();
 				const $this = $(this);
+				
+				lastClickCategoryNo = $this.data('cateno');
 
 				toggleSelect($this);
 				if(prevSmClass) toggleSelect(prevSmClass);
@@ -217,15 +259,15 @@ function initCategoryArea() {
 				$id.attr('class', value);
 			}
 			
-			
-			/* 카테고리 리스트 공통적인 부분
-			 * cateObj 속성
+			/*
+			 * 카테고리 리스트 공통적인 부분 cateObj 속성 
 			 * cateObj.arr : 카테고리가 들어있는 배열
-			 * cateObj.cateType : 대 중 소 구분 분류
+			 * cateObj.cateType : 대 중 소 구분 분류 
 			 * cateObj.cateID : list를 추가시킬 id
-			 * cateObj.buttonAction: 버튼을 누르게 되면 실행할 콜백
-			 * cateObj.nothingText: 없을때 텍스트
-			 * */
+			 * cateObj.buttonAction: 버튼을 누르게 되면 실행할 콜백 
+			 * cateObj.nothingText: 없을때
+			 * 텍스트
+			 */
 			function initCategoryList(cateObj) {
 				const cateArr = cateObj.arr;
 				const $cate = $(`#${cateObj.cateID}`);
@@ -235,7 +277,7 @@ function initCategoryArea() {
 				if(cateArr.length > 0) {
 					cateArr.forEach(function(e) {
 						const $li = $('<li>').addClass('products-category-item');
-						const $button = $('<button>').attr({'class': 'products-category-btn'}).text(type == 'l' ? e.productCateLarge : type == 'm' ? e.productCateMedium : e.productCateSmall);
+						const $button = $('<button>').attr({'class': 'products-category-btn', 'data-cateno': e.productCateNo}).text(type == 'l' ? e.productCateLarge : type == 'm' ? e.productCateMedium : e.productCateSmall);
 						$button.click(cateObj.buttonAction);
 						$li.append($button);
 						$frag.append($li);
@@ -264,12 +306,12 @@ function initDealArea() {
 	            const long = pos.coords.longitude; // 경도
 	            geocoder.coord2Address(long, lat,function(result, status) {
 	                if (status === kakao.maps.services.Status.OK) {
-	                    var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-	                    
+// var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' +
+// result[0].road_address.address_name + '</div>' : '';
 	                    const doName = result[0].address.region_1depth_name;
 	                    const siName = result[0].address.region_2depth_name;
 	                    const dongName = result[0].address.region_3depth_name;
-	                    detailAddr += `${doName} ${siName} ${dongName}`;
+	                    var detailAddr = `${doName} ${siName} ${dongName}`;
 	                    $('#myLocationInput').val(detailAddr);
 	                }
 	            });
@@ -282,7 +324,7 @@ function initDealArea() {
 
 
 
-
+/* 최근 지역 모달 */
 function initRecentModal() {
 	
 	$('#myRecentBtn').click(function() {openModal($('.products-modal__recent'))});
@@ -300,6 +342,14 @@ function initRecentModal() {
 
 }
 
+function initRadioArea() {
+	$('input[type=radio][name=productUsedSt]').eq(0).prop('checked', true);
+	$('input[type=radio][name=productExchSt]').eq(0).prop('checked', true);
+}
+
+
+
+/* 가격 */
 function initPriceArea() {
 	$('#priceInput').on('keyup', priceValidationKeyUpCheck);
 	/* 가격 유효성 검사 체크 */
@@ -315,17 +365,37 @@ function initPriceArea() {
 			$('#price-validation-text').addClass('invisible');
 		}
 	}
-	
 }
 
+/* 설명 */
+function initExplainArea() {
+	const sizeObj = {
+		textId:'contentInput',
+		sizeId:'explainSize',
+		size:'2000'
+	};
+	$('#contentInput').on('keyup', function() {sizeCheck.call(this, sizeObj);});
+}
+
+
+/* 태그 영역 */
 function initTagArea() {
 	$('#tagInput').on('keyup', hashTagEvent);
 	$('#tagInput').on('keydown', function(event) {if(event.keyCode == 13) event.preventDefault();});
-	
+	const $inputDiv = $('#tagInput').closest('div.products-tag--div2');
+
 	/* 태그생성 */
 	function hashTagEvent(event) {
-		if(event.keyCode != 13) return false;
+		event.preventDefault();
+		const $this = $(this);
+		if($this.val().length > 8) {
+			alert('태그명은 8자 이내로 작성해주세요');
+			$this.val($this.val().substring(0,8));
+			return false;
+		}
 		
+		
+		if(event.keyCode != 13) return false;
 		let $ul; 
 		
 		if($('.products-tag-hash--div').length == 0) {
@@ -338,7 +408,7 @@ function initTagArea() {
 		}
 		
 		const $li = $('<li></li>').addClass('products-tag-hash--li');
-		const $btn = $('<button></button>').addClass('products-tag-hash--btn-text').text(`#${$(this).val()}`).click(editTag);
+		const $btn = $('<button></button>').addClass('products-tag-hash--btn-text').text(`#${$(this).val()}`).dblclick(editTag).click(function(e) {e.preventDefault();});
 		const $closeBtn = $('<button></button>').addClass('products-tag-hash--btn-close').click(deleteTag);
 		const $fas = $('<i></i>').addClass('fas fa-times');
 		
@@ -346,21 +416,54 @@ function initTagArea() {
 		$frag.append($li);
 		$closeBtn.append($fas);
 		$li.append($btn, $closeBtn);
-		
 		$ul.append($frag);
 		$(this).val('');
+		
+		
+
+			
+		if($('li.products-tag-hash--li').length == 5) {
+			$inputDiv.hide();
+		}
+		
+		
 	}
 	
 	/* 태그 삭제 */
 	function deleteTag(e) {
 		e.preventDefault();
+		$(this).closest('li').remove();
+		if($inputDiv.css('display') == 'none') {
+			$inputDiv.show();
+		}
 	}
 
 	/* 태그 수정 */
 	function editTag(e) {
 		e.preventDefault();
+		const $this = $(this);
+		const val = $this.text();
+		$this.closest('li').remove();
+		$('#tagInput').val(val.substring(1));
+		if($inputDiv.css('display') == 'none') {
+			$inputDiv.show();
+		}
 	}
 }
+
+function initQuantityArea() {
+	$('#quantityInput').keyup(function() {
+		const $this = $(this);
+		const v = $this.val();
+		if(!/^[0-9]*$/.test(v)) {
+			alert('숫자만 입력하세요');
+			console.log(v); 
+			$this.val(v.replace(/[^0-9]/gi, ''));
+			console.log(v);
+		}
+	});
+}
+
 
 
 /* 표현식 + 공백 체크 */
@@ -380,13 +483,12 @@ function inputCheck(inputObj) {
 	}
 }
 
-/* 제목 size check 
- * sizeObj 속성값
- * sizeObj.textId : 검사할 해당 input
- * sizeObj.sizeId : 길이를 나타내는 div의 id
- * sizeObj.size : 길이
- * */
+/*
+ * 제목 size check sizeObj 속성값 sizeObj.textId : 검사할 해당 input sizeObj.sizeId : 길이를
+ * 나타내는 div의 id sizeObj.size : 길이
+ */
 function sizeCheck(sizeObj) {
+	
 	const $textId = $(`#${sizeObj.textId}`);
 	const $sizeId = $(`#${sizeObj.sizeId}`);
 	const size = sizeObj.size;
@@ -410,4 +512,77 @@ function checkNull(id, msg) {
 	return false;
 }
 
+function initRegBtn() {
+	// 파일 등록
+	$('#productRegBtn').click(function() {if(checkBeforeInsert()) return false; regAction.call(this);});
+	
+	function regAction() {
+		$('#newForm').ajaxForm({
+			url: 'newJson.do',
+			type: 'post',
+			enctype: "multipart/form-data",
+			dataType: 'json',
+			beforeSubmit: function(data, form, option) {
+				// 동적 사진 정보 동적 할당
+				fileBuffer.forEach(function(e, i) {
+					const obj = {
+						name : 'productImages['+i+']',
+						type : 'file',
+						value : e
+					}
+					data.push(obj);
+				});
+				
+				//카테고리 설정
+				const cateObj = {
+					name : 'productCateNo',
+					value : lastClickCategoryNo
+				}
+				data.push(cateObj);
+				
+				const freeShippingObj = {
+						name : 'productFreeShippingSt',
+						value : $('#freeShipping').prop('checked') == true ? 'Y' : 'N'
+				}
+				data.push(freeShippingObj);
+				
+				// 해쉬태그
+				const $hashText =  $('.products-tag-hash--btn-text');
+				let paramArr = '';
+				if($hashText.length) {
+					$hashText.each(function(i, e) {
+						const value = e.innerText.substring(1);
+						paramArr += value + ",";
+					});
+					paramArr = paramArr.substring(0, paramArr.length-1);
+				}
+				
+				const tagObj = {
+						name : 'productTag',
+						value : paramArr
+				}
+				data.push(tagObj);
+				
+				console.log('after data : ', data);
+			},
+			success: function(data) {
+				window.location.href="/"; // 나중에 GetBoard로 가야함
+			},
+			error: function(error) {
+				alert('error : ', error)
+			}
+		});
+// $('#newForm').submit();
+	}
+	
+	function checkBeforeInsert() {
+		if(!fileBuffer.length) { alert('사진을 등록해주세요'); $('#inputFile').focus(); return true;}
+		if(checkNull('productsTitleInput', '제목')) return true;
+		if(!lastClickCategoryNo) { alert('카테고리를 선택해주세요'); $('#lgCategory').focus(); return true; }
+		if(checkNull('myLocationInput', '거래지역')) return true;
+		if(checkNull('priceInput', '금액') || $('#priceInput').val() < 100) { $('#priceInput').focus(); return true;}
+		if(checkNull('contentInput', '설명')) return true;
+		if(checkNull('quantityInput', '개수')) return true;
+	}
+}
 

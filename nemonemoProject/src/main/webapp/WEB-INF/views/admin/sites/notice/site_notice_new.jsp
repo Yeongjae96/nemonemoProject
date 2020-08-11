@@ -17,7 +17,7 @@
 
 <!-- Google Fonts -->
 <link
-	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+	href="https://fotnts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" type="text/css">
@@ -34,7 +34,7 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/admin/common/style.css"/>">
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/admin/sites/notice/site_notice_edit.css"/>">
+	href="<c:url value="/resources/css/admin/sites/notice/site_notice_new.css"/>">
 
 <!--  테마 색상  -->
 <link rel="stylesheet"
@@ -68,37 +68,33 @@
 			<div class="row clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="btn-area clearfix">
-								<button id="backBtn" class="btn btn-danger">뒤로 돌아가기</button>
+							<button id="backBtn" class="btn btn-danger">뒤로 돌아가기</button>
 						</div>
 					<div class="card">
-						
 						<div class="header">
-							<h2>공지사항 <span>수정</span></h2>
+							<h2>공지사항 <span>등록</span></h2>
 						</div>
 						<div class="body">
+							<form id="noticeNewForm" method="POST" action="new.mdo">
 								<div class="faq-row">
 									<label class="">공지사항 제목</label>
 									<div class="input-area">
-										<input id="inputTitle" type="text" name="faqTitle"/>
+										<input id="inputTitle" type="text" name="noticeTitle"/>
 										<div class="input-size">
 											<span id="size">0</span>/30									
 										</div>
 									</div>
 								</div>
 								<div class="faq-row">
-									<label class="">공지사항 사용 여부</label>
-									<div class="radio-area">
-										<label><input type="radio" value="Y" name="useFlag"/>사용</label> 
-										<label><input type="radio" value="N" name="useFlag"/>미사용</label> 
-									</div>
-								</div>
-								<div class="faq-row">
 									<label class="">공지사항 내용</label>
 								</div>
-									<textarea id="faqContent" cols="120" rows="20" name="faqContent"></textarea>
-								<div class="faq-row">
-									<button id="newBtn" class="new-btn btn btn-success">수정</button>
+								<div class="notice-editor">
+									<textarea id="noticeContent" cols="120" rows="20" name="noticeContent"></textarea>								
 								</div>
+								<div class="faq-row">
+									<button id="newBtn" class="new-btn btn btn-success">등록</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -130,9 +126,8 @@
 	
 	<!-- smartEditor -->
 	<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script>
-	<script>var contextPath = "${pageContext.request.contextPath}";</script>
-	<script src="<c:url value ="/resources/js/admin/sites/notice/site_notice_edit.js"/>"></script>
-
+	<script> var contextPath = '<c:url value="/"/>'; </script>
+	<script src="<c:url value ="/resources/js/admin/sites/notice/site_notice_new.js"/>"></script>
 	
 </body>
 </html>

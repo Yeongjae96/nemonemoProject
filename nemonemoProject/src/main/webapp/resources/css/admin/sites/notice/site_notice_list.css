@@ -3,6 +3,7 @@
 .notice-table tr th,
 .notice-table tr td{
     text-align: center;
+    font-size: 16px;
 }
 
 .notice-table tr th textarea{
@@ -23,6 +24,8 @@
 .notice-flex {
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
+    margin-top: 15px;
 }
 
 .notice-flex:first-child {
@@ -100,10 +103,17 @@
 	font-size: 16px;
 }
 
+.modal-dialog {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+}
 
 .modal-content {
 	padding: 40px;
-	min-height: 500px;
+	min-width: 750px;
+	min-height: 600px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -163,6 +173,35 @@
 	padding: 0px;
 }
 
+.notice-tr > th{
+	text-align: center;
+	font-weight: bold;
+}
+
+.notice-tr > td{
+	text-align: center;
+	vertical-align: middle!important;
+}
+
+#result > tr > td > span {
+	cursor: pointer;
+}
+
+.edit-link {
+	color: #4AA8D8;
+	font-weight: bold;	
+}
+
+.edit-link:hover {
+	color: #EE5058;
+	cursor: pointer;
+}
 
 
-
+.notice-editor {
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+	margin-top: 25px;
+	min-height: 450px;
+}

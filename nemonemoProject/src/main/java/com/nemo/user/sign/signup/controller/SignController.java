@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nemo.common.ContextUtil;
+import com.nemo.common.util.ContextUtil;
 import com.nemo.user.sign.signup.service.UserService;
 import com.nemo.user.sign.signup.vo.UserVO;
 

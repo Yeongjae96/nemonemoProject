@@ -760,7 +760,7 @@ b {
 	height: 100%;
 	align-items: center;
 	overflow-x: hidden;
-	max-width: 592px;
+	flex: 1 1 0%:
 }
 
 .products-tag-hash--ul {
@@ -932,6 +932,11 @@ b {
 	left: 50%;
 	transform: translate(-71px, -50%);
 	overflow-x: hidden;
+}
+
+.products-category__div2 button:focus {
+	border:0;
+	outline:0px;
 }
 
 

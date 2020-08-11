@@ -10,11 +10,11 @@
 		<result column="notice_content" property="noticeContent"/>
 		<result column="notice_reg_ymd" property="noticeRegYmd"/>
 		<result column="notice_edit_ymd" property="noticeEditYmd"/>
+		<result column="notice_del_fl" property="noticeDelFl"/>
 	</resultMap>
 
 	<insert id="insertNotice"
 		parameterType="com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO">
-		
 		INSERT INTO notice_tb (
 			notice_no, 
 			notice_title, 
@@ -41,6 +41,7 @@
 		resultMap="noticeMap">
 		SELECT *
 		FROM notice_tb 
+		ORDER BY notice_no desc
 	</select>
 	
 	<select id="getNotice"
@@ -62,6 +63,13 @@
 			notice_no = #{noticeNo} 
 	</update>
 
-
-
+	<update id="updateDelFl" parameterType="com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO">
+		UPDATE notice_tb
+		SET
+			notice_del_fl = #{noticeDelFl, jdbcType=VARCHAR}
+		WHERE
+			notice_no = #{noticeNo}
+	
+	</update>
+	
 </mapper>

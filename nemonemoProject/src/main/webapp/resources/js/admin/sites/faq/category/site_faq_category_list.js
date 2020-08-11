@@ -1,13 +1,10 @@
 /**
  * 
  */
-
-
-var table = $('#faq-category-list');
 this.delayTimer = null; 
 $(function () {
 	
-    table.dataTable({
+	$('#faq-category-list').dataTable({
         language: {
             "decimal": "",
             "emptyTable": "표에서 사용할 수있는 데이터가 없습니다.",
@@ -87,7 +84,7 @@ $(function () {
 		
 		$('.modal-title > span').text(`${categoryNo}번  (${categoryName})`);
 	});
-
+	
 	$('#faqCategoryDelete').click(function() {
 		$.ajax({
 			url: 'delete.mdo',
