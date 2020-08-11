@@ -1,9 +1,87 @@
-/**
- * 
- */
+
+$('.terms-upd-btn').click(function() {
+	const termsno = $(this)[0].dataset.termsno;
+	window.location.href="edit.mdo?termsNo="+termsno;
+	SetSelectBox();
+	
+});
+
+$('#terms-add-btn').click(function() {
+	window.location.href="new.mdo";
+});
+
+
+
+
+$('#terms-add-btn').click(function() {
+	window.location.href="new.mdo";
+	
+});
 
 $('#serviceUse_in').find('.modal-body tbody').append('<tr>').append('<td>new row<td>');
 
+$('#terms-upd-btn').click(function() {
+	alert('수정버튼');
+	const termsNo = $(this)[0].dataset.termsNo;
+	window.location.href="edit.mdo?termsNo="+termsNo;
+});
+
+
+$('#terms-del-btn').click(function() {
+	alert('삭제버튼');
+	const termsNo = $(this)[0].dataset.termsNo;
+	console.log(termsNo);
+	
+	// 제이쿼리를 이용해서 동적 dom 생성( document.createElement('form') )
+	// attr(속성 부여) -> ('','') -> 단일속성, {} -> 다중속성 
+	$form = $('<form></form>').attr({
+		action: "delete.mdo",
+		method: "POST"
+	});
+	// attr(속성 부여) -> ('','') -> 단일속성, {} -> 다중속성 
+	// input의 name은 파라미터의 키값, value는 값
+	$input = $('<input/>').attr({
+		type: 'hidden',
+		name: 'termsNo',
+		value: termsNo,
+	});
+	
+	/* form안에 만든 input값을 넣어주겠다. */
+	$form.append($input);
+	$('body').append($form);
+	$form[0].submit();
+	$form.remove();
+});
+
+
+
+/* 삭제 버튼 기능 */
+/* 삭제 버튼을 누르면 해당 익명 함수를 실행해라 */
+$('.terms-del-btn').click(function() {
+	// 누른 버튼의 dataset(data-*)에 속성값인 termsno를 termsNo 변수에 담아라.
+	const termsNo = $(this)[0].dataset.termsno;
+	console.log(termsNo);
+	
+	// 제이쿼리를 이용해서 동적 dom 생성( document.createElement('form') )
+	// attr(속성 부여) -> ('','') -> 단일속성, {} -> 다중속성 
+	$form = $('<form></form>').attr({
+		action: "delete.mdo",
+		method: "POST"
+	});
+	// attr(속성 부여) -> ('','') -> 단일속성, {} -> 다중속성 
+	// input의 name은 파라미터의 키값, value는 값
+	$input = $('<input/>').attr({
+		type: 'hidden',
+		name: 'termsNo',
+		value: termsNo,
+	});
+	
+	/* form안에 만든 input값을 넣어주겠다. */
+	$form.append($input);
+	$('body').append($form);
+	$form[0].submit();
+	$form.remove();
+});
 
 var table = $('#serviceUse-table');
 
@@ -15,6 +93,9 @@ $(function () {
             $(selected).closest('tr').remove();
         }));
     });
+    
+    
+    
     
     table.dataTable({
         language: {
@@ -41,5 +122,13 @@ $(function () {
         }
 
     });
+    
+    
+    
+//    $('#termsInsert').click(function() {
+//    	alert('에디터 내용이 넘어가야되는데');
+//    	oEditors.getById["termsContent"].exec("UPDATE_CONTENTS_FIELD", []);	
+//    	termsForm.submit();
+//    });
 });
     

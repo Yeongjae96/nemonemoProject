@@ -1,5 +1,7 @@
 package com.nemo.admin.sites.terms.vo;
 
+import java.sql.Date;
+
 /**
  * @제목 : 약관 VO 객체
  * @패키지이름 : com.nemo.admin.sites.terms.vo
@@ -13,17 +15,19 @@ package com.nemo.admin.sites.terms.vo;
  * -------		--------			-------------
  * 	20.07.30 	김영재				테이블 명세서에 따른 초기설정			
  * 	20.07.30 	김영재				컬럼 변경에 대한 수정(deleteFl 추가, modifyId추가, adminId 수정)
+ * 	20.08.03	이혜인				컬럼 타입 변경(termsRegistryYmd, termsModifyYmd)
+ *  20.08.04	이혜인				컬럼명 변경(Registry->Reg, Modify->Edit)
  */
 public class TermsVO {
 	private int termsNo;
-	private String adminRegistryId;
-	private String adminModifyId;
+	private String adminRegId;
+	private String adminEditId;
 	private String termsTitle;
 	private String termsContent;
 	private String termsRequiredFl;
 	private String termsDeleteFl;
-	private String termsRegistryYmd;
-	private String termsModifyYmd;
+	private Date termsRegYmd;
+	private Date termsEditYmd;
 	
 	public int getTermsNo() {
 		return termsNo;
@@ -31,17 +35,17 @@ public class TermsVO {
 	public void setTermsNo(int termsNo) {
 		this.termsNo = termsNo;
 	}
-	public String getAdminRegistryId() {
-		return adminRegistryId;
+	public String getAdminRegId() {
+		return adminRegId;
 	}
-	public void setAdminRegistryId(String adminRegistryId) {
-		this.adminRegistryId = adminRegistryId;
+	public void setAdminRegId(String adminRegId) {
+		this.adminRegId = adminRegId;
 	}
-	public String getAdminModifyId() {
-		return adminModifyId;
+	public String getAdminEditId() {
+		return adminEditId;
 	}
-	public void setAdminModifyId(String adminModifyId) {
-		this.adminModifyId = adminModifyId;
+	public void setAdminEditId(String adminEditId) {
+		this.adminEditId = adminEditId;
 	}
 	public String getTermsTitle() {
 		return termsTitle;
@@ -67,24 +71,23 @@ public class TermsVO {
 	public void setTermsDeleteFl(String termsDeleteFl) {
 		this.termsDeleteFl = termsDeleteFl;
 	}
-	public String getTermsRegistryYmd() {
-		return termsRegistryYmd;
+	public Date getTermsRegYmd() {
+		return termsRegYmd;
 	}
-	public void setTermsRegistryYmd(String termsRegistryYmd) {
-		this.termsRegistryYmd = termsRegistryYmd;
+	public void setTermsRegYmd(Date termsRegYmd) {
+		this.termsRegYmd = termsRegYmd;
 	}
-	public String getTermsModifyYmd() {
-		return termsModifyYmd;
+	public Date getTermsEditYmd() {
+		return termsEditYmd;
 	}
-	public void setTermsModifyYmd(String termsModifyYmd) {
-		this.termsModifyYmd = termsModifyYmd;
+	public void setTermsEditYmd(Date termsEditYmd) {
+		this.termsEditYmd = termsEditYmd;
 	}
-	
 	@Override
 	public String toString() {
-		return "TermsVO [termsNo=" + termsNo + ", adminRegistryId=" + adminRegistryId + ", adminModifyId="
-				+ adminModifyId + ", termsTitle=" + termsTitle + ", termsContent=" + termsContent + ", termsRequiredFl="
-				+ termsRequiredFl + ", termsDeleteFl=" + termsDeleteFl + ", termsRegistryYmd=" + termsRegistryYmd
-				+ ", termsModifyYmd=" + termsModifyYmd + "]";
+		return "TermsVO [termsNo=" + termsNo + ", adminRegId=" + adminRegId + ", adminEditId=" + adminEditId
+				+ ", termsTitle=" + termsTitle + ", termsContent=" + termsContent + ", termsRequiredFl="
+				+ termsRequiredFl + ", termsDeleteFl=" + termsDeleteFl + ", termsRegYmd=" + termsRegYmd
+				+ ", termsEditYmd=" + termsEditYmd + "]";
 	}
 }

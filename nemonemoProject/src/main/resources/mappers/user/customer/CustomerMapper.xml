@@ -11,15 +11,16 @@
 		<result column="notice_ymd" property="noticeYmd"/>
 	</resultMap>
 
-
+	
 	<select id="getNoticeList" resultMap="noticeMap">
 		SELECT 
 			notice_no, 
 			notice_title,
 			notice_content,
-			nvl(notice_modify_ymd, notice_registry_ymd) as notice_ymd
+			nvl(notice_edit_ymd, notice_reg_ymd) as notice_ymd
 		FROM notice_tb
 		ORDER BY notice_ymd desc, notice_no desc
 	</select>
+
 
 </mapper>

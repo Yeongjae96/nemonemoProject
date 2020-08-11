@@ -109,10 +109,10 @@
 										</td>
 										<td>${terms.termsRequiredFl}</td>
 										<td>${terms.termsDeleteFl}</td>
-										<td>${terms.termsRegistryYmd}</td>
-										<td>${terms.adminRegistryId}</td>
-										<td>${terms.termsModifyYmd}</td>
-										<td>${terms.adminModifyId}</td>
+										<td>${terms.termsRegYmd}</td>
+										<td>${terms.adminRegId}</td>
+										<td>${terms.termsEditYmd}</td>
+										<td>${terms.adminEditId}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -142,16 +142,17 @@
 						</div>
 
 						<div class="modal-body">
+						<form method="POST" action="new.mdo" name="termsForm">
 							<div class="form-group">
 								<label for="InputNoticeName">이용약관 제목</label> <input type="text"
 									class="form-control" id="serviceUse_title"
 									placeholder="Enter serviceuse_title"> <label
 									for="InputNoticeName">약관 내용</label>
-								<form method='post' action='' enctype="multipart/form-data">
-									Select file : <input type='file' name='file' id='file'
-										class='form-control'><br>
-								</form>
-							</div>
+									
+									<textarea rows="20" class="form-control" name="serviceUse_content" id="serviceUse_content" ></textarea>	
+									
+								</div>
+							</form>
 						</div>
 
 						<div class="modal-footer">

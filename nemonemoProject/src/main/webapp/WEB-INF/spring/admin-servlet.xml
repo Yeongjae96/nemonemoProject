@@ -10,6 +10,8 @@
 
 	<mvc:annotation-driven></mvc:annotation-driven> 
 	
+	<mvc:annotation-driven/>	
+	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/admin/" />
 		<property name="suffix" value=".jsp" />

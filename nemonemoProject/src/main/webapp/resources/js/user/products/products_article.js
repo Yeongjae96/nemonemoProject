@@ -16,5 +16,14 @@ $(function() {
     $('#zzimBtn').click(function() {
         $zzimDiv = $('.detail-info__btn-zzim').toggleClass('detail--active');
     });
+    
+    $('#reportBtn').click(function() {
+    	alert("눌렸음");
+    	$('#productReportModal').css('display', 'flex');
+    });
+    
+   
+    
+    
 
 });

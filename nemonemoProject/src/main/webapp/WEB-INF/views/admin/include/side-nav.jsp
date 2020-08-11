@@ -57,7 +57,7 @@
                                 <a href="#">회원정보</a>
                             </li>
                             <li>
-                                <a href="#">1:1문의</a>
+                                <a href="qna.mdo">1:1문의</a>
                             </li>
                             <li>
                                 <a href="#">회원쿠폰</a>

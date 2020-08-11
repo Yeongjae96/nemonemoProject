@@ -30,13 +30,7 @@ import com.nemo.admin.management.vo.ManagementVO;
  * @작성일 : 2020. 7. 30.
  * @이름 : Yerin, Dong, Seoungil
  * @프로그램설명 : 관리자 페이지의 경로를 잡아주는 컨트롤러
- * == 수정 정보 ==
- *
- * DATE				 AUTHOR			NOTE
- * -------			--------		-------------	
- * 20. 07.30 		    손예린			초기설정
- * 20. 08.02		    손예린			비밀번호 찾기 modelAndView 추가 및 로그인 암호화
- * 					    손예린			profile READ, UPDATE
+ * 
  * 
  */
 
@@ -90,9 +84,9 @@ public class ManagementController {
 		List<ManagementVO> data = selectAdminListService.getAdminList(vo);
 		mav.addObject("adminList", data);
 		return mav;
-		
 	}	
-	//	// 회원가입 post
+	
+	/* 회원가입 post */
 	@RequestMapping(value = "/signup", method = { RequestMethod.POST })
 	public ModelAndView signupAction(ManagementVO vo) {
 		// 비밀번호 암호화
