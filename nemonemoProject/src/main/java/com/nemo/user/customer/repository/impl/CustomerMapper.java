@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.nemo.user.customer.faq.vo.BaseUserFaqCategoryVO;
-import com.nemo.user.customer.faq.vo.BaseUserFaqVO;
+import com.nemo.user.customer.faq.vo.UserBaseFaqCategoryVO;
+import com.nemo.user.customer.faq.vo.UserBaseFaqVO;
 import com.nemo.user.customer.repository.ICustomerMapper;
-import com.nemo.user.customer.vo.UserNoticeVO;
+import com.nemo.user.customer.vo.UserBaseNoticeVO;
 
 
 /**
@@ -26,8 +26,8 @@ import com.nemo.user.customer.vo.UserNoticeVO;
 @Mapper
 public interface CustomerMapper extends ICustomerMapper{
 	
-	public List<UserNoticeVO> getNoticeList();
-	public List<BaseUserFaqVO> getSelectFaqList(int faqCategoryNo);
-	public List<BaseUserFaqCategoryVO> getFaqCategoryList();
+	public List<UserBaseNoticeVO> getNoticeList();
+	public List<UserBaseFaqVO> getSelectFaqList(int faqCategoryNo);
+	public List<UserBaseFaqCategoryVO> getFaqCategoryList();
 	public int getFaqCategoryStartNum();
 }

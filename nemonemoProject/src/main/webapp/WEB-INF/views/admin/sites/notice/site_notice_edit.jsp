@@ -17,7 +17,7 @@
 
 <!-- Google Fonts -->
 <link
-	href="https://fotnts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" type="text/css">
@@ -33,6 +33,8 @@
 <!-- common CSS -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/admin/common/style.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/admin/sites/notice/site_notice_edit.css"/>">
 
 <!--  테마 색상  -->
 <link rel="stylesheet"
@@ -60,37 +62,43 @@
 	<section class="content">
 		<div class="container-fluid">
 			<div class="block-header">
-				<h2>공지사항 수정</h2>
 			</div>
 
 			<!-- Advanced Validation -->
 			<div class="row clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="btn-area clearfix">
+								<button id="backBtn" class="btn btn-danger">뒤로 돌아가기</button>
+						</div>
 					<div class="card">
+						
 						<div class="header">
-							<h2>공지사항 수정하기</h2>
+							<h2>공지사항 <span>수정</span></h2>
 						</div>
 						<div class="body">
-							<form id="noticeEditForm" method="POST" action="edit.mdo">
-								<div class="form-group form-float">
-									<div class="form-line">
-										<input type="text" class="form-control"
-											name="noticeTitle" minlength="3" required value="${noticeVO.noticeTitle}"> <label
-											class="form-label">공지사항 제목</label>
+								<div class="faq-row">
+									<label class="">공지사항 제목</label>
+									<div class="input-area">
+										<input id="inputTitle" type="text" name="faqTitle"/>
+										<div class="input-size">
+											<span id="size">0</span>/30									
+										</div>
 									</div>
-									<div class="help-info">제목을 수정하세요</div>
 								</div>
-								<div class="form-group form-float">
-									<div class="form-line">
-										<textarea class="form-control" name="noticeContent"
-											style="width: 100%; height: 300px; border: 1px;" required>${noticeVO.noticeContent}</textarea>
-										<label class="form-label">공지사항 내용</label>
+								<div class="faq-row">
+									<label class="">공지사항 사용 여부</label>
+									<div class="radio-area">
+										<label><input type="radio" value="Y" name="useFlag"/>사용</label> 
+										<label><input type="radio" value="N" name="useFlag"/>미사용</label> 
 									</div>
-									<div class="help-info">공지사항을 수정하세요</div>
 								</div>
-								<input type="hidden" name="noticeNo" value="${param.noticeNo}"/>
-								<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
-							</form>
+								<div class="faq-row">
+									<label class="">공지사항 내용</label>
+								</div>
+									<textarea id="faqContent" cols="120" rows="20" name="faqContent"></textarea>
+								<div class="faq-row">
+									<button id="newBtn" class="new-btn btn btn-success">수정</button>
+								</div>
 						</div>
 					</div>
 				</div>
@@ -98,11 +106,6 @@
 		</div>
 	</section>
 	<!-------------------------------------SECTION ---------------------------------------->
-
-
-
-
-
 
 
 	<!-- Jquery Core Js -->
@@ -124,7 +127,12 @@
 	<!-- Custom Js -->
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
+	
+	<!-- smartEditor -->
+	<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script>
+	<script>var contextPath = "${pageContext.request.contextPath}";</script>
+	<script src="<c:url value ="/resources/js/admin/sites/notice/site_notice_edit.js"/>"></script>
 
-
+	
 </body>
 </html>

@@ -3,8 +3,8 @@
 
 <mapper namespace="com.nemo.user.customer.repository.impl.CustomerFaqMapper">
 	
-	<resultMap type="com.nemo.user.customer.faq.vo.BaseUserFaqVO" id="baseUserFaqMap">
-		<id column="faq_no" property="faqNO"/>
+	<resultMap type="com.nemo.user.customer.faq.vo.UserBaseFaqVO" id="baseUserFaqMap">
+		<id column="faq_no" property="faqNo"/>
 		<result column="faq_category_no" property="faqCategoryNo"/>
 		<result column="FAQ_TITLE" property="faqTitle"/>
 		<result column="FAQ_CONTENT" property="faqContent"/>
@@ -12,7 +12,7 @@
 		<result column="FAQ_USE_FL" property="faqUseFlag"/>
 	</resultMap>
 	
-	<resultMap type="com.nemo.user.customer.faq.vo.BaseUserFaqCategoryVO" id="baseUserFaqCategoryMap">
+	<resultMap type="com.nemo.user.customer.faq.vo.UserBaseFaqCategoryVO" id="baseUserFaqCategoryMap">
 		<id column="FAQ_CATEGORY_NO" property="faqCategoryNo"/>
 		<result column="FAQ_CATEGORY_NM" property="faqCategoryName"/>
 		<result column="FAQ_CATEGORY_REG_YMD" property="faqCategoryRegYmd"/>

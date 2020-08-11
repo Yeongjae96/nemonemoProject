@@ -107,6 +107,7 @@ function postUpdateAction() {
 function getParam(param) {
 	const pageParam = decodeURIComponent(window.location.search.substring(1)),
 	pageVariables = pageParam.split('&');
+	let paramName;
 	for(let i of pageVariables) {
 		if(i.split('=')[0] == param)
 			paramName = i.split('=')[1];

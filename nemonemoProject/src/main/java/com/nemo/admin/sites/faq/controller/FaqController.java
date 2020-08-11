@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.nemo.admin.sites.faq.service.FaqService;
 import com.nemo.admin.sites.faq.service.FaqUseFlagService;
 import com.nemo.admin.sites.faq.vo.AdminFaqResponseVO;
-import com.nemo.admin.sites.faq.vo.BaseFaqVO;
+import com.nemo.admin.sites.faq.vo.AdminBaseFaqVO;
 
 /**
  * @제목 : 관리자 FAQ 컨트롤러
@@ -46,36 +46,35 @@ public class FaqController {
 	}
 	
 	@PostMapping("/new")
-	public ModelAndView faqNewAction(BaseFaqVO vo) {
-		System.out.println(vo);
-		faqService.insertFaq(vo);
+	public ModelAndView faqNewAction(AdminBaseFaqVO vo) {
 		ModelAndView mav = new ModelAndView("redirect:/sites/faq/list.mdo");
 		return mav;
 	}
 	
-	@GetMapping("edit")
+	@GetMapping("/edit")
 	public ModelAndView faqEditPage() {
 		return new ModelAndView("sites/faq/site_faq_edit");
 	}
 	
-	@PostMapping("edit")
-	public @ResponseBody int faqEditAction(BaseFaqVO vo) {		
+	@PostMapping("/edit")
+	public @ResponseBody int faqEditAction(AdminBaseFaqVO vo) {		
 		return faqService.updateFaq(vo);
 	}
 	
-	@PostMapping("delete")
+	@PostMapping("/delete")
+	
 	public @ResponseBody int faqDeleteAction(@RequestParam int faqNo) {
 		return faqService.deleteFaq(faqNo);
 	}
 	
 	
-	@GetMapping("getFaqJson")
+	@GetMapping("/getFaqJson")
 	public @ResponseBody AdminFaqResponseVO getFaq(@RequestParam int faqNo) {
 		return faqService.getFaq(faqNo);
 	}
 	
-	@PostMapping("flag.mdo")
-	public @ResponseBody int useFlagToggleAction(BaseFaqVO vo) {
+	@PostMapping("/flag")
+	public @ResponseBody int useFlagToggleAction(AdminBaseFaqVO vo) {
 		return faqUseFlagService.updateUseFlag(vo);
 	}
 }

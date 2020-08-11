@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nemo.user.products.repository.impl.UserProductsCategoryMapper">
+	
+	<resultMap id="productsCateMap" type="com.nemo.admin.products.vo.AdminBaseProductsCategoryVO">
+		<id column="product_cate_no" property="productCateNo"/>
+		<result column="admin_reg_id" property="adminRegId"/>
+		<result column="admin_edit_id" property="adminEditId"/>
+		<result column="product_cate_type" property="productCateType"/>
+		<result column="product_cate_large" property="productCateLarge"/>
+		<result column="product_cate_medium" property="productCateMedium"/>
+		<result column="product_cate_small" property="productCateSmall"/>
+		<result column="product_cate_order" property="productCateOrder"/>
+		<result column="product_cate_del_fl" property="productCateDelFl"/>
+		<result column="product_cate_reg_ymd" property="productCateRegYmd"/>
+		<result column="product_cate_edit_ymd" property="productCateEditYmd"/>
+	</resultMap>
+	
+	<select id="getAllCategoryList" resultMap="productsCateMap">
+		
+		SELECT *
+		FROM product_cate_tb
+		ORDER BY 
+			product_cate_order desc,
+			product_cate_no desc
+		
+	</select>
+	
+	
+	
+	
+
+</mapper>

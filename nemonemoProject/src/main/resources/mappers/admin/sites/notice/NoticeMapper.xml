@@ -4,17 +4,17 @@
 
 <mapper namespace="com.nemo.admin.sites.notice.repository.impl.NoticeMapper">
 
-	<resultMap id="noticeMap" type="com.nemo.admin.sites.notice.vo.NoticeVO" >
+	<resultMap id="noticeMap" type="com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO" >
 		<id column="notice_no" property="noticeNo"/>
 		<result column="notice_title" property="noticeTitle"/>
 		<result column="notice_content" property="noticeContent"/>
 		<result column="notice_reg_ymd" property="noticeRegYmd"/>
 		<result column="notice_edit_ymd" property="noticeEditYmd"/>
+		<result column="notice_del_fl" property="noticeDelFl"/>
 	</resultMap>
 
 	<insert id="insertNotice"
-		parameterType="com.nemo.admin.sites.notice.vo.NoticeVO">
-		
+		parameterType="com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO">
 		INSERT INTO notice_tb (
 			notice_no, 
 			notice_title, 
@@ -37,10 +37,11 @@
 	</delete>
 
 	<select id="getNoticeList"
-		parameterType="com.nemo.admin.sites.notice.vo.NoticeVO"
+		parameterType="com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO"
 		resultMap="noticeMap">
 		SELECT *
 		FROM notice_tb 
+		ORDER BY notice_no desc
 	</select>
 	
 	<select id="getNotice"
@@ -51,7 +52,7 @@
 		WHERE notice_no = #{noticeNo}
 	</select>
 	
-	<update id="updateNotice" parameterType="com.nemo.admin.sites.notice.vo.NoticeVO">
+	<update id="updateNotice" parameterType="com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO">
 	
 		UPDATE notice_tb 
 		SET 
@@ -62,6 +63,13 @@
 			notice_no = #{noticeNo} 
 	</update>
 
-
-
+	<update id="updateDelFl" parameterType="com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO">
+		UPDATE notice_tb
+		SET
+			notice_del_fl = #{noticeDelFl, jdbcType=VARCHAR}
+		WHERE
+			notice_no = #{noticeNo}
+	
+	</update>
+	
 </mapper>

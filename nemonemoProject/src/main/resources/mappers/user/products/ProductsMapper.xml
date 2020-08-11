@@ -4,11 +4,74 @@
 
 <mapper namespace="com.nemo.user.products.repository.impl.ProductsMapper">
 
-	<insert id="insertProducts" parameterType="com.nemo.user.products.vo.ProductsVO">
-		<selectKey keyColumn="#테이블 키이름" keyProperty="#VO키 이름" order="BEFORE" resultType="int">
-			SELECT MAX(#테이블 키이름) + 1 AS "PRODUCDTS_NO" FROM #테이블명
+	<resultMap id="productMap" type="com.nemo.user.products.vo.UserBaseProductsVO">
+		<id column="product_no" property="productNo"/>	
+		<result column="product_seller" property="productSeller"/>
+		<result column="product_cate_no" property="productCateNo"/>
+		<result column="product_name" property="productName"/>
+		<result column="product_deal_area" property="productDealArea"/>
+		<result column="product_used_st" property="productUsedSt"/>
+		<result column="product_disp_st" property="productDispSt"/>
+		<result column="product_exch_st" property="productExchSt"/>
+		<result column="product_sold_dt" property="productSoldDt"/>
+		<result column="product_price" property="productPrice"/>
+		<result column="product_free_shipping_st" property="productFreeShippingSt"/>
+		<result column="product_info" property="productInfo"/>
+		<result column="product_tag" property="productTag"/>
+		<result column="product_qty" property="productQty"/>
+		<result column="product_reg_dt" property="productRegDt"/>
+		<result column="product_edit_dt" property="productEditDt"/>
+		<result column="product_view" property="productView"/>
+	</resultMap>
+	
+	<insert id="insertProducts" parameterType="com.nemo.user.products.vo.UserNewProductsVO">
+		<selectKey keyProperty="productNo" resultType="int" order="BEFORE">
+			SELECT product_sq.nextval FROM dual
 		</selectKey>
-		INSERT #테이블명(#컬럼명1, #컬럼명2) VALUES(#{#VO 매개변수 프로퍼티1}, #{#VO 매개변수 프로퍼티2})
-	</insert>	
-
+		
+		INSERT INTO product_tb (
+			product_no,
+			product_seller,
+			product_cate_no,
+			product_name,
+			product_deal_area,
+			product_used_st,
+			product_exch_st,
+			product_free_shipping_st,
+			product_price,
+			product_info,
+			product_tag,
+			product_qty
+		) VALUES (
+			#{productNo},
+			<if test='productSeller != null'>
+			#{productSeller},
+			</if>
+			<if test='productSeller == null'>
+			1,
+			</if>
+			#{productCateNo},
+			#{productName},
+			#{productDealArea},
+			#{productUsedSt},
+			#{productExchSt},
+			#{productFreeShippingSt},
+			#{productPrice},
+			#{productInfo},
+			#{productTag},
+			#{productQty}
+		)
+	</insert>
+	
+	<select id="selectCategoryProducts" parameterType="int" resultMap="productMap">
+		
+		SELECT *
+		FROM 
+			product_cate_tb
+		WHERE
+			
+		
+	</select>
+	
+	
 </mapper>

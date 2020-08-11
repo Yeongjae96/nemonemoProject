@@ -2,7 +2,7 @@ package com.nemo.admin.sites.faq.service;
 
 import java.util.List;
 
-import com.nemo.admin.sites.faq.vo.FaqCategoryVO;
+import com.nemo.admin.sites.faq.vo.AdminBaseFaqCategoryVO;
 
 /**
  * @제목 : FAQ 카테고리  CRUD 서비스
@@ -18,9 +18,9 @@ import com.nemo.admin.sites.faq.vo.FaqCategoryVO;
  */
 public interface FaqCategoryService {
 	
-	public int insertFaqCategory(FaqCategoryVO vo);
+	public int insertFaqCategory(AdminBaseFaqCategoryVO vo);
 	public int deleteFaqCategory(int faqCategoryNo);
-	public int updateFaqCategory(FaqCategoryVO vo);
-	public FaqCategoryVO getFaqCategory(int faqCategoryNo);
-	public List<FaqCategoryVO> getFaqCategoryList(String faqCategoryUseFlMode);
+	public int updateFaqCategory(AdminBaseFaqCategoryVO vo);
+	public AdminBaseFaqCategoryVO getFaqCategory(int faqCategoryNo);
+	public List<AdminBaseFaqCategoryVO> getFaqCategoryList(String faqCategoryUseFlMode);
 }

@@ -14,9 +14,26 @@
 		<org.springframework-version>5.2.7.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.9.5</org.aspectj-version>
 		<org.slf4j-version>1.7.30</org.slf4j-version>
+		 <jcloverslf4j.version>1.7.6</jcloverslf4j.version>
+		 <logback.version>1.1.1</logback.version>
 	</properties>
 
 	<dependencies>
+
+		<!-- 로그 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${jcloverslf4j.version}</version>
+		</dependency>
+
+		<!-- 로그 -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
 		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.nemo.admin.sites.faq.service.FaqCategoryCheckService;
 import com.nemo.admin.sites.faq.service.FaqCategoryService;
 import com.nemo.admin.sites.faq.service.FaqCategoryUseFlagService;
-import com.nemo.admin.sites.faq.vo.FaqCategoryVO;
+import com.nemo.admin.sites.faq.vo.AdminBaseFaqCategoryVO;
 
 /**
  * @제목 : 관리자 자주묻는 질문 카테고리 컨트롤러
@@ -43,14 +43,12 @@ public class FaqCategoryController {
 	public ModelAndView faqCategoryPage(@RequestParam(required = false, defaultValue = "N") String faqCategoryUseFlMode) {
 		
 		ModelAndView mav = new ModelAndView("sites/faq/category/site_faq_category_list");
-		List<FaqCategoryVO> faqCategoryList = faqCategoryService.getFaqCategoryList(faqCategoryUseFlMode);
+		List<AdminBaseFaqCategoryVO> faqCategoryList = faqCategoryService.getFaqCategoryList(faqCategoryUseFlMode);
 		mav.addObject("faqCategoryList",faqCategoryList);
 		return mav;
 	}
 	
-	
-	@PostMapping("/new")
-	public ModelAndView faqCategoryNewAction(FaqCategoryVO vo) {
+	public ModelAndView faqCategoryNewAction(AdminBaseFaqCategoryVO vo) {
 		faqCategoryService.insertFaqCategory(vo);
 		ModelAndView mav = new ModelAndView("redirect:/sites/faq/category/list.mdo");
 		return mav;
@@ -59,20 +57,20 @@ public class FaqCategoryController {
 	
 	@GetMapping("/listJson")
 	@ResponseBody
-	public List<FaqCategoryVO> faqCategoryListJSON() {
+	public List<AdminBaseFaqCategoryVO> faqCategoryListJSON() {
 		return faqCategoryService.getFaqCategoryList("Y");
 	}
 	
 	@GetMapping("/edit")
 	@ResponseBody
-	public FaqCategoryVO faqCategoryEditJSON(@RequestParam int faqCategoryNo) {
+	public AdminBaseFaqCategoryVO faqCategoryEditJSON(@RequestParam int faqCategoryNo) {
 		return faqCategoryService.getFaqCategory(faqCategoryNo);
 	}
 	
 	
 	@PostMapping("/edit")
 	@ResponseBody
-	public int faqCategoryEditPostJSON(FaqCategoryVO vo) {
+	public int faqCategoryEditPostJSON(AdminBaseFaqCategoryVO vo) {
 		return faqCategoryService.updateFaqCategory(vo);
 	}
 	

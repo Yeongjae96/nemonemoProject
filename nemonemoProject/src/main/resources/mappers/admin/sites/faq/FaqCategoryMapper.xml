@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nemo.admin.sites.faq.repository.impl.FaqCategoryMapper">
 	
-	<resultMap type="com.nemo.admin.sites.faq.vo.FaqCategoryVO" id="faqCategoryMap">
+	<resultMap type="com.nemo.admin.sites.faq.vo.AdminBaseFaqCategoryVO" id="faqCategoryMap">
 		<id column="FAQ_CATEGORY_NO" property="faqCategoryNo"/>
 		<result column="FAQ_CATEGORY_NM" property="faqCategoryName"/>
 		<result column="FAQ_CATEGORY_REG_YMD" property="faqCategoryRegYmd"/>
@@ -11,7 +11,7 @@
 	
 	
 	<!-- 카테고리 추가 -->
-	<insert id="insertFaqCategory" parameterType="com.nemo.admin.sites.faq.vo.FaqCategoryVO">
+	<insert id="insertFaqCategory" parameterType="com.nemo.admin.sites.faq.vo.AdminBaseFaqCategoryVO">
 		INSERT INTO FAQ_CATEGORY_TB
 		(
 			FAQ_CATEGORY_NO,
@@ -25,7 +25,7 @@
 	</insert>
 	
 	<!-- 카테고리 상태 수정 -->
-	<update id="updateFaqCategory" parameterType="com.nemo.admin.sites.faq.vo.FaqCategoryVO">
+	<update id="updateFaqCategory" parameterType="com.nemo.admin.sites.faq.vo.AdminBaseFaqCategoryVO">
 		UPDATE FAQ_CATEGORY_TB
 		SET FAQ_CATEGORY_NM = #{faqCategoryName}, FAQ_CATEGORY_USE_FL = #{faqCategoryUseFl}
 		WHERE FAQ_CATEGORY_NO = #{faqCategoryNo}

@@ -1,7 +1,7 @@
 package com.nemo.admin.sites.faq.service;
 
-import com.nemo.admin.sites.faq.vo.BaseFaqVO;
+import com.nemo.admin.sites.faq.vo.AdminBaseFaqVO;
 
 public interface FaqUseFlagService {
-	public int updateUseFlag(BaseFaqVO vo);
+	public int updateUseFlag(AdminBaseFaqVO vo);
 }

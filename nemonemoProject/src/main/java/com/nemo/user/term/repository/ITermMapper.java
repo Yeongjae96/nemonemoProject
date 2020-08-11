@@ -1,9 +1,5 @@
 package com.nemo.user.term.repository;
 
-import java.util.List;
-
-import com.nemo.admin.sites.terms.vo.TermsVO;
-import com.nemo.user.customer.vo.UserNoticeVO;
 import com.nemo.user.term.vo.TermVO;
 
 /**

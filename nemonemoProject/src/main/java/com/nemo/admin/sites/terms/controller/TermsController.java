@@ -5,13 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nemo.admin.sites.terms.service.DeleteTermsService;
 import com.nemo.admin.sites.terms.service.GetTermsListService;
 import com.nemo.admin.sites.terms.service.GetTermsService;
 import com.nemo.admin.sites.terms.service.InsertTermsService;
@@ -53,7 +51,6 @@ public class TermsController {
 				
 		ModelAndView mav = new ModelAndView("sites/terms/site_terms_list");
 		mav.addObject("termsList", termsList);
-		System.out.println(" 리턴 데이터2 : "+ termsList);
 		return mav;
 	}
 	
@@ -63,21 +60,20 @@ public class TermsController {
 		return mav;
 	}
 	
+
 	@RequestMapping(value = {"/new", "/renew"}, method= {RequestMethod.POST})
 	public ModelAndView TermsInsertAction(TermsVO vo) {
 		
 		renewTermsService.renewTerms(vo);
 		int result = insertTermsService.insertTerms(vo);
 		ModelAndView mav = new ModelAndView("redirect:/sites/terms/list.mdo");
-		
-		mav.addObject("result", result);
-		
 		return mav;
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.GET})
 	public ModelAndView TermsEdit(@RequestParam int termsNo) {
 		ModelAndView mav = new ModelAndView("sites/terms/site_terms_edit");
+
 		TermsVO TermsVO = getTermsService.getTerms(termsNo);
 		mav.addObject("termsVO", TermsVO);
 		
@@ -85,7 +81,7 @@ public class TermsController {
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.POST})
-	public ModelAndView TermsEditAction(TermsVO vo) {	
+	public ModelAndView TermsEditAction(TermsVO vo) {
 		updateTermsService.updateTerms(vo);
 		return new ModelAndView("redirect:/sites/terms/list.mdo");
 	}

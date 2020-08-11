@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.nemo.user.customer.repository.impl.CustomerMapper;
 import com.nemo.user.customer.service.CustomerService;
-import com.nemo.user.customer.vo.UserNoticeVO;
+import com.nemo.user.customer.vo.UserBaseNoticeVO;
 
 /**
  * @제목 : Customer Service 클래스
@@ -29,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService{
 	private CustomerMapper customerDAO;
 	
 	@Override
-	public List<UserNoticeVO> getNoticeList() {
+	public List<UserBaseNoticeVO> getNoticeList() {
 		return customerDAO.getNoticeList();
 	}
 	

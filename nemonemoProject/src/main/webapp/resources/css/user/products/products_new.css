@@ -308,6 +308,8 @@ a.product-nav-link:hover {
 	width: 100%;
 	height: 100%;
 	padding: 0.5rem 0px;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .products-category-item {
@@ -327,13 +329,25 @@ a.product-nav-link:hover {
 	background-color: transparent;
 }
 
-.products-category-btn:hover {
+.products-category-btn--selected {
+	width: 100%;
+	height: 100%;
+	text-align: start;
+	padding: 0px 1.5rem;
+	border: 0;
+	color: rgb(255,80,88);
+	background-color: transparent;
+	font-weight: bold;
+}
+
+.products-category-btn:hover,
+.products-category-btn--select:hover {
 	width: 100%;
 	height: 100%;
 	padding: 0px 1.5rem;
 	border: 0;
 	background-color: #EEEEEE;
-	color: #FF5058;
+	color: rgb(255,80,88);
 }
 
 .products-category-item--none {
@@ -375,17 +389,46 @@ a.product-nav-link:hover {
 	background: rgb(244, 244, 250);
 }
 
-.products-location--input:not ([type="file"] ):not ([type="radio"] ) {
-	
-	padding: 0px 1rem;
-}
+.products-location--input
+:not
+ 
+(
+[
+type
+=
+"file"
+]
+ 
+)
+:not
+ 
+(
+[
+type
+=
+"radio"
+]
+ 
+)
+{
+padding
+:
+ 
+0
+px
+ 
+1
+rem
+;
 
+
+}
 .products-location--input {
 	width: 100%;
 	margin-top: 1rem;
 	border: 1px solid rgb(195, 194, 204);
 	height: 3rem;
-    padding: 0px 1rem;
+	padding: 0px 1rem;
 }
 
 /* 리스트 4 : 거래지역 끝 */
@@ -515,11 +558,12 @@ a.product-nav-link:hover {
 	border-color: rgb(195, 194, 204);
 	border-image: initial;
 }
-.products-tag--div input[type="text"]:focus{
-	outline: 0px!important;
-    outline-color: initial;
-    outline-style: initial;
-    outline-width: 0px;	
+
+.products-tag--div input[type="text"]:focus {
+	outline: 0px !important;
+	outline-color: initial;
+	outline-style: initial;
+	outline-width: 0px;
 }
 
 products-tag--div:focus {
@@ -531,7 +575,6 @@ products-tag--div:focus {
 	height: 100%;
 	flex: 1 1 0%;
 }
-
 
 .products-tag--div3 {
 	position: relative;
@@ -583,8 +626,8 @@ products-tag--div:focus {
 }
 
 .products-count--input {
-    height: 3rem;
-    height: 3rem;
+	height: 3rem;
+	height: 3rem;
 	padding: 0px 1rem;
 	border-width: 1px;
 	border-style: solid;
@@ -699,7 +742,6 @@ b {
 	border-radius: 2px;
 }
 
-
 .flex-container .products-category-item button {
 	font-size: 16px;
 }
@@ -715,55 +757,55 @@ b {
 
 .products-tag-hash--div {
 	display: flex;
-    height: 100%;
-    align-items: center;
-    overflow-x: hidden;
-    max-width: 592px;
+	height: 100%;
+	align-items: center;
+	overflow-x: hidden;
+	flex: 1 1 0%:
 }
 
 .products-tag-hash--ul {
-    display: flex;
-    padding-left: 0;
-    width:100%;
+	display: flex;
+	padding-left: 0;
+	width: 100%;
 }
 
 .products-tag-hash--li {
 	flex-shrink: 0;
-    height: 2rem;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    margin-left: 0.5rem;
-    border-radius: 1rem;
-    background: rgb(244, 244, 250);
-    padding: 0px 0.5rem;
+	height: 2rem;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	margin-left: 0.5rem;
+	border-radius: 1rem;
+	background: rgb(244, 244, 250);
+	padding: 0px 0.5rem;
 }
 
-.products-tag-hash--li > button {
+.products-tag-hash--li>button {
 	background-color: transparent;
-    outline: none;
-    font-size: 16px;
+	outline: none;
+	font-size: 16px;
 }
 
 .products-tag-hash--btn-text {
-    cursor: text;
+	cursor: text;
 }
 
-.products-tag-hash--btn-close{
-    height: 20px;
-    margin-left: 0.5rem;
+.products-tag-hash--btn-close {
+	height: 20px;
+	margin-left: 0.5rem;
 }
 
 .svg-inline--fa.fa-w-11 {
 	width: 20px;
 }
 
-.products-tag-hash--btn-close svg{
+.products-tag-hash--btn-close svg {
 	color: white;
 	height: 20px;
 	width: 20px;
 	background-color: #AAAAAA;
-	border-radius: 50%;	
+	border-radius: 50%;
 }
 
 /* Products 상품등록 페이지 끝 */
@@ -771,61 +813,60 @@ b {
 /* 최근 지역 모달 창 */
 .products-modal__recent {
 	width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    display: none;
-    background: rgba(0, 0, 0, 0.6);
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 2000;
+	align-items: center;
+	justify-content: center;
+	display: none;
+	background: rgba(0, 0, 0, 0.6);
 }
-
 
 .modal-recent__area {
 	display: block;
 	width: 30rem;
-    background: rgb(255, 255, 255);
-    border-radius: 2px;
-    margin-bottom:0px!important;
+	background: rgb(255, 255, 255);
+	border-radius: 2px;
+	margin-bottom: 0px !important;
 }
 
 .modal-recent__area header {
 	height: 4.5rem;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    font-weight: 500;
-    justify-content: space-between;
-    margin: 0px 1.5rem;
-    border-bottom: 2px solid rgb(30, 29, 41);
+	font-size: 1.5rem;
+	display: flex;
+	align-items: center;
+	font-weight: 500;
+	justify-content: space-between;
+	margin: 0px 1.5rem;
+	border-bottom: 2px solid rgb(30, 29, 41);
 }
 
 .modal-recent__close {
 	background-size: 20px 20px;
-    width: 2rem;
-    height: 2rem;
+	width: 2rem;
+	height: 2rem;
 }
 
-.modal-recent__close > svg {
-    width: 20px;
-    height: 20px;
+.modal-recent__close>svg {
+	width: 20px;
+	height: 20px;
 }
 
 .modal-recent__area ul {
 	margin-top: 0.5rem;
-    max-height: 25rem;
-    overflow-y: auto;
-    padding: 0.5rem 0px;
-    width: 100%;
-    margin-bottom: 0px;
+	max-height: 25rem;
+	overflow-y: auto;
+	padding: 0.5rem 0px;
+	width: 100%;
+	margin-bottom: 0px;
 }
 
 .modal-recent__area ul li {
 	display: block;
-    height: 3rem;
-    width: 100%;
+	height: 3rem;
+	width: 100%;
 }
 
 .modal-recent__btn {
@@ -833,18 +874,69 @@ b {
 	flex-direction: row;
 	justify-content: flex-start;
 	width: 100%;
-    height: 100%;
-    padding: 0px 1.5rem;
-    font-size: 1rem;
-    align-items: center;
+	height: 100%;
+	padding: 0px 1.5rem;
+	font-size: 1rem;
+	align-items: center;
 }
+
 .modal-recent__btn:hover {
-    background: rgb(244, 244, 250);
-} 
+	background: rgb(244, 244, 250);
+}
 
+.products-main-item label{
+	margin-bottom: 0px;
+	display; flex;
+	flex-direction: center;
+	cursor: pointer;
+}
+.products-main-item label > *:first-child{
+	margin-right: 10px;	
+}
 
+.products-main-item input[type="radio"] {
+	border: 0px!important;	
+}
 
+.products-main-item input[type="radio"]:after {
+	width: 20px;
+    height: 20px;
+    border-radius: 15px;
+    position: relative;
+    background-color: white;
+    top: -3px;
+    left: -2px;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid #EE5058;
+}
 
+.products-main-item input[type='radio']:checked:after {
+        width: 20px;
+        height: 20px;
+        top: -3px;
+        left: -2px;
+        border-radius: 15px;
+        position: relative;
+        background-color: #EE5058;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+}
 
+.products-category-nothing {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-71px, -50%);
+	overflow-x: hidden;
+}
+
+.products-category__div2 button:focus {
+	border:0;
+	outline:0px;
+}
 
 

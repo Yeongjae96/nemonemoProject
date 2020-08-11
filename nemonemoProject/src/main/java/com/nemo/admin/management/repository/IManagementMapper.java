@@ -14,5 +14,4 @@ public interface IManagementMapper {
 	public List<ManagementVO> getAdminList(ManagementVO vo);
 	public int idCheck(String adminId);
 
-
 }

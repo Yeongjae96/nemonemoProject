@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.nemo.admin.sites.notice.repository.INoticeMapper;
 import com.nemo.admin.sites.notice.repository.impl.NoticeMapper;
 import com.nemo.admin.sites.notice.service.InsertNoticeService;
-import com.nemo.admin.sites.notice.vo.NoticeVO;
+import com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO;
 
 @Service
 public class InsertNoticeServiceImpl implements InsertNoticeService {
@@ -17,7 +17,7 @@ public class InsertNoticeServiceImpl implements InsertNoticeService {
 	private NoticeMapper noticeDAO;
 	
 	@Override
-	public int insertNotice(NoticeVO vo) {
+	public int insertNotice(AdminBaseNoticeVO vo) {
 		vo.setNoticeRegYmd(new Date(System.currentTimeMillis()));
 		return noticeDAO.insertNotice(vo);
 	}

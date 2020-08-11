@@ -2,7 +2,7 @@ package com.nemo.user.customer.service;
 
 import java.util.List;
 
-import com.nemo.user.customer.vo.UserNoticeVO;
+import com.nemo.user.customer.vo.UserBaseNoticeVO;
 
 
 /**
@@ -19,5 +19,5 @@ import com.nemo.user.customer.vo.UserNoticeVO;
  * 20.07.30		김영재				customer 초기설정
  */
 public interface CustomerService {
-	public List<UserNoticeVO> getNoticeList();
+	public List<UserBaseNoticeVO> getNoticeList();
 }
