@@ -31,6 +31,9 @@
 	<logger name="org.springframework.web">
 		<level value="info" />
 	</logger>
+	<logger name="com.nemo.user.sign.signup.repository.impl.UserDAOMybatis">
+	 	<level value="TRACE"/>
+	</logger>
 
 	<!-- Root Logger -->
 	<root>

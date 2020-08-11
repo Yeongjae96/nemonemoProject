@@ -29,26 +29,24 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/admin/common/style.css"/>">
     
 
-
-
     </head>
 
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
-            <a href="javascript:void(0);">Admin<b>NemoNemo</b></a>
-            <small>회원가입</small>
+            <a href="javascript:void(0);"><b>네모내모</b></a>
+            <small>관리자 회원가입</small>
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_up" method="POST">
-                    <div class="msg"><b>관리자 페이지 가입</b></div>
+                <form id="ad_sign_up" method="POST" action="signup.mdo">
+                    <div class="msg"><b>Sign Up</b></div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="namesurname" placeholder="아이디를 입력하세요" required autofocus>
+                            <input type="text" class="form-control" name="adminId" placeholder="아이디를 입력하세요" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -56,7 +54,7 @@
                             <i class="material-icons">email</i>
                         </span>
                         <div class="form-line">
-                            <input type="email" class="form-control" name="email" placeholder="이메일을 입력하세요" required>
+                            <input type="email" class="form-control" name="adminEmail" placeholder="이메일을 입력하세요" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -64,7 +62,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" minlength="6" placeholder="비밀번호를 입력하세요" required>
+                            <input type="password" class="form-control" id="pwd1" name="adminPw" minlength="6" placeholder="비밀번호를 입력하세요" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -72,19 +70,18 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="confirm" minlength="6" placeholder="비밀번호 중복확인" required>
+                            <input type="password" class="form-control" id="pwd2" name="adminPwConfirm" minlength="6" placeholder="비밀번호 중복확인" required>
                         </div>
                     </div>
-                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">회원가입</button>
+                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit" id="ad_signup_submit">회원가입</button>
 
                     <div class="m-t-25 m-b--5 align-center">
-                        <a href="sign-in.html">이미 가입하셨나요??</a>
+                        <a href="signin.mdo">이미 가입하셨나요??</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
 
 	<!-- Jquery Core Js -->
 	<script

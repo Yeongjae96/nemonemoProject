@@ -3,7 +3,7 @@ package com.nemo.user.products.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nemo.user.products.repository.ProductsDAO;
+import com.nemo.user.products.repository.impl.ProductsMapper;
 import com.nemo.user.products.service.InsertProductsService;
 import com.nemo.user.products.vo.ProductsVO;
 
@@ -21,9 +21,9 @@ import com.nemo.user.products.vo.ProductsVO;
  */
 @Service
 public class InsertServiceImpl implements InsertProductsService{
-	
+
 	@Autowired
-	private ProductsDAO productsDAO;
+	private ProductsMapper productsDAO;
 	
 	@Override
 	public int insertProducts(ProductsVO vo) {

@@ -42,7 +42,7 @@ public class NoticeController {
 	@RequestMapping(value = "/list", method= {RequestMethod.GET})
 	public ModelAndView noticePage(NoticeVO vo) {
 	
-		ModelAndView mav = new ModelAndView("sites/site_notice_list");
+		ModelAndView mav = new ModelAndView("sites/notice/site_notice_list");
 		List<NoticeVO> data = selectNoticeListService.getNoticeList(vo);
 		mav.addObject("noticeList", data);
 		return mav;
@@ -51,7 +51,7 @@ public class NoticeController {
 	@RequestMapping(value = "/edit", method= {RequestMethod.GET})
 	public ModelAndView noticeEdit(@RequestParam int noticeNo) {
 		
-		ModelAndView mav = new ModelAndView("sites/site_notice_edit");
+		ModelAndView mav = new ModelAndView("sites/notice/site_notice_edit");
 		NoticeVO noticeVO = selectNoticeService.getNotice(noticeNo);
 		
 		mav.addObject("noticeVO", noticeVO);

@@ -29,11 +29,12 @@
 	<bean id="sessionFactory" 
 		class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource"
+		p:mapperLocations="classpath*:mappers/**/*Mapper.xml"
 		p:configLocation="classpath:mybatis-config.xml"/>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sessionFactory"/>	
 	</bean>
 	
-	
+	<mybatis-spring:scan base-package="com.nemo" annotation="org.apache.ibatis.annotations.Mapper" template-ref="sqlSession"/>
 </beans>

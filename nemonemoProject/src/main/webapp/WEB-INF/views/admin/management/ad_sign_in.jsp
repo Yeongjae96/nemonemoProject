@@ -66,7 +66,7 @@
                     </div>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-6">
-                            <a href="sign-up.html">회원가입</a>
+                            <a href="signup.mdo">회원가입</a>
                         </div>
                         <div class="col-xs-6 align-right">
                             <a href="forgot-password.html">비밀번호찾기</a>

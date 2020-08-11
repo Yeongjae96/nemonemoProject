@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper
+	namespace="com.nemo.admin.members.report.repository.impl.ReportListMapper">
+
+
+
+
+	<resultMap id="categoryListMap"
+		type="com.nemo.admin.members.report.category.vo.ReportListVO">
+		<id column="REPORT_NO" property="reportNO" />
+		<result column="STORE_NO" property="reportStoreNO" />
+		<result column="PRODUCT_NO" property="reportProductNO" />
+		<result column="REPORT_TYPE" property="reportType" />
+		<result column="REPORT_CATE_NO" property="reportCateNO" />
+		<result column="REPORT_SENDER" property="reportSender" />
+		<result column="REPORT_CONTENT" property="reportContent" />
+		<result column="REPORT_REG_DATE" property="reportRegDate" />
+		<result column="REPORT_ST" property="reportST" />
+		<result column="ADMIN_ACT_ID" property="adminActId" />
+		<result column="REPORT_ACT_DT" property="reportActDt" />
+
+	</resultMap>
+
+
+
+
+
+
+	<!-- 데이터 베이스 값 화면에 출력 -->
+
+	<select id="getList"
+		parameterType="com.nemo.admin.members.report.category.vo.ReportListVO"
+		resultMap="categoryListMap">
+		SELECT *
+		FROM REPORT_TB
+	</select>
+
+
+	<!-- update 하기 위해 해당 테이블 번호 가지고 옴 -->
+
+	<select id="getUpdateList" parameterType="int"
+		resultMap="categoryListMap">
+
+		SELECT *
+		FROM REPORT_TB
+		WHERE REPORT_NO = #{reportNO}
+	</select>
+
+
+	<!-- update -->
+	<update id="updateList"
+		parameterType="com.nemo.admin.members.report.category.vo.ReportListVO">
+
+		UPDATE 
+			REPORT_TB
+		SET 
+			REPORT_ST = #{reportST}
+		WHERE 
+			REPORT_NO = #{reportNO, jdbcType=NUMERIC}
+
+	</update>
+
+
+
+
+</mapper>

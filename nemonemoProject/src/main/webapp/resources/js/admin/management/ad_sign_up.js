@@ -1,11 +1,9 @@
+// 폼 유효성 검사
 $(function () {
-    $('#sign_up').validate({
+    $('#ad_sign_up').validate({
         rules: {
-            'terms': {
-                required: true
-            },
-            'confirm': {
-                equalTo: '[name="password"]'
+            'adminPwConfirm': {
+                equalTo: '[name="adminPw"]'
             }
         },
         highlight: function (input) {
@@ -21,3 +19,12 @@ $(function () {
         }
     });
 });
+
+// 버튼 알림창
+//$(function(){
+//    $('#ad_signup_submit').click(function() {
+//        if(!($('#ad_sign_up').hasClass.error)){
+//            alert("관리자 등록 완료");
+//        }
+//    });
+//});

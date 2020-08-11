@@ -78,7 +78,7 @@
 }
 
 .faq-menu-selected {
-    width: 340px;
+    width: 25%;
     height: 41px;
     margin-bottom: 1px;
     display: flex;
@@ -92,7 +92,7 @@
 }
 
 .faq-menu-not-selected {
-    width: 340px;
+    width: 25%;
     height: 41px;
     margin-bottom: 1px;
     display: flex;
@@ -165,6 +165,9 @@
     border: none;
 }
 
+.faq-rotate-180 {
+	transform: rotate(180deg);
+}
 
 .faq-list-li {
     margin-bottom: 3px;
@@ -173,4 +176,5 @@
 .faq-list-ul{
 	list-style: none;
 	width: 1024px;
+	padding-left:0px;
 }

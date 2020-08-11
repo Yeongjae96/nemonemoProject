@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nemo.admin.sites.notice.repository.impl.NoticeMapper">
+
+	<resultMap id="noticeMap" type="com.nemo.admin.sites.notice.vo.NoticeVO" >
+		<id column="notice_no" property="noticeNo"/>
+		<result column="notice_title" property="noticeTitle"/>
+		<result column="notice_content" property="noticeContent"/>
+		<result column="notice_reg_ymd" property="noticeRegYmd"/>
+		<result column="notice_edit_ymd" property="noticeEditYmd"/>
+	</resultMap>
+
+	<insert id="insertNotice"
+		parameterType="com.nemo.admin.sites.notice.vo.NoticeVO">
+		
+		INSERT INTO notice_tb (
+			notice_no, 
+			notice_title, 
+			notice_content, 
+			notice_reg_ymd
+		) VALUES (
+			notice_sq.nextval, 
+			#{noticeTitle}, 
+			#{noticeContent}, 
+			#{noticeRegYmd}
+		) 
+		
+		<selectKey keyProperty="noticeNo" keyColumn="NOTICE_NO" resultType="Integer" order="AFTER">
+			SELECT NOTICE_SQ.currval FROM dual
+		</selectKey>
+	</insert>
+
+	<delete id="deleteNotice" parameterType="int" >
+		DELETE FROM notice_tb WHERE notice_no = #{noticeNo}
+	</delete>
+
+	<select id="getNoticeList"
+		parameterType="com.nemo.admin.sites.notice.vo.NoticeVO"
+		resultMap="noticeMap">
+		SELECT *
+		FROM notice_tb 
+	</select>
+	
+	<select id="getNotice"
+		parameterType="int"
+		resultMap="noticeMap">
+		SELECT *
+		FROM notice_tb
+		WHERE notice_no = #{noticeNo}
+	</select>
+	
+	<update id="updateNotice" parameterType="com.nemo.admin.sites.notice.vo.NoticeVO">
+	
+		UPDATE notice_tb 
+		SET 
+			notice_title = #{noticeTitle}, 
+			notice_content = #{noticeContent}, 
+			notice_edit_ymd = sysdate
+		WHERE 
+			notice_no = #{noticeNo} 
+	</update>
+
+
+
+</mapper>
