@@ -4,16 +4,9 @@
 
 
 var table = $('#faq-category-list');
-
+this.delayTimer = null; 
 $(function () {
-    $('#faq-category-list tbody').on('click','.event-del-btn', function(){
-        var selected = this;
-        $('#smallModal').modal("toggle");
-        if($('#del-confirm').click(function(){
-            $(selected).closest('tr').remove();
-        }));
-    });
-    
+	
     table.dataTable({
         language: {
             "decimal": "",
@@ -41,11 +34,25 @@ $(function () {
     });
     
     
-    
+    /* 카테고리 추가 시 체크하는 기능 */
+    $('#faqCategoryContent').keyup(function() {
+    	$(this).prop('autocomplete', false);
+    	if($.trim($(this).val()).length == 0) {
+			$checkInput.prop('disabled', true); 
+			$('#checkInput').text('값을 입력해주십시오');
+			$('#checkInput').show();
+			return;
+    	}
+    	if(delayTimer) window.clearTimeout(delayTimer);
+    	delayTimer = window.setTimeout(getCheckResult, 200);
+    });
+    	
+    /* 추가 기능 */
     $('#faqCategoryInsert').click(function() {
     	document.faqCategoryForm.submit();
     });
-   
+  
+   /* 뒤로돌아가기 버튼 */
     $('#faqBtn').click(function() {
     	window.location.href="../list.mdo";
     });
@@ -98,8 +105,6 @@ $(function () {
 }());
 
 
-
-
 /* update 모달 update 이벤트*/
 (function updateModal() {
 	$('.faq-category-upd-btn').click(function() {
@@ -150,3 +155,35 @@ $(function () {
 	})
 }()); 
     
+
+
+
+/* 중복성 검사 로직 */
+function getCheckResult(e) {
+	var deferred = $.Deferred();
+	$.ajax({
+		url: 'checkName.mdo',
+		data: {faqCategoryName: decodeURIComponent($('#faqCategoryContent').val())},
+		method: 'get'
+	}).done(function(data) {
+		$checkInput = $('#faqCategoryInsert');
+		console.log(data, $('#faqCategoryContent').val());
+		if(data == true) {
+			$('#checkInput').text('이미 사용하고 있는 카테고리 이름입니다.');
+			$('#checkInput').show();
+			deferred.reject(data);
+			$checkInput.prop('disabled', true);
+			return false;
+		} else {
+			$('#checkInput').hide();
+			$checkInput.prop('disabled', false);    		
+			deferred.resolve(data);
+		}
+	}).fail(function(error) {
+		console.log(error);
+		deferred.resolve(error);
+		alert('카테고리를 추가하는데 오류가 발생하였습니다.');
+	});
+	delayTimer = null; 
+	return deferred.promise();
+}

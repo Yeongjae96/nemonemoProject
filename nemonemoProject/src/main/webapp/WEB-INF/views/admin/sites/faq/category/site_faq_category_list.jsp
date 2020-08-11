@@ -60,9 +60,6 @@
 	</header>
 
 
-
-
-
 	<% 
 		/* 각 페이지의 SECTION */
 	%>
@@ -98,7 +95,7 @@
 										<th width="40%">카테고리 이름</th>
 										<th width="10%">등록일</th>
 										<th width="10%">사용여부</th>
-										<th width="25%">관리버튼</th>
+										<th width="20%">관리버튼</th>
                                     </tr>
                                 </thead>
                                 <tbody id="result">
@@ -116,8 +113,8 @@
                                         	</c:if>
                                         </td>
                                         <td class ="text-center">
-	                                        <button type="button" data-toggle="modal" data-target="#faq_category_update" class ="faq-category-upd-btn" data-faqno="${faqCategory.faqCategoryNo}">수정</button>
-	                                        <button type="button" class ="faq-category-del-btn" data-toggle="modal" data-target="#faq_category_delete" data-faqno="${faqCategory.faqCategoryNo}">삭제</button>
+	                                        <button type="button" data-toggle="modal" data-target="#faq_category_update" class ="faq-category-upd-btn btn btn-success" data-faqno="${faqCategory.faqCategoryNo}">수정</button>
+	                                        <button type="button" class ="faq-category-del-btn btn btn-danger" data-toggle="modal" data-target="#faq_category_delete" data-faqno="${faqCategory.faqCategoryNo}">삭제</button>
 										</td>
                                     </tr>
                                     </c:forEach>
@@ -180,12 +177,15 @@
 		                                    <label for="categoryName">카테고리 명</label>
 		                                    <input type="text" class="faq-category-reg-content--input" name="faqCategoryName" id="faqCategoryContent" placeholder="카테고리 이름을 입력해주세요">
 	                                	</div>
+	                                	<div id="checkInput">
+	                                		이미 사용하고 있는 카테고리 이름입니다.
+	                                	</div>
 	                                </div>
                                 </form>
                             </div>
                             
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal" id="faqCategoryInsert">등록</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal" id="faqCategoryInsert" disabled>등록</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
                             </div>
                          </div>
@@ -257,6 +257,9 @@
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
 
 	<!-- 개인 JS -->
+	<script> window.result = '${operResult}'; 
+			console.log(window.result);
+	</script>
 	<script
 		src="<c:url value ="/resources/js/admin/sites/faq/category/site_faq_category_list.js"/>"></script>
 	

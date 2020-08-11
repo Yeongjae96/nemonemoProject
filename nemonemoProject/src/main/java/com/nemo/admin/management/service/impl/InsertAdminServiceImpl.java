@@ -18,5 +18,6 @@ public class InsertAdminServiceImpl implements InsertAdminService{
 	public int insertAdmin(ManagementVO vo) {
 		return managementDAO.insertAdmin(vo);
 	}
+
 	
 }

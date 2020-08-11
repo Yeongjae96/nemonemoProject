@@ -17,6 +17,8 @@ public class FaqCategoryServiceImpl implements FaqCategoryService {
 	
 	@Override
 	public int insertFaqCategory(FaqCategoryVO vo) {
+		
+		if(faqCategoryMapper.checkCategoryName(vo.getFaqCategoryName()) == 1) return 0;
 		return faqCategoryMapper.insertFaqCategory(vo);
 	}
 

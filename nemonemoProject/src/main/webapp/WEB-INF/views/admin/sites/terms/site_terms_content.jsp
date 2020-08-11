@@ -109,10 +109,10 @@
 										</td>
 										<td>${terms.termsRequiredFl}</td>
 										<td>${terms.termsDeleteFl}</td>
-										<td>${terms.termsRegistryYmd}</td>
-										<td>${terms.adminRegistryId}</td>
-										<td>${terms.termsModifyYmd}</td>
-										<td>${terms.adminModifyId}</td>
+										<td>${terms.termsRegYmd}</td>
+										<td>${terms.adminRegId}</td>
+										<td>${terms.termsEditYmd}</td>
+										<td>${terms.adminEditId}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

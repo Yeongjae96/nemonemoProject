@@ -157,7 +157,7 @@
 	                                	<div class="notice-registry--content">
 		                                    <label for="InputNoticeName">공지사항 내용</label>
 	                                	</div>
-		                                    <textarea class="form-contr ol" id="noticeContent" name="noticeContent" placeholder="내용을 입력해주세요"></textarea>
+		                                    <textarea class="form-control" id="noticeContent" name="noticeContent" placeholder="내용을 입력해주세요"></textarea>
 	                                </div>
                                 </form>
                             </div>

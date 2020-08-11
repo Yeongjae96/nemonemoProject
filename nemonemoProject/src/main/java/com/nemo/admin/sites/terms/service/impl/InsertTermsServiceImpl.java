@@ -11,14 +11,14 @@ import com.nemo.admin.sites.terms.service.InsertTermsService;
 import com.nemo.admin.sites.terms.vo.TermsVO;
 
 @Service
-public class InsertTermsServiceImpl implements InsertTermsService{
-	
+public class InsertTermsServiceImpl implements InsertTermsService {
+
 	@Autowired
 	private TermsMapper termsDAO;
-	
+
 	@Override
 	public int insertTerms(TermsVO vo) {
-		vo.setTermsRegistryYmd(new Date(System.currentTimeMillis()));
+		vo.setTermsRegYmd(new Date(System.currentTimeMillis()));
 		return termsDAO.insertTerms(vo);
 	}
 }

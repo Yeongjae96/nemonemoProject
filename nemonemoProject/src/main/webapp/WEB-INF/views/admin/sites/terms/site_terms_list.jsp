@@ -39,8 +39,8 @@
 	href="<c:url value="/resources/vendor/common/stylesheets/theme-red.css"/>">
 
 <!-- 개인 CSS -->
-<%-- <link rel="stylesheet"
-	href="<c:url value="/resources/css/admin/sites/site_terms.css"/>"> --%>
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/admin/sites/site_terms.css"/>"> 
 
 <!-- JQuery DataTable Css -->
 <link rel="stylesheet"
@@ -93,12 +93,12 @@
 									<th>일련번호</th>
 									<th>약관 제목</th>
 									<th>필수여부</th>
-									<th>삭제여부</th>
+									<th>노출여부</th>
 									<th>약관등록일</th>
 									<th>작성자</th>
 									<th>약관수정일</th>
 									<th>수정자</th>
-									<th>수정/삭제</th>
+									<th>수정</th>
 								</tr>
 							</thead>
 							<tbody id="result">
@@ -110,14 +110,14 @@
 										</td> -->
 										<td>${terms.termsTitle}</td>
 										<td>${terms.termsRequiredFl}</td>
-										<td>${terms.termsDeleteFl}</td>
-										<td>${terms.termsRegistryYmd}</td>
-										<td>${terms.adminRegistryId}</td>
-										<td>${terms.termsModifyYmd}</td>
-										<td>${terms.adminModifyId}</td>
-										<td>
-										<button type="button" class="btn bg-pink waves-effect m-r-20" id ="terms-upd-btn" data-couponCd="${terms.termsNo}">수정</button>
-                                        <button type="button" class="btn bg-pink waves-effect m-r-20" id ="terms-del-btn" data-couponCd="${terms.termsNo}">삭제</button>
+										<%-- <td><a class="terms-del-btn" data-termsNo="${terms.termsNo}">${terms.termsDeleteFl }</a></td> --%>
+										<td>${terms.termsDeleteFl}</td> 
+										<td>${terms.termsRegYmd}</td>
+										<td>${terms.adminRegId}</td>
+										<td>${terms.termsEditYmd}</td>
+										<td>${terms.adminEditId}</td>
+										<td class ="text-center">
+											<button type="button" class="terms-upd-btn" data-termsno="${terms.termsNo}">약관 수정</button>
 										</td>
 									</tr>
 								</c:forEach>
@@ -211,6 +211,7 @@
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
 	
 	<!-- 개인 JS -->
-	<script src="<c:url value ="/resources/js/admin/sites/site_terms.js"/>"></script>	
+	<script src="<c:url value ="/resources/js/admin/sites/site_terms.js?v=<%=System.currentTimeMillis() %>"/>"></script>	
+
 </body>
 </html>
