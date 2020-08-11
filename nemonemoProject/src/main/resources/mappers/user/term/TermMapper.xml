@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nemo.user.term.repository.impl.TermMapper">
+
+	<resultMap id="termMap" type="com.nemo.user.term.vo.TermVO" >
+		<result column="terms_no" property="termNo"/>
+		<result column="terms_title" property="termTitle"/>
+		<result column="terms_content" property="termContent"/>
+		<result column="terms_delete_fl" property="termDeleteFl" />
+	</resultMap>
+
+	<select id="getTermService" resultMap="termMap">
+		SELECT 
+			terms_content
+		FROM 
+			terms_tb
+		WHERE 
+			terms_title = 'S' AND terms_delete_fl = 'Y'
+	</select>
+	
+	<select id="getTermLocation" resultMap="termMap">
+		SELECT 
+			terms_content
+		FROM 
+			terms_tb
+		WHERE 
+			terms_title = 'L' AND terms_delete_fl = 'Y'
+		
+				 		
+	</select>
+	
+	<select id="getTermPrivacy" resultMap="termMap">
+		SELECT 
+			terms_content
+		FROM terms_tb
+		WHERE 
+			terms_title = 'P' AND terms_delete_fl = 'Y'	
+	</select>
+
+</mapper>

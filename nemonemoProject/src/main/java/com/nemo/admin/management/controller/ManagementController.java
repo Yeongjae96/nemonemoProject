@@ -92,7 +92,7 @@ public class ManagementController {
 		// 비밀번호 암호화
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		vo.setAdminPw(encoder.encode(vo.getAdminPw()));
-		System.out.println("회원가입 정보 : " + vo);
+		//System.out.println("회원가입 정보 : " + vo);
 		insertAdminService.insertAdmin(vo);
 		ModelAndView mav = new ModelAndView("redirect:/management/login.mdo");
 		return mav;

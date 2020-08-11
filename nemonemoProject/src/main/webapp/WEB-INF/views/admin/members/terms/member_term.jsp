@@ -40,11 +40,12 @@
 
 <!-- 개인 CSS -->
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/admin/sites/site_terms.css"/>">
+	href="<c:url value="/resources/css/admin/sites/site_coupon_list.css"/>">
 
 <!-- JQuery DataTable Css -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/vendor/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"/>">
+
 
 
 </head>
@@ -60,112 +61,63 @@
 
 
 
+
+
 	<% 
 		/* 각 페이지의 SECTION */
 	%>
 
 	<!-------------------------------------------SECTION--------------------------------------------------->
+
+	<!-- 컨텐츠 -->
 	<section class="content">
 		<div class="container-fluid">
-			<div class="card">
-				<div class="header">
-					<h1>이용약관 관리</h1>
-					<ul class="header-dropdown m-r--5">
-						<li class="dropdown"><a href="javascript:void(0);"
-							class="dropdown-toggle" data-toggle="dropdown" role="button"
-							aria-haspopup="true" aria-expanded="false"> <i
-								class="material-icons">more_vert</i>
-						</a>
-							<ul class="dropdown-menu pull-right">
-								<li><a href="javascript:void(0);">Action</a></li>
-								<li><a href="javascript:void(0);">Another action</a></li>
-								<li><a href="javascript:void(0);">Something else here</a></li>
-							</ul></li>
-					</ul>
-				</div>
-				<!--헤더끝-->
-				<div class="body">
-					<div class="table-responsive" style="overflow-x: hidden;">
-						<table id="serviceUse-table"
-							class="table table-bordered table-striped table-hover display">
-							<thead>
-								<tr>
-									<th>일련번호</th>
-									<th>약관 제목</th>
-									<th>필수여부</th>
-									<th>삭제여부</th>
-									<th>약관등록일</th>
-									<th>작성자</th>
-									<th>약관수정일</th>
-									<th>수정자</th>
-								</tr>
-							</thead>
-							<tbody id="result">
-								<c:forEach var="terms" items="${termsList}">
-									<tr>
-										<td>${terms.termsNo}</td>
-										<td><a href="terms">
-											필수 이용 약관</a>
-										</td>
-										<td>${terms.termsRequiredFl}</td>
-										<td>${terms.termsDeleteFl}</td>
-										<td>${terms.termsRegYmd}</td>
-										<td>${terms.adminRegId}</td>
-										<td>${terms.termsEditYmd}</td>
-										<td>${terms.adminEditId}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						<div class="serviceUse-flex">
-							<button type="button" class="btn bg-pink waves-effect m-r-20"
-								data-toggle="modal" data-target="#seriveUse_in">약관 등록</button>
-							<button type="button" class="btn bg-pink waves-effect m-r-20">약관
-								수정</button>
-							<button type="button" class="btn bg-pink waves-effect m-r-20">약관
-								삭제</button>
-							<!-- <label class="label-export">외부파일로 저장하기</label> -->
-						</div>
-					</div>
-					<!-- 등록 수정 분류-->
-
-				</div>
+			<div class="block-header">
+				<h1>회원 약관동의 내역 정보</h1>
 			</div>
-			<!-- Modal -->
-			<div class="modal fade" id="seriveUse_in" role="dialog">
-				<div class="modal-dialog">
-					<!-- Modal content-->
-					<div class="modal-content">
-						<!-- modal header-->
-						<div class="modal-header">
-							<h4 class="modal-title">이용약관 등록</h4>
-						</div>
-
-						<div class="modal-body">
-						<form method="POST" action="new.mdo" name="termsForm">
-							<div class="form-group">
-								<label for="InputNoticeName">이용약관 제목</label> <input type="text"
-									class="form-control" id="serviceUse_title"
-									placeholder="Enter serviceuse_title"> <label
-									for="InputNoticeName">약관 내용</label>
+			<!-- banner-list -->
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card">
+						<div class="body">
+							<div class="table-responsive">
+								<table id="termsHist-list"
+									class="table table-bordered table-striped table-hover display">
+									<h3>회원약관 내역 관리</h3>
 									
-									<textarea rows="20" class="form-control" name="serviceUse_content" id="serviceUse_content" ></textarea>	
-									
-								</div>
-							</form>
-						</div>
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-success"
-								data-dismiss="modal" value="Upload" id="serviceuse_in">등록</button>
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">취소</button>
+									<thead>
+                                    <tr>
+                                    	<th>약관 내역 번호</th>
+										<th>약관 번호</th>
+										<th>회원 번호</th>
+										<th>약관 동의여부</th>
+										<th>약관 동의일</th>
+										<th>메일 발송</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="result">
+                                	<c:forEach var="termsHist" items="${termsHistList}">
+                                   <tr>
+                                   		<td>${termsHist.termsHistNo }</td>
+                                        <td>${termsHist.termsNo }</td>
+                                        <td>${termsHist.userNo }</td>
+                                        <td>${termsHist.termsAgreeFl }</td>
+                                        <td>${termsHist.termsAgreeYmd }</td>
+                                        <td class ="text-center">
+                                        <button type="button" class ="btn bg-cyan waves-effect termsHist-mail" data-termsHistNo="${termsHist.termsHistNo}">메일 발송</button>
+                                       <%--  <button type="button" class="btn bg-red waves-effect" id="coupon-del-btn" data-toggle="modal" data-target="#coupon_del" data-couponsq="${coupon.couponNo}" >삭제</button></td> --%>
+                                    </tr>
+                                    </c:forEach>
+                                </tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
 	<!-------------------------------------------SECTION--------------------------------------------------->
 
 
@@ -177,6 +129,7 @@
 	<!-- Bootstrap Core Js -->
 	<script
 		src="<c:url value ="/resources/vendor/plugins/bootstrap/js/bootstrap.js"/>"></script>
+
 
 	<!-- Slimscroll Plugin Js -->
 	<script
@@ -209,9 +162,13 @@
 	<!-- Custom Js -->
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
+	<script
+		src="<c:url value ="/resources/vendor/puglins/jquery-datatable/jquery-datatable.js"/>"></script>
 
 	<!-- 개인 JS -->
-	<script src="<c:url value ="/resources/js/admin/sites/site_terms.js"/>"></script>
+	<script
+		src="<c:url value ="/resources/js/admin/members/terms/member_term.js"/>"></script>
+
 
 
 </body>

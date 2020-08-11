@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nemo.admin.members.terms.repository.impl.TermsHistMapper">
+
+	<resultMap id="termsHistMap" type="com.nemo.admin.members.terms.vo.TermsHistVO" >
+		<id column="terms_hist_no" property="termsHistNo"/>
+		<result column="terms_no" property="termsNo"/>
+		<result column="user_no" property="userNo"/>
+		<result column="terms_agree_fl" property="termsAgreeFl"/>
+		<result column="terms_agree_ymd" property="termsAgreeYmd"/>
+	</resultMap>
+	
+	<select id="getTermsHistList" parameterType="com.nemo.admin.members.terms.vo.TermsHistVO"
+	resultMap="termsHistMap">
+		SELECT *
+		FROM terms_hist_tb
+		ORDER BY TERMS_HIST_NO
+	</select>
+	
+	<select id="getTermsHist" parameterType="int"
+	resultMap="termsHistMap">
+		SELECT *
+		FROM terms_hist_tb
+		WHERE terms_hist_no = #{termsHistNo}
+	</select>
+	
+	
+</mapper>

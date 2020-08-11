@@ -15,8 +15,8 @@ public class DeleteCouponServiceImpl implements DeleteCouponService {
 	private CouponMapper couponDAO;
 
 	@Override
-	public int deleteCoupon(String couponCd) {
-		return couponDAO.deleteCoupon(couponCd);
+	public int deleteCoupon(int couponNo) {
+		return couponDAO.deleteCoupon(couponNo);
 	}
 	
 }

@@ -10,4 +10,5 @@ public interface ITermsMapper {
 	public int updateTerms(TermsVO vo);
 	public TermsVO getTerms(int termsNo);
 	public List<TermsVO> getTermsList();
+	public int renewTerms(TermsVO vo);
 }

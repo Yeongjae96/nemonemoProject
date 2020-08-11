@@ -71,12 +71,12 @@
 
 	<!-- 컨텐츠 -->
 	<!-- 모달 시작-->
-	<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+	<div class="modal fade" id="coupon_del" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h3 class="modal-title text-center modal-col-red"
-						id="smallModalLabel">주의</h3>
+						id="smallModalLabel">경 고</h3>
 				</div>
 				<div class="modal-body">
 					<h1 class="text-center">쿠폰삭제</h1>
@@ -86,7 +86,7 @@
 
 				</div>
 				<div class="modal-footer">
-					<button id="del-confirm" type="button"
+					<button id ="coupon-del" type="button"
 						class="btn btn-link waves-effect" data-dismiss="modal">삭제</button>
 					<button type="button" class="btn btn-link waves-effect"
 						data-dismiss="modal">취소</button>
@@ -116,11 +116,10 @@
 									
 									<thead>
                                     <tr>
-                                    	<th>쿠폰 코드</th>
+                                    	<th>쿠폰번호</th>
 										<th>쿠폰명</th>
 										<th>쿠폰 내용</th>
-										<th>시작일</th>
-										<th>종료일</th>
+										<th>쿠폰 기한</th>
 										<th>혜택 금액</th>
 										<th>수정/삭제</th>
                                     </tr>
@@ -128,15 +127,14 @@
                                 <tbody id="result">
                                 	<c:forEach var="coupon" items="${couponList}">
                                    <tr>
-                                   		<td>${coupon.couponCd }</td>
-                                        <td>${coupon.couponNm}</td>
+                                   		<td>${coupon.couponNo }</td>
+                                        <td>${coupon.couponName}</td>
                                         <td>${coupon.couponContent}</td>
-                                        <td>${coupon.couponSrtYmd}</td>
-                                        <td>${coupon.couponEndYmd}</td>
+                                        <td>${coupon.couponPrd}</td>
                                         <td>${coupon.couponDisPrice}</td>
                                         <td class ="text-center">
-                                        <button type="button" class ="coupon-upd-btn" data-couponCd="${coupon.couponCd}">수정</button>
-                                        <button type="button" class ="coupon-del-btn" data-couponCd="${coupon.couponCd}">삭제</button></td>
+                                        <button type="button" class ="btn bg-cyan waves-effect coupon-upd-btn" data-couponNo="${coupon.couponNo}">수정</button>
+                                        <button type="button" class="btn bg-red waves-effect" id="coupon-del-btn" data-toggle="modal" data-target="#coupon_del" data-couponsq="${coupon.couponNo}" >삭제</button></td>
                                     </tr>
                                     </c:forEach>
                                 </tbody>
@@ -159,25 +157,18 @@
 						<div class="modal-body">
 						<form method="POST" action="new.mdo" name="couponForm">
 							<div class="form-group">
-								<label for="couponName">쿠폰 코드</label> 
+								<label for="couponName">쿠폰명</label>
 								<input type="text"
-									class="form-control" name="couponCd" id="couponCd"
-									placeholder="쿠폰 코드를 입력하세요"> 
-								<label for="couponImage">쿠폰명</label>
-								<input type="text"
-									class="form-control" name="couponNm" id="couponNm"
+									class="form-control" name="couponName" id="couponName"
 									placeholder="쿠폰명을 입력하세요"> 
 								<label for="couponName">쿠폰 내용</label> 
 								<input type="text"
 									class="form-control" name="couponContent" id="couponContent"
 									placeholder="쿠폰 내용을 입력하세요"> 
-								<label
-									for="coupon-start">등록일</label> <input type="text" name="couponSrtYmd" id="couponSrtYmd"
-									class="form-control" value="" placeholder="등록일을 입력하세요"><br>
-
-								<label for="coupon-end">종료일</label> <input type="text" name="couponEndYmd" id="couponEndYmd"
-									class="form-control" value=""
-									placeholder="종료일을 입력하세요"><br>
+								<label for="couponImage">쿠폰 기한</label>
+								<input type="text"
+									class="form-control" name="couponPrd" id="couponPrd"
+									placeholder="쿠폰 기한을 입력하세요"> 
 								<label for="couponImage">혜택 금액</label>
 								<input type="text"
 									class="form-control" name="couponDisPrice" id="couponDisPrice"
@@ -248,7 +239,7 @@
 
 	<!-- 개인 JS -->
 	<script
-		src="<c:url value ="/resources/js/admin/sites/site_coupon_list.js"/>"></script>
+		src="<c:url value ="/resources/js/admin/sites/site_coupon_list.js?v=<%=System.currentTimeMillis() %>"/>"></script>
 	
 	<!-- Date picker bootstrap -->
 	<script
