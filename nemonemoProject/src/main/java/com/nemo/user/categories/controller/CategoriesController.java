@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.user.categories.service.CategoryService;
+import com.nemo.user.categories.service.UserCategoryProductVO;
 
 @Controller
 @RequestMapping("/categories")
 public class CategoriesController {
 
-//	@Autowired
-//	private CategoryService categoryService;
-//	
+	@Autowired
+	private CategoryService categoryService;
+	
 	@GetMapping("/")
 	public ModelAndView goHome() {
 		return new ModelAndView("redirect:/");
@@ -24,8 +25,11 @@ public class CategoriesController {
 	
 	@GetMapping("/{productCateNo}")
 	public ModelAndView categoryList(@PathVariable int productCateNo) {
-		ModelAndView mav = new ModelAndView("categories/categories_board");
 		
+		UserCategoryProductVO vo = categoryService.getCategoryProducts(productCateNo);
+		System.out.println(vo);
+		ModelAndView mav = new ModelAndView("categories/categories_board");
+		mav.addObject("vo", vo);
 		return mav;
 	}
 	

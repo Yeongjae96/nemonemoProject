@@ -15,12 +15,14 @@
 
 <!-- 라이브러리 -->
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
-<script src="<c:url value="/resources/vendor/fontawsome/js/all.js"/>"></script>
+<script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script> window.contextPath = "<c:url value="/"/>"</script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
-<!-- 해당 페이지 JS파일 -->
 
+<!-- 해당 페이지 JS파일 -->
+<script src="<c:url value="/resources/js/user/categories/categories_board.js"/>"></script>
 
 </head>
 <body>

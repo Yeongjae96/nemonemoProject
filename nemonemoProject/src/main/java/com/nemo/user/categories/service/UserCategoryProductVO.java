@@ -1,6 +1,7 @@
 package com.nemo.user.categories.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.nemo.user.products.vo.UserBaseProductsCategoryVO;
 import com.nemo.user.products.vo.UserBaseProductsImageVO;
@@ -13,6 +14,6 @@ public class UserCategoryProductVO {
 	
 	private List<UserBaseProductsCategoryVO> productCategoryList;
 	private List<UserBaseProductsVO> productList;
-	private List<UserBaseProductsImageVO> productImageList;
+	private Map<String, UserBaseProductsImageVO> productPresentiveImageList;
 	
 }

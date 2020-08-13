@@ -13,6 +13,7 @@
 		<result column="product_img_type" property="productImgType"/>
 		<result column="product_img_dt" property="productImgDt"/>
 	</resultMap>
+	
 
 	<insert id="insertImage" 
 		parameterType="java.util.List">
@@ -29,7 +30,7 @@
 			product_img_height,
 			product_img_type
 		) VALUES (
-			get_seq('product_img_sq'),
+			(select get_seq('product_img_sq') FROM dual),
 			#{i.productNo},
 			#{i.productImgOriginName},
 			#{i.productImgFileName},
@@ -40,33 +41,22 @@
 		)
 		
 		</foreach>
-		
 		<selectKey keyColumn="productImgNo" order="AFTER"> SELECT product_img_sq.currval FROM dual </selectKey>
-		
 	</insert>
-
-	<!--
-		INSERT into product_img_tb (
-			product_img_no,
-			product_no,
-			product_img_origin_name,
-			product_img_file_name,
-			product_img_file_size,
-			product_img_width,
-			product_img_height,
-			product_img_type
-		) SELECT product_img_sq.NEXTVAL, A.* 
-		FROM (
-    <foreach item="i" collection="list" separator="UNION ALL " >
-		#{i.productNo} AS product_no,
-		#{i.productImgOriginName} AS product_img_origin_name,
-		#{i.productImgFileName} AS product_img_file_name,
-		#{i.productImgFileSize} AS product_img_file_size,
-		#{i.productImgWidth} AS product_img_width,
-		#{i.productImgHeight} AS product_img_height,
-		#{i.productImgType} AS product_img_type
-        from dual
-    </foreach>
-    ) A -->
-
+	
+	
+	<select id="getPresentiveImageList" parameterType="list" resultMap="productImgMap">
+		SELECT *
+		FROM
+			product_img_tb
+		<where>
+			product_cate_no 
+			<foreach collection="list" open="IN (" close= ")" item="i" separator=",">
+				#{i}
+			</foreach>
+		</where>
+			
+	</select>
+	
+	
 </mapper>

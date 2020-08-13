@@ -3,11 +3,11 @@ package com.nemo.user.products.repository.impl;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nemo.user.products.repository.IProductsMapper;
 import com.nemo.user.products.vo.UserBaseProductsVO;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @제목 : 상품 DAO 마이바티스
@@ -20,6 +20,6 @@ import com.nemo.user.products.vo.UserBaseProductsVO;
 @Mapper
 public interface ProductsMapper extends IProductsMapper{
 	
-	public List<UserBaseProductsVO> selectCategoryProducts(int productCategoryNo);
+	public List<UserBaseProductsVO> selectCategoryProducts(List<Integer> cateSeqList);
 	
 }

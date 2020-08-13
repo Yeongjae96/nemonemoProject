@@ -1,3 +1,7 @@
+/**
+ * initPdMenu() 는 메뉴를 위해 필수 함수
+ */
+
 const fileBuffer = []; // 파일저장용 전역변수
 let lastClickCategoryNo;
 
@@ -107,28 +111,12 @@ function initTitleArea() {
 
 /* 카테고리 영역 함수 */
 function initCategoryArea() {
-	// id lg|md|smCategory 안에 li
-	// (.products-category-item|.products-category-nothing)을 넣는것
 	
-	getCategoryList().then(categorySetting);
-	
-	/* 리스트 불러 오기 */
-	function getCategoryList() {
-		return new Promise(function(resolve, reject) {
-			$.ajax({
-				url: 'allCateList.do',
-				method: 'get',
-				dataType: 'json'
-			}).done(function(data) {
-				resolve(data);
-			});
-		});
-	}
-	
+	initPdMenu()
+	.then(categorySetting);
 	/* 카테고리 셋팅 하기 */
 	function categorySetting(data) {
 		return new Promise(function(resolve, reject) {
-			
 			// 대중소 분류 배열
 			const lgCateArr = data.filter(e => e.productCateType == 'L');
 			const mdCateArr = data.filter(e => e.productCateType == 'M');
@@ -287,6 +275,8 @@ function initCategoryArea() {
 					listEmpty(cateObj.cateID,cateObj.nothingText);
 				}
 			}
+			
+			resolve(data);
 		});
 	}
 	

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="main_header container-fluid">
 	<div class="flex">
 		<!-- 로고 영역 -->
 		<a href="<c:url value="/index.do"/>" id="main-logo-area"><img
-			src="<c:url value="/resources/images/user/common/mainLogo.png"/>" alt="mainLogo"
-			id="main-logo"></a>
+			src="<c:url value="/resources/images/user/common/mainLogo.png"/>"
+			alt="mainLogo" id="main-logo"></a>
 		<!-- 검색창 영역 -->
 		<div class="search">
 			<div class="search_content">
@@ -23,7 +23,7 @@
 							class="recommend-message" id="searched-box-store">상점명으로 검색</span>
 					</div>
 					<div id="search-close-div">
-						<a href="#" class	="search-close">닫기</a>
+						<a href="#" class="search-close">닫기</a>
 					</div>
 				</div>
 
@@ -37,57 +37,54 @@
 					</ul>
 					<!-- 검색 버튼 아이콘 -->
 				</div>
-				<a href="#"><img src="<c:url value="/resources/images/user/common/search_icon.png"/>"
+				<a href="#"><img
+					src="<c:url value="/resources/images/user/common/search_icon.png"/>"
 					alt="검색 버튼 아이콘" id="search-icon"></a>
 			</div>
 		</div>
 		<!-- 우측메뉴 -->
 		<div class="my-menu">
-			<a class="my-menu-box" href="<c:url value="/products/new.do"/>"> <img
-				src="<c:url value="/resources/images/user/common/sell2.png"/>" alt="판매하기아이콘"
-				id="sell-icon">&nbsp;&nbsp;판매하기
-			</a> <a href="#"> <img src="<c:url value="/resources/images/user/common/my_store.png"/>"
+			<a class="my-menu-box" href="<c:url value="/products/new.do"/>">
+				<img src="<c:url value="/resources/images/user/common/sell2.png"/>"
+				alt="판매하기아이콘" id="sell-icon">&nbsp;&nbsp;판매하기
+			</a> <a href="#"> <img
+				src="<c:url value="/resources/images/user/common/my_store.png"/>"
 				alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점
 			</a>
 		</div>
 	</div>
-	<div class="categories">
-		<!-- 카테고리 -->
-		<div id="menu-container">
-			<div id="menu-wrapper">
-				<!-- hamburger-menu -->
-				<div id="hamburger-menu">
-					<span></span><span></span><span></span>
+	<div class="cate-icon--area">
+		<div class="cate-icon--div">
+			<i class="fas fa-bars"></i>
+			<div class="cate-menu--area">
+				<!-- 대분류 -->
+				<div class="cate-menu--list" id="lgCateList">
+					<div class="cate-menu-list--title">전체 카테고리
+						<i class="fas fa-chevron-right"></i>
+					</div>
+					<div class="cate-menu-list--body">
+					</div>
+				</div>
+				<!-- 중분류 -->
+				<div class="cate-menu--list" id="mdCateList">
+					<div class="cate-menu-list-md--title">대분류 선택
+						<i class="fas fa-chevron-right"></i>
+					</div>
+					<div class="cate-menu-list--body">
+					</div>
+				</div>
+				<!-- 소분류 -->
+				<div class="cate-menu--list" id="smCateList">
+					<div class="cate-menu-list-sm--title">중분류 선택
+						<i class="fas fa-chevron-right"></i>
+					</div>
+					<div class="cate-menu-list--body">
+					</div>
 				</div>
 			</div>
-
-			<!-- menu-wrapper -->
-			<ul class="menu-list accordion">
-				<li id="nav1" class="toggle accordion-toggle"><span
-					class="icon-plus"></span> <a class="menu-link" href="#">패션잡화</a></li>
-				<ul class="menu-submenu accordion-content">
-					<li><a class="head" href="#">여성가방</a></li>
-					<li><a class="head" href="#">운동화/캐주얼화</a></li>
-					<li><a class="head" href="#">주얼리/액세서리</a></li>
-				</ul>
-				<li id="nav2" class="toggle accordion-toggle"><span
-					class="icon-plus"></span> <a class="menu-link" href="#">여성의류</a></li>
-				<ul class="menu-submenu accordion-content">
-					<li><a class="head" href="#">Submenu1</a></li>
-					<li><a class="head" href="#">Submenu2</a></li>
-				</ul>
-				<li id="nav3" class="toggle accordion-toggle"><span
-					class="icon-plus"></span> <a class="menu-link" href="#">남성의류</a></li>
-				<ul class="menu-submenu accordion-content">
-					<li><a class="head" href="#">Submenu1</a></li>
-					<li><a class="head" href="#">Submenu2</a></li>
-					<li><a class="head" href="#">Submenu3</a></li>
-					<li><a class="head" href="#">Submenu4</a></li>
-				</ul>
-			</ul>
-			<!-- menu-list accordion-->
 		</div>
 	</div>
+
 </div>
 
 <!-- 모달 시작-->

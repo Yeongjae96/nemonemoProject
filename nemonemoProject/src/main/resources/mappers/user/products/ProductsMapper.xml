@@ -63,15 +63,20 @@
 		)
 	</insert>
 	
-	<select id="selectCategoryProducts" parameterType="int" resultMap="productMap">
+	<select id="selectCategoryProducts" parameterType="list" resultMap="productMap">
 		
 		SELECT *
 		FROM 
-			product_cate_tb
-		WHERE
-			
+			product_tb
+		<where>
+			product_cate_no 
+			<foreach collection="list" open="IN (" close=")" item="i" separator=",">
+				#{i}
+			</foreach>
+		</where>
 		
 	</select>
 	
 	
 </mapper>
+

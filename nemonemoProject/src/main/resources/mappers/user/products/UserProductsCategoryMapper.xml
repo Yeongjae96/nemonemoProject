@@ -24,11 +24,44 @@
 		ORDER BY 
 			product_cate_order desc,
 			product_cate_no desc
-		
 	</select>
 	
+	<select id="selectChildrenCateNums" parameterType="hashMap" resultType="Integer">
+					SELECT PRODUCT_CATE_NO
+					FROM PRODUCT_CATE_TB
+			<where>
+			<choose>
+			
+			<when test='productCateType == "L"'>
+					PRODUCT_CATE_LARGE = 
+					(
+						SELECT PRODUCT_CATE_LARGE
+			</when>
+			<when test='productCateType == "M"'>
+					PRODUCT_CATE_MEDIUM = 
+					(
+						SELECT PRODUCT_CATE_MEDIUM
+			</when>
+			<otherwise>
+					PRODUCT_CATE_SMALL = 
+					(
+						SELECT PRODUCT_CATE_SMALL
+			</otherwise>
+			</choose>
+						FROM PRODUCT_CATE_TB
+						WHERE PRODUCT_CATE_NO = #{productCateNo}
+					)
+			</where>
+	</select>
+
+	<select id="searchTypeSeq" parameterType="int" resultType="String">
+		
+		SELECT product_cate_type
+		FROM product_cate_tb
+		WHERE product_cate_no = #{productCateNo}
 	
-	
-	
+	</select>
+
+
 
 </mapper>

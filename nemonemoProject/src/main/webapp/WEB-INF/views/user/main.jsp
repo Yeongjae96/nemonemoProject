@@ -11,19 +11,20 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/user/main/main.css"/>">
 
 <!-- 페이지 CSS  -->
-<link rel="stylesheet" href="<c:url value="/resources/css/user/sign/signin.css"/>">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <!-- 라이브러리 -->
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
-<script src="<c:url value="/resources/vendor/fontawsome/js/all.js"/>"></script>
+<script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script> window.contextPath = "<c:url value="/"/>"</script>
+<script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
 <!-- 해당 페이지 JS파일 -->
-<script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
+<script src="<c:url value="/resources/js/user/main/main.js"/>"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="<c:url value="/resources/js/user/main/jquery.scrolltabs.js"/>"></script>
