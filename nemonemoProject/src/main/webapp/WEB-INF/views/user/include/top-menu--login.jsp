@@ -227,7 +227,7 @@
     <!-- 로그인 전 나브 종료 -->
     
           <!--로그인 모달 창 -->
-	<div id="myModal" class="modal">
+<div id="myModal" class="modal">
     <div class ="login-wrap">
         <div class="login-modal-content">
             <button class="login-modal-close">

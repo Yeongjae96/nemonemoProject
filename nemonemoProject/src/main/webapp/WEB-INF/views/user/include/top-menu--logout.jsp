@@ -207,7 +207,14 @@
     </style>
     <title>상품등록</title>
 	</head>
-	<body>
+<script>
+	$(function() {
+		$('#logoutBtn').click(function() {
+			$('#myModal').show()
+		});
+	})
+</script>
+<body>
 		<!-- top-menu -->
        <nav class="top navbar nav-expand-sm navbar-light top-nav">
         <div class="top-menus">
@@ -217,16 +224,16 @@
             </div>
             <div class="nav-box">
                 <!-- 오른쪽 네비 -->
-                <button class="btn-layout" onclick="open_pop()">로그아웃</button>
+                <button class="btn-layout" id="logoutBtn">로그아웃</button>
                 <!--내 상점 시작-->
                 <div class="com-outline">
                     <div class="dropdown-position">
                         <a class="mystore" href="#">내상점</a>
                         <div class="mystore-box">
-                            <a class="mystore-menu" href="#">내상품</a>
-                            <a class="mystore-menu" href="<c:url value="/sign/info.do?userNo=${user.userNo}"/>">내계정</a>
-                            <a class="mystore-menu" href="#">찜한상품</a>
-                            <a class="mystore-menu" href="#">계정설정</a>
+                            <button type="button" class="mystore-menu" onclick="location.href='#'">내상품</button>
+                            <button type="button" class="mystore-menu" onclick="location.href='sign/info.do' ">내계정</button>
+                            <button type="button" class="mystore-menu" onclick="location.href='#'">찜한상품</button>
+                            <button type="button" class="mystore-menu" onclick="location.href='sign/setting.do'">계정설정</button>
                         </div>
                     </div>
                 </div> <!-- 내상점 끝-->
@@ -262,5 +269,27 @@
             <!--오른쪽 네비 끝 -->
         </div>
     </nav>
+    
+<!-- 모달 시작-->
+<div id="myModal" class="modal">
+	<!-- 모달 내용 -->
+	<form method="post" action="sign/logout.do">
+		<div class="modal-content">
+			<div class="logout_h2">
+				<h2>로그아웃</h2>
+				<p>로그아웃 시 6개월 이상 경과된 번개톡 대화 내용이 모두 삭제됩니다. 계속하시겠습니까?</p>
+			</div>
+			<div class=logout_button_group>
+				<div>
+					<button id="model-cancel" class="cancel_logout">취소</button>
+				</div>
+				<div>
+					<button class="confirm_logout" type="submit">확인</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<!--End Modal-->
 	</body>
 </html>

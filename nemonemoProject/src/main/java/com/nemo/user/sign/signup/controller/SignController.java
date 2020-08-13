@@ -119,5 +119,16 @@ public class SignController {
 		return mv;
 	}
 	
+	@GetMapping("/setting")
+	public ModelAndView userSettingPage() {
+		ModelAndView mav = new ModelAndView("settings/setting");
+		return mav;
+	}
+	
+	@GetMapping("/withdraw")
+	public ModelAndView userWithdrawPage() {
+		ModelAndView mav = new ModelAndView("withdraw/withdraw");
+		return mav;
+	}
 	
 }
