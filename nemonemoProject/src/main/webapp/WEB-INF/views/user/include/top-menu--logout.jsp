@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-    
+<script> window.contextPath = "<c:url value="/"/>"</script>    
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -224,6 +224,7 @@
                         <a class="mystore" href="#">내상점</a>
                         <div class="mystore-box">
                             <a class="mystore-menu" href="#">내상품</a>
+                            <a class="mystore-menu" href="<c:url value="/sign/info.do?userNo=${user.userNo}"/>">내계정</a>
                             <a class="mystore-menu" href="#">찜한상품</a>
                             <a class="mystore-menu" href="#">계정설정</a>
                         </div>

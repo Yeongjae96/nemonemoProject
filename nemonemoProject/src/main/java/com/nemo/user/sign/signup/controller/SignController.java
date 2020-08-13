@@ -61,12 +61,10 @@ public class SignController {
 	}
 	
 	@RequestMapping(value = "/signup", method= {RequestMethod.POST})
-	public ModelAndView signupAction(UserBaseVO vo, HttpServletRequest req) {
-		System.out.println(vo.toString());
-		//세션
-		HttpSession session = req.getSession();
+	public ModelAndView signupAction(UserBaseVO vo) {
+		//암호화 진행
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		try {
-			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			vo.setUserPw(encoder.encode(vo.getUserPw()));
 			userService.insertUser(vo);
 			ModelAndView mav = new ModelAndView("redirect:/");
@@ -75,12 +73,6 @@ public class SignController {
 			ModelAndView mav = new ModelAndView("redirect:/sign/signup.do");
 			return mav;
 		}
-	}
-	
-	@GetMapping("/info")
-	public ModelAndView userinfoPage() {
-		ModelAndView mav = new ModelAndView("info/userinfo");
-		return mav;
 	}
 	
 	//AJAX 메서드 앞에 어노테이션 @ResponseBody 추가
@@ -96,6 +88,27 @@ public class SignController {
 	
 		return idChecked; // 이 컨트롤러의 return을 ajax data로..!!
 		
+	}
+	
+	
+	@GetMapping("/info")
+	public ModelAndView userinfoPage() {
+		ModelAndView mav = new ModelAndView("info/userinfo");
+		return mav;
+	}
+	
+	@PostMapping("/updateUser")
+	public ModelAndView UpdateAction(UserBaseVO vo,HttpSession session) {
+		 ModelAndView mav = new ModelAndView();
+		//비밀번호 암호화를 시키기위해 부름
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		//재입력한 비밀번호 암호화
+		vo.setUserPw(encoder.encode(vo.getUserPw()));
+		//유저 수정하기
+		userService.updateUser(vo);
+		session.invalidate();
+		mav.setViewName("redirect:/");
+		return mav;
 	}
 	
 	//로그아웃

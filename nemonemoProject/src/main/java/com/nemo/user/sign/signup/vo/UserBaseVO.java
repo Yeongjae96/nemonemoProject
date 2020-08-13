@@ -9,7 +9,7 @@ import lombok.Data;
  * @패키지이름 : com.nemo.user.sign.signup.vo
  * @파일이름 : UserVO.java
  * @작성일 : 2020. 7. 31.
- * @이름 : Yeong
+ * @이름 : Yeong ,Dong
  * @프로그램설명 : 
  * == 수정 정보 ==
  *
@@ -23,6 +23,7 @@ public class UserBaseVO {
 	private String userGender;
 	private String userName;
 	private String userPhone;
+	private String userAccount;
 	private String userZipcode;
 	private String userAddress1;
 	private String userAddress2;
