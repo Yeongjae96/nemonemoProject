@@ -5,12 +5,12 @@ import lombok.Getter;
 @Getter
 public enum DirectoryName {
 		
-		USER("/user/"),
-		STORE("/store/"),
-		ADMIN("/admin/"),
-		QNA("/qna/"),
-		PRODUCT("/product/"),
-		BANNER("/banner/");
+		USER("/upload/user/"),
+		STORE("/upload/store/"),
+		ADMIN("/upload/admin/"),
+		QNA("/upload/qna/"),
+		PRODUCT(PathBean.product),
+		BANNER("/upload/banner/");
 
 		private String directoryName;
 	

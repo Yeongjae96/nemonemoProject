@@ -11,5 +11,5 @@ import com.nemo.user.products.vo.UserBaseProductsVO;
 @Mapper
 public interface ProductsImageMapper extends IProductsImageMapper {
 	
-	public List<UserBaseProductsImageVO> getPresentiveImageList(List<UserBaseProductsVO> list);
+	public List<UserBaseProductsImageVO> selectPresentiveImg(List<UserBaseProductsVO> list);
 }

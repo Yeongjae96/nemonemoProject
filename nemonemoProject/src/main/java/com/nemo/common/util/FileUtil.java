@@ -24,6 +24,24 @@ public class FileUtil {
     }
     
     
+    public static File getFile(DirectoryName dirName, String fileName, String fileExt) {
+    	StringBuffer realFile = new StringBuffer()
+    			.append(dirName.getDirectoryName())
+    			.append(fileName)
+    			.append(".")
+    			.append(fileExt);
+    	return new File(realFile.toString());
+    }
+    
+    // DB에 저장할 유일한 파일명으로 변경
+    public static String getSaveFileNm(String orgFileName) throws Exception{
+    	StringBuffer sb = new StringBuffer();
+    	sb.append(DateUtil.getDate());
+    	sb.append("_");
+    	sb.append(orgFileName);
+    	return sb.toString();
+    }
+    
     // DB에 저장할 유일한 파일명으로 변경
     public static String getSaveFileNm(String orgFileName, String orgFileExtension) throws Exception{
         StringBuffer sb = new StringBuffer();
