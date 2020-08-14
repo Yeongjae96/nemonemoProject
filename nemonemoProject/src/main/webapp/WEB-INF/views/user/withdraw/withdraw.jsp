@@ -12,9 +12,10 @@
 
 <!-- 페이지 CSS  -->
 
+<%-- <link rel="stylesheet" type="text/css"
+	href="<c:url value="https://assets.bunjang.co.kr/static/bundle/css/6b29cf2da9df.css"/>"> --%>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="https://assets.bunjang.co.kr/static/bundle/css/6b29cf2da9df.css"/>">
-
+	href="<c:url value="/resources/css/user/withdraw/withdraw.css"/>">
 <!-- 라이브러리 -->
 <script
 	src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
@@ -139,7 +140,8 @@
 
 
 		<div id="fb-root" class=" fb_reset">
-			<div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+			<div
+				style="position: absolute; top: -10000px; width: 0px; height: 0px;">
 				<div></div>
 			</div>
 		</div>

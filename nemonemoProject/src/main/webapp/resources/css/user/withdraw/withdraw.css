@@ -1,14 +1,7393 @@
 @charset "UTF-8";
 
-
-
-.footerwrap{
-    align-content: center;
-    margin-right: 250px;
+.footerwrap {
+	align-content: center;
+	margin-right: 250px;
 }
 
-.loginwrap{
-    align-content: center;
-    margin-left: 130px;
-    width: 730px;
+.loginwrap {
+	align-content: center;
+	margin-left: 130px;
+	width: 730px;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-text-size-adjust: none
+}
+
+html, body {
+	width: 100%;
+	height: 100%
+}
+
+body {
+	min-width: 320px;
+	min-height: 100%;
+	background: #e8e8e8;
+	color: #212121;
+	font-size: 12px;
+	line-height: 140%
+}
+
+article, aside, hgroup, header, footer, figure, figcaption, nav, section
+	{
+	display: block
+}
+
+ul, ol, li {
+	list-style: none
+}
+
+img, hr {
+	border: none
+}
+
+img {
+	vertical-align: top;
+	border: 0
+}
+
+a {
+	color: #212121;
+	text-decoration: none
+}
+
+a:hover, a:active, a:focus {
+	text-decoration: none
+}
+
+a:hover {
+	text-decoration: none;
+	cursor: pointer
+}
+
+table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	table-layout: fixed
+}
+
+table th {
+	font-weight: normal
+}
+
+table td img {
+	vertical-align: middle
+}
+
+em, span {
+	font-family: inherit;
+	color: inherit;
+	font-size: inherit;
+	line-height: inherit
+}
+
+textarea {
+	padding: 10px;
+	border: solid 1px #dadada;
+	background-color: #fff;
+	color: #212121;
+	vertical-align: middle;
+	font-size: 13px;
+	line-height: 19px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	resize: none;
+	outline: 0
+}
+
+input {
+	vertical-align: middle;
+	outline: 0
+}
+
+input[type=tel], input[type=text], input[type=password] {
+	height: 30px;
+	padding: 0 5px;
+	border: solid 1px #dadada;
+	background-color: #fff;
+	color: #212121;
+	vertical-align: middle;
+	font-size: 12px;
+	line-height: 30px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	border-radius: 0
+}
+
+input[type=text]::-webkit-input-placeholder {
+	color: #b0b0b0;
+	font-weight: normal;
+	font-size: 14px
+}
+
+input[type=text]:-moz-placeholder {
+	color: #b0b0b0;
+	font-weight: normal;
+	font-size: 14px
+}
+
+input[type=text]::-moz-placeholder {
+	color: #b0b0b0;
+	font-weight: normal;
+	font-size: 14px
+}
+
+input[type=text]:-ms-input-placeholder {
+	color: #b0b0b0;
+	font-weight: normal;
+	font-size: 14px
+}
+
+input[type=checkbox] {
+	margin: -1px 2px 0 0
+}
+
+input[type=radio] {
+	margin: -1px 3px 0 0
+}
+
+button {
+	border: 0;
+	color: #212121;
+	vertical-align: middle;
+	cursor: pointer;
+	outline: 0;
+	font-size: 12px
+}
+
+select {
+	height: 30px;
+	padding: 0 5px;
+	border: solid 1px #dadada;
+	background-color: #fff;
+	color: #212121;
+	vertical-align: middle;
+	font-size: 13px;
+	line-height: 30px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+hr, caption {
+	display: none
+}
+
+address, cite, em {
+	font-style: normal
+}
+
+fieldset {
+	border: 0;
+	padding: 0
+}
+
+legend {
+	position: absolute;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+	overflow: hidden;
+	color: transparent
+}
+
+label {
+	cursor: pointer
+}
+
+.hide {
+	display: none
+}
+
+.mobile_hide {
+	display: none
+}
+
+.limit-buntalk-popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background: rgba(0, 0, 0, 0.4);
+	display: none;
+	-webkit-box-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	align-items: center;
+	-ms-flex-align: center;
+	-ms-flex-pack: center
+}
+
+.limit-buntalk-popup-content {
+	background: #ffffff;
+	width: 260px;
+	border-radius: 8px;
+	padding: 20px 15px 15px;
+	position: relative
+}
+
+.popup-title {
+	font-size: 18px;
+	color: #333333;
+	font-weight: 600;
+	margin-bottom: 5px;
+	line-height: 1.5;
+	text-align: center
+}
+
+.popup-desc {
+	font-size: 13px;
+	color: #888888;
+	line-height: 1.5;
+	text-align: center;
+	margin-bottom: 20px
+}
+
+.limit-buntalk-popup-content>img {
+	display: block;
+	margin: auto;
+	margin-bottom: 10px
+}
+
+.popoup-btns {
+	overflow: hidden
+}
+
+.popup-confirm-btn {
+	float: left;
+	display: block;
+	width: 100%;
+	height: 43px;
+	line-height: 43px;
+	font-size: 14px;
+	color: #ffffff;
+	text-align: center;
+	border-radius: 8px;
+	background: #ff5058;
+	font-weight: bold
+}
+
+.close-btn {
+	position: absolute;
+	top: 20px;
+	right: 20px
+}
+
+@import
+	url("https://assets.bunjang.co.kr/static/mobile/css/common.css?449b48c971c9")
+	;
+
+.photo {
+	overflow: hidden;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%
+}
+
+.photo img {
+	width: 100%;
+	height: 100%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%
+}
+
+.zzim {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 2;
+	width: 127px;
+	height: 127px;
+	margin: -63px 0 0 -63px;
+	padding-top: 65px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background: rgba(152, 154, 154, 0.95)
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_zzim.png?7f2af70e1252')
+		no-repeat 50% 23px;
+	background-size: 65px 71px
+}
+
+.zzim_02 {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 2;
+	width: 127px;
+	height: 127px;
+	margin: -63px 0 0 -63px;
+	padding-top: 65px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background: rgba(152, 154, 154, 0.95)
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_zzim_02.png?44a0437780b8')
+		no-repeat 50% 23px;
+	background-size: 65px 71px
+}
+
+.tit_popul {
+	position: relative;
+	padding: 12px 0
+}
+
+.tit_popul .title {
+	display: inline-block;
+	width: 117px;
+	height: 19px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/contents/img_main_title_a.png?d03afcc596e7')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0;
+	vertical-align: top
+}
+
+.tit_popul.st02 {
+	margin-top: -4px;
+	padding-left: 4px
+}
+
+.tit_popul.st02 strong {
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/contents/img_search_text_title.png?3f7072df39d2')
+		no-repeat;
+	background-size: 100%
+}
+
+.tit_popul .more {
+	position: absolute;
+	top: 15px;
+	right: 2px;
+	display: block;
+	width: 103px;
+	height: 12px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/contents/txt_more_02.png?64daa86ffc47')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.tit_txt {
+	position: relative;
+	padding: 8px 0 10px;
+	font-weight: bold;
+	font-size: 15px
+}
+
+.badgebox {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+.graph {
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	height: 14px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/graph_star_off.png?31d527bbe94c')
+		no-repeat 0 0;
+	background-size: 80px 14px;
+	font-size: 0;
+	color: transparent
+}
+
+.graph em {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/graph_star_on.png?ac94c6db6dd9')
+		no-repeat 0 0;
+	background-size: 80px 14px
+}
+
+.graph_02 {
+	display: inline-block;
+	position: relative;
+	width: 88px;
+	height: 15px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/graph_star_02_off.png?be6c57a5e126')
+		no-repeat 0 0;
+	background-size: 88px 15px;
+	font-size: 0;
+	color: transparent
+}
+
+.graph_02 em {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/graph_star_02_on.png?355d6549bd39')
+		no-repeat 0 0;
+	background-size: 88px 15px
+}
+
+.ichk {
+	display: inline-block;
+	position: relative;
+	min-height: 20px
+}
+
+.ichk i {
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	width: 20px;
+	height: 20px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/bg_chk_off.png?361a025b8536')
+		no-repeat 0 0;
+	background-size: 20px 20px;
+	vertical-align: middle
+}
+
+.ichk input {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity = 0)
+}
+
+.ichk input:checked ~ i {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/bg_chk_on.png?09ba785a6de4')
+}
+
+.ichk span {
+	padding-left: 6px;
+	vertical-align: middle
+}
+
+.cstselect {
+	display: block;
+	position: relative;
+	z-index: 1;
+	height: 15px
+}
+
+.cstselect:before {
+	position: absolute;
+	top: 0;
+	right: -1px;
+	width: 1px;
+	height: 13px;
+	background-color: #cfcfcf;
+	content: ''
+}
+
+.cstselect a.selected {
+	display: block;
+	padding: 0 8px;
+	text-decoration: none
+}
+
+.cstselect a.selected span {
+	display: inline-block;
+	height: 15px;
+	padding-right: 12px;
+	padding-top: 1px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_cstselect_off.png?53c0c6fbc5ab')
+		no-repeat 100% 50%;
+	background-size: 7px 5px;
+	font-size: 14px;
+	line-height: 15px
+}
+
+.cstselect a.selected:hover, .cstselect a.selected:focus, .cstselect a.selected:active
+	{
+	text-decoration: none
+}
+
+.cstselect ul {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 18px;
+	width: 100%;
+	border: 1px solid #808080;
+	background: #fff
+}
+
+.cstselect ul li {
+	border-top: 1px solid #808080
+}
+
+.cstselect ul li:first-child {
+	border-top: 0
+}
+
+.cstselect ul li a {
+	display: block;
+	padding: 8px;
+	font-size: 13px
+}
+
+.cstselect ul li a.on {
+	background: #ea4b4b;
+	color: #fff
+}
+
+.cstselect.on {
+	z-index: 2
+}
+
+.cstselect.on a.selected span {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_cstselect_on.png?886e62e329c2')
+}
+
+.cstselect.on ul {
+	display: block
+}
+
+.pagination {
+	clear: both;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 48px;
+	margin-top: 8px;
+	padding-top: 12px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #f2f2f2;
+	text-align: center;
+	font-size: 0
+}
+
+.pagination * {
+	vertical-align: middle
+}
+
+.pagination a {
+	display: inline-block;
+	width: 26px;
+	height: 26px
+}
+
+.pagination span {
+	display: inline-block
+}
+
+.pagination span a {
+	display: inline-block;
+	margin-left: 15px;
+	color: #999;
+	font: 14px ngb;
+	line-height: 26px
+}
+
+.pagination span a:first-child {
+	margin-left: 0
+}
+
+.pagination span a.on {
+	border: 1px solid #999;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background-color: #fff;
+	color: #4d4d4d;
+	text-decoration: none;
+	line-height: 26px
+}
+
+.pagination>a {
+	position: absolute;
+	background: transparent no-repeat 50% 50%;
+	background-size: 9px 16px;
+	font-size: 0;
+	color: transparent
+}
+
+.pagination .pag_prev {
+	left: 7px;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_page_prev.png?08be962ae4d3')
+}
+
+.pagination .pag_next {
+	right: 7px;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_page_next.png?5a1a6bb12eb7')
+}
+
+.tab {
+	clear: both;
+	overflow: hidden;
+	position: relative;
+	right: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+	box-shadow: 0 0 4px #c9c7c7
+}
+
+.tab button {
+	display: block;
+	float: left;
+	background-color: #fff;
+	color: #4c4c4c
+}
+
+.tab.st01 {
+	position: fixed;
+	top: 53px
+}
+
+.tab.st01 button {
+	width: 33.3%;
+	height: 44px;
+	font-weight: bold;
+	font-size: 14px
+}
+
+.tab.st01 button:first-child {
+	width: 33.4%
+}
+
+.tab button.on {
+	position: relative;
+	color: #e82c1e
+}
+
+.tab button.on em {
+	color: #e82c1e
+}
+
+.tab button.on:before {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	border-bottom: 2px solid #e82c1e;
+	content: ''
+}
+
+.icon_review {
+	display: inline-block;
+	height: 14px;
+	padding: 1px 0 0 16px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_review.png?319a122bcd46')
+		no-repeat 0 1px;
+	background-size: 12px 13px;
+	color: #fff;
+	font-weight: bold;
+	font-size: 13px;
+	line-height: 14px
+}
+
+.icon_review_02 {
+	display: inline-block;
+	padding: 5px 6px 4px 20px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: rgba(0, 0, 0, 0.2)
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_review_02.png?319a122bcd46')
+		no-repeat 6px 5px;
+	background-size: 12px 13px;
+	color: #fff;
+	font-weight: bold;
+	font-size: 13px;
+	line-height: 14px
+}
+
+.icon_heart {
+	display: inline-block;
+	height: 18px;
+	padding: 3px 0 0 13px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_heart.png?58accd69e4be')
+		no-repeat 0 50%;
+	background-size: 11px 11px;
+	color: #bab9b9
+}
+
+.icon_heart_02 {
+	display: inline-block;
+	height: 15px;
+	padding: 1px 0 0 14px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_heart_02.png?d2d808f8cbd7')
+		no-repeat 0 1px;
+	background-size: 12px 10px;
+	color: #b0b0b0;
+	font-size: 14px;
+	line-height: 15px
+}
+
+.icon_heart_03 {
+	display: inline-block;
+	padding: 4px 6px 3px 21px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: rgba(0, 0, 0, 0.2)
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_heart_03.png?bca501169ce6')
+		no-repeat 6px 5px;
+	background-size: 12px 10px;
+	color: #fff;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 15px
+}
+
+.icon_reply {
+	display: inline-block;
+	height: 18px;
+	padding: 2px 0 0 13px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_reply.png?10d04ea445b1')
+		no-repeat 0 50%;
+	background-size: 11px 11px;
+	color: #bab9b9
+}
+
+.icon_shop {
+	width: 120px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: inline-block;
+	height: 13px;
+	padding: 1px 0 0 14px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_shop.png?b69998469eee')
+		no-repeat 0 2px;
+	background-size: 12px 10px;
+	color: #bab9b9;
+	line-height: 12px
+}
+
+.icon_view {
+	display: inline-block;
+	height: 15px;
+	padding: 2px 0 0 21px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_view.png?7e6a51414479')
+		no-repeat 0 1px;
+	background-size: 18px 13px;
+	color: #b0b0b0;
+	font-size: 14px;
+	line-height: 15px
+}
+
+.icon_clock {
+	display: inline-block;
+	height: 15px;
+	padding: 2px 0 0 19px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_clock.png?a053aab3c715')
+		no-repeat 0 1px;
+	background-size: 15px 13px;
+	color: #b0b0b0;
+	font-size: 14px;
+	line-height: 15px
+}
+
+.icon_an {
+	width: 19px
+}
+
+.icon_plus {
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_plus.png?5123991ef7b7')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.icon_hot {
+	width: 29px
+}
+
+.icon_npay {
+	width: 26px
+}
+
+.icon_ad {
+	display: inline-block;
+	width: 16px;
+	height: 12px;
+	marign-left: 2px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_ad.png?4a79ecdba123')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.icon_phone {
+	width: 9px
+}
+
+.icon_direct_sell {
+	display: inline-block;
+	width: 39px;
+	height: 15px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_buy.png?d82c5c18174c')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.icon_direct_sell_02 {
+	display: inline-block;
+	width: 40px;
+	height: 16px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/img_shop_direct_sell.png?1a5a6503ead6')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.icon_direct_sell_03 {
+	display: inline-block;
+	width: 40px;
+	height: 16px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/img_list_direct_sell_round_s.png?6821ee9450d6')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.icon_free_delivery {
+	display: inline-block;
+	width: 39px;
+	height: 15px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_deli.png?2af091c4efdb')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.icon_free_delivery_02 {
+	display: inline-block;
+	width: 40px;
+	height: 16px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/img_shop_free_delivery.png?d448238f58af')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.icon_special {
+	display: inline-block;
+	width: 44px;
+	height: 44px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_badge.png?dda56a544a80')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.icon_special_02 {
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/img_shopdetail_tag_special.png?68b495091e03')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0;
+	margin: 68px 0 0 60px
+}
+
+.icon_friend {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_friend.png?4559d573bb64')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.icon_friend_02 {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_friend_02.png?989d906f3325')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.icon_more_04 {
+	display: inline-block;
+	width: 30px;
+	height: 19px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_more_04.png?bced84fd97c6')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.icon_resch {
+	display: inline-block;
+	width: 25px;
+	height: 16px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_resch.png?0ced42170aed')
+		no-repeat;
+	background-size: 100%;
+	font-size: 0
+}
+
+.btncenter {
+	clear: both;
+	width: 100%;
+	padding-top: 20px;
+	text-align: center;
+	font-size: 0
+}
+
+.btncenter button, .btncenter a {
+	margin-left: 5px
+}
+
+.btncenter button:first-child, .btncenter a:first-child {
+	margin-left: 0 !important
+}
+
+.btnright {
+	clear: both;
+	width: 100%;
+	padding-top: 20px;
+	text-align: right;
+	font-size: 0
+}
+
+.btnright button, .btnright a {
+	margin-left: 5px;
+	text-align: center
+}
+
+.btnright a:hover, .btnright a:active, .btnright a:focus {
+	text-decoration: none
+}
+
+.btnright button:first-child, .btnright a:first-child {
+	margin-left: 0 !important
+}
+
+.btnjustify {
+	clear: both;
+	width: 100%;
+	padding-top: 20px;
+	text-align: left;
+	font-size: 0
+}
+
+.btnjustify button, .btnjustify a {
+	margin-left: 5px
+}
+
+.btnjustify button:first-child, .btnjustify a:first-child {
+	margin-left: 0
+}
+
+.btnjustify span {
+	display: block;
+	float: right
+}
+
+.btn_top {
+	display: none;
+	position: fixed;
+	right: 5px;
+	bottom: 15px;
+	z-index: 10;
+	width: 43px;
+	height: 40px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_top.png?1cf2d1f837c9')
+		no-repeat 50% 0;
+	background-size: 43px 40px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_top.on {
+	display: block
+}
+
+.btn_alrim {
+	position: relative;
+	width: 29px;
+	height: 32px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_web_20180204.png?76c3478bea43')
+		no-repeat -203px 5px;
+	background-size: 500px 500px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_alrim.new:before {
+	position: absolute;
+	top: -1px;
+	left: 50%;
+	width: 14px;
+	height: 14px;
+	background: transparent
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_alrim_new.png?c0902d031cc7')
+		no-repeat 0 0;
+	background-size: 14px 13px;
+	content: ''
+}
+
+.btn_gnb {
+	width: 43px;
+	height: 48px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_gnb.png?75b28243fac6')
+		no-repeat 12px 19px;
+	background-size: 22px 17px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_gnbclose {
+	width: 43px;
+	height: 48px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_gnbclose.png?69f1cb199417')
+		no-repeat 50% 50%;
+	background-size: 14px 14px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_upload {
+	width: 71px;
+	height: 30px;
+	border: 1px solid #e0e0e0;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #fff
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_upload.png?f813c5159292')
+		no-repeat 8px 8px;
+	background-size: 53px 11px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_back {
+	width: 41px;
+	height: 41px;
+	border: 1px solid #c9c9c9;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #fafafa
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_back.png?8c1851ea58ba')
+		no-repeat 50% 50%;
+	background-size: 13px 17px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_back_02 {
+	width: 40px;
+	height: 40px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_back_02.png?6dc43b048c80')
+		no-repeat 17px 11px;
+	background-size: 12px 18px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_back_03 {
+	width: 43px;
+	height: 48px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_back_03.png?496df14f39fd')
+		no-repeat 12px 18px;
+	background-size: 22px 19px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_sch {
+	position: relative;
+	width: 37px;
+	height: 37px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_sch.png?735e2fd9a30e')
+		no-repeat 50% 50%;
+	background-size: 18px 18px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_sch:before {
+	position: absolute;
+	top: 7px;
+	left: -1px;
+	width: 1px;
+	height: 23px;
+	background-color: #f08181;
+	content: ''
+}
+
+.btn_del {
+	position: relative;
+	width: 19px;
+	height: 19px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_del.png?487e2a893890')
+		no-repeat 50% 50%;
+	background-size: 15px 15px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_del_02 {
+	width: 32px;
+	height: 32px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_del_02.png?05b87948cbb0')
+		no-repeat 0 0;
+	background-size: 32px 32px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_hisdel {
+	display: block;
+	width: 100%;
+	height: 43px;
+	border: 1px solid #dbdbdb;
+	border-top: 0;
+	background: #fff
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_hisdel.png?98f173345770')
+		no-repeat 50% 13px;
+	background-size: 100px 16px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_hisdel span {
+	display: inline-block;
+	padding-left: 17px
+}
+
+.btn_appdw {
+	width: 70px;
+	height: 70px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_appdw.png?21a83a131d9c')
+		no-repeat 50% 0;
+	background-size: 70px 70px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_appdw:before {
+	position: absolute;
+	top: 50%;
+	left: -1px;
+	width: 1px;
+	height: 40px;
+	margin-top: -20px;
+	background-color: #e0e0e0;
+	content: ''
+}
+
+.btn_more {
+	display: block;
+	width: 100%;
+	height: 41px;
+	border-top: 1px solid #ededed;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_more.png?46d93899cf4f')
+		no-repeat 50% 14px;
+	background-size: 58px 12px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_more.on {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_more_on.png?fe52f9e4cd88')
+}
+
+.btn_more_02 {
+	display: block;
+	width: 100%;
+	height: 36px;
+	border: 1px solid #f0f0f0;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #fafafa
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_more_03.png?a719b8658690')
+		no-repeat 50% 50%;
+	background-size: 69px 12px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_close {
+	width: 16px;
+	height: 16px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_close.png?0c1a80296a04')
+		no-repeat 50% 50%;
+	background-size: 16px 16px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_sms {
+	width: 25px;
+	height: 25px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_sms.png?e3a59609b975')
+		no-repeat 0 0;
+	background-size: 25px 25px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_kt {
+	width: 25px;
+	height: 25px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_kt.png?ac961ef23562')
+		no-repeat 0 0;
+	background-size: 25px 25px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_fb {
+	width: 25px;
+	height: 25px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_fb.png?1636814427b6')
+		no-repeat 0 0;
+	background-size: 25px 25px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_nv_blog {
+	width: 25px;
+	height: 25px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_nv_blog.png?4c5683fee973')
+		no-repeat 0 0;
+	background-size: 25px 25px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_copy {
+	width: 25px;
+	height: 25px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_copy.png?bed541f19aa7')
+		no-repeat 0 0;
+	background-size: 25px 25px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_info {
+	width: 18px;
+	height: 18px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_info.png?bab28da3b9d1')
+		no-repeat 0 0;
+	background-size: 18px 18px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_reply {
+	width: 55px;
+	height: 14px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_reply.png?8cd157d5f2ed')
+		no-repeat 0 50%;
+	background-size: 55px 14px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_modify {
+	width: 55px;
+	height: 14px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_modify.png?81f6488c80f9')
+		no-repeat 0 50%;
+	background-size: 55px 14px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_delete {
+	width: 56px;
+	height: 14px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_delete.png?1c42fcc83334')
+		no-repeat 0 50%;
+	background-size: 56px 14px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_notify {
+	width: 50px;
+	height: 32px;
+	padding: 0 9px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border: 1px solid #e8e8e8;
+	background: #fafafa
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_notify_small.png?f19707154463')
+		no-repeat 50% 50%;
+	background-size: 39px 13px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_notify_02 {
+	width: 56px;
+	height: 14px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_notify_02.png?3f1966ed240f')
+		no-repeat 0 50%;
+	background-size: 56px 14px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_frd {
+	width: 40px;
+	height: 35px;
+	background: transparent
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_frd.png?9a0aa75cb03f')
+		no-repeat 0 0;
+	background-size: 40px 35px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_frd.on {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_frd_on.png?142cd32d8fde')
+}
+
+.btn_edit {
+	width: 16px;
+	height: 16px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/write.png?242e50a0fe40')
+		no-repeat;
+	background-size: 16px 16px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_txt {
+	height: 15px;
+	background: transparent;
+	font-size: 14px;
+	line-height: 15px
+}
+
+.btn_wt {
+	display: block;
+	width: 100%;
+	height: 40px;
+	border: 1px solid #e8e8e8;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #fff;
+	font-size: 14px
+}
+
+.btn_yw {
+	display: block;
+	width: 100%;
+	height: 40px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #f7b21b;
+	color: #fff;
+	font-size: 15px
+}
+
+.btn_yw_02 {
+	display: block;
+	width: 100%;
+	height: 40px;
+	border: 1px solid #d22c1c;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #ff3021;
+	color: #fff;
+	font-size: 14px
+}
+
+.btn_yw_03 {
+	display: block;
+	width: 100%;
+	height: 52px;
+	border: 1px solid #d22c1c;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #ff3021;
+	color: #fff;
+	font-size: 15px
+}
+
+.btn_pk {
+	display: block;
+	width: 100%;
+	height: 40px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #eb5959;
+	color: #fff;
+	font-size: 15px
+}
+
+.btn_pk_02 {
+	display: inline-block;
+	width: 170px;
+	height: 42px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border: 1px solid #d63c3c;
+	background: #eb5959;
+	color: #fff;
+	font-size: 14px
+}
+
+.btn_pk_03 {
+	display: block;
+	width: 100%;
+	height: 52px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border: 1px solid #d22c1c;
+	background: #ff3021;
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold
+}
+
+.btn_pk_04 {
+	display: block;
+	width: 100%;
+	height: 40px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border: 1px solid #d22c1c;
+	background: #ff3021;
+	color: #fff;
+	font-size: 14px
+}
+
+.btn_org {
+	width: 50px;
+	height: 39px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+	background: #f19d09;
+	color: #fff;
+	font-weight: bold;
+	font-size: 14px
+}
+
+.btn_gray {
+	display: inline-block;
+	width: 100px;
+	height: 35px;
+	border-radius: 3px;
+	border: 1px solid #d6d6d6;
+	background: #f5f5f5;
+	color: #212121;
+	font-size: 14px
+}
+
+.btn_zzim {
+	height: 40px;
+	border: 1px solid #adadad;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #bababa;
+	color: #fff;
+	font-weight: bold;
+	font-size: 16px
+}
+
+.btn_zzim span {
+	display: inline-block;
+	padding-left: 38px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_zzim.png?52d204baead3')
+		no-repeat 0 1px;
+	background-size: 34px 16px
+}
+
+.btn_zzim.on {
+	border-color: #9c9c9c;
+	background: #a8a8a8
+}
+
+.btn_zzim.on span {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_zzim_on.png?ec9d84c9f288')
+}
+
+.btn_fw {
+	height: 40px;
+	border: 1px solid #adadad;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #bababa
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_fw.png?0d634ecbad69')
+		no-repeat 50% 50%;
+	background-size: 56px 16px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_fw.on {
+	border-color: #9c9c9c;
+	background: #a8a8a8
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_fw_on.png?4f3ae691f18f')
+		no-repeat 50% 50%;
+	background-size: 70px 16px
+}
+
+.btn_bt {
+	height: 40px;
+	border: 1px solid #eba81a;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #f7b21b
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_bt.png?7b1c74bd6c10')
+		no-repeat 50% 50%;
+	background-size: 72px 16px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_bt_02 {
+	height: 44px;
+	border: 1px solid #eba81a;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #f7b21b
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_bt_02.png?7e94d3330a40')
+		no-repeat 50% 12px;
+	background-size: 64px 18px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_npay {
+	height: 40px;
+	border: 1px solid #3eb051;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #41bc55
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_npay.png?b7ad00a4febe')
+		no-repeat 50% 50%;
+	background-size: 73px 16px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_bungaepay {
+	height: 40px;
+	border: 1px solid #3eb051;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #41bc55
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_npay.png?b7ad00a4febe')
+		no-repeat 50% 50%;
+	background-size: 73px 16px;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_pay {
+	height: 40px;
+	border: 1px solid #e60000;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #f70000
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/btn_pay.png?6df806fae3e6')
+		no-repeat 50% 50%;
+	font-size: 0;
+	color: transparent
+}
+
+.btn_premium {
+	height: 40px;
+	border: 1px solid #adadad;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #4177BE;
+	color: #fff;
+	font-size: 16px
+}
+
+.wrap {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	min-width: 320px;
+	height: 100%
+}
+
+.none {
+	display: none !important;
+	height: 0 !important
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 6;
+	width: 100%;
+	height: 53px;
+	border-bottom: 1px solid #dbdbdb;
+	background: #fff
+}
+
+header h1 {
+	position: absolute;
+	top: 14px;
+	left: 46px
+}
+
+header h1 a {
+	display: block
+}
+
+header h1 a img {
+	display: block;
+	width: 100px;
+	height: 24px
+}
+
+header .btn_gnb {
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+header .btn_back_03 {
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+header .btn_alrim {
+	position: absolute;
+	top: 10px;
+	right: 6px
+}
+
+header .searchwrap {
+	display: none
+}
+
+#container {
+	position: relative;
+	z-index: 1;
+	min-height: 100%
+}
+
+#container #gnb.on {
+	display: none
+}
+
+#container .container_inner {
+	position: relative
+}
+
+#container .container_inner.sch {
+	display: none;
+	padding: 8px
+}
+
+#container .container_inner.sch.on {
+	display: block
+}
+
+#gnb {
+	display: none;
+	overflow-y: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	width: 100%;
+	height: 100%
+}
+
+#gnb.on {
+	display: block
+}
+
+#gnb .gnbwrap {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -280px;
+	z-index: 3;
+	width: 100%;
+	height: 100%;
+	background: #f2f2f2
+}
+
+#gnb .gnb_inner {
+	background: #f2f2f2
+}
+
+#gnb .gnbwrap.on {
+	left: 0
+}
+
+#gnb .btn_gnbclose {
+	position: absolute;
+	top: 0;
+	right: 0
+}
+
+#gnb .memview {
+	overflow: hidden;
+	height: 49px;
+	padding-left: 50px;
+	background: #e65757;
+	color: #fff
+}
+
+#gnb .memview dt {
+	overflow: hidden;
+	position: absolute;
+	top: 9px;
+	left: 10px;
+	width: 32px;
+	height: 32px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/bg_nophoto.png?d74c4bb7a5ec')
+		no-repeat 50% 50%;
+	background-size: 32px 32px;
+	font-size: 0;
+	color: transparent
+}
+
+#gnb .memview dt img {
+	width: 100%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%
+}
+
+#gnb .memview dd {
+	padding-top: 18px;
+	font-size: 17px
+}
+
+#gnb .meminfo {
+	background: #fff;
+	border-bottom: 1px solid #e8e8e8;
+	display: table;
+	width: 100%
+}
+
+#gnb .meminfo a {
+	display: table-cell;
+	padding-top: 5px;
+	vertical-align: middle;
+	width: 33.3%;
+	height: 58px;
+	border-left: 1px solid #f2f2f2;
+	text-align: center
+}
+
+#gnb .meminfo.login a {
+	padding-top: 14px
+}
+
+#gnb .meminfo a:first-child {
+	width: 33.4%;
+	border-left: 0
+}
+
+#gnb .meminfo a em {
+	display: block;
+	font-size: 14px;
+	line-height: 15px
+}
+
+#gnb .meminfo a strong {
+	display: block;
+	margin-top: 3px;
+	color: #ea1812;
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 16px
+}
+
+#gnb .category dd {
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+	margin: 0;
+	border-bottom: 1px solid #e8e8e8;
+	background: #fff
+}
+
+#gnb .category dd a {
+	float: left;
+	width: 50%;
+	height: 46px;
+	padding: 15px 0 0 41px;
+	border-bottom: 1px solid #f2f2f2;
+	border-left: 1px solid #f2f2f2;
+	background: no-repeat 10px 10px;
+	background-size: 24px 24px;
+	font-size: 14px
+}
+
+#gnb .category dd a:last-child {
+	border-bottom: none
+}
+
+#gnb .category dd a.ctg_01 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_ctg_01.png?0596789f9938')
+}
+
+#gnb .category dd a.ctg_02 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_ctg_02.png?85fd3c0b1dbd')
+}
+
+#gnb .category dd a.ctg_03 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_ctg_03.png?fa084d20ad9e')
+}
+
+#gnb .category dd a.ctg_04 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_ctg_04.png?1240f0c6f737')
+}
+
+#gnb .category dd a.ctg_05 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_ctg_05.png?3afdc052659c')
+}
+
+#gnb .category dd a.ctg_06 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_ctg_06.png?fb3e7c69ebee')
+}
+
+#gnb .category dd a.ctg_07 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_ctg_07.png?bf67e524f7f0')
+}
+
+#gnb .category dd a.ctg_08 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_ctg_08.png?3358cd534e80')
+}
+
+#gnb .category dd a.etc_01 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_etc_01.png?676b60b07733');
+	color: #757575
+}
+
+#gnb .category dd a.etc_02 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_etc_02.png?613699c2e008');
+	color: #757575
+}
+
+#gnb .category dd a.etc_03 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_etc_03.png?6b8faef70b62');
+	color: #757575
+}
+
+#gnb .category dd a.etc_04 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_etc_04.png?048be1eb209b');
+	color: #757575
+}
+
+#gnb .linklist a {
+	display: block;
+	position: relative;
+	height: 43px;
+	padding: 15px 0 0 15px;
+	border-bottom: 1px solid #e8e8e8;
+	color: #757575;
+	font-size: 14px
+}
+
+#gnb .linklist a:before {
+	position: absolute;
+	top: 15px;
+	right: 0;
+	width: 8px;
+	height: 12px;
+	margin: 0 20px 0 0;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_more_03.png?d4bf89de5a53')
+		no-repeat 100% 50%;
+	background-size: 8px 12px;
+	content: ''
+}
+
+#gnb .btncenter {
+	padding: 20px 10px 30px
+}
+
+.gnbbg {
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.7;
+	filter: alpha(opacity = 70)
+}
+
+#searchview {
+	position: relative;
+	z-index: 1;
+	height: 48px;
+	margin: 0 43px 0 159px;
+	padding-top: 10px;
+	cursor: default
+}
+
+#searchview:before {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	content: ''
+}
+
+#searchview:after {
+	position: absolute;
+	top: 16px;
+	right: 11px;
+	z-index: 3;
+	width: 17px;
+	height: 20px;
+	padding-left: 10px;
+	border-left: 1px solid #ee7b7b;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/bg_sch.png?315b1abe89e7')
+		no-repeat 100% 1px;
+	background-size: 17px 18px;
+	content: ''
+}
+
+#searchview input[type=text] {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	height: 32px;
+	padding-right: 40px;
+	border: 1px solid #f29892;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	color: #ee7b7b;
+	line-height: 32px
+}
+
+header.search {
+	height: 60px
+}
+
+header.search .searchwrap {
+	display: block
+}
+
+header .searchwrap {
+	display: none
+}
+
+header .searchwrap {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+	height: 59px;
+	padding: 9px 8px 9px 53px;
+	background: #f5f5f5
+}
+
+header .searchwrap .btn_back {
+	position: absolute;
+	top: 50%;
+	left: 8px;
+	margin-top: -21px
+}
+
+#search header {
+	height: 62px;
+	padding: 10px 8px 10px 55px;
+	background: #f5f5f5
+}
+
+#search header .searchwrap {
+	display: block
+}
+
+#search .hdbox {
+	margin-top: 10px
+}
+
+#search .schwrap {
+	position: relative;
+	padding: 8px
+}
+
+#searcharea {
+	position: relative;
+	height: 41px;
+	border: 2px solid #ea4b4b;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #fff
+}
+
+#searcharea fieldset {
+	height: 100%;
+	padding: 8px 38px 0 0
+}
+
+#searcharea input[type=text] {
+	width: 100%;
+	height: 18px;
+	padding: 0 6px;
+	border: 0;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 17px
+}
+
+#searcharea .btn_sch {
+	position: absolute;
+	top: 0;
+	right: 0
+}
+
+#searcharea .btn_del {
+	display: none;
+	position: absolute;
+	top: 9px;
+	right: 48px
+}
+
+#searcharea.on input[type=text] {
+	padding-right: 30px
+}
+
+#searcharea.on .btn_del {
+	display: block
+}
+
+footer {
+	overflow: hidden;
+	position: relative;
+	z-index: 3;
+	background: #e8e8e8;
+	color: #757575;
+	padding-top: 40px
+}
+
+footer.pd {
+	padding-bottom: 55px
+}
+
+footer .appdw {
+	position: relative;
+	height: 70px;
+	margin: 0 8px 10px;
+	padding: 14px;
+	border: 1px solid #dbdbdb;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: #f2f2f2
+}
+
+footer .appdw img {
+	width: 228px;
+	height: 40px
+}
+
+footer .appdw .btn_appdw {
+	position: absolute;
+	top: 0;
+	right: 0
+}
+
+footer .footerwrap {
+	padding: 12px 10px;
+	border-top: 1px solid #dbdbdb
+}
+
+footer .footerwrap .botmenu a {
+	display: inline-block;
+	position: relative;
+	margin-left: 10px;
+	line-height: 13px
+}
+
+footer .footerwrap .botmenu a:first-child {
+	margin-left: 0
+}
+
+footer .footerwrap .botmenu a:before {
+	position: absolute;
+	top: 0;
+	left: -6px;
+	width: 1px;
+	height: 12px;
+	background-color: #3c3c3c;
+	content: ''
+}
+
+footer .footerwrap .botmenu a:first-child:before {
+	background: none
+}
+
+footer .footerwrap address {
+	margin-top: 10px;
+	font-size: 11px
+}
+
+footer .footerwrap address span {
+	display: inline-block;
+	position: relative;
+	margin-left: 10px;
+	line-height: 13px
+}
+
+footer .footerwrap address span:before {
+	position: absolute;
+	top: 0;
+	left: -6px;
+	width: 1px;
+	height: 12px;
+	background-color: #787878;
+	content: ''
+}
+
+footer .footerwrap .txtmsg {
+	margin-top: 5px;
+	font-size: 11px
+}
+
+footer .footerwrap .copyright {
+	margin-top: 3px;
+	font-size: 11px
+}
+
+footer .powerlink {
+	margin-bottom: 10px
+}
+
+.loadbox {
+	display: block;
+	width: 100%;
+	height: 100px;
+	background: #fafafa
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/loading.png?42ece6e438e1')
+		no-repeat 50% 50%;
+	background-size: 38px 31px
+}
+
+.goodslist {
+	overflow: hidden;
+	margin: -7px 0 0 -2%
+}
+
+.goodslist li {
+	overflow: hidden;
+	float: left;
+	width: 48.0001%;
+	margin: 7px 0 0 2%;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px
+}
+
+.goodslist li a {
+	display: block;
+	position: relative
+}
+
+.goodslist li .badge {
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+.goodslist li .badge_02 {
+	position: absolute;
+	top: -22px;
+	left: 5px
+}
+
+.goodslist li .badge_02.large {
+	top: -26px;
+	width: 44px;
+	height: 20px
+}
+
+.goodslist li .thumb {
+	display: block;
+	width: 100%
+}
+
+.goodslist li .txtinfo {
+	position: relative;
+	padding: 10px 10px 9px 8px;
+	background: #fff
+}
+
+.goodslist li .txtinfo em {
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	margin-bottom: 2px;
+	color: #212121;
+	font-size: 14px;
+	line-height: 15px;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.goodslist li .txtinfo strong {
+	display: block;
+	margin-top: 4px;
+	color: #ea4b4b;
+	vertical-align: middle;
+	font-size: 14px;
+	line-height: 16px
+}
+
+.goodslist li .txtinfo strong span {
+	margin-right: 2px;
+	font-weight: bold;
+	font-size: 15px
+}
+
+.goodslist li .txtinfo strong .super_up {
+	margin: 0;
+	font-weight: normal;
+	font-size: 12px;
+	color: #B8B8B8;
+	float: right
+}
+
+.goodslist li .txtinfo .icon_heart_03 {
+	position: absolute;
+	top: -25px;
+	right: 5px
+}
+
+.goodslist.ea2 {
+	margin-top: -8px
+}
+
+.goodslist.ea2 li {
+	width: 48%;
+	margin-top: 8px
+}
+
+.goodslist.ea2 li .txtinfo {
+	padding: 12px 15px 12px 10px
+}
+
+.goodslist_02 {
+	overflow: hidden;
+	margin: -10px 0 0 -10px;
+	padding-bottom: 15px
+}
+
+.goodslist_03 li {
+	position: relative;
+	margin-top: 8px
+}
+
+.goodslist_03 li:first-child {
+	margin-top: 0
+}
+
+.goodslist_03 li a {
+	display: block;
+	overflow: hidden;
+	height: 110px;
+	padding-left: 110px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: #fff
+}
+
+.goodslist_03 li .badge {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2
+}
+
+.goodslist_03 li .thumb {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 110px;
+	height: 110px
+}
+
+.goodslist_03 li .thumb img {
+	width: 100%;
+	-webkit-border-radius: 3px 0 0 3px;
+	-moz-border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px
+}
+
+.goodslist_03 li .name {
+	display: block;
+	overflow: hidden;
+	max-height: 32px;
+	color: #212121;
+	font-size: 15px;
+	line-height: 16px
+}
+
+.goodslist_03 li .price {
+	display: block;
+	margin-top: 8px;
+	color: #eb4b4b;
+	font-size: 16px
+}
+
+.goodslist_03 li .price em {
+	margin-right: 2px;
+	font-size: 17px
+}
+
+.goodslist_03 li .goodsinfo {
+	position: relative;
+	height: 80px;
+	padding: 15px 20px 9px 12px
+}
+
+.goodslist_03 li .goodsinfo .iconbox {
+	display: block;
+	position: absolute;
+	right: 10px;
+	bottom: 9px;
+	text-align: right;
+	font-size: 0;
+	color: transparent
+}
+
+.goodslist_03 li .goodsinfo .iconbox .icon {
+	margin-left: 2px
+}
+
+.goodslist_03 li .goodsinfo .iconbox .icon:first-child {
+	margin-left: 0
+}
+
+.goodslist_03 li .shopinfo {
+	position: relative;
+	padding: 8px 12px;
+	border-top: 1px solid #f5f5f5;
+	font-size: 0;
+	color: transparent
+}
+
+.goodslist_03 li .shopinfo span {
+	position: relative;
+	margin: 0 6px 0 7px;
+	font-size: 12px;
+	line-height: 13px
+}
+
+.goodslist_03 li .shopinfo span:first-child {
+	margin-left: 0
+}
+
+.goodslist_03 li .shopinfo span:before {
+	position: absolute;
+	top: 50%;
+	left: -7px;
+	width: 1px;
+	height: 11px;
+	margin-top: -6px;
+	background-color: #ccc;
+	content: ''
+}
+
+.goodslist_03 li .shopinfo span:first-child:before {
+	background: none
+}
+
+.goodslist_03 li .shopinfo .rbox {
+	position: absolute;
+	top: 9px;
+	right: 10px;
+	font-size: 12px;
+	line-height: 13px
+}
+
+.goodslist_04 {
+	overflow: hidden;
+	margin: -10px 0 0 -2%
+}
+
+.goodslist_04 li {
+	overflow: hidden;
+	float: left;
+	position: relative;
+	width: 31.3%;
+	margin: 10px 0 0 2%;
+	border: 1px solid #f0f0f0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: #fff
+}
+
+.goodslist_04 li .badge {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	z-index: 2
+}
+
+.goodslist_04 li .thumb {
+	display: block
+}
+
+.goodslist_04 li .thumb img {
+	width: 100%;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px
+}
+
+.goodslist_04 li .txtinfo {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 48px;
+	padding: 0 5px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/contents/img_detail_store_shadow.png?2f1512026693')
+		repeat-x;
+	background-size: 48px 48px;
+	text-align: center
+}
+
+.goodslist_04 li .txtinfo strong {
+	position: absolute;
+	right: 0;
+	bottom: 10px;
+	left: 0;
+	color: #fff;
+	vertical-align: middle;
+	font-size: 13px;
+	line-height: 14px
+}
+
+.hotwrap {
+	position: relative;
+	margin-bottom: 8px
+}
+
+#hotarea {
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+	height: 110px
+}
+
+#hotarea .goodslist_03 {
+	z-index: 1
+}
+
+#hotarea .goodslist_03 li {
+	margin-top: 0
+}
+
+#hotnavi {
+	display: inline-block;
+	position: absolute;
+	bottom: 11px;
+	right: 10px;
+	z-index: 2;
+	text-align: right;
+	line-height: 0
+}
+
+#hotnavi button {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	margin-left: 4px;
+	border-radius: 50%;
+	background-color: #c5c5c5;
+	font-size: 0;
+	color: transparent
+}
+
+#hotnavi button:first-child {
+	margin-left: 0
+}
+
+#hotnavi button.on {
+	background-color: #f1ab39
+}
+
+.bestshop {
+	background: #e0e0e0
+}
+
+.bestshop #slidearea {
+	overflow: hidden;
+	position: relative;
+	width: 100%
+}
+
+.bestshop #slidearea li {
+	display: none
+}
+
+.bestshop .btnbox {
+	overflow: hidden;
+	padding: 10px 0;
+	text-align: center;
+	font-size: 0;
+	color: transparent;
+	line-height: 0
+}
+
+.bestshop .btnbox .btn_navi {
+	display: inline-block;
+	width: 7px;
+	height: 7px;
+	margin: 0 2px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background: #c7c7c7;
+	font-size: 0;
+	color: transparent
+}
+
+.bestshop .btnbox .btn_navi.on {
+	background: #f1ab39
+}
+
+.bestshop .thumb {
+	display: block;
+	position: relative;
+	width: 100%
+}
+
+.bestshop .thumb img {
+	width: 100%
+}
+
+.bestshop .thumb .badgebox .badge {
+	float: left
+}
+
+.bestshop td {
+	position: relative;
+	vertical-align: top
+}
+
+.bestshop .shopinfo {
+	overflow: hidden;
+	background: #eb4646;
+	vertical-align: middle
+}
+
+.bestshop .shopinfo dl {
+	position: relative
+}
+
+.bestshop .shopinfo dl dt {
+	overflow: hidden;
+	padding: 1px 0 7px;
+	color: #fff;
+	font-weight: bold;
+	font-size: 15px;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.bestshop .shopinfo dl dd.photo {
+	position: absolute;
+	top: 0
+}
+
+.bestshop .shopinfo .more {
+	display: block;
+	height: 36px;
+	padding: 0 11px;
+	border: 1px solid #d33f3f;
+	border-radius: 2px;
+	background-color: #e24343;
+	color: #fae4e4;
+	font-size: 13px
+}
+
+.bestshop .shopinfo .more span {
+	display: block;
+	height: 34px;
+	padding: 11px 0;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_more_02.png?0ae2473d5f40')
+		no-repeat 100% 50%;
+	background-size: 6px 9px
+}
+
+.bestshop .shopinfo .more span img {
+	display: block;
+	width: 58px;
+	height: 12px
+}
+
+.bestshop .txtinfo {
+	position: relative;
+	padding: 16px 16px 0;
+	background: #46484d;
+	color: #fff;
+	vertical-align: top
+}
+
+.bestshop .txtinfo:before {
+	position: absolute;
+	top: 50%;
+	left: -8px;
+	width: 0;
+	height: 0;
+	border-width: 6px 8px 6px 0;
+	border-style: solid;
+	border-color: transparent #46484d;
+	margin-top: -6px;
+	content: ''
+}
+
+.bestshop .txtinfo .name {
+	overflow: hidden;
+	max-height: 37px;
+	font-size: 15px;
+	line-height: 18px
+}
+
+.bestshop .txtinfo .price {
+	margin-top: 6px;
+	font-size: 14px;
+	line-height: 16px
+}
+
+.bestshop .txtinfo .price em {
+	margin-right: 2px;
+	font-size: 15px
+}
+
+.bestshop .txtinfo .review {
+	position: absolute;
+	bottom: 15px;
+	overflow: hidden;
+	margin-top: 15px;
+	opacity: 0.6
+}
+
+.bestshop .txtinfo .review span {
+	float: left;
+	margin-left: 7px;
+	color: #fff
+}
+
+.bestshop .txtinfo .review span:first-child {
+	margin-left: 0
+}
+
+.bestshop .type_a .shopinfo {
+	padding: 0 12px
+}
+
+.bestshop .type_a .shopinfo dl {
+	position: relative;
+	padding: 0 0 15px 52px
+}
+
+.bestshop .type_a .shopinfo dl dt {
+	margin-right: 8px
+}
+
+.bestshop .type_a .shopinfo dl dd.photo {
+	left: 2px;
+	width: 40px;
+	height: 40px
+}
+
+.bestshop .type_a .shopinfo dl dd.review {
+	overflow: hidden
+}
+
+.bestshop .type_a .shopinfo dl dd.review span {
+	float: left
+}
+
+.bestshop .type_a .shopinfo dl dd.review .graph {
+	position: relative;
+	margin-right: 13px
+}
+
+.bestshop .type_a .shopinfo dl dd.review .graph:before {
+	position: absolute;
+	top: 50%;
+	right: -7px;
+	width: 1px;
+	height: 14px;
+	margin-top: -6px;
+	background-color: #f09a9a;
+	content: ''
+}
+
+.bestshop .type_b .shopinfo {
+	padding: 0 10px
+}
+
+.bestshop .type_b .shopinfo dl {
+	padding: 69px 0 32px;
+	text-align: center
+}
+
+.bestshop .type_b .shopinfo dl dd.photo {
+	left: 50%;
+	margin-left: -28px;
+	width: 56px;
+	height: 56px
+}
+
+.bestshop .type_b .shopinfo dl dd.review .graph {
+	margin-bottom: 2px
+}
+
+.bestshop .type_b .shopinfo a.more {
+	text-align: center
+}
+
+.bestshop .type_b .shopinfo a.more span {
+	display: inline-block;
+	padding-right: 10px
+}
+
+#bannerarea {
+	overflow: hidden;
+	position: relative
+}
+
+#bannerarea ul {
+	z-index: 1
+}
+
+#bannerarea li {
+	display: none;
+	padding: 0 12px
+}
+
+#bannerarea a {
+	display: block
+}
+
+#bannerarea a img {
+	display: block;
+	width: 100%
+}
+
+#bannavi {
+	position: absolute;
+	right: 20px;
+	bottom: 5px;
+	z-index: 2;
+	text-align: right;
+	font-size: 0;
+	color: transparent;
+	line-height: 0
+}
+
+#bannavi button {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	border: 1px solid #999;
+	border-radius: 3px;
+	background-color: transparent;
+	margin-left: 3px;
+	font-size: 0;
+	color: transparent
+}
+
+#bannavi button.on {
+	background-color: #999
+}
+
+.main-banner {
+	display: none;
+	position: relative;
+	margin-left: 220px
+}
+
+.main-banner img {
+	height: auto
+}
+
+.main-banner .main-banner__sms {
+	position: absolute;
+	top: 218px;
+	left: 59px
+}
+
+.main-banner .main-banner__sms:after {
+	content: '';
+	display: block;
+	clear: both
+}
+
+.main-banner .main-banner__sms input[type=text] {
+	float: left;
+	width: 275px;
+	height: 50px;
+	padding-left: 17px;
+	color: #ff8b89;
+	font-size: 14px
+}
+
+.main-banner .main-banner__sms--btn {
+	width: 50px;
+	height: 50px;
+	margin-left: -1px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_web_20180204.png?76c3478bea43')
+		no-repeat 0px 0px
+}
+
+.main-banner .main-banner__sms--guide {
+	position: absolute;
+	top: 0px;
+	width: 265px;
+	height: 50px;
+	padding-left: 18px;
+	color: #ff8b89;
+	font-size: 14px;
+	line-height: 50px
+}
+
+.main-banner .main-banner__android {
+	position: absolute;
+	top: 289px;
+	left: 59px;
+	width: 154px;
+	height: 50px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_web_20180204.png?76c3478bea43')
+		no-repeat -82px 0px;
+	color: transparent
+}
+
+.main-banner .main-banner__ios {
+	position: absolute;
+	top: 289px;
+	left: 229px;
+	width: 154px;
+	height: 50px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_web_20180204.png?76c3478bea43')
+		no-repeat -252px 0px;
+	color: transparent
+}
+
+@media screen and (min-width:1024px) {
+	.main-banner {
+		display: block
+	}
+	.main-banner img {
+		width: 720px
+	}
+	.main-banner .main-banner__sms {
+		top: 148px;
+		left: 37px
+	}
+	.main-banner .main-banner__android {
+		top: 208px;
+		left: 37px
+	}
+	.main-banner .main-banner__ios {
+		top: 208px;
+		left: 207px
+	}
+}
+
+@media screen and (min-width:1281px) {
+	.main-banner img {
+		width: 1040px
+	}
+	.main-banner .main-banner__sms {
+		top: 239px;
+		left: 59px
+	}
+	.main-banner .main-banner__android {
+		top: 310px;
+		left: 59px
+	}
+	.main-banner .main-banner__ios {
+		top: 310px;
+		left: 229px
+	}
+}
+
+.detail_side {
+	padding: 0 8px
+}
+
+.dlist {
+	overflow: hidden;
+	border: 1px solid #dbdbdb;
+	background: #fff
+}
+
+.dlist li {
+	position: relative;
+	height: 43px;
+	padding: 13px 10px 13px 16px;
+	border-top: 1px solid #dbdbdb;
+	font-size: 14px
+}
+
+.dlist li:first-child {
+	height: 42px;
+	border-top: 0
+}
+
+.dlist li.on {
+	color: #ea4b4b
+}
+
+.dlist_02 {
+	overflow: hidden;
+	border-width: 0 1px 1px;
+	border-style: solid;
+	border-color: #dbdbdb;
+	background: #fff
+}
+
+.dlist_02 li {
+	position: relative;
+	border-top: 1px solid #dbdbdb
+}
+
+.dlist_02 li:first-child {
+	border-top: 0
+}
+
+.dlist_02 li a {
+	display: block;
+	padding: 14px 10px;
+	color: #000;
+	font-size: 14px
+}
+
+.dlist_02 li a.on {
+	color: #ea4b4b
+}
+
+.populist {
+	overflow: hidden;
+	border: 1px solid #e0e0e0;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #fafafa
+}
+
+.populist li {
+	position: relative;
+	height: 43px;
+	padding: 13px 16px 0;
+	border-top: 1px solid #f2f2f2;
+	font-size: 14px
+}
+
+.populist li:nth-child(1) {
+	border-top: 0
+}
+
+.populist li strong {
+	display: inline-block;
+	width: 25px;
+	color: #b0b0b0;
+	float: left
+}
+
+.populist li strong.bl {
+	color: #31bddf
+}
+
+.populist li span {
+	width: 80%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	display: inline-block
+}
+
+.populist li .btn_del_02 {
+	position: absolute;
+	right: 0;
+	background-position: 3px 5px;
+	height: 43px;
+	width: 43px
+}
+
+.populist li.dlist-li {
+	padding: 0
+}
+
+.populist li.dlist-li a {
+	padding: 13px 16px 0;
+	width: 100%;
+	height: 43px;
+	display: inline-block
+}
+
+.populist.st02 li {
+	float: left;
+	width: 50%;
+	padding: 0
+}
+
+.populist.st02 li:nth-child(2) {
+	border-top: 0
+}
+
+.populist.st02 li:nth-child(even) {
+	border-left: 1px solid #f2f2f2
+}
+
+.populist.st02 li a {
+	padding: 13px 16px 0;
+	width: 100%;
+	height: 43px;
+	display: inline-block
+}
+
+.populist.result span {
+	color: #ea4b4b
+}
+
+.noresultwrap {
+	position: relative;
+	min-height: 130px;
+	margin-bottom: 60px
+}
+
+.noresult {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	padding: 100px 10px 10px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/bg_noresult.png?bda99568e279')
+		no-repeat 50% 10px;
+	background-size: 77px;
+	text-align: center
+}
+
+.noresult .txt_01 {
+	font-size: 15px;
+	line-height: 19px
+}
+
+.noresult .txt_02 {
+	margin-top: 16px;
+	color: #757575;
+	font-size: 13px
+}
+
+.noresult ul {
+	margin-top: 8px
+}
+
+.noresult ul li {
+	margin-top: 3px;
+	color: #999;
+	font-size: 12px
+}
+
+.noresult .btn_pk_02 {
+	margin-top: 18px
+}
+
+.resch {
+	overflow: hidden;
+	height: 41px;
+	padding: 12px 12px 10px;
+	border-bottom: 1px solid #e1e1e1;
+	background: #f5f5f5
+}
+
+.resch dt {
+	position: absolute;
+	top: 12px;
+	left: 12px
+}
+
+.resch dt .icon {
+	vertical-align: top
+}
+
+.resch dd {
+	overflow: hidden;
+	float: none;
+	margin-left: 31px;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.resch dd * {
+	color: #7e858c
+}
+
+.resch dd span {
+	margin-left: 6px;
+	font-size: 13px;
+	line-height: 14px
+}
+
+.resch dd span:first-child {
+	margin-left: 0
+}
+
+.listalign {
+	position: relative;
+	height: 45px;
+	margin: -8px 0 0;
+	padding-top: 15px
+}
+
+.listalign .tit_rst {
+	display: inline-block;
+	height: 16px;
+	margin-left: 3px;
+	padding-left: 16px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_sch.png?ed5e4d768a26')
+		no-repeat 0 0;
+	background-size: 11px 13px
+}
+
+.listalign .tit_rst * {
+	display: inline-block;
+	vertical-align: top;
+	line-height: 16px
+}
+
+.listalign .tit_rst span {
+	font-size: 14px
+}
+
+.listalign .tit_rst strong {
+	margin: 0 1px 0 4px;
+	font-size: 15px
+}
+
+.listalign .rbox {
+	position: absolute;
+	top: 16px;
+	right: 5px;
+	font-size: 0;
+	color: transparent
+}
+
+.listalign .rbox .cstselect {
+	float: left
+}
+
+.listalign .rbox button {
+	float: left;
+	margin-left: 9px
+}
+
+.ctgwrap {
+	padding: 15px 8px 0
+}
+
+.ctgwrap .listalign {
+	margin-top: -15px
+}
+
+.hdbox {
+	position: relative;
+	height: 41px;
+	padding-top: 13px;
+	border-bottom: 1px solid #ededed;
+	background: #fff;
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px
+}
+
+.hdbox .btn_back_02 {
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+.ctglist {
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0 2px 2px -2px #999
+}
+
+.ctglist ul {
+	overflow: hidden;
+	margin: 0 -1px -1px 0
+}
+
+.ctglist ul li {
+	float: left;
+	width: 50%;
+	height: 41px;
+	border-width: 0 1px 1px 0;
+	border-style: solid;
+	border-color: #ededed
+}
+
+.ctglist ul li a {
+	display: block;
+	overflow: hidden;
+	height: 40px;
+	padding: 13px 12px 0;
+	font-size: 13px
+}
+
+.ctglist ul li a span {
+	display: inline-block;
+	width: 23%;
+	color: #999;
+	white-space: nowrap;
+	float: right
+}
+
+.ctglist ul li a em {
+	display: inline-block;
+	width: 77%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden
+}
+
+.detailwrap {
+	position: relative;
+	z-index: 1
+}
+
+.detailwrap .slidewrap {
+	position: relative
+}
+
+.detailwrap .slidewrap #slidearea {
+	overflow: hidden;
+	position: relative
+}
+
+.detailwrap .slidewrap #slidearea li img {
+	width: 100%
+}
+
+.detailwrap .slidewrap #slidearea .next_slide {
+	display: none
+}
+
+.detailwrap .slidewrap #slidearea .prev_slide {
+	display: none
+}
+
+.detailwrap .slidewrap #slidenavi {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%
+}
+
+.detailwrap .slidewrap .btnbox {
+	overflow: hidden;
+	padding: 8px 0;
+	text-align: center;
+	font-size: 0;
+	color: transparent;
+	line-height: 0
+}
+
+.detailwrap .slidewrap .btnbox .btn_navi {
+	display: inline-block;
+	width: 7px;
+	height: 7px;
+	margin: 0 2px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background: #c7c7c7;
+	font-size: 0;
+	color: transparent
+}
+
+.detailwrap .slidewrap .btnbox .btn_navi.on {
+	background: #f1ab39
+}
+
+.detailwrap .goodsinfo {
+	padding: 21px 12px 0;
+	border-bottom: 1px solid #e0e0e0;
+	background: #fff
+}
+
+.detailwrap .goodsinfo.deleted {
+	padding: 21px 12px;
+	margin-bottom: 8px;
+	text-align: center
+}
+
+.detailwrap .goodsinfo .name {
+	font-weight: bold;
+	font-size: 19px;
+	line-height: 20px
+}
+
+.detailwrap .goodsinfo .price {
+	margin-top: 5px;
+	color: #eb4b4b;
+	line-height: 26px
+}
+
+.detailwrap .goodsinfo .price strong {
+	font-size: 24px
+}
+
+.detailwrap .goodsinfo .price span {
+	font-size: 22px;
+	vertical-align: top
+}
+
+.detailwrap .goodsinfo .info {
+	overflow: hidden;
+	position: relative;
+	min-height: 13px;
+	margin: 12px 0 4px;
+	font-size: 0;
+	color: transparent
+}
+
+.detailwrap .goodsinfo .info .rbox {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 11px
+}
+
+.detailwrap .goodsinfo .info span {
+	display: inline-block;
+	position: relative;
+	margin: 0 8px 0 9px;
+	font-size: 14px;
+	line-height: 15px
+}
+
+.detailwrap .goodsinfo .info span:first-child {
+	margin-left: 0
+}
+
+.detailwrap .goodsinfo .info span:before {
+	position: absolute;
+	top: 50%;
+	left: -9px;
+	width: 1px;
+	height: 11px;
+	margin-top: -6px;
+	background-color: #ccc;
+	content: ''
+}
+
+.detailwrap .goodsinfo .state {
+	overflow: hidden;
+	border: 1px solid #ededed
+}
+
+.detailwrap .goodsinfo .state span {
+	display: block;
+	float: left;
+	width: 33.3%;
+	height: 30px;
+	padding-top: 8px;
+	border-left: 1px solid #ededed;
+	text-align: center;
+	font-size: 13px
+}
+
+.detailwrap .goodsinfo .state span:first-child {
+	width: 33.4%;
+	border-left: 0
+}
+
+.detailwrap .goodsinfo .state span.off {
+	background-color: #f5f5f5;
+	color: #bfbfbf
+}
+
+.detailwrap .goodsinfo .txtwrap {
+	margin-top: 25px
+}
+
+.detailwrap .goodsinfo.deleted .txtwrap {
+	margin-top: 0
+}
+
+.detailwrap .goodsinfo .txtwrap .txtbox {
+	overflow: hidden;
+	height: 640px;
+	font-size: 14px;
+	line-height: 17px
+}
+
+.detailwrap .goodsinfo.deleted .txtwrap .txtbox {
+	font-size: 18px;
+	line-height: 160%
+}
+
+.detailwrap .goodsinfo .txtwrap .infolist {
+	margin: 25px 0
+}
+
+.detailwrap .goodsinfo .txtwrap .infolist li {
+	position: relative;
+	margin-top: 12px;
+	padding-left: 75px;
+	color: #a3a3a3;
+	font-size: 13px;
+	line-height: 14px
+}
+
+.detailwrap .goodsinfo .txtwrap .infolist li:first-child {
+	margin-top: 0
+}
+
+.detailwrap .goodsinfo .txtwrap .infolist li em {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 60px;
+	padding-left: 8px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_bu.png?4bc61b0fc947')
+		no-repeat 0 5px;
+	background-size: 3px 3px
+}
+
+.detailwrap .goodsinfo .txtwrap.on .txtbox {
+	height: auto
+}
+
+.detailwrap .sharebox {
+	overflow: hidden;
+	position: relative;
+	height: 50px;
+	margin: 8px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #f5f5f5
+}
+
+.detailwrap .sharebox dl {
+	overflow: hidden;
+	margin: 13px 0 0 16px
+}
+
+.detailwrap .sharebox dl dt {
+	float: left;
+	position: relative;
+	padding-right: 16px;
+	color: #757575;
+	font-size: 14px;
+	line-height: 25px
+}
+
+.detailwrap .sharebox dl dt:before {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	width: 1px;
+	height: 16px;
+	margin-top: -8px;
+	background-color: #c4c4c4;
+	content: ''
+}
+
+.detailwrap .sharebox dl dd {
+	float: left;
+	font-size: 0;
+	color: transparent
+}
+
+.detailwrap .sharebox dl dd button {
+	margin-left: 13px
+}
+
+.detailwrap .sharebox .btn_notify {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	margin-top: -16px
+}
+
+.detailwrap .detail_side {
+	padding-top: 11px
+}
+
+.popularwrap+.detail_ad {
+	padding-top: 8px
+}
+
+.sellerwrap {
+	margin-top: 8px;
+	border-bottom: 1px solid #e0e0e0;
+	background: #fff
+}
+
+.sellerwrap .sellershop {
+	position: relative;
+	padding: 20px 16px;
+	background: #e65757;
+	margin-bottom: 0
+}
+
+.sellerwrap .sellershop:before {
+	background: none
+}
+
+.sellerwrap .sellershop .badge {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 2
+}
+
+.sellerwrap .sellershop dl {
+	position: relative;
+	z-index: 1;
+	min-height: 64px;
+	padding-left: 74px
+}
+
+.sellerwrap .sellershop dl dt {
+	overflow: hidden;
+	padding: 5px 0 0;
+	color: #f3b8b8;
+	font-weight: bold;
+	font-size: 15px
+}
+
+.sellerwrap .sellershop dl dt em {
+	color: #fff;
+	font-size: 16px
+}
+
+.sellerwrap .sellershop dl dt .icon {
+	margin-left: 6px;
+	vertical-align: top
+}
+
+.sellerwrap .sellershop dl dd.review {
+	margin-top: 2px;
+	height: 17px
+}
+
+.sellerwrap .sellershop dl dd.review span {
+	color: #fae4e4
+}
+
+.sellerwrap .sellershop dl dd.review .graph {
+	position: relative;
+	margin-right: 13px
+}
+
+.sellerwrap .sellershop dl dd.review .graph:before {
+	position: absolute;
+	top: 50%;
+	right: -7px;
+	width: 1px;
+	height: 14px;
+	margin-top: -6px;
+	background-color: #f09a9a;
+	content: ''
+}
+
+.sellerwrap .sellershop dl dd.info {
+	overflow: hidden;
+	height: 14px;
+	margin-top: 10px;
+	color: #fff;
+	opacity: 0.9;
+	filter: alpha(opacity = 90)
+}
+
+.sellerwrap .sellershop dl dd.info span {
+	float: left;
+	position: relative;
+	margin-left: 20px;
+	line-height: 13px
+}
+
+.sellerwrap .sellershop dl dd.info span:first-child {
+	margin-left: 0
+}
+
+.sellerwrap .sellershop dl dd.info span:before {
+	position: absolute;
+	top: 0;
+	left: -11px;
+	width: 1px;
+	height: 12px;
+	background-color: #f3abab;
+	content: ''
+}
+
+.sellerwrap .sellershop dl dd.info span:first-child:before {
+	background: none
+}
+
+.sellerwrap .sellershop dl dd.photo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 64px;
+	height: 64px
+}
+
+.sellerwrap .goodslist_04 {
+	padding: 10px
+}
+
+.sellerwrap .linkbox {
+	padding: 0 10px 10px
+}
+
+.shopqna {
+	border-width: 1px 0;
+	border-style: solid;
+	border-color: #e1e1e1;
+	background: #fff
+}
+
+.shopqna .titbox {
+	position: relative;
+	padding: 12px 16px;
+	border-bottom: 1px solid #eee;
+	font-weight: bold;
+	font-size: 15px
+}
+
+.shopqna .titbox span {
+	color: #ee5958
+}
+
+.shopqna .titbox button {
+	position: absolute;
+	top: 50%;
+	right: 16px;
+	margin-top: -8px
+}
+
+.shopqna ul li {
+	margin-left: 56px;
+	padding: 0 0 0 16px
+}
+
+.shopqna ul li dl {
+	position: relative;
+	padding: 17px 37px 20px 0;
+	border-top: 1px solid #ededed
+}
+
+.shopqna ul li:first-child dl {
+	border-top: 0
+}
+
+.shopqna ul li dl dt {
+	position: relative;
+	color: #757575;
+	font-weight: bold;
+	font-size: 14px
+}
+
+.shopqna ul li dl dt .time {
+	position: absolute;
+	top: 2px;
+	right: 0;
+	font-weight: normal
+}
+
+.shopqna ul li dl dd.review {
+	margin-top: 5px
+}
+
+.shopqna ul li dl dd.txtbox {
+	margin-top: 10px;
+	font-size: 14px;
+	line-height: 17px
+}
+
+.shopqna ul li dl dd.btnbox {
+	overflow: hidden;
+	position: relative;
+	margin-top: 12px;
+	font-size: 0;
+	color: transparent
+}
+
+.shopqna ul li dl dd.btnbox button {
+	display: inline-block;
+	position: relative;
+	margin: 0 8px 0 9px
+}
+
+.shopqna ul li dl dd.btnbox button:first-child {
+	margin-left: 0
+}
+
+.shopqna ul li dl dd.btnbox button:before {
+	position: absolute;
+	top: 50%;
+	left: -9px;
+	width: 1px;
+	height: 11px;
+	margin-top: -6px;
+	background-color: #ccc;
+	content: ''
+}
+
+.shopqna ul li dl dd.btnbox .rbox {
+	position: absolute;
+	top: 0;
+	right: 0
+}
+
+.shopqna ul li dl dd.photo {
+	position: absolute;
+	top: 15px;
+	left: -56px;
+	width: 40px;
+	height: 40px
+}
+
+.shopqna .time {
+	color: #999;
+	font-size: 12px
+}
+
+.photoreview {
+	position: relative;
+	margin-top: -8px;
+	padding-bottom: 20px
+}
+
+.photoreview:before {
+	position: absolute;
+	top: 7px;
+	right: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	height: 1px;
+	background-color: #ededed;
+	content: ''
+}
+
+.photoreview .tit {
+	display: block;
+	position: relative;
+	z-index: 2;
+	padding-right: 6px;
+	width: 62px;
+	height: 11px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/contents/txt_premium.png?9d9e9cad9707')
+		#fff no-repeat;
+	background-size: 100%;
+	font-size: 0;
+	color: transparent
+}
+
+.photoreview .reviewwrap {
+	overflow-x: auto;
+	padding-top: 7px
+}
+
+.photoreview .reviewwrap ul {
+	overflow: hidden
+}
+
+.photoreview .reviewwrap ul li {
+	float: left;
+	margin-left: 8px;
+	padding-left: 0
+}
+
+.photoreview .reviewwrap ul li:first-child {
+	margin-left: 0
+}
+
+.photoreview .reviewwrap ul li a {
+	display: block;
+	width: 54px;
+	height: 54px;
+	border: 1px solid #ededed;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px
+}
+
+.photoreview .reviewwrap ul li a img {
+	width: 100%;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px
+}
+
+.wrtiearea {
+	padding: 8px;
+	border-top: 1px solid #e0e0e0;
+	background: #f5f5f5
+}
+
+.wrtiearea fieldset {
+	position: relative;
+	padding-right: 58px
+}
+
+.wrtiearea fieldset div {
+	position: relative
+}
+
+.wrtiearea fieldset div input[type=text] {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	height: 39px;
+	padding-right: 30px;
+	padding-left: 10px;
+	line-height: 38px
+}
+
+.wrtiearea fieldset div span {
+	position: absolute;
+	top: 3px;
+	right: 8px;
+	z-index: 2;
+	width: 25px;
+	color: #ccc;
+	font-size: 14px;
+	line-height: 35px
+}
+
+.wrtiearea fieldset .btn_org {
+	position: absolute;
+	top: 0;
+	right: 0
+}
+
+.powerlink {
+	margin: 0 8px 8px;
+	border: 1px solid #dbdbdb;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #fff
+}
+
+.powerlink dt {
+	height: 42px;
+	padding-left: 16px;
+	line-height: 42px
+}
+
+.powerlink dt * {
+	vertical-align: middle
+}
+
+.powerlink dt strong {
+	color: #212121;
+	font-size: 15px;
+	line-height: 14px
+}
+
+.powerlink dt .icon_ad {
+	margin-top: -1px;
+	margin-left: 2px
+}
+
+.powerlink dd {
+	border-top: 1px solid #ebebeb;
+	padding: 0 18px
+}
+
+.powerlink dd li {
+	margin-top: 15px;
+	padding-right: 28px;
+	padding-bottom: 16px;
+	border-bottom: 1px solid #f0f0f0
+}
+
+.powerlink dd li:first-child {
+	margin-top: 15px
+}
+
+.powerlink dd li:last-child {
+	border-bottom: none
+}
+
+.powerlink dd li * {
+	vertical-align: middle;
+	font-size: 15px;
+	line-height: 14px
+}
+
+.powerlink dd li p {
+	overflow: hidden;
+	width: 100%;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.powerlink dd li p a {
+	display: inline-block;
+	margin-top: 0px;
+	color: #212121;
+	font-weight: bold;
+	text-decoration: none
+}
+
+.powerlink dd li p a.site_url {
+	border-bottom: 0 solid #c25b36;
+	color: #288d00;
+	margin-left: 22px;
+	font-size: 14px;
+	margin-top: 5px
+}
+
+.powerlink dd li p img {
+	margin-left: 5px
+}
+
+.powerlink dd li p span {
+	
+}
+
+.powerlink dd li em a {
+	color: #288d00
+}
+
+.powerlink dd li em {
+	display: block;
+	margin-top: 3px;
+	color: #757575;
+	line-height: 1.3
+}
+
+.powerlink dd li em span {
+	display: inherit;
+	width: 100%;
+	color: #595959;
+	font-size: 14px;
+	margin-top: 5px;
+	margin-left: 22px
+}
+
+.powerlink dd ul li p .title_wrap .number {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 17px;
+	font-size: 12px;
+	color: #FFF;
+	background-color: #e7484a;
+	border-radius: 2px;
+	margin-right: 6px;
+	border-radius: 4px
+}
+
+.detailmenu {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 4;
+	width: 100%;
+	height: 57px;
+	padding: 8px;
+	border-top: 1px solid #dbdbdb;
+	background: #f5f5f5;
+	text-align: center;
+	font-size: 0;
+	color: transparent
+}
+
+.detailmenu button {
+	width: 32.3%;
+	margin-left: 1.1%
+}
+
+.detailmenu button:first-child {
+	margin-left: 0
+}
+
+.detailmenu.ea2 .btn_bt {
+	width: 65.6%
+}
+
+.detailmenu_02 {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 4;
+	width: 100%;
+	height: 55px;
+	padding: 8px;
+	border-top: 1px solid #dbdbdb;
+	background: #f5f5f5;
+	text-align: center;
+	font-size: 0;
+	color: transparent
+}
+
+.detailmenu_02 button {
+	width: 49.5%;
+	margin-left: 1%
+}
+
+.detailmenu_02 button:first-child {
+	margin-left: 0
+}
+
+.contactwrap {
+	display: none;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 5;
+	width: 100%;
+	height: 180px;
+	padding: 8px;
+	border-top: 1px solid #757575;
+	background: #fff
+}
+
+.contactwrap.on {
+	display: block
+}
+
+.contactwrap strong {
+	display: block;
+	padding: 10px 8px 16px;
+	border-bottom: 1px solid #ededed;
+	color: #4c4c4c;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 19px
+}
+
+.contactwrap ul {
+	overflow: hidden;
+	height: 76px;
+	padding: 20px 0
+}
+
+.contactwrap ul li {
+	float: left;
+	position: relative;
+	width: 33.3%;
+	height: 36px;
+	text-align: center;
+	border-left: 1px solid #dbdbdb
+}
+
+.contactwrap ul li:first-child {
+	width: 33.4%;
+	border-left: 0
+}
+
+.contactwrap ul li a {
+	display: block;
+	height: 76px;
+	margin-top: -20px;
+	padding-top: 20px
+}
+
+.contactwrap ul li span {
+	display: block;
+	color: #999;
+	font-size: 14px
+}
+
+.contactwrap ul li em {
+	display: block;
+	margin-top: 3px;
+	color: #e65757;
+	font-weight: bold;
+	font-size: 14px
+}
+
+.contactwrap ul li em.identification .name {
+	color: #999;
+	display: inline;
+	font-weight: normal
+}
+
+.contactwrap ul li .icon {
+	position: absolute;
+	top: -13px;
+	right: 50%;
+	width: 30px;
+	margin-right: -55px
+}
+
+.contactwrap .btn_close {
+	position: absolute;
+	top: 18px;
+	right: 24px
+}
+
+.contactwrap .btnbox button {
+	width: 100%
+}
+
+#shop .wrap {
+	height: auto
+}
+
+#shop #container {
+	padding-top: 0 !important;
+	background: #e8e8e8;
+	min-height: 0
+}
+
+#shop #container .container_inner {
+	padding-bottom: 0;
+	margin-top: 53px
+}
+
+#shop .shopview {
+	position: fixed;
+	top: 118px;
+	right: 0;
+	left: 0;
+	z-index: 1;
+	height: 181px
+}
+
+#shop .shopview .infoarea {
+	position: relative;
+	z-index: 2;
+	margin-top: 25px;
+	padding-top: 88px;
+	text-align: center
+}
+
+#shop .shopview .infoarea dt {
+	height: 16px
+}
+
+#shop .shopview .infoarea dt.edit {
+	cursor: pointer
+}
+
+#shop .shopview .infoarea dt.edit * {
+	vertical-align: top
+}
+
+#shop .shopview .infoarea dt * {
+	vertical-align: middle
+}
+
+#shop .shopview .infoarea dt em {
+	display: inline-block;
+	color: #fff;
+	font-size: 16px;
+	line-height: 17px
+}
+
+#shop .shopview .infoarea dt .icon {
+	margin: -1px 0 0 5px
+}
+
+#shop .shopview .infoarea dd.review {
+	margin-top: 8px;
+	font-size: 0;
+	color: transparent
+}
+
+#shop .shopview .infoarea dd.review * {
+	vertical-align: top
+}
+
+#shop .shopview .infoarea dd.review .graph_02 {
+	position: relative;
+	margin-right: 13px
+}
+
+#shop .shopview .infoarea dd.review .graph_02:before {
+	position: absolute;
+	top: 50%;
+	right: -7px;
+	width: 1px;
+	height: 15px;
+	margin-top: -7px;
+	background-color: #fff;
+	content: ''
+}
+
+#shop .shopview .infoarea dd.review .icon_review {
+	margin-top: 1px
+}
+
+#shop .shopview .infoarea dd.photo {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 77px;
+	height: 77px;
+	margin-left: -38px
+}
+
+#shop .shopview .badge {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	text-align: center;
+	z-index: 3
+}
+
+#shop .shopview .badge .icon {
+	vertical-align: top
+}
+
+#shop .shopview .bg_photo {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1;
+	margin: -5px;
+	background: #000;
+	max-height: 190px;
+	min-height: 190px
+}
+
+#shop .shopview .bg_photo img {
+	width: 100%;
+	margin-top: -25%;
+	-webkit-filter: blur(10px) opacity(0.7);
+	filter: blur(10px) opacity(0.7)
+}
+
+#shop .shopview .bg_photo img.no_image_bg {
+	-webkit-filter: none;
+	filter: none
+}
+
+#shop .shopviewwrap {
+	overflow: hidden
+}
+
+#shop .shopviewwrap .shopmenu {
+	position: relative;
+	z-index: 2;
+	background: #e8e8e8;
+	margin-top: 251px
+}
+
+#shop .shopviewwrap .shopmenu .tab {
+	margin-bottom: 9px
+}
+
+#shop .shopviewwrap .shopmenu .hiddenarea {
+	position: relative;
+	z-index: 1
+}
+
+#shop .shopviewwrap .aboutshop {
+	overflow: hidden;
+	margin: 0 8px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #fff
+}
+
+#shop .shopviewwrap .aboutshop li {
+	float: left;
+	width: 50%;
+	height: 61px;
+	padding: 15px 0 0 65px;
+	background: transparent no-repeat 16px 50%;
+	background-size: 41px 41px;
+	font-size: 13px;
+	line-height: 15px
+}
+
+#shop .shopviewwrap .aboutshop li strong {
+	display: block;
+	margin-top: 2px
+}
+
+#shop .shopviewwrap .aboutshop li.list_01 {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_as_01.png?5389cdbe2dc8')
+}
+
+#shop .shopviewwrap .aboutshop li.list_01 strong {
+	color: #EB670F
+}
+
+#shop .shopviewwrap .aboutshop li.list_02 {
+	border-left: 1px solid #e8e8e8;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_as_02.png?e1ee50587121')
+}
+
+#shop .shopviewwrap .aboutshop li.list_02 strong {
+	color: #0073CB
+}
+
+#shop .shopviewwrap .aboutshop li.list_03 {
+	border-top: 1px solid #e8e8e8;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_shopdetail_sell.png?d52e38ccd1e4')
+}
+
+#shop .shopviewwrap .aboutshop li.list_03 strong {
+	color: #24A01E
+}
+
+#shop .shopviewwrap .aboutshop li.list_04 {
+	border-top: 1px solid #e8e8e8;
+	border-left: 1px solid #e8e8e8;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/icon_shopdetail_delivery.png?c4fe9731b458')
+}
+
+#shop .shopviewwrap .aboutshop li.list_04 strong {
+	color: #00A195
+}
+
+#shop .shopviewwrap .introduce {
+	margin: 9px 0 8px;
+	border-width: 1px 0;
+	border-style: solid;
+	border-color: #e1e1e1;
+	background: #fff
+}
+
+#shop .shopviewwrap .introduce dt {
+	height: 44px;
+	padding: 15px 16px;
+	border-bottom: 1px solid #ededed;
+	font-weight: bold;
+	font-size: 15px;
+	line-height: 16px
+}
+
+#shop .shopviewwrap .introduce dd {
+	padding: 15px 16px;
+	color: #757575;
+	font-size: 14px;
+	line-height: 17px
+}
+
+#shop .shopviewwrap .goodslistwrap {
+	overflow: hidden;
+	margin: 0 8px
+}
+
+#shop .shopviewwrap .goodslistwrap .goodslist li .txtinfo strong {
+	font-size: 15px
+}
+
+#shop.empty_banner .shopview {
+	top: 58px
+}
+
+#shop.empty_banner .shopviewwrap .shopmenu {
+	margin-top: 191px
+}
+
+#shop.empty_banner.top .shopviewwrap .shopmenu .tab {
+	position: fixed;
+	top: 53px
+}
+
+#shop.top .shopviewwrap .shopmenu {
+	padding-top: 52px
+}
+
+#shop.top .shopviewwrap .shopmenu .tab {
+	position: fixed;
+	top: 113px
+}
+
+.followwrap ul li {
+	padding: 0 16px;
+	border-top: 1px solid #e0e0e0;
+	background: #fff;
+	box-shadow: 0 1px 1px #ededed
+}
+
+.followwrap ul li dl {
+	position: relative;
+	padding: 15px 50px 15px 55px
+}
+
+.followwrap ul li dl dt {
+	overflow: hidden;
+	position: relative;
+	font-size: 15px;
+	line-height: 16px;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.followwrap ul li dl dd.info {
+	margin-top: 9px;
+	font-size: 0;
+	color: transparent
+}
+
+.followwrap ul li dl dd.info .goods {
+	color: #af8432
+}
+
+.followwrap ul li dl dd.info .follower {
+	color: #da7e7e
+}
+
+.followwrap ul li dl dd.info span {
+	display: inline-block;
+	position: relative;
+	margin-left: 15px;
+	font-size: 13px;
+	line-height: 14px
+}
+
+.followwrap ul li dl dd.info span:before {
+	position: absolute;
+	top: 1px;
+	left: -8px;
+	width: 1px;
+	height: 12px;
+	background-color: #c3c3c3;
+	content: ''
+}
+
+.followwrap ul li dl dd.info span:first-child {
+	margin-left: 0
+}
+
+.followwrap ul li dl dd.info span:first-child:before {
+	background: none
+}
+
+.followwrap ul li dl dd.photo {
+	position: absolute;
+	top: 15px;
+	left: 0;
+	width: 40px;
+	height: 40px
+}
+
+.followwrap ul li dl dd.btnbox {
+	position: absolute;
+	top: 18px;
+	right: 0
+}
+
+.followwrap .photolist {
+	overflow: hidden;
+	padding-bottom: 15px
+}
+
+.followwrap .photolist a {
+	display: block;
+	overflow: hidden;
+	float: left;
+	width: 32%;
+	margin-left: 2%;
+	border: 1px solid #ededed;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px
+}
+
+.followwrap .photolist a:first-child {
+	margin-left: 0
+}
+
+.followwrap .photolist a img {
+	width: 100%
+}
+
+.customerwrap {
+	margin-bottom: -30px;
+	padding: 46px 0 52px 0
+}
+
+.hiddenarea {
+	display: none
+}
+
+.hiddenarea.on {
+	display: block
+}
+
+.ctglist_02 {
+	overflow: hidden;
+	margin-bottom: 8px;
+	border-top: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;
+	background: #fcfcfc
+}
+
+.ctglist_02 button {
+	float: left;
+	width: 33.3%;
+	height: 40px;
+	border-width: 0 1px 1px 0;
+	border-style: solid;
+	border-color: #ededed;
+	background-color: transparent;
+	color: #757575;
+	font-size: 13px
+}
+
+.ctglist_02 button.on {
+	color: #eb4130
+}
+
+.ctglist_02 button.n {
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/bg_basket.png?7f786b193dd5')
+		no-repeat 50% 11px;
+	background-size: 20px 18px;
+	cursor: default
+}
+
+.boardlist ul {
+	border-width: 1px 0;
+	border-style: solid;
+	border-color: #e0e0e0
+}
+
+.boardlist ul li {
+	border-top: 1px solid #ededed
+}
+
+.boardlist ul li:first-child {
+	border-top: 0
+}
+
+.boardlist ul li .subject {
+	position: relative;
+	padding: 18px 62px 18px 16px;
+	background: #fff
+}
+
+.boardlist ul li .subject:before {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	width: 14px;
+	height: 9px;
+	margin: -4px 24px 0 0;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/bg_arr_off.png?13de3d26ef85')
+		no-repeat 50% 50%;
+	background-size: 14px 9px;
+	content: ''
+}
+
+.boardlist ul li .subject p {
+	overflow: hidden;
+	color: #4c4c4c;
+	font-size: 14px;
+	line-height: 17px;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.boardlist ul li .subject .date {
+	display: block;
+	margin-top: 5px;
+	color: #999;
+	font-size: 13px
+}
+
+.boardlist ul li .answer {
+	display: none;
+	padding: 20px 16px 25px;
+	border-top: 1px solid #ededed;
+	background: #fafafa;
+	color: #212121;
+	font-size: 14px;
+	line-height: 23px
+}
+
+.boardlist ul li.on .subject p {
+	font-weight: bold
+}
+
+.boardlist ul li.on .subject:before {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/btn/bg_arr_on.png?954e17a399c6')
+}
+
+.boardlist ul li.on .answer {
+	display: block
+}
+
+.loginwrap {
+	overflow: hidden;
+	position: relative;
+	padding: 60px 20px
+}
+
+.loginwrap h1 {
+	width: 150px;
+	margin: 35px auto 0px
+}
+
+.loginwrap h1 img {
+	width: 100%
+}
+
+.loginwrap .btn_close {
+	position: absolute;
+	top: 18px;
+	right: 15px
+}
+
+.loginwrap .formarea fieldset {
+	overflow: hidden;
+	border: 1px solid #dadada;
+	border-radius: 3px
+}
+
+.loginwrap .formarea.on fieldset {
+	border-color: #ef7d7d
+}
+
+.loginwrap .formarea .inpbox {
+	position: relative
+}
+
+.loginwrap .formarea .inpbox input {
+	width: 100%;
+	height: 50px;
+	padding: 0 18px;
+	border-width: 1px 0 0;
+	font-size: 15px
+}
+
+.loginwrap .formarea .inpbox.first input {
+	border-top: 0
+}
+
+.loginwrap .formarea .inpbox select {
+	width: 100%;
+	height: 50px;
+	padding: 0 18px;
+	border-width: 1px 0 0;
+	font-size: 15px
+}
+
+.loginwrap .formarea .inpbox.first select {
+	border-top: 0
+}
+
+.loginwrap .formarea .inpbox textarea {
+	width: 100%;
+	height: 150px;
+	padding: 18px;
+	border-width: 1px 0 0;
+	font-size: 15px
+}
+
+.loginwrap .formarea .inpbox.first textarea {
+	border-top: 0
+}
+
+.loginwrap .formarea .inpbox.btn input {
+	padding-right: 115px
+}
+
+.loginwrap .formarea .inpbox.btn button {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	margin-top: -17px
+}
+
+.loginwrap .btnbox {
+	margin-top: 15px
+}
+
+.loginwrap .linkbox {
+	margin-top: 20px;
+	text-align: center
+}
+
+.loginwrap .linkbox:after {
+	content: "";
+	display: block;
+	clear: both
+}
+
+.loginwrap .linkbox a {
+	color: #8c8c8c;
+	font-size: 13px
+}
+
+.loginwrap .linkbox span {
+	display: inline-block;
+	margin: 0 9px;
+	color: #8c8c8c
+}
+
+.loginwrap .joinbox {
+	margin-top: 28px
+}
+
+.loginwrap .btn_pk_04, .loginwrap .btn_yw_02 {
+	height: 52px;
+	font-size: 15px;
+	font-weight: bold
+}
+
+.loginwrap .msgwrap {
+	margin: 0 10px;
+	padding: 30px 0;
+	border-top: 1px solid #cfcfcf;
+	text-align: center
+}
+
+.loginwrap .msgwrap strong {
+	font-size: 17px;
+	line-height: 21px
+}
+
+.loginwrap .msgwrap p {
+	margin-top: 20px;
+	color: #808080;
+	font-size: 15px;
+	line-height: 18px
+}
+
+.loginwrap .msgwrap .btnbox {
+	margin-top: 20px
+}
+
+.loginwrap .login-social .joinbox button {
+	margin-bottom: 13px
+}
+
+.loginwrap .login-social__btn {
+	position: relative;
+	font-weight: bold
+}
+
+.loginwrap .login-social__btn:after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0px;
+	width: 22px;
+	height: 21px;
+	margin-top: -11px
+}
+
+.loginwrap .login-social__btn--naver {
+	background-color: #1dc800;
+	border: 1px solid #1dc800
+}
+
+.loginwrap .login-social__btn--naver:after {
+	margin-left: 18px;
+	background:
+		url("https://assets.bunjang.co.kr/static/mobile/images/common/login_naver.png?9ba11a27084e")
+		no-repeat 0 0;
+	background-size: 22px 21px
+}
+
+.loginwrap .login-social__btn--kakao {
+	color: #2f191b;
+	background-color: #ffeb00;
+	border: 1px solid #ffeb00
+}
+
+.loginwrap .login-social__btn--kakao:after {
+	margin-left: 18px;
+	background:
+		url("https://assets.bunjang.co.kr/static/mobile/images/common/login_kakao.png?389ff28c76f3")
+		no-repeat 0 0;
+	background-size: 22px 21px
+}
+
+.loginwrap .login-social__btn--facebook {
+	margin-bottom: 25px;
+	background-color: #3b5998;
+	border: 1px solid #3b5998
+}
+
+.loginwrap .login-social__btn--facebook:after {
+	margin-left: 18px;
+	background:
+		url("https://assets.bunjang.co.kr/static/mobile/images/common/login_facebook.png?3c47c8d35d51")
+		no-repeat 0 0;
+	background-size: 22px 21px
+}
+
+.loginwrap hr {
+	display: inline-block;
+	width: 100%;
+	margin: 12px 0 25px;
+	border-bottom: 1px solid #d0d0d0;
+	box-sizing: border-box
+}
+
+.loginwrap .login-bunjang {
+	transition: 1.0s
+}
+
+@media screen and (min-width:960px) {
+	div.login-container .formarea .inpbox.first {
+		width: auto
+	}
+	div.login-container .formarea .inpbox.first input#login-phone {
+		width: 100%
+	}
+	div.password-change-container .formarea .inpbox.first {
+		width: auto
+	}
+	div.signup-container .formarea .inpbox.first {
+		width: auto
+	}
+}
+
+@media screen and (min-width:1024px) {
+	.login-container {
+		margin-top: 0px;
+		padding: 0px
+	}
+	.loginwrap:after {
+		content: "";
+		display: block;
+		clear: both
+	}
+	.loginwrap .login-social {
+		float: left;
+		width: 330px
+	}
+	.loginwrap hr {
+		float: left;
+		width: 1px;
+		height: 260px;
+		margin: 42px 0px 0px 29px;
+		border-right: 1px solid #d0d0d0
+	}
+	.loginwrap .login-bunjang {
+		float: right;
+		width: 330px;
+		margin-top: 98px
+	}
+	.signup-container hr {
+		float: inherit;
+		width: 100%;
+		height: auto
+	}
+}
+
+@media screen and (min-width:1300px) {
+	.password-change-container {
+		margin-top: 50px
+	}
+	.signup-container {
+		margin-top: 50px
+	}
+}
+
+.password-change-container .changed_phone {
+	margin: 28px 0 20px 7px
+}
+
+.password-change-container .password-change__btn {
+	margin: 30px 0 0px
+}
+
+.password-change-container .btn_email {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	margin-top: -17px
+}
+
+.password-change-container .paddword__title {
+	margin: 16px 0 20px;
+	color: #212121;
+	font-size: 15px;
+	height: 20px
+}
+
+.password-change-container .paddword__title .hint {
+	color: #ff3021;
+	padding-right: 10px
+}
+
+.password-change-container .paddword__title .email {
+	color: #757575
+}
+
+.password-change-container .paddword__title a {
+	color: #428bca;
+	text-decoration: underline;
+	display: block;
+	margin-top: 4px
+}
+
+.password-change-container .password__title--email {
+	border: 1px solid #ccc;
+	padding: 2px 6px;
+	background-color: #fff
+}
+
+.password-change-container .formarea fieldset {
+	border: none
+}
+
+.password-change-container .desc {
+	padding: 10px;
+	font-size: 14px
+}
+
+.signup-container .formarea {
+	margin-top: 28px
+}
+
+.signup-container .signup__description {
+	margin-top: 18px;
+	padding: 0 7px;
+	font-size: 14px;
+	line-height: 1.4
+}
+
+.signup-container .inpbox .signup__email {
+	width: 100%;
+	height: 50px;
+	margin-top: 16px;
+	padding: 0 18px;
+	border: 1px solid #cfcfcf;
+	font-size: 15px
+}
+
+.signup-container hr {
+	margin: 25px 0 19px
+}
+
+.signup-container .signup__terms--title {
+	margin-bottom: 10px;
+	overflow: hidden
+}
+
+.signup-container .signup__terms--title div {
+	float: left;
+	width: 80px;
+	font-size: 15px;
+	font-weight: bold;
+	padding-top: 5px
+}
+
+.signup-container .signup__terms--title button {
+	background: #ffffff;
+	float: left;
+	width: 120px;
+	font-size: 14px;
+	font-weight: bold;
+	border: 1px solid #cfcfcf;
+	color: #757575;
+	padding: 3px
+}
+
+.signup-container .signup__terms {
+	font-size: 14px;
+	line-height: 1.4;
+	color: #757575;
+	margin-bottom: 5px;
+	padding: 15px 0 15px;
+	border-bottom: 1px solid #d5d5d5
+}
+
+.signup-container .signup-container>.signup__terms:last-child {
+	border-bottom: none
+}
+
+.signup-container .signup__terms table {
+	margin-top: 20px;
+	border-bottom: 1px solid #444;
+	border-right: 1px solid #444;
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+.signup-container .signup__terms .table_main th, td {
+	font-weight: normal;
+	padding: 10px;
+	border-left: solid 1px #444;
+	border-top: solid 1px #444;
+	text-align: center
+}
+
+.signup-container .signup__terms a {
+	text-decoration: underline
+}
+
+.signup-container .signup__terms .signup__terms--content {
+	display: block;
+	height: 150px;
+	margin-top: 8px;
+	border: 1px solid #d5d5d5
+}
+
+.signup-container .signup__terms .signup__terms--content .content-scroll
+	{
+	height: 150px;
+	padding: 10px;
+	background-color: #fff;
+	overflow-y: scroll
+}
+
+.signup-container .btnbox {
+	margin-top: 27px
+}
+
+.singup-complete-container .msgwrap {
+	margin-top: 28px
+}
+
+.modalpop {
+	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 101;
+	min-width: 250px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #fff
+}
+
+.modalpop_app_down {
+	overflow: hidden !important;
+	position: absolute !important;
+	width: 100% !important;
+	height: 100% !important
+}
+
+.btn_modalclose {
+	width: 100%;
+	height: 100%;
+	background: #cfcfcf;
+	color: #fff;
+	font-weight: bold;
+	font-size: 14px
+}
+
+.modalwrap {
+	width: 100%;
+	height: 100%;
+	line-height: normal
+}
+
+.modalwrap .popwrap {
+	position: relative;
+	padding: 30px 20px;
+	color: #4c4c4c;
+	font-size: 15px
+}
+
+.modalwrap .popwrap_02 {
+	position: relative;
+	margin-top: -5px;
+	padding: 25px 20px;
+	color: #4c4c4c;
+	font-size: 15px
+}
+
+.modalwrap .line:before {
+	position: absolute;
+	top: 0;
+	right: 20px;
+	left: 20px;
+	height: 1px;
+	background-color: #f4f4f4;
+	content: ''
+}
+
+.modalwrap .titwrap {
+	height: 45px;
+	padding-top: 15px;
+	border-bottom: 1px solid #ededed;
+	color: #000;
+	text-align: center;
+	font-size: 16px
+}
+
+.modalwrap .titwrap strong {
+	font-weight: normal
+}
+
+.modalwrap .bottomwrap {
+	height: 44px
+}
+
+.modalwrap .txtbox {
+	text-align: center
+}
+
+.modalwrap .txtbox p {
+	margin-top: 20px
+}
+
+.modalwrap .logobox {
+	width: 155px;
+	height: 53px;
+	margin: 0 auto
+}
+
+.modalwrap .logobox img {
+	display: block;
+	width: 100%
+}
+
+.modalwrap .inpbox {
+	margin-top: 20px
+}
+
+.modalwrap .inpbox input[type=text] {
+	width: 100%;
+	border-color: #dbdbdb;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #fafafa
+}
+
+.modalwrap .dlist {
+	border-top: 0
+}
+
+.modalwrap .dlist_02 {
+	border-right: 0;
+	border-left: 0
+}
+
+.modalwrap .dlist_02 li {
+	min-height: 40px;
+	border-color: #f4f4f4
+}
+
+.modalwrap .dlist_02 li a {
+	padding: 10px 16px;
+	color: #4c4c4c
+}
+
+.modalwrap .shop_name_edit button {
+	width: 50px;
+	height: 30px;
+	background: #dadada
+}
+
+.modalwrap .modalwrap__header {
+	width: 223px;
+	height: 57px;
+	margin: 0 auto 0px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/banner/langding-sprite.png?0dd3c009311d')
+		no-repeat 4px 3px;
+	background-size: 320px 320px;
+	color: transparent
+}
+
+.modalwrap .modalwrap__line {
+	width: 223px;
+	margin: 15px auto 10px;
+	border-bottom: 1px solid #fff
+}
+
+.modalwrap .modalwrap__thumb {
+	width: 211px;
+	height: 231px;
+	margin: 0 auto;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/banner/langding-sprite.png?0dd3c009311d')
+		no-repeat -97px -42px;
+	background-size: 320px 320px;
+	color: transparent
+}
+
+.modalwrap .modalwrap__button--app {
+	width: 260px;
+	height: 44px;
+	margin-bottom: 16px;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/banner/langding-sprite.png?0dd3c009311d')
+		no-repeat 0px -275px;
+	background-size: 320px 320px;
+	color: transparent
+}
+
+.modalwrap .modalwrap__button--web {
+	color: #fff;
+	font-size: 14px;
+	text-decoration: underline;
+	text-align: center
+}
+
+.trplayer {
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(41, 30, 30, 0.85)
+}
+
+.trplayerw {
+	overflow: auto;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 3;
+	width: 100%;
+	height: 100%
+}
+
+body.a-height .modalwrap {
+	top: 0 !important;
+	margin-top: 0 !important
+}
+
+.modalwrap .modalwrap--lookaround {
+	height: 17px;
+	font-family: AppleSDGothicNeo;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: -1px;
+	color: #a6a6a6;
+	position: absolute;
+	top: 22px;
+	right: 22px;
+	letter-spacing: -0.9px
+}
+
+.modalwrap--content {
+	margin: 50px 0 93px 26px
+}
+
+.modalwrap--content__logo img {
+	width: 28px;
+	height: 28px
+}
+
+.modalwrap--content__title {
+	margin-top: 17px;
+	font-family: AppleSDGothicNeo;
+	font-size: 38px;
+	letter-spacing: -0.8px;
+	color: #ffffff;
+	margin-bottom: 8px;
+	line-height: 45px
+}
+
+.modalwrap--content__desc {
+	font-family: AppleSDGothicNeo;
+	font-size: 22px;
+	font-weight: 200;
+	letter-spacing: -1.4px;
+	color: #ffffff
+}
+
+.modalwarp--btnlist__desc {
+	font-family: AppleSDGothicNeo;
+	font-size: 15px;
+	font-weight: 200;
+	letter-spacing: -1px;
+	text-align: center;
+	color: #ffffff;
+	margin-bottom: 14px;
+	line-height: 15px
+}
+
+.modalwarp--btnlist {
+	position: absolute;
+	padding: 0 24px;
+	bottom: 72px;
+	width: 100%
+}
+
+.modalwarp--btnlist__btn {
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	margin-bottom: 10px;
+	padding: 12px 28px 12px 20px
+}
+
+.modalwarp--btnlist__btn .btn--icon {
+	float: left;
+	margin-right: 28px
+}
+
+.modalwarp--btnlist__btn .btn--icon img {
+	width: 24px;
+	height: 24px
+}
+
+.modalwarp--btnlist__btn .btn--text {
+	position: absolute;
+	left: 50%;
+	margin-left: -65px;
+	font-family: AppleSDGothicNeo;
+	font-size: 16px;
+	color: #ffffff;
+	line-height: 28px
+}
+
+.modalwarp--btnlist__btn.naver {
+	background-color: #1ec545
+}
+
+.modalwarp--btnlist__btn.kakao {
+	background-color: #ffe049
+}
+
+.modalwarp--btnlist__btn.kakao .btn--text {
+	color: #3c1e1e
+}
+
+.modalwarp--btnlist__btn.facebook {
+	background-color: #3b5998
+}
+
+.modalwarp--footer {
+	position: absolute;
+	opacity: 0.7;
+	font-family: AppleSDGothicNeo;
+	font-size: 13px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	color: #ededed;
+	text-align: center;
+	bottom: 28px;
+	width: 100%
+}
+
+.modalwarp--footer a {
+	font-weight: bold;
+	color: #ededed;
+	text-decoration: underline
+}
+
+.qna .tab.st01 .button {
+	width: 50%;
+	height: 44px;
+	font-weight: bold;
+	font-size: 14px;
+	text-align: center;
+	padding-top: 14px
+}
+
+.qna .tab .button.on {
+	position: relative;
+	color: #e82c1e
+}
+
+.qna .tab .button.on em {
+	color: #e82c1e
+}
+
+.qna .tab .button.on:before {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	border-bottom: 2px solid #e82c1e;
+	content: ''
+}
+
+.qna.form .qna_category {
+	width: 100%;
+	margin-bottom: 5px
+}
+
+.qna.form .qna_content {
+	width: 100%;
+	height: 300px
+}
+
+.qna.form .image_view {
+	width: 100%
+}
+
+.qna.form .image_view .image_wrap {
+	width: 15.6%;
+	display: inline-block;
+	margin: 1% 0 0 1%;
+	vertical-align: top
+}
+
+.qna.form .image_view .image_wrap img {
+	width: 100%;
+	border: none
+}
+
+.qna.form .image_view .image_wrap .image_delete {
+	border: none;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	width: 100%;
+	height: 30px;
+	margin-top: -45px
+}
+
+.qna.form #send_photo {
+	margin: 10px 0 0 0;
+	width: 150px;
+	display: inline-block;
+	vertical-align: top
+}
+
+.qna.form #send_photo .upload-button {
+	overflow: hidden;
+	width: 100%;
+	height: 35px;
+	padding-top: 10px;
+	border-bottom: 1px solid #dbdbdb;
+	background: #fff;
+	text-align: center
+}
+
+.qna.form #send_photo .upload-button .image_file {
+	width: 150px;
+	height: 35px;
+	opacity: 0;
+	position: absolute;
+	left: 0;
+	margin-top: -10px;
+	cursor: pointer
+}
+
+.qna.form .submit {
+	width: 150px;
+	height: 35px;
+	border-bottom: 1px solid #dbdbdb;
+	background: #fff;
+	text-align: center;
+	margin-top: 10px;
+	float: right;
+	cursor: pointer
+}
+
+.qna.list .subject p span:first-child {
+	float: left
+}
+
+.qna.list .subject p span:last-child {
+	float: right
+}
+
+.qna.list .subject p span.complete:last-child {
+	color: #e82c1e
+}
+
+.qna.list .subject p span.complete:last-child {
+	color: #e82c1e
+}
+
+.qna.list ul li .answer .content_header {
+	padding: 15px 0;
+	margin: 45px 0 15px 0;
+	border-top: 1px solid #ededed;
+	border-bottom: 1px solid #ededed
+}
+
+.qna.list ul li .answer .content_header.admin {
+	color: #e82c1e
+}
+
+.qna.list ul li .answer .content_header:first-child {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: none;
+	font-size: inherit
+}
+
+.qna.list ul li .answer .content_header img.profile {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	vertical-align: top;
+	margin-right: 5px
+}
+
+.qna.list ul li .answer .content_header .title_wrap {
+	height: 40px;
+	display: inline-block
+}
+
+.qna.list ul li .answer .content_header .title_wrap .title {
+	font-weight: bold;
+	font-size: inherit;
+	vertical-align: top;
+	display: block
+}
+
+.qna.list ul li .answer .content_header .title_wrap .date {
+	display: block
+}
+
+.qna.list ul li .answer .content_header .reqna {
+	display: none
+}
+
+.qna.list ul li .answer .content_header:first-child .reqna {
+	display: inline-block;
+	float: right;
+	text-decoration: underline
+}
+
+.qna.list ul li .answer a img {
+	width: 16%;
+	margin: 1% 0 0 1%;
+	vertical-align: top
+}
+
+.qna.list ul li .answer a img:first-child {
+	margin-left: 0
+}
+
+.withdraw .warning {
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 160%
+}
+
+.withdraw .warning p span {
+	font-weight: normal
+}
+
+.withdraw .formarea {
+	display: none
+}
+
+.withdraw .formarea p {
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 160%
+}
+
+.withdraw select {
+	width: 100%
+}
+
+.withdraw input {
+	width: 100%
+}
+
+.bodyovh {
+	overflow: hidden
+}
+
+.ovh {
+	overflow: hidden;
+	position: fixed;
+	top: auto
+}
+
+.phone_hidden {
+	color: blue
+}
+
+.product_detail.owner {
+	display: none
+}
+
+@media screen and (max-width:375px) {
+	.policy-common-text-small {
+		display: block;
+		font-size: 14px;
+		color: #757575;
+		text-align: center;
+		line-height: 18px
+	}
+	.policy-common-text {
+		display: none
+	}
+}
+
+@media screen and (min-width:376px) {
+	.policy-common-text-small {
+		display: none
+	}
+	.policy-common-text {
+		display: block;
+		font-size: 14px;
+		color: #757575;
+		text-align: center;
+		line-height: 18px
+	}
+}
+
+#policy {
+	background: #ffffff;
+	padding: 0px 24px
+}
+
+.policy-top-box {
+	background: #ffffff;
+	width: 100%;
+	padding: 36px 0px 30px
+}
+
+.policy-top-image {
+	display: block;
+	margin: auto;
+	width: 230px;
+	margin-bottom: 20px
+}
+
+.policy-title-image {
+	display: block;
+	margin: auto;
+	width: 312px;
+	margin-bottom: 30px
+}
+
+.policy-box {
+	display: table;
+	padding: 30px 0px;
+	border-bottom: 1px solid #f5f5f5;
+	width: 100%
+}
+
+.policy-first-box {
+	border-top: 1px solid #f5f5f5
+}
+
+.policy-last-box {
+	border: none !important
+}
+
+.policy-image {
+	display: table-cell;
+	width: 93px;
+	height: 73px;
+	vertical-align: middle
+}
+
+.policy-image img {
+	width: 73px
+}
+
+.policy-content {
+	display: table-cell;
+	vertical-align: middle
+}
+
+.policy-content-title {
+	word-break: keep-all;
+	font-size: 15px;
+	font-weight: bold;
+	color: #212121
+}
+
+.policy-content-desc {
+	word-break: keep-all;
+	font-size: 13px;
+	color: #808080;
+	margin-top: 12px
+}
+
+.policy-link {
+	color: #ff6767;
+	font-size: 14px;
+	line-height: 15px;
+	margin-top: 12px;
+	cursor: pointer
+}
+
+.policy-link img {
+	height: 12px;
+	display: inline-block;
+	vertical-align: middle;
+	padding-bottom: 3px
+}
+
+.policy-bottom-box {
+	padding: 24px 0px 26px;
+	width: 100%;
+	background: #ffffff;
+	border-top: 1px solid #f5f5f5
+}
+
+.policy-3out-image {
+	display: block;
+	margin: auto;
+	width: 250px;
+	margin-bottom: 26px
+}
+
+.policy-3step-image {
+	display: block;
+	margin: auto;
+	width: 315px;
+	margin-top: 19px;
+	margin-bottom: 13px
+}
+
+.policy-footer-image {
+	display: block;
+	margin: auto;
+	width: 166px
+}
+
+.policy-4step-image-bg {
+	background: #fcfcfc;
+	border-top: 1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb;
+	margin-bottom: 24px
+}
+
+.container119__header {
+	border-bottom: 2px solid #d22c1c;
+	margin-bottom: 10px
+}
+
+.container119__header--logo {
+	margin-bottom: 20px
+}
+
+.container119__header--logo img {
+	width: 150px
+}
+
+.container119__header--title {
+	font-size: 36px;
+	font-weight: bold;
+	margin-bottom: 20px
+}
+
+.container119__content {
+	border: 1px solid #c9c9c9;
+	padding: 30px;
+	font-size: 14px;
+	margin-bottom: 10px
+}
+
+.container119__content p {
+	min-height: 180px;
+	color: #757575
+}
+
+.container119__content div {
+	margin-top: 20px;
+	font-weight: bold
+}
+
+.container119__footer button {
+	background: #ffffff;
+	width: 300px;
+	font-size: 16px;
+	font-weight: bold;
+	border: 1px solid #cfcfcf;
+	color: #757575;
+	padding: 5px
+}
+
+.container_privacy__content {
+	padding: 30px;
+	font-size: 14px;
+	margin-bottom: 10px
+}
+
+.container_privacy__content--detail {
+	min-height: 50px;
+	color: #757575;
+	line-height: 50px
+}
+
+.container_privacy__email {
+	margin-top: 20px;
+	font-size: 14px
+}
+
+.gnb-btns-wrapper {
+	display: flex;
+	height: 50px;
+	margin: 10px;
+	padding: 12px 0;
+	background-color: #fff;
+	border: solid 1px #e5e5e5;
+	border-radius: 1px
+}
+
+.gnb-btn {
+	flex: 1;
+	background-color: #fff;
+	text-align: center;
+	height: 26px
+}
+
+.gnb-btn+.gnb-btn {
+	border-left: solid 1px #e5e5e5
+}
+
+.gnb-btn span {
+	font-size: 16px;
+	line-height: 26px;
+	font-weight: 500;
+	color: #1e1e1e
+}
+
+.gnb-btn-sell-ico {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/gnb-sell.png?f47a7732d0a3');
+	width: 25px;
+	height: 22px;
+	margin-right: 9px;
+	display: inline-block;
+	vertical-align: top
+}
+
+.gnb-btn-list-ico {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/gnb-list.png?8edb2672b530');
+	width: 27px;
+	height: 17px;
+	margin-top: 4px;
+	margin-right: 9px;
+	display: inline-block;
+	vertical-align: top
+}
+
+.layout-dim {
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.6);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	display: none
+}
+
+.layout-popup {
+	line-height: normal;
+	position: fixed;
+	width: 270px;
+	height: 282px;
+	top: 50%;
+	left: 50%;
+	margin-top: -141px;
+	margin-left: -135px;
+	z-index: 200;
+	background: #fff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 3px;
+	display: none;
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/bg@2x.png?3b3553c07fd7')
+		no-repeat 0px 0px;
+	background-size: contain
+}
+
+.layout-popup__title {
+	text-align: center;
+	font-family: AppleSDGothicNeo;
+	font-size: 21px;
+	line-height: 21px;
+	font-weight: 300;
+	letter-spacing: -1.4px;
+	color: #000000;
+	margin-top: 40px;
+	margin-bottom: 15px
+}
+
+.layout-popup__content {
+	font-family: AppleSDGothicNeo;
+	font-size: 16px;
+	font-weight: 300;
+	letter-spacing: -0.9px;
+	text-align: center;
+	color: #000000;
+	line-height: 20px;
+	margin-bottom: 25px
+}
+
+.layout-popup__small-content {
+	font-family: AppleSDGothicNeo;
+	font-size: 14px;
+	font-weight: 300;
+	letter-spacing: -0.9px;
+	text-align: center;
+	color: #000000;
+	line-height: 14px;
+	margin-bottom: 16px
+}
+
+.layout-popup__social-login {
+	text-align: center;
+	margin-bottom: 20px
+}
+
+.social-login--btn {
+	width: 49px;
+	height: 49px;
+	border-radius: 100%;
+	margin-right: 9px
+}
+
+.social-login--btn:last-child {
+	margin-right: 0px
+}
+
+.social-login--btn.naver {
+	background-color: #1ec545;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/rectangle-3@2x.png?4628a635a9b9');
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	background-position: center center
+}
+
+.social-login--btn.kakao {
+	background-color: #ffdf49;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/rectangle-4@2x.png?ab0bc003c0fa');
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	background-position: center center
+}
+
+.social-login--btn.facebook {
+	background-color: #3b5998;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/rectangle-5@2x.png?e6385695b455');
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	background-position: center center
+}
+
+.social-login--btn.phone {
+	background-color: #3c3c43;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/rectangle-6@2x.png?1fa8c8a61082');
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	background-position: center center
+}
+
+.layout-popup__footer {
+	overflow: hidden
+}
+
+.layout-popup__footer a {
+	display: block
+}
+
+.layout-popup__footer--btn {
+	margin-left: 24px;
+	font-family: AppleSDGothicNeo;
+	font-size: 12px;
+	font-weight: 300;
+	letter-spacing: -0.8px;
+	text-align: center;
+	color: #666666;
+	float: left
+}
+
+.layout-popup__footer--close {
+	font-family: AppleSDGothicNeo;
+	font-size: 12px;
+	font-weight: 300;
+	letter-spacing: -0.8px;
+	text-align: center;
+	color: #666666;
+	float: right;
+	margin-right: 24px
+}
+
+.empty-detail {
+	height: 500px
+}
+
+.acd-popup {
+	line-height: normal;
+	position: fixed;
+	width: 270px;
+	height: 325px;
+	top: 50%;
+	left: 50%;
+	margin-top: -141px;
+	margin-left: -135px;
+	z-index: 200;
+	background: #fff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 3px;
+	display: none;
+	padding: 40px 16px 24px
+}
+
+.acd-title {
+	font-size: 21px;
+	line-height: 1.33;
+	text-align: center
+}
+
+.acd-desc {
+	margin: 12px 0 24px;
+	font-size: 15px;
+	line-height: 1.4;
+	color: #808080;
+	text-align: center
+}
+
+.acd-btn {
+	display: block;
+	height: 48px;
+	width: 100%;
+	border: 1px solid #e82c1e;
+	padding: 12px 0;
+	margin-bottom: 10px
+}
+
+.acd-btn>span {
+	margin-left: 16px;
+	color: #e82c1e;
+	font-size: 16px;
+	line-height: 24px
+}
+
+.acd-btn>img {
+	margin-left: 20px;
+	width: 24px;
+	height: 24px
+}
+
+@media ( min-width :1460px) {
+	.main .google-adsense {
+		padding-top: 0px;
+		position: fixed;
+		top: 181px;
+		right: calc(50% - 840px);
+		z-index: 9999;
+		width: 200px
+	}
+}
+
+@media ( max-width :1459px) {
+	.main .google-adsense {
+		display: none
+	}
+}
+
+@media screen and (max-width:1281px) and (min-width:960px) {
+	.main .google-ad {
+		clear: both
+	}
+}
+
+@media ( min-width :960px) {
+	* {
+		font-family: 'ë‹ì›€', Dotum, 'Apple SD Gothic Neo', Helvetica,
+			sans-serif
+	}
+	body {
+		scrollbar-base-color: #E8E8E8;
+		scrollbar-3dlight-color: #E8E8E8;
+		scrollbar-highlight-color: #E8E8E8;
+		scrollbar-track-color: #E8E8E8;
+		scrollbar-arrow-color: #E8E8E8;
+		scrollbar-shadow-color: #E8E8E8;
+		scrollbar-darkshadow-color: #E8E8E8
+	}
+	.mobile_hide {
+		display: block
+	}
+	.ovh {
+		overflow: initial;
+		position: initial;
+		top: initial
+	}
+	#container {
+		padding-top: 70px !important
+	}
+	.btn_gnbclose {
+		display: none
+	}
+	.goodslist_03 li .shopinfo {
+		color: #B8B8B8
+	}
+	.btn_back_03 {
+		display: none
+	}
+	.bestshop {
+		display: none
+	}
+	.sellerwrap .sellershop dl dd.info span {
+		line-height: 140%
+	}
+	.icon_shop {
+		width: 500px
+	}
+	.btn_top.on {
+		margin-left: 900px;
+		right: inherit
+	}
+	#product .sharebox {
+		margin: 8px 0
+	}
+	#slidenavi.btnbox {
+		height: 37px
+	}
+	#slidenavi.btnbox .btn_navi {
+		width: 15px;
+		height: 15px
+	}
+	.powerlink {
+		margin: 0
+	}
+	footer .appdw {
+		margin: 0
+	}
+	.ctgwrap {
+		padding: 15px 0
+	}
+	#search .schwrap {
+		padding: 15px 0
+	}
+	#search .schwrap.shop {
+		padding: 0
+	}
+	.detail_side {
+		padding: 0
+	}
+	#shop .shopviewwrap .goodslistwrap {
+		margin: 0
+	}
+	#shop .shopviewwrap .aboutshop {
+		margin: 0
+	}
+	.tit_popul.st02 {
+		margin: 0;
+		padding-left: 0
+	}
+	.tit_popul .more {
+		top: 15px
+	}
+	.next_slide {
+		display: inherit !important
+	}
+	.prev_slide {
+		display: inherit !important
+	}
+	.loginwrap .formarea .inpbox.first {
+		width: 690px;
+		overflow: hidden
+	}
+	.loginwrap .formarea .inpbox.first input#login-phone {
+		width: 960px
+	}
+	#customer-notice-list {
+		margin-top: 10px
+	}
+	@media screen and (min-width:0\0) {
+		.qna.form #send_photo .upload-button .image_file {
+			font-size: 300px
+		}
+	}
+	.ctglist ul li a span {
+		width: inherit
+	}
+	.goodslist {
+		margin: -2% 0 0 -2%
+	}
+	.goodslist li {
+		width: 23%;
+		margin: 2% 0 0 2%
+	}
+	.goodslist.ea2 li {
+		width: 23%;
+		margin: 2% 0 0 2%
+	}
+	.goodslist li .txtinfo em {
+		line-height: 140%
+	}
+	.goodslist_03 li .name {
+		line-height: 140%
+	}
+	.goodslist_04 {
+		margin: -2% 0 0 -2%
+	}
+	.goodslist_04 li {
+		width: 23%;
+		margin: 2% 0 0 2%
+	}
+	.product_detail.owner {
+		display: block
+	}
+	.product_detail.owner .btn_pm {
+		height: 40px;
+		border: 1px solid #EBA81A;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		background: #F7B21B;
+		width: 100%;
+		color: #FFFFFF;
+		font-size: 16px;
+		display: inline-block;
+		line-height: 140%;
+		padding-top: 10px
+	}
+	.detailmenu_02 .btn_pm {
+		height: 40px;
+		border: 1px solid #EBA81A;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		background: #F7B21B;
+		width: 100%;
+		color: #FFFFFF;
+		font-size: 16px;
+		display: inline-block;
+		line-height: 140%;
+		padding-top: 10px
+	}
+	.wrap {
+		width: 940px;
+		margin: 0 auto
+	}
+	header {
+		height: 53px !important
+	}
+	header .top-bar-wrap {
+		width: 940px;
+		margin: 0 auto
+	}
+	header .top-bar-wrap #gnb {
+		display: none
+	}
+	header .btn_gnb {
+		display: none
+	}
+	header h1 {
+		width: 190px;
+		margin: 14px 0 0 5px;
+		float: left;
+		text-align: center;
+		position: static
+	}
+	header h1 a {
+		display: inline-block
+	}
+	header h1 a img {
+		display: inline-block
+	}
+	header #searchview {
+		margin: 0 0 0 30px;
+		width: 665px;
+		display: inline-block
+	}
+	header #searchview input:disabled[type=text] {
+		color: #EE7B7B
+	}
+	header .btn_alrim {
+		position: relative;
+		display: inline-block;
+		float: right
+	}
+	header .searchwrap {
+		width: 940px;
+		margin: 0 auto;
+		padding: 5px 0 0 58px;
+		height: 52px;
+		z-index: 9999
+	}
+	header .searchwrap #searcharea {
+		width: 100%
+	}
+	header .searchwrap .btn_back {
+		top: inherit !important;
+		left: 0 !important;
+		margin: 5px 0 0 5px
+	}
+	header.search {
+		background: #F5F5F5
+	}
+	#container .container_inner {
+		width: 720px;
+		display: inline-block;
+		margin-left: 220px
+	}
+	#container.noheader {
+		text-align: center
+	}
+	#container.noheader .container_inner {
+		margin-left: 0;
+		text-align: left
+	}
+	#container .container_inner.sch {
+		margin-top: 10px;
+		padding: 0
+	}
+	#container.product_detail {
+		padding-top: 70px !important
+	}
+	#container.category {
+		padding-top: 70px !important
+	}
+	#shop #container .container_inner {
+		margin-top: 70px
+	}
+	#container.simplesearch {
+		padding-top: 70px !important
+	}
+	#container #gnb {
+		width: 190px;
+		position: absolute;
+		top: 70px;
+		left: 5px;
+		overflow-y: inherit
+	}
+	#container #gnb.on {
+		display: inline-block;
+		z-index: 0
+	}
+	#container #gnb .gnbwrap {
+		position: static;
+		background: inherit
+	}
+	#container #gnb .category dd a {
+		width: 100%
+	}
+	#container .powerlink {
+		margin: 20px 0 20px 0
+	}
+	#container.product_detail #slidearea ul li {
+		height: 720px
+	}
+	#shop .shopview {
+		width: 720px;
+		margin: 0 auto;
+		position: absolute;
+		top: 0
+	}
+	#shop .shopview .bg_photo {
+		margin: 0
+	}
+	#shop .shopviewwrap .shopmenu {
+		margin-top: 190px
+	}
+	.detailmenu {
+		width: 720px;
+		margin: 0 auto;
+		left: 220px
+	}
+	.detailmenu_02 {
+		width: 720px;
+		margin: 0 auto;
+		left: 220px
+	}
+	footer {
+		width: 720px;
+		left: 220px
+	}
+	.noheader footer {
+		left: 0;
+		margin: 0 auto
+	}
+	footer .footerwrap {
+		text-align: center
+	}
+	footer .footerwrap {
+		text-align: center
+	}
+	footer .footerwrap address p {
+		display: inline
+	}
+	footer .footerwrap address p.mb_newline {
+		display: block
+	}
+	.loginwrap .btn_close {
+		display: none
+	}
+	.nosearch {
+		width: 720px;
+		margin: 0 auto;
+		left: 220px;
+		display: inline-block
+	}
+	.customerwrap {
+		margin-bottom: inherit;
+		padding-top: inherit
+	}
+	.tab.st01 {
+		width: 720px;
+		left: inherit;
+		right: inherit;
+		position: inherit;
+		top: inherit
+	}
+	#search .wrap {
+		width: 940px
+	}
+	#search header .top-bar-wrap {
+		width: 940px
+	}
+	#search header .searchwrap {
+		width: 940px
+	}
+	#search header #searchview {
+		width: 665px
+	}
+	#search #container .container_inner {
+		width: 720px
+	}
+	#search #shop .shopview {
+		width: 720px
+	}
+	#search .detailmenu {
+		width: 720px
+	}
+	#search .detailmenu_02 {
+		width: 720px
+	}
+	#search .contactwrap {
+		width: 720px
+	}
+	#search footer {
+		width: 720px
+	}
+	#category_depth3 .wrap {
+		width: 940px
+	}
+	#category_depth3 header .top-bar-wrap {
+		width: 940px
+	}
+	#category_depth3 header .searchwrap {
+		width: 940px
+	}
+	#category_depth3 header #searchview {
+		width: 665px
+	}
+	#category_depth3 #container .container_inner {
+		width: 720px
+	}
+	#category_depth3 #shop .shopview {
+		width: 720px
+	}
+	#category_depth3 .detailmenu {
+		width: 720px
+	}
+	#category_depth3 .detailmenu_02 {
+		width: 720px
+	}
+	#category_depth3 .contactwrap {
+		width: 720px
+	}
+	#category_depth3 footer {
+		width: 720px
+	}
+	.noheader .wrap {
+		width: 940px
+	}
+	.noheader header .top-bar-wrap {
+		width: 940px
+	}
+	.noheader header .searchwrap {
+		width: 940px
+	}
+	.noheader header #searchview {
+		width: 665px
+	}
+	.noheader #container .container_inner {
+		width: 720px
+	}
+	.noheader #shop .shopview {
+		width: 720px
+	}
+	.noheader .detailmenu {
+		width: 720px
+	}
+	.noheader .detailmenu_02 {
+		width: 720px
+	}
+	.noheader .contactwrap {
+		width: 720px
+	}
+	.noheader footer {
+		width: 720px
+	}
+	#container.downbanner {
+		padding-top: 160px !important
+	}
+	header.downbanner {
+		top: 90px
+	}
+	#container #gnb.downbanner {
+		top: 160px
+	}
+	#downbanner.off {
+		display: none
+	}
+	#downbanner.on {
+		height: 90px;
+		width: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 4;
+		text-align: center
+	}
+	#product .google-adsense.downbanner {
+		margin-top: 0px
+	}
+	#product .popularwrap.downbanner {
+		margin-top: 0px
+	}
+	#shop #container .container_inner.downbanner {
+		margin-top: 160px
+	}
+	.downbanner__bg {
+		position: absolute;
+		top: 12px;
+		left: 50%;
+		width: 592px;
+		height: 69px;
+		margin-left: -467px;
+		background-image:
+			url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_web_20180204.png?76c3478bea43')
+	}
+	.b1 {
+		position: absolute;
+		top: 12px;
+		left: 50%;
+		width: 127px;
+		height: 30px;
+		margin-left: 212px;
+		background:
+			url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_web_20180204.png?76c3478bea43')
+			no-repeat 0px 0px
+	}
+	.c1 {
+		position: absolute;
+		top: 12px;
+		left: 50%;
+		width: 127px;
+		height: 30px;
+		margin-left: 345px;
+		background:
+			url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_web_20180204.png?76c3478bea43')
+			no-repeat 0px 0px
+	}
+	.d1 {
+		position: absolute;
+		left: 50%;
+		width: 12px;
+		height: 12px;
+		margin-top: 12px;
+		margin-left: 482px;
+		background:
+			url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_web_20180204.png?76c3478bea43')
+			no-repeat 0px 0px
+	}
+	.fixed-banner__sms {
+		position: absolute;
+		top: 49px;
+		left: 50%;
+		margin-left: 212px
+	}
+	.fixed-banner__sms:after {
+		content: '';
+		display: block;
+		clear: both
+	}
+	.fixed-banner__sms input[type=text] {
+		float: left;
+		width: 225px;
+		height: 30px;
+		padding-left: 18px;
+		font-size: 14px
+	}
+	.fixed-banner__sms--btn {
+		width: 37px;
+		height: 30px;
+		margin-left: -1px;
+		background:
+			url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_web_20180204.png?76c3478bea43')
+			no-repeat 0px 0px
+	}
+	.fixed-banner__sms--guide {
+		position: absolute;
+		top: 8px;
+		left: 10px;
+		font-size: 12px
+	}
+	.fixed-banner__android {
+		position: absolute;
+		top: 289px;
+		left: 59px;
+		width: 154px;
+		height: 50px;
+		background:
+			url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_web_20180204.png?76c3478bea43')
+			no-repeat -82px 0px;
+		color: transparent
+	}
+	.fixed-banner__ios {
+		position: absolute;
+		top: 289px;
+		left: 229px;
+		width: 154px;
+		height: 50px;
+		background:
+			url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_web_20180204.png?76c3478bea43')
+			no-repeat -252px 0px;
+		color: transparent
+	}
+	.mb1 {
+		display: none
+	}
+	.mb1-wrap {
+		display: none
+	}
+}
+
+@media ( max-width :959px) {
+	#product .google-adsense {
+		margin-bottom: 8px
+	}
+	#container.downbanner {
+		padding-top: 120px !important
+	}
+	header.downbanner {
+		top: 60px
+	}
+	#product .google-adsense.downbanner {
+		margin-top: 0px
+	}
+	#product .popularwrap.downbanner {
+		margin-top: 0px
+	}
+	#container #gnb.downbanner {
+		top: 150px
+	}
+	#downbanner.off {
+		display: none
+	}
+	#downbanner.on {
+		height: 60px;
+		width: 100%;
+		background: #6745E3;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 4;
+		text-align: center
+	}
+	.b1 {
+		display: none
+	}
+	.c1 {
+		display: none
+	}
+	.d1 {
+		display: none
+	}
+	.fixed-banner__sms {
+		display: none
+	}
+	.mb1 {
+		display: inline-block;
+		width: 303px;
+		height: 38px;
+		margin: 12px 0 0 0;
+		background:
+			url('https://assets.bunjang.co.kr/static/mobile/images/banner/sprite_m_web_20180204.png?6b084d920014')
+			no-repeat 0px 0px;
+		background-size: 320px 500px
+	}
+	.mb1-wrap {
+		width: 100%;
+		height: 100%;
+		text-align: center
+	}
+}
+
+@media ( min-width :1281px) {
+	.goodslist li {
+		width: 18%
+	}
+	.goodslist.ea2 li {
+		width: 18%
+	}
+	.goodslist_04 li {
+		width: 23%
+	}
+	.not_found .goodslist_04 li {
+		width: 18%
+	}
+	.wrap {
+		width: 1260px
+	}
+	header .top-bar-wrap {
+		width: 1260px
+	}
+	header .searchwrap {
+		width: 1260px
+	}
+	header #searchview {
+		width: 980px
+	}
+	#container .container_inner {
+		width: 1040px
+	}
+	#shop .shopview {
+		width: 1040px
+	}
+	.detailmenu {
+		width: 1040px
+	}
+	.detailmenu_02 {
+		width: 1040px
+	}
+	footer {
+		width: 1040px
+	}
+	.nosearch {
+		width: 1040px
+	}
+	#container.product_detail #slidearea ul li {
+		height: 630px
+	}
+	.tab.st01 {
+		width: 1040px
+	}
+	.btn_top.on {
+		margin-left: 1220px
+	}
+	.contactwrap {
+		width: 100%
+	}
+	#product .popularwrap .goodslist li {
+		width: 48%
+	}
+	#product .detailwrap {
+		width: 630px
+	}
+	#product footer {
+		width: 630px
+	}
+	#product .detail_side {
+		margin: 60px auto 0 645px;
+		padding-top: 0px;
+		position: fixed;
+		top: 0;
+		left: inherit;
+		z-index: 9999;
+		width: 395px
+	}
+	#product .detailmenu.product_detail {
+		width: 630px;
+		left: -190px
+	}
+	#product .contactwrap {
+		width: 100%
+	}
+	#product .btn_top.on {
+		bottom: 15px
+	}
+	#product .google-adsense {
+		margin: 620px auto 0 645px;
+		padding-top: 0px;
+		position: fixed;
+		top: 0;
+		left: inherit;
+		z-index: 9999;
+		width: 395px;
+		height: calc(100% - 700px)
+	}
+	#product .popularwrap.downbanner {
+		margin-top: 153px
+	}
+	#product .google-adsense.downbanner {
+		margin-top: 713px
+	}
+}
+
+.app #container {
+	padding: 0
+}
+
+.app #container.simplesearch {
+	padding: 0
+}
+
+.app #container .customerwrap .tab.st01 {
+	top: 0
+}
+
+.app #container .shopviewwrap .shopview {
+	top: 0
+}
+
+.app #container .shopviewwrap.top .shopmenu .tab {
+	top: 0
+}
+
+.app header {
+	display: none
+}
+
+.app footer {
+	display: none
+}
+
+#container {
+	padding-top: 60px;
+	min-height: inherit
+}
+
+#container.category {
+	padding-top: 53px
+}
+
+#container.simplesearch {
+	padding-top: 62px
+}
+
+#container.noheader {
+	padding-top: 0
+}
+
+#container.product_detail {
+	padding-top: 53px
+}
+
+#slidearea li {
+	display: none
+}
+
+#slidearea li:first-child {
+	display: block
+}
+
+#slidenavi {
+	height: 27px
+}
+
+#container:not (.category ) .ctgwrap {
+	padding: 0 8px
+}
+
+#container:not (.category ) .ctgwrap .listalign {
+	margin-top: 0
+}
+
+#shop .shopviewwrap .shopmenu .hiddenarea.empty {
+	background:
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/img_store_nodata.png?ae4099ed3639')
+		no-repeat center center;
+	background-size: 76px;
+	height: 181px;
+	padding-top: 148px;
+	text-align: center;
+	font-size: 15px;
+	color: #212121
+}
+
+#shop .shopviewwrap .shopmenu .hiddenarea.empty.products:before {
+	content: 'ì•„ì§ ë“±ë¡ëœ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.'
+}
+
+#shop .shopviewwrap .shopmenu .hiddenarea.empty.reviews:before {
+	content: 'ì•„ì§ ë“±ë¡ëœ í›„ê¸°ê°€ ì—†ìŠµë‹ˆë‹¤.'
+}
+
+#shop .shopviewwrap .shopmenu .hiddenarea.empty.followings:before {
+	content: 'ì•„ì§ íŒ”ë¡œìž‰í•œ ì‚¬ëžŒì´ ì—†ìŠµë‹ˆë‹¤.'
+}
+
+#shop .shopviewwrap .shopmenu .hiddenarea.empty.followers:before {
+	content: 'ì•„ì§ ë‚˜ë¥¼ íŒ”ë¡œìš°í•œ ì‚¬ëžŒì´ ì—†ìŠµë‹ˆë‹¤.'
+}
+
+#shop .shopviewwrap .shopmenu .hiddenarea.empty.favorites:before {
+	content: 'ì•„ì§ ì°œí•œ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.'
+}
+
+.tab .button {
+	display: block;
+	float: left;
+	background-color: #fff;
+	color: #4c4c4c
+}
+
+.tab.st02 .button {
+	width: 20%;
+	height: 52px;
+	line-height: 14px;
+	font-size: 13px;
+	align-items: flex-start;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	outline: 0;
+	border: 0
+}
+
+.tab.st02 .button a {
+	display: block;
+	padding: 10px
+}
+
+.tab.st02 .button span {
+	display: block;
+	margin-top: 2px
+}
+
+.tab.st02 .button em {
+	display: block;
+	margin-top: 3px;
+	color: #4c4c4c;
+	font-size: 14px
+}
+
+.tab .button.on {
+	position: relative;
+	color: #e82c1e
+}
+
+.tab .button.on a {
+	color: #e82c1e
+}
+
+.tab .button.on em {
+	color: #e82c1e
+}
+
+.tab .button.on:before {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	border-bottom: 2px solid #e82c1e;
+	content: ''
+}
+
+.noresultwrap {
+	min-height: inherit;
+	margin-bottom: inherit
+}
+
+.noresult {
+	position: static;
+	margin: 60px 0
+}
+
+img.policy {
+	max-width: 100%;
+	width: 100%;
+	height: auto
+}
+
+.detailwrap #slidearea li .status {
+	background-size: 65px 65px;
+	background-repeat: no-repeat;
+	display: block;
+	width: 65px;
+	height: 65px;
+	position: absolute;
+	top: 15px;
+	left: 15px
+}
+
+.detailwrap #slidearea li .status.reserved {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/reserved_2.png?afc5224ed46a')
+}
+
+.detailwrap #slidearea li .status.sold_out {
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/sold_out_2.png?3779684e8c25')
+}
+
+.goodslist li .status {
+	display: none;
+	background: rgba(0, 0, 0, 0.5) no-repeat center center;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-size: 64px 64px
+}
+
+.goodslist li .status.sold_out {
+	display: block;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/sold_out_1.png?146395441fc2')
+}
+
+.goodslist li .status.reserved {
+	display: block;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/reserved_1.png?3773476425c2')
+}
+
+.goodslist_03 li .status {
+	display: none;
+	background: rgba(0, 0, 0, 0.5) no-repeat center center;
+	width: 110px;
+	height: 110px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-size: 64px 64px;
+	z-index: 1
+}
+
+.goodslist_03 li .status.sold_out {
+	display: block;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/sold_out_1.png?146395441fc2')
+}
+
+.goodslist_03 li .status.reserved {
+	display: block;
+	background-image:
+		url('https://assets.bunjang.co.kr/static/mobile/images/icon/reserved_1.png?3773476425c2')
+}
+
+.detailwrap .slidewrap #slidearea li img.img_watermark_bg {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 999;
+	width: 100%
+}
+
+.detailwrap .slidewrap #slidearea li img.img_watermark_logo {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 999;
+	margin-left: 3.3%;
+	margin-bottom: 1.4%;
+	width: 21.5%
+}
+
+.goodslistwrap .goodslist li .status {
+	top: -29px
+}
+
+.popularwrap .goodslist li .status {
+	top: -27px
+}
+
+.ctgwrap .goodslist li .status {
+	top: -27px
+}
+
+#product .btn_top {
+	bottom: 70px
+}
+
+#shop .btn_top {
+	bottom: 70px
+}
+
+.spinner {
+	background: rgba(0, 0, 0, 0.7)
+		url('https://assets.bunjang.co.kr/static/mobile/images/common/spinner.gif?8b0d02bdd307')
+		no-repeat center center;
+	background-size: 30px 30px;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99999999
+}
+
+.ad-center .login-social>h1, .ad-center .login-social>button {
+	display: none
+}
+
+.ad-center__header {
+	width: 100%;
+	height: 45px;
+	background-color: #fff;
+	position: relative;
+	z-index: 2
+}
+
+.ad-center__header>button {
+	width: 60px;
+	height: 24px;
+	border: 1px solid #EDEDED;
+	background: #fff;
+	font-size: 12px;
+	color: #666;
+	float: right;
+	float: right;
+	margin-right: 15px;
+	margin-top: 10.25px
+}
+
+.ad-center__header>h1 {
+	width: 20px;
+	height: 17px;
+	overflow: hidden;
+	float: left;
+	margin-left: 15px;
+	margin-top: 14px
+}
+
+.ad-center__header>a {
+	font-size: 18px;
+	font-weight: bold;
+	color: #212121;
+	margin-left: 6px;
+	display: inline-block;
+	margin-top: 17px
+}
+
+.ad-center__header a>img {
+	margin-top: -6px;
+	margin-left: -6px
+}
+
+.ad-center footer {
+	width: 100%
+}
+
+.ad-center footer .footerwrap {
+	background-color: #40464b;
+	color: #7f7f7f
+}
+
+.ad-center footer .footerwrap a {
+	color: #999
+}
+
+.ad-center footer .footerwrap .botmenu a:first-child:before {
+	background: none
+}
+
+.ad-center footer .footerwrap .botmenu a:before {
+	background-color: #999
+}
+
+.ad-center .login-container {
+	position: relative;
+	top: 50%
+}
+
+@media screen and (min-width:960px) {
+	.ad-center>.wrap {
+		width: 100%
+	}
+}
+
+@media screen and (min-width:1024px) {
+	.ad-center>.wrap {
+		width: 100%
+	}
+	.ad-center .login-social>h1 {
+		display: block
+	}
+	.ad-center #container .container_inner {
+		width: 100%
+	}
+	.ad-center .login-container {
+		width: 720px;
+		position: absolute;
+		left: 50%;
+		margin-left: -360px;
+		top: 50%;
+		margin-top: 70px
+	}
+	.ad-center #container {
+		margin-top: -70px
+	}
+	.ad-center footer {
+		bottom: 0;
+		position: absolute
+	}
 }

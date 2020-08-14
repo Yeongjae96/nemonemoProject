@@ -19,7 +19,11 @@
 		<result column="user_status" property="userStatus" />
 		<result column="USER_WITHDRAW_YMD" property="userWithdrawYmd" />
 		<result column="USER_REG_YMD" property="userRegYmd" />
-		<result column="USER_LOGIN_FL" property="userLoginFlag" />
+		<result column="USER_AUTH_CHECK" property="userAuthCheck" />
+		<result column="STORE_IMG_NO" property="storeImgNo" />
+		<result column="STORE_NAME" property="storeName" />
+		<result column="STORE_INTRO" property="storeIntro" />
+		<result column="STORE_RATING" property="storeRating" />
 	</resultMap>
 	
 
@@ -40,11 +44,11 @@
 				)
 			VALUES 
 				( 
-				USER_NO_seq.nextval, 
+				USER_sq.nextval, 
 				#{userEmail},
 				#{userPw},
 				#{userName},
-				STORE_NO_seq.nextval,
+				STORE_sq.nextval,
 				#{userPhone},
 				#{userZipcode},
 				#{userAddress1},

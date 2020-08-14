@@ -62,11 +62,13 @@ public class SignController {
 	
 	@RequestMapping(value = "/signup", method= {RequestMethod.POST})
 	public ModelAndView signupAction(UserBaseVO vo) {
+		System.out.println(vo.toString());
 		//암호화 진행
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		try {
 			vo.setUserPw(encoder.encode(vo.getUserPw()));
-			userService.insertUser(vo);
+			int x = userService.insertUser(vo);
+			System.out.println(x);
 			ModelAndView mav = new ModelAndView("redirect:/");
 			return mav;
 		} catch (Exception e) {
