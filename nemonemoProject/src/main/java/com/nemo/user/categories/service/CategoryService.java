@@ -1,8 +1,8 @@
 package com.nemo.user.categories.service;
 
-import java.util.Map;
+import com.nemo.user.categories.vo.UserCategoryBoardVO;
 
 public interface CategoryService {
 	
-	public UserCategoryProductVO getCategoryProducts(int productCateNo);
+	public UserCategoryBoardVO getCategoryProducts(int productCateNo);
 }

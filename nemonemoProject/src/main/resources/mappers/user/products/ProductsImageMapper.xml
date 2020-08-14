@@ -14,7 +14,6 @@
 		<result column="product_img_dt" property="productImgDt"/>
 	</resultMap>
 	
-
 	<insert id="insertImage" 
 		parameterType="java.util.List">
 	
@@ -30,7 +29,7 @@
 			product_img_height,
 			product_img_type
 		) VALUES (
-			(select get_seq('product_img_sq') FROM dual),
+			get_seq('product_img_sq'),
 			#{i.productNo},
 			#{i.productImgOriginName},
 			#{i.productImgFileName},
@@ -45,17 +44,30 @@
 	</insert>
 	
 	
-	<select id="getPresentiveImageList" parameterType="list" resultMap="productImgMap">
-		SELECT *
-		FROM
-			product_img_tb
-		<where>
-			product_cate_no 
+	<select id="selectPresentiveImg" parameterType="list" resultMap="productImgMap">
+		
+		SELECT a.* 
+		FROM product_img_tb a
+		WHERE product_img_no IN (
+		    SELECT min(product_img_no)
+		    FROM product_img_tb
+		    <where>
+			product_no
 			<foreach collection="list" open="IN (" close= ")" item="i" separator=",">
-				#{i}
+				#{i.productNo}
 			</foreach>
 		</where>
-			
+		    GROUP BY product_no
+		)
+		ORDER BY product_no
+	</select>
+	
+	<select id="selectImage" parameterType="int" resultMap="productImgMap">
+		
+		SELECT *
+		FROM product_img_tb
+		WHERE product_img_no = #{productImgNo}
+		
 	</select>
 	
 	
