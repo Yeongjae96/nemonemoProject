@@ -16,21 +16,23 @@ import lombok.Data;
  */
 @Data
 public class UserBaseVO {
-	private int userNo;
-	private int StoreNo;
-	private String userEmail;
-	private String userPw;
-	private String userGender;
-	private String userName;
-	private String userPhone;
-	private String userAccount;
-	private String userZipcode;
-	private String userAddress1;
-	private String userAddress2;
-	private String userStatus;
-	private String userLoginFlag;
-	private Date userWithdrawYmd;
-	private Date userRegYmd;
-
-
+   private int userNo;
+   private int StoreNo;
+   private int storeImgNo;
+   private int storeRating;
+   private String userEmail;
+   private String userPw;
+   private String userGender;
+   private String userName;
+   private String userPhone;
+   private String userAccount;
+   private String userZipcode;
+   private String userAddress1;
+   private String userAddress2;
+   private String userStatus;
+   private String userAuthCheck;
+   private String storeName;
+   private String storeIntro;
+   private Date userWithdrawYmd;
+   private Date userRegYmd;
 }
