@@ -13,5 +13,6 @@ public interface UserProductsCategoryMapper extends IUserProductsCategoryMapper 
 	
 	public List<UserBaseProductsCategoryVO> getAllCategoryList();
 	public List<Integer> selectChildrenCateNums(Map<String, Object> map);
-	public String searchTypeSeq(int productCateNo);
+	public UserBaseProductsCategoryVO searchCateSeq(int productCateNo);
+	public List<UserBaseProductsCategoryVO> selectTypeCategoryList(String productCateType);
 }

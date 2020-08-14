@@ -3,7 +3,7 @@
 
 <mapper namespace="com.nemo.user.products.repository.impl.UserProductsCategoryMapper">
 	
-	<resultMap id="productsCateMap" type="com.nemo.admin.products.vo.AdminBaseProductsCategoryVO">
+	<resultMap id="productsCateMap" type="com.nemo.user.products.vo.UserBaseProductsCategoryVO">
 		<id column="product_cate_no" property="productCateNo"/>
 		<result column="admin_reg_id" property="adminRegId"/>
 		<result column="admin_edit_id" property="adminEditId"/>
@@ -21,6 +21,29 @@
 		
 		SELECT *
 		FROM product_cate_tb
+		ORDER BY 
+			product_cate_order desc,
+			product_cate_no desc
+	</select>
+	
+	
+	<select id="selectTypeCategoryList" parameterType="String" resultMap="productsCateMap">
+		
+		SELECT *
+		FROM product_cate_tb
+		<where>
+			<if test='productCateType != null'>
+				OR product_cate_type = 'L' 
+			</if>
+			<if test='productCateType == "M" or productCateType == "S"'>
+				OR product_cate_type = 'M'
+			</if>
+			<if test='productCateType == "S"'>
+				OR product_cate_type = 'S'
+			</if>
+			
+		</where>
+		
 		ORDER BY 
 			product_cate_order desc,
 			product_cate_no desc
@@ -54,9 +77,8 @@
 			</where>
 	</select>
 
-	<select id="searchTypeSeq" parameterType="int" resultType="String">
-		
-		SELECT product_cate_type
+	<select id="searchCateSeq" parameterType="int" resultMap="productsCateMap">
+		SELECT *
 		FROM product_cate_tb
 		WHERE product_cate_no = #{productCateNo}
 	

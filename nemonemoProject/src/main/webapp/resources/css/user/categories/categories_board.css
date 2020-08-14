@@ -112,6 +112,10 @@
     padding: 0px 10px;
     cursor: pointer;
 }
+
+.category-menu-cbox__item:hover{
+	color: #EE5058;
+}
 .category-sub__area {
     margin-top: 20px;
     height: 97px;
@@ -138,6 +142,7 @@
     font-weight: 500;
     background: rgb(255, 255, 255);
     padding: 0px 20px;
+    height: 48px;
 }
 
 .category-sub__total-link > svg {
@@ -382,3 +387,10 @@
         height: 12px;
         color: white;
     }
+    
+    .category-sub__item-link svg {
+   margin-left: 5px;
+    display: block;
+    color: #999999;
+    }
+    

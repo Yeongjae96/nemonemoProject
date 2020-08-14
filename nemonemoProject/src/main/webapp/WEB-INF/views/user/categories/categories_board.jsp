@@ -26,20 +26,52 @@
 
 </head>
 <body>
+
+<c:set var="productList" value="${vo.productList}"/>
+<c:set var="pdImgArticleList" value="${vo.pdImgArticleList}"/>
+<c:set var="selectedCate" value="${vo.selectedCategory }"/>
+
+<c:forEach var="entry" items="${vo.categoryMap}">
+	<c:set var="key" value="${entry.key}"/>
+	<c:set var="value" value="${entry.value}"/>
+	<c:if test="${key eq 'S'}"> 
+		<c:set var="PdSmCateList" value="${value}"/>
+	</c:if>
+	<c:if test="${key eq 'M'}"> 
+		<c:set var="PdMdCateList" value="${value}"/>
+	</c:if>
+	<c:if test="${key eq 'L'}"> 
+		<c:set var="PdLgCateList" value="${value}"/>
+	</c:if>
+</c:forEach>
+
+<c:if test="${selectedCate.productCateType eq 'L'}">
+	<c:set var="selectedName" value="${selectedCate.productCateLarge}"/>
+</c:if>
+<c:if test="${selectedCate.productCateType eq 'M'}">
+	<c:set var="selectedName" value="${selectedCate.productCateMedium}"/>
+</c:if>
+<c:if test="${selectedCate.productCateType eq 'S'}">
+	<c:set var="selectedName" value="${selectedCate.productCateSmall}"/>
+</c:if>
+
+
+
+
 	<% 
 		/* 공통 Header */
 	%>
 	<jsp:include page="/WEB-INF/views/user/include/top-menu.jsp"/>
-	<% 
+	<%-- 
 		/* 공통 Header */
-	%>
+	--%>
 	<header class="sticky-top">
 		<jsp:include page="/WEB-INF/views/user/include/header.jsp" />
 		<jsp:include page="/WEB-INF/views/user/include/side-nav.jsp"/>		
 	</header>
-	<% 
+	<%-- 
 		/* 각 페이지의 특성! */
-	%>
+	--%>
 	<section>
 		<div class="categories__area">
         <div class="category-head__area">
@@ -50,171 +82,136 @@
                         <i class="fas fa-home"></i>
                         홈
                     </div>
-
-                    <div class="category-menu-cbox__item">
-                        <i class="fas fa-chevron-right"></i>
-                        <div class="category-menu-cbox__area">
-                            <div class="category-menu-cbox__div">
-                                <div class="category-menu-cbox__display">
-                                    패션잡화
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                                <div class="category-menu-cbox__list">
-                                    <div class="category-menu-cbox__item--active">
-                                        패션잡화
-                                    </div>
-                                    <div class="category-menu-cbox__item">여성의류</div>
-                                    <div class="category-menu-cbox__item">남성의류</div>
-                                    <div class="category-menu-cbox__item">디지털/가전</div>
-                                    <div class="category-menu-cbox__item">도서/티켓/취미/애완</div>
-                                    <div class="category-menu-cbox__item">생활/문구/가구/식품</div>
-                                    <div class="category-menu-cbox__item">유아동/출산</div>
-                                    <div class="category-menu-cbox__item">스타굿즈</div>
-                                    <div class="category-menu-cbox__item">스포츠/레저</div>
-                                    <div class="category-menu-cbox__item">뷰티/미용</div>
-                                    <div class="category-menu-cbox__item">기타</div>
-                                    <div class="category-menu-cbox__item">차량/오토바이</div>
-                                    <div class="category-menu-cbox__item">구인구직</div>
-                                    <div class="category-menu-cbox__item">재능</div>
-                                    <div class="category-menu-cbox__item">번개나눔</div>
-                                    <div class="category-menu-cbox__item">지역 서비스</div>
-                                    <div class="category-menu-cbox__item">원룸/함께살아요</div>
-                                    <div class="category-menu-cbox__item">커뮤니티</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="category-menu-cbox__item">
-                        <i class="fas fa-chevron-right"></i>
-                        <div class="category-menu-cbox__area">
-                            <div class="category-menu-cbox__div">
-                                <div class="category-menu-cbox__display">
-                                    패션잡화
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                                <div class="category-menu-cbox__list">
-                                    <div class="category-menu-cbox__item--active">
-                                        패션잡화
-                                    </div>
-                                    <div class="category-menu-cbox__item">여성의류</div>
-                                    <div class="category-menu-cbox__item">남성의류</div>
-                                    <div class="category-menu-cbox__item">디지털/가전</div>
-                                    <div class="category-menu-cbox__item">도서/티켓/취미/애완</div>
-                                    <div class="category-menu-cbox__item">생활/문구/가구/식품</div>
-                                    <div class="category-menu-cbox__item">유아동/출산</div>
-                                    <div class="category-menu-cbox__item">스타굿즈</div>
-                                    <div class="category-menu-cbox__item">스포츠/레저</div>
-                                    <div class="category-menu-cbox__item">뷰티/미용</div>
-                                    <div class="category-menu-cbox__item">기타</div>
-                                    <div class="category-menu-cbox__item">차량/오토바이</div>
-                                    <div class="category-menu-cbox__item">구인구직</div>
-                                    <div class="category-menu-cbox__item">재능</div>
-                                    <div class="category-menu-cbox__item">번개나눔</div>
-                                    <div class="category-menu-cbox__item">지역 서비스</div>
-                                    <div class="category-menu-cbox__item">원룸/함께살아요</div>
-                                    <div class="category-menu-cbox__item">커뮤니티</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+					<c:if test="${selectedCate.productCateType eq 'L' || selectedCate.productCateType eq 'M' || selectedCate.productCateType eq 'S'}">
+	                    <div class="category-menu-cbox__item">
+	                        <i class="fas fa-chevron-right"></i>
+	                        <div class="category-menu-cbox__area">
+	                            <div class="category-menu-cbox__div">
+	                                <div class="category-menu-cbox__display">
+                                  		<c:forEach var="lg" items="${PdLgCateList}">
+		                                    	<c:if test="${selectedCate.productCateLarge eq lg.productCateLarge}">
+		                                    		${lg.productCateLarge}
+		                                    	</c:if>
+                                    	</c:forEach> 
+	                                    <i class="fas fa-chevron-down"></i>
+	                                </div>
+	                                <div class="category-menu-cbox__list">
+	                                    <c:forEach var="lg" items="${PdLgCateList}">
+	                                    	<c:if test="${selectedCate.productCateLarge eq lg.productCateLarge}">
+	                                    		<div class="category-menu-cbox__item--active">${lg.productCateLarge}</div>
+	                                    	</c:if>
+	                                    	<c:if test="${selectedCate.productCateLarge ne lg.productCateLarge}">
+	                                    		<a class="category-menu-cbox__item" href="<c:url value="/categories/${lg.productCateNo}.do"/>">${lg.productCateLarge}</a>
+	                                    	</c:if>
+	                                    </c:forEach>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+					</c:if>
+					<c:if test="${selectedCate.productCateType eq 'M' || selectedCate.productCateType eq 'S'}">
+	                    <div class="category-menu-cbox__item">
+	                        <i class="fas fa-chevron-right"></i>
+	                        <div class="category-menu-cbox__area">
+	                            <div class="category-menu-cbox__div">
+	                                <div class="category-menu-cbox__display">
+                                  		<c:forEach var="md" items="${PdMdCateList}">
+		                                    	<c:if test="${selectedCate.productCateMedium eq md.productCateMedium}">
+		                                    		${md.productCateMedium}
+		                                    	</c:if>
+                                    	</c:forEach> 
+	                                    <i class="fas fa-chevron-down"></i>
+	                                </div>
+	                                <div class="category-menu-cbox__list">
+	                                    <c:forEach var="md" items="${PdMdCateList}">
+	                                    	<c:if test="${selectedCate.productCateMedium eq md.productCateMedium}">
+	                                    		<div class="category-menu-cbox__item--active">${md.productCateMedium}</div>
+	                                    	</c:if>
+	                                    	<c:if test="${selectedCate.productCateMedium ne md.productCateMedium}">
+	                                    		<a class="category-menu-cbox__item" href="<c:url value="/categories/${md.productCateNo}.do"/>">${md.productCateMedium}</a>
+	                                    	</c:if>
+	                                    </c:forEach>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+					</c:if>
+					<c:if test="${selectedCate.productCateType eq 'S'}">
+	                    <div class="category-menu-cbox__item">
+	                        <i class="fas fa-chevron-right"></i>
+	                        <div class="category-menu-cbox__area">
+	                            <div class="category-menu-cbox__div">
+	                                <div class="category-menu-cbox__display">
+                                  		<c:forEach var="sm" items="${PdSmCateList}">
+		                                    	<c:if test="${productCateNo eq sm.productCateNo}">
+		                                    		${sm.productCateSmall}
+		                                    	</c:if>
+                                    	</c:forEach> 
+	                                    <i class="fas fa-chevron-down"></i>
+	                                </div>
+	                                <div class="category-menu-cbox__list">
+	                                    <c:forEach var="sm" items="${PdSmCateList}">
+	                                    	<c:if test="${selectedCate.productCateSmall eq sm.productCateSmall}">
+	                                    		<div class="category-menu-cbox__item--active">${sm.productCateSmall}</div>
+	                                    	</c:if>
+	                                    	<c:if test="${selectedCate.productCateSmall ne sm.productCateSmall}">
+	                                    		<a class="category-menu-cbox__item" href="<c:url value="/categories/${sm.productCateNo}.do"/>">${sm.productCateSmall}</a>
+	                                    	</c:if>
+	                                    </c:forEach>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+					</c:if>
                 </div>
 
                 <!-- 카테고리 서브 메뉴 -->
-                <div class="category-sub__area">
-                    <div class="category-sub__list">
-                        <a class="category-sub__total-link" href="#">
-                            전체보기
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                        <div class="category-sub__item">
-                            <a class="category-sub__item-link">
-                                <div class="category-sub__item-name">
-                                    숄더백
-                                </div>
-                                <div class="category-sub__item-count">
-                                    19만+
-                                </div>
-                            </a>
-                        </div>
-                        <div class="category-sub__item">
-                            <a class="category-sub__item-link">
-                                <div class="category-sub__item-name">
-                                    크로스백
-                                </div>
-                                <div class="category-sub__item-count">
-                                    13만+
-                                </div>
-                            </a>
-                        </div>
-                        <div class="category-sub__item">
-                            <a class="category-sub__item-link">
-                                <div class="category-sub__item-name">
-                                    토트백
-                                </div>
-                                <div class="category-sub__item-count">
-                                    7만+
-                                </div>
-                            </a>
-                        </div>
-                        <div class="category-sub__item">
-                            <a class="category-sub__item-link">
-                                <div class="category-sub__item-name">
-                                    클러치백
-                                </div>
-                                <div class="category-sub__item-count">
-                                    4만+
-                                </div>
-                            </a>
-                        </div>
-                        <div class="category-sub__item">
-                            <a class="category-sub__item-link">
-                                <div class="category-sub__item-name">
-                                    기타(여성가방)
-                                </div>
-                                <div class="category-sub__item-count">
-                                    3만+
-                                </div>
-                            </a>
-                        </div>
-                        <div class="category-sub__item">
-                            <a class="category-sub__item-link">
-                                <div class="category-sub__item-name">
-                                    백팩
-                                </div>
-                                <div class="category-sub__item-count">
-                                    2만+
-                                </div>
-                            </a>
-                        </div>
-                        <div class="category-sub__item">
-                            <a class="category-sub__item-link">
-                                <div class="category-sub__item-name">
-                                    미니백
-                                </div>
-                                <div class="category-sub__item-count">
-                                    1만+
-                                </div>
-                            </a>
-                        </div>
-                        <div class="category-sub__item">
-                            <a class="category-sub__item-link">
-                                <div class="category-sub__item-name">
-                                    파우치
-                                </div>
-                                <div class="category-sub__item-count">
-                                    1만+
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
+                <c:if test="${selectedCate.productCateType eq 'L'}">
+	                <div class="category-sub__area">
+	                    <div class="category-sub__list">
+	                        <a class="category-sub__total-link" href="#">
+	                           	 전체보기
+	                            <i class="fas fa-chevron-right"></i>
+	                        </a>
+	                        <c:forEach items="${PdMdCateList}" var="sub">
+		                        <div class="category-sub__item">
+		                            <a class="category-sub__item-link" href="<c:url value="/categories/${sub.productCateNo}.do"/>">
+		                                <div class="category-sub__item-name">
+		                                    ${sub.productCateMedium}
+		                                </div>
+		                                <i class="fas fa-chevron-right"></i>
+		                            </a>
+		                        </div>
+	                         </c:forEach>
+	                    </div>
+	                </div>
+ 				</c:if>
+                <!-- 카테고리 서브 메뉴 -->
+                <c:if test="${selectedCate.productCateType eq 'M'}">
+	                <div class="category-sub__area">
+	                    <div class="category-sub__list">
+	                        <a class="category-sub__total-link" href="#">
+	                           	 전체보기
+	                            <i class="fas fa-chevron-right"></i>
+	                        </a>
+	                        <c:forEach items="${PdSmCateList}" var="sub">
+		                        <div class="category-sub__item">
+		                            <a class="category-sub__item-link" href="<c:url value="/categories/${sub.productCateNo}.do"/>">
+		                                <div class="category-sub__item-name">
+		                                    ${sub.productCateSmall}
+		                                </div>
+		                                <i class="fas fa-chevron-right"></i>
+		                            </a>
+		                        </div>
+	                         </c:forEach>
+	                    </div>
+	                </div>
+ 				</c:if>
                 <!-- 카테고리 추천 상품  제목-->
                 <div class="category-rec-title__area">
                     <div class="category-rec-title__div">
-                        <span class="category--empha">여성가방</span>
-                        의 추천상품
+                        <span class="category--empha">${selectedName}</span>
+                        의 카테고리 상품
                         <!-- AD 마크 들어가는 부분-->
                     </div>
                 </div>
@@ -222,137 +219,35 @@
                 <div class="category-rec-content__area">
                     <div class="category-rec-content__list">
                         <!-- 아이템 1개-->
-                        <div class="category-rec-content__item">
-                            <a href="#" class="category-rec-content__link">
-                                <div class="category-rec-content__image">
-                                    <img src="<c:url value="/resources/images/user/categories/image_1.jpg"/>"/>
-                                </div>
-                                <div class="category-rec-content__title">
-                                    <div class="category-rec-content__title-text">
-                                        국내배송 20SS 생♥︎♥︎ 모노그램 마틀라세 클러치[내부 각인 O ]
-                                    </div>
-                                    <div class="category-rec-content__title-price">
-                                        <div class="category-rec-content__title-price--text">169,000</div>
-
-                                    </div>
-                                    <!-- 광고마크 생략 -->
-                                </div>
-                                <div class="category-rec-content__location">
-                                    <i class="fas fa-map-marker-alt fa-2x"></i>
-                                    전국
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="category-rec-content__item">
-                            <a href="#" class="category-rec-content__link">
-                                <div class="category-rec-content__image">
-                                    <img src="<c:url value="/resources/images/user/categories/image_1.jpg"/>" alt="상품이미지" />
-                                </div>
-                                <div class="category-rec-content__title">
-                                    <div class="category-rec-content__title-text">
-                                        국내배송 20SS 생♥︎♥︎ 모노그램 마틀라세 클러치[내부 각인 O ]
-                                    </div>
-                                    <div class="category-rec-content__title-price">
-                                        <div class="category-rec-content__title-price--text">169,000</div>
-
-                                    </div>
-                                    <!-- 광고마크 생략 -->
-                                </div>
-                                <div class="category-rec-content__location">
-                                    <i class="fas fa-map-marker-alt fa-2x"></i>
-                                    전국
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="category-rec-content__item">
-                            <a href="#" class="category-rec-content__link">
-                                <div class="category-rec-content__image">
-                                    <img src="<c:url value="/resources/images/user/categories/image_1.jpg"/>" alt="상품이미지" />
-                                </div>
-                                <div class="category-rec-content__title">
-                                    <div class="category-rec-content__title-text">
-                                        국내배송 20SS 생♥︎♥︎ 모노그램 마틀라세 클러치[내부 각인 O ]
-                                    </div>
-                                    <div class="category-rec-content__title-price">
-                                        <div class="category-rec-content__title-price--text">169,000</div>
-
-                                    </div>
-                                    <!-- 광고마크 생략 -->
-                                </div>
-                                <div class="category-rec-content__location">
-                                    <i class="fas fa-map-marker-alt fa-2x"></i>
-                                    전국
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="category-rec-content__item">
-                            <a href="#" class="category-rec-content__link">
-                                <div class="category-rec-content__image">
-                                    <img src="<c:url value="/resources/images/user/categories/image_1.jpg"/>" alt="상품이미지" />
-                                </div>
-                                <div class="category-rec-content__title">
-                                    <div class="category-rec-content__title-text">
-                                        국내배송 20SS 생♥︎♥︎ 모노그램 마틀라세 클러치[내부 각인 O ]
-                                    </div>
-                                    <div class="category-rec-content__title-price">
-                                        <div class="category-rec-content__title-price--text">169,000</div>
-
-                                    </div>
-                                    <!-- 광고마크 생략 -->
-                                </div>
-                                <div class="category-rec-content__location">
-                                    <i class="fas fa-map-marker-alt fa-2x"></i>
-                                    전국
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="category-rec-content__item">
-                            <a href="#" class="category-rec-content__link">
-                                <div class="category-rec-content__image">
-                                    <img src="<c:url value="/resources/images/user/categories/image_1.jpg"/>" alt="상품이미지" />
-                                </div>
-                                <div class="category-rec-content__title">
-                                    <div class="category-rec-content__title-text">
-                                        국내배송 20SS 생♥︎♥︎ 모노그램 마틀라세 클러치[내부 각인 O ]
-                                    </div>
-                                    <div class="category-rec-content__title-price">
-                                        <div class="category-rec-content__title-price--text">169,000</div>
-
-                                    </div>
-                                    <!-- 광고마크 생략 -->
-                                </div>
-                                <div class="category-rec-content__location">
-                                    <i class="fas fa-map-marker-alt fa-2x"></i>
-                                    전국
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="category-rec-content__item">
-                            <a href="#" class="category-rec-content__link">
-                                <div class="category-rec-content__image">
-                                    <img src="<c:url value="/resources/images/user/categories/image_1.jpg"/>" alt="상품이미지" />
-                                </div>
-                                <div class="category-rec-content__title">
-                                    <div class="category-rec-content__title-text">
-                                        국내배송 20SS 생♥︎♥︎ 모노그램 마틀라세 클러치[내부 각인 O ]
-                                    </div>
-                                    <div class="category-rec-content__title-price">
-                                        <div class="category-rec-content__title-price--text">169,000</div>
-
-                                    </div>
-                                    <!-- 광고마크 생략 -->
-                                </div>
-                                <div class="category-rec-content__location">
-                                    <i class="fas fa-map-marker-alt fa-2x"></i>
-                                    전국
-                                </div>
-                            </a>
-                        </div>
+                        <c:forEach items="${pdImgArticleList}" var="article">
+	                        <div class="category-rec-content__item">
+	                            <a href="#" class="category-rec-content__link">
+	                                <div class="category-rec-content__image">
+	                                <c:if test="${not empty article.productImageVO.productImgNo}">
+	                                    <img src="<c:url value="/image/product/${article.productImageVO.productImgNo}.img"/>"/>
+	                                </c:if>
+	                                <c:if test="${empty article.productImageVO.productImgNo}">
+	                                    <img src="<c:url value="/resources/images/user/categories/image_1.jpg"/>"/>
+	                                </c:if>
+	                                </div>
+	                                <div class="category-rec-content__title">
+	                                    <div class="category-rec-content__title-text">
+	                                     	${article.productVO.productName}
+	                                    </div>
+	                                    <div class="category-rec-content__title-price">
+	                                        <div class="category-rec-content__title-price--text">
+												${article.productVO.productPrice}
+											</div>
+	                                    </div>
+	                                    <!-- 광고마크 생략 -->
+	                                </div>
+	                                <div class="category-rec-content__location">
+	                                    <i class="fas fa-map-marker-alt fa-2x"></i>
+	                                    ${article.productVO.productDealArea}
+	                                </div>
+	                            </a>
+	                        </div>
+						</c:forEach>
                     </div>
                 </div>
 

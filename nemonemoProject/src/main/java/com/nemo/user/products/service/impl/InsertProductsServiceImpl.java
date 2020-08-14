@@ -44,7 +44,7 @@ public class InsertProductsServiceImpl implements InsertProductsService {
 	private static final String PREFIX_URL = "/upload/";
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public int insertProducts(UserNewProductsVO vo) {
 
 		// 1. 상품 등록
@@ -61,7 +61,7 @@ public class InsertProductsServiceImpl implements InsertProductsService {
 				UserBaseProductsImageVO imageVO = new UserBaseProductsImageVO();
 				String orgFileName = FileUtil.getOrgFileName(file.getOriginalFilename());
 				String extension = FileUtil.getExtension(file.getOriginalFilename());
-				String realFileName = FileUtil.getSaveFileNm(orgFileName, extension);
+				String realFileName = FileUtil.getSaveFileNm(orgFileName);
 				String dirRealFileName = FileUtil.getSaveFileDirNm(PREFIX_URL, orgFileName, extension);
 				// 사진 크기 
 				BufferedImage image = ImageIO.read(file.getInputStream());
@@ -95,10 +95,7 @@ public class InsertProductsServiceImpl implements InsertProductsService {
 
 		} catch (Exception e) {
 			logger.warn("{}", e.getMessage());
-		} finally {
-			
-		}
-
+		} 
 		return imageResult;
 	}
 }
