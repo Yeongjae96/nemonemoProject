@@ -23,7 +23,7 @@
 
 <!-- 해당 페이지 JS파일 -->
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
-
+<script src="<c:url value="/resources/js/user/withdraw/withdraw.js"/>"></script>
 
 
 </head>
@@ -35,28 +35,32 @@
 				<div class="container_inner">
 					<div class="loginwrap">
 						<button type="button" onclick="goBack()" class="btn_close">닫기</button>
-
-						<div class="warning">
-							<p>회원 탈퇴시 3일 이내 재가입이 불가하며, 유로 구매한 아이템은 소멸됩니다.</p>
-							<br>
-							<p>
-								[잠깐!]<br> <span> - 상점명 변경 및 휴대폰번호 변경은 내정보 수정에서
-									가능합니다.<br> - 이용 중 불편사항이 있으셨다면 설정 &gt; 1:1상담하기로 문의주시기 바랍니다.<br>
-									- 탈퇴 후 재가입시 신뢰유지를 위해 사용내역(리뷰, 팔로워/팔로잉 등)이 복구됩니다.<br>
-								</span>
-							</p>
-							<div class="btnbox">
-								<button type="button" class="btn_yw_02 submit">탈퇴</button>
+						<form method="post" action="/nemonemoProject/sign/withdraw.do"
+							name="withdraw">
+							<input type="hidden" value="${user.userNo}" id="userNo"
+								name="userNo">
+							<div class="warning">
+								<p>회원 탈퇴시 3일 이내 재가입이 불가하며, 유로 구매한 아이템은 소멸됩니다.</p>
+								<br>
+								<p>
+									[잠깐!]<br> <span> - 상점명 변경 및 휴대폰번호 변경은 내정보 수정에서
+										가능합니다.<br> - 이용 중 불편사항이 있으셨다면 설정 &gt; 1:1상담하기로 문의주시기
+										바랍니다.<br> - 탈퇴 후 재가입시 신뢰유지를 위해 사용내역(리뷰, 팔로워/팔로잉 등)이
+										복구됩니다.<br>
+									</span>
+								</p>
+								<div class="btnbox">
+									<button class="btn_yw_02 submit" id="withdrawbtn">탈퇴</button>
+								</div>
 							</div>
-						</div>
+						</form>
+							<!-- <div class="formarea">
+								<p>
+									서비스에 만족을 드리지 못해 대단히 죄송합니다.<br> 보다 좋은 서비스로 다음에 다시 뵐수 있도록
+									최선을 다하겠습니다.
+								</p> -->
 
-						<div class="formarea">
-							<p>
-								서비스에 만족을 드리지 못해 대단히 죄송합니다.<br> 보다 좋은 서비스로 다음에 다시 뵐수 있도록 최선을
-								다하겠습니다.
-							</p>
-							<form method="post">
-								<fieldset>
+								<!-- 	<fieldset>
 									<legend>로그인</legend>
 									<div class="inpbox first">
 										<select class="reason">
@@ -82,14 +86,12 @@
 								</fieldset>
 								<div class="btnbox">
 									<button type="submit" class="btn_yw_02 submit">탈퇴</button>
-								</div>
-							</form>
-						</div>
+								</div> -->
 					</div>
 				</div>
 			</div>
 		</div>
-
+	
 
 
 		<footer>

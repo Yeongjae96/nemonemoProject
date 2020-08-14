@@ -90,4 +90,14 @@
 			user_no=#{userNo}
     </update>
     
+    <update id="withdrawUser" parameterType="com.nemo.user.sign.signup.vo.UserBaseVO">
+    	UPDATE 
+    		USER_TB
+    	SET
+    		user_status='P',
+    		USER_WITHDRAW_YMD=sysdate
+		WHERE
+			user_no=#{userNo}
+    </update>
+    
 </mapper>

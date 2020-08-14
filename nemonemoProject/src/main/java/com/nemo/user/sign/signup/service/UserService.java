@@ -7,7 +7,7 @@ import com.nemo.user.sign.signup.vo.UserBaseVO;
 public interface UserService {
 	public int insertUser(UserBaseVO vo);
 	public int updateUser(UserBaseVO vo);
-	public int deleteUser(int userNo);
+	public int withdrawUser(UserBaseVO vo);
 	public UserBaseVO getUser(int userNo);
 	public List<UserBaseVO> getUserList();
 	public UserBaseVO loginUser(UserBaseVO vo);

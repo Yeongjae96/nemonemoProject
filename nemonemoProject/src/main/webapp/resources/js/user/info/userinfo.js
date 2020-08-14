@@ -50,7 +50,6 @@ function updateCheck() {
 	} else { // 취소
 		return;
 	}
-
 }
 
 

@@ -22,37 +22,6 @@ public class SignController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/signin")
-	public ModelAndView signinPage() {
-		ModelAndView mav = new ModelAndView("sign/signin");
-		return mav;
-	}
-
-	@PostMapping("/signin")
-	public ModelAndView signinAction(UserBaseVO vo, HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
-		System.out.println(vo.toString());
-		// 인코딩
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		// 세션
-		HttpSession session = req.getSession();
-		// 로그인
-		UserBaseVO user = userService.loginUser(vo);
-		// 암호화된 비밀번호 매칭
-		boolean pwdMatch = encoder.matches(vo.getUserPw(), user.getUserPw());
-		// 조건문
-		// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
-		System.out.println(user.getUserEmail());
-		if (user != null && pwdMatch == true) {
-			session.setAttribute("user", user);
-			mav.setViewName("redirect:/");
-			return mav;
-		} else {
-			session.setAttribute("user", null);
-			mav.setViewName("redirect:/");
-			return mav;
-		}
-	}
 	
 	@GetMapping("/signup")
 	public ModelAndView signupPage() {
@@ -62,7 +31,6 @@ public class SignController {
 	
 	@RequestMapping(value = "/signup", method= {RequestMethod.POST})
 	public ModelAndView signupAction(UserBaseVO vo) {
-		System.out.println(vo.toString());
 		//암호화 진행
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		try {
@@ -92,6 +60,45 @@ public class SignController {
 		
 	}
 	
+	//로그인
+	@GetMapping("/signin")
+	public ModelAndView signinPage() {
+		ModelAndView mav = new ModelAndView("sign/signin");
+		return mav;
+	}
+
+	@PostMapping("/signin")
+	public ModelAndView signinAction(UserBaseVO vo, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println(vo.toString());
+		// 인코딩
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		// 세션
+		HttpSession session = req.getSession();
+		// 로그인
+		UserBaseVO user = userService.loginUser(vo);
+		// 암호화된 비밀번호 매칭
+		boolean pwdMatch = encoder.matches(vo.getUserPw(), user.getUserPw());
+		// 조건문
+		// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
+		System.out.println(user.getUserEmail());
+		if (user != null && pwdMatch == true) {
+			System.out.println(user.getUserStatus());
+			if(user.getUserStatus().equals("P")||user.getUserStatus().equals("S")) {
+				session.setAttribute("user", null);
+				mav.addObject("message", "서버의 메시지입니다.");
+				mav.setViewName("redirect:/");
+				return mav;
+			}
+			session.setAttribute("user", user);
+			mav.setViewName("redirect:/");
+			return mav;
+		} else {
+			session.setAttribute("user", null);
+			mav.setViewName("redirect:/");
+			return mav;
+		}
+	}
 	
 	@GetMapping("/info")
 	public ModelAndView userinfoPage() {
@@ -130,6 +137,16 @@ public class SignController {
 	@GetMapping("/withdraw")
 	public ModelAndView userWithdrawPage() {
 		ModelAndView mav = new ModelAndView("withdraw/withdraw");
+		return mav;
+	}
+	
+	@PostMapping("/withdraw")
+	public ModelAndView WithdrawAction(UserBaseVO vo,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		vo.toString();
+		userService.withdrawUser(vo);
+		session.invalidate();
+		mav.setViewName("redirect:/");
 		return mav;
 	}
 	
