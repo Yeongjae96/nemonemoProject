@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.nemo.admin.sites.banner.repository.impl.BannerMapper">
+
+
+
+	<resultMap id="bannerMap"
+		type="com.nemo.admin.sites.banner.vo.BannerVO">
+		<id column="BANNER_NO" property="bannerNo" />
+		<result column="BANNER_ORDER" property="bannerOrder" />
+		<result column="BANNER_CLIENT" property="bannerClient" />
+		<result column="BANNER_IMAGE_URL" property="bannerImageUrl" />
+		<result column="BANNER_DEST_URL" property="bannerDestUrl" />
+		<result column="BANNER_DEL_FL" property="bannerDelFl" />
+		<result column="BANNER_REG_DT" property="bannerRegDt" />
+	</resultMap>
+
+
+	<!-- 데이터 베이스 저장 값 화면에 출력 SQL -->
+	<select id="getBannerList"
+		parameterType="com.nemo.admin.sites.banner.vo.BannerVO"
+		resultMap="bannerMap">
+		SELECT *
+		FROM BANNER_TB
+	</select>
+
+	<!-- 배너 삭제 SQL -->
+	<delete id="deleteBanner" parameterType="int">
+		DELETE FROM BANNER_TB
+		WHERE BANNER_NO = #{bannerNo}
+	</delete>
+
+	<!-- 배너 테이블 기본키 검색 -->
+	<select id="getBannerNo" parameterType="int"
+		resultMap="bannerMap">
+
+		SELECT *
+		FROM Banner_TB
+		WHERE Banner_NO = #{bannerNO}
+
+	</select>
+
+	<!-- 배너 테이블 업데이트 -->
+
+	<update id="updateBannerList"
+		parameterType="com.nemo.admin.sites.banner.vo.BannerVO">
+		UPDATE BANNER_TB
+		
+		SET
+		BANNER_ORDER = #{bannerOrder},
+		BANNER_CLIENT = #{bannerClient},
+		BANNER_IMAGE_URL = #{bannerImageUrl},
+		BANNER_DEST_URL = #{bannerDestUrl},
+		BANNER_DEL_FL = #{bannerDelFl}
+	
+
+		WHERE BANNER_NO = #{bannerNo}
+	</update>
+
+
+
+
+
+
+
+</mapper>

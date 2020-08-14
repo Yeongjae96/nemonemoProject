@@ -70,7 +70,7 @@
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" class="form-control" name="editbanner-company" required>
-                                        <label class="form-label">배너 이름</label>
+                                        <label class="form-label">의뢰주</label>
                                     </div>
                                     <div class="help-info">기업을 적으세요</div>
                                 </div>

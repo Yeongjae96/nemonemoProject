@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -215,29 +216,33 @@
 					</div>
 				</div>
 			</form>
-
-
-
-			<!-- Modal -->
+			
+			<!-- 삭제 Modal -->
 			<div class="modal fade" id="category_delete" role="dialog">
 				<div class="modal-dialog">
 					<!-- Modal content-->
 					<div class="modal-content">
 						<!-- modal header-->
 						<div class="modal-header">
-							<h2 class="modal-title">
-								조치 상태 변경</h2>
+							<h2 class="modal-title" id="CategotyDeleteModal">
+							<i class="fas fa-trash-alt"></i>
+								<span></span>
+								카테고리를 정말 삭제하시겠습니까?
+							</h2>
 						</div>
 						<div class="modal-body">
-						
 							<button type="button" class="btn btn-danger" data-dismiss="modal"
-								id="CategoryDelete">수정</button>
+								id="CategoryDelete">삭제</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">취소</button>
 						</div>
 					</div>
 				</div>
 			</div>
+
+
+
+		
 	</section>
 	<!-------------------------------------------SECTION--------------------------------------------------->
 
