@@ -3,15 +3,16 @@ package com.nemo.user.store.vo;
 import java.sql.Date;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class StoreProductVO {
-	private int userNo;
-	private int storeNo;
+@Getter
+@Setter
+public class StoreProductVO extends StoreVO{
 	private int productNo;
 	private int productSeller;
 	private String productName;
-	private String dealArea;
+	private String productDealArea;
 	private String productDispSt;
 	private int productPrice;
 	private Date productRegDt;

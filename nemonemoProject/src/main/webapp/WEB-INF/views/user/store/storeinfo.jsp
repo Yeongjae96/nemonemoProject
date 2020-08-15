@@ -28,7 +28,7 @@
 </head>
 <body>
 	<div class="storeedit-all">
-		<form method="post" action="updatestore.do" name="updateStore"
+		<form method="post" action="updateStore.do" name="updateStore"
 			onsubmit="return checks();">
 			<div class="storeedit-form">
 				<div class="storeedit-title">상점 정보 수정하기</div>

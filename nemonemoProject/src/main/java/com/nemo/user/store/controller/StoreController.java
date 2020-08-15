@@ -2,24 +2,22 @@ package com.nemo.user.store.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nemo.admin.sites.terms.service.GetTermsListService;
-import com.nemo.admin.sites.terms.service.GetTermsService;
-import com.nemo.admin.sites.terms.service.InsertTermsService;
-import com.nemo.admin.sites.terms.service.RenewTermsService;
-import com.nemo.admin.sites.terms.service.UpdateTermsService;
-import com.nemo.admin.sites.terms.vo.TermsVO;
-import com.nemo.user.store.service.GetStoreProductService;
+import com.nemo.user.store.service.GetStoreProductListService;
 import com.nemo.user.store.service.GetStoreService;
 import com.nemo.user.store.service.UpdateStoreService;
+import com.nemo.user.store.vo.StoreProductVO;
 import com.nemo.user.store.vo.StoreVO;
 
 
@@ -37,7 +35,7 @@ import com.nemo.user.store.vo.StoreVO;
 public class StoreController {
 	
 	@Autowired private GetStoreService getStoreService;
-	@Autowired private GetStoreProductService getStoreProductService;
+	@Autowired private GetStoreProductListService getStoreProductListService;
 	@Autowired private UpdateStoreService updateStoreService;
 	
 	@RequestMapping(value = "/products", method= {RequestMethod.GET})
@@ -45,7 +43,9 @@ public class StoreController {
 		ModelAndView mav = new ModelAndView("store/products/products");
 
 		StoreVO storeVO = getStoreService.getStore(storeNo);
+		List<StoreProductVO> storeProductVO = getStoreProductListService.getStoreProductList(storeNo);
 		mav.addObject("storeVO", storeVO);
+		mav.addObject("storeProductVO", storeProductVO);
 		
 		return mav;
 	}
@@ -60,11 +60,10 @@ public class StoreController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/info", method= {RequestMethod.POST})
-	public ModelAndView StoreInfoEditAction(StoreVO vo) {
-		updateStoreService.updateStore(vo);
-		return new ModelAndView("redirect:/shop/{storeNo}/products.do");
+	@PostMapping("/updateStore")
+	public ModelAndView UpdateStoreAction(StoreVO vo) {
+		 updateStoreService.updateStore(vo);
+		 return new ModelAndView("redirect:/shop/{storeNo}/products.do");
 	}
-	
 	
 }

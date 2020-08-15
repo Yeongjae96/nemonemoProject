@@ -1,6 +1,6 @@
 function updateCheck() {
 	if (confirm("정말 수정하시겠습니까??") == true) { // 확인
-		document.updatestore.submit();
+		document.updateStore.submit();
 		alert("다시 로그인 해주세요");
 	} else { // 취소
 		return;
@@ -8,12 +8,11 @@ function updateCheck() {
 
 }
 
-$('.terms-upd-btn').click(function() {
+/*$('.terms-upd-btn').click(function() {
 	const termsno = $(this)[0].dataset.termsno;
 	window.location.href="edit.mdo?termsNo="+termsno;
 });
-
-
+*/
 
 function checks(){ 
 	var getCheck= RegExp(/^[a-zA-Z0-9]{8,16}$/);

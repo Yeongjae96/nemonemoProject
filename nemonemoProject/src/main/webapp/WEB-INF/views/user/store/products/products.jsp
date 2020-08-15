@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -206,7 +207,7 @@
 					<div class="sc-vBKru hEaZqn">
 						<div class="product_all56">
 							<a class="product_all57" href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/products.do">상품 <span
-								class="product_all58">1</span></a> <a class="product_all59"
+								class="product_all58">${fn:length(storeProductVO)}</span></a> <a class="product_all59"
 								href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/comments.do">상점문의 <span
 								class="product_all60">2</span></a> <a class="product_all61"
 								href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/favorites.do">찜 <span class="product_all62">0</span></a>
@@ -222,7 +223,7 @@
 						<div class="product_all69">
 							<div class="product_all70">
 								<div>
-									상품<span class="product_all71">1</span>
+									상품 <span class="product_all71">${fn:length(storeProductVO)}</span>
 								</div>
 								<div class="product_all72"></div>
 							</div>
@@ -232,7 +233,7 @@
 									<div class="product_all80">
 										<div class="product_all81">
 											<div>전체</div>
-											<div class="product_all82">1개</div>
+											<div class="product_all82">${fn:length(storeProductVO)}개</div>
 										</div>
 										<!-- <div class="product_all83">
 											<a class="product_all84">최신순</a><a class="product_all85">인기순</a><a
@@ -244,7 +245,7 @@
 
 								<!------------------------- 상품 영역 ----------------------------->
 								<div class="product_all88" id="result">
-									<c:forEach var="storeProd" items="${storeProd}">
+								<c:forEach var="storeProductVO" items="${storeProductVO}">
 									<div class="product_all89">
 										<a data-pid="128683129" class="product_all90"
 											href="/products/128683129?ref=%EC%83%81%EC%A0%90%EC%A0%84%EC%B2%B4%EC%83%81%ED%92%88">
@@ -254,26 +255,24 @@
 													alt="상품 이미지">
 											</div>
 											<div class="product_all92">
-												<div class="product_all93">옷</div>
+												<div class="product_all93">${storeProductVO.productName }</div>
 												<div class="product_all94">
-													<div class="product_all95">300,000</div>
+													<div class="product_all95">${storeProductVO.productPrice }</div>
 													<div class="product_all96">
-														<span>1주 전</span>
+														<span>${storeProductVO.productRegDt }</span>
 													</div>
 												</div>
 											</div>
 											<div class="product_all97">
 												<img
 													src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAiCAYAAABIiGl0AAAAAXNSR0IArs4c6QAAA6xJREFUWAm1l01IVFEUx51xNAtxIcEENuQIrqTxO8OEmj5IAncVUS2E2kS0axO4C5KiFi0lXIh9QBC1kKgwclNGjaNOSUEapVRiUSHoTOo4/c743vjem/vGp8xcuHPu+Z//Of9778y9740rz0EbGxsrjsViQait9JpEIuF1uVzbGCfo0/jT2GGwx6WlpQN+vz+Gn7G5MkXD4fAOil6C047dlImrxxCfg9tVUFBwtbq6ekbHrVYpzAoLo9FoJ+QL9AJrkkN/3u12d9bW1l5hMsvWnDTh4eHh8uXl5fvMutFK3qD/jLxTDQ0Nv4z5JuHR0VH/4uLiKwjy/WWtseJPLKTZKO7Wq4dCoa1LS0tP8bMqKvURrcT0TU1NbRZfWkqYWXVrhJVI9j+bZmZmbuplk1s9NDR0GNEnOpgrKz8ydBrZ8rBHRHCur0MsCvc1Pazl1GF301PbqOFpBh3Z4Rv0oIvVBgBG01hqYKCwsPBMIBD4bAxHIpGKhYWFbrB9RtxuzDEr9yB6zI5gwV/U19cfYLvktjI1mQh19rOI5wSCpqDC4bgelaXvUcRMEGJzAO0qUZ2oxdrx53XMzsI9KMJldgQDPsgPYtLgK4fCoeigMmgA2R2fCG83YMohxCFlQAHCDSlgE8Tkytx8yDZmbHCKMxIMQSdcJueWFU8Y8pRDiA3KgAJ0yJ1wJMwqGrlSWxQ6Jkg4wjWBamfCzQzfqmOrqGwNXo/c56uoeaTFejSuOWjxmNx7KXiHwYIlpnIr4I1xVo9TPF8nyFgwiYFV6LidhZfgJaFXv6vvUeCEHVmBy7UZ0fAAds3rUq+BcD8X0SFZcR5XWJcecGhFqEnrjkW12rfEJoV5PRlgJg+1QM4MGqG6uroHKWEZsNXnCfzNmWpe3iL1z9LjJmGuux+AF3MlTO1rrDb1FExutS5GQB5tj3Q/WxbRSElJyWVjPZOwBLxe70mI8sKXrTaZn59/pLKy8p+xYJqwz+eLFhUVtUH6aCRuZMwC/tBba2pqvlnz04SFUFVV9Zsj1krSd2vCOvwYNdo4sx9UOUphIfJ9f8XsRXxclbgGNiuiHNOXdjxbYUlgtuMINzN8Y1dAgU+BtTDxfkUsBWUUFhYFfmKCTKAvlWU/kDfPJo7mO3vKSiR5V69Fkrg8DPj32IHtwE2+FhvzmFivx+M5xz/ENV8sJM+xsC4yMjKyKx6P32YC8rdE2iz9HKu8m/QcfqxbWOry7N2CkRfznZzR0/yIvjBeV/sPFdozA8TD8zUAAAAASUVORK5CYII="
-													width="15" height="17" alt="위치 아이콘">전국
+													width="15" height="17" alt="위치 아이콘">${storeProductVO.productDealArea }
 											</div>
 										</a>
 									</div>
 									</c:forEach>
-
-
-
 								</div>
+							
 								<div class="product_all98"></div>
 							</div>
 						</div>
