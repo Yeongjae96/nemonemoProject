@@ -98,6 +98,7 @@
     color: rgb(247, 47, 51);
     padding: 0px 10px;
     cursor: pointer;
+    font-size: 13px;
 }
 
 .item--selected {
@@ -281,7 +282,9 @@
 .category-rec-content__location {
     height: 40px;
     font-size: 12px;
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     color: rgb(102, 102, 102);
     width: 100%;
     text-overflow: ellipsis;

@@ -18,7 +18,6 @@ import com.nemo.user.products.vo.UserBaseProductsVO;
  */
 @Mapper
 public interface ProductsMapper extends IProductsMapper{
-	
-	public List<UserBaseProductsVO> selectCategoryProducts(Map<String, Object> cateSeqList);
+ 	public List<UserBaseProductsVO> selectCategoryProducts(Map<String, Object> cateSeqList);
 	
 }

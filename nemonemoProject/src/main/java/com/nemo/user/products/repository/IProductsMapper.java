@@ -11,10 +11,7 @@ import com.nemo.user.products.vo.UserNewProductsVO;
  * @작성일 : 2020. 7. 27.
  * @이름 : Yeong
  * @프로그램설명 : 상품 DAO 인터페이스
- * == 수정 정보 ==
  *
- * DATE		 AUTHOR			NOTE
- * -------	--------	-------------	
  */
 
 public interface IProductsMapper {

@@ -226,7 +226,7 @@
                         <c:if test="${pdImgArticleList ne null}">
 	                        <c:forEach items="${pdImgArticleList}" var="article">
 		                        <div class="category-rec-content__item">
-		                            <a href="#" class="category-rec-content__link">
+		                            <a href="<c:url value="/products/${article.productVO.productNo}.do"/>" class="category-rec-content__link">
 		                                <div class="category-rec-content__image">
 		                                <c:if test="${not empty article.productImageVO.productImgNo}">
 		                                    <img src="<c:url value="/image/product/${article.productImageVO.productImgNo}.img"/>"/>

@@ -63,21 +63,6 @@
 		)
 	</insert>
 	
-	<!-- <select id="selectCategoryProducts" parameterType="java.util.HashMap" resultMap="productMap">
-	SELECT *	
-	FROM (	
-		SELECT ROWNUM AS RNUM, p.*
-		FROM 
-			product_tb p
-		<where>
-			product_cate_no 
-			<foreach collection="cateSeqList" open="IN (" close=")" item="i" separator=",">
-				#{i}
-			</foreach>
-		</where>
-	)
-	WHERE RNUM BETWEEN #{startNo} AND #{endNo}
-	</select> -->
 	<select id="selectCategoryProducts" parameterType="java.util.HashMap" resultMap="productMap">
 	<include refid="common.PaginationMapper.header"/>
 		SELECT *
