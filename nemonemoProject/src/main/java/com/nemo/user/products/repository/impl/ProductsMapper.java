@@ -1,13 +1,12 @@
 package com.nemo.user.products.repository.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import com.nemo.user.products.repository.IProductsMapper;
 import com.nemo.user.products.vo.UserBaseProductsVO;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @제목 : 상품 DAO 마이바티스
@@ -20,6 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 @Mapper
 public interface ProductsMapper extends IProductsMapper{
 	
-	public List<UserBaseProductsVO> selectCategoryProducts(List<Integer> cateSeqList);
+	public List<UserBaseProductsVO> selectCategoryProducts(Map<String, Object> cateSeqList);
 	
 }

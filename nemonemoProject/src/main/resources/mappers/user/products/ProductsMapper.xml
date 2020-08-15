@@ -63,18 +63,28 @@
 		)
 	</insert>
 	
-	<select id="selectCategoryProducts" parameterType="list" resultMap="productMap">
-		
-		SELECT *
+	<select id="selectCategoryProducts" parameterType="java.util.HashMap" resultMap="productMap">
+	SELECT *	
+	FROM (	
+		SELECT ROWNUM AS RNUM, p.*
 		FROM 
-			product_tb
+			product_tb p
 		<where>
 			product_cate_no 
-			<foreach collection="list" open="IN (" close=")" item="i" separator=",">
+			<foreach collection="cateSeqList" open="IN (" close=")" item="i" separator=",">
 				#{i}
 			</foreach>
 		</where>
-		
+	)
+	WHERE RNUM BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
+	<select id="selectProduct" parameterType="int" resultMap="productMap">
+		SELECT *
+		FROM
+			product_tb p
+		WHERE
+			product_no = #{productNo}
 	</select>
 	
 	

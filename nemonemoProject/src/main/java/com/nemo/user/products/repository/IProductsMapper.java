@@ -1,5 +1,6 @@
 package com.nemo.user.products.repository;
 
+import com.nemo.user.products.vo.UserBaseProductsVO;
 import com.nemo.user.products.vo.UserNewProductsVO;
 
 
@@ -18,4 +19,5 @@ import com.nemo.user.products.vo.UserNewProductsVO;
 
 public interface IProductsMapper {
 	public int insertProducts(UserNewProductsVO vo);
+	public UserBaseProductsVO selectProduct(int productNo);
 }
