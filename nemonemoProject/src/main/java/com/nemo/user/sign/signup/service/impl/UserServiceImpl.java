@@ -24,13 +24,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int updateUser(UserBaseVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteUser(int userNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return userDAO.updateUser(vo);
 	}
 
 	@Override
@@ -54,6 +48,12 @@ public class UserServiceImpl implements UserService {
 	public int idUsercheck(String UserEmail) {
 		// TODO Auto-generated method stub
 		return userDAO.idUsercheck(UserEmail);
+	}
+
+	@Override
+	public int withdrawUser(UserBaseVO vo) {
+		// TODO Auto-generated method stub
+		return userDAO.withdrawUser(vo);
 	}
 
 

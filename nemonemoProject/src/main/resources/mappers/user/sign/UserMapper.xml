@@ -11,6 +11,7 @@
 		<result column="user_pw" property="userPw" />
 		<result column="user_gender" property="userGender" />
 		<result column="user_name" property="userName" />
+		<result column="user_account" property="userAccount"/>
 		<result column="user_phone" property="userPhone" />
 		<result column="user_zipcode" property="userZipcode" />
 		<result column="user_address1" property="userAddress1" />
@@ -18,7 +19,11 @@
 		<result column="user_status" property="userStatus" />
 		<result column="USER_WITHDRAW_YMD" property="userWithdrawYmd" />
 		<result column="USER_REG_YMD" property="userRegYmd" />
-		<result column="USER_LOGIN_FL" property="userLoginFlag" />
+		<result column="USER_AUTH_CHECK" property="userAuthCheck" />
+		<result column="STORE_IMG_NO" property="storeImgNo" />
+		<result column="STORE_NAME" property="storeName" />
+		<result column="STORE_INTRO" property="storeIntro" />
+		<result column="STORE_RATING" property="storeRating" />
 	</resultMap>
 	
 
@@ -39,11 +44,11 @@
 				)
 			VALUES 
 				( 
-				USER_NO_seq.nextval, 
+				USER_sq.nextval, 
 				#{userEmail},
 				#{userPw},
 				#{userName},
-				STORE_NO_seq.nextval,
+				STORE_sq.nextval,
 				#{userPhone},
 				#{userZipcode},
 				#{userAddress1},
@@ -69,5 +74,30 @@
     	WHERE
     		 user_email = #{userEmail}
     </select>
-
+    
+    <update id="updateUser" parameterType="com.nemo.user.sign.signup.vo.UserBaseVO">
+    	UPDATE 
+    		USER_TB
+    	SET
+    		user_pw=#{userPw},
+    		user_name=#{userName},
+    		user_phone=#{userPhone},
+    		user_account=#{userAccount},
+    		USER_ZIPCODE=#{userZipcode},
+			USER_ADDRESS1=#{userAddress1},
+			USER_ADDRESS2=#{userAddress2}
+		WHERE
+			user_no=#{userNo}
+    </update>
+    
+    <update id="withdrawUser" parameterType="com.nemo.user.sign.signup.vo.UserBaseVO">
+    	UPDATE 
+    		USER_TB
+    	SET
+    		user_status='P',
+    		USER_WITHDRAW_YMD=sysdate
+		WHERE
+			user_no=#{userNo}
+    </update>
+    
 </mapper>

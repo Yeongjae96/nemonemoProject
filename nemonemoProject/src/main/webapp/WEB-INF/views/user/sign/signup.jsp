@@ -22,7 +22,7 @@
 <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script> -->
 <!-- 해당 페이지 JS파일 -->
 <script>
 	var contextPath = "${pageContext.request.contextPath}"

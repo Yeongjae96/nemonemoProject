@@ -22,6 +22,45 @@ public class SignController {
 	@Autowired
 	private UserService userService;
 	
+	
+	@GetMapping("/signup")
+	public ModelAndView signupPage() {
+		ModelAndView mav = new ModelAndView("sign/signup");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/signup", method= {RequestMethod.POST})
+	public ModelAndView signupAction(UserBaseVO vo) {
+		//암호화 진행
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		try {
+			vo.setUserPw(encoder.encode(vo.getUserPw()));
+			int x = userService.insertUser(vo);
+			System.out.println(x);
+			ModelAndView mav = new ModelAndView("redirect:/");
+			return mav;
+		} catch (Exception e) {
+			ModelAndView mav = new ModelAndView("redirect:/sign/signup.do");
+			return mav;
+		}
+	}
+	
+	//AJAX 메서드 앞에 어노테이션 @ResponseBody 추가
+	@ResponseBody
+	@RequestMapping(value ="/signup/idUsercheck", method = {RequestMethod.POST}) 
+	public int UserIdCheck(UserBaseVO vo) {
+	
+		System.out.println("아이디 체크 컨트롤러 시작");		
+		String id = vo.getUserEmail();
+		System.out.println("어드민 아이디 " + id);
+		int idChecked = userService.idUsercheck(vo.getUserEmail());
+		System.out.println("Controller : " + idChecked); 
+	
+		return idChecked; // 이 컨트롤러의 return을 ajax data로..!!
+		
+	}
+	
+	//로그인
 	@GetMapping("/signin")
 	public ModelAndView signinPage() {
 		ModelAndView mav = new ModelAndView("sign/signin");
@@ -44,6 +83,13 @@ public class SignController {
 		// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
 		System.out.println(user.getUserEmail());
 		if (user != null && pwdMatch == true) {
+			System.out.println(user.getUserStatus());
+			if(user.getUserStatus().equals("P")||user.getUserStatus().equals("S")) {
+				session.setAttribute("user", null);
+				mav.addObject("message", "서버의 메시지입니다.");
+				mav.setViewName("redirect:/");
+				return mav;
+			}
 			session.setAttribute("user", user);
 			mav.setViewName("redirect:/");
 			return mav;
@@ -54,48 +100,24 @@ public class SignController {
 		}
 	}
 	
-	@GetMapping("/signup")
-	public ModelAndView signupPage() {
-		ModelAndView mav = new ModelAndView("sign/signup");
-		return mav;
-	}
-	
-	@RequestMapping(value = "/signup", method= {RequestMethod.POST})
-	public ModelAndView signupAction(UserBaseVO vo, HttpServletRequest req) {
-		System.out.println(vo.toString());
-		//세션
-		HttpSession session = req.getSession();
-		try {
-			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			vo.setUserPw(encoder.encode(vo.getUserPw()));
-			userService.insertUser(vo);
-			ModelAndView mav = new ModelAndView("redirect:/");
-			return mav;
-		} catch (Exception e) {
-			ModelAndView mav = new ModelAndView("redirect:/sign/signup.do");
-			return mav;
-		}
-	}
-	
 	@GetMapping("/info")
 	public ModelAndView userinfoPage() {
 		ModelAndView mav = new ModelAndView("info/userinfo");
 		return mav;
 	}
 	
-	//AJAX 메서드 앞에 어노테이션 @ResponseBody 추가
-	@ResponseBody
-	@RequestMapping(value ="/signup/idUsercheck", method = {RequestMethod.POST}) 
-	public int UserIdCheck(UserBaseVO vo) {
-	
-		System.out.println("아이디 체크 컨트롤러 시작");		
-		String id = vo.getUserEmail();
-		System.out.println("어드민 아이디 " + id);
-		int idChecked = userService.idUsercheck(vo.getUserEmail());
-		System.out.println("Controller : " + idChecked); 
-	
-		return idChecked; // 이 컨트롤러의 return을 ajax data로..!!
-		
+	@PostMapping("/updateUser")
+	public ModelAndView UpdateAction(UserBaseVO vo,HttpSession session) {
+		 ModelAndView mav = new ModelAndView();
+		//비밀번호 암호화를 시키기위해 부름
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		//재입력한 비밀번호 암호화
+		vo.setUserPw(encoder.encode(vo.getUserPw()));
+		//유저 수정하기
+		userService.updateUser(vo);
+		session.invalidate();
+		mav.setViewName("redirect:/");
+		return mav;
 	}
 	
 	//로그아웃
@@ -106,5 +128,26 @@ public class SignController {
 		return mv;
 	}
 	
+	@GetMapping("/setting")
+	public ModelAndView userSettingPage() {
+		ModelAndView mav = new ModelAndView("settings/setting");
+		return mav;
+	}
+	
+	@GetMapping("/withdraw")
+	public ModelAndView userWithdrawPage() {
+		ModelAndView mav = new ModelAndView("withdraw/withdraw");
+		return mav;
+	}
+	
+	@PostMapping("/withdraw")
+	public ModelAndView WithdrawAction(UserBaseVO vo,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		vo.toString();
+		userService.withdrawUser(vo);
+		session.invalidate();
+		mav.setViewName("redirect:/");
+		return mav;
+	}
 	
 }
