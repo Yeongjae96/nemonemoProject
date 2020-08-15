@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="common.PaginationMapper">
+
+<sql id="header">
+	SELECT T.*
+	FROM (
+		SELECT ROWNUM AS RNUM, A.*
+		FROM (
+</sql>
+<sql id="footer">
+	) A ) T
+	WHERE T.RNUM BETWEEN #{startNo} AND #{endNo}
+</sql>
+
+</mapper>
