@@ -571,7 +571,13 @@ function initRegBtn() {
 				console.log('after data : ', data);
 			},
 			success: function(data) {
-				window.location.href="/"; // 나중에 GetBoard로 가야함
+				if(data) {
+					alert('상품이 등록되었습니다. ')
+					window.location.href="/" // 나중에 GetBoard로 가야함
+				} else {
+					alert('로그인이 필요한 기능입니다.')
+					$('#loginBtn').trigger('click');
+				}
 			},
 			error: function(error) {
 				alert('error : ', error)
