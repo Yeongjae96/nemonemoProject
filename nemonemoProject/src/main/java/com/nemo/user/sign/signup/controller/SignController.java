@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,45 @@ public class SignController {
 	@Autowired
 	private UserService userService;
 	
+	
+	@GetMapping("/signup")
+	public ModelAndView signupPage() {
+		ModelAndView mav = new ModelAndView("sign/signup");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/signup", method= {RequestMethod.POST})
+	public ModelAndView signupAction(UserBaseVO vo) {
+		//암호화 진행
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		try {
+			vo.setUserPw(encoder.encode(vo.getUserPw()));
+			int x = userService.insertUser(vo);
+			System.out.println(x);
+			ModelAndView mav = new ModelAndView("redirect:/");
+			return mav;
+		} catch (Exception e) {
+			ModelAndView mav = new ModelAndView("redirect:/sign/signup.do");
+			return mav;
+		}
+	}
+	
+	//AJAX 메서드 앞에 어노테이션 @ResponseBody 추가
+	@ResponseBody
+	@RequestMapping(value ="/signup/idUsercheck", method = {RequestMethod.POST}) 
+	public int UserIdCheck(UserBaseVO vo) {
+	
+		System.out.println("아이디 체크 컨트롤러 시작");		
+		String id = vo.getUserEmail();
+		System.out.println("어드민 아이디 " + id);
+		int idChecked = userService.idUsercheck(vo.getUserEmail());
+		System.out.println("Controller : " + idChecked); 
+	
+		return idChecked; // 이 컨트롤러의 return을 ajax data로..!!
+		
+	}
+	
+	//로그인
 	@GetMapping("/signin")
 	public ModelAndView signinPage() {
 		ModelAndView mav = new ModelAndView("sign/signin");
@@ -41,9 +81,17 @@ public class SignController {
 		// 암호화된 비밀번호 매칭
 		boolean pwdMatch = encoder.matches(vo.getUserPw(), user.getUserPw());
 		// 조건문
+		System.out.println(user.toString());
 		// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
 		System.out.println(user.getUserEmail());
 		if (user != null && pwdMatch == true) {
+			System.out.println(user.getUserStatus());
+			if(user.getUserStatus().equals("P")||user.getUserStatus().equals("S")) {
+				session.setAttribute("user", null);
+				mav.addObject("message", "서버의 메시지입니다.");
+				mav.setViewName("redirect:/");
+				return mav;
+			}
 			session.setAttribute("user", user);
 			mav.setViewName("redirect:/");
 			return mav;
@@ -54,48 +102,24 @@ public class SignController {
 		}
 	}
 	
-	@GetMapping("/signup")
-	public ModelAndView signupPage() {
-		ModelAndView mav = new ModelAndView("sign/signup");
-		return mav;
-	}
-	
-	@RequestMapping(value = "/signup", method= {RequestMethod.POST})
-	public ModelAndView signupAction(UserBaseVO vo, HttpServletRequest req) {
-		System.out.println(vo.toString());
-		//세션
-		HttpSession session = req.getSession();
-		try {
-			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			vo.setUserPw(encoder.encode(vo.getUserPw()));
-			userService.insertUser(vo);
-			ModelAndView mav = new ModelAndView("redirect:/");
-			return mav;
-		} catch (Exception e) {
-			ModelAndView mav = new ModelAndView("redirect:/sign/signup.do");
-			return mav;
-		}
-	}
-	
 	@GetMapping("/info")
 	public ModelAndView userinfoPage() {
 		ModelAndView mav = new ModelAndView("info/userinfo");
 		return mav;
 	}
 	
-	//AJAX 메서드 앞에 어노테이션 @ResponseBody 추가
-	@ResponseBody
-	@RequestMapping(value ="/signup/idUsercheck", method = {RequestMethod.POST}) 
-	public int UserIdCheck(UserBaseVO vo) {
-	
-		System.out.println("아이디 체크 컨트롤러 시작");		
-		String id = vo.getUserEmail();
-		System.out.println("어드민 아이디 " + id);
-		int idChecked = userService.idUsercheck(vo.getUserEmail());
-		System.out.println("Controller : " + idChecked); 
-	
-		return idChecked; // 이 컨트롤러의 return을 ajax data로..!!
-		
+	@PostMapping("/updateUser")
+	public ModelAndView UpdateAction(UserBaseVO vo,HttpSession session) {
+		 ModelAndView mav = new ModelAndView();
+		//비밀번호 암호화를 시키기위해 부름
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		//재입력한 비밀번호 암호화
+		vo.setUserPw(encoder.encode(vo.getUserPw()));
+		//유저 수정하기
+		userService.updateUser(vo);
+		session.invalidate();
+		mav.setViewName("redirect:/");
+		return mav;
 	}
 	
 	//로그아웃
@@ -106,5 +130,79 @@ public class SignController {
 		return mv;
 	}
 	
+	@GetMapping("/setting")
+	public ModelAndView userSettingPage() {
+		ModelAndView mav = new ModelAndView("settings/setting");
+		return mav;
+	}
 	
+	@GetMapping("/withdraw")
+	public ModelAndView userWithdrawPage() {
+		ModelAndView mav = new ModelAndView("withdraw/withdraw");
+		return mav;
+	}
+	
+	@PostMapping("/withdraw")
+	public ModelAndView WithdrawAction(UserBaseVO vo,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		vo.toString();
+		userService.withdrawUser(vo);
+		session.invalidate();
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	
+//	 //이메일 인증 코드 검증
+//    @RequestMapping(value = "/emailConfirm", method = RequestMethod.GET)
+//    public String emailConfirm(UserBaseVO vo,Model model) throws Exception { 
+//        
+//        System.out.println("cont get user"+vo);
+//        UserBaseVO user = new UserBaseVO();
+//        user=userService.userAuth(vo);
+//        if(vo == null) {
+//            return "redirect:/";
+//        }
+//        //System.out.println("usercontroller vo =" +vo);
+//        model.addAttribute("login",vo);
+//        return "/user/emailConfirm";
+//    }
+
+	
+	 @RequestMapping(value="/slogin.do",method=RequestMethod.POST)
+	   public ModelAndView login(UserBaseVO vo,ModelAndView mav, HttpSession session,HttpServletRequest request) {
+	      
+	         System.out.println("소셜 컨트롤러 진입");
+	         
+	         UserBaseVO user = userService.getSocialUser(vo);
+	         System.out.println(vo.toString());
+		/*
+		 * session.setAttribute("userEmail",vo.getUserEmail()); //이메일 세션 저장
+		 * session.setAttribute("userName", vo.getUserName()); //이름 세션 저장
+		 */	         
+	         
+	         if(user != null) { // 이미 소셜 이메일로 로그인 이력 있던 사람
+	            System.out.println("소셜 로그인 로그인 이력있는 사람");
+	            session.setAttribute("user", user);
+	            mav.setViewName("redirect:/");
+	            mav.addObject("user" , user);
+	            return mav;
+	         }else {//소셜 이메일로 처음 로그인 시도 한 사람
+	            System.out.println("소셜 처음 로그인한 사람");
+	            session.setAttribute("user", vo);
+	            userService.addSocialUser(vo);
+	         }
+	         
+	         mav.setViewName("redirect:/");
+	         return mav;
+	   }
+	 
+	  @RequestMapping("kakao_logout.do")
+      public String kakao_logout(HttpSession session, HttpServletRequest request) {
+          
+          //세션에 담긴값 초기화
+          session.invalidate();
+          
+          return "home";
+      }
+
 }

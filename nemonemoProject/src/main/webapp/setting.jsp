@@ -6,23 +6,34 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/user/settings/setting.css"/>">
+<script src="settings.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <title>취향을 잇는 거래, 번개장터</title>
 <!-- <style data-styled="" data-styled-version="4.4.1"></style> -->
-<!-- <script charset="utf-8" src="/pc-static/js/Settings.df0e54c6.chunk.js"></script> -->
-<%-- <script src="<c:url value="/resources/js/user/settings/setting.js"/>"></script> --%>
-<script>
-$(function() {
-	$('#logoutBtn').click(function() {
-		 $('#myModal').show();
-	});
-})
-</script>
+<script charset="utf-8" src="/pc-static/js/Settings.df0e54c6.chunk.js"></script>
+<script src="<c:url value="/resources/js/user/settings/setting.js"/>"></script>
 </head>
 <body>
 
+	<!--logout modal-->
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<div class="logout_h2">
+				<h2>로그아웃</h2>
+				<p>로그아웃을 하시겠습니까?</p>
+			</div>
+			<div class=logout_button_group>
+				<div onClick="close_pop();">
+					<button class="cancel_logout">취소</button>
+				</div>
+				<div>
+					<button class="confirm_logout">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="settings-body">
-		<div class="settings-contents" onclick="location.href='/nemonemoProject/index.do'">
+		<div class="settings-contents">
 			<header class="settings-header">
 
 				<button class="settings-back">
@@ -34,32 +45,11 @@ $(function() {
 				계정설정
 			</header>
 			<div class="settings-button-group">
-				<a href="logout.do">로그아웃</a>
-				<a href="withdraw.do">탈퇴</a>
+				<button type="button" onclick="open_pop()">로그아웃</button>
+				<a href="withdraw.html">탈퇴</a>
 			</div>
 		</div>
 	</div>
-<!-- 모달 시작-->
-<div id="myModal" class="modal">
-	<!-- 모달 내용 -->
-	<form method="post" action="sign/logout.do">
-		<div class="modal-content">
-			<div class="logout_h2">
-				<h2>로그아웃</h2>
-				<p>로그아웃 시 6개월 이상 경과된 번개톡 대화 내용이 모두 삭제됩니다. 계속하시겠습니까?</p>
-			</div>
-			<div class=logout_button_group>
-				<div>
-					<button id="model-cancel" class="cancel_logout">취소</button>
-				</div>
-				<div>
-					<button class="confirm_logout" type="submit">확인</button>
-				</div>
-			</div>
-		</div>
-	</form>
-</div>
-<!--End Modal-->
 </body>
 
 </html>
