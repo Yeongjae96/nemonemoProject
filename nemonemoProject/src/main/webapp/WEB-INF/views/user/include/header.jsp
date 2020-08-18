@@ -12,68 +12,59 @@
 		<div class="search-area">
 			<!-- 검색 입력 -->
 			<div class="search-input">
-				<input type="text" placeholder="상품명, 지역명, @상점명 입력" class="search-input__input" value="">
-				<a href="#">
-					<i class="fas fa-search fa-2x search-icon"></i>
+				<input type="text" placeholder="상품명, 지역명, @상점명 입력"
+					class="search-input__input" id="searchInput" value="${param.q}"> <a href="#"
+					id="searchIconBtn"> <i class="fas fa-search fa-2x search-icon"></i>
 				</a>
 			</div>
 			<!-- 나오는 영역 -->
-			<div class="search-box">
-				<div class="search-recently__area">
+			<div class="search-box" id="searchArea">
+				<!-- 최근검색어 영역 -->
+				<div class="search-recently__area" id="recentlyArea">
 					<div class="recently-header">
-						<a class="recently-menu">
-							최근검색어
-						</a>
+						<a class="recently-menu"> 최근검색어 </a>
 					</div>
 					<div class="recently-body">
 						<div class="recently-area">
 							<div class="recently-div">
 								<%-- 잘 모르는 div --%>
-								<div class="recently-list">
-									<div class="recently-item">
-										<button class="recently-item--title">
-											
-										</button>
+								<div class="recently-list" id="recentlyList">
+									<!-- <div class="recently-item">
+										<button class="recently-item--title"></button>
 										<button class="recently-item--delete">
 											<i class="fas fa-times"></i>
 										</button>
-									</div>
+									</div> -->
 								</div>
-								<div class="recently-nothing">
+								<div class="recently-nothing" id="nothingRecently">
 									<i class="fas fa-file-alt fa-2x"></i>
 									<div>최근 검색어가 없습니다.</div>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- 검색어 영역 -->
-				<div class="box-search">
+				<div class="box-search" id="searchBox">
 					<div class="store-search">
 						<div class=""></div>
-						<a class="store-search-link">
-							<i class="fas fa-store"></i>
-							상점검색 >
-							<span id="searchKeyword"></span>
-							<span class="store-search-span">
-								상점명으로 검색
-							</span>
+						<a class="store-search-link"> <i class="fas fa-store"></i>
+							상점검색 > <span id="searchKeyword"></span> <span
+							class="store-search-span"> 상점명으로 검색 </span>
 						</a>
 					</div>
 					<div class="search-result-list">
-					<!-- 아이템 1개 -->
-						<a class="search-result-item">
-							<span class="result-item">오마이걸</span>
+						<!-- 아이템 1개 -->
+						<a class="search-result-item"> <span class="result-item">오마이걸</span>
 						</a>
 					</div>
 				</div>
 				<!-- 삭제 영역 -->
 				<div class="search-close__area">
-					<a class="search-close">닫기</a>
-					<a class="search-all-delete__area">
-						<i class="fas fa-trash-alt"></i>
-						검색어 전체삭제
+					<a class="search-close" id="searchAreaClose">닫기</a> <a
+						class="search-all-delete__area" id="allDeleteBtn"> <i
+						class="fas fa-trash-alt"></i> 검색어 전체삭제
 					</a>
 				</div>
 			</div>

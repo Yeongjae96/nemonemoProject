@@ -52,7 +52,7 @@ function initButtonEvent(list) {
 				// 분류 타입
 				$radio.each(function(i, e) {if(data.productCateType == e.value) {$(e).click(); return false;}});
 				// 사용 여부
-				const delFlagIndex = data.productCateDelFl == 'Y' ? 0 : 1;
+				const delFlagIndex = data.productCateDelFl == 'Y' ? 1 : 0;
 				$('input[name=cateUseType]').eq(delFlagIndex).prop('checked', true);
 				
 				let prevText;

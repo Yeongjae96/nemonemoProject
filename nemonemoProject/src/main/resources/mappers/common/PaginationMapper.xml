@@ -11,6 +11,9 @@
 <sql id="footer">
 	) A ) T
 	WHERE T.RNUM BETWEEN #{startNo} AND #{endNo}
+	<if test="orderColumn != null and orderValue != null">
+		ORDER BY ${orderColumn} = #{orderValue}
+	</if>
 </sql>
 
 </mapper>

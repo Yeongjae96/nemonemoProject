@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nemo.user.products.service.UserProductsCategoryService;
@@ -16,6 +18,8 @@ import com.nemo.user.products.vo.UserBaseProductsVO;
 @RequestMapping("/products")
 public class UserProductsRestController {
 	
+//	@Autowired
+//	private UserProductsCommentsService userProductsCommentsService;
 	@Autowired
 	private UserProductsCategoryService userProductsRestService;
 	
@@ -23,5 +27,11 @@ public class UserProductsRestController {
 	public List<UserBaseProductsCategoryVO> getCategoryList() {
 		return userProductsRestService.getAllCategoryList();
 	}
+	
+	@PostMapping("/{productNo}/comments/new")
+	public @ResponseBody int newComments(@PathVariable int productNo) {
+		return 0;
+	}
+	
 	
 }

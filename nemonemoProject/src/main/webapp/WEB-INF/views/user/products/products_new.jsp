@@ -206,7 +206,7 @@
 										입력해주세요.</div>
 									<div class="products-delivery-price--div">
 										<div class="products-delivery-price--div2">
-											<label for="freesShipping"
+											<label for="freeShipping"
 												class="products-delivery-price--label"> <input
 												id="freeShipping" type="checkbox">무료배송
 											</label>

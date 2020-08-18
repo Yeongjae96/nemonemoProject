@@ -355,6 +355,21 @@ function initPriceArea() {
 			$('#price-validation-text').addClass('invisible');
 		}
 	}
+	
+	$('#contactHope').change(contantHope);
+	
+	function contantHope() {
+		togglePriceInput($(this).prop('checked'));
+				
+		function togglePriceInput(status) {
+			if(status) {
+				$('#priceInput').prop('disabled', true).val('가격 협의 가능');
+			} else {
+				$('#priceInput').prop('disabled', false).val('');
+				
+			}
+		}
+	}
 }
 
 /* 설명 */
@@ -562,7 +577,7 @@ function initRegBtn() {
 				alert('error : ', error)
 			}
 		});
-// $('#newForm').submit();
+//		$('#newForm').submit();
 	}
 	
 	function checkBeforeInsert() {

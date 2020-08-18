@@ -1,4 +1,7 @@
 $(function() {
+	
+	initPdMenu();
+	
 	$('.faq-list-btn').click(function() {
 		$(this).next().slideToggle(200);
 		$(this).find('h1').toggleClass('bold');

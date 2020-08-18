@@ -677,7 +677,6 @@ a {
 
 .recently-area {
 	height: 100%;
-	display: none;
 }
 
 .recently-div {
@@ -734,6 +733,10 @@ a {
     padding: 20px 0px;
 }
 
+.recently-list button {
+	outline: 0px;
+}
+
 .recently-item {
 	display: flex;
     height: 37px;
@@ -745,8 +748,7 @@ a {
 }
 
 .recently-item--title {
-	height: 100%;
-    padding: 0px 12px;
+    font-size: 14px;
 }
 
 .recently-item--delete {
@@ -786,6 +788,8 @@ a {
 #searchKeyword {
 	color: rgb(247, 47, 51);
     margin: 0px 5px;
+    word-spacing: -1px;
+    letter-spacing: -1px;
 }
 
 .store-search-span {

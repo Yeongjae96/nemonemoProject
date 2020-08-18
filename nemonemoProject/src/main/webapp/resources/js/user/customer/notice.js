@@ -1,4 +1,7 @@
 $(function () {
+	
+	initPdMenu();
+	
 	$('.notice-nav-not-selected').eq(0).attr('class', 'notice-nav-selected');
 
         $('.notice-list-btn').click(function () {

@@ -5,6 +5,8 @@
     font-family: "Noto Sans KR";
     background-color: rgb(249, 249, 249);
     font-size: 14px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .search__area a {
@@ -34,7 +36,7 @@
 
 .search-search__list{
     display: flex;
-    height: 34px;
+    height: 34px;w
 }
 
 .search-search__item {
@@ -204,7 +206,9 @@
 .search-content__location {
     height: 40px;
     font-size: 12px;
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     color: rgb(102, 102, 102);
     width: 100%;
     text-overflow: ellipsis;
@@ -358,15 +362,15 @@
     display: flex;
 }
 
-.search-sort__item--active {
+
+.search-sort__item {
     margin-right: 20px;
     position: relative;
     display: block;
-    color: rgb(247, 47, 51);
+    cursor: pointer;
 }
 
-.search-sort__item::after,
-.search-sort__item--active::after{
+.search-sort__item::after{
     content: "";
     position: absolute;
     top: 5px;
@@ -376,18 +380,15 @@
     border-right: 1px solid rgb(204, 204, 204);
 }
 
-.search-sort__item {
-    margin-right: 20px;
-    position: relative;
-    display: block;
+.sort--active {
+	color: rgb(247, 47, 51);
 }
 
-.search-sort__item--active:last-child,
+
 .search-sort__item:last-child {
     margin-right: 0px;
 }
 
-search-sort__item--active:last-child::after,
 .search-sort__item:last-child::after {
     border-right: 0;
 }

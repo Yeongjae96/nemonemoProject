@@ -31,8 +31,6 @@ import com.nemo.user.products.vo.UserNewProductsVO;
 @RequestMapping("/products")
 public class UserNewProductsController{
 	
-	private Logger logger = LoggerFactory.getLogger(getClass());
-	
 	@Autowired
 	private InsertProductsService insertProductsService;
 	
@@ -44,7 +42,6 @@ public class UserNewProductsController{
 	
 	@PostMapping("/newJson")
 	public @ResponseBody int newAction(UserNewProductsVO vo) {
-		logger.info("{} 출력",  vo);
 		return insertProductsService.insertProducts(vo);
 	}
 	

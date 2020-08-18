@@ -7,20 +7,20 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nemo.common.constrants.DirectoryName;
+import com.nemo.common.util.ContextUtil;
 import com.nemo.common.util.FileUtil;
 import com.nemo.user.products.repository.impl.ProductsImageMapper;
 import com.nemo.user.products.repository.impl.ProductsMapper;
 import com.nemo.user.products.service.InsertProductsService;
 import com.nemo.user.products.vo.UserBaseProductsImageVO;
 import com.nemo.user.products.vo.UserNewProductsVO;
+import com.nemo.user.sign.signup.vo.UserBaseVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,6 +49,17 @@ public class InsertProductsServiceImpl implements InsertProductsService {
 	public int insertProducts(UserNewProductsVO vo) {
 
 		// 1. 상품 등록
+		
+		UserBaseVO user = (UserBaseVO)ContextUtil.getAttrFromSession("user"); 
+		
+		if(user == null) {
+			log.warn("사용자 정보가 담기지 않았습니다.");
+			return 0;
+		}
+		
+		int productSeller = user.getUserNo();
+		
+		vo.setProductSeller(productSeller);
 		productsDAO.insertProducts(vo);
 		int productNo = vo.getProductNo();
 		

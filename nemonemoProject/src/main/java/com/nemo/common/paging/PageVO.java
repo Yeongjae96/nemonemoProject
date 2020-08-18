@@ -29,7 +29,7 @@ public class PageVO {
 		/*  입력값 없을 시에 기본값 */
 		public PageVO() {
 			this.pageNo = 1;
-			this.pageSize = 10;
-			this.groupSize = 10;
+			this.pageSize = 10; // 한번에 보여줄 게시물
+			this.groupSize = 10; // 한번에 보여줄 그룹 수
 		}
 }

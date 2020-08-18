@@ -1,10 +1,32 @@
+const initCommonFunction = function() {/* 공통 함수 */
+	HTMLElement.prototype.makeDisplay = function(status) {
+			const target = this;
+			if(typeof status == 'boolean') {
+				status = status ? 'block' : 'none';
+			}
+			this.style.display = status;
+	}
+		
+		/* jquery의 closest ID버젼 */
+	HTMLElement.prototype.closestOneByID = function(ID) {
+			let target = this;
+			while(!target.parentElement.querySelector('#'+ID)) {
+				target = target.parentElement;
+				if(!target.parentElement) {
+					return new Error('not Found');
+				}
+		}
+			return target;
+	}
+}
+
+
+
 /* 상품 카테고리와 관련된 애들은 모두 이 함수가 선행이 되어야 함
- * 
- * ex ) getCategoryList().then(initMenuCategoryList).(원하는 콜백함수)
- * 
- * 
+ * initPdMenu
  * */
 $(function() {
+	initCommonFunction();
 	initTopMenu();
 	initSideNavbar();
 	initSearchEvent();
@@ -55,6 +77,9 @@ function initTopMenu() {
       $('#logout').on('click', open_pop);
   	  $('#model-cancel').on('click', close_pop);
       
+  	$('#loginBtn').click(function() {$('#myModal').show()});
+  	  
+  	  
       /* HEADER 로그아웃 팝업 */
       function open_pop() {
       	$('#myModal').show();
@@ -63,6 +88,7 @@ function initTopMenu() {
       function close_pop() {
       	$('#myModal').hide();
       };
+      
 }
 
 /* 사이드 메뉴 바 */
@@ -82,37 +108,190 @@ function initSideNavbar() {
 
 /* 검색창 이벤트!! */
 function initSearchEvent() {
-	const $inputSearching = $('#searching');
-	const $recommendBox = $('#recommend-box');
-	const $searchedBox = $('#searched-box');	
-	const $searchClose = $('.search-close');
-	$inputSearching.on('focus keyup', function() {
-		if($(this).val().length > 0) {
-			$recommendBox.addClass('invisible');
-			$searchedBox.removeClass('invisible');
-			$('#searched-box-content').text($inputSearching.val());
+	/* UI적인 부분 */
+	const searchInput = document.getElementById('searchInput');
+	const searchArea = document.getElementById('searchArea');
+	const recentlyArea = document.getElementById('recentlyArea');
+	const searchBox = document.getElementById('searchBox');
+	const allDeleteBtn = document.getElementById('allDeleteBtn');
+	const searchAreaClose = document.getElementById('searchAreaClose');
+	/* 최근 검색어 목록 */
+	const recentlyList = document.getElementById('recentlyList');
+	const recentlyNothing = document.getElementById('nothingRecently');
+	
+	
+	searchInput.addEventListener('click', searchInputClickEvent);
+	searchInput.addEventListener('keyup', searchInputKeyupEvent);
+	searchAreaClose.addEventListener('click', searchAreaCloseEvent);
+	document.addEventListener('mouseup', documentMouseUpEvent);
+	
+	/* 기능적인 부분 */
+	const searchIconBtn = document.getElementById('searchIconBtn');
+	
+	let searchHistory = [];
+	initSearchHistory();
+	
+	searchIconBtn.addEventListener('click', searchAction);
+	searchInput.addEventListener('keyup', searchkeyupEvent);
+	allDeleteBtn.addEventListener('click', allRemoveHistoryEvent);
+	
+	/* 최근 검색어 쌓기 */
+	
+	/* UI적인 부분 */
+	function searchInputClickEvent() {
+		toggleArea(!!this.value.length);
+	}
+	
+	/* document에 이벤트를 걸어 영역밖을 클릭하면 없애는 키워드 */
+	function documentMouseUpEvent(e) {
+		if(e.target.tagName == 'svg' || e.target.tagName == 'path') return false;
+		if(e.target.closestOneByID('searchArea') != searchArea) {
+			searchAreaCloseEvent();
+		}
+	}
+	
+	/* input에 키를 입력하면 나타나는 이벤트 */
+	function searchInputKeyupEvent() {
+		const target = this;
+		const searchKeywordSpan = document.querySelector('#searchKeyword');
+		searchKeywordSpan.innerText = target.value;
+		if(target.value) {
+			toggleArea(true);
 		} else {
-			$recommendBox.removeClass('invisible');
-			$searchedBox.addClass('invisible');
+			toggleArea(false);
+		}
+	}
+	
+	/* 닫기 버튼 눌렀을 시 */
+	function searchAreaCloseEvent() {
+		searchArea.makeDisplay(false);
+	}
+	
+	/* 최근검색어 또는 검색창을 toggle로 나타내기 위한 함수 */
+	function toggleArea(status) {
+		searchArea.style.display = 'block';
+		if(status) {
+			allDeleteBtn.style.display = 'none';
+			recentlyArea.style.display = 'none';
+			searchBox.style.display = 'block';
+		} else {
+			allDeleteBtn.style.display = 'block';
+			recentlyArea.style.display = 'block';
+			searchBox.style.display = 'none';
+		}
+	}
+	
+	/* 기능적인 부분 */
+	function searchkeyupEvent(e) {
+		if(searchInput.value && e.keyCode == 13) {
+			searchAction();
+		}
+	}
+	
+	/* localStorage에서 해당 배열로 불러오는 작업 끝난 후엔 LoadSearchHistory()를 호출하여 돔으로 표현*/
+	function initSearchHistory() {
+		const getArr = localStorage.getItem('searchHistory');
+		if(!getArr || !getArr[0]) {
+			toggleRecentlyList(false);
+			return false;
 		}
 		
-	});
-	$searchClose.on('click', function() {
-			$searchedBox.addClass('invisible');
-			$recommendBox.addClass('invisible');		
-	});
+		searchHistory = [];
+		
+		getArr.split(',').forEach(e => {
+			searchHistory.push(e);
+		});
+		loadSearchHistory();
+	}
 	
+	/* 배열갖고 최근 검색어 목록 띄우는 것 */
+	function loadSearchHistory() {
+		toggleRecentlyList(true);
+		recentlyList.innerHTML=''
+		searchHistory.forEach(e => {
+			let html='';
+			html += '<div class="recently-item">';
+			html += '<button class="recently-item--title">'+ e + '</button>';
+			html += '<button class="recently-item--delete" id="rmHistory">';
+			html +=	'<i class="fas fa-times"></i>';
+			html += '</button>';
+			html += '</div>';
+			recentlyList.innerHTML += html;
+			const classArrTitle = Array.from(document.getElementsByClassName('recently-item--title'));
+			classArrTitle.forEach(e => {
+				e.addEventListener('click', function() {searchInput.value = e.innerText; searchAction();});
+			});
+			const classArr = Array.from(document.getElementsByClassName('recently-item--delete'));
+			classArr.forEach(e => {
+				e.addEventListener('click', removeHistoryEvent);
+			});
+		});
+	}
 	
-	function closeSearch() {
-		const rec = document.querySelector("#recommend");
-		rec.classList.add("invisible");
+	/* 화면에 보여주는 지우기 + 실제 Arr에 지우는 것 */
+	function removeHistoryEvent(e) {
+		const target = this;
+		const targetRecentlyList = target.closestOneByID('recentlyList');
+		const child = targetRecentlyList.children;
+		
+		let index = 0;
+		Array.from(child).forEach(e => {
+			if(target.parentElement == e) {
+				console.log(index);
+				console.log(e.innerText);
+				targetRecentlyList.removeChild(target.parentElement);
+				searchHistory.splice(index, 1);
+				return false;
+			}
+			index++;
+		});
+		localStorage.setItem('searchHistory', searchHistory);
+		if(!targetRecentlyList.children.length) toggleRecentlyList(false);
+	}
+	
+	function allRemoveHistoryEvent(e) {
+		window.localStorage.clear();
+		initSearchHistory();
+	}
+	
+	function searchAction() {
+		const form = document.createElement('form');
+		const input = document.createElement('input');
+		const frag = document.createDocumentFragment();
+		
+		form.action = contextPath + 'search/products.do';
+		form.method = 'get';
+
+		input.setAttribute('type', 'hidden');
+		input.setAttribute('name', 'q');
+		input.setAttribute('value', searchInput.value);
+		
+		form.appendChild(input);
+		frag.appendChild(form);
+		document.querySelector('body').appendChild(frag);
+		
+		searchHistory = searchHistory.filter(e => {
+			return e != searchInput.value;
+		});
+		
+		searchHistory.unshift(searchInput.value);
+		localStorage.setItem('searchHistory', searchHistory);
+		
+		form.submit();
+		form.parentElement.removeChild(form);
+		initSearchHistory();
+	}
+	
+	function toggleRecentlyList(status) {
+		recentlyList.makeDisplay(status);
+		recentlyNothing.makeDisplay(status == true ? false : 'flex');
 	}
 }
 
 /*
  * 상품 카테고리와 관련된 애들은 모두 이 함수가 선행이 되어야 함
  * 
- * ex ) getCategoryList().then(initMenuCategoryList).(원하는 콜백함수)
+ * ex ) initPdMenu()
  * 
  * 
  */
@@ -206,7 +385,6 @@ function initPdMenu(callback) {
 				// 소분류 비우기
 				removeSmList();
 				meList.call(this);
-				
 				
 			}
 			 

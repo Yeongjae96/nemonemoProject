@@ -267,7 +267,7 @@
 			 			                <c:if test="${selectedCate.productCateType eq 'S'}">
 							 				${selectedCate.productCateSmall}
 							 			</c:if>
-							 		</div> 태그에 대한 상품이 없습니다.
+							 		</div> 카테고리에 대한 상품이 없습니다.
 							 	</div>
 						 	</div>
 						 </c:if>

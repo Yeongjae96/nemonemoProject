@@ -525,6 +525,10 @@ rem
 	border-radius: 50%;
 }
 
+.products-delivery-price--label:first-child::before {
+	size: 0;
+	padding: 0px;	
+}
 /* 리스트 7 : 가격 끝*/
 
 /* 리스트 8 : 설명 시작*/
@@ -886,7 +890,7 @@ b {
 
 .products-main-item label{
 	margin-bottom: 0px;
-	display; flex;
+	display: flex;
 	flex-direction: center;
 	cursor: pointer;
 }
