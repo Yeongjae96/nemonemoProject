@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.nemo.user.store.repository.impl.StoreMapper">
+	<resultMap type="com.nemo.user.store.vo.StoreFavoriteVO" id="storeFavoriteMap">
+		<id column="product_no" property="productNo"/>
+		<result column="store_no" property="favoriteSender" />
+		<result column="product_name" property="productName" />
+		<result column="product_reg_dt" property="productRegDt" />
+		<result column="product_deal_area" property="productDealArea" />
+		<result column="product_price" property="productPrice" />
+		<result column="store_no" property="storeNo" />
+		
+	</resultMap>
+    
+    <select id="getStoreFavoriteList" parameterType="int" resultMap="storeFavoriteMap">
+    	SELECT 
+		    prod.product_name, prod.product_reg_dt, prod.product_deal_area, prod.product_price
+		FROM
+		    favorite_tb ftb
+		    inner join product_tb prod
+		        on(prod.product_no = ftb.product_no)
+		    inner join user_tb ust
+		        on(ust.store_no = ftb.favorite_sender)
+		WHERE
+    		ust.store_no = #{storeNo}
+ 
+    </select>
+</mapper>

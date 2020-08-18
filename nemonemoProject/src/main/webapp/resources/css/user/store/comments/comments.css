@@ -1,42 +1,41 @@
-/*전체 영역 잡는 부분*/
 
-.rv_1{
+.comments{
 
-    width: 1024px;
-    margin-top: 30px;
+        width: 1024px;
+        margin-top: 30px;
 
 }
 
-/*상점 영역 잡는 부분?*/
-
-.rv_2{
+.comments_1{
 
     margin-bottom: 30px;
 }
 
-.rv_3{
+.comments_2{
 
     display: flex;
     width: 100%;
 
 }
 
-.rv_4{
+.comments_3{
 
     flex-shrink: 0;
+
 }
 
-.rv_5{
+.comments_4{
 
     width: 310px;
     height: 310px;
     position: relative;
     color: rgb(255, 255, 255);
+
 }
 
-.rv_6{
+.comments_5{
 
-    position: absolute;
+position: absolute;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -44,7 +43,7 @@
     overflow: hidden;
 }
 
-.rv_7{
+.comments_6{
 
     position: absolute;
     background-size: cover;
@@ -54,9 +53,10 @@
     background-image: url(/pc-static/media/pattern-shop.066ca385.png);
     background-color: rgb(181, 181, 181);
     background-repeat: no-repeat;
+
 }
 
-.rv_8{
+.comments_7{
 
     position: inherit;
     display: flex;
@@ -68,31 +68,40 @@
     align-items: center;
     flex-direction: column;
     box-shadow: rgba(4, 0, 0, 0.03) 0px 5px 10px 0px;
+
 }
 
-.rv_9{
+.comments_8{
 
     margin-bottom: 15px;
     border-radius: 50%;
 }
 
-.rv_10{
+.comments_9{
 
     font-size: 16px;
     margin-bottom: 10px;
 }
 
-.rv_11{
+.comments_10{
+
     display: flex;
+
 }
 
-.rv_12{
+.comments_11{
 
     display: flex;
     margin-top: 20px;
+
 }
 
-.rv_13 {
+
+.comments_12:first-child {
+    margin-left: 0px;
+}
+.comments_12{
+
     width: 106px;
     color: rgb(255, 255, 255);
     height: 40px;
@@ -106,13 +115,10 @@
     border-style: solid;
     border-color: rgb(255, 255, 255);
     border-image: initial;
+
 }
 
-.rv_13:first-child {
-    margin-left: 0px;
-}
-
-.rv_14{
+.comments_13{
 
     display: flex;
     height: 310px;
@@ -124,7 +130,7 @@
     border-bottom: 1px solid rgb(238, 238, 238);
 }
 
-.rv_15{
+.comments_14{
 
     font-size: 18px;
     height: 75px;
@@ -135,150 +141,22 @@
     -webkit-box-pack: justify;
     justify-content: space-between;
     flex-shrink: 0;
+
 }
 
-.rv_16{
+.comments_15{
 
-    display: flex;
+    display:flex;
     -webkit-box-align: center;
     align-items: center;
+
 }
 
-.rv_17{
-    
-         height: 20px;
-        display: flex;
-        -webkit-box-align: center;
-        align-items: center;
-        color: rgb(136, 136, 136);
-        font-size: 11px;
-        padding: 0px 5px;
-        border-width: 1px;
-        border-style: solid;
-        border-color: rgb(238, 238, 238);
-        border-image: initial;
-    
-}
-
-.rv_17.sc-hXhGGG {
+.comments_14 .button1 {
     margin-left: 10px;
 }
 
-.rv_18{
-
-    font-size: 11px;
-    color: rgb(77, 77, 77);
-}
-
-.rv_19{
-    height: 45px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    margin-bottom: 20px;
-    flex-shrink: 0;
-    border-top: 1px solid rgb(250, 250, 250);
-    border-bottom: 1px solid rgb(250, 250, 250);
-
-}
-
-.rv_20{
-
-    margin-right: 30px;
-    font-size: 13px;
-    color: rgb(136, 136, 136);
-    display: flex;
-}
-
-.rv_20 > img {
-    margin-right: 10px;
-}
-
-.rv_21{
-
-    margin-left: 5px;
-    color: rgb(33, 33, 33);
-}
-
-.rv_22{
-
-    margin-right: 30px;
-    font-size: 13px;
-    color: rgb(136, 136, 136);
-    display: flex;
-}
-
-.rv_22 > img {
-    margin-right: 10px;
-}
-
-.rv_23{
-
-    margin-left: 5px;
-    color: rgb(33, 33, 33);
-}
-
-.rv_24{
-
-    margin-right: 30px;
-    font-size: 13px;
-    color: rgb(136, 136, 136);
-    display: flex;
-}
-
-.rv_24 > img {
-    margin-right: 10px;
-}
-
-.rv_25{
-
-    margin-left: 5px;
-    color: rgb(33, 33, 33);
-}
-
-.rv_26{
-   
-    font-size: 13px;
-    color: rgb(136, 136, 136);
-    display: flex
-
-}
-
-.rv_26:last-child {
-    margin-right: 0px;
-}
-
-.rv_26 > img {
-    margin-right: 10px;
-}
-
-.rv_27{
-
-    margin-left: 5px;
-    color: rgb(33, 33, 33);
-}
-
-.rv_28{
-
-    -webkit-box-flex: 1;
-    flex-grow: 1;
-    width: 100%;
-    overflow-y: auto;
-    line-height: 1.57;
-    white-space: pre-wrap;
-
-}
-
-.rv_29{
-
-    height: 56px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.rv_30{
+.comments_16{
 
     height: 20px;
     display: flex;
@@ -291,9 +169,153 @@
     border-style: solid;
     border-color: rgb(238, 238, 238);
     border-image: initial;
+
 }
 
-.rv_31{
+
+.comments_17{
+
+    font-size: 11px;
+    color: rgb(77, 77, 77);
+
+}
+
+.comments_18{
+
+    height: 45px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    border-top: 1px solid rgb(250, 250, 250);
+    border-bottom: 1px solid rgb(250, 250, 250);
+
+}
+
+.comments_19{
+
+    margin-right: 30px;
+    font-size: 13px;
+    color: rgb(136, 136, 136);
+    display: flex;
+}
+
+
+
+.comments_20{
+
+    margin-left: 5px;
+    color: rgb(33, 33, 33);
+
+}
+
+.comments_21{
+
+    margin-right: 30px;
+    font-size: 13px;
+    color: rgb(136, 136, 136);
+    display: flex;
+
+}
+
+.comments_19 > img{
+	maring-top:6px;
+	margin-right:8px;
+  
+}
+
+.comments_21 > img {
+    margin-right: 10px;
+}
+
+
+.comments_22{
+
+    margin-left: 5px;
+    color: rgb(33, 33, 33);
+
+}
+
+.comments_23{
+
+    margin-right: 30px;
+    font-size: 13px;
+    color: rgb(136, 136, 136);
+    display: flex;
+}
+
+.comments_23 > img {
+	margin-top:4px;
+	margin-right:8px;
+}
+
+.comments_24{
+
+    margin-left: 5px;
+    color: rgb(33, 33, 33);
+
+}
+
+.comments_25{
+
+    font-size: 13px;
+    color: rgb(136, 136, 136);
+    display: flex;
+}
+
+.comments_25:last-child {
+    margin-right: 0px;
+}
+
+.comments_25> img {
+    margin-right: 10px;
+}
+
+.comments_26{
+
+    margin-left: 5px;
+    color: rgb(33, 33, 33);
+}
+
+.comments_27{
+
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    width: 100%;
+    overflow-y: auto;
+    line-height: 1.57;
+    white-space: pre-wrap;
+
+}
+
+.comments_28{
+
+    height: 56px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-shrink: 0;
+
+}
+
+.comments_29{
+
+    height: 20px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(136, 136, 136);
+    font-size: 11px;
+    padding: 0px 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+
+}
+
+.comments_30{
 
     width: 100%;
     height: 100%;
@@ -307,24 +329,28 @@
     -webkit-box-pack: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.6);
+
+
 }
 
-.rv_32{
+.comments_31{
 
     width: 430px;
     position: relative;
     background: rgb(255, 255, 255);
     padding: 56px 30px 20px;
+
 }
 
-.rv_33{
+.comments_32{
 
     position: absolute;
     top: 20px;
     right: 20px;
+
 }
 
-.rv_34{
+.comments_33{
 
     position: absolute;
     top: -41px;
@@ -334,15 +360,17 @@
     border-color: rgb(255, 255, 255);
     border-image: initial;
     border-radius: 50%;
+
 }
 
-.rv_35{
+.comments_34{
 
     padding-bottom: 25px;
     border-bottom: 1px solid rgb(238, 238, 238);
+
 }
 
-.rv_36{
+.comments_35{
 
     text-align: center;
     font-size: 18px;
@@ -350,27 +378,29 @@
     margin-bottom: 10px;
 }
 
-.rv_37{
+
+.comments_36{
 
     margin-bottom: 5px;
 }
 
-.rv_38{
+.comments_37{
 
     display: flex;
     height: 48px;
     -webkit-box-align: center;
     align-items: center;
     border-bottom: 1px solid rgb(238, 238, 238);
+
 }
 
-.rv_39{
+.comments_38{
 
     color: rgb(136, 136, 136);
     width: 110px;
 }
 
-.rv_40{
+.comments_39{
 
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -379,12 +409,12 @@
     align-items: center;
 }
 
-.rv_41{
+.comments_40{
 
     color: rgb(247, 47, 51);
 }
 
-.rv_42{
+.comments_41{
 
     display: flex;
     height: 48px;
@@ -393,13 +423,13 @@
     border-bottom: 1px solid rgb(238, 238, 238);
 }
 
-.rv_43{
+.comments_42{
 
     color: rgb(136, 136, 136);
     width: 110px;
 }
 
-.rv_44{
+.comments_43{
 
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -407,30 +437,32 @@
     -webkit-box-align: center;
     align-items: center;
 }
-
-.rv_45{
+.comments_44{
 
     display: flex;
 }
 
-.rv_46:last-child {
-    border-bottom: 0px;
-}
+.comments_45{
 
-.rv_46{
     display: flex;
     height: 48px;
     -webkit-box-align: center;
     align-items: center;
+
 }
 
-.rv_47{
+.comments_45:last-child {
+    border-bottom: 0px;
+}
+
+.comments_46{
 
     color: rgb(136, 136, 136);
     width: 110px;
+
 }
 
-.rv_48{
+.comments_47{
 
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -439,12 +471,12 @@
     align-items: center;
 }
 
-.rv_49{
+.comments_48{
 
     display: none;
 }
 
-.rv_50{
+.comments_49{
 
     font-size: 16px;
     width: 100%;
@@ -459,17 +491,17 @@
     line-height: 1.5;
 }
 
-.rv_51{
+.comments_50{
 
     color: rgb(247, 47, 51);
 }
 
-.rv_52{
+.comments_51{
 
     display: flex;
 }
 
-.rv_53{
+.comments_52{
 
     height: 56px;
     color: rgb(255, 255, 255);
@@ -485,12 +517,11 @@
     background: rgb(249, 168, 39);
 }
 
-
-.rv_53 > img {
+.comments_52> img {
     margin-right: 5px;
 }
 
-.rv_54{
+.comments_53{
 
     width: calc(50% - 5px);
     height: 56px;
@@ -507,73 +538,18 @@
     background: rgb(136, 136, 136);
 }
 
-.rv_54 > img {
+.comments_53 > img {
     margin-right: 5px;
 }
 
-/*!!-상점 끝-!!*/
-
-/*메뉴바 시작*/
-
-.rv_55{
+.comments_54{
 
     display: flex;
     height: 50px;
+
 }
 
-.rv_56:first-child {
-    border-left: 1px solid rgb(238, 238, 238);
-    
-}
-.rv_56{
-
-    
-        -webkit-box-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        justify-content: center;
-        display: flex;
-        color: rgb(136, 136, 136);
-        flex: 1 1 0%;
-        border-top: 1px solid rgb(238, 238, 238);
-        border-right: 1px solid rgb(238, 238, 238);
-        border-bottom: 1px solid rgb(33, 33, 33);
-        background: rgb(250, 250, 250);
-        cursor: pointer;
-        text-decoration: none;
-    
-}
-
-.rv_57{
-
-    margin-left: 10px;
-}
-
-.rv_58{
-
-        -webkit-box-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        justify-content: center;
-        display: flex;
-        color: rgb(136, 136, 136);
-        flex: 1 1 0%;
-        border-top: 1px solid rgb(238, 238, 238);
-        border-bottom: 1px solid rgb(33, 33, 33);
-        background: rgb(250, 250, 250);
-        border-right: 1px solid rgb(33, 33, 33);
-        cursor: pointer;
-        text-decoration: none;
-    
-}
-
-.rv_59{
-
-    margin-left: 10px;
-}
-
-
-.rv_60{
+.comments_55{
 
     -webkit-box-align: center;
     align-items: center;
@@ -588,15 +564,19 @@
     border-right: 1px solid rgb(33, 33, 33);
     cursor: pointer;
     text-decoration: none;
+
 }
 
-.rv_61{
+.comments_55:first-child {
+    border-left: 1px solid rgb(238, 238, 238);
+}
+
+.comments_56{
 
     margin-left: 10px;
-
 }
 
-.rv_62{
+.comments_57{
 
     -webkit-box-align: center;
     align-items: center;
@@ -612,14 +592,38 @@
     background: rgb(255, 255, 255);
     cursor: pointer;
     text-decoration: none;
+
 }
 
-.rv_63{
+.comments_58{
 
     margin-left: 10px;
 }
 
-.rv_64{
+.comments_59{
+
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    color: rgb(136, 136, 136);
+    flex: 1 1 0%;
+    border-top: 1px solid rgb(238, 238, 238);
+    border-right: 1px solid rgb(238, 238, 238);
+    border-bottom: 1px solid rgb(33, 33, 33);
+    background: rgb(250, 250, 250);
+    cursor: pointer;
+    text-decoration: none;
+
+}
+
+.comments_60{
+
+    margin-left: 10px;
+}
+
+.comments_61{
 
     -webkit-box-align: center;
     align-items: center;
@@ -636,14 +640,15 @@
     text-decoration: none;
 }
 
-.rv_65{
+.comments_62{
 
     margin-left: 10px;
+
 }
 
-.rv_66{
+.comments_63{
 
-    -webkit-box-align: center;
+    webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
@@ -658,60 +663,36 @@
     text-decoration: none;
 }
 
-.rv_67{
+.comments_64{
 
     margin-left: 10px;
 }
 
-.rv_68{
+.comments_65{
 
-    font-size: 18px;
+    webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
     display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    padding: 50px 0px 20px;
-    border-bottom: 1px solid rgb(238, 238, 238);
-
-}
-
-/*후기 나오는 영역*/
-
-.rv_69{
-
-    display: block;
-}
-
-.rv_70{
-
-    font-size: 18px;
-    display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    padding: 50px 0px 20px;
-    border-bottom: 1px solid rgb(238, 238, 238);
-}
-
-.rv_71{
-
-    color: rgb(247, 47, 51);
-}
-
-.rv_72{
-
     color: rgb(136, 136, 136);
-    margin: 30px 0px 100px;
-}
-
-
-
-/*후기 나오는 부분*/
-
-.rv_100{
-    display: block;
+    flex: 1 1 0%;
+    border-top: 1px solid rgb(238, 238, 238);
+    border-right: 1px solid rgb(238, 238, 238);
+    border-bottom: 1px solid rgb(33, 33, 33);
+    background: rgb(250, 250, 250);
+    cursor: pointer;
+    text-decoration: none;
 
 }
 
-.rv_101{
+/*상점 문의 부분*/
+.comments_66{
+
+    margin-left: 10px;
+}
+
+.comments_67{
 
     font-size: 18px;
     display: flex;
@@ -721,134 +702,142 @@
     border-bottom: 1px solid rgb(238, 238, 238);
 }
 
-.rv_102{
+.comments_68{
 
-    color: rgb(247, 47, 51);
+    color: rgb(247, 47, 51)
 }
 
-.rv_103{
+/*상점문의 댓글 남기는 부분*/
 
-    display: flex;
+.comments_69{
+
+    border-right: 1px solid rgb(238, 238, 238);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+}
+
+.comments_70{
+
+    width: 100%;
+    height: 80px;
     padding: 20px;
     border-bottom: 1px solid rgb(238, 238, 238);
 }
 
-.rv_104{
+.comments_71{
 
-    width: 60px;
-    margin-right: 15px;
-    display: block;
-    
+    width: 100%;
+    height: 100%;
+    resize: none;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
-.rv_104 img {
+.comments_72{
+
+    display: flex;
+    width: 100%;
+    height: 50px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 0px 10px
+
+}
+
+.comments_73{
+
+    margin-left: 10px;
+    font-size: 12px;
+    color: rgb(136, 136, 136);
+}
+
+.comments_74{
+
+    height: 32px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 13px;
+    color: rgb(136, 136, 136);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+    padding: 0px 20px
+}
+
+.comments_74 img {
+    margin-right: 4px;
+}
+
+/*알림 메시지 나오는 영역*/
+
+.comments_75{
+
+    margin-top: 10px;
+}
+
+.comments_76{
+
+    padding-top: 25px;
+}
+
+.comments_77{
+
+    display: flex;
+    width: 100%;
+}
+.comments_78{
+
+    display: block;
+    margin-right: 15px;
+}
+
+.comments_78 img {
     border-radius: 50%;
 }
 
-.rv_105 {
+.comments_79{
 
-    flex: 1 1 0%;
+    width: 100%;
+    border-bottom: 1px solid rgb(238, 238, 238);
 }
 
-.rv_106{
+.comments_80{
 
     display: flex;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    justify-content: center;
-    height: 60px;
-}
-
-.rv_107{
-
-    display: flex;
-    margin-bottom: 10px;
+    width: 100%;
     -webkit-box-pack: justify;
     justify-content: space-between;
+    color: rgb(136, 136, 136);
+    margin-bottom: 10px;
     -webkit-box-align: center;
     align-items: center;
 }
 
-.rv_108{
-
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-}
-
-.rv_109{
-
-    height: 16px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    font-size: 11px;
-    color: rgb(98, 177, 217);
-    margin-left: 10px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(98, 177, 217);
-    border-image: initial;
-    border-radius: 2px;
-    padding: 0px 3px;
-}
-
-.rv_110{
+.comments_81{
 
     font-size: 13px;
     color: rgb(204, 204, 204);
 }
 
-.rv_111{
+.comments_82{
 
-    display: block;
-}
-
-.rv_112{
-
-    display: flex;
-}
-
-.rv_113{
-
-    margin: 10px 0px;
-}
-
-.rv_114{
-
-    height: 30px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    font-size: 13px;
-    color: rgb(102, 102, 102);
-    padding: 0px 10px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(238, 238, 238);
-    border-image: initial;
-    background: rgb(255, 255, 255);
-}
-
-
-.rv_113 img {
-    margin-left: 10px;
-}
-
-.rv_115 {
-    white-space: pre-wrap;
+    margin-bottom: 20px;
     line-height: 1.5;
-    margin: 20px 0px;
+    white-space: pre-wrap;
+
 }
 
-.rv_116{
+.comments_83{
 
     display: flex;
+    margin-bottom: 20px;
 }
 
-.rv_117{
+.comments_84{
 
     color: rgb(136, 136, 136);
     font-size: 13px;
@@ -857,17 +846,150 @@
     align-items: unset;
     margin-right: 25px;
     position: relative;
+    cursor: pointer;
+}
+.comments_84 img {
+    margin-right: 4px;
+}
+.comments_84::after {
+    content: "";
+    width: 1px;
+    height: 13px;
+    position: absolute;
+    top: 1px;
+    right: -14px;
+    border-right: 1px solid rgb(238, 238, 238);
 }
 
-.rv_117 img {
+.comments_85{
+
+    color: rgb(136, 136, 136);
+    font-size: 13px;
+    display: flex;
+    -webkit-box-align: unset;
+    align-items: unset;
+    margin-right: 25px;
+    position: relative;
+    cursor: pointer;
+}
+
+.comments_85 img {
+    margin-right: 4px;
+}
+.comments_85:last-child::after {
+    border-right: 0px;
+}
+.comments_85::after {
+    content: "";
+    width: 1px;
+    height: 13px;
+    position: absolute;
+    top: 1px;
+    right: -14px;
+  
+}
+
+.comments_86{
+
+    padding-top: 25px;  
+}
+
+.comments_87{
+
+    display: flex;
+    width: 100%;
+}
+
+.comments_88{
+
+    display: block;
+    margin-right: 15px;
+}
+
+.comments_88 img {
+    border-radius: 50%;
+}
+
+.comments_89{
+
+    width: 100%;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.comments_90{
+
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    color: rgb(136, 136, 136);
+    margin-bottom: 10px;
+    -webkit-box-align: center;
+    align-items: center;
+
+}
+
+.comments_91{
+
+    font-size: 13px;
+    color: rgb(204, 204, 204);
+}
+
+.comments_92{
+
+    margin-bottom: 20px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.comments_93{
+
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.comments_94{
+
+    color: rgb(136, 136, 136);
+    font-size: 13px;
+    display: flex;
+    -webkit-box-align: unset;
+    align-items: unset;
+    margin-right: 25px;
+    position: relative;
+    cursor: pointer;
+}
+
+.comments_94 img {
+    margin-right: 4px;
+}
+.comments_94::after {
+    content: "";
+    width: 1px;
+    height: 13px;
+    position: absolute;
+    top: 1px;
+    right: -14px;
+    border-right: 1px solid rgb(238, 238, 238);
+}
+
+.comments_95{
+
+    color: rgb(136, 136, 136);
+    font-size: 13px;
+    display: flex;
+    -webkit-box-align: unset;
+    align-items: unset;
+    margin-right: 25px;
+    position: relative;
+    cursor: pointer;
+}
+
+.comments_95 img {
     margin-right: 4px;
 }
 
-.rv_117:last-child::after {
-    border-right: 0px;
-}
-
-.rv_117::after {
+.comments_95::after {
     content: "";
     width: 1px;
     height: 13px;
@@ -876,159 +998,22 @@
     right: -14px;
 }
 
-.rv_118{
-
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: 1000;
-    display: none;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.9);
-}
-
-.rv_119{
-
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    justify-content: center;
-}
-
-.rv_120{
-
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    -webkit-appearance: button;
-    background-color: transparent;
-    cursor: pointer;
-    outline: none;
-    padding: 0px;
-    border-width: 0px;
-    border-style: initial;
-    border-color: initial;
-    border-image: initial;
-    text-transform: none;
-    font-family: inherit;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0px;
-    overflow: visible;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    -webkit-writing-mode: horizontal-tb !important;
-    text-rendering: auto;
-    word-spacing: normal;
-}
-
-.rv_121{
-
-        color: rgb(255, 255, 255);
-        font-size: 18px;
-        text-align: center;
-        padding: 3rem 0px;
-    
-}
-
-
-.rv_122 {
-    display: flex;
-    margin-left: calc((50% - 275px) - 0px);
-    transition: margin-left 0.2s ease-in-out 0s;
-}
-
-.rv_123 {
-    display: flex;
-    width: 100%;
-    -webkit-box-pack: center;
-    justify-content: center;
-}
-.rv_124{
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: 1000;
-    display: none;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.6);
-}
-
-.rv_125{
-
-    width: 600px;
-    padding: 60px;
-    background: rgb(255, 255, 255);
-}
-
-.rv_126{
-
-    display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.rv_127{
-
-    letter-spacing: 5.2px;
-    font-size: 26px;
-    padding-bottom: 30px;
-    margin-bottom: 45px;
-    border-bottom: 1px solid rgb(33, 33, 33);
-}
-
-
-
-
-/*일반후기 부분*/
-
-.rv_128{
-
-   
-        margin-top: 10px;
-    
-}
-
-.rv_129{
-
-    font-size: 18px;
-    display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    padding: 50px 0px 20px;
-    border-bottom: 1px solid rgb(238, 238, 238);
-}
-
-.rv_130{
-
-    
-        color: rgb(247, 47, 51);
-    
-}
-
-.rv_131 {
-    color: rgb(136, 136, 136);
-    margin: 30px 0px 100px;
-}
-
 .center_all {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
     background: rgb(255, 255, 255);
+}
+
+textarea{
+	border:none;
+}
+
+.comments_98{
+    width: 100%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 40px 0px 100px;
+    height:50px;
 }

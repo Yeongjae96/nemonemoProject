@@ -201,7 +201,9 @@ color: rgb(136, 136, 136);
 display: flex;
 }
 
-
+.comments_19 > img{
+	margin-top:4px;
+}
 
 .comments_20{
 
@@ -245,6 +247,7 @@ display: flex;
 }
 
 .comments_23 > img {
+	margin-top:4px;
 margin-right: 10px;
 }
 

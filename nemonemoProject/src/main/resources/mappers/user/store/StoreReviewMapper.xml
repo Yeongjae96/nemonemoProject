@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.nemo.user.store.repository.impl.StoreMapper">
+	<resultMap type="com.nemo.user.store.vo.StoreReviewVO" id="storeReviewMap">
+		<id column="store_review_no" property="storeReviewNo"/>
+		<result column="store_no" property="storeNo" />
+		<result column="store_name" property="storeName" />
+		<result column="store_review_writer" property="storeReviewWriter" />
+		<result column="product_name" property="productName" />
+		<result column="store_review_rating" property="storeReviewRating" />
+		<result column="store_review_content" property="storeReviewContent" />
+		<result column="store_review_reg_dt" property="storeReviewRegDt" />
+	</resultMap>
+    
+    <select id="getStoreReviewList" parameterType="int" resultMap="storeReviewMap">
+    	SELECT 
+		    stor.*,
+		    prod.product_name,
+		    ust.store_name
+		FROM
+		    store_review_tb stor
+		    inner join product_tb prod
+		        on(stor.store_no = prod.product_seller)
+		    inner join user_tb ust
+		        on(ust.store_no = stor.store_review_writer)
+		WHERE
+		    stor.store_no = #{storeNo}
+    </select>
+    
+    
+    
+</mapper>

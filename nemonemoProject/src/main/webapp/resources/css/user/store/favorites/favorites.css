@@ -1,41 +1,42 @@
+/*전체 영역 잡는 부분*/
 
-.comments{
+.fa_1{
 
-        width: 1024px;
-        margin-top: 30px;
+    width: 1024px;
+    margin-top: 30px;
 
 }
 
-.comments_1{
+/*상점 영역 잡는 부분?*/
+
+.fa_2{
 
     margin-bottom: 30px;
 }
 
-.comments_2{
+.fa_3{
 
     display: flex;
     width: 100%;
 
 }
 
-.comments_3{
+.fa_4{
 
     flex-shrink: 0;
-
 }
 
-.comments_4{
+.fa_5{
 
     width: 310px;
     height: 310px;
     position: relative;
     color: rgb(255, 255, 255);
-
 }
 
-.comments_5{
+.fa_6{
 
-position: absolute;
+    position: absolute;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -43,7 +44,7 @@ position: absolute;
     overflow: hidden;
 }
 
-.comments_6{
+.fa_7{
 
     position: absolute;
     background-size: cover;
@@ -53,10 +54,9 @@ position: absolute;
     background-image: url(/pc-static/media/pattern-shop.066ca385.png);
     background-color: rgb(181, 181, 181);
     background-repeat: no-repeat;
-
 }
 
-.comments_7{
+.fa_8{
 
     position: inherit;
     display: flex;
@@ -68,40 +68,31 @@ position: absolute;
     align-items: center;
     flex-direction: column;
     box-shadow: rgba(4, 0, 0, 0.03) 0px 5px 10px 0px;
-
 }
 
-.comments_8{
+.fa_9{
 
     margin-bottom: 15px;
     border-radius: 50%;
 }
 
-.comments_9{
+.fa_10{
 
     font-size: 16px;
     margin-bottom: 10px;
 }
 
-.comments_10{
-
+.fa_11{
     display: flex;
-
 }
 
-.comments_11{
+.fa_12{
 
     display: flex;
     margin-top: 20px;
-
 }
 
-
-.comments_12:first-child {
-    margin-left: 0px;
-}
-.comments_12{
-
+.fa_13 {
     width: 106px;
     color: rgb(255, 255, 255);
     height: 40px;
@@ -115,10 +106,13 @@ position: absolute;
     border-style: solid;
     border-color: rgb(255, 255, 255);
     border-image: initial;
-
 }
 
-.comments_13{
+.fa_13:first-child {
+    margin-left: 0px;
+}
+
+.fa_14{
 
     display: flex;
     height: 310px;
@@ -130,7 +124,7 @@ position: absolute;
     border-bottom: 1px solid rgb(238, 238, 238);
 }
 
-.comments_14{
+.fa_15{
 
     font-size: 18px;
     height: 75px;
@@ -141,47 +135,42 @@ position: absolute;
     -webkit-box-pack: justify;
     justify-content: space-between;
     flex-shrink: 0;
-
 }
 
-.comments_15{
+.fa_16{
 
-    display:flex;
-    -webkit-box-align: center;
-    align-items: center;
-
-}
-
-.comments_14 .button1 {
-    margin-left: 10px;
-}
-
-.comments_16{
-
-    height: 20px;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    color: rgb(136, 136, 136);
-    font-size: 11px;
-    padding: 0px 5px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(238, 238, 238);
-    border-image: initial;
-
 }
 
+.fa_17{
+    
+         height: 20px;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        color: rgb(136, 136, 136);
+        font-size: 11px;
+        padding: 0px 5px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(238, 238, 238);
+        border-image: initial;
+    
+}
 
-.comments_17{
+.fa_17.sc-hXhGGG {
+    margin-left: 10px;
+}
+
+.fa_18{
 
     font-size: 11px;
     color: rgb(77, 77, 77);
-
 }
 
-.comments_18{
-
+.fa_19{
     height: 45px;
     display: flex;
     -webkit-box-align: center;
@@ -193,7 +182,7 @@ position: absolute;
 
 }
 
-.comments_19{
+.fa_20{
 
     margin-right: 30px;
     font-size: 13px;
@@ -201,42 +190,17 @@ position: absolute;
     display: flex;
 }
 
-
-
-.comments_20{
-
-    margin-left: 5px;
-    color: rgb(33, 33, 33);
-
-}
-
-.comments_21{
-
-    margin-right: 30px;
-    font-size: 13px;
-    color: rgb(136, 136, 136);
-    display: flex;
-
-}
-
-.comments_19>img{
-
+.fa_20 > img {
     margin-right: 10px;
 }
 
-.comments_21 > img {
-    margin-right: 10px;
-}
-
-
-.comments_22{
+.fa_21{
 
     margin-left: 5px;
     color: rgb(33, 33, 33);
-
 }
 
-.comments_23{
+.fa_22{
 
     margin-right: 30px;
     font-size: 13px;
@@ -244,39 +208,57 @@ position: absolute;
     display: flex;
 }
 
-.comments_23 > img {
+.fa_22 > img {
     margin-right: 10px;
 }
 
-.comments_24{
+.fa_23{
 
     margin-left: 5px;
     color: rgb(33, 33, 33);
-
 }
 
-.comments_25{
+.fa_24{
 
+    margin-right: 30px;
     font-size: 13px;
     color: rgb(136, 136, 136);
     display: flex;
 }
 
-.comments_25:last-child {
+.fa_24 > img {
+    margin-right: 10px;
+}
+
+.fa_25{
+
+    margin-left: 5px;
+    color: rgb(33, 33, 33);
+}
+
+.fa_26{
+   
+    font-size: 13px;
+    color: rgb(136, 136, 136);
+    display: flex
+
+}
+
+.fa_26:last-child {
     margin-right: 0px;
 }
 
-.comments_25> img {
+.fa_26 > img {
     margin-right: 10px;
 }
 
-.comments_26{
+.fa_27{
 
     margin-left: 5px;
     color: rgb(33, 33, 33);
 }
 
-.comments_27{
+.fa_28{
 
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -287,17 +269,16 @@ position: absolute;
 
 }
 
-.comments_28{
+.fa_29{
 
     height: 56px;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
     flex-shrink: 0;
-
 }
 
-.comments_29{
+.fa_30{
 
     height: 20px;
     display: flex;
@@ -310,10 +291,9 @@ position: absolute;
     border-style: solid;
     border-color: rgb(238, 238, 238);
     border-image: initial;
-
 }
 
-.comments_30{
+.fa_31{
 
     width: 100%;
     height: 100%;
@@ -327,28 +307,24 @@ position: absolute;
     -webkit-box-pack: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.6);
-
-
 }
 
-.comments_31{
+.fa_32{
 
     width: 430px;
     position: relative;
     background: rgb(255, 255, 255);
     padding: 56px 30px 20px;
-
 }
 
-.comments_32{
+.fa_33{
 
     position: absolute;
     top: 20px;
     right: 20px;
-
 }
 
-.comments_33{
+.fa_34{
 
     position: absolute;
     top: -41px;
@@ -358,17 +334,15 @@ position: absolute;
     border-color: rgb(255, 255, 255);
     border-image: initial;
     border-radius: 50%;
-
 }
 
-.comments_34{
+.fa_35{
 
     padding-bottom: 25px;
     border-bottom: 1px solid rgb(238, 238, 238);
-
 }
 
-.comments_35{
+.fa_36{
 
     text-align: center;
     font-size: 18px;
@@ -376,29 +350,27 @@ position: absolute;
     margin-bottom: 10px;
 }
 
-
-.comments_36{
+.fa_37{
 
     margin-bottom: 5px;
 }
 
-.comments_37{
+.fa_38{
 
     display: flex;
     height: 48px;
     -webkit-box-align: center;
     align-items: center;
     border-bottom: 1px solid rgb(238, 238, 238);
-
 }
 
-.comments_38{
+.fa_39{
 
     color: rgb(136, 136, 136);
     width: 110px;
 }
 
-.comments_39{
+.fa_40{
 
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -407,12 +379,12 @@ position: absolute;
     align-items: center;
 }
 
-.comments_40{
+.fa_41{
 
     color: rgb(247, 47, 51);
 }
 
-.comments_41{
+.fa_42{
 
     display: flex;
     height: 48px;
@@ -421,13 +393,13 @@ position: absolute;
     border-bottom: 1px solid rgb(238, 238, 238);
 }
 
-.comments_42{
+.fa_43{
 
     color: rgb(136, 136, 136);
     width: 110px;
 }
 
-.comments_43{
+.fa_44{
 
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -435,32 +407,30 @@ position: absolute;
     -webkit-box-align: center;
     align-items: center;
 }
-.comments_44{
+
+.fa_45{
 
     display: flex;
 }
 
-.comments_45{
+.fa_46:last-child {
+    border-bottom: 0px;
+}
 
+.fa_46{
     display: flex;
     height: 48px;
     -webkit-box-align: center;
     align-items: center;
-
 }
 
-.comments_45:last-child {
-    border-bottom: 0px;
-}
-
-.comments_46{
+.fa_47{
 
     color: rgb(136, 136, 136);
     width: 110px;
-
 }
 
-.comments_47{
+.fa_48{
 
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -469,12 +439,12 @@ position: absolute;
     align-items: center;
 }
 
-.comments_48{
+.fa_49{
 
     display: none;
 }
 
-.comments_49{
+.fa_50{
 
     font-size: 16px;
     width: 100%;
@@ -489,17 +459,17 @@ position: absolute;
     line-height: 1.5;
 }
 
-.comments_50{
+.fa_51{
 
     color: rgb(247, 47, 51);
 }
 
-.comments_51{
+.fa_52{
 
     display: flex;
 }
 
-.comments_52{
+.fa_53{
 
     height: 56px;
     color: rgb(255, 255, 255);
@@ -515,11 +485,12 @@ position: absolute;
     background: rgb(249, 168, 39);
 }
 
-.comments_52> img {
+
+.fa_53 > img {
     margin-right: 5px;
 }
 
-.comments_53{
+.fa_54{
 
     width: calc(50% - 5px);
     height: 56px;
@@ -536,45 +507,73 @@ position: absolute;
     background: rgb(136, 136, 136);
 }
 
-.comments_53 > img {
+.fa_54 > img {
     margin-right: 5px;
 }
 
-.comments_54{
+/*!!-상점 끝-!!*/
+
+/*메뉴바 시작*/
+
+.fa_55{
 
     display: flex;
     height: 50px;
-
 }
 
-.comments_55{
-
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    display: flex;
-    color: rgb(136, 136, 136);
-    flex: 1 1 0%;
-    border-top: 1px solid rgb(238, 238, 238);
-    border-bottom: 1px solid rgb(33, 33, 33);
-    background: rgb(250, 250, 250);
-    border-right: 1px solid rgb(33, 33, 33);
-    cursor: pointer;
-    text-decoration: none;
-
-}
-
-.comments_55:first-child {
+.fa_56:first-child {
     border-left: 1px solid rgb(238, 238, 238);
 }
+.fa_56{
 
-.comments_56{
+    
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        display: flex;
+        color: rgb(136, 136, 136);
+        flex: 1 1 0%;
+        border-top: 1px solid rgb(238, 238, 238);
+        border-right: 1px solid rgb(238, 238, 238);
+        border-bottom: 1px solid rgb(33, 33, 33);
+        background: rgb(250, 250, 250);
+        cursor: pointer;
+        text-decoration: none;
+        
+    
+}
+
+.fa_57{
 
     margin-left: 10px;
 }
 
-.comments_57{
+.fa_58{
+
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        display: flex;
+        color: rgb(136, 136, 136);
+        flex: 1 1 0%;
+        border-top: 1px solid rgb(238, 238, 238);
+        border-bottom: 1px solid rgb(33, 33, 33);
+        background: rgb(250, 250, 250);
+        border-right: 1px solid rgb(33, 33, 33);
+        cursor: pointer;
+        text-decoration: none;
+    
+}
+
+.fa_59{
+
+    margin-left: 10px;
+}
+
+
+.fa_60{
 
     -webkit-box-align: center;
     align-items: center;
@@ -590,38 +589,15 @@ position: absolute;
     background: rgb(255, 255, 255);
     cursor: pointer;
     text-decoration: none;
-
 }
 
-.comments_58{
+.fa_61{
 
     margin-left: 10px;
-}
-
-.comments_59{
-
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    display: flex;
-    color: rgb(136, 136, 136);
-    flex: 1 1 0%;
-    border-top: 1px solid rgb(238, 238, 238);
-    border-right: 1px solid rgb(238, 238, 238);
-    border-bottom: 1px solid rgb(33, 33, 33);
-    background: rgb(250, 250, 250);
-    cursor: pointer;
-    text-decoration: none;
 
 }
 
-.comments_60{
-
-    margin-left: 10px;
-}
-
-.comments_61{
+.fa_62{
 
     -webkit-box-align: center;
     align-items: center;
@@ -638,15 +614,14 @@ position: absolute;
     text-decoration: none;
 }
 
-.comments_62{
+.fa_63{
 
     margin-left: 10px;
-
 }
 
-.comments_63{
+.fa_64{
 
-    webkit-box-align: center;
+    -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
@@ -661,14 +636,14 @@ position: absolute;
     text-decoration: none;
 }
 
-.comments_64{
+.fa_65{
 
     margin-left: 10px;
 }
 
-.comments_65{
+.fa_66{
 
-    webkit-box-align: center;
+    -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
@@ -681,16 +656,14 @@ position: absolute;
     background: rgb(250, 250, 250);
     cursor: pointer;
     text-decoration: none;
-
 }
 
-/*상점 문의 부분*/
-.comments_66{
+.fa_67{
 
     margin-left: 10px;
 }
 
-.comments_67{
+.fa_68{
 
     font-size: 18px;
     display: flex;
@@ -698,303 +671,333 @@ position: absolute;
     justify-content: space-between;
     padding: 50px 0px 20px;
     border-bottom: 1px solid rgb(238, 238, 238);
+
 }
 
-.comments_68{
+/*찜 영역 컨텐츠*/
 
-    color: rgb(247, 47, 51)
+.fa_69{
+
+    color: rgb(247, 47, 51);
 }
 
-/*상점문의 댓글 남기는 부분*/
+.fa_70{
 
-.comments_69{
-
-    border-right: 1px solid rgb(238, 238, 238);
-    border-bottom: 1px solid rgb(238, 238, 238);
-    border-left: 1px solid rgb(238, 238, 238);
+    margin-bottom: 30px;
 }
 
-.comments_70{
+.fa_71{
 
     width: 100%;
-    height: 80px;
-    padding: 20px;
-    border-bottom: 1px solid rgb(238, 238, 238);
-}
-
-.comments_71{
-
-    width: 100%;
-    height: 100%;
-    resize: none;
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-.comments_72{
-
     display: flex;
-    width: 100%;
-    height: 50px;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    padding: 0px 10px
-
+    margin: 25px 0px 20px;
 }
 
-.comments_73{
+.fa_72{
 
-    margin-left: 10px;
-    font-size: 12px;
-    color: rgb(136, 136, 136);
-}
-
-.comments_74{
-
-    height: 32px;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    font-size: 13px;
-    color: rgb(136, 136, 136);
+
+}
+
+.fa_73{
+
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    position: relative;
     border-width: 1px;
     border-style: solid;
     border-color: rgb(238, 238, 238);
     border-image: initial;
-    padding: 0px 20px
+    transition: border 0.2s ease 0s, background-color 0.2s ease 0s;
 }
 
-.comments_74 img {
-    margin-right: 4px;
+.fa_74 button {
+    margin-left: 10px;
 }
 
-/*알림 메시지 나오는 영역*/
+.fa_74{
 
-.comments_75{
-
-    margin-top: 10px;
-}
-
-.comments_76{
-
-    padding-top: 25px;
-}
-
-.comments_77{
-
+    height: 28px;
     display: flex;
-    width: 100%;
-}
-.comments_78{
-
-    display: block;
-    margin-right: 15px;
-}
-
-.comments_78 img {
-    border-radius: 50%;
-}
-
-.comments_79{
-
-    width: 100%;
-    border-bottom: 1px solid rgb(238, 238, 238);
-}
-
-.comments_80{
-
-    display: flex;
-    width: 100%;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    color: rgb(136, 136, 136);
-    margin-bottom: 10px;
     -webkit-box-align: center;
     align-items: center;
-}
-
-.comments_81{
-
+    -webkit-box-pack: center;
+    justify-content: center;
     font-size: 13px;
-    color: rgb(204, 204, 204);
-}
-
-.comments_82{
-
-    margin-bottom: 20px;
-    line-height: 1.5;
-    white-space: pre-wrap;
-
-}
-
-.comments_83{
-
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.comments_84{
-
     color: rgb(136, 136, 136);
-    font-size: 13px;
+    padding: 0px 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+    background: rgb(255, 255, 255);
+
+}
+
+.fa_75{
+
     display: flex;
-    -webkit-box-align: unset;
-    align-items: unset;
-    margin-right: 25px;
+    font-size: 13px;
+}
+
+.fa_76{
+
+    margin-right: 20px;
     position: relative;
-    cursor: pointer;
+    display: block;
+    color: rgb(247, 47, 51) !important;
 }
-.comments_84 img {
-    margin-right: 4px;
-}
-.comments_84::after {
+
+.fa_76::after {
     content: "";
-    width: 1px;
-    height: 13px;
     position: absolute;
     top: 1px;
-    right: -14px;
-    border-right: 1px solid rgb(238, 238, 238);
+    right: -10px;
+    width: 1px;
+    height: 12px;
+    border-right: 1px solid rgb(204, 204, 204);
 }
 
-.comments_85{
+.fa_77::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    right: -10px;
+    width: 1px;
+    height: 12px;
+    border-right: 1px solid rgb(204, 204, 204);
+}
 
-    color: rgb(136, 136, 136);
-    font-size: 13px;
-    display: flex;
-    -webkit-box-align: unset;
-    align-items: unset;
-    margin-right: 25px;
+.fa_77{
+
+    margin-right: 20px;
     position: relative;
-    cursor: pointer;
+    display: block;
 }
 
-.comments_85 img {
-    margin-right: 4px;
+.fa_78::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    right: -10px;
+    width: 1px;
+    height: 12px;
+    border-right: 1px solid rgb(204, 204, 204);
 }
-.comments_85:last-child::after {
+
+.fa_78{
+
+    margin-right: 20px;
+    position: relative;
+    display: block;
+}
+
+.fa_79:last-child {
+    margin-right: 0px;
+}
+.fa_79{
+
+    position: relative;
+    display: block;
+
+}
+
+.fa_78:last-child::after {
     border-right: 0px;
 }
-.comments_85::after {
+
+.fa_79::after {
     content: "";
-    width: 1px;
-    height: 13px;
     position: absolute;
     top: 1px;
-    right: -14px;
-  
+    right: -10px;
+    width: 1px;
+    height: 12px;
 }
 
-.comments_86{
 
-    padding-top: 25px;  
-}
-
-.comments_87{
+.fa_80{
 
     display: flex;
-    width: 100%;
-}
-
-.comments_88{
-
-    display: block;
-    margin-right: 15px;
-}
-
-.comments_88 img {
-    border-radius: 50%;
-}
-
-.comments_89{
-
-    width: 100%;
-    border-bottom: 1px solid rgb(238, 238, 238);
-}
-
-.comments_90{
-
-    display: flex;
-    width: 100%;
+    flex-wrap: wrap;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    color: rgb(136, 136, 136);
-    margin-bottom: 10px;
+
+}
+
+.fa_81:nth-last-child(-n+2):nth-child(2n+1){
+    margin-bottom: 0px;
+}
+
+.fa_81{
+
+    width: 502px;
+}
+
+.fa_82{
+
+    width: 100%;
+    height: 140px;
+    display: flex;
+    position: relative;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+}
+
+.fa_83{
+
+    position: absolute;
+    top: 20px;
+    right: 12px;
+}
+
+.fa_84{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    position: relative;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+    transition: border 0.2s ease 0s, background-color 0.2s ease 0s;
+}
+
+.fa_84::before {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 2px;
+    width: 8px;
+    height: 14px;
+    transform: rotate(40deg);
+    transform-origin: 100% 100%;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid rgb(204, 204, 204);
+    border-bottom: 2px solid rgb(204, 204, 204);
+}
+
+.fa_84::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 2px;
+    width: 0px;
+    height: 0px;
+    transform: rotate(40deg);
+    transform-origin: 100% 100%;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    transition: width 0.1s ease-out 0s, height 0.1s ease-out 0.1s;
+}
+
+.fa_85{
+
+    position: relative;
+    width: 139px;
+    flex-shrink: 0;
+    height: 100%;
+}
+
+.fa_85 > img {
+    height: 100%;
+}
+
+.fa_86{
+
+    width: 363px;
+    flex-shrink: 0;
+
+}
+
+.fa_87{
+
+    width: 100%;
+    padding: 0px 64px 0px 20px;
+}
+
+.fa_88{
+    width: 100%;
+   
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 18px 0px 10px;
+    overflow: hidden;
+}
+
+.fa_89{
+
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+}
+
+.fa_89 div {
+    position: relative;
+}
+
+.fa_89 div::after {
+    content: "원";
+    position: absolute;
+    font-weight: normal;
+    font-size: 13px;
+    top: 3px;
+    right: -15px;
+}
+
+.fa_90{
+
+    height: 40px;
+    display: flex;
+    width: 100%;
     -webkit-box-align: center;
     align-items: center;
-
-}
-
-.comments_91{
-
-    font-size: 13px;
-    color: rgb(204, 204, 204);
-}
-
-.comments_92{
-
-    margin-bottom: 20px;
-    line-height: 1.5;
-    white-space: pre-wrap;
-}
-
-.comments_93{
-
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.comments_94{
-
     color: rgb(136, 136, 136);
-    font-size: 13px;
+    font-size: 12px;
+}
+
+.fa_91{
+    height: 40px;
     display: flex;
-    -webkit-box-align: unset;
-    align-items: unset;
-    margin-right: 25px;
-    position: relative;
-    cursor: pointer;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-left: 20px;
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    box-sizing: border-box;
+    border-top: 1px solid rgb(238, 238, 238);
 }
 
-.comments_94 img {
-    margin-right: 4px;
-}
-.comments_94::after {
-    content: "";
-    width: 1px;
-    height: 13px;
-    position: absolute;
-    top: 1px;
-    right: -14px;
-    border-right: 1px solid rgb(238, 238, 238);
+.fa_91 img {
+    margin-right: 5px;
 }
 
-.comments_95{
-
-    color: rgb(136, 136, 136);
-    font-size: 13px;
-    display: flex;
-    -webkit-box-align: unset;
-    align-items: unset;
-    margin-right: 25px;
-    position: relative;
-    cursor: pointer;
+.fa_92{
+    padding-bottom: 4px;
 }
 
-.comments_95 img {
-    margin-right: 4px;
+.fa_93{
+
+    display: none;
 }
 
-.comments_95::after {
-    content: "";
-    width: 1px;
-    height: 13px;
-    position: absolute;
-    top: 1px;
-    right: -14px;
-}
+
+
+
+/*영역 div 수정 부분*/
 
 .center_all {
     display: flex;

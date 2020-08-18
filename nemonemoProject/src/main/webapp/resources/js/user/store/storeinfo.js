@@ -8,12 +8,6 @@ function updateCheck() {
 
 }
 
-/*$('.terms-upd-btn').click(function() {
-	const termsno = $(this)[0].dataset.termsno;
-	window.location.href="edit.mdo?termsNo="+termsno;
-});
-*/
-
 function checks(){ 
 	var getCheck= RegExp(/^[a-zA-Z0-9]{8,16}$/);
 	

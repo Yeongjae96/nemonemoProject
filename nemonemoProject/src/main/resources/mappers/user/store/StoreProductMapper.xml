@@ -18,7 +18,7 @@
     	SELECT 
 			prod.*
 		FROM
-			product_tb prod, store_tb sto
+			product_tb prod, user_tb sto
 		WHERE
 			sto.store_no(+) = prod.product_seller and prod.product_seller=#{storeNo}
     </select>

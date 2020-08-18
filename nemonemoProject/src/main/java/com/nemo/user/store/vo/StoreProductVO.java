@@ -2,7 +2,6 @@ package com.nemo.user.store.vo;
 
 import java.sql.Date;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

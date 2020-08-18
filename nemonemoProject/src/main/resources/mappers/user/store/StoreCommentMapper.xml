@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.nemo.user.store.repository.impl.StoreMapper">
+	<resultMap type="com.nemo.user.store.vo.StoreCommentVO" id="storeCommentMap">
+		<id column="store_comment_no" property="storeCommentNo"/>
+		<result column="store_no" property="storeNo" />
+		<result column="store_comment_writer" property="storeCommentWriter" />
+		<result column="store_name" property="storeName" />
+		<result column="store_comment_content" property="storeCommentContent" />
+		<result column="store_reg_dt" property="storeCommentRegDt" />
+	</resultMap>
+    
+    <select id="getStoreCommentList" parameterType="int" resultMap="storeCommentMap">
+    	SELECT
+            stocom.*,
+            sto.store_name
+		FROM
+			store_comment_tb stocom
+        	inner join user_tb sto
+			on (stocom.store_comment_writer = sto.store_no)
+    
+		WHERE
+			stocom.store_no=#{storeNo}
+		ORDER BY store_comment_reg_dt desc
+    </select>
+    
+    
+    <insert id="insertStoreComment" parameterType="com.nemo.user.store.vo.StoreCommentVO">
+		INSERT INTO store_comment_tb (
+			store_comment_no,
+			store_no,
+			store_comment_writer,
+			store_comment_content,
+			store_comment_reg_dt
+		) VALUES (
+			store_comment_sq.nextval,
+			#{storeNo},
+			#{storeNo}, 
+			#{storeCommentContent},
+			#{storeCommentRegDt}
+		) 
+		<selectKey keyProperty="storeCommentNo" keyColumn="STORE_COMMENT_NO" resultType="Integer" order="AFTER">
+			SELECT STORE_COMMENT_SQ.currval FROM dual
+		</selectKey>
+		
+	</insert>
+</mapper>
