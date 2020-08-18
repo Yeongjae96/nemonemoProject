@@ -42,6 +42,23 @@
 		<jsp:include page="/WEB-INF/views/user/include/header.jsp" />
 		<jsp:include page="/WEB-INF/views/user/include/side-nav.jsp"/>		
 	</header>
+	
+	<%    
+	String kakaonickname = request.getParameter("kakaonickname");
+    session.setAttribute("kakaonickname", kakaonickname);
+      	if (kakaonickname != null){
+    %>
+    
+    <%=" (카카오톡) "+session.getAttribute("kakaonickname")%>님 방문을 환영합니다.
+    
+    <form action = "kakao_logout.do" method = "post">
+    <button type = "submit" name = "submit">로그아웃</button></form>
+    
+    <%
+        };
+        
+    %>
+	
 	<% 
 		/* 각 페이지의 특성! */
 	%>

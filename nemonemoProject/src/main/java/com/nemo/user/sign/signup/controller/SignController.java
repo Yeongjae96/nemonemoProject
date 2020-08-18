@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,6 +81,7 @@ public class SignController {
 		// 암호화된 비밀번호 매칭
 		boolean pwdMatch = encoder.matches(vo.getUserPw(), user.getUserPw());
 		// 조건문
+		System.out.println(user.toString());
 		// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
 		System.out.println(user.getUserEmail());
 		if (user != null && pwdMatch == true) {
@@ -150,4 +152,57 @@ public class SignController {
 		return mav;
 	}
 	
+//	 //이메일 인증 코드 검증
+//    @RequestMapping(value = "/emailConfirm", method = RequestMethod.GET)
+//    public String emailConfirm(UserBaseVO vo,Model model) throws Exception { 
+//        
+//        System.out.println("cont get user"+vo);
+//        UserBaseVO user = new UserBaseVO();
+//        user=userService.userAuth(vo);
+//        if(vo == null) {
+//            return "redirect:/";
+//        }
+//        //System.out.println("usercontroller vo =" +vo);
+//        model.addAttribute("login",vo);
+//        return "/user/emailConfirm";
+//    }
+
+	
+	 @RequestMapping(value="/slogin.do",method=RequestMethod.POST)
+	   public ModelAndView login(UserBaseVO vo,ModelAndView mav, HttpSession session,HttpServletRequest request) {
+	      
+	         System.out.println("소셜 컨트롤러 진입");
+	         
+	         UserBaseVO user = userService.getSocialUser(vo);
+	         System.out.println(vo.toString());
+		/*
+		 * session.setAttribute("userEmail",vo.getUserEmail()); //이메일 세션 저장
+		 * session.setAttribute("userName", vo.getUserName()); //이름 세션 저장
+		 */	         
+	         
+	         if(user != null) { // 이미 소셜 이메일로 로그인 이력 있던 사람
+	            System.out.println("소셜 로그인 로그인 이력있는 사람");
+	            session.setAttribute("user", user);
+	            mav.setViewName("redirect:/");
+	            mav.addObject("user" , user);
+	            return mav;
+	         }else {//소셜 이메일로 처음 로그인 시도 한 사람
+	            System.out.println("소셜 처음 로그인한 사람");
+	            session.setAttribute("user", vo);
+	            userService.addSocialUser(vo);
+	         }
+	         
+	         mav.setViewName("redirect:/");
+	         return mav;
+	   }
+	 
+	  @RequestMapping("kakao_logout.do")
+      public String kakao_logout(HttpSession session, HttpServletRequest request) {
+          
+          //세션에 담긴값 초기화
+          session.invalidate();
+          
+          return "home";
+      }
+
 }

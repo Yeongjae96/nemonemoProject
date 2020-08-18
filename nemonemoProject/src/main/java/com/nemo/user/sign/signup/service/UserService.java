@@ -12,4 +12,6 @@ public interface UserService {
 	public List<UserBaseVO> getUserList();
 	public UserBaseVO loginUser(UserBaseVO vo);
 	public int idUsercheck(String UserEmail);
+	public int addSocialUser(UserBaseVO vo);
+	public UserBaseVO getSocialUser(UserBaseVO vo);
 }

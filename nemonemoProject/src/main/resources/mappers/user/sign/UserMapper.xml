@@ -100,4 +100,31 @@
 			user_no=#{userNo}
     </update>
     
+    <insert id="addSocialUser" parameterType="com.nemo.user.sign.signup.vo.UserBaseVO">
+		INSERT INTO
+			USER_TB
+				(
+					USER_NO,
+					USER_EMAIL,
+					USER_NAME,
+					STORE_NO
+				)
+			VALUES 
+				( 
+				USER_sq.nextval, 
+				#{userEmail},
+				#{userName},
+				STORE_sq.nextval
+				)
+	</insert>
+	
+	<select id="getSocialUser" parameterType="com.nemo.user.sign.signup.vo.UserBaseVO" resultMap="userMap">
+		SELECT 
+			*
+		FROM 
+			USER_TB 
+		WHERE 
+			user_email = #{userEmail}
+	</select>
+    
 </mapper>
