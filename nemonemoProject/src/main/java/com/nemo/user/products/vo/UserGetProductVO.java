@@ -10,4 +10,5 @@ public class UserGetProductVO {
 	private UserSelectedProductVO selectedProduct;
 	private Map<String, List<UserBaseProductsCategoryVO>> categoryMap;
 	private List<Map<String, Object>> commentList;
+	private List<UserBaseProductsFavoriteVO> favoriteList;
 }

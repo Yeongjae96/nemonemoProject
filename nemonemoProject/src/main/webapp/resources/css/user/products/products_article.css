@@ -613,7 +613,7 @@
     width: 100%;
     font-size: 14px;
     height: 38px;
-    display: flex;
+    display: none;
     -webkit-box-pack: center;
     justify-content: center;
     -webkit-box-align: center;
@@ -1280,8 +1280,8 @@
     color: rgb(136, 136, 136);
     font-size: 13px;
     display: flex;
-    -webkit-box-align: unset;
-    align-items: unset;
+    -webkit-box-align: center;
+    align-items: center;
     margin-right: 25px;
     position: relative;
     cursor: pointer;
@@ -1291,6 +1291,7 @@
     margin-right: 4px;
     width: 17px;
     height: 14px;
+    color: #AAAAAA;
 }
 
 .right-footer__btn::after {
@@ -1298,7 +1299,7 @@
     width: 1px;
     height: 13px;
     position: absolute;
-    top: 5px;
+    top: 3px;
     right: -14px;
     border-right: 1px solid rgb(238, 238, 238);
 }
@@ -1541,8 +1542,30 @@
     background: rgb(126, 110, 108);
 }
 
+.detail-export__link-list button {
+	outline: 0px;	
+}
+
+.detail-export_kakao {
+	position: relative;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.detail-export_kakao img {
+	width: 28px;
+	height: 28px;
+}
+
 .detail-export__naver img {
-    width: 22px; height: 18px;
+    width: 22px;
+	height: 18px;
 }
 
 .detail-export__facebook img{
@@ -1573,6 +1596,15 @@
     border-color: rgb(85, 85, 85);
     border-image: initial;
     transition: opacity 0.3s ease 0s;
+}
+
+#shareUrlBtn:hover > .url__msg {
+	visibility: visible;
+	opacity: 1;
+}
+
+#shareUrlBtn:focus {
+	outline: 0px;
 }
 
 .url__msg::before {
@@ -2145,4 +2177,10 @@ svg.light {
 .detail-menu-cbox__item:hover {
 	color: #EE5058;
 }
+
+
+.detail-right__body span {
+    background: rgba(255, 194, 34, 0.2);
+}
+
 

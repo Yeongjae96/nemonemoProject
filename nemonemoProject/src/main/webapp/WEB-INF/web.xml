@@ -54,7 +54,6 @@
   	<url-pattern>*.mdo</url-pattern>
   </servlet-mapping>
   
-  
    <!-- 이미지 서블릿 -->
   <servlet>
   	<servlet-name>image</servlet-name>
@@ -75,8 +74,6 @@
 	<error-code>404</error-code>
 	<location>/WEB-INF/views/common/error/404.jsp</location>
 </error-page>
-
-
 
  <!-- POST 요청 시 인코딩 -->
   <filter>

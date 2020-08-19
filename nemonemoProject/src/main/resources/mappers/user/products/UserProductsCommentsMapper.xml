@@ -25,6 +25,11 @@
 		)
 	</insert>
 	
+	<update id="deleteProductComment" parameterType="com.nemo.user.products.vo.ProductsCommentsVO">
+		UPDATE product_comment_tb
+		SET product_comment_del_fl = 'Y'
+		WHERE product_comment_no = #{productCommentNo}
+	</update>
 	
 	
 </mapper>

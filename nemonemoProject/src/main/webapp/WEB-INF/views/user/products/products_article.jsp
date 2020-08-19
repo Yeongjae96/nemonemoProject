@@ -1,40 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>네모내모</title>
-<!-- 공통 CSS -->
-<link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
-
-<!-- 페이지 CSS  -->
-<link rel="stylesheet" href="<c:url value="/resources/css/user/products/products_article.css"/>">
-
-
-<!-- 라이브러리 -->
-<script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
-<script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>this.contextPath = "<c:url value="/"/>"</script>
-<script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
-
-<!-- 해당 페이지 JS파일 -->
-<script src="<c:url value="/resources/js/user/products/products_article.js"/>"></script>
-
-
-</head>
-<body>
 
 <c:set var="commentList" value="${vo.commentList}"/>
 <c:set var="productVO" value="${vo.selectedProduct.productVO}"/>
 <c:set var="productImgList" value="${vo.selectedProduct.productImgList}"/>
 <c:set var="selectedCate" value="${vo.selectedProduct.productCateVO}"/>
+<c:set var="favoriteList" value="${vo.favoriteList}"/>
+
+<c:if test="${user != null}">
+	<c:forEach var="fa" items="${favoriteList}">
+		<c:if test="${user.userNo == fa.favoriteSender}">
+			<c:set var="zzimStatus" value="true"/>
+		</c:if>
+	</c:forEach>
+</c:if>
 
 <c:forEach var="entry" items="${vo.categoryMap}">
 	<c:set var="key" value="${entry.key}"/>
@@ -59,6 +42,39 @@
 <c:if test="${selectedCate.productCateType eq 'S'}">
 	<c:set var="selectedName" value="${selectedCate.productCateSmall}"/>
 </c:if>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>네모내모 | ${vo.selectedProduct.productVO.productName}</title>
+<!-- 공통 CSS -->
+<link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
+
+<!-- 페이지 CSS  -->
+<link rel="stylesheet" href="<c:url value="/resources/css/user/products/products_article.css"/>">
+
+
+<!-- 라이브러리 -->
+<script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
+<script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>this.contextPath = "<c:url value="/"/>"</script>
+<script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v8.0&appId=308411826950117&autoLogAppEvents=1" nonce="GguEtP2Q"></script>
+<%-- 카카오링크  --%>
+<script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<!-- 해당 페이지 JS파일 -->
+<script src="<c:url value="/resources/js/user/products/products_article.js"/>"></script>
+
+
+</head>
+<body>
+
 
 	<% 
 		/* 공통 Header */
@@ -254,13 +270,13 @@
                                         <div class="detail-info__text-body-topL">
                                             <div class="detail-info--topL-item">
                                                 <i class="fas fa-heart"></i>
-                                                <div class="">
-                                                    ${productVO.productView} 찜개수 채워넣어야할 곳
+                                                <div id="zzimCount">
+                                                   	${fn:length(favoriteList)}
                                                 </div>
                                             </div>
                                             <div class="detail-info--topL-item">
                                                 <i class="fas fa-eye"></i>
-                                                <div class="">
+                                                <div id="viewCount">
                                                     ${productVO.productView}
                                                 </div>
                                             </div>
@@ -357,17 +373,22 @@
                                 </div>
                             </div>
                             <div class="detail-info__btn-list">
-                                <div class="detail-info__btn-zzim__div" id="zzimBtn">
-                                    <button class="detail-info__btn-zzim">
+                                <div class="detail-info__btn-zzim__div" >
+                                	<c:if test="${zzimStatus}"> 
+                                		<button class="detail-info__btn-zzim detail--active" id="zzimBtn">
+                                	</c:if>
+                                	<c:if test="${not zzimStatus}"> 
+	                                    <button class="detail-info__btn-zzim" id="zzimBtn">
+                                	</c:if>
                                         <i class="fas fa-heart"></i>
                                         <%-- 찜 기능 추가 시 수정해야 할 곳 2 --%>
                                         <span>찜</span>
-                                        <span>30</span>
+                                        <span id="favoriteCnt">${fn:length(favoriteList)}</span>
                                     </button>
                                     <!-- 찜 메시지 -->
-                                    <div class="detail-zzim--div">
+                                    <div class="detail-zzim--div" id="favoriteToast">
                                         <i class="fas fa-heart"></i>
-                                        <span class="detail-zzim--msg">찜이 해제</span> 되었습니다.
+                                        <span class="detail-zzim--msg" id="favoriteMsg">찜이 해제</span> 되었습니다.
                                     </div>
                                 </div>
                                 <button class="detail-call__btn" id="callBtn">
@@ -546,8 +567,8 @@
                     <div class="detail-explain__tabs">
                         <div class="detail-explain__tab">
                             <span>상품 정보</span> &
-                            <span class="">상품문의</span>
-                            <span class="tab__count">(276)</span>
+                            <span class="detail-explain-span">상품문의</span>
+                            <span class="tab__count">(${fn:length(commentList)})</span>
                         </div>
                     </div>
                     <div class="detail-explain__content">
@@ -558,8 +579,7 @@
                             </div>
                             <div class="detail-explain__article">
                                 <div class="detail-article__margin"></div>
-                                <div class="detail-article__text">
-            <pre>${productVO.productInfo}</pre></div>
+                                <div class="detail-article__text">${productVO.productInfo}</div>
                                 <div class="detail-article__seller-list">
                                     <!-- 지역 아이템 -->
                                     <div class="detail-article__seller-item">
@@ -598,7 +618,7 @@
                                                 <!-- 태그 아이템 1개 -->
                                                 <c:forTokens var="token" items="${productVO.productTag}" delims=",">
 	                                                <%-- 검색기능 추가시 링크 연결시킬 것 --%>
-	                                                <a href="#" class="detail-article--tag-item">
+	                                                <a href="<c:url value="/search/products.do?q=${token}"/>" class="detail-article--tag-item">
 	                                                    #${token}
 	                                                </a>
                                                 </c:forTokens>
@@ -606,13 +626,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>		
                         </div>
                         <!-- 댓글 영역-->
                         <div class="detail-comment__area">
                             <div class="detail-comment__header">
                                 상품문의
-                                <span class="detail--empha">0</span>
+                                <span class="detail--empha">${fn:length(commentList)}</span>
                             </div>
                             <div class="detail-comment__body">
                                 <div class="detail-comment__input">
@@ -629,7 +649,7 @@
                             <div class="detail-comment__history">
                                 <!-- 댓글 아이템 1개 -->
                                 <c:forEach var="comment" items="${commentList}">
-	                                <div class="detail-history__area">
+	                                <div class="detail-history__area" data-commentno="${comment.productCommentNo}">
 	                                    <div class="detail-history__item">
 	                                        <a class="detail-history__left" href="#">
 	                                            <img src="<c:url value="/resources/images/user/products/image_1.jpg"/>" alt="프로필 이미지">
@@ -639,44 +659,46 @@
 	                                                <div class="detail-right__title">${comment.storeName}</div>
 	                                                <div class="detail-right__time">
 
-													<fmt:parseNumber value="${comment.productCommentRegDt.time}" integerOnly="true" var="paramDays" scope="request"/>
-                                                    <fmt:parseNumber value="${now.time}" integerOnly="true" var="nowDays" scope="page"/>
-                                                    
-                                                    <c:choose>
-                                                    	<c:when test="${nowDays-paramDays < (1000*60)}">
-                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000)}" integerOnly="true" var="secDate"/>
-                                                    		<c:out value="${secDate}"/> 초전
-                                                    	</c:when>
-                                                    	<c:when test="${(nowDays-oldDays) < (1000*60*60)}">
-                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60)}" integerOnly="true" var="minDate"/>
-                                                    		<c:out value="${minDate}"/> 분전
-                                                    	</c:when>
-                                                    	<c:when test="${(nowDays-oldDays) < (1000*60*60*24)}">
-                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60*60)}" integerOnly="true" var="hourDate"/>
-                                                    		<c:out value="${hourDate}"/> 시간전
-                                                    	</c:when>
-                                                    	<c:otherwise>
-                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60*60*24)}" integerOnly="true" var="dayDate"/>
-                                                    		<c:out value="${dayDate }"/> 일전
-                                                    	</c:otherwise>
-                                                    </c:choose>
-
-
-
+														<fmt:parseNumber value="${comment.productCommentRegDt.time}" integerOnly="true" var="paramDays" scope="request"/>
+	                                                    
+	                                                    <c:choose>
+	                                                    	<c:when test="${nowDays-paramDays < (1000*60)}">
+	                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000)}" integerOnly="true" var="secDate"/>
+	                                                    		<c:out value="${secDate}"/> 초전
+	                                                    	</c:when>
+	                                                    	<c:when test="${(nowDays-paramDays) < (1000*60*60)}">
+	                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60)}" integerOnly="true" var="minDate"/>
+	                                                    		<c:out value="${minDate}"/> 분전
+	                                                    	</c:when>
+	                                                    	<c:when test="${(nowDays-paramDays) < (1000*60*60*24)}">
+	                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60*60)}" integerOnly="true" var="hourDate"/>
+	                                                    		<c:out value="${hourDate}"/> 시간전
+	                                                    	</c:when>
+	                                                    	<c:otherwise>
+	                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60*60*24)}" integerOnly="true" var="dayDate"/>
+	                                                    		<c:out value="${dayDate }"/> 일전
+	                                                    	</c:otherwise>
+	                                                    </c:choose>
 													</div>
 	                                            </div>
-	                                            <div class="detail-right__body">
-	                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
-	                                            </div>
+	                                            <div class="detail-right__body">${comment.productCommentContent}</div>
 	                                            <div class="detail-right__footer">
-	                                                <div class="right-footer__btn">
+	                                                <div class="right-footer__btn comment-response-btn">
 	                                                    <i class="fas fa-comment"></i>
-	                                                    댓글 달기
+                                                  		  댓글 달기
 	                                                </div>
-	                                                <div class="right-footer__btn">
-	                                                    <i class="fas fa-lightbulb"></i>
-	                                                    신고 하기
-	                                                </div>
+                                               		<c:if test="${user.userNo != comment.productCommentWriter}">
+		                                                <div class="right-footer__btn comment-report-btn">
+                                                    	<i class="fas fa-lightbulb"></i>
+                                                    		신고 하기
+		                                              	</div>
+                                               		</c:if>
+                                               		<c:if test="${user.userNo == comment.productCommentWriter}">
+		                                                <div class="right-footer__btn comment-del-btn">
+                                               			<i class="fas fa-trash-alt"></i>
+                                                    		삭제 하기
+		                                              	</div>
+                                               		</c:if>
 	                                            </div>
 	                                        </div>
 	                                    </div>
@@ -729,19 +751,21 @@
                 <!-- 상점 정보-->
                 <div class="detail-store__area">
                     <div class="detail-export__link-list">
-                        <button type="button" class="detail-export__naver">
-                            <img src="<c:url value="/resources/images/user/products/naverblog.png"/>" alt="블로그 아이콘">
-                        </button>
-                        <button type="button" class="detail-export__facebook">
+                   		<%-- 페이스북 조건부 완성  --%>
+                    	<!-- div id="fb-root"></div> -->
+                        <%-- <button type="button" class="detail-export__facebook" id="shareFacebookBtn" >
                             <img src="<c:url value="/resources/images/user/products/facebook.png"/>" alt="페이스북 아이콘">
                         </button>
-                        <button type="button" class="detail-export__twitter">
+                        <button type="button" class="detail-export__twitter" id="shareTwitterBtn">
                             <img src="<c:url value="/resources/images/user/products/twitter.png"/>" alt="트위터 아이콘">
-                        </button>
-                        <button type="button" class="detail-export__url">
+                        </button> --%>
+                        <button id="kakao-link-btn" class="detail-export_kakao">
+							<img src="<c:url value="/resources/images/user/products/kakao.png"/>" width="10px" />
+						</button>
+                        <button type="button" class="detail-export__url" id="shareUrlBtn">
                             <img src="<c:url value="/resources/images/user/products/url.png"/>" alt="url 아이콘">
                             <span class="url__msg">
-                                복사중...
+                               	 클릭하여 복사하기
                             </span>
                         </button>
                     </div>

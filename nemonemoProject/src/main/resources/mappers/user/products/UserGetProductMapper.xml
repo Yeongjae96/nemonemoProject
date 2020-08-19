@@ -36,12 +36,11 @@
 
 <select id="selectCommentsList" parameterType="int" resultMap="commentMap">
 	SELECT a.*, b.store_name
-	FROM product_comment_tb
-	WHERE product_no = ${productNo}
+	FROM product_comment_tb a
 	INNER JOIN user_tb b
 	ON a.product_comment_writer = b.user_no
-	ORDER BY product_comment_reg_dt
+	WHERE a.product_no = #{productNo} AND a.product_comment_del_fl = 'N'
+	ORDER BY a.product_comment_reg_dt desc
 </select>
-
 
 </mapper>

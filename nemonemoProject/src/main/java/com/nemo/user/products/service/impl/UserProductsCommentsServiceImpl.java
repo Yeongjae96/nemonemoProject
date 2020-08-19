@@ -27,4 +27,9 @@ public class UserProductsCommentsServiceImpl implements UserProductsCommentsServ
 		int result = productsCommentsMapper.insertProductComment(vo);
 		return result;
 	}
+	
+	@Override
+	public int deleteProductComment(ProductsCommentsVO vo) {
+		return productsCommentsMapper.deleteProductComment(vo);
+	}
 }

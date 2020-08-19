@@ -5,23 +5,36 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.nemo.common.util.ContextUtil;
+import com.nemo.user.products.repository.impl.ProductsMapper;
 import com.nemo.user.products.repository.impl.UserGetProductMapper;
 import com.nemo.user.products.repository.impl.UserProductsCategoryMapper;
+import com.nemo.user.products.repository.impl.UserProductsFavoriteMapper;
 import com.nemo.user.products.service.GetProductService;
 import com.nemo.user.products.vo.UserBaseProductsCategoryVO;
+import com.nemo.user.products.vo.UserBaseProductsFavoriteVO;
 import com.nemo.user.products.vo.UserGetProductVO;
 import com.nemo.user.products.vo.UserSelectedProductVO;
+import com.nemo.user.sign.signup.vo.UserBaseVO;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class GetProductServiceImpl implements GetProductService {
 	
 	@Autowired
 	private UserProductsCategoryMapper categoryMapper;
 	@Autowired
 	private UserGetProductMapper getProductMapper;
+	@Autowired
+	private ProductsMapper productsMapper;
+	@Autowired
+	private UserProductsFavoriteMapper favoriteMapper;
 	
 	@Override
 	public UserGetProductVO getProduct(int productNo) {
@@ -64,6 +77,45 @@ public class GetProductServiceImpl implements GetProductService {
 		// 4. 댓글 리스트
 		List<Map<String, Object>> commentList = getProductMapper.selectCommentsList(productNo);
 		resultVO.setCommentList(commentList);
+		
+		// 5. 조회수 올리기
+		
+		// 5-1. 쿠키 검사 
+		boolean countUpdateCheck = true;
+		Cookie[] cookies = ContextUtil.getRequest().getCookies();
+		if(cookies != null) {
+			for(Cookie c : cookies) {
+				if(c.getName().equals("product_seq_" + productNo)) {
+					countUpdateCheck = false;
+					System.err.println("쿠키생성 감지");
+					break;
+				}
+			}
+		}
+		
+		// 로그인을 안했거나 판매자와 로그인사람이 다르면 보는사람이 다르면 조회수 +1
+		if(countUpdateCheck) {
+			UserBaseVO user = (UserBaseVO)ContextUtil.getAttrFromSession("user");
+			if(user == null || selectedProduct.getProductVO().getProductSeller() != user.getUserNo()) {
+				// 하루동안 해당 게시물 조회수 늘리지 않도록 쿠키 생성
+				Cookie cookie = new Cookie("product_seq_" + productNo, String.valueOf(productNo));
+			    cookie.setMaxAge(60*60*24);
+			    cookie.setPath("/");
+			    ContextUtil.getResponse().addCookie(cookie);
+			    countUpdateCheck = true;
+			    System.err.println("쿠키생성 완료 ");
+			    
+				productsMapper.updateView(productNo);
+				System.err.println("조회수 올리기 ");
+				// 순서로 인하여 조회한 값의 조회수 + 1
+				selectedProduct.getProductVO().setProductView(selectedProduct.getProductVO().getProductView()+1); 
+			}
+		}
+		
+		
+		// 6. 찜 개수 가져오기
+		List<UserBaseProductsFavoriteVO> favoriteList = favoriteMapper.getFavoriteList(productNo);
+		resultVO.setFavoriteList(favoriteList);
 		
 		return resultVO;
 	}
