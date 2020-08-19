@@ -1,7 +1,5 @@
 package com.nemo.user.products.controller;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +21,6 @@ public class UserGetProductController {
 	public ModelAndView productPage(@PathVariable int productNo) {
 		ModelAndView mav = new ModelAndView("products/products_article");
 		UserGetProductVO vo = getProductService.getProduct(productNo);
-		System.out.println(vo.getSelectedProduct().getProductVO().getProductRegDt().getTime());
-		System.out.println(vo.getSelectedProduct().getProductVO().getProductRegDt());
-		System.out.println(new Date(vo.getSelectedProduct().getProductVO().getProductRegDt().getTime()));
 		mav.addObject("vo", vo);
 		return mav;
 	}

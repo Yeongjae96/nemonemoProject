@@ -74,7 +74,7 @@ public class InsertProductsServiceImpl implements InsertProductsService {
 				String orgFileName = FileUtil.getOrgFileName(file.getOriginalFilename());
 				String extension = FileUtil.getExtension(file.getOriginalFilename());
 				String realFileName = FileUtil.getSaveFileNm(orgFileName);
-				String dirRealFileName = FileUtil.getSaveFileDirNm(DirectoryName.PRODUCT, orgFileName, extension);
+				String dirRealFileName = FileUtil.getSaveFileDirNm(DirectoryName.PRODUCT, realFileName, extension, false);
 				// 사진 크기 
 				BufferedImage image = ImageIO.read(file.getInputStream());
 				Integer width = image.getWidth();

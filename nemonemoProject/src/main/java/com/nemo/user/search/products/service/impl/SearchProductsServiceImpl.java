@@ -50,7 +50,6 @@ public class SearchProductsServiceImpl implements SearchProductsService {
 		
 		// 1. 검색어에 대한 카테고리 리스트
 		List<UserProductsCategoryCntVO> cateListByKeyword = searchProductsMapper.pdCateByKeyword(keyword);
-		log.info("{} 키워드 검색 카테고리", cateListByKeyword);
 		Map<String, List<UserProductsCategoryCntVO>> categoryMap = new HashMap<>();
 
 		List<UserProductsCategoryCntVO> large = new ArrayList<>();
@@ -58,15 +57,19 @@ public class SearchProductsServiceImpl implements SearchProductsService {
 		List<UserProductsCategoryCntVO> small = new ArrayList<>();
 
 		for (UserProductsCategoryCntVO vo : cateListByKeyword) {
-			if (vo.getProductCateType().equals("L")) {
+			if (vo.getProductCateLarge() != null) {
 				large.add(vo);
-			} else if (vo.getProductCateType().equals("M")) {
+			} 
+			if (vo.getProductCateMedium() != null) {
 				medium.add(vo);
-			} else {
+			} 
+			if( vo.getProductCateSmall() != null) {
 				small.add(vo);
 			}
 		}
-
+		
+		
+		
 		categoryMap.put("large", large);
 		categoryMap.put("medium", medium);
 		categoryMap.put("small", small);
@@ -83,7 +86,6 @@ public class SearchProductsServiceImpl implements SearchProductsService {
 		SearchProductsVO searchProductsVO = new SearchProductsVO();
 		searchProductsVO.setSearchedCateMap(categoryMap);
 		searchProductsVO.setPdPdImgList(pdPdImgList);
-		log.info("{} 카테고리 ", categoryMap);
 		
 		if(categoryNo != -1) {
 			UserBaseProductsCategoryVO selectedCategory =  userProductsCategoryMapper.searchCateSeq(categoryNo);

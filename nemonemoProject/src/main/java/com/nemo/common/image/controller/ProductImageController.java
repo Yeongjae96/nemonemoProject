@@ -36,7 +36,6 @@ public class ProductImageController {
 		UserBaseProductsImageVO vo = productFileService.getFile(productImgNo);
 		
 		String fileNm = vo.getProductImgFileName();
-		
 		String ext = vo.getProductImgType();
 		
 		BufferedOutputStream out = null;
@@ -45,13 +44,13 @@ public class ProductImageController {
 		HttpServletResponse res = ContextUtil.getResponse();
 		try {
 			res.setContentType("image/" + ext);
-			res.setHeader("Content-Disposition", "inline;filename=" + fileNm);
-			File file = 	FileUtil.getFile(DirectoryName.PRODUCT, fileNm, ext);
+			res.setHeader("Content-Disposition", "inline;filename=" + fileNm+"."+ext);
+			File file = FileUtil.getFile(DirectoryName.PRODUCT, fileNm, ext);
 			if(file.exists()){
 				in = new FileInputStream(file);
 				out = new BufferedOutputStream(res.getOutputStream());
 				int len;
-				byte[] buf = new byte[10240];
+				byte[] buf = new byte[1024];
 				while ((len = in.read(buf)) > 0) {
 					out.write(buf, 0, len);
 				}

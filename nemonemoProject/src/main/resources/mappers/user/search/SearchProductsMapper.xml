@@ -69,5 +69,7 @@
             product_info LIKE '%'|| #{keyword} ||'%'
 		</where>
 	</select>
-
+	
+	
+	
 </mapper>

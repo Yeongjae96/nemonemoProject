@@ -5,12 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nemo.user.products.repository.impl.ProductsImageMapper;
 import com.nemo.user.products.repository.impl.UserGetProductMapper;
 import com.nemo.user.products.repository.impl.UserProductsCategoryMapper;
 import com.nemo.user.products.service.GetProductService;
@@ -20,22 +17,18 @@ import com.nemo.user.products.vo.UserSelectedProductVO;
 
 @Service
 public class GetProductServiceImpl implements GetProductService {
-
-	private Logger log = LoggerFactory.getLogger(GetProductServiceImpl.class);
 	
 	@Autowired
 	private UserProductsCategoryMapper categoryMapper;
 	@Autowired
 	private UserGetProductMapper getProductMapper;
-
+	
 	@Override
 	public UserGetProductVO getProduct(int productNo) {
 
 		UserGetProductVO resultVO = new UserGetProductVO();
 		// 1. 선택된 상품정보에 대한 카테고리 및 상품정보 및 해당 상품 이미지
 		UserSelectedProductVO selectedProduct = getProductMapper.selectProductFromPdSeq(productNo); // 1. 시퀀스로 타입 검색
-		
-		log.info("결과값  : {} ", selectedProduct);
 		
 		resultVO.setSelectedProduct(selectedProduct);
 		
@@ -67,6 +60,10 @@ public class GetProductServiceImpl implements GetProductService {
 		categoryMap.put("S", small);
 		
 		resultVO.setCategoryMap(categoryMap);
+		
+		// 4. 댓글 리스트
+		List<Map<String, Object>> commentList = getProductMapper.selectCommentsList(productNo);
+		resultVO.setCommentList(commentList);
 		
 		return resultVO;
 	}

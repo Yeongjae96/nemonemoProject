@@ -8,6 +8,10 @@
 	<collection property="productImgList" column="product_no" javaType="List" select="selectImgListFromPdSeq"/>
 </resultMap>
 
+<resultMap id="commentMap" type="hashMap" extends="com.nemo.user.products.repository.impl.UserProductsCommentsMapper.productCommentMap">
+	<result column="store_name" property="storeName"/>
+</resultMap>
+
 <select id="selectProductFromPdSeq" parameterType="int" resultMap="productDetailMap">
 	SELECT 
 		a.* , 
@@ -30,8 +34,14 @@
 	ON (a.product_no = c.product_no AND a.product_no = #{productNo})
 </select>
 
+<select id="selectCommentsList" parameterType="int" resultMap="commentMap">
+	SELECT a.*, b.store_name
+	FROM product_comment_tb
+	WHERE product_no = ${productNo}
+	INNER JOIN user_tb b
+	ON a.product_comment_writer = b.user_no
+	ORDER BY product_comment_reg_dt
+</select>
 
-<!-- <select id="selectImgListFromPdSeq" parameterType="int" resultMap="com.nemo.user.products.repository.impl.ProductsImageMapper.productImgMap"
- -->
 
 </mapper>
