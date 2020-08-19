@@ -15,9 +15,8 @@ import com.nemo.admin.members.qna.vo.AdminBaseQnaVO;
  */
 
 public interface QnaService {	
-	//public int insertQna(UserBaseQnaVO vo);
-	//public int updateQna(UserBaseQnaVO vo);
+
 	public List<AdminBaseQnaVO> getQnaList(AdminBaseQnaVO vo);
-	public AdminBaseQnaVO getQna(AdminBaseQnaVO vo);
+	public int replyQna(AdminBaseQnaVO vo);
 
 }

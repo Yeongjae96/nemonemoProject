@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import com.nemo.admin.members.qna.repository.IQnaMapper;
 
 @Mapper
-public interface QnaMapper extends IQnaMapper{
-	
+public interface QnaMapper extends IQnaMapper {
+
 }

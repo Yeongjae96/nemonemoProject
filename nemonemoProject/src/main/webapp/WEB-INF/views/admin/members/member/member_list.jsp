@@ -38,8 +38,10 @@
 
 <!-- 개인 CSS -->
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/admin/members/member_list.css"/>">
+	href="<c:url value="/resources/css/admin/members/member/member_list.css"/>">
 
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 
 <!-- JQuery DataTable Css -->
 <link rel="stylesheet"
@@ -73,10 +75,9 @@
                 </div>
                 <div class="modal-body">
                     <h3 class="text-center">활동 중지</h3>
-                    <h5 class="text-center">
-                        확인 버튼을 누르시면</h5> 
-                        <h5 class="text-center">해당 고객은 활동 중지가 됩니다.</h5>
-                            <h5 class="text-center">삭제 하시겠습니까?</h5>
+                    <h5 class="text-center"> 확인 버튼을 누르시면</h5> 
+                        <h5 class="text-center">해당 고객은의 활동은 중지됩니다.</h5>
+                            <h5 class="text-center">중지 하시겠습니까?</h5>
                     
                 </div>
                 <div class="modal-footer">
@@ -90,106 +91,52 @@
 
         <section class="content">
             <div class="container-fluid">
-                
-
-                <!-- mem-list -->
                 <div class="row clearfix">
                     <div>
                         <div class="card">
                             <div class ="header">
                                 <h1>
-                                    회원정보
+                                   <i class="fas fa-user" style ="color : red;"></i> 회원 리스트
                                 </h1>
                             </div>
                             <div class="body">
                                 <div class="table-responsive">
                                     <table id ="mem-list" class="table table-bordered table-striped table-hover dataTable display">
-                                        <h4>네모내모 회원 리스트</h4>
                                         <thead>
                                             <tr>
                                                 <th>번호</th>
+                                                <th>이메일</th>
                                                 <th>상점명</th>
                                                 <th>등급</th>
                                                 <th>연락처</th>
                                                 <th>가입일</th>
-                                                <th>블랙리스트</th>
                                                 <th>처리</th>
                                             </tr>
                                         </thead>
-
                                         <tbody>
+		                                    <c:forEach var="member" items="${memberList}">
                                             <tr>
-                                                <td>1</td>
-                                                <td>상점1102호</td>
-                                                <td>일반</td>
-                                                <td>010-5498-8849</td>
-                                                <td>2019/07/09</td>
-                                                <td>N</td>
-                                                <td class ="text-center"><button type="button" class ="mem-upd-btn">상세보기</button>
-                                                    <button type="button" class ="mem-del-btn">삭제</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>상점1995호</td>
-                                                <td>일반</td>
-                                                <td>010-5498-8849</td>
-                                                <td>2019/07/09</td>
-                                                <td>N</td>
-                                                <td class ="text-center"><button type="button" class ="mem-upd-btn">상세보기</button>
-                                                    <button type="button" class ="mem-del-btn">삭제</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>공룡이네</td>
-                                                <td>일반</td>
-                                                <td>010-5498-8849</td>
-                                                <td>2019/07/09</td>
-                                                <td>N</td>
-                                                <td class ="text-center"><button type="button" class ="mem-upd-btn">상세보기</button>
-                                                    <button type="button" class ="mem-del-btn">삭제</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>공룡이네</td>
-                                                <td>일반</td>
-                                                <td>010-5498-8849</td>
-                                                <td>2019/07/09</td>
-                                                <td>N</td>
-                                                <td class ="text-center"><button type="button" class ="mem-upd-btn">상세보기</button>
-                                                    <button type="button" class ="mem-del-btn">삭제</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>공룡이네</td>
-                                                <td>일반</td>
-                                                <td>010-5498-8849</td>
-                                                <td>2019/07/09</td>
-                                                <td>N</td>
-                                                <td class ="text-center"><button type="button" class ="mem-upd-btn">상세보기</button>
-                                                    <button type="button" class ="mem-del-btn">삭제</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>공룡이네</td>
-                                                <td>일반</td>
-                                                <td>010-5498-8849</td>
-                                                <td>2019/07/09</td>
-                                                <td>N</td>
-                                                <td class ="text-center"><button type="button" class ="mem-upd-btn">상세보기</button>
-                                                    <button type="button" class ="mem-del-btn">삭제</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>공룡이네</td>
-                                                <td>일반</td>
-                                                <td>010-5498-8849</td>
-                                                <td>2019/07/09</td>
-                                                <td>N</td>
-                                                <td class ="text-center"><button type="button" class ="mem-upd-btn">상세보기</button>
-                                                    <button type="button" class ="mem-del-btn">삭제</button></td>
-                                            </tr>
+                                                <td>${member.userNo}</td>
+                                                <td>${member.userEmail}</td>
+                                                <td>${member.storeName}</td>
+                                                <td><c:if test="${member.userStatus eq 'N'}">활동중</c:if>
+                                                	<c:if test="${member.userStatus eq 'V'}">
+                                                	<span class="label label-warning">VIP</span></c:if>
+                                                	<c:if test="${member.userStatus eq 'P'}">
+                                                	 <span class="label label-danger">계정정지</span></c:if>
+                                                	<c:if test="${member.userStatus eq 'W'}">                                                	 
+                                                	<span class="label label-default">탈퇴</span></c:if>
 
-                                        </tbody>                                       
+                                                
+                                                </td>
+                                                <td>${member.userPhone}</td>
+                                                <td>${member.userRegYmd}</td>
+                                                <td class ="text-center"><button type="button" class ="btn bg-indigo waves-affect mem-upd-btn"
+                                                	data-userno="${member.userNo}">상세보기</button>
+                                                  </td>
+                                            </tr>
+	                                        </c:forEach>                                     
+                                        </tbody>  
                                     </table>
                                 </div>
                             </div>
@@ -250,7 +197,7 @@
 
 	<!-- 개인 JS -->
 	<script
-		src="<c:url value ="/resources/js/admin/members/member_list.js"/>"></script>
+		src="<c:url value ="/resources/js/admin/members/member/member_list.js"/>"></script>
 
 
 </body>

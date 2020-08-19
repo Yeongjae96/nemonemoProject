@@ -12,6 +12,8 @@
 
 <!-- 페이지 CSS  -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/qna/qna_list.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/user/customer/customer_nav.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/common/paging/paging.css"/>">
 
 
 <!-- 라이브러리 -->
@@ -23,20 +25,8 @@
 
 <!-- 해당 페이지 JS파일 -->
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
+<script src="<c:url value="/resources/js/user/customer/qna/qna_list.js"/>"></script>
 
-<script>
-    $(function () {
-        $('.notice-list-btn').click(function () {
-            $(this).next().slideToggle();
-        });
-    });
-    
-    $(function () {
-        $('.consulting_list_ul_article1_button').click(function () {
-            $(this).next().slideToggle();
-        });
-    });
-</script>
 
 
 </head>
@@ -55,56 +45,64 @@
 	<% 
 		/* 각 페이지의 특성! */
 	%>
+	<%-- paging처리에 필요한 변수  --%>
+	<c:set var="pageName" value="${vo.qnaNo}" scope="request"/> 
+	<c:set var="pageVO" value="${vo.pageVO}" scope="request"/> 
 	<section>
 		<div class="consulting_list_div">
         <main class="consulting_list_main">
-        	<!-- 공지사항등 큰 nav bar -->
-	        <nav class="total-nav">
-				<a class="total-nav-not-selected" href="#">공지사항</a>
-				<a class="total-nav-not-selected" href="#">운영정책</a>
-				<a class="total-nav-not-selected" href="#">자주묻는 질문</a>
-				<a class="total-nav-selected" href="#">1:1문의</a>
-			</nav>
+	        <!-- customer 공통 nav -->
+				<jsp:include page="/WEB-INF/views/user/customer/common/customer_nav.jsp"/>
 	        <hr>
         	
             <nav class="consulting_list_nav">
                 <a class="consulting_list_nav_a1" href="/nemonemoProject/customer/qna.do">1:1 상담하기</a>
-                <a class="consulting_list_nav_a2" href="qna_list_em.html">상담내역
-                    <div class="consulting_list_nav_a2_hover"></div>
+                <a class="consulting_list_nav_a2" href="#">상담내역
+                    <div class="title_hover"></div>
                 </a>
             </nav>
            
-            <ul class="consulting_list_ul">
-                <article class="consulting_list_ul_article1">
-                  														<!-- 글 여는 버튼  -->
-                    <button class="consulting_list_ul_article1_button">
-                        <div class="consulting_list_ul_article1_button_div">
-                            <h1>서비스기능 &gt; 안전결제/번개페이</h1>
-                            <time class="consulting_list_ul_article1_button_div_time">2020/07/16 20:15</time>
+            <ul class="qna_list">
+       			<c:forEach var="qna" items="${qnaList}">
+                <article class="qna_article">
+                  	<input type ="hidden" value ="${qna.qnaRegId}">
+                  	<input type ="hidden" value ="${qna.qnaNo}">
+                  		<!-- 글 여는 버튼  -->
+                    <button class="qna_open_btn">
+                        <div class="qna_intro">                        	
+                            <h1>${qna.qnaCategoryName}</h1>
+                            <time class="qna_reg_time">${qna.qnaRegYmd}</time>
                         </div>
-                        <div class="consulting_list_ul_article1_button_div2">답장완료(1)</div>
-                        <span class="consulting_list_ul_article1_button_span"></span>
+                        <div class="qna_reply_flag">
+                         	<c:if test="${qna.qnaReplyFl eq 'Y'}"><h1>답장완료</h1></c:if>
+                        	<c:if test="${qna.qnaReplyFl ne 'Y'}"><h1 class="wait">확인중</h1></c:if> 
+                        	
+                        </div>
+                        <span class="qna_arrow"></span>
                     </button>
                             											<!-- 네모내모 답변 -->
-                    <div class="consulting_list_ul_article1_div">
-                        <section class="consulting_list_ul_article1_div_section">
-                            <div class="consulting_list_ul_article1_div_section_div">
-                                <div class="consulting_list_ul_article1_div_section_div_div">
+                    <div class="qna_section">
+                        <c:if test ="${qna.qnaReplyFl eq 'Y'}">
+                         <section class="answer_section">
+                            <div class="qna_section_align">
+                                <div class="qna_content_title">
                                     <img src="https://hawaiiseoulcdn.bunjang.net/images/crop/199870305_w300.jpg"
-                                        width="40" height="40" class="consulting_list_ul_article1_div_section_div_div_img">
-                                    <div class="consulting_list_ul_article1_div_section_div_div_div">
-                                        <h2 class="consulting_list_ul_article1_div_section_div_div_div_h2">번장운영센터 답변</h2>
-                                        <time class="consulting_list_ul_article1_div_section_div_div_div_time">2020/07/16 20:15</time>
+                                        width="40" height="40" class="qna_logo_img">
+                                    <div class="qna_font_div">
+                                        <h2 class="answer_h2">번장운영센터 답변</h2>
+                                        <time class="answer_time">${qna.qnaReplyYmd}</time>
                                     </div>
-                                    <a class="consulting_list_ul_article1_div_section_div_div_div_a" href="/nemonemoProject/customer/qna.do">다른 문의하기</a>
+                                    <a class="to_anther_question" href="/nemonemoProject/customer/qna.do">다른 문의하기</a>
                                 </div>
-                                <p style="text-align: left;" class="consulting_list_ul_article1_div_section_div_div_p">안녕하세요.번개장터입니다.<br><br>이후 문의글에 답변 드렸으니 확인 부탁드립니다.<br><br>감사합니다.</p>
+                                <p class="qna_content">
+                                ${qna.qnaAdminContent}</p>
                             </div>
-                        </section>
-                        												<!-- 고객의 문의사항 -->
-                        <section class="consulting_list_ul_article1_div_section">
-                            <div class="consulting_list_ul_article1_div_section_div">
-                                <div class="consulting_list_ul_article1_div_section_div_div">
+                        </section>		
+                        </c:if>                     
+                                        					<!-- 고객의 문의사항 -->
+                        <section class="question_section">
+                            <div class="qna_section_align">
+                                <div class="qna_content_title">
                                     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vc
                                     mcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij
                                     4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcm
@@ -112,23 +110,29 @@
                                     BmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iPgogICAgICAgICAgICA8cGF0aCBkP
                                     SJNMjUgMjNjNi4xNDIgMCAxMSA0LjM4NyAxMSA5LjY2NyAwIC43MzYtLjU4IDEuMzMzLTEuM
                                     jk0IDEuMzMzSDE1LjI5NEMxNC41OCAzNCAxNCAzMy40MDMgMTQgMzIuNjY3IDE0IDI3LjM4
-                                    IDE4Ljg1NCAyMyAyNSAyM3pNMjUgMTFhNSA1IDAgMSAxIDAgMTAgNS4wMSA1LjAxIDAgMCAxLTUtNSA1IDUgMCAwIDEgNS01eiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg=="
-                                        width="40" height="40" class="consulting_list_ul_article1_div_section_div_div_img">
-                                    <div class="consulting_list_ul_article1_div_section_div_div_div">
-                                        <h2 class="consulting_list_ul_article1_div_section_div_div_div_h2" style="text-decoration-color: gray;">문의내용</h2>
-                                        <time class="consulting_list_ul_article1_div_section_div_div_div_time" style="text-decoration-color: gray;">2020/07/16 02:51</time>
+                                    IDE4Ljg1NCAyMyAyNSAyM3pNMjUgMTFhNSA1IDAgMSAxIDAgMTAgNS4wMSA1LjAxIDAgMCA
+                                    xLTUtNSA1IDUgMCAwIDEgNS01eiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg=="
+                                        width="40" height="40" class="qna_logo_img">
+                                    <div class="qna_font_div">
+                                        <h2 class="question_h2">문의내용</h2>
+                                        <time class="question_time">${qna.qnaRegYmd}</time>
                                     </div>
                                 </div>
-                                <p style="text-align: left;" class="consulting_list_ul_article1_div_section_div_div_p">&lt;문의 양식&gt;<br><br>1) 구분(번개페이/번개송금) : <br>2) 주문번호:<br>※ 구매/판매내역&gt; 번개페이- 구매/판매 탭에서 확인 가능합니다. ※<br>3) 상대방 상점명:<br>4) 구매상품(판매/구매): <br>5) 문의내용 :</p>
+                                <p class="qna_content">
+                                	${qna.qnaUserContent}
+                                </p>
                             </div>
-                        </section>
-                        
+                        </section>  
                     </div>
                 </article>
+               </c:forEach>
             </ul>
+            	<%-- 페이징처리에 필요한 변수  --%>
+				<jsp:include page="/WEB-INF/views/common/paging/paging.jsp"/>
         </main>
     </div>
 	</section>
+
 	<% 
 		/* 공통 푸터 */
 	%>

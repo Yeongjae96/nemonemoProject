@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper
+	namespace="com.nemo.admin.members.member.repository.impl.MemberMapper">
+  
+	<resultMap id="memberMap" type="com.nemo.admin.members.member.vo.AdminBaseMemberVO">
+		<id column="user_no" property="userNo" />
+		<result column="store_no" property="storeNo" />
+		<result column="user_email" property="userEmail" />
+		<result column="user_pw" property="userPw" />
+		<result column="user_gender" property="userGender" />
+		<result column="user_name" property="userName" />
+		<result column="user_account" property="userAccount" />
+		<result column="user_phone" property="userPhone" />
+		<result column="user_zipcode" property="userZipcode" />
+		<result column="user_address1" property="userAddress1" />
+		<result column="user_address2" property="userAddress2" />
+		<result column="user_status" property="userStatus" />
+		<result column="user_withdraw_ymd" property="userWithdrawYmd" />
+		<result column="user_auth_check" property="userAuthCheck" />
+		<result column="user_reg_ymd" property="userRegYmd" />
+		<result column="store_img_no" property="storeImgNo" />
+		<result column="store_name" property="storeName" />
+		<result column="store_intro" property="storeIntro" />
+		<result column="store_rating" property="storeRating" />
+	</resultMap>
+	
+	
+	<resultMap id="termscheckedMap" type="com.nemo.admin.members.member.vo.TermsCheckedVO">
+		<id column="terms_hist_no" property="termsHistNo"/>
+		<result column="terms_no" property="termsNo"/>
+		<result column="user_no" property="userNo"/>		
+		<result column="terms_agree_fl" property="termsAgreeFl"/>
+		<result column="terms_agree_ymd" property="termsAgreeYmd"/>
+		<result column="terms_title" property="termsTitle"/>
+	</resultMap>
+
+
+	<select id="getTerms" parameterType="int" resultMap ="termscheckedMap">
+		
+		SELECT
+		 
+			hist.*,
+            u.user_no,
+            n.terms_no,
+            n.terms_title
+
+		FROM terms_hist_tb hist
+            LEFT OUTER JOIN user_tb u on hist.user_no = u.user_no
+            LEFT OUTER JOIN terms_tb n on hist.terms_no = n.terms_no
+        WHERE 
+             u.user_no = #{user_no};
+             
+	</select>
+
+
+	<select id="getMemberList" parameterType="com.nemo.admin.members.member.vo.AdminBaseMemberVO"
+								resultMap="memberMap">
+		SELECT 
+				* 
+		FROM
+			USER_TB
+		order by user_no
+
+	</select>
+	
+	<select id="getMember" parameterType="int" resultMap ="memberMap">
+		SELECT 
+				*
+		FROM 
+			USER_TB
+		WHERE 
+			user_no = #{userNo}	
+	</select>
+
+
+
+
+
+</mapper>

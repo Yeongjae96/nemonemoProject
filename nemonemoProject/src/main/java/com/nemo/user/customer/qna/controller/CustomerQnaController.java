@@ -1,18 +1,24 @@
 package com.nemo.user.customer.qna.controller;
 
 
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nemo.admin.members.qna.vo.AdminBaseQnaVO;
 import com.nemo.user.customer.qna.service.CustomerQnaCategoryService;
+import com.nemo.user.customer.qna.service.CustomerQnaService;
 import com.nemo.user.customer.qna.service.InsertQnaService;
 import com.nemo.user.customer.qna.vo.UserBaseQnaCategoryVO;
 import com.nemo.user.customer.qna.vo.UserBaseQnaVO;
+import com.nemo.user.customer.qna.vo.UserNewQnaVO;
 
 /**
  * @제목 : User Customer QNA 컨트롤러
@@ -26,46 +32,46 @@ import com.nemo.user.customer.qna.vo.UserBaseQnaVO;
 @Controller
 @RequestMapping("/customer")
 public class CustomerQnaController {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private CustomerQnaCategoryService customerQnaService;
+	private CustomerQnaCategoryService customerQnaCategoryService;
 	@Autowired
 	private InsertQnaService insertQnaService;
+	@Autowired
+	private CustomerQnaService customerQnaService;
 	
 	
 	@GetMapping("/qna")
 	public ModelAndView qnaPage(UserBaseQnaCategoryVO vo) {
-//		List<UserBaseQnaCategoryVO> parentList = customerQnaService.getQnaCategoryParentList(vo);
-//		List<UserBaseQnaCategoryVO> nameList = customerQnaService.getQnaCategoryNameList(vo);	
-		
 		ModelAndView mav = new ModelAndView("customer/qna/ask");
-		mav.addObject("qnaCategoryList", customerQnaService.getQnaCategoryList(vo));
-//		mav.addObject("qnaCategoryParentList", parentList);
-//		mav.addObject("qnaCategoryNameList", nameList);
-//		System.out.println("Controller" + parentList + " " + nameList);
-		
+		mav.addObject("qnaCategoryList", customerQnaCategoryService.getQnaCategoryList(vo));
 		return mav;
 	}
+		
 	
-	@RequestMapping(value = "/new", method= {RequestMethod.POST})
-	public ModelAndView qnaInsertAction(UserBaseQnaVO vo) {
-		
-		int result = insertQnaService.insertQna(vo);
-		ModelAndView mav = new ModelAndView("redirect:/customer/qna.do");
-		mav.addObject("result", result);
-		return mav;
-		
+	/* 사용자가 QNA 등록 */
+	@PostMapping("/newQuestionJson")
+	public @ResponseBody int newAction(UserNewQnaVO vo) {
+		logger.info("{}", vo);
+		//vo.setQnaRegYmd(new Date(System.currentTimeMillis()));
+		return insertQnaService.insertQna(vo);
 	}
 	
+	
+	/* QNA 리스트에 뿌려주기 */	
 	@GetMapping("/qna/list")
-	public ModelAndView qnaListPage() {
+	public ModelAndView qnaListPage(UserBaseQnaVO vo) {		
 		ModelAndView mav = new ModelAndView("customer/qna/qna_list");
+		List<UserBaseQnaVO> qnaList = customerQnaService.selectQnaList(vo);
+		mav.addObject("qnaList", qnaList);
 		return mav;
 		
 	}
 	
 
 
-
+	
 	
 }

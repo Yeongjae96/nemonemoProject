@@ -15,6 +15,7 @@ import com.nemo.admin.members.qna.vo.AdminBaseQnaVO;
 
 public interface IQnaMapper {
 	public List<AdminBaseQnaVO> getQnaList(AdminBaseQnaVO vo);
-	public AdminBaseQnaVO getQna(AdminBaseQnaVO vo);
+	public AdminBaseQnaVO getQna(int qnaNo);
+	public int replyQna(AdminBaseQnaVO vo);
 
 }

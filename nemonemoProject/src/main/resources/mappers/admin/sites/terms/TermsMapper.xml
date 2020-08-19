@@ -18,13 +18,12 @@
 	
 	<select id="getTermsList" parameterType="com.nemo.admin.sites.terms.vo.TermsVO"
 	resultMap="termsMap">
-		SELECT *
-		FROM terms_tb
-		<!-- <if test='terms_delete_fl == "N"'>
-      	WHERE 
-        	TEMRS_DELETE_FL = 'N'
-      	</if> -->
-		ORDER BY TERMS_NO
+		SELECT 
+			*
+		FROM 
+			terms_tb
+		ORDER BY 
+			TERMS_DELETE_FL DESC
 	</select>
 	
 	<select id="getTerms" parameterType="int"

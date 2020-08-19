@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,15 +73,15 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
 						<div class="header">
-							<h1>고객문의함</h1>
+										<button id="qna-cate-btn" class="btn bg-grey waves-effect m-r-20"> 카테고리 관리 </button>
+							<h1>Q&A 문의함</h1>
 						</div>
 						<div class="body">
 							
 							<div class="table-responsive">
 								<table id="qna-table"
 									class="table table-bordered table-striped table-hover dataTable display text-center">
-									<h4>1:1 고객센터</h4>
-									<button type="button" id="qna-cate-btn" class="btn bg-blue waves-effect m-r-20"> 카테고리 관리 </button>
+								
 									<thead>
 										<tr>
 											<th>번호</th>
@@ -87,18 +89,23 @@
 											<th>분류</th>
 											<th>작성날짜</th>
 											<th>답변날짜</th>
-											<th>답변상태</th>
+											<th>상태</th>
+											<th>담당자</th>
 											<th>처리</th>
 										</tr>
 									</thead>
 									<tbody id ="result">
 										<c:forEach var="qna" items="${qnaList}">
-										<tr data-qnano="">
+										<tr>
 											<td class="col-md-1">${qna.qnaNo}</td>
 											<td class="col-md-2">${qna.qnaRegId}</td>
 											<td>${qna.qnaCategoryName}</td>
 											<td>${qna.qnaRegYmd}
+												<jsp:useBean id="now" class="java.util.Date" />
+												<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+											<c:if test="${qna.qnaRegYmd eq today}">
 											<span class="label label-warning">New</span>
+											</c:if>
 											</td>
 											<td>${qna.qnaReplyYmd}
 											</td>
@@ -110,7 +117,15 @@
                                         		<span class="label label-default">미완료</span>
                                         	</c:if>
                                         	</td>
-											<td><button type="button" class="btn bg-indigo waves-affect to_reply" >답변하기</button></td>
+                                        	<td>${qna.qnaReplyId}</td>
+											<td>
+												<c:if test="${qna.qnaReplyFl eq 'Y'}">
+												<button class="btn bg-pink waves-affect to_review_reply" data-qnano="${qna.qnaNo}">답변보기</button>
+												</c:if>
+												<c:if test="${qna.qnaReplyFl ne 'Y'}">
+												<button type="button" class="btn bg-indigo waves-affect to_reply" data-qnano="${qna.qnaNo}">답변하기</button>
+												</c:if>
+											</td>
 										</tr>
 										</c:forEach>
 									</tbody>
@@ -122,7 +137,7 @@
 			</div>
 			
 			<!-- Modal -->
-			<div class="modal fade" id="faq_category_in" role="dialog">
+			<div class="modal fade" id="qna_category_in" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content">

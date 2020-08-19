@@ -95,8 +95,8 @@
 									<thead>
 										<tr>
 											<th>번호</th>
-											<th>대분류</th>
-											<th>소분류</th>
+									<!-- 		<th>대분류</th> -->
+											<th>카테고리 이름</th>
 											<th>사용여부</th>
 											<th>관리버튼</th>
 										</tr>
@@ -105,7 +105,7 @@
 										<c:forEach var="qnaCategory" items="${qnaCategoryList}">
 											<tr>
 												<td>${qnaCategory.qnaCategoryNo}</td>
-												<td>${qnaCategory.qnaCategoryParent}</td>
+												<%-- <td>${qnaCategory.qnaCategoryParent}</td> --%>
 												<td>${qnaCategory.qnaCategoryName}</td>
 												<td><c:if test="${qnaCategory.qnaCategoryUseFl eq 'Y'}">
 														<span style="color: blue;"
@@ -148,14 +148,15 @@
 							<form method="POST" action="new.mdo" name="qnaCategoryForm">
 								<div class="form-group">
 									<div class="qna-category-registry--content">
-										<label for="categoryParent">대분류</label> <input type="text"
+										<!-- <label for="categoryParent">대분류</label> <input type="text"
 											class="qna-parent-category-reg-content--input"
 											name="qnaCategoryParent" id="qnaCategoryParentContent"
-											placeholder="대분류를 입력해주세요"> <label for="categoryName">소분류</label>
+											placeholder="대분류를 입력해주세요"> --> 
+										<label for="categoryName">카테고리 이름</label>
 										<input type="text"
 											class="qna-name-category-reg-content--input"
 											name="qnaCategoryName" id="qnaCategoryNameContent"
-											placeholder="소분류를 입력해주세요">
+											placeholder="등록할 카테고리를 입력해 주세요">
 										<input type="hidden" name="qnaCategoryUseFl" value="Y">
 									</div>
 
@@ -186,14 +187,14 @@
 				
                             <div class="modal-body">
                                 <div class="form-group">
-	                               		 <div class="qna-category-registry--content">
+<!-- 	                               		 <div class="qna-category-registry--content">
 	                               		 	<input type="hidden" id="qnaUpdateNo">
 		                                    <label for="categoryName">대분류</label>
 		                                   <input type="text" class="qna-category-reg-content--input" name="qnaCategoryParent" id="qnaCateParentUpd" placeholder="대분류 이름을 입력해주세요">
-	                                	</div>
+	                                	</div> -->
 	                                	<div class="qna-category-registry--content">
-		                                    <label for="categoryName">소분류</label>
-		                                    <input type="text" class="qna-category-reg-content--input" name="qnaCategoryName" id="qnaCateNameUpd" placeholder="소분류 이름을 입력해주세요">
+		                                    <label for="categoryName">카테고리 이름</label>
+		                                    <input type="text" class="qna-category-reg-content--input" name="qnaCategoryName" id="qnaCateNameUpd" placeholder="카테고리 이름을 입력해주세요">
 		                                    <input type="hidden" name="qnaCategoryUseFl" value="Y">
 	                                	</div>
                                 </div>
@@ -230,7 +231,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>ㄴ
 	</section>
 
 	<!-------------------------------------------SECTION--------------------------------------------------->

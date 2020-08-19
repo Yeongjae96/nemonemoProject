@@ -15,12 +15,12 @@ public class CustomerQnaCategoryServiceImpl implements CustomerQnaCategoryServic
 	@Autowired
 	private CustomerQnaMapper customerQnaMapper;
 
-	@Override
-	public List<UserBaseQnaCategoryVO> getQnaCategoryParentList(UserBaseQnaCategoryVO vo) {
-		List<UserBaseQnaCategoryVO> qnaCategoryParentList = customerQnaMapper.getQnaCategoryParentList();
-		System.out.println(qnaCategoryParentList);
-		return qnaCategoryParentList;
-	}
+//	@Override
+//	public List<UserBaseQnaCategoryVO> getQnaCategoryParentList(UserBaseQnaCategoryVO vo) {
+//		List<UserBaseQnaCategoryVO> qnaCategoryParentList = customerQnaMapper.getQnaCategoryParentList();
+//		System.out.println(qnaCategoryParentList);
+//		return qnaCategoryParentList;
+//	}
 
 	@Override
 	public List<UserBaseQnaCategoryVO> getQnaCategoryNameList(UserBaseQnaCategoryVO vo) {

@@ -6,7 +6,6 @@
 	
 	<resultMap type="com.nemo.user.customer.qna.vo.UserBaseQnaCategoryVO" id="userBaseQnaCategoryMap">
 		<id column="QNA_CATE_NO" property="qnaCategoryNo"/>
-		<result column="QNA_CATE_PARENT" property="qnaCategoryParent"/>
 		<result column="QNA_CATE_NAME" property="qnaCategoryName"/>
 		<result column="QNA_CATE_USE_FL" property="qnaCategoryUseFl"/>
 	</resultMap>
@@ -16,23 +15,17 @@
 	<resultMap type="com.nemo.user.customer.qna.vo.UserBaseQnaVO" id="userBaseQnaMap">
 		<id column="QNA_NO" property="qnaNo"/>
 		<result column="QNA_CATE_NO" property="qnaCategoryNo"/>
+		<result column="QNA_CATE_NAME" property="qnaCategoryName"/>
 		<result column="QNA_REG_ID" property="qnaRegId"/>
 		<result column="QNA_REPLY_ID" property="qnaReplyId"/>
-		<result column="QNA_GR" property="qnaGroup"/>
-		<result column="QNA_CONTENT" property="qnaContent"/>
-		<result column="QNA_REG_YMD" property="qnaRegDate"/>
-		<result column="QNA_REPLY_YMD" property="qnaReplyDate"/>
+		<result column="QNA_USER_CONTENT" property="qnaUserContent"/>
+		<result column="QNA_ADMIN_CONTENT" property="qnaAdminContent"/>
+		<result column="QNA_REG_YMD" property="qnaRegYmd"/>
+	 	<result column="QNA_REPLY_YMD" property="qnaReplyYmd"/>
 		<result column="QNA_REPLY_FL" property="qnaReplyFl"/>
 	</resultMap>
 	
 
-
-	<select id="getQnaCategoryParentList" resultMap="userBaseQnaCategoryMap">
-		SELECT 
-			QNA_CATE_PARENT
-		FROM 
-			QNA_CATE_TB	
-	</select>
 
 	<select id="getQnaCategoryNameList" resultMap="userBaseQnaCategoryMap">
 		SELECT
@@ -49,32 +42,45 @@
 	</select>
 	
 	
-	<!-- 조인 테스트 -->
-	<select id ="getCateName" parameterType="int" resultMap="userBaseQnaMap">
+	<select id="selectQnaList" parameterType ="int" resultMap="userBaseQnaMap">
 		SELECT 
-		QNA_CATE_NAME
-		FROM 
-			QNA_CATE_TB, QNA_TB
-		WHERE QNA_CATE_TB.QNA_CATE_NO = QNA_TB.QNA_CATE_NO; 
-		
+		qna.*,
+		cate.qna_cate_name
+		FROM qna_tb qna
+		inner join (qna_cate_tb cate)
+		on (qna.qna_cate_no = cate.qna_cate_no)
+		order by qna_reply_fl, qna_reply_ymd
 	</select>
-
-
-		<!-- 예린 테스트  -->
+	
+	
+	
+	<!-- 예린 테스트  -->
  	<insert id="insertQna" parameterType ="com.nemo.user.customer.qna.vo.UserBaseQnaVO">
+ 	<selectKey keyProperty="qnaNo" resultType="int" order="BEFORE">
+			SELECT qna_sq.nextval FROM dual
+		</selectKey>
 		INSERT INTO QNA_TB
 			(
 			QNA_NO,
-			QNA_CONTENT,
+			QNA_USER_CONTENT,
+			QNA_REG_ID,
+			QNA_REPLY_YMD,
 			QNA_CATE_NO
 			)
 		VALUES	
 			(
-			qna_sq.nextval,
-			#{qnaContent},
+			#{qnaNo},
+			#{qnaUserContent},
+			1,
+			#{qnaReplyYmd, jdbcType=DATE},
 			#{qnaCategoryNo}
 			)
 	</insert>
+	
+	
+
+
+
 	
 
 

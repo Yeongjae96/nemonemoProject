@@ -42,6 +42,16 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/admin/members/qna/member_qna_reply.css"/>">
 
 
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+	<!-- 개인 JS -->
+	<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script>
+	<script> var contextPath = "${pageContext.request.contextPath}";</script>
+<%--  	<script src="<c:url value ="/resources/js/admin/members/qna/member_qna_reply.js"/>"></script> --%>
+
+
+
 </head>
 <body class="theme-red">
 
@@ -63,62 +73,59 @@
 	<section class="content">
 		<div class="container-fluid">
 			<div class="card">
-				<div class="header">
-					<p id="qna_rpl_title">1:1 문의</p>
-				</div>
 				<div class="row clearfix">
 					<div>
 						<div class="body">
-							<form id="form_validation" method="POST" action="replyaction.mdo">
+							<form id="qnaReplyForm" method="POST" action="reply.mdo">
 								<div class="table-responsive">
-									<table class="table">
-										<thead class="col-m-2">
+									<table class="table" id ="replyForm">
+										<thead class="col-m-2">	
+										<p id="qna_rpl_title">
+											<i class="fas fa-bookmark" id ="fasmargin"></i>
+											Q&A
+											<i class="fas fa-bookmark"></i>
+										</p> 
+										</thead>
+											<tbody>
 											<tr>
-												<th>상점명 <i class="material-icons">check</i></th>
-												<td>"${qnaRegId}"</td>
+												<th><i class="fas fa-user"></i>고객아이디</th>
+												<td>${qnaVO.qnaRegId}</td>
 								
 											</tr>
 											<tr>
-												<th>카테고리 <i class="material-icons">check</i></th>
-												<td>"${qnaCategoryName}"</td>
-												
+												<th><i class="fas fa-check-circle"></i>카테고리</th>
+												<td>${qnaVO.qnaCategoryName}</td>
 											</tr>
 											<tr>
-												<th>문의내용 <i class="material-icons">check</i></th>
-												<td><textarea cols="120" rows="20" required
-														id="qnaContent" readonly>
-														<c:out value="${qnaContent}" />
+												<th><i class="far fa-clock"></i>문의날짜</th>
+												<td>${qnaVO.qnaRegYmd}</td>
+											</tr>
+											<tr>
+												<th><i class="fas fa-book"></i>문의내용</th>
+												<td><textarea cols="120" rows="20"
+														id="qnaUserContent" name="qnaUserContent" disabled>
+														<c:out value="${qnaVO.qnaUserContent}" />
                                                 </textarea></td>
 												
 											</tr>
 											<tr>
-												<th>파일 다운로드</th>
+												<th><i class="fas fa-download"></i>파일 다운로드</th>
 												<td><a class="btn" href="상대경로" download="">download</a></td>
 											</tr>
 											<tr>
-												<th>답변상태</th>		
-												<td><input type="radio" name="jb-radio"
-													id="delay_reply" class="custom-control-input"> <label
-													class="custom-control-label" for="delay_reply">답변대기</label>
-													<input type="radio" name="jb-radio" id="done_reply"
-													class="custom-control-input"> <label
-													class="custom-control-label" for="done_reply">답변완료</label>
+												<th><i class="fas fa-pen-square"></i>네모내모 답변</th>
+												<td>
+													<textarea cols="120" rows="20" name="qnaAdminContent" id="qnaAdminContent">
+													</textarea>
 												</td>
 											</tr>
-											<tr>
-												<th>네모내모 답변</th>
-												<td><textarea cols="120" rows="20"
-														name="qnaReplyContent" id="qnaReplyContent">
-														
-														</textarea></td>
-											</tr>
-										</thead>
+											</tbody>									
 									</table>
 								</div>
 								<div class="btn-layout">
-									<button class="btn bg-success waves-effect m-r-20" type="submit">저장하기</button>
-									<button class="btn btn-danger waves-effect m-r-20">취소</button>
-						
+									<input type ="hidden" name ="qnaNo" value ="${param.qnaNo}"/>
+									<button name="qnaReplyFl" value ="Y" type="submit" id="replyBtn">답변완료</button>
+									<button name="qnaReplyFl" value ="N" class="replyCancelBtn">취소</button>						
 								</div>
 							</form>
 						</div>
@@ -130,8 +137,6 @@
 	</section>
 	
 	<!-------------------------------------------SECTION--------------------------------------------------->
-
-
 
 	<!-- Jquery Core Js -->
 	<script
@@ -153,14 +158,37 @@
 	<!-- Custom Js -->
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
-
-	<!-- smartEditor -->
-	<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script>
-	<script> var contextPath = "${pageContext.request.contextPath}";</script>
-	<!-- 개인 JS -->
-	<script src="<c:url value ="/resources/js/admin/members/qna/member_qna_reply.js"/>"></script>
-
-
+		
+	<!-- JS파일 스마트에디터 경로를 못찾음  -->
+	<script>
+	var oEditors = [];
+		   nhn.husky.EZCreator.createInIFrame({
+		      oAppRef: oEditors,
+		      elPlaceHolder: "qnaAdminContent",
+		      //SmartEditor2Skin.html 파일이 존재하는 경로
+		      sSkinURI : "../../resources/vendor/smarteditor/SmartEditor2Skin.html", 
+		      htParams : {
+		          // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+		          bUseToolbar : true,             
+		          // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+		          bUseVerticalResizer : true,     
+		          // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+		          bUseModeChanger : true,         
+		          fOnBeforeUnload : function(){
+		          }
+		      }, 
+		       fOnAppLoad : function(){
+		          oEditors.getById["qnaAdminContent"].exec("PASTE_HTML", [contentData]);
+		      },
+		      fCreator: "createSEditor2" 
+			});
+		   $('#replyBtn').click(function() {
+				oEditors.getById["qnaAdminContent"].exec("UPDATE_CONTENTS_FIELD", []);	 	
+		    	termsEditForm.submit();
+		    });
+		   $('.replyCancelBtn').click(function() {window.location.href="qna/list.mdo"});
+	
+	</script>
 
 
 </body>

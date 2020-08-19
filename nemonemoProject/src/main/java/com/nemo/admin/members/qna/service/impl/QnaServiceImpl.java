@@ -1,5 +1,6 @@
 package com.nemo.admin.members.qna.service.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,16 @@ public class QnaServiceImpl implements QnaService{
 	public List<AdminBaseQnaVO> getQnaList(AdminBaseQnaVO vo) {
 		return qnaMapper.getQnaList(vo);
 	}
+
 	@Override
-	public AdminBaseQnaVO getQna(AdminBaseQnaVO vo) {
-		return qnaMapper.getQna(vo);
+	public int replyQna(AdminBaseQnaVO vo) {
+		vo.setQnaReplyYmd(new Date(System.currentTimeMillis()));
+		return qnaMapper.replyQna(vo);
 	}
+	
+//	@Override
+//	public AdminBaseQnaVO getQna(int qnaNo) {
+//		return qnaMapper.getQna(qnaNo);
+//	}
 
 }

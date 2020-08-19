@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.nemo.user.customer.qna.repository.impl.QnaImageMapper">
+
+	<resultMap id="qnaImgMap"
+		type="com.nemo.user.customer.qna.vo.UserBaseQnaImageVO">
+		<id column="qna_img_no" property="qnaImgNo" />
+		<result column="qna_no" property="qnaNo" />
+		<result column="qna_img_origin_name" property="qnaImgOriginName" />
+		<result column="qna_img_file_name" property="qnaImgFileName" />
+		<result column="qna_img_file_size" property="qnaImgFileSize" />
+		<result column="qna_img_width" property="qnaImgWidth" />
+		<result column="qna_img_height" property="qnaImgHeight" />
+		<result column="qna_img_type" property="qnaImgType" />
+		<result column="qna_img_dt" property="qnaImgDt" />
+	</resultMap>
+
+	<insert id="insertImage" parameterType="java.util.List">
+
+		<foreach collection="list" item="i" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+		INSERT
+		INTO qna_img_tb (
+			qna_img_no,
+			qna_no,
+			qna_img_origin_name,
+			qna_img_file_name,
+			qna_img_file_size,
+			qna_img_width,
+			qna_img_height,
+			qna_img_type
+		) VALUES (
+			get_seq('qna_img_sq'),
+			#{i.qnaNo},
+			#{i.qnaImgOriginName},
+			#{i.qnaImgFileName},
+			#{i.qnaImgFileSize},
+			#{i.qnaImgWidth},
+			#{i.qnaImgHeight},
+			#{i.qnaImgType}
+			)
+
+		</foreach>
+		<selectKey keyColumn="qnaImgNo" order="AFTER"> SELECT qna_img_sq.currval FROM dual </selectKey>
+	</insert>
+
+
+	<select id="selectImage" parameterType="int" resultMap="qnaImgMap">
+
+		SELECT *
+		FROM qna_img_tb
+		WHERE qna_img_no = #{qnaImgNo}
+
+	</select>
+
+
+</mapper>
