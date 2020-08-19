@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nemo.admin.members.report.category.vo.ReportListVO;
+import com.nemo.admin.members.report.category.vo.ReportCategoryVO;
 import com.nemo.admin.sites.banner.service.BannerService;
 import com.nemo.admin.sites.banner.vo.BannerVO;
 
@@ -31,10 +31,8 @@ public class BannerController {
 
 	@Autowired
 	private BannerService bannerService;
-	
-	
-	
-	//R
+
+	// R
 	@GetMapping("list")
 	public ModelAndView BannerPage(BannerVO vo) {
 		ModelAndView mav = new ModelAndView("sites/banner/site_banner_list");
@@ -49,52 +47,52 @@ public class BannerController {
 	
 	
 	
-	//D
+	// insert
+		@RequestMapping(value = "add", method = { RequestMethod.POST })
+		public ModelAndView BannerAddAction(BannerVO vo) {
+			bannerService.insertBanner(vo);
+			ModelAndView mav = new ModelAndView("redirect:/sites/banner/list.mdo");
+			return mav;
+		}
+	
+
+	// D
 	// ajax 사용시 ResponseBody가 필요하다.
 	@RequestMapping(value = "delete", method = { RequestMethod.POST })
 
 	// @PostMapping("delete") 이거 사용하면 더 간편하게 사용할 수 있다.
-	
+
 	public @ResponseBody int BannerDeleteAction(@RequestParam int bannerNo) {
 		return bannerService.deleteBanner(bannerNo);
 	}
-	
-	
-	
-		
-		//U
-		//수정 하려는 배너 테이블 기본키를 가지고 옴
-		@GetMapping("edit")
-		public ModelAndView BannerEditPage(@RequestParam int bannerNo) {
 
-			ModelAndView mav = new ModelAndView("sites/banner/site_banner_edit2");
-			System.out.println("edit cont : " + bannerNo);			
-			 BannerVO bannerVO = bannerService.getBannerNo(bannerNo);
-			System.out.println(bannerVO.toString());
-			mav.addObject("bannerVO",bannerVO);
+	// U
+	// 수정 하려는 배너 테이블 기본키를 가지고 옴
+	@GetMapping("edit")
+	public ModelAndView BannerEditPage(@RequestParam int bannerNo) {
 
-			return mav;
+		ModelAndView mav = new ModelAndView("sites/banner/site_banner_edit");
+		System.out.println("edit cont : " + bannerNo);
+		BannerVO bannerVO = bannerService.getBannerNo(bannerNo);
+		System.out.println(bannerVO.toString());
+		mav.addObject("bannerVO", bannerVO);
 
-		}
-		
-		// update
+		return mav;
 
-		// update
+	}
 
-		@RequestMapping(value = "edit", method = { RequestMethod.POST })
-		public ModelAndView ListEditAction(BannerVO vo) {
+	// update
 
-			System.out.println("edit POST cont : " + vo);
-			
-			bannerService.updateBannerList(vo);
-			
+	// update
 
-			return new ModelAndView("redirect:/sites/banner/list.mdo");
-		}
+	@RequestMapping(value = "edit", method = { RequestMethod.POST })
+	public ModelAndView ListEditAction(BannerVO vo) {
 
-		
-		
+		System.out.println("edit POST cont : " + vo);
 
-		
+		bannerService.updateBannerList(vo);
+
+		return new ModelAndView("redirect:/sites/banner/list.mdo");
+	}
 
 }

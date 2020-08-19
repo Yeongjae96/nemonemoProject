@@ -28,7 +28,8 @@
 	var contextPath = "${pageContext.request.contextPath}"
 </script>
 <script src="<c:url value="/resources/js/user/sign/signup.js"/>"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
@@ -48,7 +49,8 @@
 										src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAeCAYAAABE4bxTAAAAAXNSR0IArs4c6QAAAmNJREFUWAntlz9IG1Ecx3OXZFCSTUhLN0EoxTrUqYOgdOrYRZ2UTtmv2RIv/whZYvZMpVPRReriVKo4CKVmsB0KmYsG3C60kL9+v+m9xxnvvAvkzgz+4HHvfr/fe98Pv/e7u0TJ5XKD0BSZOkUsQ5SIAEKlFDF/iKs4qamrkASqVCpzD1EZalq1JVCr1fpqDQQFR01qCz0JBMdS0FAWmCU7oIsgoUZgqD00WaFYLPYGnkCgRmFM7dtAqVTqOggoOxhq/69PKCQrRIffUG4wZLgF5CeUFxhbID+gvMI4Ak0SahyYe4EcoE7K5fI8Y16MuXi3nSCX75kLPjTWBrbb404PjSZZGr2O2It2u/29UChsDQYDx7WMMYe5XINR9wJDbUV8Zd2+9tVqdcYwjI8Q2+BC2G+MfUVRjqPR6B86Op3OM8RXMV3HeI4RQnwvHo+/1zTtH++dTHDInx9OicJvbriZz+c/w1eE8EtcdVx1VEKkyStAfuJmJ5vNfpFODxPPQGIvCgDisFQqLfd6vbeYLyL2xIxfAeRXOBw+SqfT55iP/Wt0bCAKm0I/MOWwtUwmY+t3czo2pttCv+KPQG6VVdEPBpPQpE/dkv2KC22yqHhKGhTqdruv/BJ027ff7y8zhywq7MBc8AGOwP8KURNAGhnIoiYSiSpK1UBgrVgs7gQJRS1Tc40MQxaS4bvzGsFTjDAC3+DajUQidbzcLhmftLFnzBbhqRCmh7Gi6/qZPCIT6hMSFiYNcN9+AGlgbBOGeRKIN7VabbbZbGo403dIWgBcnP5JG/Y2sDcb+IDHlEwm/wqNGyY5cTR18XRcAAAAAElFTkSuQmCC"
 										width="18" height="15">
 								</div>
-								<input type="text" placeholder="이메일" value="" name="userEmail" id="emailInput">
+								<input type="text" placeholder="이메일" value="" name="userEmail"
+									id="emailInput">
 							</div>
 						</div>
 					</div>
@@ -62,7 +64,8 @@
 										width="16" height="20">
 								</div>
 								<input type="password" placeholder="비밀번호 *8~16자의 영문, 숫자사용"
-									autocomplete="new-password" value="" id="passInput" name="userPw">
+									autocomplete="new-password" value="" id="passInput"
+									name="userPw">
 							</div>
 						</div>
 						<div class="signin-common-margin">
@@ -73,7 +76,7 @@
 										width="16" height="20">
 								</div>
 								<input type="password" placeholder="비밀번호 확인"
-									autocomplete="new-password" value="" id="passInputCk" >
+									autocomplete="new-password" value="" id="passInputCk">
 							</div>
 						</div>
 					</div>
@@ -86,7 +89,8 @@
 										src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAwCAYAAABuZUjcAAAAAXNSR0IArs4c6QAABCNJREFUaAXtWUtS20AQtWxXJSEbZ8XWuYH4rcEnwNzALg6Q5AQJy6yAE1icIOYEmDWf6AbRispSqwSqAOU91QwetUbWSAFjqpgq10z39OdNT89P9hqPVNbW1vowtY2fr36m5RAEf8cXFxdjs6Nu26urqPVWV1cHnud9Bd3VvJI6SpJk7/LyMiiRm9ldG/jGxoZ/f38/gnVGuE4Jm83m8OzsjDNRudQCrkCfwFunssesQgzwvTrgKwMvAR0jbQKkwinqmBjR7qC9iXoA0jbQWuArAfd9v9NqtX5ZAMQAxrw9QF9hwXr4jEFwPcgBxHd3dx/DMEwHW2jA6Gga7dImQO9DSDplrvbKQNM4ZSiLZkjaKAwIbTsX54gj2l0VbdN45UhRuWjmVNQj00FR2zniAM0pzhRM+06V6dXK1KGupnVt86H7ZO0MHIp9oRycn59PBM+ZVLqBUJA+RPeUdAK+vr6+BRWZ28dTM7Vb0kZH+So16AQcB40vLT3G0W2zYfMlfZN2Ao6dQEZ7YjNWk5exZfFlNdu2cisw/4ze7DeSise+1wiXhjdfKrjJif43cAV6K2d5FiOZ1enW55QqyLtYmJvmfNKQC0yIWsisztQWRC2+LAbcczwU2h3eWcjzmt4YVSz6Z5Gx0mkoGx1TGDkemnRR2ynitv0akflEo++G1xHSZa/IQY4P2VQHHdqGKWPzZfbrthNwJRxoJVUPdNSXdm8OksQrBU8ZylJf6Q6ULV0FulFWOwPHEX0kjSFiI947yH+/e/0NMj1EfyzlyGMfZdhHHepKOZsPKaNp50sWFfCu/IGqr5VVHeJy1JN3lr+jt93rxnX8YZjNf3XBOoGuL+yMcSDtCF4hWQk4nPKG+BPW0igbVmO0h7aT0JDhwDloRjqnj8GvYPCRKT+rXQk4DfEugUcDI2YrfAgfcme4vb2NKNBut7tICx9pwMXcJU8WppHrotS6lYFTUb3sczmqjVapMdBhnRd/LeAExl0BkWTOd0nXKBFmZqfOQ5m+WjUcpipXV1e/l5eXj5DzN2D4+L11tMVHxHfkNCMdOerkxGpH3LTEnQLR44ehTfC38MstPvAmSItTzFIgdyD0LU7hInZ9FCwO6lckxRGYmePMXezDXHhzLzgHsBSKPxBZgat9mgfGs4A2ohTyQLPt8xngam/mwfLcgA3saZNfyzJfdh+AK9A8yuVWJo08Fx0D/MOX3RR4CegYSMM5o+WM2wL4AD59LKu7sRTkhYlfYIM5g07dFfzToe/xK17Bhcl6x573AIru7ryYNXFMbwtA/AKbexgImbmQ3A6JBc5i0yEx8+nWF8zDWfunKTuPNrEA6KHw1be9OSdCaBHIHCYb8EUAmsGgX1Mm80UAR7pEJmi2XwRwCfoVuC0iT817TZWnjrC0/2Ij/g8RGqgJ9UrG3gAAAABJRU5ErkJggg=="
 										width="18" height="15">
 								</div>
-								<input type="text" placeholder="이름" value="" id="nameInput" name="userName">
+								<input type="text" placeholder="이름" value="" id="nameInput"
+									name="userName">
 							</div>
 						</div>
 						<div class="signin-common-margin">
@@ -97,7 +101,8 @@
 										width="17" height="20">
 								</div>
 								<input type="text" placeholder="휴대폰 번호(숫자만 허용)"
-									autocomplete="username" value="" id="phoneNumber" name="userPhone" required>
+									autocomplete="username" value="" id="phoneNumber"
+									name="userPhone" required>
 								<div class="signin-common-margin">
 									<div class="input-box hide" id="verifyNumberDiv">
 										<div class="signin-img">
@@ -108,7 +113,8 @@
 										<input type="text" placeholder="인증번호" value="">
 									</div>
 								</div>
-								<button id="verifyBtn" class="verify" type="button" disabled>인증번호 요청</button>
+								<button id="verifyBtn" class="verify" type="button" disabled>인증번호
+									요청</button>
 							</div>
 						</div>
 					</div>
@@ -180,33 +186,40 @@
 									<div class="checkbox-info">
 										<span class="mandatory">(필수)</span>번개장터 이용약관 동의
 									</div>
-									
-									<button id="show1" class="show-btn show-bt1" type="button" onclick="zzz();">
+
+									<button id="show1" class="show-btn show-bt1">
 										<img
 											src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAALRJREFUOBFjYBgFgzMEqqtb5Cl1GcwMxoaGdoVfv3+d+s/EGNreXHeQHINrapod/v3/t4qRgdmU+cCBvR9sHJxOMf77vxpEHzm0/yEphlbWNtkz/P+/GuSgtpbai8wgzSBDyDEUZBjIIci+AxtIjqHYDAOZAzeQFENxGYZhIDGG4jMMq4H4DCVkGEgvI4jABZANAKlBjwBs+vAaCNIAS2MgNnJsgvhkA5ChINeSbcCoRpJCAADCUaKHyL/YQQAAAABJRU5ErkJggg=="
 											width="20" height="20" alt="회원가입 아이콘">
 									</button>
 								</div>
-								<div class="hide-term" id="term-1">
+								
+								<div class="hide-term hide1" id="term-1">
 									<div class="terms-second-scroll">
 										<iframe title="번개장터 위치기반서비스 이용약관"
 											src="https://terms.bunjang.co.kr/terms/service.html"></iframe>
 									</div>
 								</div>
+								
+								
 							</div>
 							<div class="check-margin">
 								<div class="terms-check-box">
 									<div id="ch-second" class="terms-check"></div>
 									<div class="checkbox-info">
 										<span class="mandatory">(필수)</span>개인정보 처리 방침 동의
+										
 									</div>
-									<button id="show2" class="show-btn show-bt2" type="button">
+									
+									<button id="show2" class="show-btn show-bt2">
 										<img
 											src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAALRJREFUOBFjYBgFgzMEqqtb5Cl1GcwMxoaGdoVfv3+d+s/EGNreXHeQHINrapod/v3/t4qRgdmU+cCBvR9sHJxOMf77vxpEHzm0/yEphlbWNtkz/P+/GuSgtpbai8wgzSBDyDEUZBjIIci+AxtIjqHYDAOZAzeQFENxGYZhIDGG4jMMq4H4DCVkGEgvI4jABZANAKlBjwBs+vAaCNIAS2MgNnJsgvhkA5ChINeSbcCoRpJCAADCUaKHyL/YQQAAAABJRU5ErkJggg=="
 											width="20" height="20" alt="회원가입 아이콘">
 									</button>
+									
 								</div>
-								<div class="hide-term" id="term-2">
+								
+								<div class="hide-term hide2">
 									<div class="terms-second-scroll">
 										<iframe title="번개장터 위치기반서비스 이용약관"
 											src="https://terms.bunjang.co.kr/terms/privacy.html"></iframe>
@@ -219,13 +232,13 @@
 									<div class="checkbox-info">
 										<span class="suggest">(선택)</span>위치기반서비스 동의
 									</div>
-									<button id="show3" class="show-btn show-bt3" type="button">
+									<button id="show3" class="show-btn show-bt3">
 										<img
 											src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAALRJREFUOBFjYBgFgzMEqqtb5Cl1GcwMxoaGdoVfv3+d+s/EGNreXHeQHINrapod/v3/t4qRgdmU+cCBvR9sHJxOMf77vxpEHzm0/yEphlbWNtkz/P+/GuSgtpbai8wgzSBDyDEUZBjIIci+AxtIjqHYDAOZAzeQFENxGYZhIDGG4jMMq4H4DCVkGEgvI4jABZANAKlBjwBs+vAaCNIAS2MgNnJsgvhkA5ChINeSbcCoRpJCAADCUaKHyL/YQQAAAABJRU5ErkJggg=="
 											width="20" height="20" alt="회원가입 아이콘">
 									</button>
 								</div>
-								<div class="hide-term" id="term-3">
+								<div class="hide-term hide3">
 									<div class="terms-second-scroll">
 										<iframe title="번개장터 위치기반서비스 이용약관"
 											src="https://terms.bunjang.co.kr/terms/location.html"></iframe>
@@ -247,7 +260,7 @@
 				</div>
 			</div>
 		</form>
-		
+
 	</div>
 </body>
 <!-- The core Firebase JS SDK is always required and must be listed first -->

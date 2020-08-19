@@ -59,7 +59,7 @@
 </head>
 <body class="theme-red">
 
-	<% 
+	<%
 		/* 공통 Header and Nav */
 	%>
 	<header>
@@ -69,7 +69,7 @@
 
 
 
-	<% 
+	<%
 		/* 각 페이지의 SECTION */
 	%>
 	<!-------------------------------------------SECTION--------------------------------------------------->
@@ -107,7 +107,7 @@
 			<!-- banner-list -->
 			<div class="banner_table-top">
 				<button type="button" class="btn bg-pink waves-effect m-r-20"
-					data-toggle="modal" data-target="#banner_in">배너 등록</button>
+					data-toggle="modal" data-target="#bannerModal">배너 등록</button>
 			</div>
 			<div class="row clearfix">
 				<div class="col-lg-12 col-sm-12 col-xs-12">
@@ -153,7 +153,7 @@
 
 
 
-												</td>
+
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -163,48 +163,10 @@
 					</div>
 				</div>
 			</div>
-			<!-- Modal -->
-			<div class="modal fade" id="banner_in" role="dialog">
-				<div class="modal-dialog">
-					<!-- Modal content-->
-					<div class="modal-content">
-						<!-- modal header-->
-						<div class="modal-header">
-							<h4 class="modal-title">배너 등록</h4>
-						</div>
 
-						<div class="modal-body">
-							<div class="form-group" id="banner-insertdata">
-								<label for="bannerName">배너 제목</label> <input type="text"
-									class="form-control" id="banner_title"
-									placeholder="Enter banner_title"> <label
-									for="companyName">기업 이름</label> <input type="text"
-									class="form-control" id="banner_company"
-									placeholder="Enter company"> <label for="bannerImage">배너
-									이미지</label>
-								<form method='post' action='' enctype="multipart/form-data">
-									배너를 선택하세요 : <input type='file' name='file' id='bannerfile'
-										class='form-control'>
-								</form>
-								<br> <label for="bannerdate">등록일</label> <input type="text"
-									id="datePicker" class="form-control" value=""
-									placeholder="등록일을 입력하세요"><br> <label
-									for="bannerdisplay">표시 여부</label> <select class="selectpicker">
-									<option value="Y">Y</option>
-									<option value="N">N</option>
-								</select>
-							</div>
-						</div>
 
-						<div class="modal-footer">
-							<button type="button" class="btn btn-success"
-								data-dismiss="modal" vlaue="Upload" id="banner_insert">등록</button>
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">취소</button>
-						</div>
-					</div>
-				</div>
-			</div>
+
+
 
 
 			<div class="modal fade" id="banner_delete" role="dialog">
@@ -214,7 +176,7 @@
 						<!-- modal header-->
 						<div class="modal-header">
 							<h2 class="modal-title" id="faqDeleteModal">
-								<span></span>카테고리를 정말 삭제하시겠습니까?
+								<span></span>배너를 정말 삭제하시겠습니까?
 							</h2>
 						</div>
 						<div class="modal-body">
@@ -231,6 +193,102 @@
 
 
 		</div>
+
+
+
+		<!-- 등록 카테고리 -->
+
+		<form action="add.mdo" method="post">
+			<div class="modal fade" id="bannerModal" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="modal-flex--center">
+								<h3 class="modal-title" id="category-modal-title">배너 등록</h3>
+							</div>
+						</div>
+						<div class="modal-body">
+							<div class="modal-flex--column">
+
+
+								<div id="con">
+
+
+									<div class="modal-flex--body" id="hiden1">
+										<p>
+											<strong>배너 순서 등록</strong>
+										</p>
+
+										<div class="form-group form-group-lg">
+											<div class="form-line">
+												<input type="text" name="bannerOrder" class="form-control"
+													placeholder="배너 순서을 입력해주세요" />
+											</div>
+										</div>
+
+									</div>
+
+									<div class="modal-flex--body" id="hiden2">
+										<p>
+											<strong>배너 의뢰주 등록</strong>
+										</p>
+
+										<div class="form-group form-group-lg">
+											<div class="form-line">
+												<input type="text" name="bannerClient" class="form-control"
+													placeholder="의뢰주(기업)을 입력해주세요" />
+											</div>
+										</div>
+
+									</div>
+
+									<div class="modal-flex--body" id="hiden3">
+										<p>
+											<strong>배너 URL 등록</strong>
+										</p>
+
+										<div class="form-group form-group-lg">
+											<div class="form-line">
+												<input type="text" name="bannerImageUrl" class="form-control"
+													placeholder="배너 URL을 등록해 주세요" />
+											</div>
+										</div>
+
+									</div>
+									
+									
+									<div class="modal-flex--body" id="hiden4">
+										<p>
+											<strong>배너 링크 등록</strong>
+										</p>
+
+										<div class="form-group form-group-lg">
+											<div class="form-line">
+												<input type="text" name="bannerDestUrl" class="form-control"
+													placeholder="배너 URL을 등록해 주세요" />
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<div class="modal-flex--center">
+								<input type="submit" class="btn btn-link waves-effect bg-blue"
+									id="categoryModalRegistryBtn" value="등록" />
+								<button type="button" class="btn btn-link waves-effect bg-red"
+									data-dismiss="modal">취소</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</form>
+
+
 
 
 

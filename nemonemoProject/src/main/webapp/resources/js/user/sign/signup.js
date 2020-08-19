@@ -19,6 +19,8 @@ $(function () {
   // Initialize Firebase
 //  firebase.initializeApp(firebaseConfig);
 //  firebase.auth().languageCode = 'ko';
+	  
+	 
 
 
   window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('newa', {
@@ -427,4 +429,49 @@ function validation(id, regExp) {
 //
 // });
 //
+
+/* jquery의 closest ID버젼 */
+HTMLElement.prototype.closestOneByClassName = function(className) {
+      let target = this;
+      while(!target.parentElement.querySelector('.'+className)) {
+         target = target.parentElement;
+         if(!target.parentElement) {
+            return new Error('not Found');
+         }
+   }
+      return target;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+	const btnList = document.getElementsByClassName('show-btn');
+	Array.from(btnList).forEach(e => {
+		e.addEventListener('click', toggleClass);
+		console.log(e);
+	});
+});
+
+var yy;
+function zzz() {
 	
+	  var x = document.getElementById("term-1");
+	  toggleClass('term-1');
+	  
+	  document.getElementsClassName('')
+
+	
+}
+
+function toggleClass() {
+	let target = this.closestOneByClassName('check-margin').querySelector('.hide-term');
+	console.log(this);
+	if(!target) {
+		console.log(this);
+		target = this.closestOneByClassName('check-margin').querySelector('.show-term');
+	}
+	const currentClass = target.classList[0];
+	const toBeClass = currentClass == 'hide-term' ? 'show-term' : 'hide-term';
+	console.log(currentClass);
+	console.log(toBeClass);
+	target.classList.remove(currentClass);
+	target.classList.add(toBeClass);
+}

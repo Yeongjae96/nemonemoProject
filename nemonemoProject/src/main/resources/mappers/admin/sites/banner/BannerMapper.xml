@@ -59,6 +59,19 @@
 
 		WHERE BANNER_NO = #{bannerNo}
 	</update>
+	
+	
+	<!-- 배너 인서트 -->
+	
+	<insert id="insertBanner"
+		parameterType="com.nemo.admin.sites.banner.vo.BannerVO">
+
+		INSERT INTO BANNER_TB
+		VALUES (BANNER_SQ.nextval,
+		#{bannerOrder}, #{bannerClient},
+		#{bannerImageUrl},#{bannerDestUrl},default,default)
+
+	</insert>
 
 
 

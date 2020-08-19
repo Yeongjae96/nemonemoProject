@@ -57,6 +57,13 @@ public class BannerServiceImpl implements BannerService {
 		
 		return BannerDAO.getBannerNo(bannerNO);
 	}
+
+
+	@Override
+	public int insertBanner(BannerVO vo) {
+		
+		return BannerDAO.insertBanner(vo);
+	}
 	
 	
 	

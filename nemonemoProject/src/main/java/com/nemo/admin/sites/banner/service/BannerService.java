@@ -27,6 +27,9 @@ public interface BannerService {
 	// 업데이트에 필요한 데이터를 가져오기 위함
 	public BannerVO getBannerNo(int bannerNO);
 	
+	//데이터 삽입
+	public int insertBanner(BannerVO vo);
+	
 	
 
 }
