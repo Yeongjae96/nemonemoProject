@@ -1,6 +1,9 @@
 package com.nemo.user.sign.signup.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.nemo.user.sign.signup.service.UserService;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
 
@@ -69,7 +74,7 @@ public class SignController {
 	}
 
 	@PostMapping("/signin")
-	public ModelAndView signinAction(UserBaseVO vo, HttpServletRequest req) {
+	public ModelAndView signinAction(UserBaseVO vo, HttpServletRequest req, RedirectAttributes rttr) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println(vo.toString());
 		// 인코딩
@@ -78,27 +83,38 @@ public class SignController {
 		HttpSession session = req.getSession();
 		// 로그인
 		UserBaseVO user = userService.loginUser(vo);
-		// 암호화된 비밀번호 매칭
-		boolean pwdMatch = encoder.matches(vo.getUserPw(), user.getUserPw());
-		// 조건문
-		System.out.println(user.toString());
-		// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
-		System.out.println(user.getUserEmail());
-		if (user != null && pwdMatch == true) {
-			System.out.println(user.getUserStatus());
-			if(user.getUserStatus().equals("P")||user.getUserStatus().equals("S")) {
-				session.setAttribute("user", null);
-				mav.addObject("message", "서버의 메시지입니다.");
-				mav.setViewName("redirect:/");
-				return mav;
-			}
-			session.setAttribute("user", user);
-			mav.setViewName("redirect:/");
+		if (user == null) {
+			session.setAttribute("user", null);
+			rttr.addFlashAttribute("msg", "idfail");
+			mav.setViewName("redirect:/index.do");
 			return mav;
 		} else {
-			session.setAttribute("user", null);
-			mav.setViewName("redirect:/");
-			return mav;
+
+			// 암호화된 비밀번호 매칭
+			boolean pwdMatch = encoder.matches(vo.getUserPw(), user.getUserPw());
+			// 조건문
+			System.out.println(user.toString());
+			// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
+			System.out.println(user.getUserEmail());
+			if (user != null && pwdMatch == true) {
+				System.out.println(user.getUserStatus());
+				if (user.getUserStatus().equals("P") || user.getUserStatus().equals("S")) {
+					session.setAttribute("user", null);
+					rttr.addFlashAttribute("msg", "stop");
+					mav.setViewName("redirect:/index.do");
+					return mav;
+				}
+				session.setAttribute("user", user);
+				rttr.addFlashAttribute("msg", "success");
+				mav.setViewName("redirect:/index.do");
+
+				return mav;
+			} else {
+				session.setAttribute("user", null);
+				rttr.addFlashAttribute("msg", "passwordfail");
+				mav.setViewName("redirect:/index.do");
+				return mav;
+			}
 		}
 	}
 	
@@ -124,9 +140,10 @@ public class SignController {
 	
 	//로그아웃
 	@RequestMapping("/logout")
-	public ModelAndView logout(HttpSession session) {
+	public ModelAndView logout(HttpSession session ,RedirectAttributes rttr) {
 		session.invalidate();
-		ModelAndView mv = new ModelAndView("redirect:/");
+		rttr.addFlashAttribute("msg", "logout");
+		ModelAndView mv = new ModelAndView("redirect:/index.do");
 		return mv;
 	}
 	
@@ -169,7 +186,8 @@ public class SignController {
 
 	
 	 @RequestMapping(value="/slogin.do",method=RequestMethod.POST)
-	   public ModelAndView login(UserBaseVO vo,ModelAndView mav, HttpSession session,HttpServletRequest request) {
+	   public ModelAndView login(UserBaseVO vo,ModelAndView mav, HttpSession session,HttpServletRequest request
+			   						,RedirectAttributes rttr) {
 	      
 	         System.out.println("소셜 컨트롤러 진입");
 	         
@@ -183,7 +201,8 @@ public class SignController {
 	         if(user != null) { // 이미 소셜 이메일로 로그인 이력 있던 사람
 	            System.out.println("소셜 로그인 로그인 이력있는 사람");
 	            session.setAttribute("user", user);
-	            mav.setViewName("redirect:/");
+	            rttr.addFlashAttribute("msg", "success");
+	            mav.setViewName("redirect:/index.do");
 	            mav.addObject("user" , user);
 	            return mav;
 	         }else {//소셜 이메일로 처음 로그인 시도 한 사람
@@ -191,8 +210,8 @@ public class SignController {
 	            session.setAttribute("user", vo);
 	            userService.addSocialUser(vo);
 	         }
-	         
-	         mav.setViewName("redirect:/");
+	         rttr.addFlashAttribute("msg", "slogininfo");
+	         mav.setViewName("redirect:/index.do");
 	         return mav;
 	   }
 	 
@@ -201,7 +220,7 @@ public class SignController {
           
           //세션에 담긴값 초기화
           session.invalidate();
-          
+
           return "home";
       }
 
