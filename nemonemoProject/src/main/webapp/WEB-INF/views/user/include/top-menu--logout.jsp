@@ -273,7 +273,7 @@
 <!-- 모달 시작-->
 <div id="myModal" class="modal">
 	<!-- 모달 내용 -->
-	<form method="post" action="sign/logout.do">
+	<form method="post" action="${pageContext.request.contextPath}/sign/logout.do">
 		<div class="modal-content">
 			<div class="logout_h2">
 				<h2>로그아웃</h2>

@@ -42,6 +42,7 @@ public class SignController {
 		boolean pwdMatch = encoder.matches(vo.getUserPw(), user.getUserPw());
 		// 조건문
 		// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
+		System.out.println("로그인 세션값" + user.toString());
 		System.out.println(user.getUserEmail());
 		if (user != null && pwdMatch == true) {
 			session.setAttribute("user", user);

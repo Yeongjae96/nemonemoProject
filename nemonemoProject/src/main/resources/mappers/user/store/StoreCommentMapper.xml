@@ -37,10 +37,10 @@
 		) VALUES (
 			store_comment_sq.nextval,
 			#{storeNo},
-			#{storeNo}, 
+			#{storeCommentWriter}, 
 			#{storeCommentContent},
 			#{storeCommentRegDt}
-		) 
+		)
 		<selectKey keyProperty="storeCommentNo" keyColumn="STORE_COMMENT_NO" resultType="Integer" order="AFTER">
 			SELECT STORE_COMMENT_SQ.currval FROM dual
 		</selectKey>

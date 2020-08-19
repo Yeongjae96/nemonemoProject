@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO;
+import com.nemo.user.sign.signup.vo.UserBaseVO;
 import com.nemo.user.store.service.GetStoreCommentListService;
 import com.nemo.user.store.service.GetStoreFavoriteListService;
 import com.nemo.user.store.service.GetStoreProductListService;
@@ -105,8 +106,11 @@ public class StoreController {
 	}
 	
 	@PostMapping("/newComment")
-	public ModelAndView storeCommentInsertAction(StoreCommentVO vo) {
+	public ModelAndView storeCommentInsertAction(StoreCommentVO vo,@RequestParam(value="storeCommentWriter") int storeNo) {
+		System.out.println(storeNo);
+		System.out.println(vo.toString());
 		insertStoreCommentService.insertStoreComment(vo);
+		
 		ModelAndView mav = new ModelAndView("redirect:/shop/{storeNo}/comments.do");
 		return mav;
 	}
