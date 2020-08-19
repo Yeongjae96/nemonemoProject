@@ -39,6 +39,9 @@ function initImageArea() {
 			let index = 0;
 			reader.onload = function(e) {
 				
+				if(index >= input.files.length) {
+					return false;
+				}
 				const fileSize = input.files[index].size;
 				if(fileSize > maxSize) {
 					alert('이미지파일 사이즈는 10MB 이내로 등록 가능합니다. ');
@@ -46,9 +49,6 @@ function initImageArea() {
 				}
 				
 				
-				if(index >= input.files.length) {
-					return false;
-				}
 				const image = input.files[index];
 				// 파일 유효성 검사
 				const fileEx = image.name.slice(image.name.lastIndexOf(".")+1).toLowerCase();
@@ -571,7 +571,13 @@ function initRegBtn() {
 				console.log('after data : ', data);
 			},
 			success: function(data) {
-				window.location.href="/"; // 나중에 GetBoard로 가야함
+				if(data) {
+					alert('상품이 등록되었습니다. ')
+					window.location.href="/" // 나중에 GetBoard로 가야함
+				} else {
+					alert('로그인이 필요한 기능입니다.')
+					$('#loginBtn').trigger('click');
+				}
 			},
 			error: function(error) {
 				alert('error : ', error)

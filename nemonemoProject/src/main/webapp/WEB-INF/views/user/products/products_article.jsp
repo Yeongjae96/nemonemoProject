@@ -31,6 +31,7 @@
 </head>
 <body>
 
+<c:set var="commentList" value="${vo.commentList}"/>
 <c:set var="productVO" value="${vo.selectedProduct.productVO}"/>
 <c:set var="productImgList" value="${vo.selectedProduct.productImgList}"/>
 <c:set var="selectedCate" value="${vo.selectedProduct.productCateVO}"/>
@@ -615,10 +616,10 @@
                             </div>
                             <div class="detail-comment__body">
                                 <div class="detail-comment__input">
-                                    <textarea class="detail-comment__textarea" placeholder="상품문의 입력"></textarea>
+                                    <textarea class="detail-comment__textarea" id="commentTextArea" placeholder="상품문의 입력"></textarea>
                                 </div>
                                 <div class="detail-comment__reg">
-                                    <div class="detail-comment__reg-count">0/100</div>
+                                    <div class="detail-comment__reg-count" id="commentSize">0/100</div>
                                     <button class="detail-comment__reg-btn">
                                         <i class="fas fa-pencil-alt"></i>
                                         등록
@@ -627,142 +628,60 @@
                             </div>
                             <div class="detail-comment__history">
                                 <!-- 댓글 아이템 1개 -->
-                                <div class="detail-history__area">
-                                    <div class="detail-history__item">
-                                        <a class="detail-history__left" href="#">
-                                            <img src="<c:url value="/resources/images/user/products/image_1.jpg"/>" alt="프로필 이미지">
-                                        </a>
-                                        <div class="detail-history__right">
-                                            <div class="detail-right__head">
-                                                <div class="detail-right__title">번개알림센터</div>
-                                                <div class="detail-right__time">1초전</div>
-                                            </div>
-                                            <div class="detail-right__body">
-                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
-                                            </div>
-                                            <div class="detail-right__footer">
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-comment"></i>
-                                                    댓글 달기
-                                                </div>
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-lightbulb"></i>
-                                                    신고 하기
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <c:forEach var="comment" items="${commentList}">
+	                                <div class="detail-history__area">
+	                                    <div class="detail-history__item">
+	                                        <a class="detail-history__left" href="#">
+	                                            <img src="<c:url value="/resources/images/user/products/image_1.jpg"/>" alt="프로필 이미지">
+	                                        </a>
+	                                        <div class="detail-history__right">
+	                                            <div class="detail-right__head">
+	                                                <div class="detail-right__title">${comment.storeName}</div>
+	                                                <div class="detail-right__time">
 
-                                <!-- 댓글 아이템 1개 -->
-                                <div class="detail-history__area">
-                                    <div class="detail-history__item">
-                                        <a class="detail-history__left" href="#">
-                                            <img src="<c:url value="/resources/images/user/products/image_1.jpg"/>" alt="프로필 이미지">
-                                        </a>
-                                        <div class="detail-history__right">
-                                            <div class="detail-right__head">
-                                                <div class="detail-right__title">번개알림센터</div>
-                                                <div class="detail-right__time">1초전</div>
-                                            </div>
-                                            <div class="detail-right__body">
-                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
-                                            </div>
-                                            <div class="detail-right__footer">
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-comment"></i>
-                                                    댓글 달기
-                                                </div>
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-lightbulb"></i>
-                                                    신고 하기
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 댓글 아이템 1개 -->
-                                <div class="detail-history__area">
-                                    <div class="detail-history__item">
-                                        <a class="detail-history__left" href="#">
-                                            <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="프로필 이미지">
-                                        </a>
-                                        <div class="detail-history__right">
-                                            <div class="detail-right__head">
-                                                <div class="detail-right__title">번개알림센터</div>
-                                                <div class="detail-right__time">1초전</div>
-                                            </div>
-                                            <div class="detail-right__body">
-                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
-                                            </div>
-                                            <div class="detail-right__footer">
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-comment"></i>
-                                                    댓글 달기
-                                                </div>
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-lightbulb"></i>
-                                                    신고 하기
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 댓글 아이템 1개 -->
-                                <div class="detail-history__area">
-                                    <div class="detail-history__item">
-                                        <a class="detail-history__left" href="#">
-                                            <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="프로필 이미지">
-                                        </a>
-                                        <div class="detail-history__right">
-                                            <div class="detail-right__head">
-                                                <div class="detail-right__title">번개알림센터</div>
-                                                <div class="detail-right__time">1초전</div>
-                                            </div>
-                                            <div class="detail-right__body">
-                                            
-                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
-                                            </div>
-                                            <div class="detail-right__footer">
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-comment"></i>
-                                                    댓글 달기
-                                                </div>
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-lightbulb"></i>
-                                                    신고 하기
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 댓글 아이템 1개 -->
-                                <div class="detail-history__area">
-                                    <div class="detail-history__item">
-                                        <a class="detail-history__left" href="#">
-                                            <img src="<c:url value="/resources/images/user/products/image_1.jpg"/>" alt="프로필 이미지">
-                                        </a>
-                                        <div class="detail-history__right">
-                                            <div class="detail-right__head">
-                                                <div class="detail-right__title">번개알림센터</div>
-                                                <div class="detail-right__time">1초전</div>
-                                            </div>
-                                            <div class="detail-right__body">
-                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
-                                            </div>
-                                            <div class="detail-right__footer">
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-comment"></i>
-                                                    댓글 달기
-                                                </div>
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-lightbulb"></i>
-                                                    신고 하기
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+													<fmt:parseNumber value="${comment.productCommentRegDt.time}" integerOnly="true" var="paramDays" scope="request"/>
+                                                    <fmt:parseNumber value="${now.time}" integerOnly="true" var="nowDays" scope="page"/>
+                                                    
+                                                    <c:choose>
+                                                    	<c:when test="${nowDays-paramDays < (1000*60)}">
+                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000)}" integerOnly="true" var="secDate"/>
+                                                    		<c:out value="${secDate}"/> 초전
+                                                    	</c:when>
+                                                    	<c:when test="${(nowDays-oldDays) < (1000*60*60)}">
+                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60)}" integerOnly="true" var="minDate"/>
+                                                    		<c:out value="${minDate}"/> 분전
+                                                    	</c:when>
+                                                    	<c:when test="${(nowDays-oldDays) < (1000*60*60*24)}">
+                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60*60)}" integerOnly="true" var="hourDate"/>
+                                                    		<c:out value="${hourDate}"/> 시간전
+                                                    	</c:when>
+                                                    	<c:otherwise>
+                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60*60*24)}" integerOnly="true" var="dayDate"/>
+                                                    		<c:out value="${dayDate }"/> 일전
+                                                    	</c:otherwise>
+                                                    </c:choose>
+
+
+
+													</div>
+	                                            </div>
+	                                            <div class="detail-right__body">
+	                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
+	                                            </div>
+	                                            <div class="detail-right__footer">
+	                                                <div class="right-footer__btn">
+	                                                    <i class="fas fa-comment"></i>
+	                                                    댓글 달기
+	                                                </div>
+	                                                <div class="right-footer__btn">
+	                                                    <i class="fas fa-lightbulb"></i>
+	                                                    신고 하기
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+                                </c:forEach>
                                 <!-- 댓글 신고 모달-->
                                 <div class="comment-report-modal__area">
                                     <div class="comment-report-modal__div">

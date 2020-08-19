@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,13 +46,13 @@
 		<c:forEach var="entry" items="${vo.searchedCateMap}">
 			<c:set var="key" value="${entry.key}" />
 			<c:set var="value" value="${entry.value}" />
-			<c:if test="${key eq 'S'}">
+			<c:if test="${key eq 'small'}">
 				<c:set var="PdSmCateList" value="${value}" />
 			</c:if>
-			<c:if test="${key eq 'M'}">
+			<c:if test="${key eq 'medium'}">
 				<c:set var="PdMdCateList" value="${value}" />
 			</c:if>
-			<c:if test="${key eq 'L'}">
+			<c:if test="${key eq 'large'}">
 				<c:set var="PdLgCateList" value="${value}" />
 			</c:if>
 		</c:forEach>
@@ -86,7 +87,7 @@
 										</div>
 										<div class="search-search__next">${sm.productCateSmall}
 										</div>
-										<div class="search-search__count">${sm.productCateCnt}</div>
+										<div class="search-search__count">${fn:length(PdSmCateList)}</div>
 									</a>
 								</c:forEach>
 							</div>
@@ -114,8 +115,8 @@
 						<c:forEach var="lg" items="${PdLgCateList}">
 							<div class="search-search-sub__item">
 								<a class="search-search-sub__item-link">
-									<div class="search-search-sub__item-title"></div>
-									<div class="search-search-sub__item-count">1284</div>
+									<div class="search-search-sub__item-title">${lg.productCateLarge}</div>
+									<div class="search-search-sub__item-count">${fn:length(PdLgCateList)}</div>
 								</a>
 							</div>
 						</c:forEach>
@@ -130,7 +131,7 @@
 							<div class="search-search-sub__item">
 								<a class="search-search-sub__item-link">
 									<div class="search-search-sub__item-title">${md.productCateMedium}</div>
-									<div class="search-search-sub__item-count">${md.productCateCnt}</div>
+									<div class="search-search-sub__item-count">${fn:length(PdMdCateList)}</div>
 								</a>
 							</div>
 						</c:forEach>
@@ -145,7 +146,7 @@
 							<div class="search-search-sub__item">
 								<a class="search-search-sub__item-link">
 									<div class="search-search-sub__item-title">${sm.productCateSmall}</div>
-									<div class="search-search-sub__item-count">${sm.productCateCnt}</div>
+									<div class="search-search-sub__item-count">${fn:length(PdSmCateList)}</div>
 								</a>
 							</div>
 						</c:forEach>
