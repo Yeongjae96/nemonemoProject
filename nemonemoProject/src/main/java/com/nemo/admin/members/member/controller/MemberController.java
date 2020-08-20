@@ -41,7 +41,7 @@ public class MemberController {
 	public ModelAndView infoPage(@RequestParam int userNo) {
 		ModelAndView mav = new ModelAndView("members/member/member_info");
 		AdminBaseMemberVO memberVO = memberService.getMember(userNo);
-		TermsCheckedVO termsVO = memberService.getTerms(userNo);
+		List<TermsCheckedVO> termsVO = memberService.getTerms(userNo);
 		mav.addObject("memberVO", memberVO);
 		mav.addObject("termsVO", termsVO);
 		System.out.println(termsVO);

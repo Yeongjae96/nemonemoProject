@@ -52,7 +52,7 @@
             LEFT OUTER JOIN user_tb u on hist.user_no = u.user_no
             LEFT OUTER JOIN terms_tb n on hist.terms_no = n.terms_no
         WHERE 
-             u.user_no = #{user_no};
+             u.user_no = #{user_no}
              
 	</select>
 

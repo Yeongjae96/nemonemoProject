@@ -11,8 +11,7 @@ import lombok.Data;
  * @파일이름 : AdminBaseQnaVO.java
  * @작성일 : 2020. 8. 10
  * @이름 : Yerin
- * @프로그램설명 :
- * 
+ * @프로그램설명 : 사용자측  QNA 등록 VO 
  *
  */
 

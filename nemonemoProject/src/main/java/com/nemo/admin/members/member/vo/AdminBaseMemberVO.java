@@ -1,8 +1,8 @@
 package com.nemo.admin.members.member.vo;
 
 import java.sql.Date;
-
 import lombok.Data;
+
 
 @Data
 public class AdminBaseMemberVO {

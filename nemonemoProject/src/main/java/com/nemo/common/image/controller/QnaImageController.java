@@ -43,7 +43,7 @@ public class QnaImageController {
 		try {
 			res.setContentType("image/" + ext);
 			res.setHeader("Content-Disposition", "inline;filename=" + fileNm);
-			File file = 	FileUtil.getFile(DirectoryName.QNA, fileNm, ext);
+			File file = FileUtil.getFile(DirectoryName.QNA, fileNm, ext);
 			if(file.exists()){
 				System.out.println("file 존재함");
 				in = new FileInputStream(file);

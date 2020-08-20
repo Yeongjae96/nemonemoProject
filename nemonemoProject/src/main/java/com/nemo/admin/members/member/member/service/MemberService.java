@@ -18,6 +18,6 @@ public interface MemberService {
 	public int updateMember(AdminBaseMemberVO vo);
 	public AdminBaseMemberVO getMember(int userNo);
 	public List<AdminBaseMemberVO> getMemberList(AdminBaseMemberVO vo);
-	public TermsCheckedVO getTerms(int userNo);
+	public List<TermsCheckedVO> getTerms(int userNo);
 	
 }

@@ -125,9 +125,7 @@
                                                 	<c:if test="${member.userStatus eq 'P'}">
                                                 	 <span class="label label-danger">계정정지</span></c:if>
                                                 	<c:if test="${member.userStatus eq 'W'}">                                                	 
-                                                	<span class="label label-default">탈퇴</span></c:if>
-
-                                                
+                                                	<span class="label label-default">탈퇴</span></c:if>                                            
                                                 </td>
                                                 <td>${member.userPhone}</td>
                                                 <td>${member.userRegYmd}</td>

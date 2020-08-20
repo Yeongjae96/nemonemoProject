@@ -94,8 +94,9 @@
                                     </div>
                                     <a class="to_anther_question" href="/nemonemoProject/customer/qna.do">다른 문의하기</a>
                                 </div>
-                                <p class="qna_content">
-                                ${qna.qnaAdminContent}</p>
+                                <div class="qna_content">
+                                ${qna.qnaAdminContent}
+                                </div>
                             </div>
                         </section>		
                         </c:if>                     

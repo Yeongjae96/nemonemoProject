@@ -231,13 +231,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .qna_content{
     line-height: 1.4;
-    white-space: pre-wrap;
+    white-space: normal;
     text-align : start;
     display: block;
-    margin-block-start: 1em;
+/*     margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+     margin-inline-start: 0px;
+    margin-inline-end: 0px; */
 }
 .answer_section{
 	position: relative;

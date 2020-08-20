@@ -42,7 +42,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public TermsCheckedVO getTerms(int userNo) {
+	public List<TermsCheckedVO> getTerms(int userNo) {
 		return memberMapper.getTerms(userNo);
 	}
 
