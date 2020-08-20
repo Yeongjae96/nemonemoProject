@@ -82,13 +82,18 @@
 											
 											
 									</div>
-									<div class="product_all13">
-										<a class="product_all14 product_all14_1"
-											href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/info.do">내 상점 관리</a>
-											
-										<a class="product_all14 product_all14_1"
-											href="/products/manage">내 상품 관리</a>
-									</div>
+									<c:set var="storeBtn1" value="${user.storeNo}" />
+									<c:set var="storeBtn2" value="${storeVO.storeNo }" />
+										
+										<c:if test="${storeBtn1 eq storeBtn2}">
+											<div class="product_all13">
+												<a class="product_all14 product_all14_1"
+													href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/info.do">내 상점 관리</a>
+													
+												<a class="product_all14 product_all14_1"
+													href="/products/manage">내 상품 관리</a>
+											</div>
+									</c:if>
 								</div>
 							</div>
 						</div>

@@ -46,4 +46,8 @@
 		</selectKey>
 		
 	</insert>
+	
+	<delete id="deleteStoreComment" parameterType="int" >
+		DELETE FROM store_comment_tb WHERE store_comment_no = #{storeCommentNo}
+	</delete>
 </mapper>

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
+import com.nemo.user.store.service.DeleteStoreCommentService;
 import com.nemo.user.store.service.GetStoreCommentListService;
 import com.nemo.user.store.service.GetStoreFavoriteListService;
 import com.nemo.user.store.service.GetStoreProductListService;
@@ -50,6 +51,7 @@ public class StoreController {
 	@Autowired private InsertStoreCommentService insertStoreCommentService;
 	@Autowired private GetStoreReviewListService getStoreReviewListService;
 	@Autowired private GetStoreFavoriteListService getStoreFavoriteListService;
+	@Autowired private DeleteStoreCommentService deleteStoreCommentService;
 	
 	@GetMapping("/products")
 	public ModelAndView GetStoreInfoProducts(@PathVariable int storeNo) {
@@ -96,6 +98,7 @@ public class StoreController {
 		List<StoreReviewVO> storeReviewVO = getStoreReviewListService.getStoreReviewList(storeNo);
 		List<StoreFavoriteVO> storeFavoriteVO = getStoreFavoriteListService.getStoreFavoriteList(storeNo);
 		
+		
 		mav.addObject("storeVO", storeVO);
 		mav.addObject("storeProductVO", storeProductVO);
 		mav.addObject("storeCommentVO", storeCommentVO);
@@ -110,6 +113,14 @@ public class StoreController {
 		System.out.println(storeNo);
 		System.out.println(vo.toString());
 		insertStoreCommentService.insertStoreComment(vo);
+		
+		ModelAndView mav = new ModelAndView("redirect:/shop/{storeNo}/comments.do");
+		return mav;
+	}
+	
+	@PostMapping("/delComment")
+	public ModelAndView storeCommentDeleteAction(@RequestParam int storeCommentNo) {
+		deleteStoreCommentService.deleteStoreComment(storeCommentNo);
 		
 		ModelAndView mav = new ModelAndView("redirect:/shop/{storeNo}/comments.do");
 		return mav;

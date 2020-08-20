@@ -16,4 +16,5 @@ public interface IStoreMapper {
 	public int insertStoreComment(StoreCommentVO vo);
 	public List<StoreReviewVO> getStoreReviewList(int storeNo);
 	public List<StoreFavoriteVO> getStoreFavoriteList(int storeNo);
+	public int deleteStoreComment(int storeCommentNo);
 }

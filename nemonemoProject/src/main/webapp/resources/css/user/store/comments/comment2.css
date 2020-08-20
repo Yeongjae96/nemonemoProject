@@ -1,4 +1,4 @@
-
+/* 
 .comments{
 
     width: 1024px;
@@ -685,7 +685,7 @@ cursor: pointer;
 
 }
 
-/*상점 문의 부분*/
+상점 문의 부분
 .comments_66{
 
 margin-left: 10px;
@@ -706,7 +706,7 @@ border-bottom: 1px solid rgb(238, 238, 238);
 color: rgb(247, 47, 51)
 }
 
-/*상점문의 댓글 남기는 부분*/
+상점문의 댓글 남기는 부분
 
 .comments_69{
 
@@ -771,7 +771,7 @@ padding: 0px 20px
 margin-right: 4px;
 }
 
-/*알림 메시지 나오는 영역*/
+알림 메시지 나오는 영역
 
 .comments_75{
 
@@ -998,7 +998,7 @@ right: -14px;
 }
 
 
-/*아무런 문의가 없을떄 css*/
+아무런 문의가 없을떄 css
 
 .comments_96 {
     color: rgb(136, 136, 136);
@@ -1010,4 +1010,4 @@ right: -14px;
     -webkit-box-pack: center;
     justify-content: center;
     background: rgb(255, 255, 255);
-}
+} */

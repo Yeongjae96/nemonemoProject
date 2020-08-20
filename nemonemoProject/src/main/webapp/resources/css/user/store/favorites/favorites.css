@@ -192,6 +192,7 @@
 
 .fa_20 > img {
     margin-right: 10px;
+     margin-top: 4px;
 }
 
 .fa_21{
@@ -228,6 +229,7 @@
 
 .fa_24 > img {
     margin-right: 10px;
+     margin-top: 4px;
 }
 
 .fa_25{
@@ -955,7 +957,7 @@
     font-weight: normal;
     font-size: 13px;
     top: 3px;
-    right: -15px;
+    right: -30px;
 }
 
 .fa_90{
@@ -970,7 +972,7 @@
 }
 
 .fa_91{
-    height: 40px;
+    height: 25px;
     display: flex;
     width: 100%;
     -webkit-box-align: center;

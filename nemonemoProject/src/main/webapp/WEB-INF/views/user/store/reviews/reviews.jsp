@@ -75,14 +75,19 @@
 											src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAcCAYAAAB2+A+pAAAAAXNSR0IArs4c6QAAAqNJREFUSA2tVk1rE0EYzrYbSKQXRYIfCaUiggaJJiH+AIsnL1poRQ+CBy8VvOivUA8evHgoeNCbRz3pH5B8HlIvYpG0VULxJBqMZn2eZWc7O5nZ7I5deJl33vf5yMzsTpvJWD6tVussw5KembMlgnc9CCsJa2PP81YYVq4gOTbEXq+3NB6PP5ObzWZPVSqVrbQ6ViuGKbfZf+Rc1JKMVsaO44RbLOdJDAUm9Va32+0TONtthM+FsYcoVqvVXSGaZEy9YhheE6Y0YM5aEjMZk9oY5PB8JSFdTWpPp6m2utlsHoXEN8S8IvUX82P1en1PqRunbrfbvYitOmRESI3JZLIMrGpKxDzOeb3T6byT4MYU2J8Orz2IvQLqghF5sI0ujG/O1Wq1j/l8/hImjxHewXrsq1GbHvSiZ+SM8alcxupfIE7uU/4/g+EO4jY+ufdCLWLMYr/fPzIajZ7DPLwkBNhmhOHrXC53t1wuf5f5U8aiidXfgflTxIKopRlh+ANxH6vc0PGMxgTjxTsN45dIGzpyTO0DTG/hLD+ZMLHGJMHYxep7GM+ZROQ6DDexygrGP3JdzWfeXPg2D8P0jEo0zYklx9QX9ZnGAPIlcwUhwUjszBdzpjFWcCOBWQSShBN7xribj+Os+Cdw6gei7l+P6C1HXDFBb4J6EXf3V7Un5lOCohGMq6opRH+j9wAv0BUG86AWUgPOaljQJLHGEFyTOZhvIhpYyROMvAK9IG+wp2AjXLnH3LjV+IQW8cu3ED4Gws8KhcLDUqn0SxXhfDAY5IfD4SPg1zkPftgSduUL5+pjXDEEuM3gO0OQruIyuGcypSh7xBBLDrnUYE/3xBnzbX7ruu55bOcbHVlXI5YccmGc7ovA/81FXJf+lunEk9aoQS0d/h/pAwlu3rYpxwAAAABJRU5ErkJggg=="
 											width="15" height="14" alt="작은 별점 0점 이미지">
 									</div>
-									<div class="rv_12">
-										<a class="rv_13"
-											href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/info.do">내
-											상점 관리</a> 
-										<a class="rv_13"
-											href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/info.do">내
-											상품 관리</a>
-									</div>
+									<c:set var="storeBtn1" value="${user.storeNo}" />
+									<c:set var="storeBtn2" value="${storeVO.storeNo }" />
+										
+										<c:if test="${storeBtn1 eq storeBtn2}">
+											<div class="rv_12">
+												<a class="rv_13"
+													href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/info.do">내
+													상점 관리</a> 
+												<a class="rv_13"
+													href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/info.do">내
+													상품 관리</a>
+											</div>
+										</c:if>
 								</div>
 							</div>
 						</div>
