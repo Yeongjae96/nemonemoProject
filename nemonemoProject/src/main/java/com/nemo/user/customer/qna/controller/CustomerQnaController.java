@@ -29,6 +29,7 @@ import com.nemo.user.customer.qna.vo.UserNewQnaVO;
  * @프로그램설명 : Customer QNA URL 요청을 맵핑하여 JSP 경로를 반환시켜주는 컨트롤러
  * 
  */
+
 @Controller
 @RequestMapping("/customer")
 public class CustomerQnaController {
@@ -56,6 +57,7 @@ public class CustomerQnaController {
 	public @ResponseBody int newAction(UserNewQnaVO vo) {
 		logger.info("{}", vo);
 		//vo.setQnaRegYmd(new Date(System.currentTimeMillis()));
+		System.out.println("아이유야!!!!!!!!!!" + vo.toString());
 		return insertQnaService.insertQna(vo);
 	}
 	

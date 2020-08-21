@@ -22,8 +22,6 @@ import com.nemo.user.customer.qna.service.InsertQnaService;
 import com.nemo.user.customer.qna.vo.UserBaseQnaImageVO;
 import com.nemo.user.customer.qna.vo.UserNewQnaVO;
 
-import lombok.extern.slf4j.Slf4j;
-
 
 
 /**
@@ -37,7 +35,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Service
-@Slf4j
 public class InsertQnaServiceImpl implements InsertQnaService{
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
@@ -51,23 +48,18 @@ public class InsertQnaServiceImpl implements InsertQnaService{
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public int insertQna(UserNewQnaVO vo) {
-		System.err.println("11"+vo);
 		// 1. QNA 등록
 		customerQnaMapper.insertQna(vo);
 		
-		System.out.println("InsertService: qna 등록");
 		int qnaNo = vo.getQnaNo();
 		
 		// 2. QNA 이미지 등록
 		int imageResult = 0;
 		List<MultipartFile> fileList = vo.getQuestionImages();
 		List<UserBaseQnaImageVO> voList = new ArrayList<>();
-																									System.out.println(fileList);
-																									System.out.println(voList);
+																									
 		try {
-			System.out.println("insertqnaservice : try문 들어감..");
 			for(MultipartFile file : fileList) {
-				System.out.println("insertqnaservice : for문 들어감..");
 				UserBaseQnaImageVO imageVO = new UserBaseQnaImageVO();
 				String orgFileName = FileUtil.getOrgFileName(file.getOriginalFilename());
 				String extension = FileUtil.getExtension(file.getOriginalFilename());
@@ -92,17 +84,19 @@ public class InsertQnaServiceImpl implements InsertQnaService{
 				FileUtil.exsitDir(dirFileName);
 				voList.add(imageVO);
 				
-				logger.info("================================");
-				logger.info("OriginalFileName : {} ", file.getOriginalFilename());
-				logger.info("FileSize :  {} ", file.getSize());
-				logger.info("extension : {} ", extension);
-				logger.info("dirRealFileName : {} ", dirRealFileName);
-				logger.info("================================");
+				/*
+				 * logger.info("================================");
+				 * logger.info("OriginalFileName : {} ", file.getOriginalFilename());
+				 * logger.info("FileSize :  {} ", file.getSize());
+				 * logger.info("extension : {} ", extension);
+				 * logger.info("dirRealFileName : {} ", dirRealFileName);
+				 * logger.info("================================");
+				 */
 				
 				file.transferTo(dirFileName);				
 				
 			}
-			
+		
 			imageResult = imageMapper.insertImage(voList);
 		}catch(Exception e) {
 			logger.warn("{}", e.getMessage());

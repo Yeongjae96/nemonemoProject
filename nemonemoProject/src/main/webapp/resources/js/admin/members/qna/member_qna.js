@@ -30,6 +30,7 @@ $(function () {
         
 
     $('#qna-cate-btn').click(function() {window.location.href="category/list.mdo"});
+ 
 
 });
 
@@ -39,6 +40,8 @@ $(function () {
 $('.to_reply').click(function() {
 	const qnaNo = $(this).data("qnano");
 	window.location.href="reply.mdo?qnaNo="+qnaNo;
+	
+
 });
 
 

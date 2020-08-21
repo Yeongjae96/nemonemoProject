@@ -63,15 +63,14 @@
 							<div class="qna-contents-selbox">
 								<div class="selbox-container">
 									<div class="qna-contents-selbox-box">
-								
 										<div class="selbox_size">
 											<select name = "qnaCategoryNo" class="reason" id="qnaCategoryName">
 												<c:forEach var="qnaCategory" items="${qnaCategoryList}">
-													<option value="${qnaCategory.qnaCategoryNo}">${qnaCategory.qnaCategoryName}</option>													
+													<option value="${qnaCategory.qnaCategoryNo}">
+																	${qnaCategory.qnaCategoryName}</option>													
 												</c:forEach>
 											</select>
 										</div>
-									
 									</div>
 								</div>
 							</div>

@@ -18,8 +18,8 @@
 
 	<insert id="insertImage" parameterType="java.util.List">
 
-		<foreach collection="list" item="i" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
-		INSERT
+	<foreach collection="list" item="i" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+		
 		INTO qna_img_tb (
 			qna_img_no,
 			qna_no,
@@ -43,15 +43,29 @@
 		</foreach>
 		<selectKey keyColumn="qnaImgNo" order="AFTER"> SELECT qna_img_sq.currval FROM dual </selectKey>
 	</insert>
+	
+	
+	
+	<!-- 첨부파일 다운 -->
+	<select id="selectImageInfo" parameterType="hashMap" resultType="hashMap">
+		SELECT 
+			qna_img_file_name,
+			qna_img_origin_name
+		FROM 
+		WHERE qna_img_no = #{qnaImgNo}
+	</select>
+	
+	
+	
 
-
+<!-- 
 	<select id="selectImage" parameterType="int" resultMap="qnaImgMap">
 
 		SELECT *
 		FROM qna_img_tb
 		WHERE qna_img_no = #{qnaImgNo}
 
-	</select>
+	</select> -->
 
 
 </mapper>

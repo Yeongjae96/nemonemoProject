@@ -2,6 +2,7 @@ package com.nemo.admin.members.qna.service;
 
 import java.util.List;
 
+import com.nemo.admin.members.qna.vo.AdminBaseQnaImageVO;
 import com.nemo.admin.members.qna.vo.AdminBaseQnaVO;
 
 /**
@@ -18,5 +19,6 @@ public interface QnaService {
 
 	public List<AdminBaseQnaVO> getQnaList(AdminBaseQnaVO vo);
 	public int replyQna(AdminBaseQnaVO vo);
+	public List<AdminBaseQnaImageVO> selectImageList(int qnaNo) throws Exception;
 
 }
