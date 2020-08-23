@@ -85,7 +85,7 @@
 													href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/info.do">내
 													상품 관리</a>
 			                                </div>
-                                </c:if>
+                                		</c:if>
                             </div>
                         </div>
                     </div>

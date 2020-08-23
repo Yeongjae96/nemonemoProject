@@ -6,7 +6,6 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-
 public class StoreVO{
 	private int userNo;
 	private int storeNo;

@@ -110,8 +110,6 @@ public class StoreController {
 	
 	@PostMapping("/newComment")
 	public ModelAndView storeCommentInsertAction(StoreCommentVO vo,@RequestParam(value="storeCommentWriter") int storeNo) {
-		System.out.println(storeNo);
-		System.out.println(vo.toString());
 		insertStoreCommentService.insertStoreComment(vo);
 		
 		ModelAndView mav = new ModelAndView("redirect:/shop/{storeNo}/comments.do");

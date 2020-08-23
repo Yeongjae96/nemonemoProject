@@ -103,8 +103,7 @@
 							<div class="product_all16">
 								<div class="product_all17">
 									${ storeVO.storeName }
-
-<!-- 									<button class="product_name">상점명 수정</button> -->
+									<!-- <button class="product_name">상점명 수정</button> -->
 								</div>
 								
 							</div>

@@ -6,8 +6,5 @@ import com.nemo.user.store.repository.IStoreMapper;
 import com.nemo.user.store.vo.StoreCommentVO;
 
 @Mapper
-public interface StoreMapper extends IStoreMapper{
-
-	
-
+public interface StoreMapper extends IStoreMapper{	
 }

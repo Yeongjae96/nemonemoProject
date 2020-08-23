@@ -11,6 +11,8 @@
 		<result column="product_deal_area" property="productDealArea" />
 		<result column="product_price" property="productPrice" />
 		<result column="store_no" property="storeNo" />
+		<result column="favorite_del_fl" property="favoriteDelFl" />
+		
 		
 	</resultMap>
     
@@ -24,7 +26,7 @@
 		    inner join user_tb ust
 		        on(ust.store_no = ftb.favorite_sender)
 		WHERE
-    		ust.store_no = #{storeNo}
+    		ust.store_no = #{storeNo} and ftb.favorite_del_fl='N'
  
     </select>
 </mapper>

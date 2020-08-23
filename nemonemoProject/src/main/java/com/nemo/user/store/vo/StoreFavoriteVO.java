@@ -13,4 +13,5 @@ public class StoreFavoriteVO {
 	private String productDealArea;
 	private int productPrice;
 	private int storeNo;
+	private String favoriteDelFl;
 }
