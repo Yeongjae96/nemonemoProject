@@ -2184,3 +2184,17 @@ svg.light {
 }
 
 
+.detail-myproduct {
+	color: rgb(255, 255, 255);
+    background: rgb(255, 164, 37);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(243, 150, 20);
+    border-image: initial;
+}
+
+.detail-myproduct:hover {
+	color: rgb(255, 164, 37);
+    background: rgb(255, 255, 255);
+    border-width: 3px;
+}

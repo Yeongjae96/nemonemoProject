@@ -71,4 +71,12 @@
 	</select>
 	
 	
+	<update id="deleteProductImages" parameterType="int">
+		
+		UPDATE product_img_tb
+		SET product_img_del_fl = 'Y'
+		WHERE product_no = #{productNo}
+	
+	</update>
+	
 </mapper>

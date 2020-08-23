@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nemo.user.products.service.UserProductsCategoryService;
 import com.nemo.user.products.service.UserProductsCommentsService;
+import com.nemo.user.products.service.UserProductsEditService;
 import com.nemo.user.products.service.UserProductsFavoriteService;
 import com.nemo.user.products.vo.ProductsCommentsVO;
 import com.nemo.user.products.vo.UserBaseProductsCategoryVO;
 import com.nemo.user.products.vo.UserBaseProductsFavoriteVO;
+import com.nemo.user.products.vo.UserGetProductVO;
+import com.nemo.user.products.vo.UserNewProductsVO;
 
 @RestController
 @RequestMapping("/products")
@@ -27,7 +30,8 @@ public class UserProductsRestController {
 	private UserProductsCategoryService userProductsRestService;
 	@Autowired
 	private UserProductsFavoriteService userProductsFavoriteService;
-	
+	@Autowired
+	private UserProductsEditService userProductsEditService;
 	
 	@GetMapping("/allCateList")
 	public List<UserBaseProductsCategoryVO> getCategoryList() {
@@ -53,4 +57,12 @@ public class UserProductsRestController {
 	public @ResponseBody int deleteFavorite(UserBaseProductsFavoriteVO vo) {
 		return userProductsFavoriteService.deleteFavorite(vo);
 	}
+	
+	@PostMapping("/{productNo}/edit")
+	@ResponseBody
+	public int updateProduct(UserNewProductsVO vo) {
+		return 0;
+	}
+	
+	
 }

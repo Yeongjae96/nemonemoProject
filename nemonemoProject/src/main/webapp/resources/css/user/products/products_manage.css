@@ -257,6 +257,10 @@ a.product-nav-link:hover {
     .products-manage__main table tr > :nth-child(3) {
         width: 21rem;
     }
+    
+    .products-manage__main table tr > :nth-child(3) a {
+    	font-size: 16px;
+    }
 
     .products-manage__main table tr > :nth-child(4) {
         width: 6.5rem;
@@ -408,4 +412,52 @@ a.product-nav-link:hover {
         outline: 0
     }
 
+	.pd-status-list {
+		display: none;
+        position: absolute;
+        top: 55px;
+        flex: 1 1 0%;
+        flex-flow: column wrap;
+        background-color: white;
+        width: 100%;
+        overflow-y: scroll;
+        font-size: 16px;
+        font-family: "Noto Sans KR";
+        justify-content: center;
+        box-shadow: -2px 3px 5px 0.75px #AAAAAA,2px 3px 5px 0.75px #AAAAAA;
+	}
+	
+	.pd-status-item {
+        padding: 10px 0px;
+        padding-left: 10px;
+    }
+    .pd-status-item:hover {
+        color: #FF5058;
+    }
 
+	.product--nothing {
+		width: 100%;
+	    height: 21rem;
+	    padding-top: 7rem;
+	    padding-bottom: 7rem;
+	    color: rgb(155, 153, 169);
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	}
+	
+	.product--nothing svg {
+		padding-bottom: 30px;
+		font-size: 10rem;
+		color: #DDDDDD;
+	}
+	
+	.products-manage__header input,
+	.products-manage__header div {
+		font-size: 16px;
+	}
+	
+	
+	
+	

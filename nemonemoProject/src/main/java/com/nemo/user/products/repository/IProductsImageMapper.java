@@ -8,5 +8,6 @@ public interface IProductsImageMapper {
 	
 	public int insertImage(List<UserBaseProductsImageVO> voList);
 	public UserBaseProductsImageVO selectImage(int productImgNo);
+	public int deleteProductImages(int productNo);
 	
 }

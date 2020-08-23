@@ -1,6 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<c:set var="productVO" value="${vo.productVO}"/>
+<c:set var="productCateVO" value="${vo.productCateVO}"/>
+<c:set var="productImgList" value="${vo.productImgList}"/>
+<c:forEach var="i" items="${vo.cateMap}">
+	<c:set var="key" value="${i.key}"/>
+	<c:set var="value" value="${i.value}"/>
+	<c:choose>
+		<c:when test='${key == "large"}'>
+			<c:set var="lgCate" value="${value}"/>
+		</c:when>
+		<c:when test='${key == "medium"}'>
+			<c:set var="mdCate" value="${value}"/>
+		</c:when>
+		<c:when test='${key == "small"}'>
+			<c:set var="smCate" value="${value}"/>
+		</c:when>
+	</c:choose>
+</c:forEach>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +35,7 @@
 
 <!-- 페이지 CSS  -->
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/user/products/products_new.css"/>">
+	href="<c:url value="/resources/css/user/products/products_edit.css"/>">
 
 
 <!-- 라이브러리 -->
@@ -31,7 +54,7 @@
 <!-- 해당 페이지 JS파일 -->
 
 <script> this.contextPath = "<c:url value="/"/>"</script>
-<script src="<c:url value="/resources/js/user/products/products_new.js"/>"></script>
+<script src="<c:url value="/resources/js/user/products/products_edit.js"/>"></script>
 
 </head>
 <body>
@@ -65,13 +88,28 @@
 						<ul class="flex-container">
 							<li class="products-main-item">
 								<div class="products-title--div">
-									상품이미지<span>*</span><small>(0/8)</small>
+									상품이미지<span>*</span><small>(${productImgList.size()}/8)</small>
 								</div>
 								<div class="products-content--div">
 									<ul class="image-registry__list" id="imageList">
 										<li class="image-registry__item">이미지 등록
-										<input type="file" multiple="multiple" id="inputFile" name="">
+											<input type="file" multiple="multiple" id="inputFile" name="">
 										</li>
+										<c:forEach var="i" items="${productImgList}" varStatus="st">
+											<fmt:parseNumber var="imgdate" value="${i.productImgDt.time}"/>
+											<li draggable="false" class="image-registry--user" data-oriname="${i.productImgOriginName}" data-ext="${i.productImgType}" data-lastdate="${imgdate}">
+												<c:if test="${st.first}">
+													<div class="text-registry--representive">
+														대표이미지
+													</div>
+												</c:if>
+												<c:if test="${not st.first}">
+													<div></div>
+												</c:if>
+												<img src="<c:url value="/image/product/${i.productImgNo}.img"/>" alt="상품이미지">
+												<button type="button" class="btn-image--cancle"></button>
+											</li>
+										</c:forEach>
 									</ul>
 									<div class="image-introduce">
 										<b>* 상품 이미지는 640x640에 최적화 되어 있습니다.</b><br> - 이미지는 상품등록 시
@@ -90,12 +128,12 @@
 									<div class="products-title__div">
 										<div class="products-content--div">
 											<input type="text" placeholder="상품 제목을 입력해주세요."
-												class="products-title__input" id="productsTitleInput" name="productName">
+												class="products-title__input" id="productsTitleInput" name="productName" value="${productVO.productName}">
 											<button type="button"
 												class="products-title__cancel invisible"></button>
 										</div>
 										<div class="products-title__size">
-											<span id="products-title--size">0</span>/40
+											<span id="products-title--size">${fn:length(productVO.productName)}</span>/40
 										</div>
 									</div>
 								</div>
@@ -107,24 +145,87 @@
 								</div>
 								<div class="products-content--div">
 									<div class="products-category__div1">
+									<!-- 대  -->
 										<div class="products-category__div2">
 											<ul class="products-category-list" id="lgCategory">
-											<li class="products-category-nothing">대분류 선택</li>
+												<c:if test="${lgCate != null}">
+													<c:forEach var="lg" items="${lgCate}">
+														<li class="products-category-item">
+															<c:if test="${productCateVO.productCateLarge == lg.productCateLarge}">
+																<button class="products-category-btn--selected" data-cateno="${lg.productCateNo}">${lg.productCateLarge}
+																</button>
+															</c:if>
+															<c:if test="${productCateVO.productCateLarge != lg.productCateLarge}">
+																<button class="products-category-btn" data-cateno="${lg.productCateNo}">${lg.productCateLarge}
+																</button>
+															</c:if>
+														</li>
+													</c:forEach>
+												</c:if>
+												<c:if test="${lgCate.size() == 0}">
+													<li class="products-category-nothing">대분류 선택</li>
+												</c:if>
 											</ul>
 										</div>
+									<!-- 중  -->
 										<div class="products-category__div2">
 											<ul class="products-category-list" id="mdCategory">
-												<li class="products-category-nothing">중분류 선택</li>
+												<c:if test="${mdCate != null}">
+													<c:forEach var="md" items="${mdCate}">
+														<li class="products-category-item">
+															<c:if test="${productCateVO.productCateMedium == md.productCateMedium}">
+																<button class="products-category-btn--selected" data-cateno="${md.productCateNo}">${md.productCateMedium}
+																</button>
+															</c:if>
+															<c:if test="${productCateVO.productCateMedium != md.productCateMedium}">
+																<button class="products-category-btn" data-cateno="${md.productCateNo}">${md.productCateMedium}
+																</button>
+															</c:if>
+														</li>
+													</c:forEach>
+												</c:if>
+												<c:if test="${mdCate.size() == 0}">
+													<li class="products-category-nothing">중분류 선택</li>
+												</c:if>
 											</ul>
 										</div>
+									<!-- 소  -->
 										<div class="products-category__div2">
 											<ul class="products-category-list" id="smCategory">
-												<li class="products-category-nothing">소분류 선택</li>
+												<c:if test="${smCate != null}">
+													<c:forEach var="sm" items="${smCate}">
+														<li class="products-category-item">
+															<c:if test="${productCateVO.productCateSmall == sm.productCateSmall}">
+																<button class="products-category-btn--selected" data-cateno="${sm.productCateNo}">${sm.productCateSmall}
+																</button>
+															</c:if>
+															<c:if test="${productCateVO.productCateSmall != sm.productCateSmall}">
+																<button class="products-category-btn" data-cateno="${sm.productCateNo}">${sm.productCateSmall}
+																</button>
+															</c:if>
+														</li>
+													</c:forEach>
+												</c:if>
+												<c:if test="${smCate.size() == 0}">
+													<li class="products-category-nothing">소분류 선택</li>
+												</c:if>
 											</ul>
 										</div>
 									</div>
 									<h3 class="products-category__guide" id="selectedCategory">
-										선택한 카테고리 : <b></b>
+										선택한 카테고리 : <b>
+											<c:choose>
+												<c:when test="${productCateVO.productCateType == 'L'}">
+													${productCateVO.productCateLarge}
+												</c:when>
+												<c:when test="${productCateVO.productCateType == 'M'}">
+													${productCateVO.productCateLarge} > ${productCateVO.productCateMedium}
+												</c:when>
+												<c:otherwise>
+													${productCateVO.productCateLarge} > ${productCateVO.productCateMedium} > ${productCateVO.productCateSmall}
+												</c:otherwise>
+											</c:choose>
+										</b>
 									</h3>
 								</div>
 							</li>
@@ -141,7 +242,7 @@
 										<button type="button" class="">주소 검색</button>
 									</div>
 									<input readonly placeholder="선호 거래 지역을 검색해주세요."
-										class="products-location--input" value="" id="myLocationInput" name="productDealArea">
+										class="products-location--input" value="${productVO.productDealArea}" id="myLocationInput" name="productDealArea">
 								</div>
 							</li>
 							<!-- 상태 -->
@@ -151,11 +252,22 @@
 								</div>
 								<div class="products-content--div d-flex align-items-end mt-2">
 									<div class="products-status--div">
-										<label for="중고상품" class="products-status--label"> <input
-											id="중고상품" type="radio" value="N" name="productUsedSt">중고상품
-										</label> <label for="새상품" class="products-status--label"> <input
-											id="새상품" type="radio" value="Y" name="productUsedSt">새상품
-										</label>
+										<c:if test="${productVO.productUsedSt == 'Y'}">
+											<label for="중고상품" class="products-status--label"> 
+												<input id="중고상품" type="radio" value="N" name="productUsedSt" checked>중고상품
+											</label> 
+											<label for="새상품" class="products-status--label"> 
+												<input id="새상품" type="radio" value="Y" name="productUsedSt">새상품
+											</label> 
+										</c:if>
+										<c:if test="${productVO.productUsedSt == 'N'}">
+											<label for="중고상품" class="products-status--label"> 
+												<input id="중고상품" type="radio" value="N" name="productUsedSt">중고상품
+											</label> 
+											<label for="새상품" class="products-status--label"> 
+												<input id="새상품" type="radio" value="Y" name="productUsedSt"checked>새상품
+											</label> 
+										</c:if>
 									</div>
 								</div>
 							</li>
@@ -167,11 +279,20 @@
 								</div>
 								<div class="products-content--div d-flex align-items-end mt-2">
 									<div class="products-status--div">
-										<label for="교환불가" class="products-status--label"> <input
-											id="교환불가" type="radio" value="N" name="productExchSt">교환불가
-										</label> <label for="교환가능" class="products-status--label"> <input
-											id="교환가능" type="radio" value="Y" name="productExchSt">교환가능
-										</label>
+										<c:if test="${productVO.productExchSt == 'Y'}">
+											<label for="교환불가" class="products-status--label"> <input
+												id="교환불가" type="radio" value="N" name="productExchSt">교환불가
+											</label> <label for="교환가능" class="products-status--label"> <input
+												id="교환가능" type="radio" value="Y" name="productExchSt" checked>교환가능
+											</label>
+										</c:if>
+										<c:if test="${productVO.productExchSt == 'N'}">
+											<label for="교환불가" class="products-status--label"> <input
+												id="교환불가" type="radio" value="N" name="productExchSt" checked>교환불가
+											</label> <label for="교환가능" class="products-status--label"> <input
+												id="교환가능" type="radio" value="Y" name="productExchSt">교환가능
+											</label>
+										</c:if>
 									</div>
 								</div>
 							</li>
@@ -184,7 +305,7 @@
 								<div class="products-content--div">
 									<div class="products-price--div">
 										<input type="text" placeholder="숫자만 입력해주세요."
-											class="" id="priceInput" name="productPrice"> 원
+											class="" value="${productVO.productPrice}" id="priceInput" name="productPrice"> 원
 									</div>
 									<div id="price-validation-text" class="invisible">
 										<i class="fas fa-ban"></i>
@@ -210,8 +331,8 @@
 							<li class="products-main-item">
 								<div class="products-title--div">설명</div>
 								<div class="products-content--div">
-									<textarea placeholder="상품 설명을 입력해주세요." rows="6" id="contentInput" name="productInfo"></textarea>
-									<div class="products-content--size"><span id="explainSize">0</span>/2000</div>
+									<textarea placeholder="상품 설명을 입력해주세요." rows="6" id="contentInput" name="productInfo">${productVO.productInfo}</textarea>
+									<div class="products-content--size"><span id="explainSize">${fn:length(productVO.productInfo)}</span>/2000</div>
 								</div>
 							</li>
 							<!-- 연관 태그 -->
@@ -219,8 +340,23 @@
 								<div class="products-title--div">연관태그</div>
 								<div class="products-content--div">
 									<div class="products-tag--div">
-										<div class="products-tag--div2">
+										<c:if test="${fn:length(productVO.productTag) != 0}">
+											<div class="products-tag-hash--div">
+												<ul class="products-tag-hash--ul">
+													<c:forTokens var="tag" items="${productVO.productTag}" delims=",">
+														<li class="products-tag-hash--li">
+														<button class="products-tag-hash--btn-text">
+															#${tag}
+														</button>
+														<button class="products-tag-hash--btn-close">
+															<i class="fas fa-times"></i>
+														</button>
+													</c:forTokens>		
+												</ul>
+											</div>
+										</c:if>
 											<!-- TAG INPUT태그 -->
+										<div class="products-tag--div2">
 											<div class="products-tag--div3">
 												<input type="text" placeholder="연관태그를 입력해주세요. (최대 5개)"
 													value="" id="tagInput">
@@ -250,7 +386,7 @@
 								<div class="products-title--div">수량</div>
 								<div class="products-content--div">
 									<div class="products-count--div">
-										<input id= "quantityInput" type="text" class="products-count--input" name="productQty" placeholder="수량을 입력해주세요">개
+										<input id= "quantityInput" type="text" class="products-count--input" name="productQty" placeholder="수량을 입력해주세요" value="${productVO.productQty}">개
 									</div>
 								</div>
 							</li>
@@ -291,7 +427,7 @@
 					<div id="products-footer">
 						<div class="products-footer-div">
 							<!-- jquery로 서브밋 걸기 -->
-							<button id="productRegBtn" class="products-footer-btn">등록하기</button>
+							<button id="productRegBtn" class="products-footer-btn">수정하기</button>
 						</div>
 					</div>
 

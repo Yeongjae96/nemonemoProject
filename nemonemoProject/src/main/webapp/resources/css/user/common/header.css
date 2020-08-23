@@ -15,6 +15,10 @@ button {
 	outline: none;
 }
 
+#searchIconBtn {
+	outline: 0px;
+}
+
 a {
 	cursor: pointer;
 	text-decoration: none;
@@ -180,6 +184,7 @@ header {
 	position: sticky;
 	height: 146px;
 	padding-left: 0px!important;
+	padding-right: 0px!important;
 	align-items: center;
 }
 

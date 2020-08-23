@@ -1,4 +1,7 @@
 $(function() {
+	
+	initPdMenu();
+	
     $('#countComBox').click(function() {
         if($('#countList').css('display') == 'none') {
             $('#countList').css('display', 'flex');

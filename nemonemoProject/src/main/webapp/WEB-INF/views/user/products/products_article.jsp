@@ -17,7 +17,12 @@
 			<c:set var="zzimStatus" value="true"/>
 		</c:if>
 	</c:forEach>
+	<c:if test="${user.userNo == productVO.productSeller}">
+		<c:set var="myproduct" value="true"/>
+	</c:if>
 </c:if>
+
+
 
 <c:forEach var="entry" items="${vo.categoryMap}">
 	<c:set var="key" value="${entry.key}"/>
@@ -373,7 +378,13 @@
                                 </div>
                             </div>
                             <div class="detail-info__btn-list">
-                                <div class="detail-info__btn-zzim__div" >
+                            	<c:if test="${myproduct}">
+	                            	<a class="detail-myproduct" href="<c:url value="/products/manage.do"/>">
+			                            	내 상점 관리
+	                            	</a>
+                           		</c:if>
+                           		<c:if test="${not myproduct}">
+                           			<div class="detail-info__btn-zzim__div" >
                                 	<c:if test="${zzimStatus}"> 
                                 		<button class="detail-info__btn-zzim detail--active" id="zzimBtn">
                                 	</c:if>
@@ -381,7 +392,6 @@
 	                                    <button class="detail-info__btn-zzim" id="zzimBtn">
                                 	</c:if>
                                         <i class="fas fa-heart"></i>
-                                        <%-- 찜 기능 추가 시 수정해야 할 곳 2 --%>
                                         <span>찜</span>
                                         <span id="favoriteCnt">${fn:length(favoriteList)}</span>
                                     </button>
@@ -390,13 +400,15 @@
                                         <i class="fas fa-heart"></i>
                                         <span class="detail-zzim--msg" id="favoriteMsg">찜이 해제</span> 되었습니다.
                                     </div>
-                                </div>
-                                <button class="detail-call__btn" id="callBtn">
-                                    연락하기
-                                </button>
-                                <button class="detail-buy_btn" id="buyBtn">
-                                    바로구매
-                                </button>
+	                                </div>
+	                                <button class="detail-call__btn" id="callBtn">
+	                                   	 연락하기
+	                                </button>
+	                                <button class="detail-buy_btn" id="buyBtn">
+	                                   	 바로구매
+	                                </button>
+                           		</c:if>
+                                
                             </div>
 
                             <!-- 신고 모달-->

@@ -10,19 +10,41 @@ $(function() {
 	initTitleArea();
 	initCategoryArea();
 	initDealArea();
-	initRadioArea();
 	initRecentModal();
 	initPriceArea();
 	initExplainArea();
 	initTagArea();
 	initQuantityArea();
 	initRegBtn();
+	
 });
 
 /* 이미지 영역 */
 function initImageArea() {
 	$('#inputFile').on('change', readURL);
 	
+	/* 불러왔을때 이미 있는 이미지들에 대한 삭제 이벤트 영역 */
+	Array.from(document.getElementsByClassName('image-registry--user')).forEach(e => {
+		const image = e.firstElementChild.nextElementSibling;
+		e.lastElementChild.addEventListener('click', deleteImage);
+		$.ajax({
+			url: image.src,
+			method: 'get',
+			cache: false,
+			xhr:function(){// Seems like the only way to get access to the xhr object
+	            var xhr = new XMLHttpRequest();
+	            xhr.responseType= 'blob'
+	            return xhr;
+	        },
+			success: function(data) {
+				var file = new File([data], e.dataset.oriname+'.'+e.dataset.ext,{type:"image/" + e.dataset.ext, lastModified:new Date(Number(e.dataset.lastdate))})
+				fileBuffer.push(file);
+				console.log(fileBuffer);
+			}
+		});
+	});
+	
+
 	
 	/* 사진 미리 보기 함수 */
 	function readURL() {
@@ -81,6 +103,8 @@ function initImageArea() {
 			console.log(fileBuffer);
 		}
 	}
+	
+		
 
 	/* 사진 삭제 함수 */
 	function deleteImage() {
@@ -112,8 +136,8 @@ function initTitleArea() {
 /* 카테고리 영역 함수 */
 function initCategoryArea() {
 	
-	initPdMenu()
-	.then(categorySetting);
+	initPdMenu().then(categorySetting);
+	
 	/* 카테고리 셋팅 하기 */
 	function categorySetting(data) {
 		return new Promise(function(resolve, reject) {
@@ -126,6 +150,38 @@ function initCategoryArea() {
 			const $lgCate = $('#lgCategory');
 			const $mdCate = $('#mdCategory');
 			const $smCate = $('#smCategory');
+			
+			const $lgCateLi = $lgCate.children('li');
+			const $mdCateLi = $lgCate.children('md');
+			const $smCateLi = $lgCate.children('sm');
+
+			// 이전에 눌렀던 버튼들
+			let prevLgClass;
+			let prevMdClass;
+			let prevSmClass;
+			
+			$lgCateLi.each((i,e) => {
+				const $e = $(e).children('button');
+				if($e.hasClass('products-category-btn--selected')) {
+					prevLgClass = $e;
+				}
+				
+				$e.click(lgAction);
+			});
+			$mdCateLi.each((i,e) => {
+				const $e = $(e).children('button');
+				if($e.hasClass('products-category-btn--selected')) 
+					prevMdClass = $e;
+				
+				$e.click(mdAction);
+			});
+			$smCateLi.each((i,e) => {
+				const $e = $(e).children('button');
+				if($e.hasClass('products-category-btn--selected')) 
+					prevSmClass = $e;
+				
+				$e.click(smAction);
+			});
 			
 			// 공통함수를 쓰기 위한 속성값
 			const cateLgObj = {
@@ -153,15 +209,13 @@ function initCategoryArea() {
 			}
 			
 			// 라지 카테고리 실행
-			initCategoryList(cateLgObj);
+//			initCategoryList(cateLgObj);
 
-			// 이전에 눌렀던 버튼들
-			let prevLgClass;
-			let prevMdClass;
-			let prevSmClass;
+			
 			
 			// 대 분류 클릭 이벤트
 			function lgAction(event) {
+				
 				// 기본 셋팅
 				event.preventDefault();
 				const $this = $(this);
@@ -169,7 +223,8 @@ function initCategoryArea() {
 				lastClickCategoryNo = $this.data('cateno');
 				
 				// 클릭한 대분류값에 해당하는 중분류 값 뿌려주기
-				cateMdObj.arr = mdCateArr.filter(e => $this.text() == e.productCateLarge);
+				cateMdObj.arr = mdCateArr.filter(e => $this.text().trim() == e.productCateLarge);
+				console.log(cateMdObj.arr);
 				initCategoryList(cateMdObj);
 				
 				// 소분류 비우기
@@ -191,7 +246,8 @@ function initCategoryArea() {
 				
 				lastClickCategoryNo = $this.data('cateno');
 				
-				cateSmObj.arr = smCateArr.filter(e => $(this).text() == e.productCateMedium);
+				cateSmObj.arr = smCateArr.filter(e => $this.text().trim() == e.productCateMedium);
+				
 				initCategoryList(cateSmObj);
 				toggleSelect($this);
 				if(prevMdClass) toggleSelect(prevMdClass);
@@ -275,7 +331,6 @@ function initCategoryArea() {
 					listEmpty(cateObj.cateID,cateObj.nothingText);
 				}
 			}
-			
 			resolve(data);
 		});
 	}
@@ -349,10 +404,6 @@ function initRecentModal() {
 
 }
 
-function initRadioArea() {
-	$('input[type=radio][name=productUsedSt]').eq(0).prop('checked', true);
-	$('input[type=radio][name=productExchSt]').eq(0).prop('checked', true);
-}
 
 
 
@@ -406,6 +457,11 @@ function initTagArea() {
 	$('#tagInput').on('keydown', function(event) {if(event.keyCode == 13 || event.keyCode==32) event.preventDefault();});
 	const $inputDiv = $('#tagInput').closest('div.products-tag--div2');
 
+	
+	$('.products-tag-hash--btn-text').click(function(e) {e.preventDefault();});
+	$('.products-tag-hash--btn-text').dblclick(editTag);
+	$('.products-tag-hash--btn-close').click(deleteTag);
+	
 	/* 태그생성 */
 	function hashTagEvent(event) {
 		event.preventDefault();
@@ -466,7 +522,7 @@ function initTagArea() {
 	function editTag(e) {
 		e.preventDefault();
 		const $this = $(this);
-		const val = $this.text();
+		const val = $this.text().trim();
 		$this.closest('li').remove();
 		$('#tagInput').val(val.substring(1));
 		if($inputDiv.css('display') == 'none') {
@@ -542,7 +598,7 @@ function initRegBtn() {
 	
 	function regAction() {
 		$('#newForm').ajaxForm({
-			url: 'newJson.do',
+			url: 'edit.do',
 			type: 'post',
 			enctype: "multipart/form-data",
 			dataType: 'json',
@@ -587,11 +643,10 @@ function initRegBtn() {
 				}
 				data.push(tagObj);
 				
-				console.log('after data : ', data);
 			},
 			success: function(data) {
 				if(data) {
-					alert('상품이 등록되었습니다. ')
+					alert('상품이 수정되었습니다. ')
 					window.location.href="/" // 나중에 GetBoard로 가야함
 				} else {
 					alert('로그인이 필요한 기능입니다.')
@@ -616,4 +671,7 @@ function initRegBtn() {
 	}
 	
 }
+
+
+
 

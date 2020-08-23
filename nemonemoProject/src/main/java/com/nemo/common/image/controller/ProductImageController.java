@@ -8,6 +8,7 @@ import java.io.InputStream;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import com.nemo.common.util.FileUtil;
 import com.nemo.user.products.vo.UserBaseProductsImageVO;
 
 import lombok.extern.slf4j.Slf4j;
+import sun.nio.ch.IOUtil;
 
 @Controller
 @RequestMapping("/image/product")
@@ -42,6 +44,7 @@ public class ProductImageController {
 		InputStream in = null;
 		
 		HttpServletResponse res = ContextUtil.getResponse();
+		res.setCharacterEncoding("utf-8");
 		try {
 			res.setContentType("image/" + ext);
 			res.setHeader("Content-Disposition", "inline;filename=" + fileNm+"."+ext);

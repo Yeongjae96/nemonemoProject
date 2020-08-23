@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.products.repository.impl.UserProductsManageMapper">
+	
+	<resultMap id="manageMap" type="com.nemo.user.products.vo.UserProductsManageVO">
+		<result column="user_no" property="userNo"/>
+		<result column="product_no" property="productNo"/>
+		<result column="product_disp_st" property="productDispSt"/>
+		<result column="product_name" property="productName"/>
+		<result column="product_price" property="productPrice"/>
+		<result column="product_reg_dt" property="productRegDt"/>
+		<result column="product_edit_dt" property="productEditDt"/>
+		<result column="product_img_no" property="productImgNo"/>
+		<result column="favorite_cnt" property="favoriteCnt"/>
+		<result column="comment_cnt" property="commentCnt"/>
+	</resultMap>
+	
+	<select id="getAllUserProducts" parameterType="hashMap" resultMap="manageMap">
+		
+		<include refid="common.PaginationMapper.header"/>
+		SELECT 
+		    u.user_no,
+		    p.product_no,
+		    p.product_disp_st,
+		    p.product_name,
+		    p.product_price,
+		    p.product_reg_dt,
+		    p.product_edit_dt,
+		    i.product_img_no,
+		    nvl(f.favorite_cnt, 0) as favorite_cnt,
+		    nvl(c.comment_cnt, 0) as comment_cnt
+		FROM
+		    USER_TB u
+		INNER JOIN
+		    PRODUCT_TB p
+		ON u.user_no = p.product_seller
+		LEFT JOIN
+		    (SELECT product_no, min(product_img_no) as product_img_no FROM PRODUCT_IMG_TB GROUP BY product_no) i   
+		ON i.product_no = p.product_no
+		LEFT JOIN
+		    (SELECT product_no, count(1) as favorite_cnt FROM FAVORITE_TB f WHERE favorite_del_fl = 'N' GROUP BY product_no ) f
+		ON (p.product_no = f.product_no)
+		LEFT JOIN 
+		    (SELECT product_no, count(1) as comment_cnt FROM product_comment_tb GROUP BY product_no) c
+		ON (p.product_no = c.product_no)
+		WHERE u.user_no = #{userNo}
+		
+		<include refid="common.PaginationMapper.footer"/>
+	</select>
+
+</mapper>

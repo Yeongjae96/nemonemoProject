@@ -259,6 +259,8 @@ function initSearchEvent() {
 		const input = document.createElement('input');
 		const frag = document.createDocumentFragment();
 		
+		if(!searchInput.value.trim().length) return false;
+		
 		form.action = contextPath + 'search/products.do';
 		form.method = 'get';
 
