@@ -5,6 +5,7 @@ import com.nemo.user.store.vo.StoreImageVO;
 public interface IStoreImageMapper {
 	
 	public int insertStoreImage(StoreImageVO vo);
-	public StoreImageVO selectStoreImage(int storeImgNo);
+	public int updateStoreImage(StoreImageVO vo);
+	public StoreImageVO selectImage(int storeImgNo);
 	
 }

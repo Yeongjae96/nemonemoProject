@@ -28,6 +28,7 @@ public class PathBean {
 	public void setBanner(String banner) {
 		PathBean.banner = banner;
 	}
+	@Value("${dir.store}")
 	public void setStore(String store) {
 		PathBean.store = store;
 	}
