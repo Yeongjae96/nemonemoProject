@@ -83,7 +83,7 @@
 			<a class="my-menu-box" href="<c:url value="/products/new.do"/>">
 				<img src="<c:url value="/resources/images/user/common/sell2.png"/>"
 				alt="판매하기아이콘" id="sell-icon">&nbsp;&nbsp;판매하기
-			</a> <a href="#"> <img
+			</a> <a href="${pageContext.request.contextPath}/shop/${user.storeNo }/products.do"> <img
 				src="<c:url value="/resources/images/user/common/my_store.png"/>"
 				alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점
 			</a>
@@ -120,26 +120,3 @@
 
 </div>
 
-<!-- 모달 시작-->
-<div id="myModal" class="modal">
-
-	<!-- 모달 내용 -->
-	<form method="post" action="sign/logout.do">
-		<div class="modal-content">
-			<div class="logout_h2">
-				<h2>로그아웃</h2>
-				<p>로그아웃 시 6개월 이상 경과된 번개톡 대화 내용이 모두 삭제됩니다. 계속하시겠습니까?</p>
-			</div>
-			<div class=logout_button_group>
-				<div>
-					<button id="model-cancel" class="cancel_logout">취소</button>
-				</div>
-				<div>
-					<button class="confirm_logout" type="submit">확인</button>
-				</div>
-			</div>
-		</div>
-	</form>
-
-</div>
-<!--End Modal-->

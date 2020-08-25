@@ -97,6 +97,6 @@ public class TermsController {
 	
 	@PostMapping("/send")
 	public void sendEmail() {
-		
+
 	}
 }

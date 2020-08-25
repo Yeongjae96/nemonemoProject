@@ -155,7 +155,7 @@
 										<button type="button" class="">주소 검색</button>
 									</div>
 									<input readonly placeholder="선호 거래 지역을 검색해주세요."
-										class="products-location--input" value="양천구" id="myLocationInput" name="productDealArea">
+										class="products-location--input" value="인천" id="myLocationInput" name="productDealArea">
 								</div>
 							</li>
 							<!-- 상태 -->

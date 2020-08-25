@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int updateUser(UserBaseVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return userDAO.updateUser(vo);
 	}
 
 	@Override
