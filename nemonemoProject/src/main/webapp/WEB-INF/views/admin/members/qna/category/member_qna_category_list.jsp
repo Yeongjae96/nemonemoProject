@@ -95,7 +95,6 @@
 									<thead>
 										<tr>
 											<th>번호</th>
-									<!-- 		<th>대분류</th> -->
 											<th>카테고리 이름</th>
 											<th>사용여부</th>
 											<th>관리버튼</th>
@@ -105,15 +104,16 @@
 										<c:forEach var="qnaCategory" items="${qnaCategoryList}">
 											<tr>
 												<td>${qnaCategory.qnaCategoryNo}</td>
-												<%-- <td>${qnaCategory.qnaCategoryParent}</td> --%>
 												<td>${qnaCategory.qnaCategoryName}</td>
 												<td><c:if test="${qnaCategory.qnaCategoryUseFl eq 'Y'}">
 														<span style="color: blue;"
 															data-qnano="${qnaCategory.qnaCategoryNo}">사용함</span>
-													</c:if> <c:if test="${qnaCategory.qnaCategoryUseFl ne 'Y'}">
+													</c:if> 
+													<c:if test="${qnaCategory.qnaCategoryUseFl ne 'Y'}">
 														<span style="color: #EE5058; font-weight: bold;"
 															data-qnano="${qnaCategory.qnaCategoryNo}">사용안함</span>
-													</c:if></td>
+													</c:if>
+												</td>
 												<td class="text-center">
 													<button type="button" data-toggle="modal"
 														data-target="#qna_category_update"

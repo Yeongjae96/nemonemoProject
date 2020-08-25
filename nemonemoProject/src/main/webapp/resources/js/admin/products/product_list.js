@@ -1,26 +1,8 @@
 
 
+const table = $('#prod-list');
 
-// const table = $('#mem-list');
 
-
-// /* 회원 삭제 구현 */
-// $(function () {
-//     $('#mem-list tbody').on('click', '.mem-del-btn', function(){
-//         const selected = this;
-//         $('#smallModal').modal("toggle");
-//         if($('#del-confirm').click(function(){
-//             $(selected).closest('tr').remove();
-//         }));
-//     });
-// });
-
-// /* 회원 수정 페이지로 */
-// $(function () {
-//     $('#mem-list tbody').on('click', '.mem-upd-btn', function(){
-//         location.href="member_edit.html";
-//     });
-    
 table.dataTable({
         responsive: true,
         language: {
@@ -48,4 +30,18 @@ table.dataTable({
 
     });
 
-
+$('#result > tr > td > span').click(function() {
+	$.ajax({
+		url: 'flagJson.mdo',
+		method:'post',
+		data: {
+			productNo: $(this).data('prodno'),
+			productDispSt: $(this).text() == "게시중" ? "P" : "S"
+		}
+	}).done(function(data) {
+		alert('게시 여부를 변경합니다.');
+		window.location.reload(true);
+	}).fail(function(error) {
+		alert('게시 여부 설정에 실패하였습니다.')
+	});
+});

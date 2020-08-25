@@ -56,8 +56,6 @@ public class CustomerQnaController {
 	@PostMapping("/newQuestionJson")
 	public @ResponseBody int newAction(UserNewQnaVO vo) {
 		logger.info("{}", vo);
-		//vo.setQnaRegYmd(new Date(System.currentTimeMillis()));
-		System.out.println("아이유야!!!!!!!!!!" + vo.toString());
 		return insertQnaService.insertQna(vo);
 	}
 	
