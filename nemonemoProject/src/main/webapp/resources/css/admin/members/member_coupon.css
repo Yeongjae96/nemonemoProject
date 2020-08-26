@@ -1,0 +1,19 @@
+h1{
+    margin-bottom : 0px;
+}
+h4{
+    margin-right : 50px;
+}
+
+th{
+    font-size : 12px;
+}
+
+.add-coupon-title{
+    display : flex;
+}
+
+#add-cou-btn{
+    margin-bottom : 10px;
+    
+}

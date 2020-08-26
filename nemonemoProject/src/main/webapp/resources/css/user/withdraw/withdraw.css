@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+
+
+.footerwrap{
+    align-content: center;
+    margin-right: 250px;
+}
+
+.loginwrap{
+    align-content: center;
+    margin-left: 130px;
+    width: 730px;
+}

@@ -1,0 +1,38 @@
+@charset "UTF-8";
+.privacy-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    max-width: 1160px;
+}
+
+.privacy-container > h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.privacy-section {
+    line-height: 1.625rem;
+    display: block;
+}
+
+.privacy-section > table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-word;
+    border: 1px solid #1e1d29;
+}
+
+.privacy-section > table > th, td {
+    padding: 0 0.5rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #1e1d29;
+}
+   
+
+
+

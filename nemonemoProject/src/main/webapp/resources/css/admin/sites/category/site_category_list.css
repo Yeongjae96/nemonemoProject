@@ -1,0 +1,85 @@
+@charset "EUC-KR";
+
+.category-table tr th,
+.category-table tr td{
+    text-align: center;
+}
+
+.category-table tr td {
+    padding-right: 14px;
+}
+
+
+.category-table--center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.category-flex {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.category-flex:first-child {
+    margin-right: 5px;
+}
+
+.modal-flex--center {
+    display: flex;
+    flex: 1 1 0%;
+    justify-content: center;
+}
+
+.modal-flex--column {
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.modal-flex--center > button {
+    color: white;
+}
+
+#category-modal-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.modal-flex--column > * {
+    border-bottom: 1px solid #AAAAAA;
+    margin-top: 15px;
+}
+
+.modal-flex--column:first-child {
+    margin-top: 0;
+}
+
+.modal-flex--column > :last-child {
+    border-bottom: 0;
+}
+
+.modal-flex--body {
+    display:flex;
+    flex-flow: column wrap;
+    flex: 1 1 0%;
+    justify-content: center;
+}
+
+.modal-row--title {
+    display:flex;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.modal-row--content {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 1 0%;
+}
+
+.input-group-addon {
+    background-color: transparent;
+}

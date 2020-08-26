@@ -1,0 +1,275 @@
+                                        /********** nav 시작 **********/
+.top-nav{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 40px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    background: rgb(255, 255, 255);
+    padding-top : 0px;
+    padding-bottom : 0px;
+    
+
+}
+
+.top-nav button:focus {
+	outline: 0;
+}
+
+.top-nav button:hover {
+	color:#EE5058;
+}
+
+.top-menus{
+    width: 1024px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.nav-box{
+    display: flex;
+    flex-shrink: 0;
+}
+
+.btn-layout{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 13px;
+    color: rgb(102, 102, 102);
+    position: relative;
+    line-height: 1.4;
+    padding: 0px 15px;
+}
+
+
+/* 알림 시작 */
+
+.com-outline{
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: rgb(102, 102, 102);
+    position: relative;
+    line-height: 1.4;
+    padding: 0px 15px;
+    height : 40px;
+}
+
+.alert-content-box{
+    position: absolute;
+    width: 400px;
+    max-height: 450px;
+    overflow-y: auto;
+    top: 100%;
+    left: calc(50% - 200px);
+    visibility: hidden;
+    z-index: 3000;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+    background: rgb(249, 249, 249);
+}
+.alert-content{
+    display: block;
+}
+.alert-content > span{
+    display: inline-block;
+    color: rgb(136, 136, 136);
+    font-size: 11px;
+    margin-left: 5px;
+}
+
+.alert-anchor{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(33, 33, 33);
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-bottom: 1px solid rgb(250, 250, 250);
+}
+
+
+.alert-position{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.com-outline::after{
+    content: "";
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAAAXNSR0IArs4c6QAAAGxJREFUKBWt0s0NgDAIBWDbztS747CFdQvGcQBmAoOJiT+0ovUl3B7f6QUAKMw8DT8kxjgnIlpyzkFExh5TMUQsSZFedMfU2sAe9IidwC/oFbuBb1ALM0EPWsOqYAttYU3QQp8w/XFFx6/nKa8iD1fC7ZiLwQAAAABJRU5ErkJggg==);
+    background-size: 10px 5px;
+    position: absolute;
+    top: 18px;
+    right: 0px;
+    width: 10px;
+    height: 5px;
+    cursor: default;
+}
+
+.alert-font{
+    display: block;
+    font-size: 13px;
+    color: rgb(102, 102, 102);
+}
+
+
+/* 알림 끝 */
+
+/* 내상점, 고객센터 포지션*/
+.dropdown-position{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+/* 내상점 */
+.mystore{
+    display: block;
+    font-size: 13px;
+    color: rgb(102, 102, 102);
+}
+
+.mystore-box{
+    position: absolute;
+    width: 88px;
+    top: 100%;
+    left: calc(50% - 44px);
+    visibility: hidden;
+    z-index: 3000;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+    padding: 15px 15px;
+    background: rgb(255, 255, 255);
+}
+
+.mystore-menu{
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    color: rgb(136, 136, 136);
+}
+
+.mystore-menu:last-child {
+    margin-bottom: 0px;
+}
+
+/* 고객센터 시작*/
+
+.cs{
+    display: block;
+    font-size: 13px;
+    color: rgb(102, 102, 102);
+}
+
+.cs-box{
+    position: absolute;
+    width: 110px;
+    top: 100%;
+    left: calc(50% - 44px);
+    visibility: hidden;
+    z-index: 3000;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+    padding: 15px 15px;
+    background: rgb(255, 255, 255);
+}
+
+.cs-menu{
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    color: rgb(136, 136, 136);
+}
+
+.cs-menu:last-child {
+    margin-bottom: 0px;
+}
+
+
+/** 모달 시작 **/ /** 모달 시작 **/ /** 모달 시작 **/ /** 모달 시작 **/ /** 모달 시작 **/
+/** 모달 시작 **/ /** 모달 시작 **/ /** 모달 시작 **/
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1500; /* 최상위 */
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 296px;
+	height: 223.2px;
+}
+
+/* Modal Font */
+/* 로그아웃 */
+h2 {
+	font-size: 18px;
+	font-family: "Noto Sans KR";
+	margin-bottom: 1rem;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1.4;
+}
+/* 로그아웃 하시겠습니까? 텍스트 */
+p {
+	white-space: pre-wrap;
+	word-break: keep-all;
+	text-align: center;
+	font-size: 15px;
+	margin-bottom: 1.5rem;
+	line-height: 1.4;
+	font-size: 15px;
+	font-family: "Noto Sans KR";
+}
+/* 취소 버튼 */
+.cancel_logout {
+	width: 120px;
+	height: 48px;
+	font-size: 16px;
+	background-color: #F4F4FA;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/* 확인 버튼 */
+.confirm_logout {
+	width: 120px;
+	height: 48px;
+	margin-left: 8px;
+	font-size: 16px;
+	background-color: #FF5058;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+/* 로그아웃 팝업 버튼 그룹 align */
+.logout_button_group {
+	display: flex;
+	flex-direction: row;
+}
+

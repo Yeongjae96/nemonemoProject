@@ -1,0 +1,9 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean"); /* 구글 Noto 폰트 라이브러리 */
+@import url("../../../vendor/bootstrap/css/bootstrap.min.css");
+@import url("https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"); /* slick 라이브러리(슬라이더 배너) */
+@import url("https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"); /* slick 라이브러리 테마 */
+@import url("top-menu.css");
+@import url("header.css"); /* header */
+@import url("side-nav.css"); /* side-nav */
+@import url("footer.css"); /* footer */

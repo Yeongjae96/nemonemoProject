@@ -1,0 +1,12 @@
+td{
+    display:table-cell; 
+    vertical-align:middle;
+}
+
+
+
+#qna-cate-btn{
+	float:right;
+	margin-right: 5px;
+	margin-bottom:30px;
+}

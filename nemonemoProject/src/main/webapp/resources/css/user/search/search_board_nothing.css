@@ -1,0 +1,114 @@
+.search__area {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-top: 30px;
+    font-family: "Noto Sans KR";
+}
+
+.search__div {
+    width: 1024px;
+}
+
+.search-title__area {
+    margin: 50px 0px 24px;
+}
+
+.search-title__div {
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.search-title__left {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 16px;
+}
+.search--empha {
+    color:rgb(247,0,0);
+}
+.search--count{
+    color: rgb(136, 136, 136);
+    margin-left: 5px;
+}
+
+.search-sort__right {
+    font-size: 13px;
+    display: flex;
+}
+
+.search-sort__item--active {
+    margin-right: 20px;
+    position: relative;
+    display: block;
+    color: rgb(247, 47, 51);
+}
+
+.search-sort__item::after,
+.search-sort__item--active::after{
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: -10px;
+    width: 1px;
+    height: 12px;
+    border-right: 1px solid rgb(204, 204, 204);
+}
+
+.search-sort__item {
+    margin-right: 20px;
+    position: relative;
+    display: block;
+}
+
+.search-sort__item--active:last-child,
+.search-sort__item:last-child {
+    margin-right: 0px;
+}
+
+search-sort__item--active:last-child::after,
+.search-sort__item:last-child::after {
+    border-right: 0;
+}
+
+.search-body__area {
+    margin-bottom: 40px;
+    display: flex;
+}
+
+.search-body__div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 4rem 0px 8rem;
+}
+
+.search-body--title {
+    width: 500px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-bottom: 35px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.search-body--content {
+    text-align: center;
+    padding-top: 40px;
+    line-height: 1.9;
+}
+
+.search-body--keyword {
+    font-size: 24px;
+    color: rgb(255, 80, 88);
+    margin-bottom: 20px;
+}
