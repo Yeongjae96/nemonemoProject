@@ -21,7 +21,7 @@ public class UserBaseQnaVO {
 	
 	private int qnaNo;
 	private int qnaCategoryNo;
-	private int qnaRegId;
+	private int userNo;
 	private String qnaReplyId;
 	private String qnaUserContent;
 	private String qnaAdminContent;

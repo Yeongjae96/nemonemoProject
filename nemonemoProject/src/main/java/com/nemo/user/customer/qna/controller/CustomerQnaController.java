@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -50,11 +51,11 @@ public class CustomerQnaController {
 		mav.addObject("qnaCategoryList", customerQnaCategoryService.getQnaCategoryList(vo));
 		return mav;
 	}
-		
+	
 	
 	/* 사용자가 QNA 등록 */
 	@PostMapping("/newQuestionJson")
-	public @ResponseBody int newAction(UserNewQnaVO vo) {
+	public @ResponseBody int newAction(UserNewQnaVO vo, @RequestParam(value="qnaRegId") int userNo) {
 		logger.info("{}", vo);
 		return insertQnaService.insertQna(vo);
 	}

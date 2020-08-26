@@ -65,7 +65,7 @@
             <ul class="qna_list">
        			<c:forEach var="qna" items="${qnaList}">
                 <article class="qna_article">
-                  	<input type ="hidden" value ="${qna.qnaRegId}">
+                  	<input type ="hidden" value ="${qna.userNo}">
                   	<input type ="hidden" value ="${qna.qnaNo}">
                   		<!-- 글 여는 버튼  -->
                     <button class="qna_open_btn">

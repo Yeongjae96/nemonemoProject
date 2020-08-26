@@ -106,7 +106,7 @@
 								<c:forEach var="terms" items="${termsList}">
 									<tr>
 										<td>${terms.termsNo}</td>
-										<td>
+										<td style ="cursor : pointer">
 											<a class="terms-upd-btn" data-termsno="${terms.termsNo}">
 											<b>
 											<c:choose>
@@ -120,7 +120,6 @@
 											        위치기반서비스 이용약관
 											    </c:otherwise>
 											</c:choose>
-											
 											</b>
 											</a>
 										</td>

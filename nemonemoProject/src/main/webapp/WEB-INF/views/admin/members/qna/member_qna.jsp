@@ -86,7 +86,7 @@
 									<thead>
 										<tr>
 											<th>번호</th>
-											<th>아이디</th>
+											<th>상점</th>
 											<th>분류</th>
 											<th>작성날짜</th>
 											<th>답변날짜</th>
@@ -99,7 +99,7 @@
 										<c:forEach var="qna" items="${qnaList}">
 										<tr>
 											<td class="col-md-1">${qna.qnaNo}</td>
-											<td class="col-md-2">${qna.qnaRegId}</td>
+											<td class="col-md-2">${qna.qnaStoreName}</td>
 											<td>${qna.qnaCategoryName}</td>
 											<td>${qna.qnaRegYmd}
 												<jsp:useBean id="now" class="java.util.Date" />

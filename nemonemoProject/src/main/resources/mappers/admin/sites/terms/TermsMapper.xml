@@ -48,7 +48,7 @@
 			#{adminRegId}, 
 			#{termsRequiredFl},
 			#{termsDeleteFl},
-			#{termsContent},
+			#{termsContent, jdbcType=CLOB},
 			#{termsRegYmd}
 		) 
 		<selectKey keyProperty="termsNo" keyColumn="TERMS_NO" resultType="Integer" order="AFTER">
@@ -76,7 +76,7 @@
 		UPDATE terms_tb
 		SET 
 			<!-- admin_edit_id = #{adminEditId}, -->
-			terms_content= #{termsContent},
+			terms_content= #{termsContent, jdbcType=CLOB},
 			terms_edit_ymd = #{termsEditYmd}
 		WHERE
 			terms_no = #{termsNo}

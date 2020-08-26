@@ -14,16 +14,8 @@
 
 <body>
   <div class="location-container">
-    <h2>위치기반서비스 이용약관</h2>
     <section class="location-section">
-      <h3>안내문</h3>
-      네모내모는 회원님의 권익을 보호하고 회원님들의 위치정보 보호에 만전을 기하고자 관계법령의 규정을 반영하여
-      2011년 7월 1일부터 위치기반서비스 이용약관을 적용하고 있습니다.
-      <br>
-      
-      ${termVO.termContent }
-      
-      
+      ${termVO.termContent}
     </section>
   </div>
 

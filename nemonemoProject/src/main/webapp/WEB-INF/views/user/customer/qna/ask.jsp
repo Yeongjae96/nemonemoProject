@@ -84,6 +84,7 @@
 								<button class="qna-btn-submit" id="qnaSubmit">상담신청</button>							
 							</div>
 						</div>
+						<input type="hidden" value="${user.userNo}" name="qnaRegId" />
 					</form>
 				</main>
 			</div>

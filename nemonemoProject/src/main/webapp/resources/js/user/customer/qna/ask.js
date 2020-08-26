@@ -1,4 +1,3 @@
-const fileBuffer = []; // 파일 저장용 전역변수
 
 $(function () {
 	$('.customer-nav-not-selected').eq(3).attr('class', 'customer-nav-selected');        
@@ -11,7 +10,10 @@ $(function(){
 });
 
 
+
 /* 이미지 영역 */
+const fileBuffer = []; // 파일 저장용 전역변수
+
 function initImageArea(){
 	$('#inputFile').on('change', readURL); // 다른 파일을 올렸을 때 자동으로 실행이 됨
 	

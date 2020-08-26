@@ -91,16 +91,21 @@
                                         	<c:forEach var ="prod" items="${productList}">
                                             <tr>
                                                 <td>${prod.productNo}</td>
-                                                <td>${prod.productSeller}</td>
+                                                <td>${prod.storeName}</td>
                                                 <td id ="cate">
-                                                <c:if test = "${prod.productCateLarge ne NULL}">
-                                                	${prod.productCateLarge} >  
-                                                </c:if>
-                                                <c:if test = "${prod.productCateMedium ne NULL and 
+                                                	${prod.productCateLarge}
+                                                <c:if test ="${prod.productCateLarge eq NULL}">
+                                                	${prod.productCateMedium}
+                                                </c:if>	
+                                                <c:if test = "${prod.productCateLarge ne NULL and 
                                                 				prod.productCateSmall ne NULL}">
-                                                	${prod.productCateMedium} > 
+                                                	<i class="fas fa-chevron-right"></i> ${prod.productCateMedium}
                                                 </c:if>
-                                                	${prod.productCateSmall}</td>
+                                                <c:if test = "${prod.productCateMedium ne NULL and
+                                                				prod.productCateSmall ne NULL}">
+                                                	<i class="fas fa-chevron-right"></i> ${prod.productCateSmall}
+                                                </c:if>
+                                                	</td>
                                                 <td>${prod.productName}</td>
                                                 <td>${prod.productRegDt}</td>
                                                 <td align ="center">

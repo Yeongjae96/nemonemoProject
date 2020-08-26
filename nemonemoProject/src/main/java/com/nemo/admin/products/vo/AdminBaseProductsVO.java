@@ -20,6 +20,7 @@ public class AdminBaseProductsVO {
 	private int productNo;
 	private int productSeller;
 	private	int productCateNo;
+	private String storeName;
 	private String productName;
 	private String productDealArea;
 	private String productUsedSt;

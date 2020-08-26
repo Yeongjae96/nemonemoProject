@@ -7,6 +7,7 @@
 		<result column="product_seller" property="productSeller"/>
 		<result column="product_cate_no" property="productCateNo"/>
 		<result column="product_name" property="productName"/>
+		<result column="store_name" property="storeName"/>
 		<result column="product_deal_area" property="productDealArea"/>
 		<result column="product_used_st" property="productUsedSt"/>
 		<result column="product_disp_st" property="productDispSt"/>
@@ -28,14 +29,17 @@
 
 	<select id="getProductList" parameterType="String" resultMap="adminProductMap">
 		
-		SELECT 
+	SELECT 
 			prod.*,
 			cate.product_cate_small,
 			cate.product_cate_medium,
-			cate.product_cate_large
-		FROM product_tb prod
-		inner join (product_cate_tb cate)
-		on (prod.product_cate_no = cate.product_cate_no)
+			cate.product_cate_large,
+            mem.store_name
+	FROM product_tb prod
+			inner join (product_cate_tb cate)
+			on (prod.product_cate_no = cate.product_cate_no)
+        	inner join (user_tb mem)
+       		on (prod.product_seller = mem.user_no)
 	</select>
 	
 
