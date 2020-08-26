@@ -8,7 +8,7 @@ $(function() {
 		$(this).children('span').toggleClass('faq-rotate-180');
 	});
 		
-	$('.notice-nav-not-selected').eq(2).attr('class', 'notice-nav-selected');
+	$('.customer-nav-not-selected').eq(2).attr('class', 'customer-nav-selected');
 	
 	
 	const lastUrl = location.href.substr(location.href.lastIndexOf("/") + 1);

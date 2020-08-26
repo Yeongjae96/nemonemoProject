@@ -28,6 +28,41 @@ public class SignController {
 	@Autowired
 	private UserService userService;
 	
+<<<<<<< HEAD
+=======
+	@GetMapping("/signin")
+	public ModelAndView signinPage() {
+		ModelAndView mav = new ModelAndView("sign/signin");
+		return mav;
+	}
+
+	@PostMapping("/signin")
+	public ModelAndView signinAction(UserBaseVO vo, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println(vo.toString());
+		// 인코딩
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		// 세션
+		HttpSession session = req.getSession();
+		// 로그인
+		UserBaseVO user = userService.loginUser(vo);
+		// 암호화된 비밀번호 매칭
+		boolean pwdMatch = encoder.matches(vo.getUserPw(), user.getUserPw());
+		// 조건문
+		// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
+		System.out.println("로그인 세션값" + user.toString());
+		System.out.println(user.getUserEmail());
+		if (user != null && pwdMatch == true) {
+			session.setAttribute("user", user);
+			mav.setViewName("redirect:/");
+			return mav;
+		} else {
+			session.setAttribute("user", null);
+			mav.setViewName("redirect:/");
+			return mav;
+		}
+	}
+>>>>>>> top_menu
 	
 	@GetMapping("/signup")
 	public ModelAndView signupPage() {

@@ -16,9 +16,8 @@
 
 <body cz-shortcut-listen="true">
   <div class="privacy-container">
-    <h2>개인정보처리방침</h2>
     <section class="privacy-section">
-      ${termVO.termContent }
+      ${termVO.termContent}
     </section>
   </div>
 

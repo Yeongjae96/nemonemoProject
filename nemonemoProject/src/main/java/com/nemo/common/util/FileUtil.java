@@ -70,7 +70,6 @@ public class FileUtil {
         			.append(".")
         			.append(orgFileExtension).toString();
     	}
-    	
     }
   
     // originalName에서 확장자를 제외한 이름만 가져오기

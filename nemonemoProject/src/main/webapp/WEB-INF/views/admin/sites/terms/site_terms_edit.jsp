@@ -45,9 +45,6 @@
 		<jsp:include page="/WEB-INF/views/admin/include/side-nav.jsp"/>		
 	</header>
 	
-	
-	
-	
 
 	<% 
 		/* 각 페이지의 SECTION */

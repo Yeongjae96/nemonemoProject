@@ -74,7 +74,7 @@
 			<a class="my-menu-box" href="<c:url value="/products/new.do"/>">
 				<img src="<c:url value="/resources/images/user/common/sell2.png"/>"
 				alt="판매하기아이콘" id="sell-icon">&nbsp;&nbsp;판매하기
-			</a> <a href="#"> <img
+			</a> <a href="${pageContext.request.contextPath}/shop/${user.storeNo }/products.do"> <img
 				src="<c:url value="/resources/images/user/common/my_store.png"/>"
 				alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점
 			</a>

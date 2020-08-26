@@ -18,13 +18,12 @@
 	
 	<select id="getTermsList" parameterType="com.nemo.admin.sites.terms.vo.TermsVO"
 	resultMap="termsMap">
-		SELECT *
-		FROM terms_tb
-		<!-- <if test='terms_delete_fl == "N"'>
-      	WHERE 
-        	TEMRS_DELETE_FL = 'N'
-      	</if> -->
-		ORDER BY TERMS_NO
+		SELECT 
+			*
+		FROM 
+			terms_tb
+		ORDER BY 
+			TERMS_DELETE_FL DESC
 	</select>
 	
 	<select id="getTerms" parameterType="int"
@@ -49,7 +48,7 @@
 			#{adminRegId}, 
 			#{termsRequiredFl},
 			#{termsDeleteFl},
-			#{termsContent},
+			#{termsContent, jdbcType=CLOB},
 			#{termsRegYmd}
 		) 
 		<selectKey keyProperty="termsNo" keyColumn="TERMS_NO" resultType="Integer" order="AFTER">
@@ -77,7 +76,7 @@
 		UPDATE terms_tb
 		SET 
 			<!-- admin_edit_id = #{adminEditId}, -->
-			terms_content= #{termsContent},
+			terms_content= #{termsContent, jdbcType=CLOB},
 			terms_edit_ymd = #{termsEditYmd}
 		WHERE
 			terms_no = #{termsNo}

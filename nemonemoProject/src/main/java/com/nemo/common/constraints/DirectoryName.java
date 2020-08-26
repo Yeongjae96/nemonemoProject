@@ -8,7 +8,7 @@ public enum DirectoryName {
 		USER("/upload/user/"),
 		STORE("/upload/store/"),
 		ADMIN("/upload/admin/"),
-		QNA("/upload/qna/"),
+		QNA(PathBean.qna),
 		PRODUCT(PathBean.product),
 		BANNER("/upload/banner/");
 

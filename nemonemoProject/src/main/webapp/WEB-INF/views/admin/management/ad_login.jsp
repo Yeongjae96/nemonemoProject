@@ -67,15 +67,9 @@
 							</div>
 						</div>
 						<button class="btn btn-block btn-lg bg-pink waves-effect" type="submit" id="ad_login_submit">로그인</button>
-
-						<div class="row m-t-15 m-b--20">
-							<div class="col-xs-6">
-								<a href="signup.mdo">회원가입</a>
-							</div>
-							<div class="col-xs-6 align-right">
-								<a href="forgotpw.mdo">비밀번호찾기</a>
-							</div>
-						</div>
+						<div class="m-t-25 m-b--5 align-center">
+                        <a href="signup.mdo">관리자 가입</a>
+                   		 </div>
 					<c:if test="${msg == false}">
 						<p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>
 					</c:if>
