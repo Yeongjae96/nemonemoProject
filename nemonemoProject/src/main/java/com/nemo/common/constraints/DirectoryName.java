@@ -1,4 +1,4 @@
-package com.nemo.common.constrants;
+package com.nemo.common.constraints;
 
 import lombok.Getter;
 

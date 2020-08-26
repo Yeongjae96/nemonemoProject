@@ -41,6 +41,9 @@ public class UserProductsManageServiceImpl implements UserProductsManageService{
 		manageMapperParamMap.put("startNo", startNo);
 		manageMapperParamMap.put("endNo", endNo);
 		manageMapperParamMap.put("userNo", user.getUserNo());
+		manageMapperParamMap.put("status", manageParamMap.get("status"));
+		manageMapperParamMap.put("q", manageParamMap.get("q"));
+		System.err.println(manageMapperParamMap);
 		
 		List<UserProductsManageVO> productsManageVOList = userProductsManageMapper.getAllUserProducts(manageMapperParamMap);
 		

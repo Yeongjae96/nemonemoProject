@@ -643,6 +643,7 @@ function initRegBtn() {
 				}
 				data.push(tagObj);
 				
+				
 			},
 			success: function(data) {
 				if(data) {
@@ -657,11 +658,18 @@ function initRegBtn() {
 				alert('error : ', error)
 			}
 		});
-//		$('#newForm').submit();
+		
+		function getProductNo() {
+			const url = window.location.href;
+			const resultUrl = url.substring(url.lastIndexOf('/'), url.lastIndexOf('.'));
+			return resultUrl;
+		}
+		
+		console.log(getProductNo());
 	}
 	
 	function checkBeforeInsert() {
-		if(!fileBuffer.length) { alert('사진을 등록해주세요'); $('#inputFile').focus(); return true;}
+		if(!fileBuffer.length) { alert('사진을 등록해주세요'); $('#inputFile').focus(); console.log(fileBuffer); return true;}
 		if(checkNull('productsTitleInput', '제목')) return true;
 		if(!lastClickCategoryNo) { alert('카테고리를 선택해주세요'); $('#lgCategory').focus(); return true; }
 		if(checkNull('myLocationInput', '거래지역')) return true;

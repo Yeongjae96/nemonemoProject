@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.nemo.common.constrants.DirectoryName;
+import com.nemo.common.constraints.DirectoryName;
 import com.nemo.common.util.ContextUtil;
 import com.nemo.common.util.FileUtil;
 import com.nemo.user.products.repository.impl.ProductsImageMapper;
@@ -36,7 +36,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class InsertProductsServiceImpl implements InsertProductsService {
-
 
 	@Autowired
 	private ProductsMapper productsDAO;

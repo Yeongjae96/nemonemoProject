@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <c:set var="productList" value="${vo.productsManageVOList}"/>
 <c:set var="pageVO" value="${vo.pageVO}" scope="request"/>
@@ -73,7 +75,9 @@
                     <div class="products-manage__cbox-div2">
                         <div class="products-manage__cbox-div3" id="countComBox">
                             <div class="products-manage__cbox-div4" >
-                                <div class="products-manage__cbox--item">10개씩</div>
+								<c:set var="pageSize" value="${empty param.pageSize ? '10' : param.pageSize}"/>
+	                                <div class="products-manage__cbox--item">${pageSize}개씩</div>
+                            	
                                 <input id="react-select-3-input" readonly="" tabindex="0" aria-autocomplete="list"
                                     class="products-manage__cbox--input" value="">
                             </div>
@@ -81,10 +85,14 @@
                                 <i class="fas fa-chevron-down"></i>
                             </div>
                             <div class="products-manage__count--list" id="countList">
-                                <div class="products-manage__count--item">10개씩</div>
-                                <div class="products-manage__count--item">20개씩</div>
-                                <div class="products-manage__count--item">50개씩</div>
-                                <div class="products-manage__count--item">100개씩</div>
+                            	<c:forEach var="cnt" items="${cntList}">
+                            		<c:if test="${cnt eq pageSize}">
+		                               <div class="products-manage__count--item item--selected">${cnt}개씩</div>
+                            		</c:if>
+                            		<c:if test="${cnt ne pageSize}">
+		                                <div class="products-manage__count--item">${cnt}개씩</div>
+                            		</c:if>
+                            	</c:forEach>
                             </div>
 
                         </div>
@@ -94,18 +102,25 @@
                     <div class="products-manage__cbox-div2">
                         <div class="products-manage__cbox-div3" id="statusComBox">
                             <div class="products-manage__cbox-div4" >
-                                <div class="products-manage__cbox--item">전체</div>
+                                <div class="products-manage__cbox--item">
+                           		<c:set var="status" value="${empty param.status ? 'all' : param.status}"/>
+                               			${allStList[status]}
+                                </div>
                                 <input id="" readonly="" tabindex="0" aria-autocomplete="list"
                                     class="products-manage__cbox--input" value="">
                             </div>
                             <div class="products-manage__cbox--icon" id="statusArrow">
                                 <i class="fas fa-chevron-down"></i>
                             </div>
-                            <div class="products-manage__count--list" id="statusList">
-                                <div class="products-manage__count--item">전체</div>
-                                <div class="products-manage__count--item">판매중</div>
-                                <div class="products-manage__count--item">예약중</div>
-                                <div class="products-manage__count--item">판매완료</div>
+                            <div class="products-manage__st--list" id="statusList">
+                            	<c:forEach var="allSt" items="${allStList}">
+                            		<c:if test="${status == allSt.key}">
+		                                <div class="products-manage__st--item item--selected">${allSt.value}</div>
+                            		</c:if>
+                            		<c:if test="${status != allSt.key}">
+		                                <div class="products-manage__st--item">${allSt.value}</div>
+                            		</c:if>
+                            	</c:forEach>
                             </div>
                         </div>
                     </div>
@@ -131,22 +146,38 @@
 		                            <a href="<c:url value="/products/${p.productNo}.do"/>">
 		                            <img src="<c:url value="/image/product/${p.productImgNo}.img"/>" alt="상품이미지"></a></td>
 		                        <td>
-		                            <div class="products-manage__cbox-div2">
+		                            <div class="products-manage__cbox-div2 product-combo-box" id="productComBox">
 		                                <div class="products-manage__cbox-div3">
 		                                    <div class="products-manage__cbox-div4">
-		                                        <div class="products-manage__cbox--item">예약 중</div>
+		                                        <div class="products-manage__cbox--item" data-st="${p.productDispSt}" id="currSt">
+													<c:choose>
+														<c:when test="${p.productDispSt == 'S'}">
+															판매중
+														</c:when>
+														<c:when test="${p.productDispSt == 'R'}">
+															예약중
+														</c:when>
+														<c:when test="${p.productDispSt == 'F'}">
+															판매완료
+														</c:when>
+													</c:choose>
+												</div>
 		                                        <input id="" readonly tabindex="0" aria-autocomplete="list" class="products-manage__cbox--input" value="">
 		                                    </div>
-		                                    <div class="products-manage__cbox--icon">
+		                                    <div class="products-manage__cbox--icon" id="productStArrow">
 		                                        <i class="fas fa-chevron-down"></i>
 		                                    </div>
 		                                </div>
-		                                <div class="pd-status-list">
-		                                	<div class="pd-status-item">판매 중</div>
-		                                	<div class="pd-status-item">예약 중</div>
-		                                	<div class="pd-status-item">삭제</div>
-		                                	<div class="pd-status-item">판매완료</div>
-		                                </div>
+		                                <div class="pd-status-list" id="productStList">
+		                                	<c:forEach var="entity" items="${productStList }">
+		                                		<c:if test="${entity.key == p.productDispSt}">
+			                                		<div class="pd-status-item item--selected" data-st="${entity.key}">${entity.value}</div>
+		                                		</c:if>
+		                                		<c:if test="${entity.key != p.productDispSt}">
+			                                		<div class="pd-status-item" data-st="${entity.key}">${entity.value}</div>
+		                                		</c:if>
+		                                	</c:forEach>
+-->		                                </div>
 		                            </div>
 		                        </td>
 		                        <td><a href="<c:url value="/products/${p.productNo}.do"/>">${p.productName}</a></td>
@@ -164,7 +195,7 @@
                     </c:if>
                 </tbody>
             </table>
-                <c:if test="${productList == null}"> 
+                <c:if test="${empty productList}"> 
                    <div class="product--nothing">
                    		<i class="fas fa-file-alt"></i>
                    		등록된 상품이 없습니다

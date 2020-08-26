@@ -1,4 +1,4 @@
-package com.nemo.common.constrants;
+package com.nemo.common.constraints;
 
 public enum BrowserName {
 	Chrome,

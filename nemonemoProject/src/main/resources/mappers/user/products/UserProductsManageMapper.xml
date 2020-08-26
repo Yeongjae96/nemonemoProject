@@ -35,7 +35,7 @@
 		    PRODUCT_TB p
 		ON u.user_no = p.product_seller
 		LEFT JOIN
-		    (SELECT product_no, min(product_img_no) as product_img_no FROM PRODUCT_IMG_TB GROUP BY product_no) i   
+		    (SELECT product_no, min(product_img_no) as product_img_no FROM PRODUCT_IMG_TB WHERE product_img_del_fl = 'N' GROUP BY product_no) i   
 		ON i.product_no = p.product_no
 		LEFT JOIN
 		    (SELECT product_no, count(1) as favorite_cnt FROM FAVORITE_TB f WHERE favorite_del_fl = 'N' GROUP BY product_no ) f
@@ -43,7 +43,23 @@
 		LEFT JOIN 
 		    (SELECT product_no, count(1) as comment_cnt FROM product_comment_tb GROUP BY product_no) c
 		ON (p.product_no = c.product_no)
-		WHERE u.user_no = #{userNo}
+		<where>
+			u.user_no = #{userNo}
+			<choose>
+				<when test='status == "selling"'>
+					AND p.product_disp_st = 'S'
+				</when>
+				<when test='status == "soldout"'>
+					AND p.product_disp_st = 'F'
+				</when>
+				<when test='status == "reserved"'>
+					AND p.product_disp_st = 'R'
+				</when>
+				<when test='q != "" and q != null'>
+					AND product_name = #{q}
+				</when>
+			</choose>
+		</where> 
 		
 		<include refid="common.PaginationMapper.footer"/>
 	</select>

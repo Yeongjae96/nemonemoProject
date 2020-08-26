@@ -96,19 +96,21 @@
 											<input type="file" multiple="multiple" id="inputFile" name="">
 										</li>
 										<c:forEach var="i" items="${productImgList}" varStatus="st">
-											<fmt:parseNumber var="imgdate" value="${i.productImgDt.time}"/>
-											<li draggable="false" class="image-registry--user" data-oriname="${i.productImgOriginName}" data-ext="${i.productImgType}" data-lastdate="${imgdate}">
-												<c:if test="${st.first}">
-													<div class="text-registry--representive">
-														대표이미지
-													</div>
-												</c:if>
-												<c:if test="${not st.first}">
-													<div></div>
-												</c:if>
-												<img src="<c:url value="/image/product/${i.productImgNo}.img"/>" alt="상품이미지">
-												<button type="button" class="btn-image--cancle"></button>
-											</li>
+											<c:if test="${i.productImgNo != 0}">
+												<fmt:parseNumber var="imgdate" value="${i.productImgDt.time}"/>
+												<li draggable="false" class="image-registry--user" data-oriname="${i.productImgOriginName}" data-ext="${i.productImgType}" data-lastdate="${imgdate}">
+													<c:if test="${st.first}">
+														<div class="text-registry--representive">
+															대표이미지
+														</div>
+													</c:if>
+													<c:if test="${not st.first}">
+														<div></div>
+													</c:if>
+													<img src="<c:url value="/image/product/${i.productImgNo}.img"/>" alt="상품이미지">
+													<button type="button" class="btn-image--cancle"></button>
+												</li>
+											</c:if>
 										</c:forEach>
 									</ul>
 									<div class="image-introduce">

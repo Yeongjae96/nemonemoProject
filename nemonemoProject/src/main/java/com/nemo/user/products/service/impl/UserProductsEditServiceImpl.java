@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.nemo.common.constrants.DirectoryName;
+import com.nemo.common.constraints.DirectoryName;
 import com.nemo.common.util.ContextUtil;
 import com.nemo.common.util.FileUtil;
 import com.nemo.user.products.repository.impl.ProductsImageMapper;
@@ -45,7 +45,7 @@ public class UserProductsEditServiceImpl implements UserProductsEditService{
 		
 		UserProductsEditVO vo = userProductsEditMapper.getProductEditVO(productNo);
 		
-		if(vo.getProductVO().getProductSeller() != user.getUserNo()) return null; 
+		if(vo.getProductVO() != null && vo.getProductVO().getProductSeller() != user.getUserNo()) return null; 
 		
 		UserBaseProductsCategoryVO selectedCate = vo.getProductCateVO();
 		
@@ -85,14 +85,20 @@ public class UserProductsEditServiceImpl implements UserProductsEditService{
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public int editProduct(UserNewProductsVO vo) {
+	
+		System.err.println(vo);
+
+		// 상품 정보 수정
+		int result = userProductsEditMapper.editProduct(vo);
+		
+		
 		
 		// 기존의 파일들 DB상에서 제거 처리
-		productImageMapper.deleteProductImages(vo.getProductCateNo());
+		productImageMapper.deleteProductImages(vo.getProductNo());
 		
 		// 첨부파일이 수정되었는지에 대한 체크
 		List<MultipartFile> images = vo.getProductImages();
 		
-		int imageResult = 0;
 		List<UserBaseProductsImageVO> voList = new ArrayList<>();
 		InputStream inputStream = null;
 		
@@ -127,7 +133,7 @@ public class UserProductsEditServiceImpl implements UserProductsEditService{
 				
 				file.transferTo(dirFileName);
 			}
-			imageResult = productImageMapper.insertImage(voList);
+			productImageMapper.insertImage(voList);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -135,6 +141,6 @@ public class UserProductsEditServiceImpl implements UserProductsEditService{
 			if(inputStream != null) try { inputStream.close(); } catch(Exception e) {}
 		}
 		
-		return imageResult;
+		return result;
 	}
 }

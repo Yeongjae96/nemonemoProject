@@ -3,8 +3,8 @@ package com.nemo.common.util;
 import java.io.File;
 import java.net.URLEncoder;
 
-import com.nemo.common.constrants.BrowserName;
-import com.nemo.common.constrants.DirectoryName;
+import com.nemo.common.constraints.BrowserName;
+import com.nemo.common.constraints.DirectoryName;
 
 public class FileUtil {
 	// 디렉토리 확인, 존재하지 않을 경우 생성

@@ -6,12 +6,11 @@
 <c:if test="${not empty param}">
 	<c:forEach var="i" items="${param}" varStatus="st">
 		<c:if test="${i.key != 'pageNo'}">
-			<c:if test="${prevParam == null}">
-				<c:out value="12378123978123879"/>
-				<c:set var="prevParam" value="?${i.key}=${i.value}&"/>
-			</c:if>
-			<c:if test="${not (st.first)}">
+			<c:if test="${prevParam != null and not (st.first)}">
 				<c:set var="prevParam" value="${prevParam}${i.key}=${i.value}&"/>
+			</c:if>
+			<c:if test="${prevParam == null}">
+				<c:set var="prevParam" value="?${i.key}=${i.value}&"/>
 			</c:if>
 		</c:if>
 	</c:forEach>

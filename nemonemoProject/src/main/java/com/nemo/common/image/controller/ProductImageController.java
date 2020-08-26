@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.nemo.common.constrants.DirectoryName;
+import com.nemo.common.constraints.DirectoryName;
 import com.nemo.common.image.service.ProductFileService;
 import com.nemo.common.util.ContextUtil;
 import com.nemo.common.util.FileUtil;
@@ -36,6 +36,8 @@ public class ProductImageController {
 	public @ResponseBody void productImg(@PathVariable int productImgNo) {
 		
 		UserBaseProductsImageVO vo = productFileService.getFile(productImgNo);
+		
+		if(vo == null) return;
 		
 		String fileNm = vo.getProductImgFileName();
 		String ext = vo.getProductImgType();

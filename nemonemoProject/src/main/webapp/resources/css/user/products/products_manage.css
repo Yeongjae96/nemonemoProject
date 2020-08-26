@@ -63,6 +63,12 @@ a.product-nav-link:hover {
         align-items: center;
         position: relative;
     }
+    
+    .item--selected {
+    	font-weight: bold;
+    	color: #EE5058;
+    	background-color: #EEEEEE;
+    }
 
     .products-manage__form input {
         height: 100%;
@@ -127,7 +133,8 @@ a.product-nav-link:hover {
     overflow: hidden;
     }
 
-    .products-manage__count--list {
+    .products-manage__count--list,
+    .products-manage__st--list {
         display: none;
         position: absolute;
         top: 55px;
@@ -142,16 +149,15 @@ a.product-nav-link:hover {
         box-shadow: -2px 3px 5px 0.75px #AAAAAA,2px 3px 5px 0.75px #AAAAAA;
     }
 
-    .products-manage__count--item {
+    .products-manage__count--item,
+    .products-manage__st--item{
         padding: 10px 0px;
         padding-left: 10px;
     }
-    .products-manage__count--item:hover {
+    .products-manage__count--item:hover,
+    .products-manage__st--item:hover {
         color: #FF5058;
-        
-    }
-    .products-manage__count--list :hover {
-        background-color: #EEEEEE;
+        background-color:#EEEEEE;
     }
     
 
@@ -248,6 +254,7 @@ a.product-nav-link:hover {
 
     .products-manage__main table tr > td:first-child img {
         width: 100%;
+        height: 152px;
     }
 
     .products-manage__main table tr > :nth-child(2) {
@@ -300,6 +307,7 @@ a.product-nav-link:hover {
     border-color: rgb(195, 194, 204);
     border-image: initial;
     background-color: transparent;
+     font-size: 16px;
     }
 
     .products-manage__modify-link {
@@ -316,6 +324,7 @@ a.product-nav-link:hover {
     border-style: solid;
     border-color: rgb(195, 194, 204);
     border-image: initial;
+    font-size: 16px;
     }
 
     .products-manage__div a:hover {
@@ -425,13 +434,19 @@ a.product-nav-link:hover {
         font-family: "Noto Sans KR";
         justify-content: center;
         box-shadow: -2px 3px 5px 0.75px #AAAAAA,2px 3px 5px 0.75px #AAAAAA;
-	}
+        z-index: 100;
+	}	
 	
 	.pd-status-item {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
         padding: 10px 0px;
         padding-left: 10px;
+        cursor: pointer;
     }
     .pd-status-item:hover {
+        background-color: #EEEEEE;
         color: #FF5058;
     }
 

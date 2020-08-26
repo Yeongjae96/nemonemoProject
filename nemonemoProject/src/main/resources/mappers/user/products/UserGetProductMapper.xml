@@ -31,7 +31,8 @@
 		c.product_img_type
 	FROM product_tb a
 	INNER JOIN product_img_tb c
-	ON (a.product_no = c.product_no AND a.product_no = #{productNo})
+	ON (a.product_no = c.product_no AND c.product_img_del_fl = 'N')
+	WHERE a.product_no = #{productNo}
 </select>
 
 <select id="selectCommentsList" parameterType="int" resultMap="commentMap">

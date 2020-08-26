@@ -11,7 +11,7 @@
 <c:set var="selectedCate" value="${vo.selectedProduct.productCateVO}"/>
 <c:set var="favoriteList" value="${vo.favoriteList}"/>
 
-<c:if test="${user != null}">
+<c:if test="${user != null}">	
 	<c:forEach var="fa" items="${favoriteList}">
 		<c:if test="${user.userNo == fa.favoriteSender}">
 			<c:set var="zzimStatus" value="true"/>

@@ -61,7 +61,7 @@ public class UserProductsRestController {
 	@PostMapping("/{productNo}/edit")
 	@ResponseBody
 	public int updateProduct(UserNewProductsVO vo) {
-		return 0;
+		return userProductsEditService.editProduct(vo);
 	}
 	
 	

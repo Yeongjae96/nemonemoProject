@@ -75,7 +75,7 @@
 		
 		UPDATE product_img_tb
 		SET product_img_del_fl = 'Y'
-		WHERE product_no = #{productNo}
+		WHERE product_no = #{productNo} AND product_img_del_fl = 'N'
 	
 	</update>
 	
