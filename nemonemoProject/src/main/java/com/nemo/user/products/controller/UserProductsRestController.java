@@ -19,6 +19,7 @@ import com.nemo.user.products.vo.UserBaseProductsCategoryVO;
 import com.nemo.user.products.vo.UserBaseProductsFavoriteVO;
 import com.nemo.user.products.vo.UserGetProductVO;
 import com.nemo.user.products.vo.UserNewProductsVO;
+import com.nemo.user.products.vo.UserProductsEditDispVO;
 
 @RestController
 @RequestMapping("/products")
@@ -62,6 +63,12 @@ public class UserProductsRestController {
 	@ResponseBody
 	public int updateProduct(UserNewProductsVO vo) {
 		return userProductsEditService.editProduct(vo);
+	}
+	
+	@PostMapping("/{productNo}/disp")
+	@ResponseBody
+	public int updateProductDisp(UserProductsEditDispVO vo) {
+		return userProductsEditService.editProductDisp(vo);
 	}
 	
 	

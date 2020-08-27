@@ -13,7 +13,7 @@
 			<!-- 검색 입력 -->
 			<div class="search-input">
 				<input type="text" placeholder="상품명, 지역명, @상점명 입력"
-					class="search-input__input" id="searchInput" value="${param.q}"> <button 
+					class="search-input__input" id="searchInput" value=""> <button 
 					id="searchIconBtn"> <i class="fas fa-search fa-2x search-icon"></i>
 				</button>
 			</div>

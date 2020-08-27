@@ -37,6 +37,7 @@
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
 <!-- 해당 페이지 JS파일 -->
+<script src="<c:url value="/resources/js/user/products/menubar.js"/>"></script>
 <script src="<c:url value="/resources/js/user/products/products_manage.js"/>"></script>
 
 
@@ -46,7 +47,7 @@
 
 	<% 
 		/* 공통 Header */
-	%>
+	%>	
 	<jsp:include page="/WEB-INF/views/user/include/top-menu.jsp" />
 	<% 
 		/* 공통 Header */
@@ -65,9 +66,9 @@
     <div class="products-manage__div">
         <main class="products-manage__main">
             <header class="products-manage__header">
-                <form class="products-manage__form">
-                    <input type="text" placeholder="상품명을 입력해주세요." value="">
-                    <button type="submit" class="products-manage__search-Btn">
+                <form class="products-manage__form" action="manage.do" method="GET" name="titleSearchForm">
+                    <input type="text" placeholder="상품명을 입력해주세요." name="q" value="${param.q}" id="titleSearchInput" autocomplete="off">
+                    <button type="submit" class="products-manage__search-Btn" id="titleSearchBtn">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
@@ -168,7 +169,7 @@
 		                                        <i class="fas fa-chevron-down"></i>
 		                                    </div>
 		                                </div>
-		                                <div class="pd-status-list" id="productStList">
+		                                <div class="pd-status-list" id="productStList" data-no="${p.productNo}">
 		                                	<c:forEach var="entity" items="${productStList }">
 		                                		<c:if test="${entity.key == p.productDispSt}">
 			                                		<div class="pd-status-item item--selected" data-st="${entity.key}">${entity.value}</div>
@@ -177,7 +178,7 @@
 			                                		<div class="pd-status-item" data-st="${entity.key}">${entity.value}</div>
 		                                		</c:if>
 		                                	</c:forEach>
--->		                                </div>
+		                                </div>
 		                            </div>
 		                        </td>
 		                        <td><a href="<c:url value="/products/${p.productNo}.do"/>">${p.productName}</a></td>

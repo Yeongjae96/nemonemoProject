@@ -201,7 +201,6 @@ button, input {
 }
 
 #main-logo-area {
-	margin-right: 100px;
     width: 136px;
     display: flex;
     -webkit-box-align: center;

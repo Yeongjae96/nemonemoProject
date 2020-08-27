@@ -33,7 +33,9 @@
 		    USER_TB u
 		INNER JOIN
 		    PRODUCT_TB p
-		ON u.user_no = p.product_seller
+		<![CDATA[ 
+			ON u.user_no = p.product_seller AND p.product_disp_st <> 'D' 
+		]]>
 		LEFT JOIN
 		    (SELECT product_no, min(product_img_no) as product_img_no FROM PRODUCT_IMG_TB WHERE product_img_del_fl = 'N' GROUP BY product_no) i   
 		ON i.product_no = p.product_no
@@ -56,7 +58,7 @@
 					AND p.product_disp_st = 'R'
 				</when>
 				<when test='q != "" and q != null'>
-					AND product_name = #{q}
+					AND product_name LIKE '%' || #{q} || '%'
 				</when>
 			</choose>
 		</where> 

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.nemo.common.constrants.DirectoryName;
+import com.nemo.common.constraints.DirectoryName;
 import com.nemo.common.util.FileUtil;
 import com.nemo.user.customer.qna.repository.impl.CustomerQnaMapper;
 import com.nemo.user.customer.qna.repository.impl.QnaImageMapper;
@@ -64,7 +64,7 @@ public class InsertQnaServiceImpl implements InsertQnaService{
 				String orgFileName = FileUtil.getOrgFileName(file.getOriginalFilename());
 				String extension = FileUtil.getExtension(file.getOriginalFilename());
 				String realFileName = FileUtil.getSaveFileNm(orgFileName);
-				String dirRealFileName = FileUtil.getSaveFileDirNm(DirectoryName.QNA, orgFileName, extension);
+				String dirRealFileName = FileUtil.getSaveFileDirNm(DirectoryName.QNA, orgFileName, extension, true);
 				// 사진 크기
 				BufferedImage image = ImageIO.read(file.getInputStream());
 				Integer width = image.getWidth();

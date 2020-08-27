@@ -76,4 +76,12 @@
 	
 	</update>
 	
+	<update id="editProductDisp" parameterType="com.nemo.user.products.vo.UserProductsEditDispVO">
+		
+		UPDATE product_tb
+		SET product_disp_st = #{productDispSt}
+		WHERE product_no = #{productNo}
+	
+	</update>
+	
 </mapper>

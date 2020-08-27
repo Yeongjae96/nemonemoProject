@@ -7,7 +7,17 @@ function initSortMenu() {
 	
 	const sortList = Array.from(document.getElementsByClassName('search-sort__item'));
 	
-	
+	const searchInput = document.getElementById('searchInput');
+	const url = window.location.search.substring(1);
+	let targetValue ='';
+	url.split('&').forEach(e => {
+		const splitValue = e.split('=');
+		if(splitValue[0] == 'q') {
+			targetValue = decodeURI(splitValue[1]);
+			return false;
+		}
+	});
+	searchInput.value = targetValue;
 	
 	displaySortMenu();
 	

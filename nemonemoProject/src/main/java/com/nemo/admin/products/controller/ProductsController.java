@@ -1,12 +1,9 @@
 package com.nemo.admin.products.controller;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> top_menu
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,13 +19,9 @@ import com.nemo.admin.products.vo.AdminProductResponseVO;
 @RequestMapping("/products")
 public class ProductsController {
 	
-<<<<<<< HEAD
-	
-=======
 	@Autowired AdminProductsService productsService;
 	
 	/* 상품 리스트 */
->>>>>>> top_menu
 	@GetMapping("/list")
 	public ModelAndView listPage(@RequestParam(required = false, defaultValue = "S") String disp) {
 		ModelAndView mav = new ModelAndView("products/product_list");

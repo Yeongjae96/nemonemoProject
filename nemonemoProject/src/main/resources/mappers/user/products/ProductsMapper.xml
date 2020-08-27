@@ -69,10 +69,12 @@
 		FROM 
 			product_tb 
 		<where>
-			product_cate_no 
+			<![CDATA[product_disp_st <> 'D']]>
+			AND product_cate_no 
 			<foreach collection="cateSeqList" open="IN (" close=")" item="i" separator=",">
 				#{i}
 			</foreach>
+			
 		</where>
 	<include refid="common.PaginationMapper.footer"/>
 	</select> 

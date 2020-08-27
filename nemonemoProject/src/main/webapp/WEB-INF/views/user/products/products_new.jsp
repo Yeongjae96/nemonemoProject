@@ -31,6 +31,7 @@
 <!-- 해당 페이지 JS파일 -->
 
 <script> this.contextPath = "<c:url value="/"/>"</script>
+<script src="<c:url value="/resources/js/user/products/menubar.js"/>"></script>
 <script src="<c:url value="/resources/js/user/products/products_new.js"/>"></script>
 
 </head>

@@ -24,6 +24,7 @@ import com.nemo.user.products.service.UserProductsEditService;
 import com.nemo.user.products.vo.UserBaseProductsCategoryVO;
 import com.nemo.user.products.vo.UserBaseProductsImageVO;
 import com.nemo.user.products.vo.UserNewProductsVO;
+import com.nemo.user.products.vo.UserProductsEditDispVO;
 import com.nemo.user.products.vo.UserProductsEditVO;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
 
@@ -91,8 +92,6 @@ public class UserProductsEditServiceImpl implements UserProductsEditService{
 		// 상품 정보 수정
 		int result = userProductsEditMapper.editProduct(vo);
 		
-		
-		
 		// 기존의 파일들 DB상에서 제거 처리
 		productImageMapper.deleteProductImages(vo.getProductNo());
 		
@@ -143,4 +142,11 @@ public class UserProductsEditServiceImpl implements UserProductsEditService{
 		
 		return result;
 	}
+	
+	
+	@Override
+	public int editProductDisp(UserProductsEditDispVO vo) {
+		return userProductsEditMapper.editProductDisp(vo);
+	}
+	
 }
