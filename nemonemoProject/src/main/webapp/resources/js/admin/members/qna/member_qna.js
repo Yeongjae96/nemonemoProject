@@ -29,17 +29,27 @@ $(function () {
     });
         
 
+    $('#qna-cate-btn').click(function() {window.location.href="category/list.mdo"});
+ 
+
 });
 
 
 
-$(function () {
-    $('#qna-table tbody').on('click', '.to_reply', function(){
-    	alert("눌렸다!");
+/* 테이블 row 값 해당 페이지로 가져가기  */
+$('.to_reply').click(function() {
+	const qnaNo = $(this).data("qnano");
+	window.location.href="reply.mdo?qnaNo="+qnaNo;
+	
 
-        location.href="/nemonemoProject/members/qna/reply.mdo";
-    });
 });
+
+
+$('.to_review_reply').click(function() {
+	const qnaNo = $(this).data("qnano");
+	window.location.href="reply/review.mdo?qnaNo="+qnaNo;
+});
+
 
 
 

@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nemo.common.paging.PageVO;
+import com.nemo.common.paging.Pagination;
 import com.nemo.user.categories.service.CategoryService;
 import com.nemo.user.categories.vo.PdImgArticleVO;
 import com.nemo.user.categories.vo.UserCategoryBoardVO;
@@ -32,7 +34,7 @@ public class CategoryServiceImpl implements CategoryService {
 	private UserProductsCategoryMapper categoryMapper;
 	
 	@Override
-	public UserCategoryBoardVO getCategoryProducts(int productCateNo) {
+	public UserCategoryBoardVO getCategoryProducts(int productCateNo, PageVO pageVO) {
 		
 		// 0. 리턴값
 		UserCategoryBoardVO resultVO = new UserCategoryBoardVO();
@@ -58,7 +60,6 @@ public class CategoryServiceImpl implements CategoryService {
 		  List<UserBaseProductsCategoryVO> medium = new ArrayList<>();
 		  List<UserBaseProductsCategoryVO> small = new ArrayList<>();
 		  
-		  log.debug("{}", seqCate);
 		  for(UserBaseProductsCategoryVO vo : list ) {
 			  if(vo.getProductCateType().equals("L")) { 
 				  large.add(vo); 
@@ -77,12 +78,21 @@ public class CategoryServiceImpl implements CategoryService {
 		resultVO.setCategoryMap(categoryMap);
 		
 		List<Integer> cateSeqList = categoryMapper.selectChildrenCateNums(map); // 2. 시퀀스와 타입으로 해당 하위 시퀀스리스트 검색
-		
 		if(cateSeqList.size() == 0) return resultVO;
-		List<UserBaseProductsVO> productList = productMapper.selectCategoryProducts(cateSeqList); // 
+		
+		/* 페이징 처리를 위한 개수  */
+		Pagination paging = new Pagination(pageVO);
+		Map<String, Object> selectCatePdParamMap = new HashMap<>();
+		
+		selectCatePdParamMap.put("cateSeqList", cateSeqList);
+		selectCatePdParamMap.put("startNo", paging.getStartPageNo());
+		selectCatePdParamMap.put("endNo", paging.getEndPageNo());
+		
+		List<UserBaseProductsVO> productList = productMapper.selectCategoryProducts(selectCatePdParamMap); // 
 		if(productList.size() == 0) return resultVO;
 		
-		resultVO.setProductList(productList);
+		PageVO page = paging.getCalcPageVO(productList.size());
+		resultVO.setPageVO(page);
 		
 		// 3. 상품 이미지 리스트
 		List<UserBaseProductsImageVO> pdImgArticle = imageMapper.selectPresentiveImg(productList);
@@ -92,9 +102,7 @@ public class CategoryServiceImpl implements CategoryService {
 		List<PdImgArticleVO> pdImgArticleList = new ArrayList<>();
 		
 		for(UserBaseProductsImageVO i : pdImgArticle) {
-			System.out.println(i);
 			for(UserBaseProductsVO p : productList) {
-				System.out.println(p);
 				if(i.getProductNo() == p.getProductNo()) {
 					PdImgArticleVO pdImgArticleVO = new PdImgArticleVO();
 					pdImgArticleVO.setProductVO(p);
@@ -105,16 +113,6 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		
 		resultVO.setPdImgArticleList(pdImgArticleList);
-		
-		log.info("========================");
-//		log.info("productCateNo : {} ", productCateNo);
-//		log.info("productCategoryType : {} ", productCategoryType);
-//		log.info("cateSeqList : {} ", cateSeqList);
-//		log.info("productList : {} ", productList);
-//		log.info("UserCategoryProductVO : ", resultVO);
-		log.info("productImgList : ", pdImgArticle.toString());
-		log.info("productImgList : ", pdImgArticleList.toString());
-		log.info("========================");
 		
 		return resultVO;
 	}

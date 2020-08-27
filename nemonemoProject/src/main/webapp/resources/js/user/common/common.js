@@ -23,7 +23,7 @@ function initTopMenu() {
      });
 
      /* top-nav 내상점 메뉴링크 보여줌 */
-     $('.mystore').mouseenter(function() {
+     $('.mystore').mouseover(function() {
         $(".mystore-box").css("visibility", "visible");
         
      });
@@ -32,11 +32,11 @@ function initTopMenu() {
       });
 
     /* top-nav 고객센터 메뉴링크 보여줌 */
-     $('.cs').mouseenter(function() {
-        $(".cs-box").css("visibility", "visible");
+     $('.cs').mouseover(function() {
+        $('.cs-box').css("visibility", "visible");
      });
      $('.cs-box').mouseleave(function() {
-         $(".cs-box").css("visibility", "hidden");
+         $('.cs-box').css("visibility", "hidden");
       });
 
       /* 사이드 네비게이션 상품 자세히보기 */
@@ -63,7 +63,27 @@ function initTopMenu() {
       function close_pop() {
       	$('#myModal').hide();
       };
+      
+      $('#logoutBtn').click(function() {
+    		$('#myModal').show()
+    	});
+      
+      $('#loginBtn').click(function() {$('#myModal').show()});
+      
+ 
+      /* 즐겨찾기 알림 */
+      $('.addFavorite').on('click', function(e){ 
+    	  const url = document.location.href;
+    	  const title = document.title; 
+    	  
+    	   // Chrome, FireFox, Opera
+    	   if(window.chrome || window.sidebar){
+    		   alert((navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Cmd' : 'Ctrl') 
+    				  + '+D 키를 눌러 즐겨찾기에 등록하실 수 있습니다.');
+    	   }
+      });
 }
+
 
 /* 사이드 메뉴 바 */
 function initSideNavbar() {

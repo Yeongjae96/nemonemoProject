@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.products.repository.impl.UserGetProductMapper">
+
+<resultMap type="com.nemo.user.products.vo.UserSelectedProductVO" id="productDetailMap">
+	<association property="productVO" resultMap="com.nemo.user.products.repository.impl.ProductsMapper.productMap"/>
+	<association property="productCateVO" resultMap="com.nemo.user.products.repository.impl.UserProductsCategoryMapper.productsCateMap"/>
+	<collection property="productImgList" column="product_no" javaType="List" select="selectImgListFromPdSeq"/>
+</resultMap>
+
+<select id="selectProductFromPdSeq" parameterType="int" resultMap="productDetailMap">
+	SELECT 
+		a.* , 
+		b.product_cate_type , 
+		b.product_cate_large ,
+		b.product_cate_medium , 
+		b.product_cate_small
+	FROM product_tb a
+	INNER JOIN product_cate_tb b
+	ON (a.product_cate_no = b.product_cate_no AND a.product_no= #{productNo})
+</select>
+
+<select id="selectImgListFromPdSeq" parameterType="int" resultMap="com.nemo.user.products.repository.impl.ProductsImageMapper.productImgMap">
+	SELECT
+		c.product_img_no ,
+		c.product_img_file_name ,
+		c.product_img_type
+	FROM product_tb a
+	INNER JOIN product_img_tb c
+	ON (a.product_no = c.product_no AND a.product_no = #{productNo})
+</select>
+
+
+<!-- <select id="selectImgListFromPdSeq" parameterType="int" resultMap="com.nemo.user.products.repository.impl.ProductsImageMapper.productImgMap"
+ -->
+
+</mapper>

@@ -574,5 +574,6 @@ function initRegBtn() {
 		if(checkNull('contentInput', '설명')) return true;
 		if(checkNull('quantityInput', '개수')) return true;
 	}
+	
 }
 

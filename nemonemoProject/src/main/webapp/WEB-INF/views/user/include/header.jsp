@@ -7,39 +7,75 @@
 		<a href="<c:url value="/index.do"/>" id="main-logo-area"><img
 			src="<c:url value="/resources/images/user/common/mainLogo.png"/>"
 			alt="mainLogo" id="main-logo"></a>
+
 		<!-- 검색창 영역 -->
-		<div class="search">
-			<div class="search_content">
-				<!-- 검색창 -->
-				<input type="text" placeholder="상품명, 지역명, @상점명 입력" id="searching"
-					value="">
-
-				<!-- 검색 내용 -->
-				<div id="searched-box" class="invisible search-box">
-					<div class="item" style="border-bottom: 1px solid #EEEEEE">
-						<i class="fas fa-store">상점점색></i>
-						<!-- 검색 데이터가 담길곳 -->
-						<span id="searched-box-content"></span> <span
-							class="recommend-message" id="searched-box-store">상점명으로 검색</span>
+		<div class="search-area">
+			<!-- 검색 입력 -->
+			<div class="search-input">
+				<input type="text" placeholder="상품명, 지역명, @상점명 입력" class="search-input__input" value="">
+				<a href="#">
+					<i class="fas fa-search fa-2x search-icon"></i>
+				</a>
+			</div>
+			<!-- 나오는 영역 -->
+			<div class="search-box">
+				<div class="search-recently__area">
+					<div class="recently-header">
+						<a class="recently-menu">
+							최근검색어
+						</a>
 					</div>
-					<div id="search-close-div">
-						<a href="#" class="search-close">닫기</a>
+					<div class="recently-body">
+						<div class="recently-area">
+							<div class="recently-div">
+								<%-- 잘 모르는 div --%>
+								<div class="recently-list">
+									<div class="recently-item">
+										<button class="recently-item--title">
+											
+										</button>
+										<button class="recently-item--delete">
+											<i class="fas fa-times"></i>
+										</button>
+									</div>
+								</div>
+								<div class="recently-nothing">
+									<i class="fas fa-file-alt fa-2x"></i>
+									<div>최근 검색어가 없습니다.</div>
+								</div>
+								
+							</div>
+						</div>
 					</div>
 				</div>
-
-				<!-- 인기검색어 및 최근 검색어 탭 -->
-				<div id="recommend-box" class="invisible search-box">
-					<ul class="nav nav-pills">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Menu 1</a></li>
-						<li><a href="#">Menu 2</a></li>
-						<li><a href="#">Menu 3</a></li>
-					</ul>
-					<!-- 검색 버튼 아이콘 -->
+				<!-- 검색어 영역 -->
+				<div class="box-search">
+					<div class="store-search">
+						<div class=""></div>
+						<a class="store-search-link">
+							<i class="fas fa-store"></i>
+							상점검색 >
+							<span id="searchKeyword"></span>
+							<span class="store-search-span">
+								상점명으로 검색
+							</span>
+						</a>
+					</div>
+					<div class="search-result-list">
+					<!-- 아이템 1개 -->
+						<a class="search-result-item">
+							<span class="result-item">오마이걸</span>
+						</a>
+					</div>
 				</div>
-				<a href="#"><img
-					src="<c:url value="/resources/images/user/common/search_icon.png"/>"
-					alt="검색 버튼 아이콘" id="search-icon"></a>
+				<!-- 삭제 영역 -->
+				<div class="search-close__area">
+					<a class="search-close">닫기</a>
+					<a class="search-all-delete__area">
+						<i class="fas fa-trash-alt"></i>
+						검색어 전체삭제
+					</a>
+				</div>
 			</div>
 		</div>
 		<!-- 우측메뉴 -->
@@ -59,27 +95,24 @@
 			<div class="cate-menu--area">
 				<!-- 대분류 -->
 				<div class="cate-menu--list" id="lgCateList">
-					<div class="cate-menu-list--title">전체 카테고리
-						<i class="fas fa-chevron-right"></i>
+					<div class="cate-menu-list--title">
+						전체 카테고리 <i class="fas fa-chevron-right"></i>
 					</div>
-					<div class="cate-menu-list--body">
-					</div>
+					<div class="cate-menu-list--body"></div>
 				</div>
 				<!-- 중분류 -->
 				<div class="cate-menu--list" id="mdCateList">
-					<div class="cate-menu-list-md--title">대분류 선택
-						<i class="fas fa-chevron-right"></i>
+					<div class="cate-menu-list-md--title">
+						대분류 선택 <i class="fas fa-chevron-right"></i>
 					</div>
-					<div class="cate-menu-list--body">
-					</div>
+					<div class="cate-menu-list--body"></div>
 				</div>
 				<!-- 소분류 -->
 				<div class="cate-menu--list" id="smCateList">
-					<div class="cate-menu-list-sm--title">중분류 선택
-						<i class="fas fa-chevron-right"></i>
+					<div class="cate-menu-list-sm--title">
+						중분류 선택 <i class="fas fa-chevron-right"></i>
 					</div>
-					<div class="cate-menu-list--body">
-					</div>
+					<div class="cate-menu-list--body"></div>
 				</div>
 			</div>
 		</div>

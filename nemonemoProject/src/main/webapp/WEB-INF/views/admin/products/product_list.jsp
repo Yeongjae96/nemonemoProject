@@ -35,6 +35,9 @@
 	<!-- JQuery DataTable Css -->
 	<link rel="stylesheet" href="<c:url value="/resources/vendor/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"/>">
 	
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="https:cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+	
 	
 	
 </head>
@@ -66,115 +69,69 @@
                         <div class="card">
                             <div class="header">
                                 <h1>
-                                    상품 정보
+                                    <i class="fas fa-clipboard-list"></i> 상품 정보
                                 </h1>
                             </div>
                             <div class="body">
                                 <div class="table-responsive ">
                                     <table id="prod-list"
                                         class="table table-bordered table-striped table-hover dataTable display">
-                                        <h4>네모내모 상품 리스트</h4>
                                         <thead>
                                             <tr>
-                                                <th>번호</th>
-                                                <th>상품 코드</th>
-                                                <th>상품명</th>
-                                                <th>카테고리</th>
-                                                <th>게시일</th>
-                                                <th>판매자(상점 이름)</th>
-                                                <th>상태 변경</th>
+                                                <th width="10%">번호</th>
+                                                <th width ="10%">상점</th>
+                                                <th width = "20%">카테고리</th>
+                                                <th width ="20%">상품명</th>
+                                                <th width = "20%">게시일</th>
+                                                <th width = "10%">판매날짜</th>
+                                                <th width = "10%">게시글</th>
                                             </tr>
                                         </thead>
-
-                                        <tbody>
+                                        <tbody id="result">
+                                        	<c:forEach var ="prod" items="${productList}">
                                             <tr>
-                                                <td>1</td>
-                                                <td>DJF2244</td>
-                                                <td>공룡인형</td>
-                                                <td>소품</td>
-                                                <td>2019/07/09</td>
-                                                <td>상점324호</td>
-                                                <td class="text-center">
-                                                    <button id="mod-prod-btn" type="button" data-toggle="modal"
-                                                    data-target="#registryModal" class="prd-upd-btn">상태수정</button>
-                                                </td>
+                                                <td>${prod.productNo}</td>
+                                                <td>${prod.storeName}</td>
+                                                <td id ="cate">
+                                                	${prod.productCateLarge}
+                                                <c:if test ="${prod.productCateLarge eq NULL}">
+                                                	${prod.productCateMedium}
+                                                </c:if>	
+                                                <c:if test = "${prod.productCateLarge ne NULL and 
+                                                				prod.productCateSmall ne NULL}">
+                                                	<i class="fas fa-chevron-right"></i> ${prod.productCateMedium}
+                                                </c:if>
+                                                <c:if test = "${prod.productCateMedium ne NULL and
+                                                				prod.productCateSmall ne NULL}">
+                                                	<i class="fas fa-chevron-right"></i> ${prod.productCateSmall}
+                                                </c:if>
+                                                	</td>
+                                                <td>${prod.productName}</td>
+                                                <td>${prod.productRegDt}</td>
+                                                <td align ="center">
+                                                <c:if test="${prod.productSoldDt eq NULL
+                                                			and prod.productDispSt eq 'S'}">
+                                        		<span class="label label-default">판매중</span>
+                                        		</c:if>
+                                        		 <c:if test="${prod.productSoldDt ne NULL}">
+                                        			${prod.productSoldDt}
+                                        		</c:if>
+                                        		 <c:if test="${prod.productDispSt eq 'P'}">
+                                        			게시중지
+                                        		</c:if>
+                                        		</td>
+                                                <td>
+                                        			<c:if test="${prod.productDispSt eq 'S'}">
+                                        				<span style="color:blue; cursor : pointer;"
+                                        					data-prodno ="${prod.productNo}">게시중</span>	
+                                        			</c:if>
+                                        			<c:if test="${prod.productDispSt eq 'P'}">
+                                        				<span style="color:#EE5058; font-weight: bold; cursor : pointer;"
+                                        					data-prodno ="${prod.productNo}">게시중지</span>
+                                        			</c:if>
+                                       			 </td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>ZNF322</td>
-                                                <td>공룡인형</td>
-                                                <td>소품</td>
-                                                <td>2019/07/09</td>
-                                                <td>상점324호</td>
-                                                <td class="text-center">
-                                                    <button id="mod-prod-btn" type="button" data-toggle="modal"
-                                                        data-target="#registryModal" class="prd-upd-btn">상태수정</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>GONG234</td>
-                                                <td>공룡인형</td>
-                                                <td>소품</td>
-                                                <td>2019/07/09</td>
-                                                <td>상점324호</td>
-                                                <td class="text-center">
-                                                    <button id="mod-prod-btn" type="button" data-toggle="modal"
-                                                        data-target="#registryModal" class="prd-upd-btn">상태수정</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>GONG234</td>
-                                                <td>공룡인형</td>
-                                                <td>소품</td>
-                                                <td>2019/07/09</td>
-                                                <td>상점324호</td>
-                                                <td class="text-center"> <button id="mod-prod-btn" type="button"
-                                                        data-toggle="modal" data-target="#registryModal"
-                                                        class="prd-upd-btn">상태수정</button></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>GONG234</td>
-                                                <td>공룡인형</td>
-                                                <td>소품</td>
-                                                <td>2019/07/09</td>
-                                                <td>상점3224호</td>
-                                                <td class="text-center">
-                                                    <button id="mod-prod-btn" type="button" data-toggle="modal"
-                                                        data-target="#registryModal" class="prd-upd-btn">상태수정</button>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>GONG234</td>
-                                                <td>공룡인형</td>
-                                                <td>소품</td>
-                                                <td>2019/07/09</td>
-                                                <td>상점3224호</td>
-                                                <td class="text-center">
-                                                    <button id="mod-prod-btn" type="button" data-toggle="modal"
-                                                    data-target="#registryModal" class="prd-upd-btn">상태수정</button>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>GONG234</td>
-                                                <td>공룡인형</td>
-                                                <td>소품</td>
-                                                <td>2019/07/09</td>
-                                                <td>상점32234호</td>
-                                                <td class="text-center">
-                                                    <button id="mod-prod-btn" type="button" data-toggle="modal"
-                                                        data-target="#registryModal" class="prd-upd-btn">상태수정</button>
-                                                </td>
-
-                                            </tr>
-
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -184,59 +141,6 @@
                 </div>
                 <!-- #END# 1:!  -->
             </div>
-
-            <!-- 상품 상태 변경  -->
-            <div class="modal fade" id="registryModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="modal-flex--center">
-                                <h2 class="modal-title" id="category-modal-title">상품 상태 변경</h2>
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="modal-flex--column">
-                                <div class="modal-flex--body">
-                                    <p><strong>상태</strong></p>
-                                    <div class="modal-row--content">
-                                        <div class="input-group input-group-lg">
-                                            <span class="input-group-addon">
-                                                <input type="radio" class="with-gap" id="sale"
-                                                    name="productStatus" value="1">
-                                                <label for="sale">판매중</label>
-                                            </span>
-                                            <span class="input-group-addon">
-                                                <input type="radio" class="with-gap" id="sale-pause"
-                                                    name="productStatus" value="2">
-                                                <label for="sale-pause">판매중지</label>
-                                            </span>
-                                            <span class="input-group-addon">
-                                                <input type="radio" class="with-gap" id="sale-complete"
-                                                    name="productStatus" value="3">
-                                                <label for="sale-complete">판매완료</label>
-                                            </span>
-                                            <span class="input-group-addon">
-                                                <input type="radio" class="with-gap" id="reservation"
-                                                    name="productStatus" value="4">
-                                                <label for="reservation">예약중</label>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>      
-                        <div class="modal-footer">
-                            <div class="modal-flex--center">
-                                <button type="button" class="btn btn-link waves-effect bg-blue"
-                                    id="categoryModalRegistryBtn">변경</button>
-                                <button type="button" class="btn btn-link waves-effect bg-red"
-                                    data-dismiss="modal">취소</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
         </section>
 
 

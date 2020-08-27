@@ -54,8 +54,8 @@ public class FileUtil {
     }
     
     // 디렉토리 + 파일이름 + 확장자명
-    public static String getSaveFileDirNm(String dirName, String orgFileName, String orgFileExtension) throws Exception {
-    	return new StringBuffer(dirName).append(getSaveFileNm(orgFileName, orgFileExtension)).toString();
+    public static String getSaveFileDirNm(DirectoryName directoryName, String realFileName, String orgFileExtension) throws Exception {
+    	return new StringBuffer(directoryName.getDirectoryName()).append(realFileName).append(".").append(orgFileExtension).toString();
     }
   
     // originalName에서 확장자를 제외한 이름만 가져오기

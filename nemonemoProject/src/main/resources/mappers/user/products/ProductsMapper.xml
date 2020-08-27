@@ -63,18 +63,26 @@
 		)
 	</insert>
 	
-	<select id="selectCategoryProducts" parameterType="list" resultMap="productMap">
-		
+	<select id="selectCategoryProducts" parameterType="java.util.HashMap" resultMap="productMap">
+	<include refid="common.PaginationMapper.header"/>
 		SELECT *
 		FROM 
-			product_tb
+			product_tb 
 		<where>
 			product_cate_no 
-			<foreach collection="list" open="IN (" close=")" item="i" separator=",">
+			<foreach collection="cateSeqList" open="IN (" close=")" item="i" separator=",">
 				#{i}
 			</foreach>
 		</where>
-		
+	<include refid="common.PaginationMapper.footer"/>
+	</select> 
+	
+	<select id="selectProduct" parameterType="int" resultMap="productMap">
+		SELECT *
+		FROM
+			product_tb p
+		WHERE
+			product_no = #{productNo}
 	</select>
 	
 	

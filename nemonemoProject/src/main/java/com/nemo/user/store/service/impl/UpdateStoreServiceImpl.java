@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.nemo.common.constrants.DirectoryName;
 import com.nemo.common.util.FileUtil;
 
 import com.nemo.user.store.repository.impl.StoreMapper;
@@ -25,18 +26,15 @@ public class UpdateStoreServiceImpl implements UpdateStoreService{
 	@Autowired
 	private StoreMapper imageMapper;
 
-	private static final String SAVE_PATH = "/upload";
-	private static final String PREFIX_URL = "/upload/";
-
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public int updateStore(UserNewStoreVO vo) {
 
-		// 1. 상품 등록
+		// 1. 상점 수정
 		storeDAO.updateStore(vo);
 		int StoreNo = vo.getStoreNo();
 		
-		// 2. 상품 이미지 등록
+		// 2. 상점 이미지 등록
 		int imageResult = 0;
 		MultipartFile file = vo.getStoreImage();
 		//List<MultipartFile> fileList = vo.getStoreImages();
@@ -48,7 +46,7 @@ public class UpdateStoreServiceImpl implements UpdateStoreService{
 				String orgFileName = FileUtil.getOrgFileName(file.getOriginalFilename());
 				String extension = FileUtil.getExtension(file.getOriginalFilename());
 				String realFileName = FileUtil.getSaveFileNm(orgFileName);
-				String dirRealFileName = FileUtil.getSaveFileDirNm(PREFIX_URL, orgFileName, extension);
+				String dirRealFileName = FileUtil.getSaveFileDirNm(DirectoryName.STORE, orgFileName, extension);
 				// 사진 크기 
 				BufferedImage image = ImageIO.read(file.getInputStream());
 				Integer width = image.getWidth();
@@ -81,7 +79,9 @@ public class UpdateStoreServiceImpl implements UpdateStoreService{
 
 		} catch (Exception e) {
 //			logger.warn("{}", e.getMessage());
+
 		} 
 		return imageResult;
+
 	}
 }

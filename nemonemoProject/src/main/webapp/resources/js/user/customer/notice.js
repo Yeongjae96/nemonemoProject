@@ -1,5 +1,5 @@
 $(function () {
-	$('.notice-nav-not-selected').eq(0).attr('class', 'notice-nav-selected');
+	$('.customer-nav-not-selected').eq(0).attr('class', 'customer-nav-selected');
 
         $('.notice-list-btn').click(function () {
             $(this).next().slideToggle();

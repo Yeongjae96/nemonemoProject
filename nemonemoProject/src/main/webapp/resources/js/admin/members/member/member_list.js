@@ -1,26 +1,19 @@
 
-
-
 const table = $('#mem-list');
 
-/* 회원 삭제 구현 */
+/* 해당 회원 상세정보로 이동 */
 $(function () {
-    $('#mem-list tbody').on('click', '.mem-del-btn', function(){
-        const selected = this;
-        $('#smallModal').modal("toggle");
-        if($('#del-confirm').click(function(){
-            $(selected).closest('tr').remove();
-        }));
-    });
+	$('.mem-upd-btn').click(function() {
+		const userNo = $(this).data("userno");
+		window.location.href="info.mdo?userNo="+userNo;
+	});
+   
 });
+
 
 /* 회원 수정 페이지로 */
 $(function () {
-    $('#mem-list tbody').on('click', '.mem-upd-btn', function(){
-        location.href="member_info_detail.html";
-    });
-    
-table.dataTable({
+    table.dataTable({
         responsive: true,
         language: {
             "decimal": "",
@@ -47,4 +40,6 @@ table.dataTable({
 
     });
 });
+
+
 

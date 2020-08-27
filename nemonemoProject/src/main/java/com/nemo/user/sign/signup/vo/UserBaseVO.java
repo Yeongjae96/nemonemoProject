@@ -17,7 +17,7 @@ import lombok.Data;
 @Data
 public class UserBaseVO {
    private int userNo;
-   private int StoreNo;
+   private int storeNo;
    private int storeImgNo;
    private int storeRating;
    private String userEmail;

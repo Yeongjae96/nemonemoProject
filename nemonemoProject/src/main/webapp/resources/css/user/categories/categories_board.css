@@ -98,6 +98,7 @@
     color: rgb(247, 47, 51);
     padding: 0px 10px;
     cursor: pointer;
+    font-size: 13px;
 }
 
 .item--selected {
@@ -281,7 +282,9 @@
 .category-rec-content__location {
     height: 40px;
     font-size: 12px;
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     color: rgb(102, 102, 102);
     width: 100%;
     text-overflow: ellipsis;
@@ -305,92 +308,37 @@
     margin-right: 0px;
 }
 
-/* 페이징 */
-.category-paging__area {
+ .category-sub__item-link svg {
+margin-left: 5px;
+ display: block;
+ color: #999999;
+ } 
+ 
+ 
+ .iYNBvN {
+ 	margin-top: 100px;
+ 	width: 500px;
+    font-weight: 600;
     display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    margin-bottom: 100px;
-}
-
-.category-paging__div {
-    display: flex;
-}
-
-.category-paging__prev {
-    width: 33px;
-    height: 33px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 12px;
-    border-radius: 2px;
-    background: #AAAAAA;
-    border: 1px solid #AAAAAA
-    }
-
-    .category-paging__prev svg {
-        width: 12px;
-        height: 12px;
-        color: white;
-    }
-
-    .category-paging__page--active {
-        width: 33px;
-    height: 33px;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
+    flex-direction: column;
     -webkit-box-align: center;
     align-items: center;
-    margin-right: 12px;
-    color: rgb(255, 255, 255)!important;
-    border-width: 1px;
-    border-style: solid;
-    border-image: initial;
-    border-radius: 2px;
-    background: rgb(255, 80, 88);
-    border-color: rgb(255, 80, 88);
-    }
-
-    .category-paging__page {
-        width: 33px;
-    height: 33px;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    margin-right: 12px;
-    color: #333333;
-    border-width: 1px;
-    border-style: solid;
-    border-image: initial;
-    border-radius: 2px;
-    background: white;
-    border-color: #AAAAAA;
-    }
-
-    .category-paging__next {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;;
-        align-items: center;
-        background: #AAAAAA;
-    border: 1px solid #AAAAAA;
-        width: 33px;
-        border-radius: 2px;
-    }
-
-    .category-paging__next svg{
-        width: 12px;
-        height: 12px;
-        color: white;
-    }
+    padding-bottom: 100px;
     
-    .category-sub__item-link svg {
-   margin-left: 5px;
-    display: block;
-    color: #999999;
-    }
+ }
+ 
+ .SEFjX {
+ 	font-size: 24px;
+    color: rgb(255, 80, 88);
+    margin-bottom: 20px;
+ }
+ 
+ .category-nothing__div {
+ 	display: flex;
+ 	width: 100%;
+ 	flex-direction: row;
+ 	justify-content: center;
+ }
+    
+    
     

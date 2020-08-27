@@ -127,15 +127,13 @@
     position: relative;
 }
 
-.detail-info__image__item--active {
-    width: 100%;
-    position: absolute;
-    opacity: 1;
-    transition: opacity 0.2s ease-in-out 0s;
+.image--active {
+    opacity: 1!important;
 }
 
 .detail-info__image__item {
     width: 100%;
+    height: 100%;
     position: absolute;
     opacity: 0;
     transition: opacity 0.2s ease-in-out 0s;
@@ -238,7 +236,7 @@
     display: flex;
 }
 
-.detail-info__image-count-btn--active {
+.count--active {
     width: 10px;
     height: 10px;
     opacity: 0.6;
@@ -462,6 +460,9 @@
     margin-right: 5px;
     width: 16px;
     height: 16px;
+}
+.detail-info--topL-item:last-child::after {
+	border:0px;
 }
 
 .detail-info--topL-item::after {
@@ -1035,6 +1036,7 @@
     line-height: 1.5;
     min-height: 19px;
     padding: 0px 15px;
+    align-items: center;
 }
 
 .detail-article--location {
@@ -1067,6 +1069,16 @@
     line-height: 1.5;
     min-height: 19px;
     padding: 0px 15px;
+    align-items: center;
+}
+
+.detail-article--category svg {
+	margin-left: 10px;
+	color: #AAAAAA;
+}
+
+.detail-article--category svg:hover {
+	color: #EE5058;
 }
 
 .detail-article--category span{
@@ -1109,8 +1121,17 @@
 }
 
 .detail-article--tag-item{
-    margin-right: 5px;
+    margin-right: 10px;
     color: rgb(102, 102, 102);
+}
+
+.detail-article--tag-item:last-child{
+    margin-right: 0px;
+}
+
+.detail-article--tag-item:hover{
+	color: rgb(102, 102, 102)!important;
+	text-decoration: underline!important;	
 }
 
 .detail-comment__area {
@@ -1149,7 +1170,10 @@
     resize: none;
     font-size: 13px;
     line-height: 1.5;
-    border: 0
+    border: 0px;
+}
+.detail-comment__textarea:focus {
+	outline: 0px;
 }
 
 .detail-comment__reg {
@@ -1176,12 +1200,18 @@
     align-items: center;
     font-size: 13px;
     color: rgb(136, 136, 136);
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(238, 238, 238);
-    border-image: initial;
+    border-width: 1px!important;
+    border-style: solid!important;
+    border-color: rgb(238, 238, 238)!important;
     padding: 0px 20px;
     background-color: transparent;
+}
+
+.detail-comment__reg-btn:focus {
+	outline: 0px;
+	color: white;
+	background-color: #EE5058;
+	border-width: 0px;	
 }
 
 .detail-comment__reg-btn svg {
@@ -2111,3 +2141,8 @@ svg.light {
     font-size: 0.875rem;
     line-height: 1.25rem;
 }
+
+.detail-menu-cbox__item:hover {
+	color: #EE5058;
+}
+

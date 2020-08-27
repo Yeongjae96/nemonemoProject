@@ -6,19 +6,29 @@
         color : #999999;
         margin-bottom : 24px;
         font : 13px "Noto Sans KR", sans-serif;
-        width: 1024px;
-        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
       }
 
       .footer_menu {
       display: flex;
+	  flex-direction: row;
       justify-content: space-evenly;
       font-size: 13px;
-      color: rgb(77, 77, 77);      
-      
+      color: rgb(77, 77, 77);   
+      width: 1024px;
+      border-top: 1px solid rgba(0,0,0,.1);
+      border-bottom: 1px solid rgba(0,0,0,.1);  
+      padding-top: 1rem;
+      padding-bottom: 1rem;
     }
   
- 
+ 	.footer_copyright {
+ 		padding: 32px 0px 24px;
+ 	}
 
     /* footer 메뉴 구분*/
     .menu_list::after {
@@ -48,6 +58,22 @@
 
     }
 
-    .footer_copyright{
+    .footer__logo {
+    	display: flex;
+    	flex-direction: row;
+    	align-items: center;
+    	margin-bottom: 4px;
+    	
     }
+    
+    .footer__logo a{
+    	display: flex;
+    	flex: 1 1 0%;
+    	height: 16px;
+    	margin-left: 16px;
+    }	
+	
+	.footer__logo a > img {
+		margin-right: 8px;
+	}
     
