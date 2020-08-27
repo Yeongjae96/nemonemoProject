@@ -6,9 +6,9 @@
 
         <div class="footer_menu ">
             <a href="#" class="menu_list">사업자정보확인</a>
-            <a href="#" class="menu_list">이용약관</a>
-            <a href="#" class="menu_list">개인정보처리방침</a>
-            <a href="#">위치서비스기반이용약관</a>
+            <a href="<c:url value="/terms/service.do"/>" class="menu_list">이용약관</a>
+            <a href="<c:url value="/terms/privacy.do"/>" class="menu_list">개인정보처리방침</a>
+            <a href="<c:url value="/terms/location.do"/>">위치서비스기반이용약관</a>
         </div>
 
 
