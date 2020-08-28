@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 public class SearchProductsVO {
-	private Map<String, List<UserProductsCategoryCntVO>> searchedCateMap;
+	private List<UserProductsCategoryCntVO> searchedCateList;
 	private List<UserPdPdImgVO> pdPdImgList;
 	private UserBaseProductsCategoryVO selectedCategory;
 	private int productCnt;

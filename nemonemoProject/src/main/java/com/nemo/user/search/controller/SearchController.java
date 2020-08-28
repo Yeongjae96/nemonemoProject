@@ -31,4 +31,10 @@ public class SearchController {
 		mav.addObject("vo", vo);
 		return mav;
 	}
+	
+	@GetMapping("/store")
+	public ModelAndView searchStorePage() {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
 }
