@@ -212,6 +212,9 @@
 		$('#logoutBtn').click(function() {
 			$('#myModal').show()
 		});
+		$('#model-cancel').click(function() {
+			$('#myModal').hide()
+		});
 	})
 </script>
 <body>
@@ -281,15 +284,17 @@
 			</div>
 			<div class=logout_button_group>
 				<div>
-					<button id="model-cancel" class="cancel_logout">취소</button>
-				</div>
-				<div>
 					<button class="confirm_logout" type="submit">확인</button>
 				</div>
+				<div>
+					<input type="button" id="model-cancel" class="cancel_logout" value="취소">
+				</div>	
 			</div>
 		</div>
 	</form>
 </div>
 <!--End Modal-->
-	</body>
+</body>
+
+
 </html>

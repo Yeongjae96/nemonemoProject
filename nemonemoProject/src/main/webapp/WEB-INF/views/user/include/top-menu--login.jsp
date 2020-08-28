@@ -205,11 +205,11 @@ img {
 <script>
 	$(function() {
 		$('#loginBtn').click(function() {
-			$('#myModal').show()
+			$('#loginModal').show()
 		});
 		
 		$('#closeImg').click(function() {
-			$('#myModal').hide()
+			$('#loginModal').hide()
 		});
 	})
 
@@ -264,7 +264,7 @@ img {
 	<!-- 로그인 전 나브 종료 -->
 
 	<!--로그인 모달 창 -->
-	<div id="myModal" class="modal">
+	<div id="loginModal" class="modal">
 		<div class="login-wrap">
 			<div class="login-modal-content">
 				<button class="login-modal-close">
@@ -356,14 +356,12 @@ img {
 					</div>
 					
 					<div class="login-info">
-						<a href="/password?rd_url=%2F">비밀번호 찾기</a> <a
-							href="https://docs.google.com/forms/d/e/1FAIpQLSdATbdzuUX8DmpeoMKK1Wfecih53sPmjh7-rVwhedegvAmz0w/viewform"
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdATbdzuUX8DmpeoMKK1Wfecih53sPmjh7-rVwhedegvAmz0w/viewform"
 							target="_blank" rel="noopener noreferrer">고객센터</a>
 					</div>
 					<div class="sign-up-anchor">
-						아직 계정이 없으세요? <a href="signup.do">회원가입하기</a>
+						아직 계정이 없으세요? <a href="sign/signup.do">회원가입하기</a>
 					</div>
->>>>>>> local
 				</div>
 			</div>
 		</div>
