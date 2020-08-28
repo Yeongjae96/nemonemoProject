@@ -1,118 +1,71 @@
-//$(function () {
-//	// Your web app's Firebase configuration
-//	var firebaseConfig = {
-//	  apiKey: "AIzaSyD5Z6iFhMhUqmiJhBBYmB05a29EPXRW058",
-//	  authDomain: "digital-shelter-284001.firebaseapp.com",
-//	  databaseURL: "https://digital-shelter-284001.firebaseio.com",
-//	  projectId: "digital-shelter-284001",
-//	  storageBucket: "digital-shelter-284001.appspot.com",
-//	  messagingSenderId: "609362409896",
-//	  appId: "1:609362409896:web:84532192a2a2375e48c59d",
-//	  measurementId: "G-S2HGJSF68B"
-//	};
-//	// Initialize Firebase
-//	firebase.initializeApp(firebaseConfig);
-//	firebase.analytics();
-//	firebase.auth().languageCode = 'ko';
-//	// To apply the default browser preference instead of explicitly setting it.
-//	// firebase.auth().useDeviceLanguage();
-//	window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('verifyBtn', {
-//		  'size': 'invisible',
-//		  'callback': function(response) {
-//		    // reCAPTCHA solved, allow signInWithPhoneNumber.
-//		    onSignInSubmit();
-//		  }
-//		});
-//	window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('newa');
-//
-//	var phoneNumber = getPhoneNumberFromUserInput();
-//	var appVerifier = window.recaptchaVerifier;
-//	firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-//	    .then(function (confirmationResult) {
-//	      // SMS sent. Prompt user to type the code from the message, then sign
-//			// the
-//	      // user in with confirmationResult.confirm(code).
-//	      window.confirmationResult = confirmationResult;
-//	}).catch(function (error) {
-//	      // Error; SMS not sent
-//	      // ...
-//	});
-//	var code = getCodeFromUserInput();
-//	confirmationResult.confirm(code).then(function (result) {
-//	  // User signed in successfully.
-//	  var user = result.user;
-//	  // ...
-//	}).catch(function (error) {
-//	  // User couldn't sign in (bad verification code?)
-//	  // ...
-//	});
-//	// Turn off phone auth app verification.
-//	firebase.auth().settings.appVerificationDisabledForTesting = true;
-//
-//	var phoneNumber = "+821049008734";
-//	var testVerificationCode = "123456";
-//
-//	// This will render a fake reCAPTCHA as appVerificationDisabledForTesting is true.
-//	// This will resolve after rendering without app verification.
-//	var appVerifier = new firebase.auth.RecaptchaVerifier('newa');
-//	// signInWithPhoneNumber will call appVerifier.verify() which will resolve with a fake
-//	// reCAPTCHA response.
-//	firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-//	    .then(function (confirmationResult) {
-//	      // confirmationResult can resolve with the whitelisted testVerificationCode above.
-//	      return confirmationResult.confirm(testVerificationCode)
-//	    }).catch(function (error) {
-//	      // Error; SMS not sent
-//	      // ...
-//	    });
-//  // Initialize Firebase
-////  firebase.initializeApp(firebaseConfig);
-////  firebase.auth().languageCode = 'ko';
-//
-//
-////  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('newa', {
-////    'size': 'invisible',
-////    'callback': function (response) {
-////      console.log(response);
-////    }
-////  });
-////
-////  var appVerifier = window.recaptchaVerifier;
-////  $('#verifyBtn').click(function () {
-////
-////    $('#verifyNumberDiv').slideDown().css('display', 'flex').removeClass('hide');
-////    
-//    // const regExp = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
-//    // if (validation('phoneNumber', regExp)) {
-//    // 
-//    // return;
-//    // }  
-//    // console.log('메세지를 전송합니다.');
-//
-//    // var phoneNumber = getPhoneNumberFromUserInput();
-//    // if (phoneNumber == null) {
-//    //   console.error('잘못된 숫자입니다.');
-//    //   return;
-//    // }
-//
-//    // const $btn = $('#verifyBtn');
-//    // const $class = $(this).attr('class');
-//    // $btn.attr('class', $class.slice(-6) == 'active' ? $class.substring(0, $class.length - 8) : $class.concat('--active'));
-//    
-//    // var promise = firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier);
-//    // promise
-//    //   .then(function (confirmationResult) {
-//    //     console.log(confirmationResult);
-//    //     window.confirmationResult = confirmationResult;
-//    //   })
-//    //   .catch(function (error) {
-//    //     console.log(error);
-//    //     console.log('error');
-//    //   });
-////  });
-//
-//
-//});
+$(function () {
+	  // Your web app's Firebase configuration
+	  var firebaseConfig = {
+	    apiKey: "AIzaSyD5Z6iFhMhUqmiJhBBYmB05a29EPXRW058",
+	    authDomain: "digital-shelter-284001.firebaseapp.com",
+	    databaseURL: "https://digital-shelter-284001.firebaseio.com",
+	    projectId: "digital-shelter-284001",
+	    storageBucket: "digital-shelter-284001.appspot.com",
+	    messagingSenderId: "609362409896",
+	    appId: "1:609362409896:web:84532192a2a2375e48c59d",
+	    measurementId: "G-S2HGJSF68B"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+	  firebase.analytics();
+	  firebase.auth().languageCode = 'ko';
+	// To apply the default browser preference instead of explicitly setting it.
+	// firebase.auth().useDeviceLanguage();
+  // Initialize Firebase
+//  firebase.initializeApp(firebaseConfig);
+//  firebase.auth().languageCode = 'ko';
+	  
+	 
+
+
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('newa', {
+    'size': 'invisible',
+    'callback': function (response) {
+      console.log(response);
+    }
+  });
+
+  var appVerifier = window.recaptchaVerifier;
+  $('#verifyBtn').click(function () {
+
+    $('#verifyNumberDiv').slideDown().css('display', 'flex').removeClass('hide');
+    
+    // const regExp = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
+    // if (validation('phoneNumber', regExp)) {
+    // 
+    // return;
+    // }  
+    // console.log('메세지를 전송합니다.');
+
+    // var phoneNumber = getPhoneNumberFromUserInput();
+    // if (phoneNumber == null) {
+    //   console.error('잘못된 숫자입니다.');
+    //   return;
+    // }
+
+    // const $btn = $('#verifyBtn');
+    // const $class = $(this).attr('class');
+    // $btn.attr('class', $class.slice(-6) == 'active' ? $class.substring(0, $class.length - 8) : $class.concat('--active'));
+    
+    // var promise = firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier);
+    // promise
+    //   .then(function (confirmationResult) {
+    //     console.log(confirmationResult);
+    //     window.confirmationResult = confirmationResult;
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     console.log('error');
+    //   });
+  });
+
+
+});
 
 
 $(function(){
@@ -212,7 +165,7 @@ function checks(){
 	// 주소2 공백 검사
 	if($("#address2Input").val() == ""){
 		alert("상세주소를을 입력해주세요"); 
-		$("#address2Input").focus(); 
+		$("#nameInput").focus(); 
 		return false; 
 		} 
 
@@ -241,7 +194,7 @@ function idcheck(){
 			data : query, // 쿼리의 저장 타입은 일반 변수가 아닌 JSON, 저기 url로 보내는 데이터..!
 			success : function(data){ // data -> ajax의 결과값이 저장되는 변수
 				if(data > 0){
-					alert("이메일이 중복되어 사용할 수 없습니다.");
+					alert("아이디가 중복되어 사용할 수 없습니다.");
 					document.getElementById('emailInput').focus();
 				}else{
 					alert("회원가입을 축하합니다.");
@@ -476,4 +429,49 @@ function validation(id, regExp) {
 //
 // });
 //
+
+/* jquery의 closest ID버젼 */
+HTMLElement.prototype.closestOneByClassName = function(className) {
+      let target = this;
+      while(!target.parentElement.querySelector('.'+className)) {
+         target = target.parentElement;
+         if(!target.parentElement) {
+            return new Error('not Found');
+         }
+   }
+      return target;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+	const btnList = document.getElementsByClassName('show-btn');
+	Array.from(btnList).forEach(e => {
+		e.addEventListener('click', toggleClass);
+		console.log(e);
+	});
+});
+
+var yy;
+function zzz() {
 	
+	  var x = document.getElementById("term-1");
+	  toggleClass('term-1');
+	  
+	  document.getElementsClassName('')
+
+	
+}
+
+function toggleClass() {
+	let target = this.closestOneByClassName('check-margin').querySelector('.hide-term');
+	console.log(this);
+	if(!target) {
+		console.log(this);
+		target = this.closestOneByClassName('check-margin').querySelector('.show-term');
+	}
+	const currentClass = target.classList[0];
+	const toBeClass = currentClass == 'hide-term' ? 'show-term' : 'hide-term';
+	console.log(currentClass);
+	console.log(toBeClass);
+	target.classList.remove(currentClass);
+	target.classList.add(toBeClass);
+}

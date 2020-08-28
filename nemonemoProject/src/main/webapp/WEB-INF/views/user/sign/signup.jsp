@@ -22,7 +22,7 @@
 <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script> -->
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
 <!-- 해당 페이지 JS파일 -->
 <script>
 	var contextPath = "${pageContext.request.contextPath}"
@@ -188,8 +188,8 @@
 								</div>
 								<div class="hide-term hide1" id="term-1">
 									<div class="terms-second-scroll">
-										<iframe title="번개장터 위치기반서비스 이용약관"
-											src="https://terms.bunjang.co.kr/terms/service.html"></iframe>
+										<iframe title="번개장터 이용약관"
+											src="${pageContext.request.contextPath}/terms/service.do"></iframe>
 									</div>
 								</div>
 							</div>
@@ -207,8 +207,8 @@
 								</div>
 								<div class="hide-term hide2">
 									<div class="terms-second-scroll">
-										<iframe title="번개장터 위치기반서비스 이용약관"
-											src="https://terms.bunjang.co.kr/terms/privacy.html"></iframe>
+										<iframe title="번개장터 개인정보 처리 방침"
+											src="${pageContext.request.contextPath}/terms/privacy.do"></iframe>
 									</div>
 								</div>
 							</div>
@@ -227,7 +227,7 @@
 								<div class="hide-term hide3">
 									<div class="terms-second-scroll">
 										<iframe title="번개장터 위치기반서비스 이용약관"
-											src="https://terms.bunjang.co.kr/terms/location.html"></iframe>
+											src="${pageContext.request.contextPath}/terms/location.do"></iframe>
 									</div>
 								</div>
 							</div>
