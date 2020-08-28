@@ -1,7 +1,5 @@
 package com.nemo.user.products.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.user.products.service.InsertProductsService;
-import com.nemo.user.products.vo.UserBaseProductsVO;
 import com.nemo.user.products.vo.UserNewProductsVO;
 
 /**
@@ -31,8 +28,6 @@ import com.nemo.user.products.vo.UserNewProductsVO;
 @RequestMapping("/products")
 public class UserNewProductsController{
 	
-	private Logger logger = LoggerFactory.getLogger(getClass());
-	
 	@Autowired
 	private InsertProductsService insertProductsService;
 	
@@ -44,7 +39,6 @@ public class UserNewProductsController{
 	
 	@PostMapping("/newJson")
 	public @ResponseBody int newAction(UserNewProductsVO vo) {
-		logger.info("{} 출력",  vo);
 		return insertProductsService.insertProducts(vo);
 	}
 	

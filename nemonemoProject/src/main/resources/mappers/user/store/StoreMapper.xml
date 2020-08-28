@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.nemo.user.store.repository.impl.StoreMapper">
+	<resultMap type="com.nemo.user.store.vo.StoreVO" id="storeMap">
+		<id column="user_no" property="userNo"/>
+		<result column="store_no" property="storeNo" />
+		<result column="user_email" property="userEmail" />
+		<result column="user_pw" property="userPw" />
+		<result column="user_gender" property="userGender" />
+		<result column="user_name" property="userName" />
+		<result column="user_account" property="userAccount"/>
+		<result column="user_phone" property="userPhone" />
+		<result column="user_zipcode" property="userZipcode" />
+		<result column="user_address1" property="userAddress1" />
+		<result column="user_address2" property="userAddress2" />
+		<result column="user_status" property="userStatus" />
+		<result column="user_auth_check" property="userAuthCheck" />
+		<result column="user_reg_ymd" property="userRegYmd" />
+		<result column="user_login_flag" property="userLoginFlag" />
+		<result column="store_img_no" property="storeImgNo"/>
+		<result column="store_name" property="storeName"/>
+		<result column="store_intro" property="storeIntro"/>
+		<result column="store_rating" property="storeRating"/>
+	</resultMap>
+	
+	<select id="getStore" parameterType="int" resultMap="storeMap">
+		SELECT 
+			user_no, store_no, store_img_no, store_name, store_intro, store_rating
+		FROM 
+			user_tb
+		WHERE 
+			store_no = #{storeNo}
+	</select>
+	
+	<update id="updateStore" parameterType="com.nemo.user.store.vo.StoreVO">
+       UPDATE 
+          USER_TB
+       SET
+          store_name=#{storeName},
+          store_intro=#{storeIntro}
+          
+      WHERE
+         store_no=#{storeNo}
+    </update>
+    
+    <select id="getStoreProduct" parameterType="int" resultMap="storeMap">
+    	SELECT
+    		
+    </select>
+</mapper>

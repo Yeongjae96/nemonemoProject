@@ -250,7 +250,7 @@ label {
 .terms-second-scroll{
         color: rgb(204, 204, 204);
         font-size: 13px;
-        white-space: pre-wrap;
+       /*  white-space: pre-wrap; */
         background: rgb(249, 249, 249);
     	display: flex;
     	flex-direction: row;

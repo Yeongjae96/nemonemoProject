@@ -189,8 +189,8 @@
 								</div>
 								<div class="hide-term" id="term-1">
 									<div class="terms-second-scroll">
-										<iframe title="번개장터 위치기반서비스 이용약관"
-											src="https://terms.bunjang.co.kr/terms/service.html"></iframe>
+										<iframe title="번개장터 이용약관"
+											src="${pageContext.request.contextPath}/terms/service.do"></iframe>
 									</div>
 								</div>
 							</div>
@@ -208,8 +208,8 @@
 								</div>
 								<div class="hide-term" id="term-2">
 									<div class="terms-second-scroll">
-										<iframe title="번개장터 위치기반서비스 이용약관"
-											src="https://terms.bunjang.co.kr/terms/privacy.html"></iframe>
+										<iframe title="번개장터 개인정보 처리 방침"
+											src="${pageContext.request.contextPath}/terms/privacy.do"></iframe>
 									</div>
 								</div>
 							</div>
@@ -228,7 +228,7 @@
 								<div class="hide-term" id="term-3">
 									<div class="terms-second-scroll">
 										<iframe title="번개장터 위치기반서비스 이용약관"
-											src="https://terms.bunjang.co.kr/terms/location.html"></iframe>
+											src="${pageContext.request.contextPath}/terms/location.do"></iframe>
 									</div>
 								</div>
 							</div>

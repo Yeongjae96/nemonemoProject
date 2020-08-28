@@ -11,6 +11,7 @@
 
 <!-- 페이지 CSS  -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/categories/categories_board.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/common/paging/paging.css"/>">
 
 
 <!-- 라이브러리 -->
@@ -29,7 +30,10 @@
 
 <c:set var="productList" value="${vo.productList}"/>
 <c:set var="pdImgArticleList" value="${vo.pdImgArticleList}"/>
-<c:set var="selectedCate" value="${vo.selectedCategory }"/>
+<c:set var="selectedCate" value="${vo.selectedCategory}"/>
+<%-- paging처리에 필요한 변수  --%>
+<c:set var="pageName" value="${selectedCate.productCateNo}" scope="request"/> 
+<c:set var="pageVO" value="${vo.pageVO}" scope="request"/> 
 
 <c:forEach var="entry" items="${vo.categoryMap}">
 	<c:set var="key" value="${entry.key}"/>
@@ -219,54 +223,58 @@
                 <div class="category-rec-content__area">
                     <div class="category-rec-content__list">
                         <!-- 아이템 1개-->
-                        <c:forEach items="${pdImgArticleList}" var="article">
-	                        <div class="category-rec-content__item">
-	                            <a href="#" class="category-rec-content__link">
-	                                <div class="category-rec-content__image">
-	                                <c:if test="${not empty article.productImageVO.productImgNo}">
-	                                    <img src="<c:url value="/image/product/${article.productImageVO.productImgNo}.img"/>"/>
-	                                </c:if>
-	                                <c:if test="${empty article.productImageVO.productImgNo}">
-	                                    <img src="<c:url value="/resources/images/user/categories/image_1.jpg"/>"/>
-	                                </c:if>
-	                                </div>
-	                                <div class="category-rec-content__title">
-	                                    <div class="category-rec-content__title-text">
-	                                     	${article.productVO.productName}
-	                                    </div>
-	                                    <div class="category-rec-content__title-price">
-	                                        <div class="category-rec-content__title-price--text">
-												${article.productVO.productPrice}
-											</div>
-	                                    </div>
-	                                    <!-- 광고마크 생략 -->
-	                                </div>
-	                                <div class="category-rec-content__location">
-	                                    <i class="fas fa-map-marker-alt fa-2x"></i>
-	                                    ${article.productVO.productDealArea}
-	                                </div>
-	                            </a>
-	                        </div>
-						</c:forEach>
+                        <c:if test="${pdImgArticleList ne null}">
+	                        <c:forEach items="${pdImgArticleList}" var="article">
+		                        <div class="category-rec-content__item">
+		                            <a href="<c:url value="/products/${article.productVO.productNo}.do"/>" class="category-rec-content__link">
+		                                <div class="category-rec-content__image">
+		                                <c:if test="${not empty article.productImageVO.productImgNo}">
+		                                    <img src="<c:url value="/image/product/${article.productImageVO.productImgNo}.img"/>"/>
+		                                </c:if>
+		                                <c:if test="${empty article.productImageVO.productImgNo}">
+		                                    <img src="<c:url value="/resources/images/user/categories/image_1.jpg"/>"/>
+		                                </c:if>
+		                                </div>
+		                                <div class="category-rec-content__title">
+		                                    <div class="category-rec-content__title-text">
+		                                     	${article.productVO.productName}
+		                                    </div>
+		                                    <div class="category-rec-content__title-price">
+		                                        <div class="category-rec-content__title-price--text">
+													${article.productVO.productPrice}
+												</div>
+		                                    </div>
+		                                    <!-- 광고마크 생략 -->
+		                                </div>
+		                                <div class="category-rec-content__location">
+		                                    <i class="fas fa-map-marker-alt fa-2x"></i>
+		                                    ${article.productVO.productDealArea}
+		                                </div>
+		                            </a>
+		                        </div>
+							</c:forEach>
+						 </c:if>
+						 <c:if test="${pdImgArticleList eq null}">
+						 	<div class="category-nothing__div">
+							 	<div class="iYNBvN">
+							 		<div class="SEFjX">
+			 			                <c:if test="${selectedCate.productCateType eq 'L'}">
+							 				${selectedCate.productCateLarge}
+							 			</c:if>
+			 			                <c:if test="${selectedCate.productCateType eq 'M'}">
+							 				${selectedCate.productCateMedium}
+							 			</c:if>
+			 			                <c:if test="${selectedCate.productCateType eq 'S'}">
+							 				${selectedCate.productCateSmall}
+							 			</c:if>
+							 		</div> 카테고리에 대한 상품이 없습니다.
+							 	</div>
+						 	</div>
+						 </c:if>
                     </div>
                 </div>
-
-                <!-- 페이징 부분 -->
-                <div class="category-paging__area">
-                    <div class="category-paging__div">
-                        <a class="category-paging__prev" href="#">
-                            <i class="fas fa-chevron-left"></i>
-                        </a>
-                        <a class="category-paging__page--active" href="#">1</a>
-                        <a class="category-paging__page" href="#">2</a>
-                        <a class="category-paging__page" href="#">3</a>
-                        <a class="category-paging__page" href="#">4</a>
-                        <a class="category-paging__page" href="#">5</a>
-                        <a class="category-paging__next" href="#">
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </div>
-                </div>
+                <%-- 페이징처리에 필요한 변수  --%>
+				<jsp:include page="/WEB-INF/views/common/paging/paging.jsp"/>
             </div>
         </div>
     </div>

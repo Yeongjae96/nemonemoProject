@@ -16,7 +16,6 @@ import lombok.Data;
 public class QnaCategoryVO {	
 	
 	private int qnaCategoryNo;
-	private String qnaCategoryParent;
 	private String qnaCategoryName;
 	private String qnaCategoryUseFl;
 	

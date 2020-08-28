@@ -28,8 +28,9 @@
 		<property name="maxInMemorySize" value="1048576"/>
 		<property name="defaultEncoding" value="UTF-8"/>
 	</bean>
-	<bean class="com.nemo.common.constrants.PathBean"/>
 	
+	<bean class="com.nemo.common.constraints.PathBean"/>
+
 	<context:component-scan base-package="com.nemo">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>

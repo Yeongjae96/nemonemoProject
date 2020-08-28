@@ -3,6 +3,7 @@ package com.nemo.user.categories.vo;
 import java.util.List;
 import java.util.Map;
 
+import com.nemo.common.paging.PageVO;
 import com.nemo.user.products.vo.UserBaseProductsCategoryVO;
 import com.nemo.user.products.vo.UserBaseProductsVO;
 
@@ -15,4 +16,5 @@ public class UserCategoryBoardVO {
 	private List<UserBaseProductsVO> productList;
 	private List<PdImgArticleVO> pdImgArticleList;
 	private UserBaseProductsCategoryVO selectedCategory;
+	private PageVO pageVO;
 }

@@ -7,19 +7,22 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.nemo.common.constraints.DirectoryName;
+import com.nemo.common.util.ContextUtil;
 import com.nemo.common.util.FileUtil;
 import com.nemo.user.products.repository.impl.ProductsImageMapper;
 import com.nemo.user.products.repository.impl.ProductsMapper;
 import com.nemo.user.products.service.InsertProductsService;
 import com.nemo.user.products.vo.UserBaseProductsImageVO;
 import com.nemo.user.products.vo.UserNewProductsVO;
+import com.nemo.user.sign.signup.vo.UserBaseVO;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @제목 : 제품 등록 서비스 구현
@@ -31,23 +34,31 @@ import com.nemo.user.products.vo.UserNewProductsVO;
  *
  */
 @Service
+@Slf4j
 public class InsertProductsServiceImpl implements InsertProductsService {
-
-	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private ProductsMapper productsDAO;
 	@Autowired
 	private ProductsImageMapper imageMapper;
 
-	private static final String SAVE_PATH = "/upload";
-	private static final String PREFIX_URL = "/upload/";
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public int insertProducts(UserNewProductsVO vo) {
 
 		// 1. 상품 등록
+		
+		UserBaseVO user = (UserBaseVO)ContextUtil.getAttrFromSession("user"); 
+		
+		if(user == null) {
+			log.warn("사용자 정보가 담기지 않았습니다.");
+			return 0;
+		}
+		
+		int productSeller = user.getUserNo();
+		
+		vo.setProductSeller(productSeller);
 		productsDAO.insertProducts(vo);
 		int productNo = vo.getProductNo();
 		
@@ -62,7 +73,7 @@ public class InsertProductsServiceImpl implements InsertProductsService {
 				String orgFileName = FileUtil.getOrgFileName(file.getOriginalFilename());
 				String extension = FileUtil.getExtension(file.getOriginalFilename());
 				String realFileName = FileUtil.getSaveFileNm(orgFileName);
-				String dirRealFileName = FileUtil.getSaveFileDirNm(PREFIX_URL, orgFileName, extension);
+				String dirRealFileName = FileUtil.getSaveFileDirNm(DirectoryName.PRODUCT, realFileName, extension, false);
 				// 사진 크기 
 				BufferedImage image = ImageIO.read(file.getInputStream());
 				Integer width = image.getWidth();
@@ -82,19 +93,12 @@ public class InsertProductsServiceImpl implements InsertProductsService {
 				FileUtil.exsitDir(dirFileName);
 				voList.add(imageVO);
 				
-				logger.info("================================");
-				logger.info("OriginalFileName : {} ", file.getOriginalFilename());
-				logger.info("FileSize :  {} ", file.getSize());
-				logger.info("extension : {} ", extension);
-				logger.info("dirRealFileName : {} ", dirRealFileName);
-				logger.info("================================");
-				
 				file.transferTo(dirFileName);
 			}
 			imageResult = imageMapper.insertImage(voList);
 
 		} catch (Exception e) {
-			logger.warn("{}", e.getMessage());
+			log.warn("{}", e.getMessage());
 		} 
 		return imageResult;
 	}

@@ -350,7 +350,7 @@
 
 
 
-    .flex {
+ /*    .flex {
         display: flex;
         align-items: center;
         width: 1024px;
@@ -358,7 +358,7 @@
         padding-bottom : 0px;
         margin-bottom : 0px;
         justify-content: center;
-    }
+    } */
 
     /* 메인 메뉴 (판매하기, 내상점) */
 
@@ -366,12 +366,6 @@
         width : 328px;
         height : 26px;
     }
-
-    .my-menu{
-        justify-content: space-evenly;
-        margin-left : 100px;
-    }
-
 
     .my-menu-box::after {
         content: "";

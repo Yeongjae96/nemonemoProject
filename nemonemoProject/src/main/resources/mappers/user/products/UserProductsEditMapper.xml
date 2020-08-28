@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.products.repository.impl.UserProductsEditMapper">
+
+	<resultMap id="productEditMap" type="com.nemo.user.products.vo.UserProductsEditVO">
+		<association property="productVO" resultMap="com.nemo.user.products.repository.impl.ProductsMapper.productMap"/>
+		<association property="productCateVO" resultMap="com.nemo.user.products.repository.impl.UserProductsCategoryMapper.productsCateMap"/>
+		<collection property="productImgList" resultMap="com.nemo.user.products.repository.impl.ProductsImageMapper.productImgMap"/>
+	</resultMap>
+	
+	<select id="getProductEditVO" parameterType="int" resultMap="productEditMap">
+		SELECT a.*, b.*, c.*
+		FROM product_tb a
+		LEFT JOIN (product_img_tb) b
+		ON (a.product_no = b.product_no AND product_img_del_fl = 'N')
+		INNER JOIN (product_cate_tb) c
+		ON (a.product_cate_no = c.product_cate_no)
+        WHERE a.product_no = #{productNo}
+	</select>
+	
+	<select id="getProductCateList" parameterType="hashMap" resultMap="com.nemo.user.products.repository.impl.UserProductsCategoryMapper.productsCateMap">
+		SELECT a.product_cate_no, a.product_cate_type, a.product_cate_large, a.product_cate_medium, a.product_cate_small
+		FROM product_cate_tb a
+		WHERE a.product_cate_type = 'L'
+		UNION ALL
+			SELECT a.product_cate_no, a.product_cate_type, a.product_cate_large, a.product_cate_medium, a.product_cate_small
+			FROM product_cate_tb a
+			INNER JOIN (SELECT product_cate_no, product_cate_type, product_cate_large, product_cate_medium, product_cate_small FROM product_cate_tb WHERE product_cate_no = #{productCateNo}) b
+			ON a.product_cate_no = b.product_cate_no and a.product_cate_large = b.product_cate_large AND a.product_cate_type = 'M'
+		<if test='productCateType != "L"'>
+		UNION ALL
+			SELECT a.product_cate_no, a.product_cate_type, a.product_cate_large, a.product_cate_medium, a.product_cate_small
+			FROM product_cate_tb a
+			INNER JOIN (SELECT product_cate_no, product_cate_type, product_cate_large, product_cate_medium, product_cate_small FROM product_cate_tb WHERE product_cate_no = #{productCateNo}) b
+			ON a.product_cate_no = b.product_cate_no and a.product_cate_large = b.product_cate_large AND a.product_cate_type = 'S'
+		</if>
+	</select>
+	
+	<update id="editProduct" parameterType="com.nemo.user.products.vo.UserNewProductsVO">
+		
+		MERGE INTO product_tb p
+		USING dual
+		ON (p.product_no = #{productNo})
+		WHEN MATCHED THEN
+		    UPDATE SET
+		    	product_cate_no = #{productCateNo},
+				product_name = #{productName},
+				product_deal_area = #{productDealArea},
+				product_used_st = #{productUsedSt},
+				product_exch_st = #{productExchSt},
+				product_free_shipping_st = #{productFreeShippingSt},
+				product_price = #{productPrice},
+				product_info = #{productInfo},
+				product_tag = #{productTag},
+				product_qty = #{productQty},
+				product_edit_dt = SYSDATE
+		   
+				
+		<!-- UPDATE (
+			SELECT *
+			FROM product_tb
+			WHERE product_no = #{productNo}
+		) SET (
+			product_cate_no = #{productCateNo},
+			product_name = #{productName},
+			product_deal_area = #{productDealArea},
+			product_used_st = #{productUsedSt},
+			product_exch_st = #{productExchSt},
+			product_free_shipping_st = #{productFreeShippingSt},
+			product_price = #{productPrice},
+			product_info = #{productInfo},
+			product_tag = #{productTag},
+			product_qty = #{productQty},
+			product_edit_dt = sysdate
+		) -->
+	
+	</update>
+	
+	<update id="editProductDisp" parameterType="com.nemo.user.products.vo.UserProductsEditDispVO">
+		
+		UPDATE product_tb
+		SET product_disp_st = #{productDispSt}
+		WHERE product_no = #{productNo}
+	
+	</update>
+	
+</mapper>

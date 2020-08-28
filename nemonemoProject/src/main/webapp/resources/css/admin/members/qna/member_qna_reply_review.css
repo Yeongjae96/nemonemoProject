@@ -1,0 +1,84 @@
+  
+#qna_rpl_title{
+    font-size : 30px;
+    font-family : "Noto Sans KR";
+    margin-left : 40%;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    
+}
+ .btn-layout{
+    display : flex;
+    justify-content: center;
+}
+
+
+
+#replyForm > thead > tr > th
+{
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: center !important;
+    border-top: 1px solid #ddd;
+}
+
+th{
+	font-size : 20px;
+}
+
+
+
+.backToListBtn {
+	width: 100px;
+	height: 38px;
+	color: white;
+	cursor: pointer;
+	position: relative;
+	border-radius: 2px;
+	padding-left: 0px;
+	border-width: 0px;
+	border-style: initial;
+	border-color: initial;
+	border-image: initial;
+	-webkit-font-smoothing: antialiased;
+	direction: ltr;
+	text-align: left;
+	font-color : black;
+	
+}
+
+.backToListBtn::after {
+	content: "뒤로가기";
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	font-weight: 500;
+	background: green;
+	border-radius: 2px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(245, 245, 245);
+	border-image: initial;
+}
+
+.fas{
+	margin-left : 10px;
+	margin-right:30px;
+	color : green;
+}
+.far{
+	margin-left : 10px;
+	margin-right:30px;
+	color : green;
+}
+
+#fasmargin{
+	margin-right:20px !important;
+}

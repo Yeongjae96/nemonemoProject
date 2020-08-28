@@ -31,6 +31,7 @@
 <!-- 해당 페이지 JS파일 -->
 
 <script> this.contextPath = "<c:url value="/"/>"</script>
+<script src="<c:url value="/resources/js/user/products/menubar.js"/>"></script>
 <script src="<c:url value="/resources/js/user/products/products_new.js"/>"></script>
 
 </head>
@@ -51,21 +52,7 @@
 	%>
 	<section>
 		<!-- 상품등록 메뉴바 -->
-		<div
-			class="container-fluid d-flex justify-content-center border-bottom">
-			<!-- 메뉴 nav -->
-			<nav class="flex-box products-nav">
-				<div class="product-nav-item">
-					<a href="#" class="product-nav-link">상품등록</a>
-				</div>
-				<div class="product-nav-item">
-					<a href="#" class="product-nav-link">상품관리</a>
-				</div>
-				<div class="product-nav-item">
-					<a href="#" class="product-nav-link">구매/판매 내역</a>
-				</div>
-			</nav>
-		</div>
+		<%@include file="/WEB-INF/views/user/products/common/menubar.jsp" %>
 		<form action="#" method="post" enctype="multipart/form-data" id="newForm">
 			<!-- 상품등록 메인 컨텐츠 -->
 			<div class="container-fluid d-flex justify-content-center">
@@ -154,8 +141,9 @@
 										<button type="button" class="">지하철 검색</button>
 										<button type="button" class="">주소 검색</button>
 									</div>
-									<input readonly placeholder="선호 거래 지역을 검색해주세요."
-										class="products-location--input" value="수원" id="myLocationInput" name="productDealArea">
+									<input readonly placeholder="선호 거래 지역을 검색해주세요." 
+									class="products-location--input" value="인천" id="myLocationInput" name="productDealArea">
+
 								</div>
 							</li>
 							<!-- 상태 -->
@@ -206,7 +194,7 @@
 										입력해주세요.</div>
 									<div class="products-delivery-price--div">
 										<div class="products-delivery-price--div2">
-											<label for="freesShipping"
+											<label for="freeShipping"
 												class="products-delivery-price--label"> <input
 												id="freeShipping" type="checkbox">무료배송
 											</label>
