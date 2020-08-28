@@ -17,10 +17,9 @@
                         <a class="mystore" href="#">내상점</a>
                         <div class="mystore-box">
                             <button type="button" class="mystore-menu" onclick="location.href='#'">내상품</button>
-                            <button type="button" class="mystore-menu" onclick="location.href='sign/info.do' ">내계정</button>
-                            <button type="button" class="mystore-menu" onclick="location.href='sign/info.do' ">내계정</button>
+                            <button type="button" class="mystore-menu" onclick="location.href='${pageContext.request.contextPath}/sign/info.do' ">내계정</button>
                             <button type="button" class="mystore-menu" onclick="location.href='#'">찜한상품</button>
-                            <button type="button" class="mystore-menu" onclick="location.href='sign/setting.do'">계정설정</button>
+                            <button type="button" class="mystore-menu" onclick="location.href='${pageContext.request.contextPath}/sign/setting.do'">계정설정</button>
                         </div>
                     </div>
                 </div> <!-- 내상점 끝-->
@@ -58,7 +57,7 @@
     </nav>
     
 <!-- 모달 시작-->
-<div id="myModal" class="modal">
+<div id="logoutmodal" class="modal">
 	<!-- 모달 내용 -->
 	<form method="post" action="${pageContext.request.contextPath}/sign/logout.do">
 		<div class="modal-content">

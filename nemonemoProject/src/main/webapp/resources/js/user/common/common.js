@@ -82,15 +82,15 @@ function initTopMenu() {
   	  
       /* HEADER 로그아웃 팝업 */
       function open_pop() {
-      	$('#myModal').show();
+      	$('#logoutmodal').show();
       };
       // Header 로그아웃 팝업 Close 기능
       function close_pop() {
-      	$('#myModal').hide();
+      	$('#logoutmodal').hide();
       };
       
       $('#logoutBtn').click(function() {
-    		$('#myModal').show()
+    		$('#logoutmodal').show()
     	});
       
       $('#loginBtn').click(function() {$('#myModal').show()});

@@ -198,7 +198,7 @@ public class SignController {
 	            session.setAttribute("user", user);
 	            rttr.addFlashAttribute("msg", "success");
 	            mav.setViewName("redirect:/index.do");
-	            mav.addObject("user" , user);
+			/* mav.addObject("user" , user); */
 	            return mav;
 	         }else {//소셜 이메일로 처음 로그인 시도 한 사람
 	            System.out.println("소셜 처음 로그인한 사람");
