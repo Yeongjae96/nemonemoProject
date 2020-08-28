@@ -474,8 +474,5 @@ function toggleClass() {
 	console.log(toBeClass);
 	target.classList.remove(currentClass);
 	target.classList.add(toBeClass);
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> product+store+login
