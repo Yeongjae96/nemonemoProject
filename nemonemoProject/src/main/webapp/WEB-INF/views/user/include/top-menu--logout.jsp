@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-		<!-- top-menu -->
+	<!-- top-menu -->
        <nav class="navbar nav-expand-sm navbar-light top-nav">
         <div class="top-menus">
             <div class="nav-box">
@@ -68,11 +68,11 @@
 			</div>
 			<div class=logout_button_group>
 				<div>
-					<button id="model-cancel" class="cancel_logout">취소</button>
-				</div>
-				<div>
 					<button class="confirm_logout" type="submit">확인</button>
 				</div>
+				<div>
+					<input type="button" id="model-cancel" class="cancel_logout" value="취소">
+				</div>	
 			</div>
 		</div>
 	</form>
