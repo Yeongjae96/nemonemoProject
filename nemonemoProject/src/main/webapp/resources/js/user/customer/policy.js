@@ -1,4 +1,4 @@
 $(function() {
 	initPdMenu();
-	$('.notice-nav-not-selected').eq(1).attr('class', 'notice-nav-selected');
+	$('.customer-nav-not-selected').eq(1).attr('class', 'customer-nav-selected');
 });
