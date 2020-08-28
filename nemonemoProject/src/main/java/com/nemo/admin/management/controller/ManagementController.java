@@ -92,7 +92,6 @@ public class ManagementController {
 		// 비밀번호 암호화
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		vo.setAdminPw(encoder.encode(vo.getAdminPw()));
-		//System.out.println("회원가입 정보 : " + vo);
 		insertAdminService.insertAdmin(vo);
 		ModelAndView mav = new ModelAndView("redirect:/management/login.mdo");
 		return mav;
@@ -140,21 +139,13 @@ public class ManagementController {
 		}
 	}
 	
-
-	/* 로그인 중복검사 테스트 - 예린  */
 	
-	//AJAX 메서드 앞에 어노테이션 @ResponseBody 추가
 	@ResponseBody
 	@RequestMapping(value ="/signup/idcheck", method = {RequestMethod.POST}) 
-	public int adminIdCheck(ManagementVO vo) {
-	
-		System.out.println("아이디 체크 컨트롤러 시작");		
-		String id = vo.getAdminId(); 
-		System.out.println("어드민 아이디 " + id);
-		int idChecked = idCheckService.idCheck(id);
-		System.out.println("Controller : " + idChecked); 
-	
-		return idChecked; // 이 컨트롤러의 return을 ajax data로..!!
+	public int adminIdCheck(ManagementVO vo) {	
+		String id = vo.getAdminId();
+		int idChecked = idCheckService.idCheck(id); 
+		return idChecked; 
 		
 	}
 

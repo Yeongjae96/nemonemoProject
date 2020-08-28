@@ -1,11 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="commentList" value="${vo.commentList}"/>
+<c:set var="productVO" value="${vo.selectedProduct.productVO}"/>
+<c:set var="productImgList" value="${vo.selectedProduct.productImgList}"/>
+<c:set var="selectedCate" value="${vo.selectedProduct.productCateVO}"/>
+<c:set var="favoriteList" value="${vo.favoriteList}"/>
+
+<c:if test="${user != null}">	
+	<c:forEach var="fa" items="${favoriteList}">
+		<c:if test="${user.userNo == fa.favoriteSender}">
+			<c:set var="zzimStatus" value="true"/>
+		</c:if>
+	</c:forEach>
+	<c:if test="${user.userNo == productVO.productSeller}">
+		<c:set var="myproduct" value="true"/>
+	</c:if>
+</c:if>
+
+
+
+<c:forEach var="entry" items="${vo.categoryMap}">
+	<c:set var="key" value="${entry.key}"/>
+	<c:set var="value" value="${entry.value}"/>
+	<c:if test="${key eq 'S'}"> 
+		<c:set var="PdSmCateList" value="${value}"/>
+	</c:if>
+	<c:if test="${key eq 'M'}"> 
+		<c:set var="PdMdCateList" value="${value}"/>
+	</c:if>
+	<c:if test="${key eq 'L'}"> 
+		<c:set var="PdLgCateList" value="${value}"/>
+	</c:if>
+</c:forEach>
+
+<c:if test="${selectedCate.productCateType eq 'L'}">
+	<c:set var="selectedName" value="${selectedCate.productCateLarge}"/>
+</c:if>
+<c:if test="${selectedCate.productCateType eq 'M'}">
+	<c:set var="selectedName" value="${selectedCate.productCateMedium}"/>
+</c:if>
+<c:if test="${selectedCate.productCateType eq 'S'}">
+	<c:set var="selectedName" value="${selectedCate.productCateSmall}"/>
+</c:if>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>네모내모</title>
+<title>네모내모 | ${vo.selectedProduct.productVO.productName}</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
 
@@ -19,7 +67,11 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>this.contextPath = "<c:url value="/"/>"</script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v8.0&appId=308411826950117&autoLogAppEvents=1" nonce="GguEtP2Q"></script>
+<%-- 카카오링크  --%>
+<script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <!-- 해당 페이지 JS파일 -->
 <script src="<c:url value="/resources/js/user/products/products_article.js"/>"></script>
@@ -27,6 +79,8 @@
 
 </head>
 <body>
+
+
 	<% 
 		/* 공통 Header */
 	%>
@@ -48,76 +102,78 @@
             <div class="detail-menu__div">
                 <div class="detail-menu-home">
                     <i class="fas fa-home"></i>
-                    홈
+                  	  홈
                 </div>
-
-                <div class="detail-menu-cbox__item">
-                    <i class="fas fa-chevron-right"></i>
-                    <div class="detail-menu-cbox__area">
-                        <div class="detail-menu-cbox__div">
-                            <div class="detail-menu-cbox__display">
-                                패션잡화
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="detail-menu-cbox__list">
-                                <div class="detail-menu-cbox__item--active">
-                                    패션잡화
-                                </div>
-                                <div class="detail-menu-cbox__item">여성의류</div>
-                                <div class="detail-menu-cbox__item">남성의류</div>
-                                <div class="detail-menu-cbox__item">디지털/가전</div>
-                                <div class="detail-menu-cbox__item">도서/티켓/취미/애완</div>
-                                <div class="detail-menu-cbox__item">생활/문구/가구/식품</div>
-                                <div class="detail-menu-cbox__item">유아동/출산</div>
-                                <div class="detail-menu-cbox__item">스타굿즈</div>
-                                <div class="detail-menu-cbox__item">스포츠/레저</div>
-                                <div class="detail-menu-cbox__item">뷰티/미용</div>
-                                <div class="detail-menu-cbox__item">기타</div>
-                                <div class="detail-menu-cbox__item">차량/오토바이</div>
-                                <div class="detail-menu-cbox__item">구인구직</div>
-                                <div class="detail-menu-cbox__item">재능</div>
-                                <div class="detail-menu-cbox__item">번개나눔</div>
-                                <div class="detail-menu-cbox__item">지역 서비스</div>
-                                <div class="detail-menu-cbox__item">원룸/함께살아요</div>
-                                <div class="detail-menu-cbox__item">커뮤니티</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="detail-menu-cbox__item">
-                    <i class="fas fa-chevron-right"></i>
-                    <div class="detail-menu-cbox__area">
-                        <div class="detail-menu-cbox__div">
-                            <div class="detail-menu-cbox__display">
-                                패션잡화
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="detail-menu-cbox__list">
-                                <div class="detail-menu-cbox__item--active">
-                                    패션잡화
-                                </div>
-                                <div class="detail-menu-cbox__item">여성의류</div>
-                                <div class="detail-menu-cbox__item">남성의류</div>
-                                <div class="detail-menu-cbox__item">디지털/가전</div>
-                                <div class="detail-menu-cbox__item">도서/티켓/취미/애완</div>
-                                <div class="detail-menu-cbox__item">생활/문구/가구/식품</div>
-                                <div class="detail-menu-cbox__item">유아동/출산</div>
-                                <div class="detail-menu-cbox__item">스타굿즈</div>
-                                <div class="detail-menu-cbox__item">스포츠/레저</div>
-                                <div class="detail-menu-cbox__item">뷰티/미용</div>
-                                <div class="detail-menu-cbox__item">기타</div>
-                                <div class="detail-menu-cbox__item">차량/오토바이</div>
-                                <div class="detail-menu-cbox__item">구인구직</div>
-                                <div class="detail-menu-cbox__item">재능</div>
-                                <div class="detail-menu-cbox__item">번개나눔</div>
-                                <div class="detail-menu-cbox__item">지역 서비스</div>
-                                <div class="detail-menu-cbox__item">원룸/함께살아요</div>
-                                <div class="detail-menu-cbox__item">커뮤니티</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+				<c:if test="${selectedCate.productCateType eq 'L' || selectedCate.productCateType eq 'M' || selectedCate.productCateType eq 'S'}">
+	                <div class="detail-menu-cbox__item">
+	                    <i class="fas fa-chevron-right"></i>
+	                    <div class="detail-menu-cbox__area">
+	                        <div class="detail-menu-cbox__div">
+	                            <div class="detail-menu-cbox__display">
+	                            	${selectedCate.productCateLarge}
+	                                <i class="fas fa-chevron-down"></i>
+	                            </div>
+	                            <div class="detail-menu-cbox__list">
+	                            <c:forEach var="lg" items="${PdLgCateList}">
+	                                <c:if test="${selectedCate.productCateLarge eq lg.productCateLarge}">
+	                                	<div class="detail-menu-cbox__item--active">${lg.productCateLarge}</div>
+	                                </c:if>
+	                                <c:if test="${selectedCate.productCateLarge ne lg.productCateLarge}">
+		                                <a href="<c:url value="/categories/${lg.productCateNo}.do"/>" class="detail-menu-cbox__item">${lg.productCateLarge}</a>
+	                                </c:if>
+	                           </c:forEach>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+				</c:if>
+				<c:if test="${selectedCate.productCateType eq 'M' || selectedCate.productCateType eq 'S'}">
+	                <div class="detail-menu-cbox__item">
+	                    <i class="fas fa-chevron-right"></i>
+	                    <div class="detail-menu-cbox__area">
+	                        <div class="detail-menu-cbox__div">
+	                            <div class="detail-menu-cbox__display">
+	                                ${selectedCate.productCateMedium}
+	                                <i class="fas fa-chevron-down"></i>
+	                            </div>
+	                            <div class="detail-menu-cbox__list">
+		                            <c:forEach var="md" items="${PdMdCateList}">
+		                            	<c:if test="${selectedCate.productCateMedium eq md.productCateMedium}">
+		                                	<div class="detail-menu-cbox__item--active">${md.productCateMedium}</div>
+		                            	</c:if>
+		                            	<c:if test="${selectedCate.productCateMedium ne md.productCateMedium}">
+	                                   		<a class="detail-menu-cbox__item" href="<c:url value="/categories/${md.productCateNo}.do"/>">${md.productCateMedium}</a>
+	                                   	</c:if>
+		                            </c:forEach>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:if>
+                
+				<c:if test="${selectedCate.productCateType eq 'S'}">
+	                <div class="detail-menu-cbox__item">
+	                    <i class="fas fa-chevron-right"></i>
+	                    <div class="detail-menu-cbox__area">
+	                        <div class="detail-menu-cbox__div">
+	                            <div class="detail-menu-cbox__display">
+	                                ${selectedCate.productCateSmall}
+	                                <i class="fas fa-chevron-down"></i>
+	                            </div>
+	                            <div class="detail-menu-cbox__list">
+		                            <c:forEach var="sm" items="${PdSmCateList}">
+		                            	<c:if test="${selectedCate.productCateSmall eq sm.productCateSmall}">
+		                                	<div class="detail-menu-cbox__item--active">${sm.productCateSmall}</div>
+		                            	</c:if>
+		                            	<c:if test="${selectedCate.productCateSmall ne sm.productCateSmall}">
+	                                   		<a class="detail-menu-cbox__item" href="<c:url value="/categories/${sm.productCateNo}.do"/>">${sm.productCateSmall}</a>
+	                                   	</c:if>
+		                            </c:forEach>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:if>
             </div>
 
             <!-- 상품 정보 -->
@@ -127,32 +183,41 @@
                         <!-- 이미지 리스트 -->
                         <div class="detail-info__image__list">
                             <!-- 상세 상품 이미지 1장-->
-                            <img class="detail-info__image__item--active" src="<c:url value="/resources/images/user/products/product_1.jpg"/>" alt="상세 상품 이미지" />
-                            <img class="detail-info__image__item" src="<c:url value="/resources/images/user/products/product_2.jpg"/>" alt="상세 상품 이미지" />
-                            <div class="detail-info__image__watermark"></div>
-
-                            <!-- 이전 버튼 -->
-                            <button direction="next" class="detail-info__image--prev">
-                                <i class="fas fa-chevron-left fa-2x"></i>
-                            </button>
-                            <!-- 다음 버튼 -->
-                            <button direction="next" class="detail-info__image--next">
-                                <i class="fas fa-chevron-right fa-2x"></i>
-                            </button>
-                            <!-- 확대 버튼-->
-                            <button class="detail-info__image--enlg">
-                                <i class="fas fa-search"></i>
-                                확대
-                            </button>
-
-                            <!-- 이미지 개수 ~ -->
-                            <div class="detail-info__image-count">
-                                <button disabled class="detail-info__image-count-btn--active"></button>
-                                <button class="detail-info__image-count-btn"></button>
-                                <button class="detail-info__image-count-btn"></button>
-                                <button class="detail-info__image-count-btn"></button>
-                            </div>
-
+                            <c:forEach var="img" items="${productImgList}" varStatus="st">
+                            	<c:if test="${st.first}"> 
+	                            	<img class="detail-info__image__item image--active" src="/image/product/${img.productImgNo}.img" alt="상세 상품 이미지" />
+	                            </c:if>
+	                            <c:if test="${not st.first}">
+		                            <img class="detail-info__image__item" src="/image/product/${img.productImgNo}.img" alt="상세 상품 이미지" />
+	                            </c:if>
+	                            <div class="detail-info__image__watermark"></div>
+								
+	                            <!-- 이전 버튼 -->
+	                            <button direction="prev" class="detail-info__image--prev">
+	                                <i class="fas fa-chevron-left fa-2x"></i>
+	                            </button>
+	                            <!-- 다음 버튼 -->
+	                            <button direction="next" class="detail-info__image--next">
+	                                <i class="fas fa-chevron-right fa-2x"></i>
+	                            </button>
+	                            <!-- 확대 버튼-->
+	                            <button class="detail-info__image--enlg">
+	                                <i class="fas fa-search"></i>
+	                             	  확대
+	                            </button>
+							</c:forEach>
+								
+	                            <!-- 이미지 개수 ~ -->
+	                            <div class="detail-info__image-count">
+	                            	<c:forEach begin="0" end="${fn:length(productImgList)-1}" varStatus="st">
+	                            		<c:if test="${st.first}">
+			                                <button disabled class="detail-info__image-count-btn count--active"></button>
+	                            		 </c:if>
+	                            		<c:if test="${not st.first}">
+			                                <button class="detail-info__image-count-btn"></button>
+	                            		 </c:if>
+	                            	</c:forEach>
+	                            </div>
                             <!-- 이미지 모달 -->
                             <div class="enlarge-modal__area">
                                 <div class="enlarge-modal__div">
@@ -197,13 +262,12 @@
                             <div class="detail-info__text__div3">
                                 <div class="detail-info__text-header">
                                     <div class="detail-info__text-title">
-                                        프로피쿡 디지털 에어프라이어 튀김기 보토 필립스 전기오븐렌지
+                                    	${productVO.productName}
                                     </div>
                                     <div class="detail-info__text-price__div">
-                                        <div class="detail-info__price">62,500<span>원</span>
+                                        <div class="detail-info__price"><fmt:formatNumber value="${productVO.productPrice}" pattern="#,###"/><span>원</span>
                                         </div>
                                     </div>
-                                    <!-- 앱 광고 버튼 -->
                                 </div>
                                 <div class="detail-info__text-body">
                                     <div class="detail-info__text-body-top">
@@ -211,20 +275,41 @@
                                         <div class="detail-info__text-body-topL">
                                             <div class="detail-info--topL-item">
                                                 <i class="fas fa-heart"></i>
-                                                <div class="">
-                                                    30
+                                                <div id="zzimCount">
+                                                   	${fn:length(favoriteList)}
                                                 </div>
                                             </div>
                                             <div class="detail-info--topL-item">
                                                 <i class="fas fa-eye"></i>
-                                                <div class="">
-                                                    418
+                                                <div id="viewCount">
+                                                    ${productVO.productView}
                                                 </div>
                                             </div>
                                             <div class="detail-info--topL-item">
                                                 <i class="fas fa-clock"></i>
                                                 <div class="">
-                                                    58분전
+                                                	<jsp:useBean id="now" class="java.util.Date"/>
+                                                    <fmt:parseNumber value="${productVO.productRegDt.time}" integerOnly="true" var="oldDays" scope="request"/>
+                                                    <fmt:parseNumber value="${now.time}" integerOnly="true" var="nowDays" scope="page"/>
+                                                    
+                                                    <c:choose>
+                                                    	<c:when test="${nowDays-oldDays < (1000*60)}">
+                                                    		<fmt:parseNumber value="${(nowDays-oldDays) / (1000)}" integerOnly="true" var="secDate"/>
+                                                    		<c:out value="${secDate}"/> 초전
+                                                    	</c:when>
+                                                    	<c:when test="${(nowDays-oldDays) < (1000*60*60)}">
+                                                    		<fmt:parseNumber value="${(nowDays-oldDays) / (1000*60)}" integerOnly="true" var="minDate"/>
+                                                    		<c:out value="${minDate}"/> 분전
+                                                    	</c:when>
+                                                    	<c:when test="${(nowDays-oldDays) < (1000*60*60*24)}">
+                                                    		<fmt:parseNumber value="${(nowDays-oldDays) / (1000*60*60)}" integerOnly="true" var="hourDate"/>
+                                                    		<c:out value="${hourDate}"/> 시간전
+                                                    	</c:when>
+                                                    	<c:otherwise>
+                                                    		<fmt:parseNumber value="${(nowDays-oldDays) / (1000*60*60*24)}" integerOnly="true" var="dayDate"/>
+                                                    		<c:out value="${dayDate }"/> 일전
+                                                    	</c:otherwise>
+                                                    </c:choose>
                                                 </div>
                                             </div>
                                         </div>
@@ -240,7 +325,12 @@
                                                 상품상태
                                             </div>
                                             <div class="detail-info__text-body-bItem-content">
-                                                새상품
+                                                <c:if test="${productVO.productUsedSt eq 'N'}">
+                                                	새상품
+                                                </c:if>
+                                                <c:if test="${productVO.productUsedSt eq 'Y'}">
+                                                	중고상품
+                                                </c:if>
                                             </div>
                                         </div>
                                         <!-- 아이템 한개 -->
@@ -249,7 +339,12 @@
                                                 교환여부
                                             </div>
                                             <div class="detail-info__text-body-bItem-content">
-                                                교환불가능
+                                               <c:if test="${productVO.productExchSt eq 'Y'}">
+                                               		교환가능
+                                               </c:if>
+                                               <c:if test="${productVO.productExchSt eq 'N'}">
+                                               		교환불가능
+                                               </c:if>
                                             </div>
                                         </div>
                                         <!-- 아이템 한개 -->
@@ -258,7 +353,12 @@
                                                 배송비
                                             </div>
                                             <div class="detail-info__delivery">
-                                                배송비 별도
+                                                <c:if test="${productVO.productFreeShippingSt eq 'Y'}">
+                                                	무료배송
+                                                </c:if>
+                                                <c:if test="${productVO.productFreeShippingSt eq 'N'}">
+                                                	배송비 별도
+                                                </c:if>
                                             </div>
                                         </div>
                                         <!-- 아이템 한개 -->
@@ -267,33 +367,48 @@
                                                 거래지역
                                             </div>
                                             <div class="detail-info__location">
-                                                서울특별시 은평구 응암제2동
-                                                <div class="detail-info__mark">지역인증</div>
+                                               	${productVO.productDealArea}
+                                               	<%-- 나중에 지역인증 추가 시 --%>
+                                               	<c:if test="false">
+	                                                <div class="detail-info__mark">지역인증</div>
+                                               	</c:if>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="detail-info__btn-list">
-                                <div class="detail-info__btn-zzim__div" id="zzimBtn">
-                                    <button class="detail-info__btn-zzim">
+                            	<c:if test="${myproduct}">
+	                            	<a class="detail-myproduct" href="<c:url value="/products/manage.do"/>">
+			                            	내 상점 관리
+	                            	</a>
+                           		</c:if>
+                           		<c:if test="${not myproduct}">
+                           			<div class="detail-info__btn-zzim__div" >
+                                	<c:if test="${zzimStatus}"> 
+                                		<button class="detail-info__btn-zzim detail--active" id="zzimBtn">
+                                	</c:if>
+                                	<c:if test="${not zzimStatus}"> 
+	                                    <button class="detail-info__btn-zzim" id="zzimBtn">
+                                	</c:if>
                                         <i class="fas fa-heart"></i>
                                         <span>찜</span>
-                                        <span>30</span>
+                                        <span id="favoriteCnt">${fn:length(favoriteList)}</span>
                                     </button>
                                     <!-- 찜 메시지 -->
-                                    <div class="detail-zzim--div">
+                                    <div class="detail-zzim--div" id="favoriteToast">
                                         <i class="fas fa-heart"></i>
-                                        <span class="detail-zzim--msg">찜이 해제</span> 되었습니다.
+                                        <span class="detail-zzim--msg" id="favoriteMsg">찜이 해제</span> 되었습니다.
                                     </div>
-                                </div>
-                                <button class="detail-call__btn" id="callBtn">
-                                    연락하기
-                                </button>
-                                <button class="detail-buy_btn" id="buyBtn">
-                                    바로구매
-                                </button>
+	                                </div>
+	                                <button class="detail-call__btn" id="callBtn">
+	                                   	 연락하기
+	                                </button>
+	                                <button class="detail-buy_btn" id="buyBtn">
+	                                   	 바로구매
+	                                </button>
+                           		</c:if>
+                                
                             </div>
 
                             <!-- 신고 모달-->
@@ -384,14 +499,12 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
             </div>
-
+	<%-- 연관상품 기능 추가 시 다시 부활시킴 --%>
+			<%--
             <div class="detail-rel__area">
                 <div class="detail-rel__div">
                     <div class="detail-rel__head">
@@ -456,7 +569,9 @@
                     </button>
                 </div>
             </div>
-
+			 --%>
+			 
+			 
             <!-- 상품 정보 부터 -->
             <div class="detail-product__area">
                 <!-- 상품 설명 및 댓글 -->
@@ -464,8 +579,8 @@
                     <div class="detail-explain__tabs">
                         <div class="detail-explain__tab">
                             <span>상품 정보</span> &
-                            <span class="">상품문의</span>
-                            <span class="tab__count">(276)</span>
+                            <span class="detail-explain-span">상품문의</span>
+                            <span class="tab__count">(${fn:length(commentList)})</span>
                         </div>
                     </div>
                     <div class="detail-explain__content">
@@ -476,64 +591,7 @@
                             </div>
                             <div class="detail-explain__article">
                                 <div class="detail-article__margin"></div>
-                                <div class="detail-article__text">
-                                ⛔ 글 비슷하게 올린 사칭업체 주의 (⭐글 조회수 비교)
-                                🔥LED케이스(신품) 무상교체 (유명제품 취향 택1)
-                                🔥총알 안전배송 오후 4시이전 주문- 당일출고 ˘◡˘
-
-                                ▶ 카카오톡 문의 : hh339
-                                ▶ 전화,문자 문의 : 010-8417-7707
-
-                                ⛔80PLUS 인증없는 뻥파워 주의 (거짓 표기전압)
-                                🔥저희는 80PLUS 정격파워 사용 (인증된 전압 부품)
-                                ⛔본체기준 무상AS 6개월 최초진행⛔
-
-                                🌈 0번 (본체만 입니다) 【특가진행 330,000원】
-                                ⭐ 서든, 롤, 피파, 오버워치, GTA5 ⭐
-                                CPU- 인텔 코어 i5 3570 {쿼드코어}
-                                VGA- 게이밍 RX470 4GB (⭐GTX1050Ti 보다 좋음)
-                                RAM- 삼성램 8G &gt;&gt; 👍16G 변경시 +4
-                                SSD- 120G &gt;&gt; 👍240G 새거 변경시 +2
-                                POWER- 80PLUS 인증 정격 700W
-                                ⭐케이스- COX RC 170T (새거교체)
-
-                                🌈 1번세트 (모니터+본체) 【한정수량 450,000원】
-                                ⭐ 서든, 롤, 피파, 오버워치, GTA5, 배그 ⭐
-                                CPU- 인텔 코어 i5 3570 {쿼드코어}
-                                VGA- 게이밍 RX470 4GB (⭐GTX1050Ti 보다 좋음)
-                                RAM- 삼성램 8G &gt;&gt; 👍16G 변경시 +4
-                                SSD- 120G &gt;&gt; 👍240G 새거 변경시 +2
-                                POWER- 80PLUS 인증 정격 700W
-                                ⭐케이스- LED 케이스 새걸로 교체 (추가금X)
-                                모니터- 게이밍 24인치 초슬림 (새거) or 32인치 (중고)
-
-                                🌈 2번세트 (모니터+본체) 【한정수량 520,000원】
-                                ⭐ 서든, 롤, 피파, 오버워치, GTA5, 배그 ⭐
-                                ㅡ👉 (CPU &gt; i7- 4770 변경 +8/ 변경시 배그상옵)
-                                CPU- 인텔 코어 i5 4670 하스웰 {쿼드코어}
-                                VGA- 게이밍 RX580 4GB (⭐GTX1060보다 좋음)
-                                RAM- 삼성램 8G &gt;&gt; 👍16G 변경시 +4
-                                SSD- 120G &gt;&gt; 👍240G 새거 변경시 +2
-                                POWER- 80PLUS 인증 정격 700W
-                                ⭐케이스- LED 케이스 새걸로 교체 (추가금X)
-                                모니터- 게이밍 24인치 초슬림 (새거) or 32인치 (중고)
-
-                                👉 구성품세트 (전부 신품새거) +2
-                                LED 게이밍{키보드+마우스} +장패드 +스피커
-                                ⛔찝찝하게 중고쓰지말고 새거 쓰세요^^⛔
-
-                                👉 헤드셋 (신품새거) +1
-                                ⛔찝찝하게 중고쓰지말고 새거 쓰세요^^⛔
-
-                                👉 기본 SSD구성 + 하드 추가시
-                                🏈500GB = 2만원 / 1TB (1000GB) = 3만원
-
-                                ✦본체 내부 부품은 세척후 검수 테스트 (새것느낌)
-                                상태 새것같은 중고 입니다, 선물용으로도 좋아요!
-                                성능저하없이 성능 매우 좋습니다, 부품상태도 S급
-
-                                🔥 택배발송 가능해요 / 전문포장업체 통해서 발송 / 파손걱정NO
-                                🔥 배송중 파손시 제가 책임집니다 / 에어캡 무장</div>
+                                <div class="detail-article__text">${productVO.productInfo}</div>
                                 <div class="detail-article__seller-list">
                                     <!-- 지역 아이템 -->
                                     <div class="detail-article__seller-item">
@@ -543,7 +601,7 @@
                                         </div>
                                         <div class="detail-article-item__body">
                                             <div class="detail-article--location">
-                                                경기도 의정부시
+                                                ${productVO.productDealArea}
                                             </div>
                                         </div>
                                     </div>
@@ -554,9 +612,11 @@
                                             카테고리
                                         </div>
                                         <div class="detail-article-item__body">
-                                            <a class="detail-article--category" href="#">
-                                                <span>디지털/가전기기</span>
+                                            <a class="detail-article--category" href="<c:url value="/categories/${selectedCate.productCateNo}.do"/>">
+                                               	${selectedName}
+                                               	<i class="fas fa-chevron-right"></i>
                                             </a>
+                                            
                                         </div>
                                     </div>
                                     <!-- 상품태그 아이템 -->
@@ -568,36 +628,30 @@
                                         <div class="detail-article-item__body">
                                             <div class="detail-article--tag-list">
                                                 <!-- 태그 아이템 1개 -->
-                                                <div class="detail-article--tag-item">
-                                                    #생활가전
-                                                </div>
-                                                <div class="detail-article--tag-item">
-                                                    #싸다싸
-                                                </div>
-                                                <div class="detail-article--tag-item">
-                                                    #단돈 6만 9천원
-                                                </div>
-                                                <div class="detail-article--tag-item">
-                                                    #태그태그
-                                                </div>
+                                                <c:forTokens var="token" items="${productVO.productTag}" delims=",">
+	                                                <%-- 검색기능 추가시 링크 연결시킬 것 --%>
+	                                                <a href="<c:url value="/search/products.do?q=${token}"/>" class="detail-article--tag-item">
+	                                                    #${token}
+	                                                </a>
+                                                </c:forTokens>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>		
                         </div>
                         <!-- 댓글 영역-->
                         <div class="detail-comment__area">
                             <div class="detail-comment__header">
                                 상품문의
-                                <span class="detail--empha">0</span>
+                                <span class="detail--empha">${fn:length(commentList)}</span>
                             </div>
                             <div class="detail-comment__body">
                                 <div class="detail-comment__input">
-                                    <textarea class="detail-comment__textarea" placeholder="상품문의 입력"></textarea>
+                                    <textarea class="detail-comment__textarea" id="commentTextArea" placeholder="상품문의 입력"></textarea>
                                 </div>
                                 <div class="detail-comment__reg">
-                                    <div class="detail-comment__reg-count">0/100</div>
+                                    <div class="detail-comment__reg-count" id="commentSize">0/100</div>
                                     <button class="detail-comment__reg-btn">
                                         <i class="fas fa-pencil-alt"></i>
                                         등록
@@ -606,142 +660,62 @@
                             </div>
                             <div class="detail-comment__history">
                                 <!-- 댓글 아이템 1개 -->
-                                <div class="detail-history__area">
-                                    <div class="detail-history__item">
-                                        <a class="detail-history__left" href="#">
-                                            <img src="<c:url value="/resources/images/user/products/image_1.jpg"/>" alt="프로필 이미지">
-                                        </a>
-                                        <div class="detail-history__right">
-                                            <div class="detail-right__head">
-                                                <div class="detail-right__title">번개알림센터</div>
-                                                <div class="detail-right__time">1초전</div>
-                                            </div>
-                                            <div class="detail-right__body">
-                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
-                                            </div>
-                                            <div class="detail-right__footer">
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-comment"></i>
-                                                    댓글 달기
-                                                </div>
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-lightbulb"></i>
-                                                    신고 하기
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <c:forEach var="comment" items="${commentList}">
+	                                <div class="detail-history__area" data-commentno="${comment.productCommentNo}">
+	                                    <div class="detail-history__item">
+	                                        <a class="detail-history__left" href="#">
+	                                            <img src="<c:url value="/resources/images/user/products/image_1.jpg"/>" alt="프로필 이미지">
+	                                        </a>
+	                                        <div class="detail-history__right">
+	                                            <div class="detail-right__head">
+	                                                <div class="detail-right__title">${comment.storeName}</div>
+	                                                <div class="detail-right__time">
 
-                                <!-- 댓글 아이템 1개 -->
-                                <div class="detail-history__area">
-                                    <div class="detail-history__item">
-                                        <a class="detail-history__left" href="#">
-                                            <img src="<c:url value="/resources/images/user/products/image_1.jpg"/>" alt="프로필 이미지">
-                                        </a>
-                                        <div class="detail-history__right">
-                                            <div class="detail-right__head">
-                                                <div class="detail-right__title">번개알림센터</div>
-                                                <div class="detail-right__time">1초전</div>
-                                            </div>
-                                            <div class="detail-right__body">
-                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
-                                            </div>
-                                            <div class="detail-right__footer">
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-comment"></i>
-                                                    댓글 달기
-                                                </div>
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-lightbulb"></i>
-                                                    신고 하기
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 댓글 아이템 1개 -->
-                                <div class="detail-history__area">
-                                    <div class="detail-history__item">
-                                        <a class="detail-history__left" href="#">
-                                            <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="프로필 이미지">
-                                        </a>
-                                        <div class="detail-history__right">
-                                            <div class="detail-right__head">
-                                                <div class="detail-right__title">번개알림센터</div>
-                                                <div class="detail-right__time">1초전</div>
-                                            </div>
-                                            <div class="detail-right__body">
-                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
-                                            </div>
-                                            <div class="detail-right__footer">
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-comment"></i>
-                                                    댓글 달기
-                                                </div>
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-lightbulb"></i>
-                                                    신고 하기
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 댓글 아이템 1개 -->
-                                <div class="detail-history__area">
-                                    <div class="detail-history__item">
-                                        <a class="detail-history__left" href="#">
-                                            <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="프로필 이미지">
-                                        </a>
-                                        <div class="detail-history__right">
-                                            <div class="detail-right__head">
-                                                <div class="detail-right__title">번개알림센터</div>
-                                                <div class="detail-right__time">1초전</div>
-                                            </div>
-                                            <div class="detail-right__body">
-                                            
-                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
-                                            </div>
-                                            <div class="detail-right__footer">
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-comment"></i>
-                                                    댓글 달기
-                                                </div>
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-lightbulb"></i>
-                                                    신고 하기
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 댓글 아이템 1개 -->
-                                <div class="detail-history__area">
-                                    <div class="detail-history__item">
-                                        <a class="detail-history__left" href="#">
-                                            <img src="<c:url value="/resources/images/user/products/image_1.jpg"/>" alt="프로필 이미지">
-                                        </a>
-                                        <div class="detail-history__right">
-                                            <div class="detail-right__head">
-                                                <div class="detail-right__title">번개알림센터</div>
-                                                <div class="detail-right__time">1초전</div>
-                                            </div>
-                                            <div class="detail-right__body">
-                                                [공지글] 안전거래를 위한 네모장터만의 서비스가 출시되었습니다!
-                                            </div>
-                                            <div class="detail-right__footer">
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-comment"></i>
-                                                    댓글 달기
-                                                </div>
-                                                <div class="right-footer__btn">
-                                                    <i class="fas fa-lightbulb"></i>
-                                                    신고 하기
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+														<fmt:parseNumber value="${comment.productCommentRegDt.time}" integerOnly="true" var="paramDays" scope="request"/>
+	                                                    
+	                                                    <c:choose>
+	                                                    	<c:when test="${nowDays-paramDays < (1000*60)}">
+	                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000)}" integerOnly="true" var="secDate"/>
+	                                                    		<c:out value="${secDate}"/> 초전
+	                                                    	</c:when>
+	                                                    	<c:when test="${(nowDays-paramDays) < (1000*60*60)}">
+	                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60)}" integerOnly="true" var="minDate"/>
+	                                                    		<c:out value="${minDate}"/> 분전
+	                                                    	</c:when>
+	                                                    	<c:when test="${(nowDays-paramDays) < (1000*60*60*24)}">
+	                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60*60)}" integerOnly="true" var="hourDate"/>
+	                                                    		<c:out value="${hourDate}"/> 시간전
+	                                                    	</c:when>
+	                                                    	<c:otherwise>
+	                                                    		<fmt:parseNumber value="${(nowDays-paramDays) / (1000*60*60*24)}" integerOnly="true" var="dayDate"/>
+	                                                    		<c:out value="${dayDate }"/> 일전
+	                                                    	</c:otherwise>
+	                                                    </c:choose>
+													</div>
+	                                            </div>
+	                                            <div class="detail-right__body">${comment.productCommentContent}</div>
+	                                            <div class="detail-right__footer">
+	                                                <div class="right-footer__btn comment-response-btn">
+	                                                    <i class="fas fa-comment"></i>
+                                                  		  댓글 달기
+	                                                </div>
+                                               		<c:if test="${user.userNo != comment.productCommentWriter}">
+		                                                <div class="right-footer__btn comment-report-btn">
+                                                    	<i class="fas fa-lightbulb"></i>
+                                                    		신고 하기
+		                                              	</div>
+                                               		</c:if>
+                                               		<c:if test="${user.userNo == comment.productCommentWriter}">
+		                                                <div class="right-footer__btn comment-del-btn">
+                                               			<i class="fas fa-trash-alt"></i>
+                                                    		삭제 하기
+		                                              	</div>
+                                               		</c:if>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+                                </c:forEach>
                                 <!-- 댓글 신고 모달-->
                                 <div class="comment-report-modal__area">
                                     <div class="comment-report-modal__div">
@@ -789,19 +763,21 @@
                 <!-- 상점 정보-->
                 <div class="detail-store__area">
                     <div class="detail-export__link-list">
-                        <button type="button" class="detail-export__naver">
-                            <img src="<c:url value="/resources/images/user/products/naverblog.png"/>" alt="블로그 아이콘">
-                        </button>
-                        <button type="button" class="detail-export__facebook">
+                   		<%-- 페이스북 조건부 완성  --%>
+                    	<!-- div id="fb-root"></div> -->
+                        <%-- <button type="button" class="detail-export__facebook" id="shareFacebookBtn" >
                             <img src="<c:url value="/resources/images/user/products/facebook.png"/>" alt="페이스북 아이콘">
                         </button>
-                        <button type="button" class="detail-export__twitter">
+                        <button type="button" class="detail-export__twitter" id="shareTwitterBtn">
                             <img src="<c:url value="/resources/images/user/products/twitter.png"/>" alt="트위터 아이콘">
-                        </button>
-                        <button type="button" class="detail-export__url">
+                        </button> --%>
+                        <button id="kakao-link-btn" class="detail-export_kakao">
+							<img src="<c:url value="/resources/images/user/products/kakao.png"/>" width="10px" />
+						</button>
+                        <button type="button" class="detail-export__url" id="shareUrlBtn">
                             <img src="<c:url value="/resources/images/user/products/url.png"/>" alt="url 아이콘">
                             <span class="url__msg">
-                                복사중...
+                               	 클릭하여 복사하기
                             </span>
                         </button>
                     </div>

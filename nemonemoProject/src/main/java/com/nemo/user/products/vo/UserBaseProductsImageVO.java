@@ -1,6 +1,7 @@
 package com.nemo.user.products.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Data;
 
@@ -15,6 +16,6 @@ public class UserBaseProductsImageVO {
 	private int productImgWidth;
 	private int productImgHeight;
 	private String productImgType;
-	private Date productImgDt;
+	private Timestamp productImgDt;
 	
 }

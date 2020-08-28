@@ -11,22 +11,47 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/user/main/main.css"/>">
 
 <!-- 페이지 CSS  -->
-<link rel="stylesheet" href="<c:url value="/resources/css/user/sign/signin.css"/>">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <!-- 라이브러리 -->
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
-<script src="<c:url value="/resources/vendor/fontawsome/js/all.js"/>"></script>
+<script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script> window.contextPath = "<c:url value="/"/>"</script>
+<script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
 <!-- 해당 페이지 JS파일 -->
-<script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
+<script src="<c:url value="/resources/js/user/main/main.js"/>"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="<c:url value="/resources/js/user/main/jquery.scrolltabs.js"/>"></script>
+<!-- 리다이렉트로 값을 받아 alert문 안내 -->
+<script>
+	var result = '${msg}';
+	
+	if (result == 'success') {
+		alert("로그인 성공\n네모내모에 어서오세요!");
+	} else if (result=='idfail'){
+		alert("아이디가 없습니다. \n회원가입 해주시길 바랍니다");
+		$(function() {
+			$('#loginModal').show();
+		})
+	} else if (result=='passwordfail'){
+		alert("비밀번호가 틀렸습니다. \n다시 로그인해주세요.");
+		$(function() {
+				$('#loginModal').show();
+		})
+	} else if (result=='stop'){
+		alert("정지된 아이디입니다.");
+	} else if (result=='slogininfo'){
+		alert("소셜로그인 처음 하셨습니다 .\n내계정에 가서 회원수정해주시길 바랍니다.");
+	} else if (result=='logout'){
+		alert("로그아웃 되셨습니다. \n안녕히가세요.");
+	}
+</script>
 
 </head>
 <body>
@@ -41,6 +66,23 @@
 		<jsp:include page="/WEB-INF/views/user/include/header.jsp" />
 		<jsp:include page="/WEB-INF/views/user/include/side-nav.jsp"/>		
 	</header>
+	
+	<%    
+	String kakaonickname = request.getParameter("kakaonickname");
+    session.setAttribute("kakaonickname", kakaonickname);
+      	if (kakaonickname != null){
+    %>
+    
+    <%=" (카카오톡) "+session.getAttribute("kakaonickname")%>님 방문을 환영합니다.
+    
+    <form action = "kakao_logout.do" method = "post">
+    <button type = "submit" name = "submit">로그아웃</button></form>
+    
+    <%
+        };
+        
+    %>
+	
 	<% 
 		/* 각 페이지의 특성! */
 	%>

@@ -1,3 +1,7 @@
+/**
+ * initPdMenu() 는 메뉴를 위해 필수 함수
+ */
+
 const fileBuffer = []; // 파일저장용 전역변수
 let lastClickCategoryNo;
 
@@ -35,6 +39,9 @@ function initImageArea() {
 			let index = 0;
 			reader.onload = function(e) {
 				
+				if(index >= input.files.length) {
+					return false;
+				}
 				const fileSize = input.files[index].size;
 				if(fileSize > maxSize) {
 					alert('이미지파일 사이즈는 10MB 이내로 등록 가능합니다. ');
@@ -42,9 +49,6 @@ function initImageArea() {
 				}
 				
 				
-				if(index >= input.files.length) {
-					return false;
-				}
 				const image = input.files[index];
 				// 파일 유효성 검사
 				const fileEx = image.name.slice(image.name.lastIndexOf(".")+1).toLowerCase();
@@ -107,28 +111,12 @@ function initTitleArea() {
 
 /* 카테고리 영역 함수 */
 function initCategoryArea() {
-	// id lg|md|smCategory 안에 li
-	// (.products-category-item|.products-category-nothing)을 넣는것
 	
-	getCategoryList().then(categorySetting);
-	
-	/* 리스트 불러 오기 */
-	function getCategoryList() {
-		return new Promise(function(resolve, reject) {
-			$.ajax({
-				url: 'allCateList.do',
-				method: 'get',
-				dataType: 'json'
-			}).done(function(data) {
-				resolve(data);
-			});
-		});
-	}
-	
+	initPdMenu()
+	.then(categorySetting);
 	/* 카테고리 셋팅 하기 */
 	function categorySetting(data) {
 		return new Promise(function(resolve, reject) {
-			
 			// 대중소 분류 배열
 			const lgCateArr = data.filter(e => e.productCateType == 'L');
 			const mdCateArr = data.filter(e => e.productCateType == 'M');
@@ -287,6 +275,8 @@ function initCategoryArea() {
 					listEmpty(cateObj.cateID,cateObj.nothingText);
 				}
 			}
+			
+			resolve(data);
 		});
 	}
 	
@@ -301,24 +291,41 @@ function initDealArea() {
 	    if (navigator.geolocation) {
 	    	var geocoder = new kakao.maps.services.Geocoder();
 	        // 위치 정보를 얻기
+	    	let long;
+	    	let lat;
 	        navigator.geolocation.getCurrentPosition (function(pos) {
-	            const lat = pos.coords.latitude;     // 위도
-	            const long = pos.coords.longitude; // 경도
-	            geocoder.coord2Address(long, lat,function(result, status) {
-	                if (status === kakao.maps.services.Status.OK) {
-// var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' +
-// result[0].road_address.address_name + '</div>' : '';
-	                    const doName = result[0].address.region_1depth_name;
-	                    const siName = result[0].address.region_2depth_name;
-	                    const dongName = result[0].address.region_3depth_name;
-	                    var detailAddr = `${doName} ${siName} ${dongName}`;
-	                    $('#myLocationInput').val(detailAddr);
-	                }
-	            });
+	            lat = pos.coords.latitude;     // 위도
+	            long = pos.coords.longitude; // 경도
+	            updateLocation(long, lat);
+	        }, function(fail) {
+	        	console.log(fail);
+	        	// HTTP 환경에서 위치정보를 가져오기 위함
+	        	$.getJSON('https://ipinfo.io/?token=ce1a2601570c81', function(response) { 
+	                var loc = response.loc.split(',');
+	                lat = loc[0];
+	                long = loc[1];
+	                updateLocation(long, lat);
+	        	});
 	        });
 	    } else {
 	        alert("이 브라우저에서는 내 위치 기능이 지원되지 않습니다.");
 	    }
+	    
+	    function updateLocation(long, lat) {
+	    	geocoder.coord2Address(long, lat,function(result, status) {
+                if (status === kakao.maps.services.Status.OK) {
+//var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' +
+//result[0].road_address.address_name + '</div>' : '';
+                    const doName = result[0].address.region_1depth_name;
+                    const siName = result[0].address.region_2depth_name;
+                    const dongName = result[0].address.region_3depth_name;
+                    var detailAddr = `${doName} ${siName} ${dongName}`;
+                    $('#myLocationInput').val(detailAddr);
+                }
+            });
+	    }
+	   
+	    
 	}
 }
 
@@ -365,6 +372,21 @@ function initPriceArea() {
 			$('#price-validation-text').addClass('invisible');
 		}
 	}
+	
+	$('#contactHope').change(contantHope);
+	
+	function contantHope() {
+		togglePriceInput($(this).prop('checked'));
+				
+		function togglePriceInput(status) {
+			if(status) {
+				$('#priceInput').prop('disabled', true).val('가격 협의 가능');
+			} else {
+				$('#priceInput').prop('disabled', false).val('');
+				
+			}
+		}
+	}
 }
 
 /* 설명 */
@@ -381,7 +403,7 @@ function initExplainArea() {
 /* 태그 영역 */
 function initTagArea() {
 	$('#tagInput').on('keyup', hashTagEvent);
-	$('#tagInput').on('keydown', function(event) {if(event.keyCode == 13) event.preventDefault();});
+	$('#tagInput').on('keydown', function(event) {if(event.keyCode == 13 || event.keyCode==32) event.preventDefault();});
 	const $inputDiv = $('#tagInput').closest('div.products-tag--div2');
 
 	/* 태그생성 */
@@ -395,7 +417,9 @@ function initTagArea() {
 		}
 		
 		
-		if(event.keyCode != 13) return false;
+		if(!(event.keyCode == 13 || event.keyCode == 32)) return false;
+		if(!document.getElementById('tagInput').value.trim().length) return false;
+		
 		let $ul; 
 		
 		if($('.products-tag-hash--div').length == 0) {
@@ -566,13 +590,19 @@ function initRegBtn() {
 				console.log('after data : ', data);
 			},
 			success: function(data) {
-				window.location.href="/"; // 나중에 GetBoard로 가야함
+				if(data) {
+					alert('상품이 등록되었습니다. ')
+					window.location.href="/" // 나중에 GetBoard로 가야함
+				} else {
+					alert('로그인이 필요한 기능입니다.')
+					$('#loginBtn').trigger('click');
+				}
 			},
 			error: function(error) {
 				alert('error : ', error)
 			}
 		});
-// $('#newForm').submit();
+//		$('#newForm').submit();
 	}
 	
 	function checkBeforeInsert() {
@@ -584,5 +614,6 @@ function initRegBtn() {
 		if(checkNull('contentInput', '설명')) return true;
 		if(checkNull('quantityInput', '개수')) return true;
 	}
+	
 }
 

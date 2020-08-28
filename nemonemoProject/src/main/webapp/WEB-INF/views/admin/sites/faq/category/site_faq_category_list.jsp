@@ -114,7 +114,11 @@
                                         </td>
                                         <td class ="text-center">
 	                                        <button type="button" data-toggle="modal" data-target="#faq_category_update" class ="faq-category-upd-btn btn btn-success" data-faqno="${faqCategory.faqCategoryNo}">수정</button>
-	                                        <button type="button" class ="faq-category-del-btn btn btn-danger" data-toggle="modal" data-target="#faq_category_delete" data-faqno="${faqCategory.faqCategoryNo}">삭제</button>
+	                                        <button type="button" class ="faq-category-del-btn btn btn-danger" data-toggle="modal" data-target="#faq_category_delete" data-faqno="${faqCategory.faqCategoryNo}">
+
+
+
+</button>
 										</td>
                                     </tr>
                                     </c:forEach>

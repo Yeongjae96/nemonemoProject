@@ -13,7 +13,7 @@
 		<result column="product_img_type" property="productImgType"/>
 		<result column="product_img_dt" property="productImgDt"/>
 	</resultMap>
-
+	
 	<insert id="insertImage" 
 		parameterType="java.util.List">
 	
@@ -40,33 +40,43 @@
 		)
 		
 		</foreach>
-		
 		<selectKey keyColumn="productImgNo" order="AFTER"> SELECT product_img_sq.currval FROM dual </selectKey>
-		
 	</insert>
-
-	<!--
-		INSERT into product_img_tb (
-			product_img_no,
-			product_no,
-			product_img_origin_name,
-			product_img_file_name,
-			product_img_file_size,
-			product_img_width,
-			product_img_height,
-			product_img_type
-		) SELECT product_img_sq.NEXTVAL, A.* 
-		FROM (
-    <foreach item="i" collection="list" separator="UNION ALL " >
-		#{i.productNo} AS product_no,
-		#{i.productImgOriginName} AS product_img_origin_name,
-		#{i.productImgFileName} AS product_img_file_name,
-		#{i.productImgFileSize} AS product_img_file_size,
-		#{i.productImgWidth} AS product_img_width,
-		#{i.productImgHeight} AS product_img_height,
-		#{i.productImgType} AS product_img_type
-        from dual
-    </foreach>
-    ) A -->
-
+	
+	
+	<select id="selectPresentiveImg" parameterType="list" resultMap="productImgMap">
+		
+		SELECT a.* 
+		FROM product_img_tb a
+		WHERE product_img_no IN (
+		    SELECT min(product_img_no)
+		    FROM product_img_tb
+		    <where>
+			product_no
+			<foreach collection="list" open="IN (" close= ")" item="i" separator=",">
+				#{i.productNo}
+			</foreach>
+		</where>
+		    GROUP BY product_no
+		)
+		ORDER BY product_no
+	</select>
+	
+	<select id="selectImage" parameterType="int" resultMap="productImgMap">
+		
+		SELECT *
+		FROM product_img_tb
+		WHERE product_img_no = #{productImgNo}
+		
+	</select>
+	
+	
+	<update id="deleteProductImages" parameterType="int">
+		
+		UPDATE product_img_tb
+		SET product_img_del_fl = 'Y'
+		WHERE product_no = #{productNo} AND product_img_del_fl = 'N'
+	
+	</update>
+	
 </mapper>

@@ -3,26 +3,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.nemo.user.sign.signup.repository.impl.UserMapper">
-	
-	<resultMap type="com.nemo.user.sign.signup.vo.UserBaseVO" id="userMap">
-		<id column="user_no" property="userNo"/>
-		<result column="store_no" property="storeNo" />
-		<result column="user_email" property="userEmail" />
-		<result column="user_pw" property="userPw" />
-		<result column="user_gender" property="userGender" />
-		<result column="user_name" property="userName" />
-		<result column="user_phone" property="userPhone" />
-		<result column="user_zipcode" property="userZipcode" />
-		<result column="user_address1" property="userAddress1" />
-		<result column="user_address2" property="userAddress2" />
-		<result column="user_status" property="userStatus" />
-		<result column="USER_WITHDRAW_YMD" property="userWithdrawYmd" />
-		<result column="USER_REG_YMD" property="userRegYmd" />
-		<result column="USER_LOGIN_FL" property="userLoginFlag" />
-	</resultMap>
-	
 
-	<insert id="insertUser" parameterType="com.nemo.user.sign.signup.vo.UserBaseVO">
+   <resultMap type="com.nemo.user.sign.signup.vo.UserBaseVO" id="userMap">
+      <id column="user_no" property="userNo"/>
+      <result column="store_no" property="storeNo" />
+      <result column="user_email" property="userEmail" />
+      <result column="user_pw" property="userPw" />
+      <result column="user_gender" property="userGender" />
+      <result column="user_name" property="userName" />
+      <result column="user_account" property="userAccount"/>
+      <result column="user_phone" property="userPhone" />
+      <result column="user_zipcode" property="userZipcode" />
+      <result column="user_address1" property="userAddress1" />
+      <result column="user_address2" property="userAddress2" />
+      <result column="user_status" property="userStatus" />
+      <result column="USER_WITHDRAW_YMD" property="userWithdrawYmd" />
+      <result column="USER_REG_YMD" property="userRegYmd" />
+      <result column="USER_AUTH_CHECK" property="userAuthCheck" />
+      <result column="STORE_IMG_NO" property="storeImgNo" />
+      <result column="STORE_NAME" property="storeName" />
+      <result column="STORE_INTRO" property="storeIntro" />
+      <result column="STORE_RATING" property="storeRating" />
+   </resultMap>
+   
+
+   	<insert id="insertUser" parameterType="com.nemo.user.sign.signup.vo.UserBaseVO">
 		INSERT INTO
 			USER_TB
 				(
@@ -39,11 +44,11 @@
 				)
 			VALUES 
 				( 
-				USER_NO_seq.nextval, 
+				USER_sq.nextval, 
 				#{userEmail},
 				#{userPw},
 				#{userName},
-				STORE_NO_seq.nextval,
+				STORE_sq.nextval,
 				#{userPhone},
 				#{userZipcode},
 				#{userAddress1},
@@ -69,5 +74,56 @@
     	WHERE
     		 user_email = #{userEmail}
     </select>
-
+    
+    <update id="updateUser" parameterType="com.nemo.user.sign.signup.vo.UserBaseVO">
+    	UPDATE 
+    		USER_TB
+    	SET
+    		user_pw=#{userPw},
+    		user_name=#{userName},
+    		user_phone=#{userPhone},
+    		user_account=#{userAccount},
+    		USER_ZIPCODE=#{userZipcode},
+			USER_ADDRESS1=#{userAddress1},
+			USER_ADDRESS2=#{userAddress2}
+		WHERE
+			user_no=#{userNo}
+    </update>
+    
+    <update id="withdrawUser" parameterType="com.nemo.user.sign.signup.vo.UserBaseVO">
+    	UPDATE 
+    		USER_TB
+    	SET
+    		user_status='P',
+    		USER_WITHDRAW_YMD=sysdate
+		WHERE
+			user_no=#{userNo}
+    </update>
+    
+    <insert id="addSocialUser" parameterType="com.nemo.user.sign.signup.vo.UserBaseVO">
+		INSERT INTO
+			USER_TB
+				(
+					USER_NO,
+					USER_EMAIL,
+					USER_NAME,
+					STORE_NO
+				)
+			VALUES 
+				( 
+				USER_sq.nextval, 
+				#{userEmail},
+				#{userName},
+				STORE_sq.nextval
+				)
+	</insert>
+	
+	<select id="getSocialUser" parameterType="com.nemo.user.sign.signup.vo.UserBaseVO" resultMap="userMap">
+		SELECT 
+			*
+		FROM 
+			USER_TB 
+		WHERE 
+			user_email = #{userEmail}
+	</select>
 </mapper>

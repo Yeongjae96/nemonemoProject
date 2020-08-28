@@ -99,13 +99,14 @@
 									<th>약관수정일</th>
 									<th>수정자</th>
 									<th>갱신</th>
+									<th>메일발송</th>
 								</tr>
 							</thead>
 							<tbody id="result">
 								<c:forEach var="terms" items="${termsList}">
 									<tr>
 										<td>${terms.termsNo}</td>
-										<td>
+										<td style ="cursor : pointer">
 											<a class="terms-upd-btn" data-termsno="${terms.termsNo}">
 											<b>
 											<c:choose>
@@ -119,7 +120,6 @@
 											        위치기반서비스 이용약관
 											    </c:otherwise>
 											</c:choose>
-											
 											</b>
 											</a>
 										</td>
@@ -132,6 +132,11 @@
 										<td>
 											<c:if test="${terms.termsDeleteFl == 'Y'}">
 	    										<a class="terms-renew" data-termsNo="${terms.termsNo}"><b>약관 갱신</b></a>
+											</c:if>
+										</td>
+										<td>
+											<c:if test="${terms.termsDeleteFl == 'Y'}">
+											<button type="button" class ="btn bg-cyan waves-effect termsHist-mail">메일 발송</button>
 											</c:if>
 										</td>	
 									</tr>

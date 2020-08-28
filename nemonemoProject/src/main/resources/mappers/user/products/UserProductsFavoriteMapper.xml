@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.products.repository.impl.UserProductsFavoriteMapper">
+
+	<resultMap id="favoriteMap" type="com.nemo.user.products.vo.UserBaseProductsFavoriteVO">
+		<result column="product_no" property="productNo"/>
+		<result column="FAVORITE_SENDER" property="favoriteSender"/>
+		<result column="FAVORITE_DEL_FL" property="favoriteDelFl"/>
+	</resultMap>
+
+
+	<update id="insertFavorite" parameterType="com.nemo.user.products.vo.UserBaseProductsFavoriteVO">
+		
+		MERGE INTO favorite_tb f
+		USING DUAL
+		ON (f.product_no = #{productNo}  AND f.FAVORITE_SENDER = #{favoriteSender})
+		WHEN MATCHED THEN
+		UPDATE SET f.FAVORITE_DEL_FL = 'N'
+		WHEN NOT MATCHED THEN
+		INSERT (
+		    PRODUCT_NO,
+		    FAVORITE_SENDER
+		) VALUES (
+		    #{productNo},
+		    #{favoriteSender}
+		)
+	
+	</update>
+	
+	<update id="deleteFavorite" parameterType="com.nemo.user.products.vo.UserBaseProductsFavoriteVO">
+			
+		UPDATE favorite_tb
+		SET favorite_del_fl = 'Y'
+		WHERE product_no = #{productNo} AND favorite_sender = #{favoriteSender}
+		
+	</update>
+	
+	<select id="getFavoriteList" parameterType="int" resultMap="favoriteMap">
+		
+		SELECT *
+		FROM favorite_tb
+		WHERE product_no = #{productNo} AND favorite_del_fl = 'N'
+		
+	</select>
+	
+	
+</mapper>

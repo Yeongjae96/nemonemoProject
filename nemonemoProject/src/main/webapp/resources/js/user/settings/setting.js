@@ -1,4 +1,4 @@
-/* HEADER 로그아웃 팝업 */
+/* HEADER 로그아웃 팝업 
 function open_pop(e) {
     $('#myModal').show();
 };
@@ -6,3 +6,9 @@ function open_pop(e) {
 function close_pop(flag) {
     $('#myModal').hide();
 };
+*/
+$(function() {
+	$('#logoutBtn').click(function() {
+		 $('#myModal').show();
+	});
+})

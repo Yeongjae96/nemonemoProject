@@ -21,6 +21,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script> window.contextPath = "<c:url value="/"/>";</script> 
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
 <!-- 해당 페이지 JS파일 -->

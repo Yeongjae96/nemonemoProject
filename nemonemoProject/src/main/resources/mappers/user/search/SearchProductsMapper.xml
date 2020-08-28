@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.search.products.repository.impl.SearchProductsMapper">
+
+	<resultMap id="pdPdImgMap" type="com.nemo.user.search.products.vo.UserPdPdImgVO">
+		<association property="productVO" resultMap="com.nemo.user.products.repository.impl.ProductsMapper.productMap"/>
+		<association property="productImgVO" resultMap="com.nemo.user.products.repository.impl.ProductsImageMapper.productImgMap"/>
+	</resultMap>
+	
+	<resultMap id="groupPdCate" type="com.nemo.user.products.vo.UserProductsCategoryCntVO" extends="com.nemo.user.products.repository.impl.UserProductsCategoryMapper.productsCateMap"> 
+		<result column="product_cate_cnt" property="productCateCnt"/>
+	</resultMap>
+
+	<!-- 검색어로 상품과 상품 대표 이미지 선택 -->
+	<select id="pdPdImgByKeyword" parameterType="hashmap" resultMap="pdPdImgMap">
+		
+		<include refid="common.PaginationMapper.header"/>
+		SELECT 
+				a.* , 
+       			b.product_img_no ,
+        		b.product_img_file_name , 
+        		b.product_img_type
+		FROM    product_tb a
+		INNER JOIN product_img_tb b
+		ON 		a.product_no = b.product_no
+		RIGHT JOIN (select min(product_img_no) as product_img_no FROM product_img_tb group by product_no) c
+		ON 		b.product_img_no = c.product_img_no
+		<where>
+				a.product_name LIKE '%'|| #{keyword} ||'%' OR 
+		        a.product_deal_area LIKE '%'|| #{keyword} ||'%'
+		</where>   
+		<if test='order == "date"'>
+	        ORDER BY a.product_reg_dt desc
+	    </if>
+		<if test='order == "price_asc"'>
+	        ORDER BY a.product_price asc
+        </if>
+		<if test='order == "price_desc"'>
+	        ORDER BY a.product_price desc
+        </if>
+        <include refid="common.PaginationMapper.footer"/>
+	</select> 
+	
+	<select id="pdCateByKeyword" parameterType="String" resultMap="groupPdCate">
+		SELECT 
+		            c.product_cate_no		,
+		            b.product_cate_type		, 
+		            b.product_cate_large	, 
+		            b.product_cate_medium	, 
+		            b.product_cate_small	,
+		            sum(c.product_cate_cnt) as product_cate_cnt
+		FROM		product_tb a
+		INNER JOIN 	product_cate_tb b
+		ON 			a.product_cate_no = b.product_cate_no
+		INNER JOIN  (SELECT count(product_cate_no) AS product_cate_cnt, product_cate_no FROM product_cate_tb GROUP BY product_cate_no) c
+		ON          b.product_cate_no = c.product_cate_no
+			<where>
+		            a.product_name LIKE '%'|| #{keyword} ||'%' OR 
+		            a.product_deal_area LIKE '%'|| #{keyword} ||'%'
+			</where>
+		GROUP BY    c.product_cate_no, b.product_cate_type, b.product_cate_large, b.product_cate_medium, b.product_cate_small
+	</select>
+	
+	<select id="allProductCntByKeyword" parameterType="String" resultType="int">
+		SELECT count(1)
+		FROM product_tb
+		<where>
+            product_name LIKE '%'|| #{keyword} ||'%' OR 
+            product_deal_area LIKE '%'|| #{keyword} ||'%'
+		</where>
+	</select>
+	
+	
+	
+</mapper>
