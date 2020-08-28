@@ -180,16 +180,17 @@
 									<div class="checkbox-info">
 										<span class="mandatory">(필수)</span>번개장터 이용약관 동의
 									</div>
-									<button id="show1" class="show-btn show-bt1">
+									
+									<button id="show1" class="show-btn show-bt1" type="button" onclick="zzz();">
 										<img
 											src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAALRJREFUOBFjYBgFgzMEqqtb5Cl1GcwMxoaGdoVfv3+d+s/EGNreXHeQHINrapod/v3/t4qRgdmU+cCBvR9sHJxOMf77vxpEHzm0/yEphlbWNtkz/P+/GuSgtpbai8wgzSBDyDEUZBjIIci+AxtIjqHYDAOZAzeQFENxGYZhIDGG4jMMq4H4DCVkGEgvI4jABZANAKlBjwBs+vAaCNIAS2MgNnJsgvhkA5ChINeSbcCoRpJCAADCUaKHyL/YQQAAAABJRU5ErkJggg=="
 											width="20" height="20" alt="회원가입 아이콘">
 									</button>
 								</div>
-								<div class="hide-term hide1" id="term-1">
+								<div class="hide-term" id="term-1">
 									<div class="terms-second-scroll">
-										<iframe title="번개장터 위치기반서비스 이용약관"
-											src="https://terms.bunjang.co.kr/terms/service.html"></iframe>
+										<iframe title="번개장터 이용약관"
+											src="${pageContext.request.contextPath}/terms/service.do"></iframe>
 									</div>
 								</div>
 							</div>
@@ -199,16 +200,16 @@
 									<div class="checkbox-info">
 										<span class="mandatory">(필수)</span>개인정보 처리 방침 동의
 									</div>
-									<button id="show2" class="show-btn show-bt2">
+									<button id="show2" class="show-btn show-bt2" type="button">
 										<img
 											src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAALRJREFUOBFjYBgFgzMEqqtb5Cl1GcwMxoaGdoVfv3+d+s/EGNreXHeQHINrapod/v3/t4qRgdmU+cCBvR9sHJxOMf77vxpEHzm0/yEphlbWNtkz/P+/GuSgtpbai8wgzSBDyDEUZBjIIci+AxtIjqHYDAOZAzeQFENxGYZhIDGG4jMMq4H4DCVkGEgvI4jABZANAKlBjwBs+vAaCNIAS2MgNnJsgvhkA5ChINeSbcCoRpJCAADCUaKHyL/YQQAAAABJRU5ErkJggg=="
 											width="20" height="20" alt="회원가입 아이콘">
 									</button>
 								</div>
-								<div class="hide-term hide2">
+								<div class="hide-term" id="term-2">
 									<div class="terms-second-scroll">
-										<iframe title="번개장터 위치기반서비스 이용약관"
-											src="https://terms.bunjang.co.kr/terms/privacy.html"></iframe>
+										<iframe title="번개장터 개인정보 처리 방침"
+											src="${pageContext.request.contextPath}/terms/privacy.do"></iframe>
 									</div>
 								</div>
 							</div>
@@ -218,16 +219,16 @@
 									<div class="checkbox-info">
 										<span class="suggest">(선택)</span>위치기반서비스 동의
 									</div>
-									<button id="show3" class="show-btn show-bt3">
+									<button id="show3" class="show-btn show-bt3" type="button">
 										<img
 											src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAALRJREFUOBFjYBgFgzMEqqtb5Cl1GcwMxoaGdoVfv3+d+s/EGNreXHeQHINrapod/v3/t4qRgdmU+cCBvR9sHJxOMf77vxpEHzm0/yEphlbWNtkz/P+/GuSgtpbai8wgzSBDyDEUZBjIIci+AxtIjqHYDAOZAzeQFENxGYZhIDGG4jMMq4H4DCVkGEgvI4jABZANAKlBjwBs+vAaCNIAS2MgNnJsgvhkA5ChINeSbcCoRpJCAADCUaKHyL/YQQAAAABJRU5ErkJggg=="
 											width="20" height="20" alt="회원가입 아이콘">
 									</button>
 								</div>
-								<div class="hide-term hide3">
+								<div class="hide-term" id="term-3">
 									<div class="terms-second-scroll">
 										<iframe title="번개장터 위치기반서비스 이용약관"
-											src="https://terms.bunjang.co.kr/terms/location.html"></iframe>
+											src="${pageContext.request.contextPath}/terms/location.do"></iframe>
 									</div>
 								</div>
 							</div>

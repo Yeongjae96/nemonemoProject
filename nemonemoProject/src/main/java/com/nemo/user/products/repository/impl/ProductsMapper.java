@@ -1,10 +1,9 @@
 package com.nemo.user.products.repository.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nemo.user.products.repository.IProductsMapper;
 import com.nemo.user.products.vo.UserBaseProductsVO;
@@ -19,7 +18,6 @@ import com.nemo.user.products.vo.UserBaseProductsVO;
  */
 @Mapper
 public interface ProductsMapper extends IProductsMapper{
-	
-	public List<UserBaseProductsVO> selectCategoryProducts(int productCategoryNo);
-	
+ 	public List<UserBaseProductsVO> selectCategoryProducts(Map<String, Object> cateSeqList);
+ 	public int updateView(int productNo);
 }

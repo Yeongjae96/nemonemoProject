@@ -137,10 +137,10 @@
 													${pc.productCateEditYmd}
 												</td>
 												<td id="useFlagTd">
-													<c:if test="${pc.productCateDelFl eq 'Y'}">
+													<c:if test="${pc.productCateDelFl eq 'N'}">
 														<span style="color: blue;">사용</span>
 													</c:if> 
-													<c:if test="${pc.productCateDelFl ne 'Y'}">
+													<c:if test="${pc.productCateDelFl ne 'N'}">
 														<span style="color: #EE5058; font-weight: bold;">미사용</span>
 													</c:if>
 												</td>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.store.repository.impl.StoreImageMapper">
+	
+	<resultMap id="storeImgMap" type="com.nemo.user.store.vo.StoreImageVO">
+		<id column="store_img_no" property="storeImgNo"/>
+		<result column="store_no" property="storeNo"/>
+		<result column="store_img_origin_name" property="storeImgOriginName"/>
+		<result column="store_img_file_name" property="storeImgFileName"/>
+		<result column="store_img_file_size" property="storeImgFileSize"/>
+		<result column="store_img_width" property="storeImgWidth"/>
+		<result column="store_img_height" property="storeImgHeight"/>
+		<result column="store_img_type" property="storeImgType"/>
+		<result column="store_img_dt" property="storeImgDt"/>
+	</resultMap>
+	
+	<insert id="insertStoreImage" 
+		parameterType="com.nemo.user.store.vo.StoreImageVO">
+	
+	<!-- <foreach collection="list" item="i" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL"> -->
+		INSERT STORE_IMG_TB 
+		INTO store_img_tb (
+			store_img_no,
+			store_no,
+			store_img_origin_name,
+			store_img_file_name,
+			store_img_file_size,
+			store_img_width,
+			store_img_height,
+			store_img_type
+		) VALUES (
+			get_seq('store_img_sq'),
+			#{storeNo},
+			#{storeImgOriginName},
+			#{storeImgFileName},
+			#{storeImgFileSize},
+			#{storeImgWidth},
+			#{storeImgHeight},
+			#{storeImgType}
+		)
+		<selectKey keyColumn="storeImgNo" order="AFTER"> SELECT store_img_sq.currval FROM dual </selectKey>
+	</insert>
+	
+	
+	<!-- <select id="selectPresentiveImg" parameterType="list" resultMap="storeImgMap">
+		
+		SELECT a.* 
+		FROM store_img_tb a
+		WHERE store_img_no IN (
+		    SELECT min(store_img_no)
+		    FROM store_img_tb
+		    <where>
+			store_no
+			<foreach collection="list" open="IN (" close= ")" item="i" separator=",">
+				#{i.storeNo}
+			</foreach>
+		</where>
+		    GROUP BY store_no
+		)
+		ORDER BY store_no
+	</select> -->
+	
+	<select id="selectImage" parameterType="int" resultMap="storeImgMap">
+		
+		SELECT *
+		FROM store_img_tb
+		WHERE store_img_no = #{storeImgNo}
+		
+	</select>
+	
+	
+</mapper>

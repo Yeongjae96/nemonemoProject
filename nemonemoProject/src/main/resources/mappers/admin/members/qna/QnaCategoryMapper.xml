@@ -4,7 +4,6 @@
 	
 	<resultMap type="com.nemo.admin.members.qna.vo.QnaCategoryVO" id="qnaCategoryMap">
 		<id column="QNA_CATE_NO" property="qnaCategoryNo"/>
-		<result column="QNA_CATE_PARENT" property="qnaCategoryParent"/>
 		<result column="QNA_CATE_NAME" property="qnaCategoryName"/>
 		<result column="QNA_CATE_USE_FL" property="qnaCategoryUseFl"/>
 	</resultMap>
@@ -13,7 +12,6 @@
 	<select id="getQnaCategoryList" parameterType="String" resultMap="qnaCategoryMap">
 		SELECT
 			QNA_CATE_NO,
-			QNA_CATE_PARENT,
 			QNA_CATE_NAME,
 			QNA_CATE_USE_FL
 		FROM 
@@ -38,7 +36,7 @@
 	<!-- 카테고리 추가 -->
 	<insert id="insertQnaCategory" parameterType="com.nemo.admin.members.qna.vo.QnaCategoryVO">
 		INSERT INTO QNA_CATE_TB
-		VALUES (QNA_CATE_SQ.nextval, #{qnaCategoryParent}, #{qnaCategoryName}, #{qnaCategoryUseFl})
+		VALUES (QNA_CATE_SQ.nextval, #{qnaCategoryName}, #{qnaCategoryUseFl})
 	</insert>
 	
 	<!-- 카테고리 이름 수정 -->
@@ -46,7 +44,6 @@
 		UPDATE 
 			QNA_CATE_TB
 		SET 
-			QNA_CATE_PARENT = #{qnaCategoryParent},
 			QNA_CATE_NAME = #{qnaCategoryName}, 
 			QNA_CATE_USE_FL = #{qnaCategoryUseFl}
 			

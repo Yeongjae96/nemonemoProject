@@ -14,16 +14,17 @@ import lombok.Data;
  * 
  *
  */
-
 @Data
 public class AdminBaseQnaVO {
+	
 	private int qnaNo;
-	private int qnaGroup;
-	private String qnaRegId;
-	private String qnaReplyId;
+	private int qnaRegId;
+	private	int qnaReplyId;
+	private String qnaStoreName;
 	private String qnaCategoryNo;
 	private String qnaCategoryName;
-	private String qnaContent;
+	private String qnaUserContent;
+	private String qnaAdminContent;
 	private Date qnaRegYmd;
 	private Date qnaReplyYmd;
 	private String qnaReplyFl;

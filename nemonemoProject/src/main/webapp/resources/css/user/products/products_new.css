@@ -1,10 +1,6 @@
 @charset "UTF-8";
 
 /* Products 상품등록 페이지 */
-button {
-	border: 0;
-	background-color: white;
-}
 /* 공통 부분 */
 .products-title--div {
 	width: 10.5rem;
@@ -525,6 +521,10 @@ rem
 	border-radius: 50%;
 }
 
+.products-delivery-price--label:first-child::before {
+	size: 0;
+	padding: 0px;	
+}
 /* 리스트 7 : 가격 끝*/
 
 /* 리스트 8 : 설명 시작*/
@@ -886,7 +886,7 @@ b {
 
 .products-main-item label{
 	margin-bottom: 0px;
-	display; flex;
+	display: flex;
 	flex-direction: center;
 	cursor: pointer;
 }
@@ -924,6 +924,10 @@ b {
         display: inline-block;
         visibility: visible;
         border: 2px solid white;
+}
+
+.products-main-item button:focus {
+	outline: 0px;
 }
 
 .products-category-nothing {

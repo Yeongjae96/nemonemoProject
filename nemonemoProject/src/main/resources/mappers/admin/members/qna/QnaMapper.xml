@@ -2,84 +2,71 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.nemo.admin.members.qna.repository.impl.QnaMapper">
+	
 
 
 	<resultMap type="com.nemo.admin.members.qna.vo.AdminBaseQnaVO" id="qnaResponseMap">
-		<id column="QNA_NO" property="qnaNo" />
-		<result column="QNA_CATE_NO" property="qnaCategoryNo" />
-		<result column="QNA_REG_ID" property="qnaRegId" />
-		<result column="QNA_REPLY_ID" property="qnaReplyId" />
-		<result column="QNA_GR" property="qnaGroup" />
-		<result column="QNA_CONTENT" property="qnaContent" />
-		<result column="QNA_REG_YMD" property="qnaRegYmd" />
-		<result column="QNA_REPLY_YMD" property="qnaReplyYmd" />
-		<result column="QNA_REPLY_FL" property="qnaReplyFl" />
+		<id column="QNA_NO" property="qnaNo"/>
+		<result column="QNA_CATE_NO" property="qnaCategoryNo"/>
+		<result column="QNA_CATE_NAME" property="qnaCategoryName"/>		
+		<result column="STORE_NAME" property="qnaStoreName"/>
+		<result column="QNA_REG_ID" property="qnaRegId"/>
+		<result column="QNA_REPLY_ID" property="qnaReplyId"/>
+		<result column="QNA_USER_CONTENT" property="qnaUserContent"/>
+		<result column="QNA_ADMIN_CONTENT" property="qnaAdminContent"/>
+		<result column="QNA_REG_YMD" property="qnaRegYmd"/>
+		<result column="QNA_REPLY_YMD" property="qnaReplyYmd"/>
+		<result column="QNA_REPLY_FL" property="qnaReplyFl"/>
 	</resultMap>
 
 
-		<!-- qna list  -->
+
+	
 	<select id="getQnaList" resultMap="qnaResponseMap">
 	
-		SELECT
-			QNA_NO,
-			QNA_REG_ID,
-			QNA_REG_YMD,
-			QNA_REPLY_YMD,
-			QNA_REPLY_FL
-		FROM
-			QNA_TB
+		SELECT 
+			qna.*,
+			cate.qna_cate_name,
+			mem.store_name
+		FROM qna_tb qna
+			inner join (qna_cate_tb cate)
+		on (qna.qna_cate_no = cate.qna_cate_no)
+			inner join (user_tb mem)
+		on (qna.qna_reg_id = mem.user_no)
+		
+		order by qna_reply_fl desc
 
 	</select>
 	
-	<select id="getQna" parameterType="com.nemo.admin.members.qna.vo.AdminBaseQnaVO" resultMap="qnaResponseMap">
-	
+
+		<!-- QNA row 값 하나  -->
+	<select id= "getQna" parameterType="int" resultMap="qnaResponseMap">
 		SELECT
-			QNA_NO,
-			QNA_REG_ID,
-			QNA_REG_YMD,
-			QNA_REPLY_YMD,
-			QNA_REPLY_FL
+			qna.*,
+			cate.qna_cate_name
 		FROM
-			QNA_TB
+			QNA_TB qna
+			inner join (qna_cate_tb cate)
+			on (qna.qna_cate_no = cate.qna_cate_no)
 		WHERE 
 			QNA_NO = #{qnaNo}
-
 	</select>
+	
 
-<!-- 	<update id="" parameterType="com.nemo.admin.members.qna.vo.AdminBaseQnaVO">
+ 	<update id="replyQna" parameterType="com.nemo.admin.members.qna.vo.AdminBaseQnaVO">
+		
 		UPDATE 
 			QNA_TB
 		SET 
-			QNA_CONTENT = #{qnaContent}, 답변 내용이 하나 더 있어야 하는지..
-			QNA_REPLY_FL = #{qnaReplyFl},
+			QNA_ADMIN_CONTENT = #{qnaAdminContent},
 			QNA_REPLY_ID = #{qnaReplyId},
-			QNA_REPLY_YMD = #{qnaReplyYmd}
+			QNA_REPLY_YMD = #{qnaReplyYmd},
+			QNA_REPLY_FL = #{qnaReplyFl}
 		WHERE
-			QNA_GR = #{qnaGroup}
+			QNA_NO = #{qnaNo}
+			
 	</update>
-	 -->
-
-
-	<!-- <insert id="insertFaq" parameterType="com.nemo.admin.sites.faq.vo.BaseFaqVO"> 
-		INSERT INTO faq_tb ( FAQ_NO, FAQ_CATEGORY_NO, FAQ_TITLE, FAQ_CONTENT ) VALUES 
-		( faq_sq.nextval, #{faqCategoryNo}, #{faqTitle}, #{faqContent} ) </insert> -->
-
-	<!-- <select id="getFaqList" parameterType="String" resultMap="faqResponseMap"> 
-		SELECT faq.*, cate.faq_category_nm FROM faq_tb faq inner join (faq_category_tb 
-		cate) on (faq.faq_category_no = cate.faq_category_no) <if test='useFlagMode 
-		== "Y"'> WHERE faq_use_fl = 'Y' </if> </select> -->
-	<!-- <select id="getFaq" parameterType="int" resultMap="faqResponseMap"> 
-		SELECT faq.*, cate.faq_category_nm FROM faq_tb faq inner join (faq_category_tb 
-		cate) on (faq.faq_category_no = cate.faq_category_no) WHERE faq_no = #{faqNo} 
-		</select> <update id="updateFaq" parameterType="com.nemo.admin.sites.faq.vo.BaseFaqVO"> 
-		UPDATE faq_tb SET faq_category_no = #{faqCategoryNo}, faq_title = #{faqTitle}, 
-		faq_content = #{faqContent}, faq_use_fl = #{faqUseFlag} WHERE faq_no = #{faqNo} 
-		</update> <update id="updateUseFlag" parameterType="com.nemo.admin.sites.faq.vo.BaseFaqVO"> 
-		UPDATE faq_tb SET faq_use_fl = #{faqUseFlag} WHERE faq_no = #{faqNo} </update> 
-		<delete id="deleteFaq" parameterType="int"> DELETE FROM faq_tb WHERE faq_no 
-		= #{faqNo} </delete> -->
-
-
+	
 
 
 </mapper>

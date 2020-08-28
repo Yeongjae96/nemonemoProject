@@ -14,9 +14,8 @@
 
 <body>
   <div class="service-container">
-    <h2>이용 약관</h2>
     <section class="service-section">
-      ${termVO.termContent }
+      ${termVO.termContent}
     </section>
   </div>
 </body>

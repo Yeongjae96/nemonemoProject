@@ -3,8 +3,8 @@ package com.nemo.common.util;
 import java.io.File;
 import java.net.URLEncoder;
 
-import com.nemo.common.constrants.BrowserName;
-import com.nemo.common.constrants.DirectoryName;
+import com.nemo.common.constraints.BrowserName;
+import com.nemo.common.constraints.DirectoryName;
 
 public class FileUtil {
 	// 디렉토리 확인, 존재하지 않을 경우 생성
@@ -24,20 +24,52 @@ public class FileUtil {
     }
     
     
+    public static File getFile(DirectoryName dirName, String fileName, String fileExt) {
+    	StringBuffer realFile = new StringBuffer()
+    			.append(dirName.getDirectoryName())
+    			.append(fileName)
+    			.append(".")
+    			.append(fileExt);
+    	return new File(realFile.toString());
+    }
+    
+	
+	 // DB에 저장할 유일한 파일명으로 변경 
+    public static String getSaveFileNm(String orgFileName) throws Exception { 
+    	StringBuffer sb = new StringBuffer();
+    	sb.append(DateUtil.getDate()); 
+    	sb.append("_"); 
+    	sb.append(orgFileName); 
+    	return sb.toString(); 
+    }
+	 
+    
     // DB에 저장할 유일한 파일명으로 변경
     public static String getSaveFileNm(String orgFileName, String orgFileExtension) throws Exception{
         StringBuffer sb = new StringBuffer();
         sb.append(DateUtil.getDate());
-        sb.append("_");
-        sb.append(orgFileName);
+    	sb.append("_");
+    	sb.append(orgFileName);
         sb.append(".");
         sb.append(orgFileExtension);
         return sb.toString();
     }
     
     // 디렉토리 + 파일이름 + 확장자명
-    public static String getSaveFileDirNm(String dirName, String orgFileName, String orgFileExtension) throws Exception {
-    	return new StringBuffer(dirName).append(getSaveFileNm(orgFileName, orgFileExtension)).toString();
+    public static String getSaveFileDirNm(DirectoryName directoryName, String realFileName, String orgFileExtension, boolean newDateStatus) throws Exception {
+    	if(!newDateStatus) {
+    		return new StringBuffer(directoryName.getDirectoryName())
+        			.append(realFileName)
+        			.append(".")
+        			.append(orgFileExtension).toString();
+    	} else {
+    		return new StringBuffer(directoryName.getDirectoryName())
+    				.append(DateUtil.getDate())
+    				.append("_")
+        			.append(realFileName)
+        			.append(".")
+        			.append(orgFileExtension).toString();
+    	}
     }
   
     // originalName에서 확장자를 제외한 이름만 가져오기
