@@ -29,6 +29,7 @@ import com.nemo.user.store.vo.StoreFavoriteVO;
 import com.nemo.user.store.vo.StoreProductVO;
 import com.nemo.user.store.vo.StoreReviewVO;
 import com.nemo.user.store.vo.StoreVO;
+import com.nemo.user.store.vo.UserNewStoreVO;
 
 
 /**
@@ -83,7 +84,7 @@ public class StoreController {
 	}
 	
 	@PostMapping("/updateStore")
-	public ModelAndView UpdateStoreAction(StoreVO vo) {
+	public ModelAndView UpdateStoreAction(UserNewStoreVO vo) {
 		 updateStoreService.updateStore(vo);
 		 return new ModelAndView("redirect:/shop/{storeNo}/products.do");
 	}
