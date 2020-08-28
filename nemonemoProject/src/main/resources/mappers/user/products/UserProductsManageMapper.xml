@@ -43,7 +43,7 @@
 		    (SELECT product_no, count(1) as favorite_cnt FROM FAVORITE_TB f WHERE favorite_del_fl = 'N' GROUP BY product_no ) f
 		ON (p.product_no = f.product_no)
 		LEFT JOIN 
-		    (SELECT product_no, count(1) as comment_cnt FROM product_comment_tb GROUP BY product_no) c
+		    (SELECT product_no, count(1) as comment_cnt FROM product_comment_tb WHERE product_comment_del_fl = 'N' GROUP BY product_no) c
 		ON (p.product_no = c.product_no)
 		<where>
 			u.user_no = #{userNo}
