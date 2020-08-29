@@ -269,8 +269,10 @@
 								</c:forEach>
                             </div>
 	                            <div class="detail-info__image__watermark"></div>
-								<div class="swiper-button-next"></div>
-								<div class="swiper-button-prev"></div>
+	                            
+	                            
+								<div class="detail-info__image--prev swiper-button-next swiper-button-white"></div>
+								<div class="detail-info__image--next swiper-button-prev swiper-button-white"></div>
 	                            <!-- 이미지 개수 ~ -->
 	                            <div class="swiper-pagination"></div>
 	                            
@@ -959,7 +961,7 @@
 		                                        <div class="detail-review-nothing--msg">
 		                                        	등록된 후기가 없습니다.<br>첫 후기를 등록해보세요!
 		                                        </div>
-		                                        <a class="detail-review-nothing--link" href="/shop/${productSellerVO.storeNo}/reviews">
+		                                        <a class="detail-review-nothing--link" href="/shop/${productSellerVO.storeNo}/reviews.do">
 		                                        	후기작성
 		                                        </a>
 	                                       	</div>

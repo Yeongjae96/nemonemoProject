@@ -2233,9 +2233,16 @@ svg.light {
     border-radius: 2px;
 }
 
-
+.detail-review-nothing--link:hover {
+	color: rgb(178, 178, 178);
+	background-color: rgb(255, 255, 255);
+	border: 3px solid rgb(178, 178, 178);
+}
 .swiper-container {
-	height:450px;
+	height: 450px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 .swiper-slide {
 	text-align:center;
@@ -2247,7 +2254,24 @@ svg.light {
 	width: 430px;
 	height: 430px;
 }
-	.swiper-pagination-bullet-active {
+
+.swiper-button-next,
+.swiper-button-prev {
+	color: #000 !important;
+    fill: black !important;
+    stroke: black !important;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
+    right:10px;
+    padding: 25px;
+}
+
+
+.swiper-pagination-bullets {
+	position: static!important;	
+}
+
+.swiper-pagination-bullet-active {
 	color:#fff;
-	background: rgb(33, 33, 33);;
-	}
+	background: rgb(33, 33, 33)!important;
+}

@@ -9,13 +9,11 @@ $(function() {
 });
 
 function initPicture() {
-	const prevBtn = document.querySelector('.detail-info__image--prev');
-	const nextBtn = document.querySelector('.detail-info__image--next');
 	
 	var mySwiper = new Swiper ('.swiper-container', { // Optional parameters 
 		 // If we need pagination 
 		loop : true,
-		pagination: { el: '.swiper-pagination', type: 'bullet', clickable : true}, // Navigation arrows 
+		pagination: { el: '.swiper-pagination', clickable : true}, // Navigation arrows 
 		navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev', }, // And if we need scrollbar 
 	});
 }
