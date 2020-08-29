@@ -14,8 +14,8 @@ function initPicture() {
 	
 	var mySwiper = new Swiper ('.swiper-container', { // Optional parameters 
 		 // If we need pagination 
-		slidesPerView : 1,
-		pagination: { el: '.swiper-pagination', type: 'bullets',}, // Navigation arrows 
+		loop : true,
+		pagination: { el: '.swiper-pagination', type: 'bullet', clickable : true}, // Navigation arrows 
 		navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev', }, // And if we need scrollbar 
 	});
 }

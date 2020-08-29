@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.nemo.user.products.repository.IUserGetProductMapper;
 import com.nemo.user.products.vo.UserBaseProductsImageVO;
 import com.nemo.user.products.vo.UserGetSellerVO;
+import com.nemo.user.products.vo.UserRecentlyProductVO;
 import com.nemo.user.products.vo.UserSelectedProductVO;
 
 @Mapper
@@ -16,5 +17,5 @@ public interface UserGetProductMapper extends IUserGetProductMapper {
 	public List<UserBaseProductsImageVO> selectImgListFromPdSeq(int productNo);
 	public List<Map<String, Object>> selectCommentsList(int productNo);
 	public UserGetSellerVO selectGetSellerVO(int productSeller);
-	
+	public UserRecentlyProductVO selectRecentlyProductVO(int productNo);
 }

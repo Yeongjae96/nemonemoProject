@@ -21,6 +21,7 @@ import com.nemo.user.products.vo.UserBaseProductsCategoryVO;
 import com.nemo.user.products.vo.UserBaseProductsFavoriteVO;
 import com.nemo.user.products.vo.UserGetProductVO;
 import com.nemo.user.products.vo.UserGetSellerVO;
+import com.nemo.user.products.vo.UserRecentlyProductVO;
 import com.nemo.user.products.vo.UserSelectedProductVO;
 import com.nemo.user.sign.signup.repository.impl.UserMapper;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
@@ -119,5 +120,10 @@ public class GetProductServiceImpl implements GetProductService {
 		resultVO.setProductSellerVO(productSellerVO);
 		// 물어보기
 		return resultVO;
+	}
+
+	@Override
+	public UserRecentlyProductVO getRecentlyProductVO(int productNo) {
+		return getProductMapper.selectRecentlyProductVO(productNo);
 	}
 }

@@ -262,7 +262,10 @@
                             <!-- 상세 상품 이미지 1장-->
                            	<div class="swiper-wrapper">
                             	<c:forEach var="img" items="${productImgList}" varStatus="st">
-			                            <img class="swiper-slide" src="/image/product/${img.productImgNo}.img" alt="상세 상품 이미지" />
+                            		<div class="swiper-slide">
+			                            <img src="/image/product/${img.productImgNo}.img" alt="상세 상품 이미지" />
+			                            
+                            		</div>
 								</c:forEach>
                             </div>
 	                            <div class="detail-info__image__watermark"></div>
