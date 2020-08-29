@@ -141,17 +141,18 @@
 
 .detail-info__image__watermark {
     background-image: url(
-        watermark.png
+        ../../../images/user/products/watermark.png
     );
     background-size: cover;
     width: 86px;
     height: 23px;
     position: absolute;
-    bottom: 0.5rem;
-    left: 0.5rem;
+    bottom: 2rem;
+    left: 1rem;
     opacity: 0.3;
     background-position: center center;
     background-repeat: no-repeat;
+    z-index: 1;
 }
 
 .detail-info__text__div {
@@ -208,11 +209,18 @@
 .detail-info__image__div:hover .detail-info__image--enlg{
     display: flex;
 }
+.detail-info__image--enlg:focus {
+	outline: 0px;
+}
 
+.detail-info__image--enlg:hover {
+	color: #EE5058;
+	background-color: white;
+}
 
 .detail-info__image--enlg {
     position: absolute;
-    bottom: 20px;
+    bottom: 40px;
     right: 20px;
     display: none;
     align-items: center;
@@ -222,6 +230,7 @@
     padding: 6px 12px;
     background: rgba(33, 33, 33, 0.35);
     border: 0;
+    z-index: 1;
 }
 
 .detail-info__image--enlg svg {
@@ -271,13 +280,17 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 1000;
+    z-index: 1030;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
     display: none;
     background: rgba(0, 0, 0, 0.9);
+}
+
+enlarge-modal__area * {
+	z-index: 1029;
 }
 
 .enlarge-modal__div {
@@ -290,30 +303,33 @@
     justify-content: center;
 }
 
-.enlarge-modal__close-btn {
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    background-color: white;
-    border: 0px;
-}
+
 
 @media (max-height: 719px) {
     .enlarge-modal--title {
         padding: 2.5rem 0px;
     }
 }
+
+@media (min-height: 720px){
+	.enlarge-modal--title {
+	    padding: 3rem 0px;
+	}
+}
+
 .enlarge-modal--title {
     color: rgb(255, 255, 255);
     font-size: 18px;
     text-align: center;
     padding: 3rem 0px;
+	letter-spacing: -3px;
 }
 
 .enlarge-modal--list {
     display: flex;
     margin-left: calc((50% - 275px) - 0px);
     transition: margin-left 0.2s ease-in-out 0s;
+    height: 520px!important;
 }
 
 .enlarge-modal--item {
@@ -323,8 +339,17 @@
     position: relative;
 }
 
+.enlarge-modal--item img{
+	height: 550px;
+	width: 550px;
+    margin-right: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+}
+
 .enlarge-modal--watermark {
-    background-image: url(watermark.png);
+    background-image: url(../../../images/user/products/watermark.png);
     background-size: 86px 23px;
     width: 86px;
     height: 40px;
@@ -339,18 +364,33 @@
     justify-content: center;
     background-position: center 0px;
     background-repeat: no-repeat;
-}
-
-.enlarge-modal--watermark::after {
-    content: "최저가전";
     color: rgb(234, 233, 241);
     font-size: 14px;
     font-weight: bold;
+    font-family: "Noto Sans KR";
+}
+
+.enlarge-modal__close-btn {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+   	background-color: transparent;
+    border: 0px;
+    z-index:2;
+}
+
+.enlarge-modal__close-btn:focus {
+	outline: 0px;
+}
+
+.enlarge-modal__close-btn:hover svg {
+	color: #EE5058;
 }
 
 .enlarge-modal__close-btn svg{
-    width: 34px;
+    width: 34px!important;
     height: 32px;
+    color: #EEEEEE;
 }
 
 .enlarge-modal--count-list {
@@ -2238,19 +2278,19 @@ svg.light {
 	background-color: rgb(255, 255, 255);
 	border: 3px solid rgb(178, 178, 178);
 }
-.swiper-container {
+.detail-info__image__list {
 	height: 450px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
-.swiper-slide {
+.detail-info__image__list .swiper-slide {
 	text-align:center;
 	display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
 	align-items:center; /* 위아래 기준 중앙정렬 */
 	justify-content:center; /* 좌우 기준 중앙정렬 */
 }
-.swiper-slide img {
+.detail-info__image__list .swiper-slide img {
 	width: 430px;
 	height: 430px;
 }
@@ -2266,12 +2306,52 @@ svg.light {
     padding: 25px;
 }
 
-
-.swiper-pagination-bullets {
+.detail-info__image__list .swiper-pagination-bullets {
 	position: static!important;	
 }
 
 .swiper-pagination-bullet-active {
 	color:#fff;
 	background: rgb(33, 33, 33)!important;
+}
+
+.enlarge-modal__div2 {
+	height: 100%;
+	width: 100%!important;
+}
+
+
+.enlarge-modal__div2 .swiper-slide img {
+	width: 550px;
+	height: 520px;
+}
+
+
+.enlarge-modal__div2 .swiper-slide {
+	margin-right: 20px;
+	text-align:center;
+	display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+	align-items:center; /* 위아래 기준 중앙정렬 */
+	justify-content:center; /* 좌우 기준 중앙정렬 */
+	width: 550px;
+	height: 520px;
+}
+
+.enlarge-modal__div2 .swiper-slide:last-child {
+	margin-right: 0px;
+}
+
+
+.enlarge-modal__div2 .swiper-pagination-bullet-active {
+	color:#fff;
+	background: #EEEEEE!important;
+	width: 15px;
+	height: 15px;
+}
+
+.enlarge-modal__div2 .swiper-pagination-bullet {
+	color:#fff;
+	background: #AAAAAA!important;
+	width: 15px;
+	height: 15px;
 }
