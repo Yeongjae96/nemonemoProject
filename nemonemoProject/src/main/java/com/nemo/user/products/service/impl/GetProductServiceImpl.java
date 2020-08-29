@@ -88,7 +88,6 @@ public class GetProductServiceImpl implements GetProductService {
 			for(Cookie c : cookies) {
 				if(c.getName().equals("product_seq_" + productNo)) {
 					countUpdateCheck = false;
-					System.err.println("쿠키생성 감지");
 					break;
 				}
 			}
@@ -104,10 +103,8 @@ public class GetProductServiceImpl implements GetProductService {
 			    cookie.setPath("/");
 			    ContextUtil.getResponse().addCookie(cookie);
 			    countUpdateCheck = true;
-			    System.err.println("쿠키생성 완료 ");
 			    
 				productsMapper.updateView(productNo);
-				System.err.println("조회수 올리기 ");
 				// 순서로 인하여 조회한 값의 조회수 + 1
 				selectedProduct.getProductVO().setProductView(selectedProduct.getProductVO().getProductView()+1); 
 			}
@@ -118,10 +115,9 @@ public class GetProductServiceImpl implements GetProductService {
 		resultVO.setFavoriteList(favoriteList);
 		
 		// 7. 상품 판매에 대한 상점 정보
-		UserGetSellerVO productSellerVO = getProductMapper.selectGetSellerVO(selectedProduct.getProductVO().getProductNo());
+		UserGetSellerVO productSellerVO = getProductMapper.selectGetSellerVO(selectedProduct.getProductVO().getProductSeller());
 		resultVO.setProductSellerVO(productSellerVO);
 		// 물어보기
-		System.err.println(productSellerVO);
 		return resultVO;
 	}
 }

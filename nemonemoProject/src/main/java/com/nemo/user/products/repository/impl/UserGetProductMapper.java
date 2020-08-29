@@ -15,6 +15,6 @@ public interface UserGetProductMapper extends IUserGetProductMapper {
 	public UserSelectedProductVO selectProductFromPdSeq(int productNo);
 	public List<UserBaseProductsImageVO> selectImgListFromPdSeq(int productNo);
 	public List<Map<String, Object>> selectCommentsList(int productNo);
-	public UserGetSellerVO selectGetSellerVO(int productNo);
+	public UserGetSellerVO selectGetSellerVO(int productSeller);
 	
 }

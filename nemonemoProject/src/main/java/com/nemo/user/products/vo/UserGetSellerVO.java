@@ -14,9 +14,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class UserGetSellerVO {
+	private int storeNo;
 	private int storeImgNo;
 	private int storeProductCnt;
+	private int storeReviewCnt;
 	private int storeFollowCnt; // 아직 모르겠다아아아아아아아아아아아앙
+	private String storeName;
 	private List<UserPdPdImgVO> storeProductList;
 	private List<UserGetProductStoreReviewVO> storeReviewList;
 }	
