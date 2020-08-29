@@ -44,9 +44,5 @@
       WHERE
          store_no=#{storeNo}
     </update>
-    
-    <select id="getStoreProduct" parameterType="int" resultMap="storeMap">
-    	SELECT
-    		
-    </select>
+  
 </mapper>
