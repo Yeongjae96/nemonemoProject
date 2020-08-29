@@ -24,6 +24,7 @@
 <script src="<c:url value="/resources/vendor/jquery/jquery.form.min.js"/>"></script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
+
 <!-- 해당 페이지 JS파일 -->
 <script> this.contextPath = "<c:url value="/"/>"</script>
 <script src="<c:url value="/resources/js/user/customer/qna/ask.js"/>"></script>
@@ -58,7 +59,7 @@
 						<div class="nav-selected-underline"></div></a> 
 						<a class="qna-nav-not-selected" href="/nemonemoProject/customer/qna/list.do">상담내역</a>
 					</nav>
-					<form action="#" method="post" enctype="multipart/form-data" id="newQuestionForm"> <!-- new.do --> 
+					<form action="#" method="post" enctype="multipart/form-data" id="newQuestionForm">
 						<div class="qna-contents">							
 							<div class="qna-contents-selbox">
 								<div class="selbox-container">
