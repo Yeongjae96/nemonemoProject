@@ -20,11 +20,12 @@ import com.nemo.user.products.service.GetProductService;
 import com.nemo.user.products.vo.UserBaseProductsCategoryVO;
 import com.nemo.user.products.vo.UserBaseProductsFavoriteVO;
 import com.nemo.user.products.vo.UserGetProductVO;
+import com.nemo.user.products.vo.UserGetSellerVO;
 import com.nemo.user.products.vo.UserSelectedProductVO;
+import com.nemo.user.sign.signup.repository.impl.UserMapper;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
 
 @Service
-@Transactional(rollbackFor = Exception.class)
 public class GetProductServiceImpl implements GetProductService {
 	
 	@Autowired
@@ -37,6 +38,7 @@ public class GetProductServiceImpl implements GetProductService {
 	private UserProductsFavoriteMapper favoriteMapper;
 	
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public UserGetProductVO getProduct(int productNo) {
 
 		UserGetProductVO resultVO = new UserGetProductVO();
@@ -44,7 +46,6 @@ public class GetProductServiceImpl implements GetProductService {
 		UserSelectedProductVO selectedProduct = getProductMapper.selectProductFromPdSeq(productNo); // 1. 시퀀스로 타입 검색
 		
 		resultVO.setSelectedProduct(selectedProduct);
-		
 		
 		// 2. 전체 카테고리 리스트 || 2. 카테고리 타입에 따른 상품 리스트
 		List<UserBaseProductsCategoryVO> list = categoryMapper.getAllCategoryList();
@@ -87,7 +88,6 @@ public class GetProductServiceImpl implements GetProductService {
 			for(Cookie c : cookies) {
 				if(c.getName().equals("product_seq_" + productNo)) {
 					countUpdateCheck = false;
-					System.err.println("쿠키생성 감지");
 					break;
 				}
 			}
@@ -103,20 +103,21 @@ public class GetProductServiceImpl implements GetProductService {
 			    cookie.setPath("/");
 			    ContextUtil.getResponse().addCookie(cookie);
 			    countUpdateCheck = true;
-			    System.err.println("쿠키생성 완료 ");
 			    
 				productsMapper.updateView(productNo);
-				System.err.println("조회수 올리기 ");
 				// 순서로 인하여 조회한 값의 조회수 + 1
 				selectedProduct.getProductVO().setProductView(selectedProduct.getProductVO().getProductView()+1); 
 			}
 		}
 		
-		
 		// 6. 찜 개수 가져오기
 		List<UserBaseProductsFavoriteVO> favoriteList = favoriteMapper.getFavoriteList(productNo);
 		resultVO.setFavoriteList(favoriteList);
 		
+		// 7. 상품 판매에 대한 상점 정보
+		UserGetSellerVO productSellerVO = getProductMapper.selectGetSellerVO(selectedProduct.getProductVO().getProductSeller());
+		resultVO.setProductSellerVO(productSellerVO);
+		// 물어보기
 		return resultVO;
 	}
 }

@@ -41,8 +41,7 @@
 	<c:if test="${vo.selectedCategory != null}">
 		<c:set var="selectedCate" value="${vo.selectedCategory}"/>
 	</c:if>
-	<%-- 카테고리 맵 꺼내기 --%>
-	<c:if test="${vo.searchedCateMap != null}">
+	<%-- <c:if test="${vo.searchedCateMap != null}">
 		<c:forEach var="entry" items="${vo.searchedCateMap}">
 			<c:set var="key" value="${entry.key}" />
 			<c:set var="value" value="${entry.value}" />
@@ -56,7 +55,9 @@
 				<c:set var="PdLgCateList" value="${value}" />
 			</c:if>
 		</c:forEach>
-	</c:if>
+	</c:if> --%>
+	<c:set var="searchedCateList" value="${vo.searchedCateList}" />
+	
 	<% 
 		/* 공통 Header */
 	%>
@@ -95,71 +96,67 @@
 					</c:if>
 				</div>
 				
-		<c:if test="${not empty selectedCate}">
-			<c:if test="${selectedCate.productCateType != 'L'}">
+			<c:if test="${selectedCate.productCateType != null}">
 			<!-- 카테고리 메뉴 버튼 -->
 				<div class="search-search-menu__btn">
-					<a class="search-search-menu__link" href="#"> <i
+					<a class="search-search-menu__link" href="javascript:history.go(-1);"> <i
 						class="fas fa-chevron-left"></i>이전 카테고리
-					</a> <a class="search-reset__btn" href="#"> <i class="fas fa-undo"></i>
+					</a> <a class="search-reset__btn" href="<c:url value="/search/products.do?q=${param.q}"/>" > <i class="fas fa-undo"></i>
 						초기화
 					</a>
 				</div>
 			</c:if>
-		</c:if>
 		<!-- 카테고리 메뉴 -->
-			<c:if test="${not empty PdLgCateList and selectedCate == null}">
-				<div class="search-search-sub__area">
+			<div class="search-search-sub__area">
 					<div class="search-search-sub__div">
 						<!-- 아이템 1개 -->
-						<c:forEach var="lg" items="${PdLgCateList}">
-							<div class="search-search-sub__item">
-								<a class="search-search-sub__item-link">
-									<div class="search-search-sub__item-title">${lg.productCateLarge}</div>
-									<div class="search-search-sub__item-count">${fn:length(PdLgCateList)}</div>
-								</a>
-							</div>
-						</c:forEach>
+						<c:if test="${selectedCate.productCateType != 'S'}">
+							<c:forEach var="lg" items="${searchedCateList}">
+								<div class="search-search-sub__item">
+									<a class="search-search-sub__item-link" href="<c:url value="/search/products.do?q=${param.q}&order=date&pageNo=1&categoryNo=${lg.productCateNo}"/>">
+										<c:choose>
+											<c:when test="${selectedCate.productCateType == 'L'}">
+												<div class="search-search-sub__item-title">${lg.productCateMedium}</div>
+											</c:when>
+											<c:when test="${selectedCate.productCateType == 'M'}">
+												<div class="search-search-sub__item-title">${lg.productCateSmall}</div>
+											</c:when>
+											<c:otherwise>
+												<div class="search-search-sub__item-title">${lg.productCateLarge}</div>
+											</c:otherwise>
+										</c:choose>
+										<div class="search-search-sub__item-count">${lg.productCateCnt}</div>
+									</a>
+								</div>
+							</c:forEach>
+						</c:if>
 					</div>
-				</div>
-			 </c:if>
-			<c:if test="${not empty PdMdCateList and selectedCate.productCateType == 'L'}">
-				<div class="search-search-sub__area">
-					<div class="search-search-sub__div">
-						<!-- 아이템 1개 -->
-						<c:forEach var="md" items="${PdMdCateList}">
-							<div class="search-search-sub__item">
-								<a class="search-search-sub__item-link">
-									<div class="search-search-sub__item-title">${md.productCateMedium}</div>
-									<div class="search-search-sub__item-count">${fn:length(PdMdCateList)}</div>
-								</a>
-							</div>
-						</c:forEach>
-					</div>
-				</div>
-			 </c:if>
-			<c:if test="${not empty PdSmCateList and selectedCate.productCateType == 'M'}">
-				<div class="search-search-sub__area">
-					<div class="search-search-sub__div">
-						<!-- 아이템 1개 -->
-						<c:forEach var="sm" items="${PdSmCateList}">
-							<div class="search-search-sub__item">
-								<a class="search-search-sub__item-link">
-									<div class="search-search-sub__item-title">${sm.productCateSmall}</div>
-									<div class="search-search-sub__item-count">${fn:length(PdSmCateList)}</div>
-								</a>
-							</div>
-						</c:forEach>
-					</div>
-				</div>
-			 </c:if>
-		
+			</div>
 		<!-- 제목 영역-->
 		<div class="search-title__area">
 			<div class="search-title__div">
 				<div class="search-title__left">
-					<span class="search--empha">${param.q}</span> 의 검색결과 <span
-						class="search--count">${vo.productCnt}개</span>
+					<c:if test="${selectedCate == null}">
+						<span class="search--empha">${param.q}</span> 의 검색결과
+						<span class="search--count">${vo.productCnt}개</span>
+					</c:if>
+					<c:if test="${selectedCate != null}">
+						<c:choose>
+							<c:when test="${selectedCate.productCateType == 'L' }">
+								<span class="search--empha">${selectedCate.productCateLarge}</span> 의 검색결과
+								<span class="search--count">${vo.productCnt}개</span>
+							</c:when>
+							<c:when test="${selectedCate.productCateType == 'M' }">
+								${selectedCate.productCateLarge} > <span class="search--empha" style="margin: 0px 5px;">${selectedCate.productCateMedium}</span> 의 검색결과
+								<span class="search--count">${vo.productCnt}개</span>
+							</c:when>
+							<c:when test="${selectedCate.productCateType == 'S' }">
+								${selectedCate.productCateLarge} > ${selectedCate.productCateMedium} > <span class="search--empha" style="margin: 0px 5px;">${selectedCate.productCateSmall}</span> 의 검색결과
+								<span class="search--count">${vo.productCnt}개</span>
+							</c:when>
+						</c:choose>
+						
+					</c:if>
 				</div>
 				<c:if test="${not empty vo.pdPdImgList}">	
 					<div class="search-sort__right">

@@ -40,8 +40,41 @@ public class SearchProductsServiceImpl implements SearchProductsService {
 	
 	@Override
 	public SearchProductsVO getSearchArticle(String keyword, String order, int categoryNo,  PageVO pageVO) {
+		
+		// 반환값
+		SearchProductsVO searchProductsVO = new SearchProductsVO();
+		UserBaseProductsCategoryVO selectedCategory = null;
+		Map<String, Object> cateParamMap = new HashMap<String, Object>(); // 카테고리 조회
+		Map<String, Object> paramMap = new HashMap<>(); // 상품 조회
 
-		// 0. 페이징 처리
+		// 카테고리가 선택됐다면 선택된 카테고리 정보 가져오기
+		if(categoryNo != -1) {
+			selectedCategory =  userProductsCategoryMapper.searchCateSeq(categoryNo);
+			searchProductsVO.setSelectedCategory(selectedCategory);
+		}
+		if(selectedCategory != null) {
+			String selectedType = selectedCategory.getProductCateType();
+			paramMap.put("selectedType", selectedType);
+			cateParamMap.put("selectedType", selectedType);
+			String selectedCateName = null;
+			switch(selectedType) {
+			case "L":
+				selectedCateName = selectedCategory.getProductCateLarge();
+				break;
+			case "M":
+				selectedCateName = selectedCategory.getProductCateMedium();
+				break;
+			case "S":
+				selectedCateName = selectedCategory.getProductCateSmall();
+				break;
+			}
+			cateParamMap.put("selectedCateName", selectedCateName);
+			paramMap.put("selectedCateName", selectedCateName);
+		}
+		
+		cateParamMap.put("keyword", keyword);
+		
+		// 페이징 처리
 		Pagination page = new Pagination(pageVO);
 		
 		/* DB조회시 필수 조회 값 : MAPPER에 파라미터로 넘겨야함 변수명 동일해야함(startNo, endNo)*/
@@ -49,33 +82,32 @@ public class SearchProductsServiceImpl implements SearchProductsService {
 		int endNo = page.getEndPageNo();
 		
 		// 1. 검색어에 대한 카테고리 리스트
-		List<UserProductsCategoryCntVO> cateListByKeyword = searchProductsMapper.pdCateByKeyword(keyword);
-		Map<String, List<UserProductsCategoryCntVO>> categoryMap = new HashMap<>();
-
-		List<UserProductsCategoryCntVO> large = new ArrayList<>();
-		List<UserProductsCategoryCntVO> medium = new ArrayList<>();
-		List<UserProductsCategoryCntVO> small = new ArrayList<>();
-
-		for (UserProductsCategoryCntVO vo : cateListByKeyword) {
-			if (vo.getProductCateLarge() != null) {
-				large.add(vo);
-			} 
-			if (vo.getProductCateMedium() != null) {
-				medium.add(vo);
-			} 
-			if( vo.getProductCateSmall() != null) {
-				small.add(vo);
-			}
-		}
+		List<UserProductsCategoryCntVO> cateListByKeyword = searchProductsMapper.pdCateByKeyword(cateParamMap);
+		System.err.println(cateListByKeyword);
+		
+		/*
+		 * Map<String, List<UserProductsCategoryCntVO>> categoryMap = new HashMap<>();
+		 */
+		searchProductsVO.setSearchedCateList(cateListByKeyword);
+		
+		
+		/*
+		 * List<UserProductsCategoryCntVO> large = new ArrayList<>();
+		 * List<UserProductsCategoryCntVO> medium = new ArrayList<>();
+		 * List<UserProductsCategoryCntVO> small = new ArrayList<>();
+		 * 
+		 * for (UserProductsCategoryCntVO vo : cateListByKeyword) { if
+		 * (vo.getProductCateLarge() != null) { large.add(vo); } if
+		 * (vo.getProductCateMedium() != null) { medium.add(vo); } if(
+		 * vo.getProductCateSmall() != null) { small.add(vo); } }
+		 * 
+		 * categoryMap.put("large", large); categoryMap.put("medium", medium);
+		 * categoryMap.put("small", small);
+		 */
 		
 		
 		
-		categoryMap.put("large", large);
-		categoryMap.put("medium", medium);
-		categoryMap.put("small", small);
-
 		// 2. 검색어에 대한 상품 상품이미지 리스트
-		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("keyword", keyword);
 		paramMap.put("order", order);
 		paramMap.put("startNo", startNo);
@@ -83,16 +115,11 @@ public class SearchProductsServiceImpl implements SearchProductsService {
 		
 		List<UserPdPdImgVO> pdPdImgList = searchProductsMapper.pdPdImgByKeyword(paramMap);
 
-		SearchProductsVO searchProductsVO = new SearchProductsVO();
-		searchProductsVO.setSearchedCateMap(categoryMap);
+		
 		searchProductsVO.setPdPdImgList(pdPdImgList);
 		
-		if(categoryNo != -1) {
-			UserBaseProductsCategoryVO selectedCategory =  userProductsCategoryMapper.searchCateSeq(categoryNo);
-			searchProductsVO.setSelectedCategory(selectedCategory);
-		}
-		
-		int productCnt = searchProductsMapper.allProductCntByKeyword(keyword);
+		/* searchProductsMapper.allProductCntByKeyword(keyword); */
+		int productCnt = pdPdImgList.size();
 		searchProductsVO.setProductCnt(productCnt);
 		
 		// 페이징 처리 객체 (jsp:include paging.jsp에 필요한 변수 셋팅)
