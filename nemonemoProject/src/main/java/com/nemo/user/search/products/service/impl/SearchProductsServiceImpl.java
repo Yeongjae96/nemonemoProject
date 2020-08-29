@@ -128,4 +128,9 @@ public class SearchProductsServiceImpl implements SearchProductsService {
 		
 		return searchProductsVO;
 	}
+	
+	@Override
+	public List<String> searchProductKeyword(String keyword) {
+		return searchProductsMapper.selectProductNameByKeyword(keyword);
+	}
 }

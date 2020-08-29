@@ -146,5 +146,20 @@
 		</where>
 	</select>
 	
+	<select id="selectProductNameByKeyword" parameterType="String" resultType="String">
+		SELECT (
+		    product_name
+		) FROM (
+		    SELECT product_name, ROWNUM rnum
+		    FROM (
+		    SELECT DISTINCT (product_name)
+		    FROM product_tb
+		    WHERE product_name LIKE '%' || #{keyword} || '%'
+		    ) a
+		)
+		WHERE <![CDATA[rnum <= 10]]>
+	</select>
+	
+	
 	
 </mapper>
