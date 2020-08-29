@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nemo.user.products.service.GetProductService;
 import com.nemo.user.products.service.UserProductsCategoryService;
 import com.nemo.user.products.service.UserProductsCommentsService;
 import com.nemo.user.products.service.UserProductsEditService;
@@ -17,9 +19,9 @@ import com.nemo.user.products.service.UserProductsFavoriteService;
 import com.nemo.user.products.vo.ProductsCommentsVO;
 import com.nemo.user.products.vo.UserBaseProductsCategoryVO;
 import com.nemo.user.products.vo.UserBaseProductsFavoriteVO;
-import com.nemo.user.products.vo.UserGetProductVO;
 import com.nemo.user.products.vo.UserNewProductsVO;
 import com.nemo.user.products.vo.UserProductsEditDispVO;
+import com.nemo.user.products.vo.UserRecentlyProductVO;
 
 @RestController
 @RequestMapping("/products")
@@ -33,6 +35,8 @@ public class UserProductsRestController {
 	private UserProductsFavoriteService userProductsFavoriteService;
 	@Autowired
 	private UserProductsEditService userProductsEditService;
+	@Autowired
+	private GetProductService getProductService;
 	
 	@GetMapping("/allCateList")
 	public List<UserBaseProductsCategoryVO> getCategoryList() {
@@ -71,5 +75,10 @@ public class UserProductsRestController {
 		return userProductsEditService.editProductDisp(vo);
 	}
 	
+	@GetMapping("/data.do")
+	@ResponseBody
+	public UserRecentlyProductVO getSideNavBarData(@RequestParam int productNo) {
+		return getProductService.getRecentlyProductVO(productNo);
+	}
 	
 }

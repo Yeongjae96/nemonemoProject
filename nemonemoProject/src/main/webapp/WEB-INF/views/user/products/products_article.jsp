@@ -10,6 +10,9 @@
 <c:set var="productImgList" value="${vo.selectedProduct.productImgList}"/>
 <c:set var="selectedCate" value="${vo.selectedProduct.productCateVO}"/>
 <c:set var="favoriteList" value="${vo.favoriteList}"/>
+<c:set var="productSellerVO" value="${vo.productSellerVO}"/>
+<c:set var="storeProductList" value="${productSellerVO.storeProductList}"/>
+<c:set var="storeReviewList" value="${productSellerVO.storeReviewList}"/>
 
 <c:if test="${user != null}">	
 	<c:forEach var="fa" items="${favoriteList}">
@@ -21,8 +24,6 @@
 		<c:set var="myproduct" value="true"/>
 	</c:if>
 </c:if>
-
-
 
 <c:forEach var="entry" items="${vo.categoryMap}">
 	<c:set var="key" value="${entry.key}"/>
@@ -59,7 +60,7 @@
 
 <!-- 페이지 CSS  -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/products/products_article.css"/>">
-
+<link rel="stylesheet" href="<c:url value="/resources/vendor/swiper/css/swiper.min.css"/>">
 
 <!-- 라이브러리 -->
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
@@ -72,6 +73,7 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v8.0&appId=308411826950117&autoLogAppEvents=1" nonce="GguEtP2Q"></script>
 <%-- 카카오링크  --%>
 <script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="<c:url value="/resources/vendor/swiper/js/swiper.min.js"/>"></script>
 
 <!-- 해당 페이지 JS파일 -->
 <script src="<c:url value="/resources/js/user/products/products_article.js"/>"></script>
@@ -181,7 +183,7 @@
                 <div class="detail-info__div">
                     <div class="detail-info__image__div">
                         <!-- 이미지 리스트 -->
-                        <div class="detail-info__image__list">
+                        <%-- <div class="detail-info__image__list">
                             <!-- 상세 상품 이미지 1장-->
                             <c:forEach var="img" items="${productImgList}" varStatus="st">
                             	<c:if test="${st.first}"> 
@@ -218,6 +220,60 @@
 	                            		 </c:if>
 	                            	</c:forEach>
 	                            </div>
+                            <!-- 이미지 모달 -->
+                            <div class="enlarge-modal__area">
+                                <div class="enlarge-modal__div">
+                                    <button class="enlarge-modal__close-btn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <div class="enlarge-modal__div2">
+                                        <div class="enlarge-modal--title">
+                                            프로피쿡 디지털 에어프라이어 튀김기 보토 필립스 전기오븐렌지
+                                        </div>
+                                        <div class="enlarge-modal--list">
+                                            <!-- 이미지 한개 -->
+                                            <div class="enlarge-modal--item">
+                                                <img src="<c:url value="/resources/images/user/products/product_1.jpg"/>" alt="리뷰 이미지">
+                                                <div class="enlarge-modal--watermark">
+                                                </div>
+                                            </div>
+                                            <div class="enlarge-modal--item">
+                                                <img src="<c:url value="/resources/images/user/products/product_2.jpg"/>" alt="리뷰 이미지">
+                                                <div class="enlarge-modal--watermark">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 아래 페이지 -->
+                                        <div class="enlarge-modal--count-list">
+                                            <button class="enlarge-modal--count-item--active">
+                                            </button>
+                                            <button class="enlarge-modal--count-item">
+                                            </button>
+                                            <button class="enlarge-modal--count-item">
+                                            </button>
+                                            <button class="enlarge-modal--count-item">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --%>
+                        <div class="detail-info__image__list swiper-container">
+                            <!-- 상세 상품 이미지 1장-->
+                           	<div class="swiper-wrapper">
+                            	<c:forEach var="img" items="${productImgList}" varStatus="st">
+                            		<div class="swiper-slide">
+			                            <img src="/image/product/${img.productImgNo}.img" alt="상세 상품 이미지" />
+			                            
+                            		</div>
+								</c:forEach>
+                            </div>
+	                            <div class="detail-info__image__watermark"></div>
+								<div class="swiper-button-next"></div>
+								<div class="swiper-button-prev"></div>
+	                            <!-- 이미지 개수 ~ -->
+	                            <div class="swiper-pagination"></div>
+	                            
                             <!-- 이미지 모달 -->
                             <div class="enlarge-modal__area">
                                 <div class="enlarge-modal__div">
@@ -785,134 +841,157 @@
                         <div class="detail-store__title">상점정보</div>
                         <div class="detail-store__content">
                             <div class="detail-store__content--title">
-                                <a class="store-content-title__left">
-                                    <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="판매자 프로필 이미지" />
+                                <a class="store-content-title__left" href="<c:url value="/shop/${productSellerVO.storeNo}/products.do"/>">
+                                	<c:if test="${productSellerVO.storeImgNo eq -1}">
+                     		             <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="판매자 프로필 이미지" />
+                                	</c:if>
+                                	<c:if test="${productSellerVO.storeImgNo ne -1}">
+                                		<img src="<c:url value="/image/store/${productSellerVO.storeImgNo}.img"/>" alt="판매자 프로필 이미지" />
+                                	</c:if>
                                 </a>
                                 <div class="store-content-title__right">
-                                    <a class="store-content-title__link">
-                                        가성비갑득템상점
+                                    <a class="store-content-title__link" href="<c:url value="/shop/${productSellerVO.storeNo}/products.do"/>">
+                                        ${productSellerVO.storeName}
                                     </a>
                                     <div class="store-content-info__list">
-                                        <a class="store-content-info__item" href="#">
-                                            상품 41
+                                         <a class="store-content-info__item" href="<c:url value="/shop/${productSellerVO.storeNo}/products.do"/>"> 
+                                           	상품 ${productSellerVO.storeProductCnt}
                                         </a>
-                                        <a class="store-content-info__item" href="#">
+                                        <!-- <a class="store-content-info__item" href="#">
                                             팔로우 5
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </div>
                             </div>
-                            <button class="detail-store__follow">
+                            <!-- <button class="detail-store__follow">
                                 <i class="fas fa-user"></i>
                                 팔로우
-                            </button>
+                            </button> -->
                             <!-- 판매자 상품 이미지 -->
                             <div class="detail-store__image-list">
                                 <!-- 상품 이미지 1개 -->
-                                <div class="detail-store__image-item">
-                                    <a class="detail-store__image-link">
-                                        <img src="<c:url value="/resources/images/user/products/product_1.jpg"/>" alt="상품 이미지">
-                                        <div class="detail-store__image-price">
-                                            <span>50,000</span>
-                                            원
-                                        </div>
-                                    </a>
-                                </div>
-                                <!-- 상품 이미지 1개 -->
-                                <div class="detail-store__image-item">
-                                    <a class="detail-store__image-link">
-                                        <img src="<c:url value="/resources/images/user/products/product_1.jpg"/>" alt="상품 이미지">
-                                        <div class="detail-store__image-price">
-                                            <span>50,000</span>
-                                            원
-                                        </div>
-                                    </a>
-                                </div>
+                                <c:forEach var="pd" items="${storeProductList}">
+	                                <div class="detail-store__image-item">
+	                                    <a class="detail-store__image-link" href="<c:url value="/products/${pd.productVO.productNo}.do"/>">
+	                                        <img src="<c:url value="/image/product/${pd.productImgVO.productImgNo}.img"/>" alt="상품 이미지">
+	                                        <div class="detail-store__image-price">
+	                                            <span>${pd.productVO.productPrice}</span>원	
+	                                        </div>
+	                                    </a>
+	                                </div>
+                                </c:forEach>                                
                             </div>
                             <!-- 상품 더보기 -->
-                            <div class="detail-store__more-btn">
-                                <a class="detail-store__more-link" href="#">
-                                    <span class="detail--empha">37개</span>
-                                     상품 더보기
+                            	
+                            	<div class="detail-store__more-btn">
+                                <a class="detail-store__more-link" href="<c:url value="/shop/${productSellerVO.storeNo}/products.do"/>">
+	                                <c:if test="${productSellerVO.storeProductCnt > 2}">
+	                                    <span class="detail--empha">${productSellerVO.storeProductCnt-2}개</span>
+									</c:if> 
+									<c:if test="${productSellerVO.storeProductCnt <= 2}">
+	                                    <span class="detail--empha">0개</span>
+									</c:if>                                   
+									상품 더보기
                                 </a>
                             </div>
+                            
                             <!-- 상점 리뷰 -->
                             <div class="detail-store__review-div">
                                     <div class="detail-review__head">
                                         상점후기
-                                        <span class="detail--empha">3</span>
+                                        <span class="detail--empha">${productSellerVO.storeReviewCnt}</span>
                                     </div>
                                     <div class="detail-review__body">
-                                        <!-- 상점후기 댓글 1개-->
-                                        <div class="detail-review__comment">
+                                    	<c:forEach var="rv" items="${storeReviewList}">
+                            	        <!-- 상점후기 댓글 1개-->
+                                    	<div class="detail-review__comment">
                                             <a class="review-comment__left" href="#">
-                                                <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="리뷰 쓴 사람 프로필 이미지">
+                                            	<c:if test="${rv.storeImgNo != -1}">
+                                            		<img src="<c:url value="/image/store/${rv.storeImgNo}.img"/>" alt="상점 이미지"/>
+                                            	</c:if>
+                                            	<c:if test="${rv.storeImgNo == -1}">
+	                                                <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="리뷰 쓴 사람 프로필 이미지">
+                                            	</c:if>
                                             </a>
                                             <div class="review-comment__right">
                                                 <div class="review-comment-right__title">
-                                                    <a href="#" class="reivew-comment-right__link">
-                                                        상점11344422호
+                                                    <a href="<c:url value="/shop/${rv.storeNo}/products.do"/>" class="reivew-comment-right__link">
+                                                        ${rv.storeName}
                                                     </a>
-                                                    <div class="review-comment-right__time">1주 전</div>
+                                                    <div class="review-comment-right__time">
+                                                    	<fmt:parseNumber value="${rv.storeReviewRegDt.time}" integerOnly="true" var="storeDays" scope="request"/>
+                                                    	<c:choose>
+	                                                    	<c:when test="${nowDays-storeDays < (1000*60)}">
+	                                                    		<fmt:parseNumber value="${(nowDays-storeDays) / (1000)}" integerOnly="true" var="secDate"/>
+	                                                    		<c:out value="${secDate}"/>초전
+	                                                    	</c:when>
+	                                                    	<c:when test="${(nowDays-storeDays) < (1000*60*60)}">
+	                                                    		<fmt:parseNumber value="${(nowDays-storeDays) / (1000*60)}" integerOnly="true" var="minDate"/>
+	                                                    		<c:out value="${minDate}"/>분전
+	                                                    	</c:when>
+	                                                    	<c:when test="${(nowDays-storeDays) < (1000*60*60*24)}">
+	                                                    		<fmt:parseNumber value="${(nowDays-storeDays) / (1000*60*60)}" integerOnly="true" var="hourDate"/>
+	                                                    		<c:out value="${hourDate}"/>시간전
+	                                                    	</c:when>
+	                                                    	<c:otherwise>
+	                                                    		<fmt:parseNumber value="${(nowDays-storeDays) / (1000*60*60*24)}" integerOnly="true" var="dayDate"/>
+	                                                    		<c:out value="${dayDate }"/>일전
+	                                                    	</c:otherwise>
+	                                                    </c:choose>
+                                                    
+                                                    </div>
                                                 </div>
                                                 <div class="review-comment-right__content">
                                                     <div class="review-comment-right__stars">
-                                                        <i class="light fas fa-star"></i>
-                                                        <i class="light fas fa-star"></i>
-                                                        <i class="light fas fa-star"></i>
-                                                        <i class="light fas fa-star"></i>
-                                                        <i class="light fas fa-star"></i>
+                                                    	<jsp:include page="/WEB-INF/views/user/products/common/rating.jsp">
+                                                    		<jsp:param value="${rv.storeRating}" name="rating"/>
+                                                    	</jsp:include>
                                                     </div>
                                                 </div>
                                                 <div class="review-comment-right__text">
-                                                    와 번개하면서 입금 하자마자 새벽인데...
-                                                    나가서 보내주시구 감사해요.....
+                                                   ${rv.storeReviewContent}
                                                 </div>
                                             </div>
                                         </div>
+                                    	</c:forEach>
+                                    	<c:if test="${empty storeReviewList}">
+	                                        <div class="detail-review-nothing--area">
+		                                        <div class="detail-review-nothing--msg">
+		                                        	등록된 후기가 없습니다.<br>첫 후기를 등록해보세요!
+		                                        </div>
+		                                        <a class="detail-review-nothing--link" href="/shop/${productSellerVO.storeNo}/reviews">
+		                                        	후기작성
+		                                        </a>
+	                                       	</div>
+                                    	</c:if>
                                         <!-- 상점후기 댓글 1개-->
-                                        <div class="detail-review__comment">
-                                            <a class="review-comment__left" href="#">
-                                                <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="리뷰 쓴 사람 프로필 이미지">
-                                            </a>
-                                            <div class="review-comment__right">
-                                                <div class="review-comment-right__title">
-                                                    <a href="#" class="reivew-comment-right__link">
-                                                        상점11344422호
-                                                    </a>
-                                                    <div class="review-comment-right__time">1주 전</div>
-                                                </div>
-                                                <div class="review-comment-right__content">
-                                                    <div class="review-comment-right__stars">
-                                                        <i class="light fas fa-star"></i>
-                                                        <i class="light fas fa-star"></i>
-                                                        <i class="light fas fa-star"></i>
-                                                        <i class="light fas fa-star"></i>
-                                                        <i class="light fas fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="review-comment-right__text">
-                                                    와 번개하면서 입금 하자마자 새벽인데...
-                                                    나가서 보내주시구 감사해요.....
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
-                                    <div class="detail-review__more-btn">
-                                        <a class="detail-review__more-link">
-                                            상점후기 더보기
-                                        </a>
-                                    </div>
+                                    <c:if test="${productSellerVO.storeReviewCnt > 2}">
+	                                     <div class="detail-review__more-btn">
+	                                        <a class="detail-review__more-link" href="<c:url value="/shop/${productSellerVO.storeNo}/reviews.do"/>">
+	                                            	상점후기 더보기
+	                                        </a>
+	                                    </div>
+                                    </c:if>
+                                   
                             </div>
 
                             <!-- 하단 버튼 -->
                             <div class="detail-bottom__btns">
-                                <div class="detail-bottom__call-btn" id="bottomCallBtn">
-                                    연락하기
-                                </div>
-                                <div class="detail-bottom__buy-btn" id="bottomBuyBtn">
-                                    바로구매
-                                </div>
+                            	<c:if test="${myproduct}">
+	                            	<a class="detail-myproduct" href="<c:url value="/products/manage.do"/>">
+			                            	내 상점 관리
+	                            	</a>
+                           		</c:if>
+                           		<c:if test="${not myproduct}">
+	                                <div class="detail-bottom__call-btn" id="bottomCallBtn">
+	                                    연락하기
+	                                </div>
+	                                <div class="detail-bottom__buy-btn" id="bottomBuyBtn">
+	                                    바로구매
+	                                </div>
+                           		</c:if>
                             </div>
                         </div>
                         
