@@ -1,0 +1,142 @@
+
+.store-search-area {
+    background-color: rgb(249, 249, 249);
+	display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-top: 30px;
+	font-family: "Noto Sans KR";
+	font-size: 16px;
+}
+
+.store-search-width {
+	width: 1024px;
+}
+
+.store-search-mb {
+    margin-bottom: 110px;
+}
+
+.store-search-title {
+	font-size: 16px;
+    line-height: 16px;
+    height: 16px;
+    margin: 55px 0px 20px;
+}
+
+.store-search-title > span {
+	margin-left: 9px;
+    color: rgb(136, 136, 136);
+    align-content: center;
+}
+
+.store-search-item {
+	position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 120px;
+    width: 100%;
+    margin-bottom: 10px;
+    background: rgb(255, 255, 255);
+    padding: 0px 30px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+}
+
+.store-image-area {
+	width: 60px;
+    height: 60px;
+    vertical-align: middle;
+}
+
+.store-image-area img {
+	width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.store-info-area {
+    padding-left: 15px;
+}
+
+
+.store-info-title {
+	margin-bottom: 10px;
+    font-size: 14px;
+    color: rgb(33, 33, 33);
+    height: 15px;
+    line-height: 1;
+}
+
+.store-info-content {
+	color: rgb(102, 102, 102);
+    font-size: 12px;
+    height: 14px;
+    line-height: 16px;
+    display: flex;
+}
+
+.store-info-product {
+	margin-right: 20px;
+    position: relative;
+}
+
+.store-info-product::after{
+	content: "";
+    position: absolute;
+    top: 4px;
+    right: -10px;
+    height: 10px;
+    border-right: 1px solid rgb(102, 102, 102);
+}
+
+.store-info-review {
+	margin-right: 20px;
+}
+
+.store-info-stars {
+	float: right;
+    transform: translate(10px, 1px);
+}
+
+.store-go-area {
+	position: absolute;
+    right: 30px;
+}
+
+.store-go-btn {
+	width: 150px;
+    height: 42px;
+    color: rgb(136, 136, 136);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 13px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+}
+
+.store-nothing-area {
+	-webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0px;
+}
+
+.store-nothing-text {
+	font-size: 13px;
+    color: rgb(136, 136, 136);
+    line-height: 24px;
+    padding: 40px 0px;
+    border-top: 1px solid rgb(238, 238, 238);
+    border-bottom: 1px solid rgb(238, 238, 238);
+}

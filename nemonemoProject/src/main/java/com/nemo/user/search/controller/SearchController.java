@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.nemo.common.paging.PageVO;
 import com.nemo.user.search.products.service.SearchProductsService;
 import com.nemo.user.search.products.vo.SearchProductsVO;
+import com.nemo.user.search.service.SearchStoreService;
+import com.nemo.user.search.vo.UserSearchStoreResVO;
 
 @Controller
 @RequestMapping("/search")
@@ -20,6 +22,9 @@ public class SearchController {
 	
 	@Autowired
 	private SearchProductsService searchProductsService;
+	@Autowired
+	private SearchStoreService searchStoreService;
+	
 	
 	@GetMapping("/products")
 	public ModelAndView searchProductsPage (
@@ -35,9 +40,15 @@ public class SearchController {
 		return mav;
 	}
 	
-	@GetMapping("/store")
-	public ModelAndView searchStorePage() {
-		ModelAndView mav = new ModelAndView();
+	@GetMapping("/shops")
+	public ModelAndView searchStorePage(@RequestParam(value="q") String keyword) {
+		System.err.println(keyword);
+		ModelAndView mav = new ModelAndView("search/search_store");
+		
+		UserSearchStoreResVO vo = searchStoreService.searchStoreList(keyword);
+		
+		mav.addObject("vo", vo);
+		
 		return mav;
 	}
 	

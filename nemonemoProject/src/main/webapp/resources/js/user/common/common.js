@@ -154,7 +154,7 @@ function initSearchEvent() {
 	searchIconBtn.addEventListener('click', searchAction);
 	searchInput.addEventListener('keyup', searchkeyupEvent);
 	allDeleteBtn.addEventListener('click', allRemoveHistoryEvent);
-	storeSearchLink.addEventListener('click', searchStoreEvent);
+	storeSearchLink.addEventListener('click', function() {searchInput.value = "@"+searchInput.value; searchAction.call(this)});
 	/* 최근 검색어 쌓기 */
 	
 	/* UI적인 부분 */
@@ -253,10 +253,6 @@ function initSearchEvent() {
 	}
 	
 	/* */
-	function searchStoreEvent() {
-		
-	}
-	
 	/* localStorage에서 해당 배열로 불러오는 작업 끝난 후엔 LoadSearchHistory()를 호출하여 돔으로 표현*/
 	function initSearchHistory() {
 		const getArr = localStorage.getItem('searchHistory');
@@ -329,13 +325,17 @@ function initSearchEvent() {
 		const frag = document.createDocumentFragment();
 		
 		if(!searchInput.value.trim().length) return false;
+		const status = searchInput.value.slice(0, 1) == '@' ? 'store' : 'product';
 		
-		form.action = contextPath + 'search/products.do';
+		form.action = status == 'product' ? contextPath + 'search/products.do' : contextPath + 'search/shops.do'; 
 		form.method = 'get';
 
+		const searchValue = (status == 'product') ? searchInput.value : searchInput.value.substring(1);
+		
+		
 		input.setAttribute('type', 'hidden');
 		input.setAttribute('name', 'q');
-		input.setAttribute('value', searchInput.value);
+		input.setAttribute('value', searchValue);
 		
 		form.appendChild(input);
 		frag.appendChild(form);
