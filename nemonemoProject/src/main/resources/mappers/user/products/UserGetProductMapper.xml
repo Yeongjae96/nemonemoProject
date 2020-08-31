@@ -132,7 +132,7 @@
         product_img_no
 	FROM product_tb p
 	INNER JOIN (select product_no, min(product_img_no) AS product_img_no FROM product_img_tb GROUP BY product_no) i
-	ON p.product_no = i.product_no AND p.product_no = #{productNo};
+	ON p.product_no = i.product_no AND p.product_no = #{productNo}
 
 </select>
 

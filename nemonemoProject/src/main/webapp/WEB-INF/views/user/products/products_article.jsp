@@ -77,6 +77,7 @@
 
 <!-- 해당 페이지 JS파일 -->
 <script src="<c:url value="/resources/js/user/products/products_article.js"/>"></script>
+<script src="<c:url value="/resources/js/user/products/products_to_navbar.js"/>"></script>
 
 
 </head>
@@ -182,6 +183,7 @@
             <div class="detail-info__area">
                 <div class="detail-info__div">
                     <div class="detail-info__image__div">
+                     <input id="prodno" type="hidden" data-no="${productVO.productNo}">
                         <!-- 이미지 리스트 -->
                         <%-- <div class="detail-info__image__list">
                             <!-- 상세 상품 이미지 1장-->

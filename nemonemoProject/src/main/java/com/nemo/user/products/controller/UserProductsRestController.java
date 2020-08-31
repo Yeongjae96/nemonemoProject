@@ -75,9 +75,10 @@ public class UserProductsRestController {
 		return userProductsEditService.editProductDisp(vo);
 	}
 	
-	@GetMapping("/data.do")
+	@GetMapping("/data")
 	@ResponseBody
 	public UserRecentlyProductVO getSideNavBarData(@RequestParam int productNo) {
+		
 		return getProductService.getRecentlyProductVO(productNo);
 	}
 	

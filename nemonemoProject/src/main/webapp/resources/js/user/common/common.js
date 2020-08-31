@@ -65,7 +65,7 @@ function initTopMenu() {
       $('.rec-prd-img').mouseenter(function() {
         $(".prd-info").css("visibility", "visible");
      });
-     $('.rec-prd-img-group').mouseleave(function() {
+     $('.rec-prd-img').mouseleave(function() {
          $(".prd-info").css("visibility", "hidden");
       });
 
@@ -123,6 +123,9 @@ function initSideNavbar() {
 		$('html, body').animate({ scrollTop: 0 }, 400);
 		return false;
 	});
+	
+	
+	
 }
 
 /* 검색창 이벤트!! */
@@ -545,5 +548,6 @@ function initPdMenu(callback) {
 	});
 	
 }
+
 
 
