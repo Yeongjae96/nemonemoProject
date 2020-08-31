@@ -137,10 +137,11 @@ function initSearchEvent() {
 	const searchBox = document.getElementById('searchBox');
 	const allDeleteBtn = document.getElementById('allDeleteBtn');
 	const searchAreaClose = document.getElementById('searchAreaClose');
+	const storeSearchLink = document.querySelector('.store-search-link');
+	
 	/* 최근 검색어 목록 */
 	const recentlyList = document.getElementById('recentlyList');
 	const recentlyNothing = document.getElementById('nothingRecently');
-	
 	
 	searchInput.addEventListener('click', searchInputClickEvent);
 	searchInput.addEventListener('keyup', searchInputKeyupEvent);
@@ -156,12 +157,13 @@ function initSearchEvent() {
 	searchIconBtn.addEventListener('click', searchAction);
 	searchInput.addEventListener('keyup', searchkeyupEvent);
 	allDeleteBtn.addEventListener('click', allRemoveHistoryEvent);
-	
+	storeSearchLink.addEventListener('click', function() {searchInput.value = "@"+searchInput.value; searchAction.call(this)});
 	/* 최근 검색어 쌓기 */
 	
 	/* UI적인 부분 */
 	function searchInputClickEvent() {
 		toggleArea(!!this.value.length);
+		searchInput.dispatchEvent(new Event('keyup'));
 	}
 	
 	/* document에 이벤트를 걸어 영역밖을 클릭하면 없애는 키워드 */
@@ -176,11 +178,54 @@ function initSearchEvent() {
 	function searchInputKeyupEvent() {
 		const target = this;
 		const searchKeywordSpan = document.querySelector('#searchKeyword');
+		const resultList = document.getElementsByClassName('search-result-list')[0];
 		searchKeywordSpan.innerText = target.value;
 		if(target.value) {
 			toggleArea(true);
 		} else {
 			toggleArea(false);
+		}
+		if(!searchInput.value.trim().length) return false;
+		
+    	let event;
+		if(event) {
+			window.clearTimeout(event);
+		}
+		event = window.setTimeout(keywordEvent, 500);
+		
+		function keywordEvent() {
+			$.ajax({
+				url: contextPath + 'search/keyword.do',
+				method: 'get',
+				data: {keyword: searchInput.value},
+			}).done(function(data) {
+				
+				while(resultList.firstChild) {
+					resultList.removeChild(resultList.firstChild);
+				}
+				
+				const frag = document.createDocumentFragment();
+				
+				data.forEach((e, i)=> {
+					console.log(i, '번쨰 : ', e);
+					let html = '';
+					const a = document.createElement('a');
+					const span = document.createElement('span');
+					a.classList.add('search-result-item');
+					a.href = contextPath + 'search/products.do?q='+e;
+					span.classList.add('result-item');
+					span.textContent = e;
+					a.appendChild(span);
+					frag.appendChild(a);
+					console.log(a);
+					console.log(frag);
+				});
+				
+				if(frag.firstElementChild) {
+					resultList.appendChild(frag);
+				}
+					
+ 			});
 		}
 	}
 	
@@ -210,6 +255,7 @@ function initSearchEvent() {
 		}
 	}
 	
+	/* */
 	/* localStorage에서 해당 배열로 불러오는 작업 끝난 후엔 LoadSearchHistory()를 호출하여 돔으로 표현*/
 	function initSearchHistory() {
 		const getArr = localStorage.getItem('searchHistory');
@@ -282,13 +328,17 @@ function initSearchEvent() {
 		const frag = document.createDocumentFragment();
 		
 		if(!searchInput.value.trim().length) return false;
+		const status = searchInput.value.slice(0, 1) == '@' ? 'store' : 'product';
 		
-		form.action = contextPath + 'search/products.do';
+		form.action = status == 'product' ? contextPath + 'search/products.do' : contextPath + 'search/shops.do'; 
 		form.method = 'get';
 
+		const searchValue = (status == 'product') ? searchInput.value : searchInput.value.substring(1);
+		
+		
 		input.setAttribute('type', 'hidden');
 		input.setAttribute('name', 'q');
-		input.setAttribute('value', searchInput.value);
+		input.setAttribute('value', searchValue);
 		
 		form.appendChild(input);
 		frag.appendChild(form);

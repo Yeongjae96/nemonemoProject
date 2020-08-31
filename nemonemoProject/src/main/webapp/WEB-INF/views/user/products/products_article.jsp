@@ -98,6 +98,34 @@
 	<% 
 		/* 각 페이지의 특성! */
 	%>
+	 <!-- 이미지 모달 -->
+     <div class="enlarge-modal__area">
+	     <div class="enlarge-modal__div">
+	         <button class="enlarge-modal__close-btn">
+	             <i class="fas fa-times"></i>
+	         </button>
+	         <div class="enlarge-modal__div2 swiper-container">
+	             <div class="enlarge-modal--title">
+	                ${vo.selectedProduct.productVO.productName}
+	             </div>
+	             <div class="swiper-wrapper enlarge-modal--list">
+	                 <!-- 이미지 한개 -->
+	                 <c:forEach var="img" items="${productImgList}" varStatus="st">
+                   		<div class="swiper-slide">
+                      		<img src="/image/product/${img.productImgNo}.img" alt="상세 상품 이미지" />
+		                     <div class="enlarge-modal--watermark">${productSellerVO.storeName}</div>
+                   		</div>
+					</c:forEach>
+                 </div>
+                 
+                 <div class="swiper-button-next swiper-button-white"></div>
+				<div class="swiper-button-prev swiper-button-white"></div>
+                 <!-- 페이징 -->
+	             <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+	
 	<section>
 		<div class="detail__area">
         <div class="detail__div">
@@ -185,134 +213,25 @@
                     <div class="detail-info__image__div">
                      <input id="prodno" type="hidden" data-no="${productVO.productNo}">
                         <!-- 이미지 리스트 -->
-                        <%-- <div class="detail-info__image__list">
-                            <!-- 상세 상품 이미지 1장-->
-                            <c:forEach var="img" items="${productImgList}" varStatus="st">
-                            	<c:if test="${st.first}"> 
-	                            	<img class="detail-info__image__item image--active" src="/image/product/${img.productImgNo}.img" alt="상세 상품 이미지" />
-	                            </c:if>
-	                            <c:if test="${not st.first}">
-		                            <img class="detail-info__image__item" src="/image/product/${img.productImgNo}.img" alt="상세 상품 이미지" />
-	                            </c:if>
-	                            <div class="detail-info__image__watermark"></div>
-								
-	                            <!-- 이전 버튼 -->
-	                            <button direction="prev" class="detail-info__image--prev">
-	                                <i class="fas fa-chevron-left fa-2x"></i>
-	                            </button>
-	                            <!-- 다음 버튼 -->
-	                            <button direction="next" class="detail-info__image--next">
-	                                <i class="fas fa-chevron-right fa-2x"></i>
-	                            </button>
-	                            <!-- 확대 버튼-->
-	                            <button class="detail-info__image--enlg">
-	                                <i class="fas fa-search"></i>
-	                             	  확대
-	                            </button>
-							</c:forEach>
-								
-	                            <!-- 이미지 개수 ~ -->
-	                            <div class="detail-info__image-count">
-	                            	<c:forEach begin="0" end="${fn:length(productImgList)-1}" varStatus="st">
-	                            		<c:if test="${st.first}">
-			                                <button disabled class="detail-info__image-count-btn count--active"></button>
-	                            		 </c:if>
-	                            		<c:if test="${not st.first}">
-			                                <button class="detail-info__image-count-btn"></button>
-	                            		 </c:if>
-	                            	</c:forEach>
-	                            </div>
-                            <!-- 이미지 모달 -->
-                            <div class="enlarge-modal__area">
-                                <div class="enlarge-modal__div">
-                                    <button class="enlarge-modal__close-btn">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                    <div class="enlarge-modal__div2">
-                                        <div class="enlarge-modal--title">
-                                            프로피쿡 디지털 에어프라이어 튀김기 보토 필립스 전기오븐렌지
-                                        </div>
-                                        <div class="enlarge-modal--list">
-                                            <!-- 이미지 한개 -->
-                                            <div class="enlarge-modal--item">
-                                                <img src="<c:url value="/resources/images/user/products/product_1.jpg"/>" alt="리뷰 이미지">
-                                                <div class="enlarge-modal--watermark">
-                                                </div>
-                                            </div>
-                                            <div class="enlarge-modal--item">
-                                                <img src="<c:url value="/resources/images/user/products/product_2.jpg"/>" alt="리뷰 이미지">
-                                                <div class="enlarge-modal--watermark">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- 아래 페이지 -->
-                                        <div class="enlarge-modal--count-list">
-                                            <button class="enlarge-modal--count-item--active">
-                                            </button>
-                                            <button class="enlarge-modal--count-item">
-                                            </button>
-                                            <button class="enlarge-modal--count-item">
-                                            </button>
-                                            <button class="enlarge-modal--count-item">
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --%>
-                        <div class="detail-info__image__list swiper-container">
+                        <div class="swiper-container detail-info__image__list">
                             <!-- 상세 상품 이미지 1장-->
                            	<div class="swiper-wrapper">
                             	<c:forEach var="img" items="${productImgList}" varStatus="st">
                             		<div class="swiper-slide">
 			                            <img src="/image/product/${img.productImgNo}.img" alt="상세 상품 이미지" />
-			                            
                             		</div>
 								</c:forEach>
                             </div>
 	                            <div class="detail-info__image__watermark"></div>
-								<div class="swiper-button-next"></div>
-								<div class="swiper-button-prev"></div>
+	                             <!-- 확대 버튼-->
+	                            <button class="detail-info__image--enlg">
+	                                <i class="fas fa-search"></i>
+	                             	  확대
+	                            </button>
+								<div class="detail-info__image--prev swiper-button-next swiper-button-white"></div>
+								<div class="detail-info__image--next swiper-button-prev swiper-button-white"></div>
 	                            <!-- 이미지 개수 ~ -->
 	                            <div class="swiper-pagination"></div>
-	                            
-                            <!-- 이미지 모달 -->
-                            <div class="enlarge-modal__area">
-                                <div class="enlarge-modal__div">
-                                    <button class="enlarge-modal__close-btn">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                    <div class="enlarge-modal__div2">
-                                        <div class="enlarge-modal--title">
-                                            프로피쿡 디지털 에어프라이어 튀김기 보토 필립스 전기오븐렌지
-                                        </div>
-                                        <div class="enlarge-modal--list">
-                                            <!-- 이미지 한개 -->
-                                            <div class="enlarge-modal--item">
-                                                <img src="<c:url value="/resources/images/user/products/product_1.jpg"/>" alt="리뷰 이미지">
-                                                <div class="enlarge-modal--watermark">
-                                                </div>
-                                            </div>
-                                            <div class="enlarge-modal--item">
-                                                <img src="<c:url value="/resources/images/user/products/product_2.jpg"/>" alt="리뷰 이미지">
-                                                <div class="enlarge-modal--watermark">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- 아래 페이지 -->
-                                        <div class="enlarge-modal--count-list">
-                                            <button class="enlarge-modal--count-item--active">
-                                            </button>
-                                            <button class="enlarge-modal--count-item">
-                                            </button>
-                                            <button class="enlarge-modal--count-item">
-                                            </button>
-                                            <button class="enlarge-modal--count-item">
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="detail-info__text__div">

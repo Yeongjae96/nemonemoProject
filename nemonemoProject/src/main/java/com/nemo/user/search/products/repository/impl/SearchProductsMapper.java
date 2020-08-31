@@ -16,4 +16,6 @@ public interface SearchProductsMapper extends ISearchProductsMapper {
 	public List<UserPdPdImgVO> pdPdImgByKeyword(Map<String, Object> paramMap);
 	public List<UserProductsCategoryCntVO> pdCateByKeyword(Map<String, Object> cateParamMap);
 	public int allProductCntByKeyword(@Param("keyword") String keyword);
+	
+	public List<String> selectProductNameByKeyword(String keyword);
 }

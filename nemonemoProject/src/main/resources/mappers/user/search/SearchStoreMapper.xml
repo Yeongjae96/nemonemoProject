@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.search.repository.impl.SearchStoreMapper">
+
+<resultMap id="searchStoreMap" type="com.nemo.user.search.vo.UserSearchStoreVO">
+	<id column="store_no" property="storeNo"/>
+	<result column="store_name" property="storeName"/>
+	<result column="store_img_no" property="storeImgNo"/>
+	<result column="store_rating" property="storeRating"/>
+	<result column="store_product_cnt" property="storeProductCnt"/>
+	<result column="store_follower_cnt" property="storeFollowerCnt"/>
+	<result column="store_review_cnt" property="storeReviewCnt"/>
+</resultMap>
+
+
+<select id="selectSearchStoreCntByKeyword" parameterType="String" resultType="int">
+	
+	SELECT count(1) AS store_cnt
+	FROM user_tb
+	WHERE store_name LIKE '%' || #{keyword} || '%'
+
+</select>
+
+<select id="selectSearchStoreByKeyword" parameterType="String" resultMap="searchStoreMap" >
+	SELECT 
+	    u.store_no,
+	    u.store_name,
+	    nvl(u.store_img_no, -1) store_img_no,
+	    nvl(r.store_rating,0) store_rating,
+	    nvl(r.store_review_cnt,0) store_review_cnt,
+	    nvl(p.store_product_cnt,0) store_product_cnt
+	FROM user_tb u
+	LEFT JOIN (SELECT store_no, trunc(avg(store_review_rating)) AS store_rating , count(1) AS store_review_cnt  FROM store_review_tb GROUP BY store_no) r
+	ON u.store_no = r.store_no
+	LEFT JOIN (SELECT product_seller, count(1) AS store_product_cnt FROM product_tb GROUP BY product_seller) p
+	ON p.product_seller = u.user_no
+	WHERE 
+    store_name LIKE '%' || #{keyword} || '%'
+</select>
+
+</mapper>

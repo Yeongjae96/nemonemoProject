@@ -125,6 +125,7 @@
 </select>
 
 <select id="selectRecentlyProductVO" parameterType="int" resultMap="recentlyProductMap">
+	
 	SELECT 
         p.product_no,
         product_name,

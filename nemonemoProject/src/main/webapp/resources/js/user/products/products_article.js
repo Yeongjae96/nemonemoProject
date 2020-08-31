@@ -9,15 +9,29 @@ $(function() {
 });
 
 function initPicture() {
-	const prevBtn = document.querySelector('.detail-info__image--prev');
-	const nextBtn = document.querySelector('.detail-info__image--next');
-	
-	var mySwiper = new Swiper ('.swiper-container', { // Optional parameters 
+	var mySwiper = new Swiper ('.detail-info__image__list', { // Optional parameters 
 		 // If we need pagination 
 		loop : true,
-		pagination: { el: '.swiper-pagination', type: 'bullet', clickable : true}, // Navigation arrows 
+		effect : 'fade', // 페이드 효과 사용
+		pagination: { el: '.swiper-pagination', clickable : true}, // Navigation arrows 
 		navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev', }, // And if we need scrollbar 
 	});
+	
+	const $enlgBtn = $('.detail-info__image--enlg');
+	const $enlgArea = $('.enlarge-modal__area');
+	const $enlgClose = $('.enlarge-modal__close-btn');
+	
+	$enlgBtn.click(function() {$enlgArea.css('display', 'flex')});
+	$enlgClose.click(function() {$enlgArea.hide()});
+	
+	var modalSwiper = new Swiper('.enlarge-modal__div2', {
+		pagination: { el: '.swiper-pagination', clickable : true}, // Navigation arrows 
+		navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev', hideOnClick: true}, // And if we need scrollbar 
+		slidesPerView: 1,
+		width: 550,
+	});
+	
+	
 }
 
 function initCategoryBox() {

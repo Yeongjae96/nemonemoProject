@@ -56,8 +56,6 @@
 					</div>
 					<div class="search-result-list">
 						<!-- 아이템 1개 -->
-						<a class="search-result-item"> <span class="result-item">오마이걸</span>
-						</a>
 					</div>
 				</div>
 				<!-- 삭제 영역 -->
