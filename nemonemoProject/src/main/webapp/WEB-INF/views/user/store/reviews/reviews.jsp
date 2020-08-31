@@ -15,7 +15,7 @@
 
 <!-- 페이지 CSS  -->
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/user/store/reviews/reviews2.css?v=<%=System.currentTimeMillis()%>"/>">
+	href="<c:url value="/resources/css/user/store/reviews/reviews.css?v=<%=System.currentTimeMillis()%>"/>">
 
 
 <!-- 라이브러리 -->

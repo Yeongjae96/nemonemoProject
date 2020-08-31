@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>네모네모</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/common/common.css"/>">
