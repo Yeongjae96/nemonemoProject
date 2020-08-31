@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,14 +17,15 @@ import com.nemo.user.products.repository.impl.ProductsMapper;
 import com.nemo.user.products.repository.impl.UserGetProductMapper;
 import com.nemo.user.products.repository.impl.UserProductsCategoryMapper;
 import com.nemo.user.products.repository.impl.UserProductsFavoriteMapper;
+import com.nemo.user.products.repository.impl.UserProductsRecommendMapper;
 import com.nemo.user.products.service.GetProductService;
 import com.nemo.user.products.vo.UserBaseProductsCategoryVO;
 import com.nemo.user.products.vo.UserBaseProductsFavoriteVO;
 import com.nemo.user.products.vo.UserGetProductVO;
 import com.nemo.user.products.vo.UserGetSellerVO;
+import com.nemo.user.products.vo.UserProductsRecommendVO;
 import com.nemo.user.products.vo.UserRecentlyProductVO;
 import com.nemo.user.products.vo.UserSelectedProductVO;
-import com.nemo.user.sign.signup.repository.impl.UserMapper;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
 
 @Service
@@ -37,6 +39,8 @@ public class GetProductServiceImpl implements GetProductService {
 	private ProductsMapper productsMapper;
 	@Autowired
 	private UserProductsFavoriteMapper favoriteMapper;
+	@Autowired
+	private UserProductsRecommendMapper productsRecommendMapper;
 	
 	@Override
 	@Transactional(rollbackFor = Exception.class)
@@ -119,6 +123,11 @@ public class GetProductServiceImpl implements GetProductService {
 		UserGetSellerVO productSellerVO = getProductMapper.selectGetSellerVO(selectedProduct.getProductVO().getProductSeller());
 		resultVO.setProductSellerVO(productSellerVO);
 		// 물어보기
+		
+		// 8. 추천상품 가져오기
+		List<UserProductsRecommendVO> recommendList = productsRecommendMapper.getRecommendListByCateNo(seqCate.getProductCateNo(), productNo);
+		resultVO.setRecommendList(recommendList);
+		
 		return resultVO;
 	}
 

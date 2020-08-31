@@ -106,7 +106,7 @@
                                                 	<i class="fas fa-chevron-right"></i> ${prod.productCateSmall}
                                                 </c:if>
                                                 	</td>
-                                                <td>${prod.productName}</td>
+                                                <td><a target="_blank" href="<c:url value="/products/${prod.productNo}.do"/>">${prod.productName}</a></td>
                                                 <td>${prod.productRegDt}</td>
                                                 <td align ="center">
                                                 <c:if test="${prod.productSoldDt eq NULL

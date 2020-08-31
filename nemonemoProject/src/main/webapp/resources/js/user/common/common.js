@@ -154,7 +154,7 @@ function initSearchEvent() {
 	searchIconBtn.addEventListener('click', searchAction);
 	searchInput.addEventListener('keyup', searchkeyupEvent);
 	allDeleteBtn.addEventListener('click', allRemoveHistoryEvent);
-	storeSearchLink.addEventListener('click', function() {searchInput.value = "@"+searchInput.value; searchAction.call(this)});
+	storeSearchLink.addEventListener('click', function() {searchInput.value = searchInput.value.slice(0,1) == "@" ? searchInput.value : "@" + searchInput.value; searchAction.call(this)});
 	/* 최근 검색어 쌓기 */
 	
 	/* UI적인 부분 */
