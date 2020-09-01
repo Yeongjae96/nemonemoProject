@@ -22,7 +22,7 @@
                     </div>
                     <div id="rec-prd-list">
        
-                        <a class="rec-prd-img" href="#">
+                        <%-- <a class="rec-prd-img" href="#">
                             <img src=<c:url value="/resources/images/user/common/nike.jpeg"/> alt="상품 이미지">
                             <!-- 마우스 갖다 대면 상품 정보 간단히 보여줌 -->
                             <div class="prd-info">
@@ -32,7 +32,7 @@
                                 <div class="rec-prd-title"></div>
                                 <div class="rec-prd-price"><span>원</span></div>
                             </div>
-                        </a>
+                        </a> --%>
                         
                     </div>
                     <div class="rec-prd-paging">

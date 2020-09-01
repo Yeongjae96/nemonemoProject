@@ -124,9 +124,9 @@ function initSideNavbar() {
 		return false;
 	});
 	
-	
-	
 }
+
+
 
 /* 검색창 이벤트!! */
 function initSearchEvent() {
