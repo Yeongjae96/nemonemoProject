@@ -43,19 +43,6 @@ position: absolute;
     overflow: hidden;
 }
 
-.comments_6{
-
-    position: absolute;
-    background-size: cover;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(/pc-static/media/pattern-shop.066ca385.png);
-    background-color: rgb(181, 181, 181);
-    background-repeat: no-repeat;
-
-}
-
 .comments_7{
 
     position: inherit;
@@ -875,6 +862,7 @@ position: absolute;
 
 .comments_85 img {
     margin-right: 4px;
+    margin-top:2px;
 }
 .comments_85:last-child::after {
     border-right: 0px;
@@ -1016,4 +1004,76 @@ textarea{
     justify-content: center;
     margin: 40px 0px 100px;
     height:50px;
+}
+
+
+
+.detail-comment__body {
+    border-right: 1px solid rgb(238, 238, 238);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+}
+
+
+.detail-comment__input {
+    width: 100%;
+    height: 80px;
+    padding: 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.detail-comment__textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    font-size: 13px;
+    line-height: 1.5;
+    border: 0px;
+}
+.detail-comment__textarea:focus {
+	outline: 0px;
+}
+
+.detail-comment__reg {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.detail-comment__reg-count {
+    margin-left: 10px;
+    font-size: 12px;
+    color: rgb(136, 136, 136);
+}
+
+.detail-comment__reg-btn {
+    height: 32px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 13px;
+    color: rgb(136, 136, 136);
+    border-width: 1px!important;
+    border-style: solid!important;
+    border-color: rgb(238, 238, 238)!important;
+    padding: 0px 20px;
+    background-color: transparent;
+}
+
+.detail-comment__reg-btn:focus {
+	outline: 0px;
+	color: white;
+	background-color: #EE5058;
+	border-width: 0px;	
+}
+
+.detail-comment__reg-btn svg {
+    width: 15px;
+    height: 16px;
+    margin-right: 4px;
 }

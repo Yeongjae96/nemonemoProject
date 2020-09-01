@@ -3,24 +3,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.nemo.user.store.repository.impl.StoreMapper">
-	<resultMap type="com.nemo.user.store.vo.StoreProductVO" id="storeProductMap">
+	<resultMap type="com.nemo.user.store.vo.StoreProductDispStVO" id="storeProductDispStMap">
 		<id column="product_no" property="productNo"/>
 		<result column="store_no" property="storeNo" />
 		<result column="product_seller" property="productSeller" />
-		<result column="product_name" property="productName" />
-		<result column="product_deal_area" property="productDealArea" />
 		<result column="product_disp_st" property="productDispSt" />
-		<result column="product_price" property="productPrice" />
-		<result column="product_reg_dt" property="productRegDt" />
 	</resultMap>
     
-    <select id="getStoreProductList" parameterType="int" resultMap="storeProductMap">
+    <select id="getStoreProductDispStList" parameterType="int" resultMap="storeProductDispStMap">
     	SELECT 
 			prod.*
 		FROM
 			product_tb prod, user_tb sto
 		WHERE
-			sto.store_no(+) = prod.product_seller and prod.product_seller=#{storeNo}
+			sto.store_no(+) = prod.product_seller and prod.product_seller=#{storeNo} and product_disp_st='F'
     </select>
     
 </mapper>

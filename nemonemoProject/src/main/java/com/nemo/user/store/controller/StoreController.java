@@ -19,6 +19,7 @@ import com.nemo.user.sign.signup.vo.UserBaseVO;
 import com.nemo.user.store.service.DeleteStoreCommentService;
 import com.nemo.user.store.service.GetStoreCommentListService;
 import com.nemo.user.store.service.GetStoreFavoriteListService;
+import com.nemo.user.store.service.GetStoreProductDispStListService;
 import com.nemo.user.store.service.GetStoreProductListService;
 import com.nemo.user.store.service.GetStoreReviewListService;
 import com.nemo.user.store.service.GetStoreService;
@@ -26,6 +27,7 @@ import com.nemo.user.store.service.InsertStoreCommentService;
 import com.nemo.user.store.service.UpdateStoreService;
 import com.nemo.user.store.vo.StoreCommentVO;
 import com.nemo.user.store.vo.StoreFavoriteVO;
+import com.nemo.user.store.vo.StoreProductDispStVO;
 import com.nemo.user.store.vo.StoreProductVO;
 import com.nemo.user.store.vo.StoreReviewVO;
 import com.nemo.user.store.vo.StoreVO;
@@ -47,6 +49,7 @@ public class StoreController {
 	
 	@Autowired private GetStoreService getStoreService;
 	@Autowired private GetStoreProductListService getStoreProductListService;
+	@Autowired private GetStoreProductDispStListService getStoreProductDispStListService;
 	@Autowired private UpdateStoreService updateStoreService;
 	@Autowired private GetStoreCommentListService getStoreCommentListService;
 	@Autowired private InsertStoreCommentService insertStoreCommentService;
@@ -60,12 +63,14 @@ public class StoreController {
 
 		StoreVO storeVO = getStoreService.getStore(storeNo);
 		List<StoreProductVO> storeProductVO = getStoreProductListService.getStoreProductList(storeNo);
+		List<StoreProductDispStVO> storeProductDispStVO = getStoreProductDispStListService.getStoreProductDispStList(storeNo);
 		List<StoreCommentVO> storeCommentVO = getStoreCommentListService.getStoreCommentList(storeNo);
 		List<StoreReviewVO> storeReviewVO = getStoreReviewListService.getStoreReviewList(storeNo);
 		List<StoreFavoriteVO> storeFavoriteVO = getStoreFavoriteListService.getStoreFavoriteList(storeNo);
 		
 		mav.addObject("storeVO", storeVO);
 		mav.addObject("storeProductVO", storeProductVO);
+		mav.addObject("storeProductDispStVO", storeProductDispStVO);
 		mav.addObject("storeCommentVO", storeCommentVO);
 		mav.addObject("storeReviewVO", storeReviewVO);
 		mav.addObject("storeFavoriteVO", storeFavoriteVO);
@@ -95,13 +100,14 @@ public class StoreController {
 
 		StoreVO storeVO = getStoreService.getStore(storeNo);
 		List<StoreProductVO> storeProductVO = getStoreProductListService.getStoreProductList(storeNo);
+		List<StoreProductDispStVO> storeProductDispStVO = getStoreProductDispStListService.getStoreProductDispStList(storeNo);
 		List<StoreCommentVO> storeCommentVO = getStoreCommentListService.getStoreCommentList(storeNo);
 		List<StoreReviewVO> storeReviewVO = getStoreReviewListService.getStoreReviewList(storeNo);
 		List<StoreFavoriteVO> storeFavoriteVO = getStoreFavoriteListService.getStoreFavoriteList(storeNo);
 		
-		
 		mav.addObject("storeVO", storeVO);
 		mav.addObject("storeProductVO", storeProductVO);
+		mav.addObject("storeProductDispStVO", storeProductDispStVO);
 		mav.addObject("storeCommentVO", storeCommentVO);
 		mav.addObject("storeReviewVO", storeReviewVO);
 		mav.addObject("storeFavoriteVO", storeFavoriteVO);
@@ -132,12 +138,14 @@ public class StoreController {
 
 		StoreVO storeVO = getStoreService.getStore(storeNo);
 		List<StoreProductVO> storeProductVO = getStoreProductListService.getStoreProductList(storeNo);
+		List<StoreProductDispStVO> storeProductDispStVO = getStoreProductDispStListService.getStoreProductDispStList(storeNo);
 		List<StoreCommentVO> storeCommentVO = getStoreCommentListService.getStoreCommentList(storeNo);
 		List<StoreReviewVO> storeReviewVO = getStoreReviewListService.getStoreReviewList(storeNo);
 		List<StoreFavoriteVO> storeFavoriteVO = getStoreFavoriteListService.getStoreFavoriteList(storeNo);
 		
 		mav.addObject("storeVO", storeVO);
 		mav.addObject("storeProductVO", storeProductVO);
+		mav.addObject("storeProductDispStVO", storeProductDispStVO);
 		mav.addObject("storeCommentVO", storeCommentVO);
 		mav.addObject("storeReviewVO", storeReviewVO);
 		mav.addObject("storeFavoriteVO", storeFavoriteVO);
@@ -151,12 +159,14 @@ public class StoreController {
 
 		StoreVO storeVO = getStoreService.getStore(storeNo);
 		List<StoreProductVO> storeProductVO = getStoreProductListService.getStoreProductList(storeNo);
+		List<StoreProductDispStVO> storeProductDispStVO = getStoreProductDispStListService.getStoreProductDispStList(storeNo);
 		List<StoreCommentVO> storeCommentVO = getStoreCommentListService.getStoreCommentList(storeNo);
 		List<StoreReviewVO> storeReviewVO = getStoreReviewListService.getStoreReviewList(storeNo);
 		List<StoreFavoriteVO> storeFavoriteVO = getStoreFavoriteListService.getStoreFavoriteList(storeNo);
 		
 		mav.addObject("storeVO", storeVO);
 		mav.addObject("storeProductVO", storeProductVO);
+		mav.addObject("storeProductDispStVO", storeProductDispStVO);
 		mav.addObject("storeCommentVO", storeCommentVO);
 		mav.addObject("storeReviewVO", storeReviewVO);
 		mav.addObject("storeFavoriteVO", storeFavoriteVO);
