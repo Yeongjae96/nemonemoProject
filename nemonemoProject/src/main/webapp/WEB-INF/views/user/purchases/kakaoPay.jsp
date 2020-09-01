@@ -1,19 +1,21 @@
+<%@page import="java.io.Console"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	//parameter로 넘겨주면 되는 값들
-   /*  String name = (String)request.getAttribute("name");
+	/* 
+   	String name = (String)request.getAttribute("name");
     String email = (String)request.getAttribute("email");
     String phone = (String)request.getAttribute("phone");
     String address = (String)request.getAttribute("address");
-    int totalPrice = (int)request.getAttribute("totalPrice");    */ 
+    int totalPrice = (int)request.getAttribute("totalPrice"); */  
+    
+    String name = (String)request.getParameter("name");
+    String email = (String)request.getParameter("email");
+    String phone = (String)request.getParameter("phone");
+    String address = (String)request.getParameter("address");
+    int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
 
-    //임시로 값 집어넣음
-    String name = "김동균";
-    String email = "kdk7064@naver.com";
-    String phone = "010-1234-1234";
-    String address = "서울어딘가";
-    int totalPrice = 10500;   
 %>
 <!DOCTYPE html>
 <html>
@@ -69,7 +71,7 @@
                     }
                 });
                 //성공시 이동할 페이지
-                location.href='<%=request.getContextPath()%>/purchase/paySuccess?msg='+msg;
+                location.href='<%=request.getContextPath()%>	?msg='+msg;
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;

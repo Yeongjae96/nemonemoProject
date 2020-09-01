@@ -9,6 +9,7 @@ import lombok.Data;
 public class PurchasesVO {
 	private int purchaseNo;
 	private int orderNo;
+	private int productNo;
 	private int purchasePrice;
 	private Date puchaseDt;
 	private int purchaseShFee;

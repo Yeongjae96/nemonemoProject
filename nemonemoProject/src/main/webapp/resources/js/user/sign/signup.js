@@ -185,7 +185,6 @@ function idcheck(){
 		console.log(idchecks)
 		if(idchecks==false) return
 		e.preventDefault();
-		alert("회원가입 버튼 눌렀다!");
 		var query = {userEmail : $("#emailInput").val()}; // adminId 값을 query에
 															// 저장
 		$.ajax({

@@ -101,13 +101,15 @@ function enableBtn() {
 window.onload = function() {
 	var originPrice = document.querySelector('#productPrice').value;
 	intorignPrice = parseInt(originPrice);
+	var shippginFee = document.querySelector('#purchaseShFee').value;
+	intShippginFee = parseInt(shippginFee);
 	var discountRate = 3;
 	if (!originPrice || !discountRate) {
 		return false;
 	} else {
 		var discounted = Math.round(originPrice * (discountRate / 100));
 		intdiscounted = parseInt(discounted);
-		var newPrice = intorignPrice + intdiscounted;
+		var newPrice = intorignPrice + intdiscounted + intShippginFee;
 		intnewPrice = parseInt(newPrice);
 		document.getElementById("pullPrice").value = intnewPrice;
 		document.getElementById("plusPrice").value = intdiscounted;
