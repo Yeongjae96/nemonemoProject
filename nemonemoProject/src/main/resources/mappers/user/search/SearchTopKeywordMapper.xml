@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.search.repository.impl.SearchTopKeywordMapper">
+	
+	<resultMap id="searchKeyword" type="com.nemo.user.search.vo.UserBaseTopSearchedVO">
+		
+		<id column="top_searched_no" property="topSearchedNo"/>
+		<result column="top_searched_keyword" property="topSearchedKeyword"/>
+		<result column="top_searched_reg_ymd" property="topSearchedRegYmd"/>
+		<result column="top_searched_cnt" property="topSearchedCnt"/>
+		
+	</resultMap>
+	
+	
+	<insert id="insertSearchKeyword" parameterType="com.nemo.user.search.vo.UserBaseTopSearchedVO">
+		
+		<selectKey keyProperty="topSearchedNo" order="BEFORE" resultType="int">
+			SELECT nvl(max(top_searched_no), 0) + 1 AS top_searched_no FROM top_searched_tb
+		</selectKey>
+		
+		MERGE INTO top_searched_tb t
+		USING DUAL
+		ON (t.top_searched_keyword = #{topSearchedKeyword})
+		WHEN MATCHED THEN
+		UPDATE SET t.top_searched_cnt = t.top_searched_cnt + 1, t.top_searched_reg_ymd = sysdate
+		WHEN NOT MATCHED THEN
+		INSERT (t.top_searched_no, t.top_searched_keyword)
+		VALUES (#{topSearchedNo}, #{topSearchedKeyword})
+	</insert>
+	
+	
+	
+	
+	<select id="selectSearchTopKeyword" resultType="com.nemo.user.search.vo.UserBaseTopSearchedVO">
+		
+		SELECT
+				top_searched_no AS topSearchedNo,
+				top_searched_keyword AS topSearchedKeyword,
+				top_searched_reg_ymd AS topSearchedRegYmd,
+				top_searched_cnt AS topSearchedCnt
+		FROM (
+			SELECT ROWNUM rnum, t.* 
+			FROM top_searched_tb t
+			ORDER BY top_searched_cnt desc, top_searched_reg_ymd DESC
+		) 
+		WHERE <![CDATA[rnum <= 20]]>	
+	
+	</select>
+
+
+
+</mapper>

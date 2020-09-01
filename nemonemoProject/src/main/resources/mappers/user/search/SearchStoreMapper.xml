@@ -22,6 +22,7 @@
 </select>
 
 <select id="selectSearchStoreByKeyword" parameterType="String" resultMap="searchStoreMap" >
+	
 	SELECT 
 	    u.store_no,
 	    u.store_name,
@@ -36,6 +37,25 @@
 	ON p.product_seller = u.user_no
 	WHERE 
     store_name LIKE '%' || #{keyword} || '%'
+    
 </select>
+
+<select id="selectSearchStoreNameByKeyword" parameterType="String" resultType="String">
+
+	SELECT store_name
+	FROM (
+	    SELECT store_name, ROWNUM rnum
+	    FROM user_tb u
+	    WHERE u.store_name LIKE '%' || #{keyword} || '%'
+	    ORDER BY user_reg_ymd desc
+	)
+	WHERE <![CDATA[rnum <= 10]]>
+
+
+</select>
+
+
+
+
 
 </mapper>

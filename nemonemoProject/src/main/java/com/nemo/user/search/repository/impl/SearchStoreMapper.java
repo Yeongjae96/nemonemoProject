@@ -12,5 +12,6 @@ import com.nemo.user.search.vo.UserSearchStoreVO;
 public interface SearchStoreMapper extends ISearchStoreMapper {
 	public List<UserSearchStoreVO> selectSearchStoreByKeyword(String keyword);
 	public int selectSearchStoreCntByKeyword(String keyword);
-
+	
+	public List<String> selectSearchStoreNameByKeyword(String keyword);
 }

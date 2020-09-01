@@ -661,17 +661,31 @@ a {
     display: flex;
 }
 
-.recently-menu {
+.recently-header button:focus {
+	outline: 0px;
+}
+
+.recently-menu,
+.popular-menu {
 	-webkit-box-flex: 1;
     flex-grow: 1;
     height: 50px;
-    box-sizing: border-box;
-    text-align: center;
     font-weight: 600;
-    color: rgb(247, 47, 51)!important;
+    font-size: 14px;
+    text-align: center;
     padding: 25px 0px 10px;
-    border-bottom: 2px solid rgb(247, 47, 51);
-    border-color: rgb(247, 47, 51);
+    border-bottom: 2px solid rgb(217, 217, 217);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.menu--selected {
+	border-bottom: 2px solid rgb(247, 47, 51);
+    color: rgb(247, 47, 51)!important;
 }
 
 .recently-body {
@@ -704,6 +718,44 @@ a {
 	height: 52px;
 	color: rgb(136, 136, 136);
 }
+
+.popular-area {
+	height: 100%;
+	display: none;
+}
+
+.popular-div {
+	display: flex;
+    height: 100%;
+    padding: 20px 12px;
+}
+
+.popular-list {
+	-webkit-box-flex: 1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    
+}
+
+.popular-link {
+	font-weight: 500;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.popular-rank {
+	width: 35px;
+    font-weight: 700;
+    color: rgb(247, 47, 51);
+}
+
+
+
 
 .search-close__area {
 	width: 100%;
@@ -813,4 +865,11 @@ a {
 .result-item {
 	color: rgb(247, 47, 51);
 	font-size: 14px;
+}
+
+
+.popular-link:hover {
+	background-color: #EEEEEE;
+	color: #EE5058;
+	font-weight: bold;
 }

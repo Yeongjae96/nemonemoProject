@@ -17,6 +17,8 @@ import com.nemo.user.search.products.repository.impl.SearchProductsMapper;
 import com.nemo.user.search.products.service.SearchProductsService;
 import com.nemo.user.search.products.vo.SearchProductsVO;
 import com.nemo.user.search.products.vo.UserPdPdImgVO;
+import com.nemo.user.search.repository.impl.SearchTopKeywordMapper;
+import com.nemo.user.search.vo.UserBaseTopSearchedVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,6 +39,9 @@ public class SearchProductsServiceImpl implements SearchProductsService {
 
 	@Autowired
 	private UserProductsCategoryMapper userProductsCategoryMapper;
+	
+	@Autowired
+	private SearchTopKeywordMapper searchTopKeywordMapper;
 	
 	@Override
 	public SearchProductsVO getSearchArticle(String keyword, String order, int categoryNo,  PageVO pageVO) {
@@ -91,22 +96,6 @@ public class SearchProductsServiceImpl implements SearchProductsService {
 		searchProductsVO.setSearchedCateList(cateListByKeyword);
 		
 		
-		/*
-		 * List<UserProductsCategoryCntVO> large = new ArrayList<>();
-		 * List<UserProductsCategoryCntVO> medium = new ArrayList<>();
-		 * List<UserProductsCategoryCntVO> small = new ArrayList<>();
-		 * 
-		 * for (UserProductsCategoryCntVO vo : cateListByKeyword) { if
-		 * (vo.getProductCateLarge() != null) { large.add(vo); } if
-		 * (vo.getProductCateMedium() != null) { medium.add(vo); } if(
-		 * vo.getProductCateSmall() != null) { small.add(vo); } }
-		 * 
-		 * categoryMap.put("large", large); categoryMap.put("medium", medium);
-		 * categoryMap.put("small", small);
-		 */
-		
-		
-		
 		// 2. 검색어에 대한 상품 상품이미지 리스트
 		paramMap.put("keyword", keyword);
 		paramMap.put("order", order);
@@ -121,6 +110,14 @@ public class SearchProductsServiceImpl implements SearchProductsService {
 		/* searchProductsMapper.allProductCntByKeyword(keyword); */
 		int productCnt = pdPdImgList.size();
 		searchProductsVO.setProductCnt(productCnt);
+		
+		
+		// 검색어 테이블 데이터 쌓기
+		
+		UserBaseTopSearchedVO topSearchedVO = new UserBaseTopSearchedVO();
+		topSearchedVO.setTopSearchedKeyword(keyword);
+		
+		searchTopKeywordMapper.insertSearchKeyword(topSearchedVO);
 		
 		// 페이징 처리 객체 (jsp:include paging.jsp에 필요한 변수 셋팅)
 		PageVO resultPageVO = page.getCalcPageVO(pdPdImgList.size());

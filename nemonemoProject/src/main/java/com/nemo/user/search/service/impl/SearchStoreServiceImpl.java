@@ -31,4 +31,9 @@ public class SearchStoreServiceImpl implements SearchStoreService {
 		
 		return result;
 	}
+	
+	@Override
+	public List<String> searchStoreKeyword(String keyword) {
+		return searchStoreMapper.selectSearchStoreNameByKeyword(keyword);
+	}
 }
