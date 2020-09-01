@@ -20,7 +20,7 @@ import lombok.Data;
 public class UserBaseQnaVO {
 	private int qnaNo;
 	private int qnaCategoryNo;
-	private int userNo;
+	private int qnaRegId;;
 	private String qnaReplyId;
 	private String qnaUserContent;
 	private String qnaAdminContent;
