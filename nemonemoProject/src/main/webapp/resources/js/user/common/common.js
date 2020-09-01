@@ -142,7 +142,6 @@ function initSearchEvent() {
 	const recentlyMenu = document.querySelector('.recently-menu');
 	const recentlyHeader = document.querySelector('.recently-header');
 	
-	console.log(recentlyHeader);
 	recentlyHeader.addEventListener('click',searchMenuClickEvent);
 	
 	searchInput.addEventListener('click', searchInputClickEvent);
@@ -198,7 +197,6 @@ function initSearchEvent() {
 			.then(function(data) {
 				
 				const frag = document.createDocumentFragment();
-				console.log(frag, '11');
 				let div;
 				data.forEach((e, i) => {
 					if(i == 0 || i == 10) {
@@ -216,12 +214,9 @@ function initSearchEvent() {
 					a.appendChild(textNode);
 					div.appendChild(a);
 					if(i == data.length-1 || i == 9) {
-						console.log(i);
 						frag.appendChild(div);
 					}
-					console.log(div);
 				});
-				console.log(frag);
 				popularDiv.appendChild(frag);
 			})
 			.catch(function(err) {
@@ -244,7 +239,6 @@ function initSearchEvent() {
 		Array.from(target.classList).forEach((e, i) => {
 			if(e == 'menu--selected') {
 				status = true;
-				console.log('선태된 메뉴');
 				return false;
 			}
 		});
@@ -259,9 +253,7 @@ function initSearchEvent() {
 		function toggleMenu(target) {
 			const searchcloseArea = document.querySelector('.search-close__area');
 			let status;
-			console.log(target, '1target');
 			Array.from(target.classList).forEach(e => {
-				console.log(e ,'2target');
 				if(e == 'recently-menu') status = 1;
 			});
 						
@@ -339,13 +331,18 @@ function initSearchEvent() {
 	
 	/* 최근검색어 또는 검색창을 toggle로 나타내기 위한 함수 */
 	function toggleArea(status) {
+		const recentlyMenu = document.querySelector('.recently-menu');
+		let temp = false;
+		recentlyMenu.classList.forEach((e, i) => {
+			if(e == 'recently-menu' && recentlyMenu.classList.length == 2) { temp = true; }
+		});
 		searchArea.style.display = 'block';
 		if(status) {
 			allDeleteBtn.style.display = 'none';
 			recentlyArea.style.display = 'none';
 			searchBox.style.display = 'block';
 		} else {
-			allDeleteBtn.style.display = 'block';
+			allDeleteBtn.style.display = temp ? 'block' : 'none';
 			recentlyArea.style.display = 'block';
 			searchBox.style.display = 'none';
 		}

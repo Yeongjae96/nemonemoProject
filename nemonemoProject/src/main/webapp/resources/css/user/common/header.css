@@ -741,7 +741,7 @@ a {
 }
 
 .popular-link {
-	font-weight: 500;
+	font-weight: bold;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
