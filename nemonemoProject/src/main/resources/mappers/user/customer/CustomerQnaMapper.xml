@@ -16,7 +16,7 @@
 		<id column="QNA_NO" property="qnaNo"/>
 		<result column="QNA_CATE_NO" property="qnaCategoryNo"/>
 		<result column="QNA_CATE_NAME" property="qnaCategoryName"/>
-		<result column="QNA_REG_ID" property="userNo"/>
+		<result column="QNA_REG_ID" property="qnaRegId"/>
 		<result column="QNA_REPLY_ID" property="qnaReplyId"/>
 		<result column="QNA_USER_CONTENT" property="qnaUserContent"/>
 		<result column="QNA_ADMIN_CONTENT" property="qnaAdminContent"/>
@@ -71,7 +71,7 @@
 			(
 			#{qnaNo},
 			#{qnaUserContent},
-			#{userNo},
+			#{qnaRegId},
 			#{qnaReplyYmd, jdbcType=DATE},
 			#{qnaCategoryNo}
 			)

@@ -77,6 +77,7 @@
 
 <!-- 해당 페이지 JS파일 -->
 <script src="<c:url value="/resources/js/user/products/products_article.js"/>"></script>
+<script src="<c:url value="/resources/js/user/products/products_to_navbar.js"/>"></script>
 
 
 </head>
@@ -111,7 +112,7 @@
 	                 <!-- 이미지 한개 -->
 	                 <c:forEach var="img" items="${productImgList}" varStatus="st">
                    		<div class="swiper-slide">
-                            <img src="<c:url value="/image/product/${img.productImgNo}.img"/>" alt="상세 상품 이미지" />
+                      		<img src="<c:url value="/image/product/${img.productImgNo}.img"/>" alt="상세 상품 이미지" />
 		                     <div class="enlarge-modal--watermark">${productSellerVO.storeName}</div>
                    		</div>
 					</c:forEach>
@@ -211,13 +212,14 @@
             <div class="detail-info__area">
                 <div class="detail-info__div">
                     <div class="detail-info__image__div">
+                     <input id="prodno" type="hidden" data-no="${productVO.productNo}">
                         <!-- 이미지 리스트 -->
                         <div class="swiper-container detail-info__image__list">
                             <!-- 상세 상품 이미지 1장-->
                            	<div class="swiper-wrapper">
                             	<c:forEach var="img" items="${productImgList}" varStatus="st">
                             		<div class="swiper-slide">
-			                            <img src="<c:url value="/image/product/${img.productImgNo}.img"/>" alt="상세 상품 이미지" />
+                            			<img src="<c:url value="/image/product/${img.productImgNo}.img"/>" alt="상세 상품 이미지" />
                             		</div>
 								</c:forEach>
                             </div>
