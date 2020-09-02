@@ -12,6 +12,7 @@ import com.nemo.user.talk.vo.UserTalkContantVO;
 @RequestMapping("/talk")
 public class TalkController {
 	
+	
 	@GetMapping("/list")
 	public ModelAndView talkListPage() {
 		ModelAndView mav = new ModelAndView("talk/talk_list");

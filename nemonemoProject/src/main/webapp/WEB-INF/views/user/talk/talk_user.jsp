@@ -13,6 +13,8 @@
    <!-- 라이브러리 -->
    <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
    <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
+   <script src="<c:url value="/resources/vendor/sockjs/dist/sockjs.min.js"/>"></script>
+	<script>window.contextPath = '<c:url value="/"/>';</script>
    <!-- 스크립트 -->
    <script src="<c:url value="/resources/js/user/talk/talk_user.js"/>"></script>
    
