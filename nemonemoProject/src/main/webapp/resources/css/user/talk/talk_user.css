@@ -1,0 +1,376 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean"); /* 구글 Noto 폰트 라이브러리 */
+
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, main, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
+button, input {
+    padding: 0px;
+    border: 0px;
+    overflow: visible;
+}
+
+body, input, textarea, select, button {
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    outline: 0px;
+    border: 0px;
+}
+
+.talk-user-area {
+    display: flex;
+    flex-direction: column;
+    width: 375px;
+    height: 667px;
+    background: rgb(244, 244, 250);
+    position: relative;
+}
+
+.talk-user-header {
+	width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    -webkit-box-align: center;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    z-index: 10;
+    position: relative;
+    -webkit-box-orient: horizontal;
+    padding: 0px 12px;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.talk-user-info-btn {
+	font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.talk-user-info-btn svg {
+	width: 12px!important;
+	height: 12px;
+    margin-left: 4px;
+    transform: rotate(180deg);
+    will-change: transform;
+}
+
+.talk-user-menu-area {
+	position: absolute;
+    display: flex;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+}
+
+.talk-user-menu-more svg{
+   	font-size: 1.5rem;
+    margin-right: 10px;
+    color: #CCCCCC;
+}
+
+.talk-user-msg-list {
+    flex: 1 1 0%;
+    background: rgb(244, 244, 250);
+    display: block;
+    overflow: auto;
+}
+
+.talk-user-msg-list > div {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    width: 100%;
+}
+
+.talk-user-msg-item {
+	display: inline-block;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 8px;	
+}
+
+.talk-user-msg-item:first-child {
+	padding-top:12px;
+}
+
+.talk-user-msg-date {
+	display: flex;
+    margin-bottom: 12px;
+    width: 100%;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    color: rgb(195, 194, 204);
+    font-size: 12px;
+}
+.talk-user-msg-date::before {
+	content: "";
+    flex: 1 1 0%;
+    border-top: 1px solid rgb(234, 233, 241);
+    margin-right: 0.5rem;
+}
+
+.talk-user-msg-date::after {
+	content: "";
+    flex: 1 1 0%;
+    border-top: 1px solid rgb(234, 233, 241);
+    margin-left: 0.5rem;
+}
+
+.talk-user-msg-content {
+    display: flex;
+    font-size: 15px;
+    padding: 0px 12px;
+    max-width: 100%;
+}
+
+.msg-content-area {
+    display: flex;
+    flex-shrink: 1;
+}
+
+.msg-content-padding {
+	width: 100%;
+    padding: 0.5rem;
+    display: block;
+    position: relative;
+    border: 1px solid rgb(220, 219, 228);
+    border-radius: 0.5rem 12px 0.5rem 0.5rem;
+    background: rgb(255, 255, 255);
+}
+
+.msg-content-logo {
+	position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    background-position: center center;
+    background-size: 12px 12px;
+    background-color: rgb(255, 80, 88);
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTguMTI5IDBINy44N2E3Ljg3MSA3Ljg3MSAwIDAgMCAwIDE1Ljc0M2guMjU4YzEuMDg1IDAgMi4xNC0uMjIgMy4xMTQtLjY0bC4yNjQtLjEyIDIuOTg2Ljk3N2EuOC44IDAgMCAwIDEuMDA3LTEuMDE3bC0uODg2LTIuNjFBNy44NzEgNy44NzEgMCAwIDAgOC4xMjggMHpNOS41IDQuOEg2LjljLS4wOSAwLS4xNjkuMDgzLS4xOTMuMTdsLTEuMSAzLjk5NmEuMTk0LjE5NCAwIDAgMCAuMTkzLjI0NmgxLjQyNmwtLjgxNiAyLjUyNWEuMi4yIDAgMSAwIC4zNC4xOTdsMy41OTktMy45NzNhLjIuMiAwIDAgMC0uMTQ5LS4zMzVIOC42MDNsMS4wOC0yLjUxNWEuMjE4LjIxOCAwIDAgMC0uMDE2LS4xOTdjLS4wMzctLjA1Ni0uMS0uMTE0LS4xNjctLjExNHoiLz4KPC9zdmc+Cg==);
+}
+
+.msg-content-head {
+	font-size: 12px;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+.msg-content-body {
+	font-size: 15px;
+    line-height: 1.4;
+    word-break: keep-all;
+    white-space: pre-wrap;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.msg-content-footer {
+	display: flex;
+    flex-direction: row;
+    margin-top: 0.5rem;
+}
+
+.msg-content-footer > :last-child {
+	margin-right: 0px;
+}
+
+.msg-content-footer > a, .msg-content-footer > button {
+	height: 2.5rem;
+} 
+
+.msg-content-footer-link {
+	    flex: 1 1 0%;
+    height: 100%;
+    border-radius: 4px;
+    font-size: 15px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    background: rgb(244, 244, 250);
+    color: rgb(63, 62, 75);
+}
+
+.talk-user-msg-time-area {
+	    display: flex;
+    flex-direction: column;
+    min-width: 2.72rem;
+    margin: 0px 0px 0px 10px;
+    font-size: 10px;
+    flex-shrink: 0;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+.talk-user-msg-time-text {
+	color: rgb(195, 194, 204);
+    margin-top: 3px;
+    text-align: right;
+    font-size: 10px;
+}
+
+.talk-user-normal-msg {
+    display: inline-block;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 8px;
+}
+
+.normal-msg-area {
+	display: flex;
+    font-size: 15px;
+    padding: 0px 12px;
+    max-width: 100%;
+    flex-direction: row-reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+}
+
+.normal-msg-flex {
+    display: flex;
+    flex-shrink: 1;
+}
+
+.normal-msg-content {
+	width: 100%;
+    height: 100%;
+    padding: 5.5px 12px;
+    position: relative;
+    flex-shrink: 1;
+    word-break: break-all;
+    white-space: pre-wrap;
+    line-height: 1.4;
+    background: rgb(224, 70, 77);
+    color: rgb(255, 255, 255);
+    border-radius: 12px 2px 12px 12px;
+}
+
+.normal-msg-time-area {
+    display: flex;
+    flex-direction: column;
+    min-width: 2.72rem;
+    margin: 0px 0px 0px 10px;
+    font-size: 10px;
+    flex-shrink: 0;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    margin: 0px 10px 0px 0px;
+    align-items: flex-end;
+}
+
+.normal-msg-status {
+	color: rgb(94, 92, 107);
+	font-size: 10px;
+}
+
+.normal-msg-time-text {
+	color: rgb(195, 194, 204);
+    margin-top: 3px;
+    text-align: right;
+	font-size: 10px;
+}
+
+.talk-user-response-msg {
+    display: inline-block;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 8px;
+    
+}
+
+.response-msg-area {
+	display: flex;
+    font-size: 15px;
+    padding: 0px 12px;
+    max-width: 100%;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+}
+
+.response-msg-img-area {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+}
+
+.response-msg-img-area img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.response-msg-area {
+	display: flex;
+    flex-shrink: 1;
+}
+
+.response-msg-text {
+	width: 100%;
+    height: 100%;
+    padding: 5.5px 12px;
+    position: relative;
+    flex-shrink: 1;
+    word-break: break-all;
+    white-space: pre-wrap;
+    line-height: 1.4;
+    background: rgb(255, 255, 255);
+    border-radius: 2px 12px 12px;
+}
+
+.response-msg-time-area {
+    display: flex;
+    flex-direction: column;
+    min-width: 2.72rem;
+    font-size: 10px;
+    flex-shrink: 0;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+.response-msg-time-text {
+	color: rgb(195, 194, 204);
+    margin-top: 3px;
+    font-size: 10px;
+}
+
