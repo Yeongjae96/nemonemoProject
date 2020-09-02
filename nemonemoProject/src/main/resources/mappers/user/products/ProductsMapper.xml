@@ -69,7 +69,7 @@
 		FROM 
 			product_tb 
 		<where>
-			<![CDATA[product_disp_st <> 'D']]>
+			<![CDATA[product_disp_st NOT IN ('D', 'P')]]>
 			AND product_cate_no 
 			<foreach collection="cateSeqList" open="IN (" close=")" item="i" separator=",">
 				#{i}

@@ -45,11 +45,13 @@ function initSortMenu() {
 			const qMessage= getParam('q');
 			const pageNo = getParam('pageNo');
 			const prevOrder = getParam('order');
+			const categoryNo = getParam('categoryNo');
 			let formHTML = '';
 			formHTML += `<form action="${contextPath}search/products.do" method="get" name="dynamicForm">`;
 			formHTML += qMessage ? '<input type="hidden" name="q" value="'+qMessage+'"/>': '';
 			formHTML += '<input type="hidden" name="order" value="'+orderType+'"/>';
 			formHTML += pageNo ? '<input type="hidden" name="pageNo" value="'+pageNo+'"/>' : ''
+			formHTML += categoryNo ? '<input type="hidden" name="categoryNo" value="'+categoryNo+'"/>' : ''
 			formHTML += '</form>';
 			
 			const body = document.getElementsByTagName('body')[0];

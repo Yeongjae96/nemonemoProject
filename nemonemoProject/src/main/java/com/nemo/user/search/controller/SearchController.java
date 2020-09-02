@@ -14,6 +14,8 @@ import com.nemo.common.paging.PageVO;
 import com.nemo.user.search.products.service.SearchProductsService;
 import com.nemo.user.search.products.vo.SearchProductsVO;
 import com.nemo.user.search.service.SearchStoreService;
+import com.nemo.user.search.service.SearchTopKeywordService;
+import com.nemo.user.search.vo.UserBaseTopSearchedVO;
 import com.nemo.user.search.vo.UserSearchStoreResVO;
 
 @Controller
@@ -24,6 +26,8 @@ public class SearchController {
 	private SearchProductsService searchProductsService;
 	@Autowired
 	private SearchStoreService searchStoreService;
+	@Autowired
+	private SearchTopKeywordService searchTopKeywordService;
 	
 	
 	@GetMapping("/products")
@@ -56,7 +60,20 @@ public class SearchController {
 	@GetMapping("/keyword")
 	@ResponseBody
 	public List<String> searchKeyword(@RequestParam String keyword) {
-		return searchProductsService.searchProductKeyword(keyword);
+		if(keyword.trim().length() == 0) return null;
+		if(keyword.substring(0, 1).equals("@")) {
+			keyword = keyword.substring(1);
+			System.err.println(keyword);
+			return searchStoreService.searchStoreKeyword(keyword);
+		} else {
+			return searchProductsService.searchProductKeyword(keyword);
+		}
+	}
+	
+	@GetMapping("/toplist")
+	@ResponseBody
+	public List<UserBaseTopSearchedVO> getTopSearchedList() {
+		return searchTopKeywordService.getSearchTopKeywordList();
 	}
 	
 }

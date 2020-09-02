@@ -150,35 +150,44 @@
 		                            <div class="products-manage__cbox-div2 product-combo-box" id="productComBox">
 		                                <div class="products-manage__cbox-div3">
 		                                    <div class="products-manage__cbox-div4">
-		                                        <div class="products-manage__cbox--item" data-st="${p.productDispSt}" id="currSt">
-													<c:choose>
-														<c:when test="${p.productDispSt == 'S'}">
-															판매중
-														</c:when>
-														<c:when test="${p.productDispSt == 'R'}">
-															예약중
-														</c:when>
-														<c:when test="${p.productDispSt == 'F'}">
-															판매완료
-														</c:when>
-													</c:choose>
-												</div>
+		                                        <c:if test="${p.productDispSt == 'P'}">
+		                                        	<div class="products-manage__cbox--item" style="color:#EE5058;">
+		                                        		판매중지
+		                                        	</div>
+		                                        </c:if>
+		                                        <c:if test="${p.productDispSt != 'P'}">
+			                                        <div class="products-manage__cbox--item" data-st="${p.productDispSt}" id="currSt">
+														<c:choose>
+															<c:when test="${p.productDispSt == 'S'}">
+																판매중
+															</c:when>
+															<c:when test="${p.productDispSt == 'R'}">
+																예약중
+															</c:when>
+															<c:when test="${p.productDispSt == 'F'}">
+																판매완료
+															</c:when>
+														</c:choose>
+													</div>
+												</c:if>
 		                                        <input id="" readonly tabindex="0" aria-autocomplete="list" class="products-manage__cbox--input" value="">
 		                                    </div>
 		                                    <div class="products-manage__cbox--icon" id="productStArrow">
 		                                        <i class="fas fa-chevron-down"></i>
 		                                    </div>
 		                                </div>
-		                                <div class="pd-status-list" id="productStList" data-no="${p.productNo}">
-		                                	<c:forEach var="entity" items="${productStList }">
-		                                		<c:if test="${entity.key == p.productDispSt}">
-			                                		<div class="pd-status-item item--selected" data-st="${entity.key}">${entity.value}</div>
-		                                		</c:if>
-		                                		<c:if test="${entity.key != p.productDispSt}">
-			                                		<div class="pd-status-item" data-st="${entity.key}">${entity.value}</div>
-		                                		</c:if>
-		                                	</c:forEach>
-		                                </div>
+		                                <c:if test="${p.productDispSt != 'P'}">
+			                                <div class="pd-status-list" id="productStList" data-no="${p.productNo}">
+			                                	<c:forEach var="entity" items="${productStList }">
+			                                		<c:if test="${entity.key == p.productDispSt}">
+				                                		<div class="pd-status-item item--selected" data-st="${entity.key}">${entity.value}</div>
+			                                		</c:if>
+			                                		<c:if test="${entity.key != p.productDispSt}">
+				                                		<div class="pd-status-item" data-st="${entity.key}">${entity.value}</div>
+			                                		</c:if>
+			                                	</c:forEach>
+			                                </div>
+		                                </c:if>
 		                            </div>
 		                        </td>
 		                        <td><a href="<c:url value="/products/${p.productNo}.do"/>">${p.productName}</a></td>

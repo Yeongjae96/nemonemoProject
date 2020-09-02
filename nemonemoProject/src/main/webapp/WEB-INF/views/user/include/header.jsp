@@ -22,25 +22,23 @@
 				<!-- 최근검색어 영역 -->
 				<div class="search-recently__area" id="recentlyArea">
 					<div class="recently-header">
-						<a class="recently-menu"> 최근검색어 </a>
+						<button class="recently-menu"> 최근검색어 </button>
+						<button class="popular-menu"> 인기검색어</button>
 					</div>
 					<div class="recently-body">
 						<div class="recently-area">
 							<div class="recently-div">
-								<%-- 잘 모르는 div --%>
 								<div class="recently-list" id="recentlyList">
-									<!-- <div class="recently-item">
-										<button class="recently-item--title"></button>
-										<button class="recently-item--delete">
-											<i class="fas fa-times"></i>
-										</button>
-									</div> -->
 								</div>
 								<div class="recently-nothing" id="nothingRecently">
 									<i class="fas fa-file-alt fa-2x"></i>
 									<div>최근 검색어가 없습니다.</div>
 								</div>
-
+							</div>
+						</div>
+						<div class="popular-area">
+							<div class="popular-div">
+								<!-- 인기검색어가 들어갈 곳 -->
 							</div>
 						</div>
 					</div>

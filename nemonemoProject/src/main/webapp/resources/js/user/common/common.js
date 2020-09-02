@@ -303,6 +303,10 @@ function initSearchEvent() {
 	/* 최근 검색어 목록 */
 	const recentlyList = document.getElementById('recentlyList');
 	const recentlyNothing = document.getElementById('nothingRecently');
+	const recentlyMenu = document.querySelector('.recently-menu');
+	const recentlyHeader = document.querySelector('.recently-header');
+	
+	recentlyHeader.addEventListener('click',searchMenuClickEvent);
 	
 	searchInput.addEventListener('click', searchInputClickEvent);
 	searchInput.addEventListener('keyup', searchInputKeyupEvent);
@@ -315,10 +319,13 @@ function initSearchEvent() {
 	let searchHistory = [];
 	initSearchHistory();
 	
+	recentlyMenu.classList.add('menu--selected');
+	let selectedMenu = recentlyMenu;
+	
 	searchIconBtn.addEventListener('click', searchAction);
 	searchInput.addEventListener('keyup', searchkeyupEvent);
 	allDeleteBtn.addEventListener('click', allRemoveHistoryEvent);
-	storeSearchLink.addEventListener('click', function() {searchInput.value = "@"+searchInput.value; searchAction.call(this)});
+	storeSearchLink.addEventListener('click', function() {searchInput.value = searchInput.value.slice(0,1) == "@" ? searchInput.value : "@" + searchInput.value; searchAction.call(this)});
 	/* 최근 검색어 쌓기 */
 	
 	/* UI적인 부분 */
@@ -334,13 +341,104 @@ function initSearchEvent() {
 			searchAreaCloseEvent();
 		}
 	}
+	/* 인기검색어 목록 불러와서 쏴주기  */
+	(function () {
+		
+		// 인기검색어 목록
+		const popularDiv = document.querySelector('.popular-div');
+		
+		const getTopList = function() {return new Promise(function(resolve, reject) {
+			$.ajax({
+				url: contextPath + 'search/toplist.do',
+				method: 'get',
+				dataType: 'json',
+				success: resolve,
+				fail: reject
+			});
+		})};
+		
+		getTopList()
+			.then(function(data) {
+				
+				const frag = document.createDocumentFragment();
+				let div;
+				data.forEach((e, i) => {
+					if(i == 0 || i == 10) {
+						div = document.createElement('div');
+						div.setAttribute('class', 'popular-list');
+					}
+					const a = document.createElement('a');
+					a.setAttribute('class', 'popular-link');
+					a.setAttribute('href', contextPath+'search/products.do?q='+e.topSearchedKeyword);
+					const span = document.createElement('span');
+					const textNode = document.createTextNode(e.topSearchedKeyword);
+					span.setAttribute('class', 'popular-rank');
+					span.textContent = Number(i+1);
+					a.appendChild(span);
+					a.appendChild(textNode);
+					div.appendChild(a);
+					if(i == data.length-1 || i == 9) {
+						frag.appendChild(div);
+					}
+				});
+				popularDiv.appendChild(frag);
+			})
+			.catch(function(err) {
+				new Error(err.status);
+			});
+		
+	}());
+	
+	
+	/* 최근검색어, 인기검색어 선택 */
+	function searchMenuClickEvent(e) {
+		const target = e.target;
+		const that = this;
+		let status = false;
+		
+		const recentlyArea = document.querySelector('.recently-area');
+		const popularArea = document.querySelector('.popular-area');
+		
+		
+		Array.from(target.classList).forEach((e, i) => {
+			if(e == 'menu--selected') {
+				status = true;
+				return false;
+			}
+		});
+		
+		if(!status) {
+			e.target.classList.add('menu--selected');
+			selectedMenu.classList.remove('menu--selected');
+			toggleMenu(target);
+		}
+		selectedMenu = target;
+		
+		function toggleMenu(target) {
+			const searchcloseArea = document.querySelector('.search-close__area');
+			let status;
+			Array.from(target.classList).forEach(e => {
+				if(e == 'recently-menu') status = 1;
+			});
+						
+			status = (status == 1) ? true : false;
+			
+			recentlyArea.makeDisplay(status);
+			allDeleteBtn.makeDisplay(status);
+			popularArea.makeDisplay(!status);
+		}
+	}
+	
 	
 	/* input에 키를 입력하면 나타나는 이벤트 */
 	function searchInputKeyupEvent() {
+		
 		const target = this;
 		const searchKeywordSpan = document.querySelector('#searchKeyword');
 		const resultList = document.getElementsByClassName('search-result-list')[0];
-		searchKeywordSpan.innerText = target.value;
+		const searchValue = target.value;
+		searchKeywordSpan.innerText = searchValue.replace(/^@/,'');
+		
 		if(target.value) {
 			toggleArea(true);
 		} else {
@@ -361,6 +459,9 @@ function initSearchEvent() {
 				data: {keyword: searchInput.value},
 			}).done(function(data) {
 				
+				if(!data || !data.length) return false;
+				
+				
 				while(resultList.firstChild) {
 					resultList.removeChild(resultList.firstChild);
 				}
@@ -368,7 +469,6 @@ function initSearchEvent() {
 				const frag = document.createDocumentFragment();
 				
 				data.forEach((e, i)=> {
-					console.log(i, '번쨰 : ', e);
 					let html = '';
 					const a = document.createElement('a');
 					const span = document.createElement('span');
@@ -378,8 +478,6 @@ function initSearchEvent() {
 					span.textContent = e;
 					a.appendChild(span);
 					frag.appendChild(a);
-					console.log(a);
-					console.log(frag);
 				});
 				
 				if(frag.firstElementChild) {
@@ -397,13 +495,18 @@ function initSearchEvent() {
 	
 	/* 최근검색어 또는 검색창을 toggle로 나타내기 위한 함수 */
 	function toggleArea(status) {
+		const recentlyMenu = document.querySelector('.recently-menu');
+		let temp = false;
+		recentlyMenu.classList.forEach((e, i) => {
+			if(e == 'recently-menu' && recentlyMenu.classList.length == 2) { temp = true; }
+		});
 		searchArea.style.display = 'block';
 		if(status) {
 			allDeleteBtn.style.display = 'none';
 			recentlyArea.style.display = 'none';
 			searchBox.style.display = 'block';
 		} else {
-			allDeleteBtn.style.display = 'block';
+			allDeleteBtn.style.display = temp ? 'block' : 'none';
 			recentlyArea.style.display = 'block';
 			searchBox.style.display = 'none';
 		}
@@ -467,8 +570,6 @@ function initSearchEvent() {
 		let index = 0;
 		Array.from(child).forEach(e => {
 			if(target.parentElement == e) {
-				console.log(index);
-				console.log(e.innerText);
 				targetRecentlyList.removeChild(target.parentElement);
 				searchHistory.splice(index, 1);
 				return false;
