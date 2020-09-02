@@ -18,10 +18,9 @@
                     <!-- 최근 본 상품 시작 -->
                     <div class="rec-prd-text">최근본상품</div>
                     <div class="rec-prd-outline">
-                        <div class="rec-prd-cnt"><span>6</span></div>
+                        <div class="rec-prd-cnt">1<span></span></div>
                     </div>
                     <div id="rec-prd-list">
-       
                         <%-- <a class="rec-prd-img" href="#">
                             <img src=<c:url value="/resources/images/user/common/nike.jpeg"/> alt="상품 이미지">
                             <!-- 마우스 갖다 대면 상품 정보 간단히 보여줌 -->
@@ -33,7 +32,6 @@
                                 <div class="rec-prd-price"><span>원</span></div>
                             </div>
                         </a> --%>
-                        
                     </div>
                     <div class="rec-prd-paging">
                         <!--페이징 처리-->

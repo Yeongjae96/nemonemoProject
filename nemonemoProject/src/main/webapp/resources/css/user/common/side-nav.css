@@ -14,8 +14,15 @@
   .sb-size {
       width : 90px;
   }
-  
-  
+  .delete-img {
+ 	width : 10px;
+ 	height : 12px;
+  }
+  .prodImg{
+  	width : 66px;
+  	height : 66px;
+  }
+
     /* 찜 */
   .jjim{
         width: 90px; /* 100% (?)*/
@@ -114,9 +121,9 @@
     border-image: initial;
     }
 
-    .rec-prd-img > img {
+  /*   .rec-prd-img > img {
         width: 100%;
-    }
+    } */
 
      /* 사이드 네비게이션 상품 정보 보기 */
 
@@ -134,9 +141,22 @@
     border-left: 1px solid rgb(33, 33, 33);
     padding: 10px;
     }
+	
+	.rec-prd-img:hover > .prd-info {
+		visibility: visible;
+	}
+	.rec-prd-img:hover > .prodImg {
+	/* 	border-right : solid;
+		border-bottom : solid; */
+		width: 66px;
+		height: 66px;
+	}
+	
+	.rec-prd-img:hover {
+		border: 1px solid rgb(33, 33, 33);
+	}
 
-
-    .delete-rec{
+    #delete-rec{
     position: absolute;
     top: -1px;
     left: -18px;

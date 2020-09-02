@@ -592,7 +592,7 @@ function initRegBtn() {
 			success: function(data) {
 				if(data) {
 					alert('상품이 등록되었습니다. ')
-					window.location.href="/" // 나중에 GetBoard로 가야함
+					window.location.href= contextPath + 'products/manage.do'; // 나중에 GetBoard로 가야함
 				} else {
 					alert('로그인이 필요한 기능입니다.')
 					$('#loginBtn').trigger('click');

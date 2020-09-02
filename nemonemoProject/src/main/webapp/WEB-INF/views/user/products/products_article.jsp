@@ -112,7 +112,7 @@
 	                 <!-- 이미지 한개 -->
 	                 <c:forEach var="img" items="${productImgList}" varStatus="st">
                    		<div class="swiper-slide">
-                      		<img src="/image/product/${img.productImgNo}.img" alt="상세 상품 이미지" />
+                      		<img src="<c:url value="/image/product/${img.productImgNo}.img"/>" alt="상세 상품 이미지" />
 		                     <div class="enlarge-modal--watermark">${productSellerVO.storeName}</div>
                    		</div>
 					</c:forEach>
@@ -218,7 +218,7 @@
                            	<div class="swiper-wrapper">
                             	<c:forEach var="img" items="${productImgList}" varStatus="st">
                             		<div class="swiper-slide">
-			                            <img src="/image/product/${img.productImgNo}.img" alt="상세 상품 이미지" />
+                            			<img src="<c:url value="/image/product/${img.productImgNo}.img"/>" alt="상세 상품 이미지" />
                             		</div>
 								</c:forEach>
                             </div>

@@ -30,6 +30,7 @@ $(function() {
 	initTopMenu();
 	initSideNavbar();
 	initSearchEvent();
+
 });
 
 /* 탑 메뉴 */
@@ -61,13 +62,6 @@ function initTopMenu() {
          $('.cs-box').css("visibility", "hidden");
       });
 
-      /* 사이드 네비게이션 상품 자세히보기 */
-      $('.rec-prd-img').mouseenter(function() {
-        $(".prd-info").css("visibility", "visible");
-     });
-     $('.rec-prd-img').mouseleave(function() {
-         $(".prd-info").css("visibility", "hidden");
-      });
 
       /* TOP 버튼 누를 시 페이지 상위로 이동 */
       $(".text-top").on("click", function(){  
@@ -124,9 +118,64 @@ function initSideNavbar() {
 		return false;
 	});
 	
+	addRecentProduct();
+	
 }
 
 
+/* 해당 상품 게시물을 side-navbar에 띄우기 */
+
+function addRecentProduct(){
+	const productList = document.querySelector('#rec-prd-list');
+	
+	let getArr = JSON.parse(sessionStorage.getItem('recentlyVisitedProducts'));
+	if(!getArr.length) return false;
+		
+	productList.innerHTML ='';
+	let html='';
+	
+	getArr.forEach(function(e,i){	
+		html += '<a class="rec-prd-img" href="'+contextPath+'products/';
+		html += getArr[i].productNo; // 1. 상품번호
+		html += '.do">';
+		html += '<img class = "prodImg" src="' + contextPath + 'image/product/'; 
+		html += getArr[i].productImgNo; // 2. 상품 이미지번호
+		html += '.img"/>';
+		html += '<div class="prd-info">';
+		html +=	'<button id="delete-rec">';
+		html += '<img class ="delete-img" src= "'+ contextPath +'resources/images/user/common/delete_btn.png"/>';
+		html += ' </button>';
+		html +=	'<div class="rec-prd-title">';
+		html += getArr[i].productName; // 3. 상품 이름
+		html += '</div>';
+		html += '<div class="rec-prd-price"><span>'
+		html += getArr[i].productPrice;// 4. 상품 가격
+		html += '원</span></div></div></a>';
+		
+		productList.innerHTML += html; // html 태그 넣넣
+		
+	});
+	
+	const delBtn = document.querySelector('#delete-rec');
+	const prodTitle = document.querySelector('.rec-prd-title');
+	
+	delBtn.addEventListener('click', function(e){
+		alert("하이");	
+		e.stopPropagation();
+		
+	});
+}
+
+
+
+/* 세션에서 지우기 */
+function clearFromSession(e, n){
+	const tag = document.querySelector('.rec-prd-img');
+	const parentTag = document.querySelector('#rec-prd-list');
+	parentTag.removeChild(tag);
+	
+	alert("번호는 ? " + this.productNo);
+}
 
 /* 검색창 이벤트!! */
 function initSearchEvent() {

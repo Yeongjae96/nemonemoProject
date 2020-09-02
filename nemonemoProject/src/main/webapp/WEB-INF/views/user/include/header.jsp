@@ -5,7 +5,7 @@
 	<div class="flex">
 		<!-- 로고 영역 -->
 		<a href="<c:url value="/index.do"/>" id="main-logo-area"><img
-			src="<c:url value="/resources/images/user/common/mainLogo.png"/>"
+			src="<c:url value="/resources/images/common/logo/mainLogo.png"/>"
 			alt="mainLogo" id="main-logo"></a>
 
 		<!-- 검색창 영역 -->
