@@ -10,13 +10,16 @@ const productList = document.getElementById('rec-prd-list');
 /* VO 불러오기 */
 function getData(){
 
+	const url = window.location.href;
+	const productNo = url.slice(url.lastIndexOf('/')+1, url.lastIndexOf('.'));
+	
 	$.ajax({
 		url : contextPath + 'products/data.do',
 		method : 'GET',
 		dataType : 'json',
 		async: false,
 		data:{ 
-			productNo : $('#prodno').data('no')
+			productNo : productNo
 		},
 		success : function(data){
 			initSessionStorage(data);
@@ -25,7 +28,10 @@ function getData(){
 			alert("error!");
 		}
 	});
-
+	
+	
+	
+	
 }
 
 
