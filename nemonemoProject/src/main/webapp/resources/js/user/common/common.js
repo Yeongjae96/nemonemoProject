@@ -129,7 +129,7 @@ function addRecentProduct(){
 	const productList = document.querySelector('#rec-prd-list');
 	
 	let getArr = JSON.parse(sessionStorage.getItem('recentlyVisitedProducts'));
-	if(!getArr.length) return false;
+	if(!getArr) return false;
 		
 	productList.innerHTML ='';
 	let html='';
