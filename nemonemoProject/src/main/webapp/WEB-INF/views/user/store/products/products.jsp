@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>네모네모</title>
+<title>네모내모</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/common/common.css"/>">
@@ -22,14 +22,12 @@
 
 
 <!-- 라이브러리 -->
-<script
-	src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
+<script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
 <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
 
 
@@ -104,7 +102,7 @@
 												<div class="product_all91">
 													<img
 														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
-														alt="상품 이미지" style="width:100%">
+														alt="상품 이미지" style="width: 100%">
 												</div>
 												<div class="product_all92">
 													<div class="product_all93">${storeProductVO.productName }</div>

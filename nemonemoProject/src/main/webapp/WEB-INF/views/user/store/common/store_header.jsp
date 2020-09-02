@@ -15,17 +15,17 @@
 				</div>
 
 				<div class="product_all9">
-					<a class="sc-hZhUor dKChES" href="/store/782819/products"><img
+					<div class="sc-hZhUor dKChES" ><img
 						src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
-						width="100" height="100" alt="상점 프로필 이미지" class="product_all10"></a>
+						width="100" height="100" alt="상점 프로필 이미지" class="product_all10"></div>
 					<div class="product_all11">${ storeVO.storeName }</div>
 					<div class="product_all12">
 						<div class="review-comment-right__stars">
-							<%-- <jsp:include
+							 <%-- <jsp:include
 								page="/WEB-INF/views/user/products/common/rating.jsp">
 								<c:set var="sum" value="0" />
 								<c:set var="totalSum" value="0" />
-								<c:forEach var="test" items="${storeReviewVO.storeReviewRating}">
+								<c:forEach var="test" items="${storeReviewVO}">
 									<c:set var="sum" value="${sum} + ${storeReviewVO.storeReviewRating}" />
 									
 								</c:forEach>
@@ -34,10 +34,10 @@
 									value="totalSum" name="rating" />
 									<c:out value="totalSum" />
 							</jsp:include> --%>
-							<jsp:include
+							<%-- <jsp:include
 								page="/WEB-INF/views/user/products/common/rating.jsp">
 								<jsp:param value="${storeVO.storeRating}" name="rating" />
-							</jsp:include>
+							</jsp:include> --%>
 						</div>
 					</div>
 					<c:set var="storeBtn1" value="${user.storeNo}" />
@@ -47,7 +47,7 @@
 						<div class="product_all13">
 							<a class="product_all14 product_all14_1"
 								href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/info.do">내
-								상점 관리</a> <a class="product_all14 product_all14_1"
+								상점 관리</a> &nbsp;&nbsp;&nbsp;&nbsp;<a class="product_all14 product_all14_1"
 								href="${pageContext.request.contextPath}/products/manage.do">내
 								상품 관리</a>
 						</div>

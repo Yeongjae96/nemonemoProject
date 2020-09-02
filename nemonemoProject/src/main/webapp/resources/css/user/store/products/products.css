@@ -1005,10 +1005,9 @@ display: flex;
 }
 
 .product_all97 img{
-
     position: absolute;
     left: 10px;
-    top: calc(50% - 8px);
+    top: calc(50% - 4px);
 
 }
 

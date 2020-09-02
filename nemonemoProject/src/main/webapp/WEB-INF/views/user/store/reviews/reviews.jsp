@@ -21,15 +21,12 @@
 
 
 <!-- 라이브러리 -->
-<script
-	src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
+<script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
 <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
 
 
@@ -87,16 +84,16 @@
 					<c:forEach var="storeReviewVO" items="${storeReviewVO}">
 						<div class="sc-zDqdV kckyLf">
 							<div class="rv_103">
-								<a class="rv_104" href="/shop/2558945/products">
+								<div class="rv_104">
 								<img
 									src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
-									width="60" height="60" alt="로딩 이미지"></a>
+									width="60" height="60" alt="로딩 이미지"></div>
 								<div class="rv_105">
 									<div class="rv_106">
 										<div class="rv_107">
-											<a class="rv_108" href="http://www.naver.com"
+											<div class="rv_108" 
 												style="font-size: 15px;"> ${storeReviewVO.storeName } 
-											</a>
+											</div>
 											<div class="rv_110">
 												<jsp:useBean id="now" class="java.util.Date" />
 												<fmt:parseNumber
@@ -141,7 +138,7 @@
 											</div>
 										</a>
 									</div>
-									<a class="rv_113" href="/products/127785092?ref=상점내후기"><button
+									<a class="rv_113" href="${pageContext.request.contextPath}/products/${storeReviewVO.productNo }.do"><button
 											class="rv_114">
 											${storeReviewVO.productName } 
 											<img
