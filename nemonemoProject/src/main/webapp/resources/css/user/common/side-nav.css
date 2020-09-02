@@ -156,7 +156,7 @@
 		border: 1px solid rgb(33, 33, 33);
 	}
 
-    #delete-rec{
+    .delete-rec{
     position: absolute;
     top: -1px;
     left: -18px;

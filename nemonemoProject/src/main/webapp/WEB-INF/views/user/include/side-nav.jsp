@@ -18,7 +18,7 @@
                     <!-- 최근 본 상품 시작 -->
                     <div class="rec-prd-text">최근본상품</div>
                     <div class="rec-prd-outline">
-                        <div class="rec-prd-cnt">1<span></span></div>
+                        <div class="rec-prd-cnt"></div>
                     </div>
                     <div id="rec-prd-list">
                         <%-- <a class="rec-prd-img" href="#">
