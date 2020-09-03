@@ -1,3 +1,6 @@
+$(function() {
+	initPdMenu();
+});
 /* 공백 검사 */
 	function checkNull(id, msg) {
 		const $target = $(`#${id}`);

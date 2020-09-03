@@ -20,6 +20,9 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/store/common/store_header.css?v=<%=System.currentTimeMillis()%>"/>">
 
+<!-- 해당 페이지 JS파일 -->
+<script
+	src="<c:url value="/resources/js/user/store/comments/products.js"/>"></script>
 
 <!-- 라이브러리 -->
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
