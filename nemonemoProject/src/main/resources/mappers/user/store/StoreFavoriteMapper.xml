@@ -11,9 +11,7 @@
 		<result column="product_deal_area" property="productDealArea" />
 		<result column="product_price" property="productPrice" />
 		<result column="store_no" property="storeNo" />
-		<result column="favorite_del_fl" property="favoriteDelFl" />
-		
-		
+		<result column="favorite_del_fl" property="favoriteDelFl" />	
 	</resultMap>
     
     <select id="getStoreFavoriteList" parameterType="int" resultMap="storeFavoriteMap">
@@ -29,4 +27,18 @@
     		ust.store_no = #{storeNo} and ftb.favorite_del_fl='N'
  
     </select>
+    
+    <select id="getJjimCount" parameterType ="int" resultType ="int">
+    	   SELECT 
+		   count(*)
+		FROM
+		    favorite_tb ftb
+		    inner join product_tb prod
+		        on(prod.product_no = ftb.product_no)
+		    inner join user_tb ust
+		        on(ust.store_no = ftb.favorite_sender)
+		WHERE
+    		ust.store_no = #{storeNo} and ftb.favorite_del_fl='N'   
+    </select>
+    
 </mapper>
