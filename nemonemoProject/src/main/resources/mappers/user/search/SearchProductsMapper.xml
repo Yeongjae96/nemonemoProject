@@ -22,7 +22,7 @@
         		b.product_img_type
 		FROM    product_tb a
 		INNER JOIN product_img_tb b
-		ON 		a.product_no = b.product_no
+		ON 		a.product_no = b.product_no AND a.product_disp_st NOT IN ('D', 'P')
 		RIGHT JOIN (select min(product_img_no) as product_img_no FROM product_img_tb group by product_no) c
 		ON 		b.product_img_no = c.product_img_no
 		INNER JOIN product_cate_tb cate
@@ -77,7 +77,7 @@
 		        count(1) product_cate_cnt
 		    FROM product_tb p
 		    INNER JOIN (SELECT * FROM product_cate_tb) c
-		    ON p.product_cate_no = c.product_cate_no
+		    ON p.product_cate_no = c.product_cate_no AND p.product_disp_st NOT IN ('D', 'P', 'F')
 		    <if test="selectedCateName != null">
 				AND 
 				<choose>
@@ -145,6 +145,21 @@
             product_deal_area LIKE '%'|| #{keyword} ||'%'
 		</where>
 	</select>
+	
+	<select id="selectProductNameByKeyword" parameterType="String" resultType="String">
+		SELECT (
+		    product_name
+		) FROM (
+		    SELECT product_name, ROWNUM rnum
+		    FROM (
+		    SELECT DISTINCT (product_name)
+		    FROM product_tb
+		    WHERE product_name LIKE '%' || #{keyword} || '%' AND product_disp_st NOT IN ('D', 'P', 'F')
+		    ) a
+		)
+		WHERE <![CDATA[rnum <= 10]]>
+	</select>
+	
 	
 	
 </mapper>

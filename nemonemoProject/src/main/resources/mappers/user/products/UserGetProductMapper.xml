@@ -28,6 +28,15 @@
 	<result column="store_review_rating" property="storeRating"/>
 </resultMap>
 
+<resultMap id="recentlyProductMap" type="com.nemo.user.products.vo.UserRecentlyProductVO">
+	
+	<id column="product_no" property="productNo"/>
+	<result column="product_img_no" property="productImgNo"/>
+	<result column="product_name" property="productName"/>
+	<result column="product_price" property="productPrice"/>
+
+</resultMap>
+
 <select id="selectProductFromPdSeq" parameterType="int" resultMap="productDetailMap">
 	SELECT 
 		a.* , 
@@ -113,6 +122,19 @@
     ON s.store_no = u.store_no AND s.store_no = #{productSeller}
 	) a
 	WHERE <![CDATA[rnum < 3]]>
+</select>
+
+<select id="selectRecentlyProductVO" parameterType="int" resultMap="recentlyProductMap">
+	
+	SELECT 
+        p.product_no,
+        product_name,
+        product_price,
+        product_img_no
+	FROM product_tb p
+	INNER JOIN (select product_no, min(product_img_no) AS product_img_no FROM product_img_tb GROUP BY product_no) i
+	ON p.product_no = i.product_no AND p.product_no = #{productNo}
+
 </select>
 
 
