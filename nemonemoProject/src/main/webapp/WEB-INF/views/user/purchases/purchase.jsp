@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${user == null}">
+<script>
+	alert('로그인 해주십시오');
+	/* window.location.href = '${pageContext.request.contextPath}'; */
+	histroy.go(-1);
+</script>
+</c:if>
+<c:if test="${user != null}">
+	
 <!DOCTYPE html>
 <html>
 
@@ -173,11 +183,11 @@
 								</div>
 							</div>
 							<!-- 테스트 -->
-							<input type="hidden" value="하이" name="buyerName">
-							<input type="hidden" value="01012341234" name="buyerPhone">
-							<input type="hidden" value="spring123@naver.com" name="buyerEmail">
-							<input type="hidden" value="08112" name="buyerZipcode">
-							<input type="hidden" value="어딘가" name="buyerAddress">
+							<input type="hidden" value="${user.userName}" name="buyerName">
+							<input type="hidden" value="${user.userPhone }" name="buyerPhone">
+							<input type="hidden" value="${user.userEmail }" name="buyerEmail">
+							<input type="hidden" value="${user.userZipcode }" name="buyerZipcode">
+							<input type="hidden" value="(${user.userAddress1 }+${user.userAddress2 })" name="buyerAddress">
 							<input type="hidden" value="바이" name="productName">
 						</section>
 						<!--이용동의-->
@@ -245,3 +255,4 @@
 </body>
 
 </html>
+</c:if>

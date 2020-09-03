@@ -28,16 +28,7 @@ public class PurchaseController {
 
 	@RequestMapping(value = "/purchases", method = { RequestMethod.POST })
 	public ModelAndView purchaseKaKaoAction(PurchasesVO vo, HttpServletRequest req) {
-		// 암호화 진행
-		System.out.println(vo.toString());
-
 		ModelAndView mav = new ModelAndView();
-		/*
-		 * req.setAttribute("name", vo.getBuyerName()); req.setAttribute("email",
-		 * vo.getBuyerEmail()); req.setAttribute("phone", vo.getBuyerPhone());
-		 * req.setAttribute("address", vo.getBuyerAddress());
-		 * req.setAttribute("totalPrice", vo.getPurchasePrice());
-		 */
 
 		
 		mav.addObject("name", vo.getBuyerName());

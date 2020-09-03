@@ -10,11 +10,12 @@ public class PurchasesVO {
 	private int purchaseNo;
 	private int orderNo;
 	private int productNo;
+	private int productSeller;
+	private String productName;
 	private int purchasePrice;
 	private Date puchaseDt;
 	private int purchaseShFee;
 	private String purchaseWay;
-	private String productName;
 	private String buyerName;
 	private String buyerPhone;
 	private String buyerEmail;

@@ -973,21 +973,27 @@
 
             <!-- 바로구매 모달 -->
             <div class="detail-modal" id="buyModal">
+            <form name="myPurchase" id="purchases" method="POST" action="purchases.do">
                 <div class="buy-modal__area">
                     <h2 class="buy-modal__title">
                         <!-- 메인 로고 -->
                         <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="">안전결제
                         <a href="#" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-truck"></i>
-                            안전결제란?
+                           	 안전결제란?
                         </a>
                     </h2>
                     <div class="buy-modal__content">
-                        <a class="buy-modal-content--item" target="_blank" href="#">
+                    <input type="hidden" value="${productVO.productNo}" name="productNo">
+                    <input type="hidden" value="${productVO.productSeller}" name="productSeller">
+                    <input type="hidden" value="${productVO.productName}" name="productName">
+                    <input type="hidden" value="${productVO.productFreeShippingSt}" name="productFreeShippingSt">
+                    <input type="hidden" value="${productVO.productPrice}" name="productPrice">
+                        <a class="buy-modal-content--item" target="_blank" onclick="javascript:document.myPurchase.submit();">
                             <div class="buy-content__text">
                                 <div class="buy-content__div">
                                     <h3 class="buy-content__title">
-                                        안전거래(택배거래)
+                                    	    안전거래(택배거래)
                                     </h3>
                                     <span class="buy-content__gray">안전하게 상품을 받을 때까지,<br>네모내모가 결제금액을 보관해요</span>
                                 </div>
@@ -996,13 +1002,109 @@
                         </a>
                     </div>
                 </div>
-
+                </form>
             </div>
         </div>
     </div>
 
-   
+   <script>
+ <!--   $('#purchases').click(function() {
+	 console.log('contextPath : ', contextPath);
+	 const $form = $('<form></form>').attr({
+	 method : 'POST',
+	 action : contextPath + '/sign/signup.do'
+	 
+	 });
+	
+	 const emailvalue = $('#emailInput').val()
+	 const passvalue = $('#passInput').val()
+	 const namevalue = $('#nameInput').val()
+	 const phonevalue = $('#phoneNumber').val()
+	 const zipcodevalue = $('#zipcodeInput').val()
+	 const address1value = $('#address1Input').val()
+	 const address2value = $('#address2Input').val()
+	 const gendervalue = $('#genderInput').val()
+	 const $emailInput = $('<input/>').attr({
+	 type : 'hidden',
+	 value : emailvalue,
+	name : 'userEmail'
+	 });
+		 const $passwordInput = $('<input/>').attr({
+	type : 'hidden',
+	 value : passvalue,
+	 name : 'userPw'
+	 });
+		
+	 const $nameInput = $('<input/>').attr({
+	 type : 'hidden',
+	 value : namevalue,
+	 name : 'userName'
+	 });
+		
+	 const $phoneInput = $('<input/>').attr({
+	 type : 'hidden',
+	 value : phonevalue,
+	 name : 'userPhone'
+	 });
+			
+	 const $zipcodeInput = $('<input/>').attr({
+	 type : 'hidden',
+	 value : zipcodevalue,
+	 name : 'userZipcode'
+	 });
+	
+	 const $address1Input = $('<input/>').attr({
+	 type : 'hidden',
+	 value : address1value,
+	 name : 'userAddress1'
+	 });
+	
+	 const $address2Input = $('<input/>').attr({
+	 type : 'hidden',
+	 value : address2value,
+	 name : 'userAddress2'
+	 });
+	
+	 const $genderInput = $('<input/>').attr({
+	 type : 'hidden',
+	 value : gendervalue,
+	 name : 'userGender'
+	 });
+	
+	
+	 console.log('form : ', $form);
+	 console.log('input : ', $phoneInput);
+	 console.log('input : ', $passwordInput);
+	 console.log('input : ', $zipcodeInput);
+	 console.log('input : ', $address1Input);
+	 console.log('input : ', $address2Input);
+	 console.log('input : ', $genderInput);
+	 console.log('input : ', $nameInput);
+	 console.log('input : ', $emailInput);
+	 
+	 console.log('value : ', phonevalue);
+	 console.log('value : ', passvalue);
+	 console.log('value : ', emailvalue);
+	 console.log('value : ', zipcodevalue);
+	 console.log('value : ', address1value);
+	 console.log('value : ', address2value);
+	 console.log('value : ', gendervalue);
+	 console.log('value : ', namevalue);
 
+	 $form.append($emailInput);
+	 $form.append($passwordInput);
+	 $form.append($nameInput);
+	 $form.append($phoneInput);
+	$form.append($zipcodeInput);
+	 $form.append($address1Input);
+	 $form.append($address2Input);
+	 $form.append($genderInput);
+	 $('body').append($form);
+	 $form[0].submit();
+	
+	 });
+   </script>
+ -->
 	<% 
 		/* 공통 푸터 */
 	%>
