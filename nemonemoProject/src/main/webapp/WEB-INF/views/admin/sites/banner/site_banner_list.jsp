@@ -214,6 +214,8 @@
 								<div id="con">
 
 
+
+
 									<div class="modal-flex--body" id="hiden1">
 										<p>
 											<strong>배너 순서 등록</strong>
@@ -249,14 +251,14 @@
 
 										<div class="form-group form-group-lg">
 											<div class="form-line">
-												<input type="text" name="bannerImageUrl" class="form-control"
-													placeholder="배너 URL을 등록해 주세요" />
+												<input type="text" name="bannerImageUrl"
+													class="form-control" placeholder="배너 URL을 등록해 주세요" />
 											</div>
 										</div>
 
 									</div>
-									
-									
+
+
 									<div class="modal-flex--body" id="hiden4">
 										<p>
 											<strong>배너 링크 등록</strong>
@@ -266,6 +268,21 @@
 											<div class="form-line">
 												<input type="text" name="bannerDestUrl" class="form-control"
 													placeholder="배너 URL을 등록해 주세요" />
+											</div>
+										</div>
+
+									</div>
+
+
+
+									<div class="modal-flex--body" id="hiden5">
+										<p>
+											<strong>배너 이미지 등록</strong>
+										</p>
+
+										<div class="form-group form-group-lg">
+											<div class="form-line">
+												<input type="file" name="bannerOrder" class="form-control">
 											</div>
 										</div>
 
