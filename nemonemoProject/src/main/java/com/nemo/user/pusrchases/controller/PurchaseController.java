@@ -29,7 +29,7 @@ public class PurchaseController {
 	@RequestMapping(value = "/purchases", method = { RequestMethod.POST })
 	public ModelAndView purchaseKaKaoAction(PurchasesVO vo, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-
+		System.out.println(vo.toString());
 		
 		mav.addObject("name", vo.getBuyerName());
 		mav.addObject("email", vo.getBuyerEmail());

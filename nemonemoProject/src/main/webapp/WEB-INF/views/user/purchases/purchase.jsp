@@ -198,8 +198,9 @@
 							<input type="hidden" value="${user.userPhone }" name="buyerPhone">
 							<input type="hidden" value="${user.userEmail }" name="buyerEmail">
 							<input type="hidden" value="${user.userZipcode }" name="buyerZipcode">
-							<input type="hidden" value="(${user.userAddress1 }+${user.userAddress2 })" name="buyerAddress">
-							<input type="hidden" value="바이" name="productName">
+							<input type="hidden" value="${user.userAddress1} ${user.userAddress2}" name="buyerAddress">
+							<input type="hidden" value="<%=productName%>" name="productName">
+							<input type="hidden" value=<%=productSeller %> name="productSeller">
 						</section>
 						<!--이용동의-->
 						<section class="purchases_terms_section">
