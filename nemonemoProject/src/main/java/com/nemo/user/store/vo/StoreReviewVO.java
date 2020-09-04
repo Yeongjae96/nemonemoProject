@@ -1,7 +1,6 @@
 package com.nemo.user.store.vo;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +15,8 @@ public class StoreReviewVO {
 	private int storeReviewWriter;
 	private int storeReviewRating;
 	private String storeReviewContent;
-	private Timestamp storeReviewRegDt;
+	private Date storeReviewRegDt;
 	private String storeName;
 	private String productName;
+	private int productNo;
 }

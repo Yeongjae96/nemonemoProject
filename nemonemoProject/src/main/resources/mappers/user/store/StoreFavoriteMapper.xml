@@ -18,7 +18,7 @@
     
     <select id="getStoreFavoriteList" parameterType="int" resultMap="storeFavoriteMap">
     	SELECT 
-		    prod.product_name, prod.product_reg_dt, prod.product_deal_area, prod.product_price
+		    prod.product_name, prod.product_reg_dt, prod.product_deal_area, prod.product_price, prod.product_no
 		FROM
 		    favorite_tb ftb
 		    inner join product_tb prod

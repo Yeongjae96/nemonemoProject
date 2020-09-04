@@ -70,10 +70,26 @@
 			<a class="my-menu-box" href="<c:url value="/products/new.do"/>">
 				<img src="<c:url value="/resources/images/user/common/sell2.png"/>"
 				alt="판매하기아이콘" id="sell-icon">&nbsp;&nbsp;판매하기
-			</a> <a href="${pageContext.request.contextPath}/shop/${user.storeNo }/products.do"> <img
-				src="<c:url value="/resources/images/user/common/my_store.png"/>"
-				alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점
-			</a>
+			</a> 
+			<c:set var="isLogin" value="${user.storeNo}" />
+			<c:choose>
+				<c:when test="${not empty isLogin }"> 
+				<a href="${pageContext.request.contextPath}/shop/${user.storeNo }/products.do"> 
+					<img
+					src="<c:url value="/resources/images/user/common/my_store.png"/>"
+					alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점 </a>
+				</c:when>
+				<c:otherwise>
+				<a onclick="javascript:alert('로그인이 필요한 서비스입니다.');">
+					<img
+					src="<c:url value="/resources/images/user/common/my_store.png"/>"
+					alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점 </a> 
+				</c:otherwise>
+			</c:choose>
+
+			
+				
+			
 		</div>
 	</div>
 	<div class="cate-icon--area">
