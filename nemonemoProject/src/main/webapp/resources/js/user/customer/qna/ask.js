@@ -1,16 +1,9 @@
-
-$(function () {
-	$('.customer-nav-not-selected').eq(3).attr('class', 'customer-nav-selected');        
-});
-
-
 $(function(){
+	$('.customer-nav-not-selected').eq(3).attr('class', 'customer-nav-selected');        
 	initImageArea();
 	initRegBtn();
 	initPdMenu();
 });
-
-
 
 /* 이미지 영역 */
 const fileBuffer = []; // 파일 저장용 전역변수

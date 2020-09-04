@@ -30,7 +30,7 @@
 <script src="<c:url value="/resources/js/user/main/jquery.scrolltabs.js"/>"></script>
 <!-- 리다이렉트로 값을 받아 alert문 안내 -->
 <script>
-	var result = '${msg}';
+	/* var result = '${msg}';
 	
 	if (result == 'success') {
 		alert("로그인 성공\n네모내모에 어서오세요!");
@@ -42,7 +42,7 @@
 	} else if (result=='passwordfail'){
 		alert("비밀번호가 틀렸습니다. \n다시 로그인해주세요.");
 		$(function() {
-				$('#loginModal').show();
+			$('#loginModal').show();
 		})
 	} else if (result=='stop'){
 		alert("정지된 아이디입니다.");
@@ -50,7 +50,7 @@
 		alert("소셜로그인 처음 하셨습니다 .\n내계정에 가서 회원수정해주시길 바랍니다.");
 	} else if (result=='logout'){
 		alert("로그아웃 되셨습니다. \n안녕히가세요.");
-	}
+	} */
 </script>
 
 </head>

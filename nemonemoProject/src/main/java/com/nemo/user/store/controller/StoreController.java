@@ -2,6 +2,7 @@ package com.nemo.user.store.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nemo.common.util.ContextUtil;
 import com.nemo.user.store.service.DeleteStoreCommentService;
 import com.nemo.user.store.service.GetStoreCommentListService;
 import com.nemo.user.store.service.GetStoreFavoriteListService;
@@ -45,15 +47,32 @@ import com.nemo.user.store.vo.UserNewStoreVO;
 @RequestMapping("/shop")
 public class StoreController {
 	
-	@Autowired private GetStoreService getStoreService;
-	@Autowired private GetStoreProductListService getStoreProductListService;
-	@Autowired private GetStoreProductDispStListService getStoreProductDispStListService;
-	@Autowired private UpdateStoreService updateStoreService;
-	@Autowired private GetStoreCommentListService getStoreCommentListService;
-	@Autowired private InsertStoreCommentService insertStoreCommentService;
-	@Autowired private GetStoreReviewListService getStoreReviewListService;
-	@Autowired private GetStoreFavoriteListService getStoreFavoriteListService;
-	@Autowired private DeleteStoreCommentService deleteStoreCommentService;
+	@Autowired 
+	private GetStoreService getStoreService;
+	
+	@Autowired 
+	private GetStoreProductListService getStoreProductListService;
+	
+	@Autowired 
+	private GetStoreProductDispStListService getStoreProductDispStListService;
+	
+	@Autowired 
+	private UpdateStoreService updateStoreService;
+	
+	@Autowired 
+	private GetStoreCommentListService getStoreCommentListService;
+	
+	@Autowired 
+	private InsertStoreCommentService insertStoreCommentService;
+	
+	@Autowired 
+	private GetStoreReviewListService getStoreReviewListService;
+	
+	@Autowired 
+	private GetStoreFavoriteListService getStoreFavoriteListService;
+	
+	@Autowired 
+	private DeleteStoreCommentService deleteStoreCommentService;
 	
 	@GetMapping(value = {"//products","/{storeNo}/products"})
 	public ModelAndView GetStoreInfoProducts(@PathVariable("storeNo") Optional<Integer> optionalStoreNo) {
@@ -61,7 +80,10 @@ public class StoreController {
 		ModelAndView mav = new ModelAndView("store/products/products");
 		
 		if(!optionalStoreNo.isPresent()) {
-			mav.setViewName("redirect:/index.do");
+			mav.setViewName(Optional.ofNullable(ContextUtil.getRequest()
+					.getHeader("Referer"))
+					.map(requestUrl -> "redirect:" + requestUrl)
+					.orElseGet(() -> "redirect:/index.do"));
 			mav.addObject("status", "fail");
 			return mav;
 		}

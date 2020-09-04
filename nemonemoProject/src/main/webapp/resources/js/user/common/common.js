@@ -46,6 +46,28 @@ $(function() {
 
 /* 탑 메뉴 */
 function initTopMenu() {
+	// 카카오 동적할당
+	var initDynamicScript = function(src) {
+		var prevSrc = Array.prototype.filter.call(document.getElementsByTagName('script'), e => e.src == src);
+		if (prevSrc.length) return;
+		var js, fjs = document.getElementsByTagName('script')[0];
+		js = document.createElement('script');
+		js.src = src;
+		fjs.parentNode.append(js, fjs);
+	}
+	
+	initDynamicScript("https://developers.kakao.com/sdk/js/kakao.min.js");
+	initDynamicScript(contextPath + 'resources/js/user/common/kakao_login.js');
+	
+	
+	// 로그인 버튼
+	const loginBtn = document.getElementById('loginBtn');
+	let loginModal;
+	if(loginBtn) {
+		loginModal = document.getElementById('loginModal');
+		loginBtn.addEventListener('click', function() {loginModal.style.display = 'block';})
+	}
+	
 	/* top-nav 알림창 보여줌 */ 
     $('#alert').mouseenter(function() {
        $(".alert-content-box").css("visibility", "visible");
@@ -82,7 +104,6 @@ function initTopMenu() {
       $('#logout').on('click', open_pop);
   	  $('#model-cancel').on('click', close_pop);
       
-  	$('#loginBtn').click(function() {$('#myModal').show()});
   	  
   	  
       /* HEADER 로그아웃 팝업 */
@@ -98,7 +119,19 @@ function initTopMenu() {
     		$('#logoutmodal').show()
     	});
       
-      $('#loginBtn').click(function() {$('#myModal').show()});
+      
+      $(function() {
+  		$('#loginBtn').click(function() {
+  			$('#loginModal').show()
+  		});
+  		
+  		$('#closeImg').click(function() {
+  			$('#loginModal').hide()
+  		});
+  	})
+
+  	
+      
       
  
       /* 즐겨찾기 알림 */
@@ -116,8 +149,7 @@ function initTopMenu() {
       const statusParam = getParam('status');
       console.log(statusParam, 'params');
       if((statusParam && statusParam == 'fail')) {
-    	  alert('로그인이 필요한 서비스입니다.');
-    	  document.getElementById('loginBtn').dispatchEvent(new Event('click'));
+    	  loginBtn.dispatchEvent(new Event('click'));
       }
       
       function getParam(paramName) {
@@ -191,12 +223,11 @@ function loadJJim(e){
 	jjimcount = parseInt(e);
 		
 	let jjim = document.getElementsByClassName('to-favorites')[0];
-	jjim.innerHTML += '<span>' + jjimcount + '</span>';
-	
+	const jjimSpan = Array.prototype.filter.call(jjim.children, e => e.tagName == 'span'); // jjim자식으로부터 span 찾기
 	if(jjimcount > 0){
 		document.getElementById("to-favorites").className = "to-favorites-red";
 		document.getElementById("favimg").src = contextPath + "resources/images/user/common/heart_red.png";
-		
+		jjimSpan.textContent = jjimcount; // span값만 바꿔주기!
 	}
 }
 

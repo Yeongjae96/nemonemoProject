@@ -196,45 +196,6 @@ img {
 
 /* 로그인 모달 */
 </style>
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script>
-	$(function() {
-		$('#loginBtn').click(function() {
-			$('#loginModal').show()
-		});
-		
-		$('#closeImg').click(function() {
-			$('#loginModal').hide()
-		});
-	})
-
-	/*카카오 로그인 코드*/
-	var startKakaoLogin = function() {
-		Kakao.init('febc31efd1b6f21901d27fb57cc55aa7');
-		Kakao.Auth.createLoginButton({
-			success : function(authObj) {
-
-				Kakao.API.request({
-					url : '/v2/user/me',
-					success : function(res) {
-
-						var userEmail = res.kakao_account.email;
-						var userName = res.properties.nickname;
-						document.getElementById('kakaoInfo').value = userEmail;
-						document.getElementById('kakaoName').value = userName;
-						
-						document.kakaoSubmit.submit();
-					}
-				})
-				console.log(authObj);
-				var token = authObj.access_token;
-			},
-			fail : function(err) {
-				alert(JSON.stringify(err));
-			}
-		});
-	}
-</script>
 </head>
 <body>
 	<nav class="navbar nav-expand-sm navbar-light top-nav">
@@ -302,7 +263,7 @@ img {
 							width="100%" height="50px" />
 						</a>
 						<p id="login-form-result"></p>
-						<script type="text/javascript">
+						<!-- <script type="text/javascript">
 						Kakao.init('febc31efd1b6f21901d27fb57cc55aa7');
 							function loginFormWithKakao() {
 								Kakao.Auth.loginForm({
@@ -334,7 +295,7 @@ img {
 							function showResult(result) {
 								document.getElementById('login-form-result').innerText = result
 							}
-						</script>
+						</script> -->
 
 						<form method="POST" action="sign/slogin.do" name="kakaoSubmit">
 							<a href='javascript:void(0);' onclick="startKakaoLogin()"> <input

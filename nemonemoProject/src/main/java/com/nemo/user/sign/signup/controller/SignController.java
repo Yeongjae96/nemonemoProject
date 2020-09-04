@@ -1,5 +1,7 @@
 package com.nemo.user.sign.signup.controller;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.nemo.common.util.ContextUtil;
 import com.nemo.user.sign.signup.service.UserService;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
-import com.nemo.user.sign.signup.vo.UserTermsVO;
 
 @Controller
 @RequestMapping("/sign")
@@ -104,8 +106,10 @@ public class SignController {
 				}
 				session.setAttribute("user", user);
 				rttr.addFlashAttribute("msg", "success");
-				mav.setViewName("redirect:/index.do");
-
+				mav.setViewName(Optional
+					.ofNullable(ContextUtil.getRequest().getHeader("Referer"))
+					.map(e -> "redirect:" + e)
+					.orElseGet(() -> new String("redirect:/index.do")));
 				return mav;
 			} else {
 				session.setAttribute("user", null);

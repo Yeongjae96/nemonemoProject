@@ -70,7 +70,7 @@ function initHeader() {
 		const titleSearchBtn = document.getElementById('titleSearchBtn');
 		const titleSearchInput = document.getElementById('titleSearchInput');
 		const titleSearchForm = document.titleSearchForm;
-		console.log(titleSearchForm);
+
 		titleSearchForm.addEventListener('submit', beforeSubmitEvent);
 		
 		function beforeSubmitEvent(event) {
@@ -167,10 +167,6 @@ function initProductSt() {
 		
 		const $target = $(e.target);
 		const prevSt = $target.closest('.product-combo-box').find('.products-manage__cbox--item').text().trim();
-		console.log($target);
-		console.log(prevSt);
-		console.log(this);
-		
 		const productNo = this.dataset.no;
 		
 		if(prevSt == $target.data('st')) {
@@ -187,10 +183,6 @@ function initProductSt() {
 			break;
 		}
 		const url = window.location.href;
-		
-		console.log('contextPath : ', contextPath);
-		console.log('productNo : ', productNo);
-		console.log('target.data  : ', $target.data('st'));
 		
 		$.ajax({
 			url: contextPath + 'products/' + productNo + '/disp.do',
