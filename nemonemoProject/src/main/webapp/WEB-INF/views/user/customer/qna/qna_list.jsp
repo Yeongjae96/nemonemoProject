@@ -5,15 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>네모내모 | 1:1상담</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
-
 
 <!-- 페이지 CSS  -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/qna/qna_list.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/customer_nav.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/common/paging/paging.css"/>">
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>"> 
 
 
 <!-- 라이브러리 -->
@@ -87,10 +87,10 @@
                          <section class="answer_section">
                             <div class="qna_section_align">
                                 <div class="qna_content_title">
-                                    <img src="https://hawaiiseoulcdn.bunjang.net/images/crop/199870305_w300.jpg"
+                                    <img src="<c:url value="/resources/images/common/logo/favicon.png"/>"
                                         width="40" height="40" class="qna_logo_img">
                                     <div class="qna_font_div">
-                                        <h2 class="answer_h2">번장운영센터 답변</h2>
+                                        <h2 class="answer_h2">네모내모 운영센터 답변</h2>
                                         <time class="answer_time">${qna.qnaReplyYmd}</time>
                                     </div>
                                     <a class="to_anther_question" href="/nemonemoProject/customer/qna.do">다른 문의하기</a>

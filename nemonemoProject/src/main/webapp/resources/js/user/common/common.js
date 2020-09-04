@@ -147,9 +147,11 @@ function initJJim(){
 			loadJJim(data);
 		},
 		error : function(err){
-			alert("error!");
+			//alert("error!");
 		}
 	});
+	
+	
 	
 }
 
@@ -215,8 +217,7 @@ function loadProduct(){
 		
 		const prdAnchor = document.getElementsByClassName('rec-prd-img');
 		const delBtn = document.getElementsByClassName('delete-rec');
-		
-		console.log('delBtn ',delBtn)
+
 		
 		/* a 태그 클릭시 해당 게시물로 이동 */
 		for (var i = 0; i < prdAnchor.length; i++) {
@@ -234,8 +235,7 @@ function loadProduct(){
 			});
 		}
 		
-		
-		
+			
 		const dataSize = 3; // 한 페이지당 보여줄 게시물 갯수
 		let pageCnt = totalCnt % dataSize; 
 		
@@ -277,14 +277,8 @@ function loadProduct(){
 	function removeFromSession(datano){
 		
 		let removeProductNo = getItems.findIndex(i => i.productNo == datano);
-		if(removeProductNo == -1) return false; // 잘못된 데이터가 들어왔을때 에러처리
-	
-		console.dir(getItems);
-		console.log(removeProductNo, 'removeProductNo');
-		
-		console.dir("splice 전 : " + JSON.stringify(getItems));
+		if(removeProductNo == -1) return false; // 잘못된 데이터가 들어왔을때 에러처리			
 		getItems.splice(removeProductNo, 1);
-		console.dir("splice 후 : " + JSON.stringify(getItems));
 		
 		// 새로운 변경된 arr를 덮어씌움
 		sessionStorage.setItem('recentlyVisitedProducts', JSON.stringify(getItems));
