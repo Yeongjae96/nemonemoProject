@@ -70,6 +70,7 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>this.contextPath = "<c:url value="/"/>"</script>
+<script src="<c:url value="/resources/js/user/products/products_to_navbar.js"/>"></script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v8.0&appId=308411826950117&autoLogAppEvents=1" nonce="GguEtP2Q"></script>
 <%-- 카카오링크  --%>
@@ -78,7 +79,6 @@
 
 <!-- 해당 페이지 JS파일 -->
 <script src="<c:url value="/resources/js/user/products/products_article.js"/>"></script>
-<script src="<c:url value="/resources/js/user/products/products_to_navbar.js"/>"></script>
 
 
 </head>

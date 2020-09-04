@@ -2,8 +2,6 @@ package com.nemo.user.store.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO;
-import com.nemo.user.sign.signup.vo.UserBaseVO;
 import com.nemo.user.store.service.DeleteStoreCommentService;
 import com.nemo.user.store.service.GetStoreCommentListService;
 import com.nemo.user.store.service.GetStoreFavoriteListService;
@@ -172,5 +169,12 @@ public class StoreController {
 		mav.addObject("storeFavoriteVO", storeFavoriteVO);
 		
 		return mav;
+	}
+	
+	@GetMapping("/jjimcount")
+	@ResponseBody
+	public int getJjimCount(@RequestParam int storeNo) {
+		int jjimCount = getStoreFavoriteListService.getJjimCount(storeNo);
+		return jjimCount;
 	}
 }

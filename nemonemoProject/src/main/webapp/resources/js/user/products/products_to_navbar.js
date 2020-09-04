@@ -10,12 +10,16 @@ const productList = document.getElementById('rec-prd-list');
 /* VO 불러오기 */
 function getData(){
 
+	const url = window.location.href;
+	const productNo = url.slice(url.lastIndexOf('/')+1, url.lastIndexOf('.'));
+	
 	$.ajax({
 		url : contextPath + 'products/data.do',
 		method : 'GET',
 		dataType : 'json',
+		async: false,
 		data:{ 
-			productNo : $('#prodno').data('no')
+			productNo : productNo
 		},
 		success : function(data){
 			initSessionStorage(data);
@@ -24,14 +28,16 @@ function getData(){
 			alert("error!");
 		}
 	});
-
+	
+	
 }
-
 
 
 /* 실제 sessionStorage에 상품 넣기*/
 function initSessionStorage(e) { 
 
+	console.log('init 실행');
+	
 	const getProduct = new Object();
 	getProduct.productImgNo = e.productImgNo;
 	getProduct.productNo = e.productNo;
@@ -40,25 +46,24 @@ function initSessionStorage(e) {
 	
 
 	let getArr = sessionStorage.getItem('recentlyVisitedProducts');
-	let setArr = new Array();
+	const setArr = new Array();
 
-	if(getArr != null){
-		getArr = JSON.parse(getArr); // 배열로 만들어야 foreach 가능하니까.
-		let res = sessionStorage.getItem('recentlyVisitedProducts'); // getArr에 담아두며 초기화 될 것을 대비하여 잡음
+	if(getArr != null){ // 최근 본 상품이 이미 존재할 때.
+		getArr = JSON.parse(getArr); // 배열로  만들어서 foreach 시켜줌
 		
-		// 중복검사 		
-		getArr.forEach((e, i) => {
-			if(getProduct.productNo == e.productNo) return true; // continue와 동일한 역할
-			setArr.unshift(e);
-		});
+		for (var i = 0; i < getArr.length; i++) {
+			if(getArr[i].productNo == getProduct.productNo) continue;
+			setArr.push(getArr[i]);
+		}
+	}else {	// 최근 본 상품이 존재하지 않을 때
+		alert("세션 스토리지 생성!");
 	}
-		setArr.unshift(getProduct);
-			
+	
+	setArr.unshift(getProduct);
+	
 	sessionStorage.setItem('recentlyVisitedProducts', JSON.stringify(setArr));
-	addRecentProduct();
-
-
 }
+
 
 
 
