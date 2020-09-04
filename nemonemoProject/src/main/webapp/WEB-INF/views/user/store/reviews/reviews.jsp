@@ -131,7 +131,7 @@
 												</c:choose>
 											</div>
 										</div>
-										<a class="rv_111" href="/shop/2558945/reviews">
+										<div class="rv_111">
 											<div class="rv_112">
 												<jsp:include
 													page="/WEB-INF/views/user/products/common/rating.jsp">
@@ -139,7 +139,7 @@
 														name="rating" />
 												</jsp:include>
 											</div>
-										</a>
+										</div>
 									</div>
 									<a class="rv_113" href="${pageContext.request.contextPath}/products/${storeReviewVO.productNo }.do"><button
 											class="rv_114">

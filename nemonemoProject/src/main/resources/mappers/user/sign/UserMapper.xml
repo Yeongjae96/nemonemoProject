@@ -24,6 +24,7 @@
       <result column="STORE_NAME" property="storeName" />
       <result column="STORE_INTRO" property="storeIntro" />
       <result column="STORE_RATING" property="storeRating" />
+      <result column="USER_TERMS_AGREE_FL" property="userTermsAgreeFl" />
    </resultMap>
    
 
@@ -40,7 +41,9 @@
 					USER_ZIPCODE,
 					USER_ADDRESS1,
 					USER_ADDRESS2,
-					USER_GENDER
+					USER_GENDER,
+					USER_TERMS_AGREE_FL
+					<!-- ,STORE_NAME -->
 				)
 			VALUES 
 				( 
@@ -53,7 +56,9 @@
 				#{userZipcode},
 				#{userAddress1},
 				#{userAddress2},
-				#{userGender}
+				#{userGender},
+				#{userTermsAgreeFl}
+				<!-- ,#{storeName} -->
 				)
 	</insert>
 	
