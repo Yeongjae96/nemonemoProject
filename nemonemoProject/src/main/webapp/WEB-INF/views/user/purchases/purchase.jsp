@@ -2,6 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	//parameter로 넘겨주면 되는 값들
+	
+	int productNo = Integer.parseInt(request.getParameter("productNo"));
+	int productSeller = Integer.parseInt(request.getParameter("productSeller"));
+    String productName = (String)request.getParameter("productName");
+    int purchaseShFee = Integer.parseInt(request.getParameter("productFreeShippingSt"));
+    int productPrice = Integer.parseInt(request.getParameter("productPrice"));
+
+%>
+
 <c:if test="${user == null}">
 <script>
 	alert('로그인 해주십시오');
@@ -55,16 +66,16 @@
 					<div class="purchases_body_main">
 						<!-- 결제 상품 간단 설명 -->
 						<mark class="purchases_goods_body">
-							<img
+							<!-- <img
 								src="https://seoul-p-studio.bunjang.net/product/131192989_1_1597693969_w100.jpg"
-								class="purchases_goods_imgbox">
+								class="purchases_goods_imgbox"> -->
 							<div class="purchases_goods_content">
 								<div class="purchases_goods_pricebody">
 									<div class="purchases_goods_price">
-										17,000<span>원</span>
+										<%=productPrice %><span>원</span>
 									</div>
 								</div>
-								<div class="purchases_goods_title">쓰리타임즈 체인 미니백</div>
+								<div class="purchases_goods_title"><%=productName %></div>
 							</div>
 						</mark>
 
@@ -161,8 +172,8 @@
 								<div class="purchases_price_content">
 									<div class="purchases_price_explain">
 										<div class="purchases_price_column">상품금액</div>
-										<div class="purchases_price_column">17,000원</div>
-										<input type="hidden" value=17000 name="productPrice"
+										<div class="purchases_price_column"><%=productPrice%></div>
+										<input type="hidden" value=<%=productPrice%> name="productPrice"
 											id="productPrice">
 									</div>
 									<div class="purchases_price_explain">
@@ -178,7 +189,7 @@
 									<div class="purchases_price_explain">
 										<div class="purchases_price_column">배송비</div>
 										<div class="purchases_price_column">배송비별도</div>
-										<input type="hidden" name="purchaseShFee" value="1000" id="purchaseShFee">
+										<input type="hidden" name="purchaseShFee" value=<%=purchaseShFee %> id="purchaseShFee">
 									</div>
 								</div>
 							</div>

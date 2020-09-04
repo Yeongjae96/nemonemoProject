@@ -3,13 +3,6 @@
     pageEncoding="UTF-8"%>
 <%
 	//parameter로 넘겨주면 되는 값들
-	/* 
-   	String name = (String)request.getAttribute("name");
-    String email = (String)request.getAttribute("email");
-    String phone = (String)request.getAttribute("phone");
-    String address = (String)request.getAttribute("address");
-    int totalPrice = (int)request.getAttribute("totalPrice"); */  
-    
     String name = (String)request.getParameter("name");
     String email = (String)request.getParameter("email");
     String phone = (String)request.getParameter("phone");

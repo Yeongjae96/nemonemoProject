@@ -35,7 +35,21 @@ public class UserGetProductController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println(vo.toString());
 		mav.setViewName("redirect:/purchases.do");
+
+		mav.addObject("productNo", vo.getProductNo());
+		mav.addObject("productSeller", vo.getProductSeller());
+		mav.addObject("productName", vo.getProductName());
+		mav.addObject("productPrice", vo.getProductPrice());
+		if(vo.getProductFreeShippingSt().equals("N")) {
+			mav.addObject("productFreeShippingSt", "0");
+		} 
+		else if (vo.getProductFreeShippingSt().equals("Y")) {
+			mav.addObject("productFreeShippingSt", "3000");
+		}
+		
+		mav.setViewName("redirect:/purchases.do");
 		return mav;
+
 
 	}
 }	
