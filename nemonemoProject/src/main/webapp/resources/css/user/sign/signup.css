@@ -161,7 +161,7 @@ label {
         height: 24px;
         cursor: pointer;
         position: relative;
-        background: rgb(247, 47, 51);
+        /* background: rgb(247, 47, 51); */
         border-width: 1px;
         border-style: solid;
         border-color: rgb(247, 47, 51);

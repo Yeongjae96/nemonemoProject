@@ -97,7 +97,6 @@
 									<th>약관등록일</th>
 									<th>작성자</th>
 									<th>약관수정일</th>
-									<th>수정자</th>
 									<th>갱신</th>
 									<th>메일발송</th>
 								</tr>
@@ -128,7 +127,6 @@
 										<td>${terms.termsRegYmd}</td>
 										<td>${terms.adminRegId}</td>
 										<td>${terms.termsEditYmd}</td>
-										<td>${terms.adminEditId}</td>
 										<td>
 											<c:if test="${terms.termsDeleteFl == 'Y'}">
 	    										<a class="terms-renew" data-termsNo="${terms.termsNo}"><b>약관 갱신</b></a>

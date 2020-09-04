@@ -76,7 +76,7 @@
 						</div>
 						<div class="body">
 							<form id="bannerEditForm" method="POST" action="edit.mdo">
-
+								
 								<!-- 배너 순서 -->
 								<div class="form-group form-float">
 									<div class="form-line">

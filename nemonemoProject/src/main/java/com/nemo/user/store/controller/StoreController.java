@@ -1,8 +1,7 @@
 package com.nemo.user.store.controller;
 
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,13 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nemo.admin.sites.notice.vo.AdminBaseNoticeVO;
-import com.nemo.user.sign.signup.vo.UserBaseVO;
 import com.nemo.user.store.service.DeleteStoreCommentService;
 import com.nemo.user.store.service.GetStoreCommentListService;
 import com.nemo.user.store.service.GetStoreFavoriteListService;
+import com.nemo.user.store.service.GetStoreProductDispStListService;
 import com.nemo.user.store.service.GetStoreProductListService;
 import com.nemo.user.store.service.GetStoreReviewListService;
 import com.nemo.user.store.service.GetStoreService;
@@ -26,6 +25,7 @@ import com.nemo.user.store.service.InsertStoreCommentService;
 import com.nemo.user.store.service.UpdateStoreService;
 import com.nemo.user.store.vo.StoreCommentVO;
 import com.nemo.user.store.vo.StoreFavoriteVO;
+import com.nemo.user.store.vo.StoreProductDispStVO;
 import com.nemo.user.store.vo.StoreProductVO;
 import com.nemo.user.store.vo.StoreReviewVO;
 import com.nemo.user.store.vo.StoreVO;
@@ -42,11 +42,12 @@ import com.nemo.user.store.vo.UserNewStoreVO;
  */
 
 @Controller
-@RequestMapping("/shop/{storeNo}")
+@RequestMapping("/shop")
 public class StoreController {
 	
 	@Autowired private GetStoreService getStoreService;
 	@Autowired private GetStoreProductListService getStoreProductListService;
+	@Autowired private GetStoreProductDispStListService getStoreProductDispStListService;
 	@Autowired private UpdateStoreService updateStoreService;
 	@Autowired private GetStoreCommentListService getStoreCommentListService;
 	@Autowired private InsertStoreCommentService insertStoreCommentService;
@@ -54,18 +55,33 @@ public class StoreController {
 	@Autowired private GetStoreFavoriteListService getStoreFavoriteListService;
 	@Autowired private DeleteStoreCommentService deleteStoreCommentService;
 	
-	@GetMapping("/products")
-	public ModelAndView GetStoreInfoProducts(@PathVariable int storeNo) {
+	@GetMapping(value = {"//products","/{storeNo}/products"})
+	public ModelAndView GetStoreInfoProducts(@PathVariable("storeNo") Optional<Integer> optionalStoreNo) {
+		
 		ModelAndView mav = new ModelAndView("store/products/products");
-
+		
+		if(!optionalStoreNo.isPresent()) {
+			mav.setViewName("redirect:/index.do");
+			mav.addObject("status", "fail");
+			return mav;
+		}
+		
+		int storeNo = optionalStoreNo.get();
+		
+		System.out.println(storeNo + "store");
+		
 		StoreVO storeVO = getStoreService.getStore(storeNo);
+		
+		
 		List<StoreProductVO> storeProductVO = getStoreProductListService.getStoreProductList(storeNo);
+		List<StoreProductDispStVO> storeProductDispStVO = getStoreProductDispStListService.getStoreProductDispStList(storeNo);
 		List<StoreCommentVO> storeCommentVO = getStoreCommentListService.getStoreCommentList(storeNo);
 		List<StoreReviewVO> storeReviewVO = getStoreReviewListService.getStoreReviewList(storeNo);
 		List<StoreFavoriteVO> storeFavoriteVO = getStoreFavoriteListService.getStoreFavoriteList(storeNo);
 		
 		mav.addObject("storeVO", storeVO);
 		mav.addObject("storeProductVO", storeProductVO);
+		mav.addObject("storeProductDispStVO", storeProductDispStVO);
 		mav.addObject("storeCommentVO", storeCommentVO);
 		mav.addObject("storeReviewVO", storeReviewVO);
 		mav.addObject("storeFavoriteVO", storeFavoriteVO);
@@ -73,7 +89,7 @@ public class StoreController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/info", method= {RequestMethod.GET})
+	@RequestMapping(value = "/{storeNo}/info", method= {RequestMethod.GET})
 	public ModelAndView StoreInfoEdit(@PathVariable int storeNo) {
 		ModelAndView mav = new ModelAndView("store/storeinfo");
 
@@ -83,25 +99,26 @@ public class StoreController {
 		return mav;
 	}
 	
-	@PostMapping("/updateStore")
+	@PostMapping("/{storeNo}/updateStore")
 	public ModelAndView UpdateStoreAction(UserNewStoreVO vo) {
 		 updateStoreService.updateStore(vo);
 		 return new ModelAndView("redirect:/shop/{storeNo}/products.do");
 	}
 	
-	@GetMapping("/comments")
+	@GetMapping("/{storeNo}/comments")
 	public ModelAndView GetStoreCommentsList(@PathVariable int storeNo) {
 		ModelAndView mav = new ModelAndView("store/comments/comments");
 
 		StoreVO storeVO = getStoreService.getStore(storeNo);
 		List<StoreProductVO> storeProductVO = getStoreProductListService.getStoreProductList(storeNo);
+		List<StoreProductDispStVO> storeProductDispStVO = getStoreProductDispStListService.getStoreProductDispStList(storeNo);
 		List<StoreCommentVO> storeCommentVO = getStoreCommentListService.getStoreCommentList(storeNo);
 		List<StoreReviewVO> storeReviewVO = getStoreReviewListService.getStoreReviewList(storeNo);
 		List<StoreFavoriteVO> storeFavoriteVO = getStoreFavoriteListService.getStoreFavoriteList(storeNo);
 		
-		
 		mav.addObject("storeVO", storeVO);
 		mav.addObject("storeProductVO", storeProductVO);
+		mav.addObject("storeProductDispStVO", storeProductDispStVO);
 		mav.addObject("storeCommentVO", storeCommentVO);
 		mav.addObject("storeReviewVO", storeReviewVO);
 		mav.addObject("storeFavoriteVO", storeFavoriteVO);
@@ -109,7 +126,7 @@ public class StoreController {
 		return mav;
 	}
 	
-	@PostMapping("/newComment")
+	@PostMapping("/{storeNo}/newComment")
 	public ModelAndView storeCommentInsertAction(StoreCommentVO vo, @RequestParam(value="storeCommentWriter") int storeNo) {
 		insertStoreCommentService.insertStoreComment(vo);
 		
@@ -117,7 +134,7 @@ public class StoreController {
 		return mav;
 	}
 	
-	@PostMapping("/delComment")
+	@PostMapping("/{storeNo}/delComment")
 	public ModelAndView storeCommentDeleteAction(@RequestParam int storeCommentNo) {
 		deleteStoreCommentService.deleteStoreComment(storeCommentNo);
 		
@@ -126,18 +143,20 @@ public class StoreController {
 	}
 	
 	
-	@GetMapping("/reviews")
+	@GetMapping("/{storeNo}/reviews")
 	public ModelAndView GetStoreReviewsList(@PathVariable int storeNo) {
 		ModelAndView mav = new ModelAndView("store/reviews/reviews");
 
 		StoreVO storeVO = getStoreService.getStore(storeNo);
 		List<StoreProductVO> storeProductVO = getStoreProductListService.getStoreProductList(storeNo);
+		List<StoreProductDispStVO> storeProductDispStVO = getStoreProductDispStListService.getStoreProductDispStList(storeNo);
 		List<StoreCommentVO> storeCommentVO = getStoreCommentListService.getStoreCommentList(storeNo);
 		List<StoreReviewVO> storeReviewVO = getStoreReviewListService.getStoreReviewList(storeNo);
 		List<StoreFavoriteVO> storeFavoriteVO = getStoreFavoriteListService.getStoreFavoriteList(storeNo);
 		
 		mav.addObject("storeVO", storeVO);
 		mav.addObject("storeProductVO", storeProductVO);
+		mav.addObject("storeProductDispStVO", storeProductDispStVO);
 		mav.addObject("storeCommentVO", storeCommentVO);
 		mav.addObject("storeReviewVO", storeReviewVO);
 		mav.addObject("storeFavoriteVO", storeFavoriteVO);
@@ -145,22 +164,31 @@ public class StoreController {
 		return mav;
 	}
 	
-	@GetMapping("/favorites")
+	@GetMapping("/{storeNo}/favorites")
 	public ModelAndView GetStoreFavoritesList(@PathVariable int storeNo) {
 		ModelAndView mav = new ModelAndView("store/favorites/favorites");
 
 		StoreVO storeVO = getStoreService.getStore(storeNo);
 		List<StoreProductVO> storeProductVO = getStoreProductListService.getStoreProductList(storeNo);
+		List<StoreProductDispStVO> storeProductDispStVO = getStoreProductDispStListService.getStoreProductDispStList(storeNo);
 		List<StoreCommentVO> storeCommentVO = getStoreCommentListService.getStoreCommentList(storeNo);
 		List<StoreReviewVO> storeReviewVO = getStoreReviewListService.getStoreReviewList(storeNo);
 		List<StoreFavoriteVO> storeFavoriteVO = getStoreFavoriteListService.getStoreFavoriteList(storeNo);
 		
 		mav.addObject("storeVO", storeVO);
 		mav.addObject("storeProductVO", storeProductVO);
+		mav.addObject("storeProductDispStVO", storeProductDispStVO);
 		mav.addObject("storeCommentVO", storeCommentVO);
 		mav.addObject("storeReviewVO", storeReviewVO);
 		mav.addObject("storeFavoriteVO", storeFavoriteVO);
 		
 		return mav;
+	}
+	
+	@GetMapping("/{storeNo}/jjimcount")
+	@ResponseBody
+	public int getJjimCount(@RequestParam int storeNo) {
+		int jjimCount = getStoreFavoriteListService.getJjimCount(storeNo);
+		return jjimCount;
 	}
 }

@@ -13,7 +13,7 @@
 <!-- 페이지 CSS  -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/store/storeinfo.css?v=<%=System.currentTimeMillis() %>"/>">
-
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
 <!-- 라이브러리 -->
 <script
@@ -48,7 +48,7 @@
 									<label>상점명</label>
 								</div>
 								<input type="text" value="${storeVO.storeName }" id="storeName"
-									name="storeName" placeholder="상점명을 입력해주세요">
+									name="storeName" placeholder="상점명을 입력해주세요" maxlength="30">
 							</div>
 						</div>
 						<div class="storeedit-common-margin">
@@ -56,7 +56,7 @@
 								<div class="upstore-info" >
 									<label>상점 소개</label>
 								</div>
-								<textarea id="storeIntro" name="storeIntro"
+								<textarea id="storeIntro" name="storeIntro" maxlength="100"
 									placeholder="상점 소개를 입력해주세요" style="width:400px; height:300px;" >${storeVO.storeIntro }</textarea>
 							</div>
 						</div>

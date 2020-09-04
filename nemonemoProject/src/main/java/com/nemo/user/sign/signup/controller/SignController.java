@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nemo.user.sign.signup.service.UserService;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
+import com.nemo.user.sign.signup.vo.UserTermsVO;
 
 @Controller
 @RequestMapping("/sign")
@@ -37,7 +38,9 @@ public class SignController {
 		try {
 			vo.setUserPw(encoder.encode(vo.getUserPw()));
 			int x = userService.insertUser(vo);
-			System.out.println(x);
+			System.out.println("x : " + x);
+			System.out.println("동의? : " + vo.getUserTermsAgreeFl());
+//			vo.setStoreName("상점 15호");
 			ModelAndView mav = new ModelAndView("redirect:/");
 			return mav;
 		} catch (Exception e) {

@@ -132,14 +132,14 @@
 										</div>
 									</div>
 								</div>
-								<div class="check-margin">
+								<!-- <div class="check-margin">
 									<div class="terms-check-box">
 										<div id="ch-fourth" class="terms-check"></div>
 										<div class="checkbox-info">
 											<span class="suggest">(선택)</span>이메일,SMS 광고 수신 동의
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<button class="updateuser-btn" id="updateuser-btn">수정하기</button>

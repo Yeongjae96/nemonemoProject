@@ -150,7 +150,13 @@
 		<!-- 상위 메뉴 모달 -->
 		<div class="top-menu-modal">
 			<div class="modal-bg-area"></div>
-		
+			<div class="modal-menu-btn-area">
+				<button class="modal-menu-btn-alarm">알림<b>ON</b></button>
+				<button class="modal-menu-btn-report">신고</button>
+				<button class="modal-menu-btn-inquery">신고조회</button>
+				<button class="modal-menu-btn-block">차단</button>
+				<button class="modal-menu-btn-exit">나가기</button>
+			</div>
 		</div>
    </div>
    

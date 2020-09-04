@@ -2,6 +2,7 @@ package com.nemo.user.store.vo;
 
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Data;
 
@@ -27,4 +28,5 @@ public class StoreVO{
 	private String storeName;
 	private String storeIntro;
 	private int storeRating;
+	private String productDispSt;
 }

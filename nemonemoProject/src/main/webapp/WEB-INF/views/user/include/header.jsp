@@ -69,11 +69,28 @@
 		<div class="my-menu">
 			<a class="my-menu-box" href="<c:url value="/products/new.do"/>">
 				<img src="<c:url value="/resources/images/user/common/sell2.png"/>"
-				alt="판매하기아이콘" id="sell-icon">&nbsp;&nbsp;판매하기
-			</a> <a href="${pageContext.request.contextPath}/shop/${user.storeNo }/products.do"> <img
-				src="<c:url value="/resources/images/user/common/my_store.png"/>"
-				alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점
-			</a>
+				alt="판매하기아이콘" id="sell-icon">판매하기
+			</a> 
+<%-- 			<c:set var="isLogin" value="${user.storeNo}" />
+ --%>			<%-- <c:choose>
+				<c:when test="${not empty isLogin }"> 
+				<a class="my-menu-box" href="${pageContext.request.contextPath}/shop/${user.storeNo }/products.do"> 
+					<img
+					src="<c:url value="/resources/images/user/common/my_store.png"/>"
+					alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점 </a>
+				</c:when>
+				<c:otherwise>
+				<a class="my-menu-box" onclick="javascript:alert('로그인이 필요한 서비스입니다.');">
+					<img
+					src="<c:url value="/resources/images/user/common/my_store.png"/>"
+					alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점 </a> 
+				</c:otherwise>
+			</c:choose> --%>
+			
+			
+			<a class="my-menu-box" href="${pageContext.request.contextPath}/shop/${user.storeNo }/products.do"> 
+				<img src="<c:url value="/resources/images/user/common/my_store.png"/>" alt="내상점아이콘" id="store-icon">내 상점
+			</a> 
 		</div>
 	</div>
 	<div class="cate-icon--area">
