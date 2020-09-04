@@ -87,7 +87,7 @@ function checks(){
 	// 이메일 유효성 검사
 	if(!getMail.test($("#emailInput").val())){ 
 		alert("이메일형식에 맞게 입력해주세요") 
-		$("#emailInput").val(""); 
+		//$("#emailInput").val(""); 
 		$("#emailInput").focus(); 
 		return false; 
 		}
@@ -101,7 +101,7 @@ function checks(){
 	// 비밀번호 유효성검사
 	if(!getCheck.test($("#passInput").val())){ 
 		alert("형식에 맞게 입력해주세요"); 
-		$("#passInput").val(""); 
+		//$("#passInput").val(""); 
 		$("#passInput").focus(); 
 		return false; 
 		} 
@@ -114,7 +114,7 @@ function checks(){
 	// 비밀번호 서로확인
 	if($("#passInput").val() != $("#passInputCk").val()){ 
 		alert("비밀번호가 상이합니다"); 
-		$("#passInput").val(""); 
+		//$("#passInput").val(""); 
 		$("#passInputCk").val(""); 
 		$("#passInput").focus(); 
 		return false; 
@@ -129,7 +129,7 @@ function checks(){
 	// 이름 유효성 검사
 	if(!getName.test($("#nameInput").val())){ 
 		alert("이름형식에 맞게 입력해주세요");
-		$("#nameInput").val(""); 
+		//$("#nameInput").val(""); 
 		$("#nameInput").focus(); 
 		return false;
 	}
@@ -143,14 +143,14 @@ function checks(){
 	// 휴대폰 유효성 검사
 	if(!getPhone.test($("#phoneNumber").val())){ 
 		alert("핸드폰 번호 형식에 맞게 입력해주세요");
-		$("#phoneNumber").val(""); 
+		//s$("#phoneNumber").val(""); 
 		$("#phoneNumber").focus(); 
 		return false;
 	}
 	
 	// Zip코드 공백검사
 	if($("#zipcodeInput").val() == ""){
-		alert("집코드를 검색해주세요"); 
+		alert("우편번호를 검색해주세요"); 
 		$("#zipcodeInput").focus(); 
 		return false; 
 		} 
@@ -164,7 +164,7 @@ function checks(){
 	
 	// 주소2 공백 검사
 	if($("#address2Input").val() == ""){
-		alert("상세주소를을 입력해주세요"); 
+		alert("상세주소를 입력해주세요"); 
 		$("#nameInput").focus(); 
 		return false; 
 		} 
@@ -200,14 +200,14 @@ function checks(){
 	//선택 약관 체크 검사
 	var check = $('input:checkbox[id="ch-third"]').is(':checked');
 	if(check == true){
-		$("#ch-third").val('Y');
+		$("#ch-thirdHidden").val('Y');
 	} 
-//	else {
-//		$("#ch-third").val('N');
-//	}
+	else {
+		$("#ch-thirdHidden").val('N');
+	}
 	console.log('check: ' + check);
 	console.log('check2: ' + $("#ch-third").val());
-	
+
 //	var storeValue = $('#storeName').val();
 ////	$('input[name=storeName]').val(storeValue);
 //	console.log('storeName : ' + storeValue);
