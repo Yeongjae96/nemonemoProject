@@ -74,13 +74,13 @@
 			<c:set var="isLogin" value="${user.storeNo}" />
 			<c:choose>
 				<c:when test="${not empty isLogin }"> 
-				<a href="${pageContext.request.contextPath}/shop/${user.storeNo }/products.do"> 
+				<a class="my-menu-box" href="${pageContext.request.contextPath}/shop/${user.storeNo }/products.do"> 
 					<img
 					src="<c:url value="/resources/images/user/common/my_store.png"/>"
 					alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점 </a>
 				</c:when>
 				<c:otherwise>
-				<a onclick="javascript:alert('로그인이 필요한 서비스입니다.');">
+				<a class="my-menu-box" onclick="javascript:alert('로그인이 필요한 서비스입니다.');">
 					<img
 					src="<c:url value="/resources/images/user/common/my_store.png"/>"
 					alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점 </a> 
