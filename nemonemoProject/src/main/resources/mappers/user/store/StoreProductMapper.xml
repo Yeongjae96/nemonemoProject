@@ -12,6 +12,7 @@
 		<result column="product_disp_st" property="productDispSt" />
 		<result column="product_price" property="productPrice" />
 		<result column="product_reg_dt" property="productRegDt" />
+		<result column="product_img_no" property="productImgNo" />
 	</resultMap>
     
     <select id="getStoreProductList" parameterType="int" resultMap="storeProductMap">
@@ -22,4 +23,5 @@
 		WHERE
 			sto.store_no(+) = prod.product_seller and prod.product_seller=#{storeNo}
     </select>
+    
 </mapper>

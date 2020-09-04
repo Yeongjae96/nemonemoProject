@@ -1,0 +1,152 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean"); /* 구글 Noto 폰트 라이브러리 */
+
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, main, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+.talk-list-area {
+	width: 500px;
+    height: 667px;
+    background: rgb(244, 244, 250);
+    overflow: hidden;
+}
+
+.talk-list-header {
+	width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    -webkit-box-align: center;
+    align-items: center;
+    z-index: 10;
+    position: relative;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: center;
+    justify-content: center;
+    background: rgb(255, 255, 255);
+    padding: 0px 1rem;
+    border-bottom: 2px solid rgb(255, 80, 88);
+}
+
+.list-header-title {
+    font-weight: bold;
+}
+
+.idontknow {
+	position: absolute;
+    display: flex;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+}
+
+.talk-list-content {
+	height: calc(617px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex: 1 1 0%;
+}
+
+.talk-item-area {
+	display: flex;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 80px;
+    background: rgb(255, 255, 255);
+}
+
+.talk-item-image-link {
+	display: flex;
+    margin: 0px 16px;
+}
+
+.talk-item-image-link > img {
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+}
+
+.talk-item-preview-link {
+	flex: 1 1 0%;
+    overflow: hidden;
+}
+
+.talk-item-preview-title {
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 1.4;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(33, 33, 33);
+}
+
+.talk-item-preview-content {
+	line-height: 1.4;
+    font-size: 14px;
+    margin-top: 4px;
+    color: rgb(102, 102, 102);
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    word-break: break-all;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow-wrap: break-word;
+    max-height: 2.8em;
+    overflow: hidden;
+}
+
+.talk-item-date {
+	padding-top: 16px;
+    height: 100%;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.4;
+    color: rgb(153, 153, 153);
+}
+
+.talk-item-menu-area {
+	margin-top: -5px;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.talk-item-menu-btn {
+	width: 32px;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
+.talk-item-menu-btn svg {
+	font-size: 20px;
+	width: 32px!important;
+	color: #DDDDDD;	
+}

@@ -1,10 +1,5 @@
    /* 사이드배너 */
   
-  /* sb -> 사이드배너, rec_prd -> 최근_상품 */
-  /* 사이드배너 */
-  
-  /* sb -> 사이드배너, rec_prd -> 최근_상품 */
-
   .sidebanner-layout{
     position: absolute;
     top: 102px;
@@ -14,10 +9,19 @@
   .sb-size {
       width : 90px;
   }
+  .delete-img {
+ 	width : 10px;
+ 	height : 12px;
+  }
+  .prodImg{
+  	width : 66px;
+  	height : 66px;
+  }
+
     /* 찜 */
   .jjim{
-        width: 90px; /* 100% (?)*/
-        height : 54px;
+        width: 100%;
+        height : 58px;
         margin-bottom: 6px;
         padding: 10px;
         border-width: 1px;
@@ -26,23 +30,25 @@
         border-image: initial;
         background: rgb(255, 255, 255);
   }
+  
+
   .jjim:first-child {
     border-color: rgb(102, 102, 102);
 }
 
-  .jjim-text{
+ .jjim-text{
     font-size: 12px;
     font-weight: 600;
     color: rgb(102, 102, 102);
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
   }
-
+  
   .jjim-cnt {
     display: flex;
     justify-content: center;
 }
-    .to-favorites{
+  .to-favorites{
     display: flex;
     align-items: center;
     font-size: 12px;
@@ -50,8 +56,21 @@
     font-weight: 600;
     }
 
-    .to-favorites img{
+ .to-favorites-red{
+      	display: flex;
+    	-webkit-box-align: center;
+    	align-items: center;
+    	font-size: 12px;
+    	font-weight: 600;
+    	color: rgb(247, 0, 0);
+   
+}
+    .heart{
     margin-right : 5px;
+    
+    }
+    #favimg{
+    margin-right : 7px;
     }
 
     /* 최근본상품 */
@@ -109,8 +128,28 @@
     border-image: initial;
     }
 
-    .rec-prd-img > img {
-        width: 100%;
+	.none-session{
+	height: 120px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    color: rgb(204, 204, 204);
+    font-size: 12px;
+    }
+    
+    .empty{
+    width : 28px;
+    height : 16px;
+    margin-bottom: 5px;
+    }
+    .empty_text{
+    white-space: pre-wrap;
+    text-align: center;
+    line-height: 1.4;
+  	letter-spacing: -1px;
     }
 
      /* 사이드 네비게이션 상품 정보 보기 */
@@ -129,7 +168,20 @@
     border-left: 1px solid rgb(33, 33, 33);
     padding: 10px;
     }
-
+	
+	.rec-prd-img:hover > .prd-info {
+		visibility: visible;
+	}
+	.rec-prd-img:hover > .prodImg {
+	/* 	border-right : solid;
+		border-bottom : solid; */
+		width: 66px;
+		height: 66px;
+	}
+	
+	.rec-prd-img:hover {
+		border: 1px solid rgb(33, 33, 33);
+	}
 
     .delete-rec{
     position: absolute;

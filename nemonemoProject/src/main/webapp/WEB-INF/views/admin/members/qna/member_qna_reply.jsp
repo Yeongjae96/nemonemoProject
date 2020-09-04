@@ -118,7 +118,8 @@
 													<c:forEach var="imgFile" items="${imageList}">
 														<a class ="imgAnchor" data-imgno = "${imgFile.qnaImgNo}"
 														data-imgnm = "${imgFile.qnaImgOriginName}"
-														data-imgtype="${imgFile.qnaImgType}">
+														data-imgtype="${imgFile.qnaImgType}"
+														style = "cursor : pointer;">
 														${imgFile.qnaImgFileName}.${imgFile.qnaImgType}</a> <br>
 														
 													</c:forEach>

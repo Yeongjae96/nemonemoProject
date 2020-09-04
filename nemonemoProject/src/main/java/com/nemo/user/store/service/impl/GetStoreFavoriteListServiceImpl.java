@@ -19,5 +19,10 @@ public class GetStoreFavoriteListServiceImpl implements GetStoreFavoriteListServ
 	public List<StoreFavoriteVO> getStoreFavoriteList(int storeNo) {
 		return storeDAO.getStoreFavoriteList(storeNo);
 	}
+
+	@Override
+	public int getJjimCount(int storeNo) {
+		return storeDAO.getJjimCount(storeNo);
+	}
 	
 }

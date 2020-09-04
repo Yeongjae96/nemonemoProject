@@ -7,6 +7,7 @@ $(function () {
 $(function(){
 	initImageArea();
 	initRegBtn();
+	initPdMenu();
 });
 
 

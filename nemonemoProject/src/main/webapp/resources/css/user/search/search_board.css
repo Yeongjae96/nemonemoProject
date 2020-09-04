@@ -84,15 +84,24 @@
     flex-wrap: wrap;
     -webkit-box-pack: justify;
     justify-content: flex-start;
+    animation: slide 0.5s forwards;
+    animation-delay: 2s;
+    
 }
 
 .search-search-sub__item {
     width: 204px;
     height: 48px;
     margin-bottom: 1px;
+    height: 50px;
+    box-shadow: rgb(238, 238, 238) 0px 1px 0px 0px;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    background: rgb(255, 255, 255);
 }
 
-.search-search-sub__item:nth-last-child(-n+5):nth-child(5n+1), .search-search-sub__item:nth-last-child(-n+5):nth-child(5n+1) ~ .search-search-sub__item {
+.search-search-sub__item:nth-last-child(-n+5):nth-child(5n+1) ~ .search-search-sub__item {
     margin-bottom: 0px;
 }
 

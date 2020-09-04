@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.products.repository.impl.UserProductsRecommendMapper">
+	
+	<resultMap id="recommendMap" type="com.nemo.user.products.vo.UserProductsRecommendVO">
+		<id column="product_no" property="productNo"/>
+		<result column="product_img_no" property="productImgNo"/>
+		<result column="product_name" property="productName"/>
+		<result column="product_price" property="productPrice"/>
+	</resultMap>
+	
+	<select id="getRecommendListByCateNo" parameterType="int" resultMap="recommendMap">
+	
+		SELECT product_no, product_img_no, product_name, product_price
+		FROM (
+		    SELECT rownum rnum, p.product_no, i.product_img_no, p.product_name, p.product_price
+		    FROM (
+		        SELECT *                                   
+		        FROM (
+		            SELECT 
+		                product_no, 
+		                product_name, 
+		                product_price,
+		                product_cate_no,
+		                CASE WHEN product_edit_dt is null THEN product_reg_dt
+		                     ELSE product_edit_dt
+		                END AS product_dt  
+		            FROM product_tb
+		            WHERE product_cate_no = #{categoryNo} AND product_no NOT IN (#{productNo})
+		        )
+		        ORDER BY product_dt desc
+		    ) p
+		    INNER JOIN (SELECT product_no, min(product_img_no) AS product_img_no FROM product_img_tb GROUP BY product_no) i
+		    ON p.product_no = i.product_no
+		) t 
+		WHERE <![CDATA[rnum <= 6]]>
+		
+	</select>
+	
+
+</mapper>

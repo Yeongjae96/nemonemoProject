@@ -14,6 +14,7 @@ import lombok.Data;
  * == 수정 정보 ==
  *
  */
+
 @Data
 public class UserBaseVO {
    private int userNo;
@@ -35,4 +36,5 @@ public class UserBaseVO {
    private String storeIntro;
    private Date userWithdrawYmd;
    private Date userRegYmd;
+   private String userTermsAgreeFl;
 }

@@ -5,14 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>번개장터 | 1:1상담</title>
+<title>네모내모 | 1:1상담</title>
 
 <!-- 공통 CSS -->
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/user/common/common.css"/>">
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/user/customer/qna/ask.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/user/customer/qna/ask.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/customer_nav.css"/>">
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>"> 
 
 
 <!-- 라이브러리 -->
@@ -23,6 +22,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="<c:url value="/resources/vendor/jquery/jquery.form.min.js"/>"></script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
+
 
 <!-- 해당 페이지 JS파일 -->
 <script> this.contextPath = "<c:url value="/"/>"</script>
@@ -58,7 +58,7 @@
 						<div class="nav-selected-underline"></div></a> 
 						<a class="qna-nav-not-selected" href="/nemonemoProject/customer/qna/list.do">상담내역</a>
 					</nav>
-					<form action="#" method="post" enctype="multipart/form-data" id="newQuestionForm"> <!-- new.do --> 
+					<form action="#" method="post" enctype="multipart/form-data" id="newQuestionForm">
 						<div class="qna-contents">							
 							<div class="qna-contents-selbox">
 								<div class="selbox-container">
@@ -84,7 +84,7 @@
 								<button class="qna-btn-submit" id="qnaSubmit">상담신청</button>							
 							</div>
 						</div>
-						<input type="hidden" value="${user.userNo}" name="qnaRegId" />
+						<input type="hidden" value="${user.userNo}" name=qnaRegId />
 					</form>
 				</main>
 			</div>
