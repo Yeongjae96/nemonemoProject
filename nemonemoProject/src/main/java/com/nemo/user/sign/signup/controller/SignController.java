@@ -1,11 +1,15 @@
 package com.nemo.user.sign.signup.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -226,4 +230,16 @@ public class SignController {
           return "home";
       }
 
+	  @GetMapping("/login/check")
+	  @ResponseBody 
+	  public ResponseEntity<Map<String, String>> isLogin() {
+		  UserBaseVO user = (UserBaseVO)ContextUtil.getAttrFromSession("user");
+		  Map<String, String> resultMap = new HashMap<>();
+		  
+		  String loginStatus = (user != null) ? "true" : "false";
+		  resultMap.put("loginStatus", loginStatus);
+		  
+		  return new ResponseEntity<Map<String, String>>(resultMap, HttpStatus.OK);
+	  }
+	  
 }

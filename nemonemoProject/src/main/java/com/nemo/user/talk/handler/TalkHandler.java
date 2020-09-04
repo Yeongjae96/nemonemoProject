@@ -23,6 +23,7 @@ public class TalkHandler extends TextWebSocketHandler {
 		
 		UserBaseVO user = (UserBaseVO)tempMap.get("user");
 		if(user == null) {
+			System.out.println("유저정보없음");
 			session.close();
 			return;
 		}
@@ -44,7 +45,7 @@ public class TalkHandler extends TextWebSocketHandler {
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		
+		System.out.println("afterConnectionClosed 실행");
 		Map<String, Object> tempMap = session.getAttributes();
 		UserBaseVO user = (UserBaseVO)tempMap.get("user");
 		if(user == null) return;

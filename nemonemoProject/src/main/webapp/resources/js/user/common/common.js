@@ -40,8 +40,8 @@ $(function() {
 	initTopMenu();
 	initSideNavbar();
 	initSearchEvent();
+	initMyTalk();
 	initJJim();
-	
 });
 
 /* 탑 메뉴 */
@@ -347,6 +347,33 @@ function loadProduct(){
 		writeDocumentFromSessionItem();
 	}
 	
+}
+
+function initMyTalk() {
+	const myTalkBtn = document.getElementById('myTalk');
+	if(!myTalkBtn) return false;
+	myTalkBtn.addEventListener('click', openTalkList);
+	
+	const loginCheck = function() {
+		return new Promise(function(resolve, reject) {
+			$.ajax({
+				url: contextPath + 'sign/login/check.do',
+				method: 'get',
+				success: resolve,
+				error: reject,
+			});
+		});
+	}
+	
+	async function openTalkList() {
+		const result = await loginCheck();
+		console.log(result);
+		if(result.loginStatus == 'true') {
+			const newWindow = window.open(contextPath + 'talk/list.do', 'talk', 'width=500px, height=667px');
+		} else {
+			document.getElementById('loginBtn').dispatchEvent(new Event('click'));
+		}
+	}
 }
 
 

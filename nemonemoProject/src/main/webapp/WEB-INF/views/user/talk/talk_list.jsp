@@ -47,6 +47,23 @@
    				</div>
    			</li>
    		</ul>
+   		<div class="user-modal">
+	   		<div class="user-menu-modal">
+	   			<div class="user-menu-modal-bg"></div>
+	   			<div class="user-menu-modal-list">
+	   				<h3 class="user-menu-modal-title">
+	   					핑구191
+	   				</h3>
+	   				<button class="user-menu-modal-item">대화방 알림 끄기</button>
+	   				<button class="user-menu-modal-item">차단	</button>
+	   				<button class="user-menu-modal-item">신고</button>
+	   				<button class="user-menu-modal-item">나가기</button>
+	   			</div>
+	   		</div>
+   		</div>
+   		
+   		
+   		
    </div>
    
 </body>

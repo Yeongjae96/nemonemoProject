@@ -928,9 +928,15 @@
                     <button class="call-modal__close">
                         <i class="fas fa-times"></i>
                     </button>
-                    <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="연락하기 프로필 이미지" class="call-modal__profile">
+                    <c:if test="${productSellerVO.storeImgNo == -1 }">
+	                    <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="연락하기 프로필 이미지" class="call-modal__profile">
+                    </c:if>
+                    <c:if test="${productSellerVO.storeImgNo != -1 }">
+	                    <img src="<c:url value="/image/store/${productSellerVO.storeImgNo}.img"/>" alt="연락하기 프로필 이미지" class="call-modal__profile">
+                    </c:if>
+                    
                     <div class="call-modal__title">
-                        <div class="call-modal__title-text">가성비갑득템상점</div>
+                        <div class="call-modal__title-text">${productSellerVO.storeName}</div>
                     </div>
                     <div class="call-modal__content">
                         <div class="call-modal__item">
@@ -947,11 +953,9 @@
                             </div>
                             <div class="call-modal__item-content">
                                 <div class="call-modal__item-stars">
-                                    <i class="light fas fa-star"></i>
-                                    <i class="light fas fa-star"></i>
-                                    <i class="light fas fa-star"></i>
-                                    <i class="light fas fa-star"></i>
-                                    <i class="light fas fa-star"></i>
+                                    <jsp:include page="/WEB-INF/views/user/products/common/rating.jsp">
+                                    	<jsp:param value="${productSellerVO.storeRating}" name="rating"/>
+                                    </jsp:include>
                                 </div>
                             </div>
                         </div>
@@ -965,9 +969,9 @@
                         </div>
                     </div>
                     <div class="call-modal__btn">
-                        <a class="call-modal__link" href="#">
+                        <button class="call-modal__link" data-href="<c:url value="/talk/user/${productSellerVO.storeNo}.do?productNo=${productVO.productNo}"/>">
                             <i class="fas fa-phone"></i>
-                            연락하기</a>
+                            연락하기</button>
                     </div>
                 </div>
             </div>

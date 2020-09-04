@@ -48,23 +48,93 @@ function initCategoryBox() {
 }
 
 function initBtn() {
+	// 연락하기 모달
+	const callModal = document.getElementById('callModal');
+	const callOpenBtn = document.getElementById('callBtn');
+	const callOpen2Btn = document.getElementById('bottomCallBtn');
+	const callCloseBtn = document.querySelector('.call-modal__close');
+	const callModalObj = { open: [callOpenBtn, callOpen2Btn], modal: callModal, close: callCloseBtn};
+	
+	modalSetting(callModalObj);
+	
+	
+	const callModalLink = document.querySelector('.call-modal__link');
+	callModalLink.addEventListener('click', openTalk);
+	
+	function openTalk() {
+		callCloseBtn.dispatchEvent(new Event('click'));
+		function getLoginStatus() {
+			return new Promise(function(resolve, reject) {
+				$.ajax({
+					url: contextPath + 'sign/login/check.do',
+					method: 'get',
+					success: resolve,
+					error: reject
+				});
+			});
+		}
+		
+		(async function getUserTalk() {
+			const obj = await getLoginStatus();
+			if(obj.loginStatus == 'true') {
+				link = callModalLink.dataset.href;
+				const newWindow = window.open(link, 'talk', 'width=500px, height=667px');
+			} else {
+				const loginBtn = document.getElementById('loginBtn');
+				if(loginBtn) loginBtn.dispatchEvent(new Event('click'));
+			}
+		}());
+	}
+	
+	
 	$('#bottomCallBtn').click(function() {
 		$('#callModal').css('display', 'flex');
 	});
 	$('#bottomBuyBtn').click(function() {
 		$('#buyModal').css('display', 'flex');
 	});
-	$('#callBtn').click(function() {
-		$('#callModal').css('display', 'flex');
-	});
 
 	$('#buyBtn').click(function() {
 		$('#buyModal').css('display', 'flex');
 	});
+	
+	
 
 	$('#reportBtn').click(function() {
 		$('#productReportModal').css('display', 'flex');
 	});
+	
+	/*
+	 * modalObj
+	 * .open -> 모달 여는 버튼
+	 * .modal -> 모달태그
+	 * .close -> 닫기버튼태그
+	 */
+	
+	function modalSetting(modalObj) {
+		if(!modalObj.constructor ==  Object  || !modalObj.modal || !modalObj.close || !modalObj.open) { return false; }
+		
+		clickEvent(modalObj.open, modalOpen);
+		clickEvent(modalObj.close, modalClose);
+		
+		// 모달 열기
+		function modalOpen() {
+			modalObj.modal.style.display = 'flex';
+		}
+		
+		// 모달 닫기 
+		function modalClose() {
+			modalObj.modal.style.display = 'none';
+		}
+		
+		function clickEvent(something, callback) {
+			if(something.constructor == Array) {
+				something.forEach(e => e.addEventListener('click', callback));
+			} else if(something.constructor == HTMLButtonElement) {
+				something.addEventListener('click', callback);
+			}
+		}
+	}
 }
 
 
@@ -76,7 +146,6 @@ function initFavorite() {
 	const url = window.location.href;
 	const productNo = url.substring(url.lastIndexOf('/') + 1, url
 			.lastIndexOf('.'));
-	console.log(productNo);
 	
 	$zzimBtn.click(insertFavorite);
 	
@@ -92,7 +161,6 @@ function initFavorite() {
 		
 		
 		function toggleFavorite(status) {
-			console.log($target);
 			$.ajax({
 				url: (contextPath + 'products/favorite/') + (status ? 'new.do' : 'delete.do'),
 				method: 'post',

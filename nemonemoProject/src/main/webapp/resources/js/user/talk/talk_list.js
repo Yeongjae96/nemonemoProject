@@ -1,7 +1,18 @@
 $(function() {
+	initUserMenuModal();
 	openSocket();
 });
 
+/* 사용자 메뉴 모달 */
+function initUserMenuModal() {
+	
+	const talkListArea = document.querySelector('.talk-list-area');
+	
+	/*talkListArea.appendChild(modal);*/
+	
+}
+
+/* 소켓 열기 */
 function openSocket() {
 	const wsUri = "ws://localhost"+contextPath + "talk/open.do";
 	const webSocket = new WebSocket(wsUri);

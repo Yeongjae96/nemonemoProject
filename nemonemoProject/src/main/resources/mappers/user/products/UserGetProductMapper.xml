@@ -17,6 +17,7 @@
 	<result column="store_review_cnt" property="storeReviewCnt"/>
 	<result column="store_name" property="storeName"/>
 	<result column="store_img_no" property="storeImgNo"/>
+	<result column="store_rating" property="storeRating"/>
 	<result column="store_product_cnt" property="storeProductCnt"/>
 	<collection property="storeProductList" select="selectGetStoreProductList" column="product_seller"/>
 	<collection property="storeReviewList" select="selectReviewList" column="product_seller"/>
@@ -77,6 +78,7 @@
 		u.store_no,
 		u.store_name,
 		sr.store_review_cnt,
+        sr.store_rating,
         nvl(i.store_img_no, -1) store_img_no,
         p.store_product_cnt
 	FROM (SELECT product_seller, count(1) AS store_product_cnt FROM product_tb WHERE product_disp_st NOT IN ('D', 'P') GROUP BY product_seller) p
@@ -84,7 +86,7 @@
 	ON p.product_seller = u.user_no AND p.product_seller = #{productSeller}
 	LEFT JOIN store_img_tb i
 	ON i.store_no = u.store_no
-	LEFT JOIN (SELECT store_no, count(1) AS store_review_cnt FROM store_review_tb GROUP BY store_no) sr<!-- WHERE store_comment_del_fl = 'N' -->
+	LEFT JOIN (SELECT store_no, count(1) AS store_review_cnt, floor(avg(store_review_rating)) as store_rating FROM store_review_tb GROUP BY store_no) sr
 	ON sr.store_no = u.store_no
 
 </select>
