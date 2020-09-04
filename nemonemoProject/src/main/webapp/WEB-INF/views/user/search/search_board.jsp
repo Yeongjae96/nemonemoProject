@@ -9,6 +9,7 @@
 <title>네 모든것 내 모든것!, 네모내모</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
 <!-- 페이지 CSS  -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/search/search_board.css"/>">

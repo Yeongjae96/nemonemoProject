@@ -260,16 +260,32 @@ button, input {
 }
 
 .my-menu {
+	display: flex;
+	flex-direction: row;
 	justify-content: space-around;
+	align-items: center;
+}
+
+.my-menu-box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 14px;
+}
+
+.my-menu-box:last-child::after {
+	border-right: 0px;
+	padding-right: 0px;
+	margin-right: 0px;
 }
 
 .my-menu-box::after {
 	content: "";
 	position: relative;
-	top: 0px;
+	top: 8px;
 	right: 0px;
 	width: 1px;
-	height: 14px;
+	height: 10px;
 	box-sizing: border-box;
 	border-right: 1px solid rgb(204, 204, 204);
 	padding-right: 22px;
@@ -753,8 +769,6 @@ a {
     font-weight: 700;
     color: rgb(247, 47, 51);
 }
-
-
 
 
 .search-close__area {

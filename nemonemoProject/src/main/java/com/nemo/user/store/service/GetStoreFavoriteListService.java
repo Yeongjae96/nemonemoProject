@@ -6,4 +6,5 @@ import com.nemo.user.store.vo.StoreFavoriteVO;
 
 public interface GetStoreFavoriteListService {
 	public List<StoreFavoriteVO> getStoreFavoriteList(int storeNo);
+	public int getJjimCount(int storeNo);
 }

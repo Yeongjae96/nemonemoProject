@@ -5,14 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>번개장터 | 1:1상담</title>
+<title>네모내모 | 1:1상담</title>
 
 <!-- 공통 CSS -->
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/user/common/common.css"/>">
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/user/customer/qna/ask.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/user/customer/qna/ask.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/customer_nav.css"/>">
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>"> 
 
 
 <!-- 라이브러리 -->

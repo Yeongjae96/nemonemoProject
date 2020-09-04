@@ -1,10 +1,5 @@
    /* 사이드배너 */
   
-  /* sb -> 사이드배너, rec_prd -> 최근_상품 */
-  /* 사이드배너 */
-  
-  /* sb -> 사이드배너, rec_prd -> 최근_상품 */
-
   .sidebanner-layout{
     position: absolute;
     top: 102px;
@@ -25,8 +20,8 @@
 
     /* 찜 */
   .jjim{
-        width: 90px; /* 100% (?)*/
-        height : 54px;
+        width: 100%;
+        height : 58px;
         margin-bottom: 6px;
         padding: 10px;
         border-width: 1px;
@@ -35,23 +30,25 @@
         border-image: initial;
         background: rgb(255, 255, 255);
   }
+  
+
   .jjim:first-child {
     border-color: rgb(102, 102, 102);
 }
 
-  .jjim-text{
+ .jjim-text{
     font-size: 12px;
     font-weight: 600;
     color: rgb(102, 102, 102);
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
   }
-
+  
   .jjim-cnt {
     display: flex;
     justify-content: center;
 }
-    .to-favorites{
+  .to-favorites{
     display: flex;
     align-items: center;
     font-size: 12px;
@@ -59,11 +56,21 @@
     font-weight: 600;
     }
 
+ .to-favorites-red{
+      	display: flex;
+    	-webkit-box-align: center;
+    	align-items: center;
+    	font-size: 12px;
+    	font-weight: 600;
+    	color: rgb(247, 0, 0);
+   
+}
     .heart{
     margin-right : 5px;
-    background:
-    	url(data:image/png; base64, iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAX1JREFUOBGdk7FLw0AUxnPXFhdHRdBdVJBCGgedBP8GoYJQHMRBRNBF1EGnTkopXcRBBEFB/A+cnNuIhEBHQcFBnHRolsTfqwZiWmLSg8t733vf++7d5U4Zv8NxnDHP846Ai8xxpdRDEAT7lmU5YKPZbE5hlonPYfPknrB18m9YQ8nHtu0l3/dvcEcER8ZnLpcrUzTLPGYORXLifmity6Zp3ivXdYc7nU4b0kSMlArS4Tu1MxqR7UFFZCVqRxE71DjzqZZOJi1o1CaTOamy0xraSypqAoldPcvWHhM4aVO2LhQKNbb3lbYizqPWI1bVxWLxla4O4oQMeI9L2ZYzMnDqXKxqhuIuVWpKpVJNQPdmhwI8gxP8nRD/Y09pYDfk/BGSYKvVarDVzZDQz3IuDTrZiuZ6hBBRvL0z7HqUGPqInPO2NrBBGBPbIyRBEaOzC9yK4Mi4pJO1uIjk+wpJAjGN2BXuimDGNSKriPg/MMMXsTw/4BbBO/EzlA5O/QbfD5IxtG4t8AAAAABJRU5ErkJggg==);
     
+    }
+    #favimg{
+    margin-right : 7px;
     }
 
     /* 최근본상품 */
@@ -121,9 +128,29 @@
     border-image: initial;
     }
 
-  /*   .rec-prd-img > img {
-        width: 100%;
-    } */
+	.none-session{
+	height: 120px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    color: rgb(204, 204, 204);
+    font-size: 12px;
+    }
+    
+    .empty{
+    width : 28px;
+    height : 16px;
+    margin-bottom: 5px;
+    }
+    .empty_text{
+    white-space: pre-wrap;
+    text-align: center;
+    line-height: 1.4;
+  	letter-spacing: -1px;
+    }
 
      /* 사이드 네비게이션 상품 정보 보기 */
 

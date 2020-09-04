@@ -30,10 +30,7 @@ function getData(){
 	});
 	
 	
-	
-	
 }
-
 
 
 /* 실제 sessionStorage에 상품 넣기*/

@@ -21,7 +21,9 @@
 	href="<c:url value="/resources/css/user/store/common/store_header.css?v=<%=System.currentTimeMillis()%>"/>">
 <link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
+
 <!-- 라이브러리 -->
+<script>window.contextPath = '<c:url value="/"/>';</script>
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
 <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -33,8 +35,6 @@
 <!-- 해당 페이지 JS파일 -->
 <script
 	src="<c:url value="/resources/js/user/store/products/products.js"/>"></script>
-
-
 
 </head>
 <body>

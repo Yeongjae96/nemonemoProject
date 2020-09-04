@@ -33,7 +33,6 @@
 <script
 	src="<c:url value="/resources/js/user/store/reviews/reviews.js"/>"></script>
 
-
 </head>
 <body>
 	<%

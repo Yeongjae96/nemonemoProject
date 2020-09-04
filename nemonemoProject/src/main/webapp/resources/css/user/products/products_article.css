@@ -141,7 +141,7 @@
 
 .detail-info__image__watermark {
     background-image: url(
-        ../../../images/user/products/watermark.png
+        ../../../images/common/logo/mainLogo.png
     );
     background-size: cover;
     width: 86px;
@@ -349,7 +349,7 @@ enlarge-modal__area * {
 }
 
 .enlarge-modal--watermark {
-    background-image: url(../../../images/user/products/watermark.png);
+    background-image: url(../../../images/common/logo/mainLogo.png);
     background-size: 86px 23px;
     width: 86px;
     height: 40px;
