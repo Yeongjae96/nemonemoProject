@@ -176,6 +176,34 @@ function checks(){
 		return false;
 	} 
 	
+	// 필수 약관1 검사
+	if ($("#ch-first").is(":checked") == false) {
+		alert("필수 약관을 동의해주세요");
+		$("#ch-first").focus();
+		return false;
+	} 
+	
+	// 필수 약관2 검사
+	if ($("#ch-second").is(":checked") == false) {
+		alert("필수 약관을 동의해주세요");
+		$("#ch-second").focus();
+		return false;
+	} 
+	
+//	if ($("#ch-third").is(":checked") == true) {
+//		
+//	} else{
+//		$("#ch-third").val('N');
+//	} 
+	
+	//선택 약관 체크 검사
+	var check = $('input:checkbox[id="ch-third"]').is(':checked');
+	if(check == true){
+		$("#ch-third").val('Y');
+	} else {
+		$("#ch-third").val('N');
+	}
+	console.log('check: ' + check);
 }
 
 // 중복체크

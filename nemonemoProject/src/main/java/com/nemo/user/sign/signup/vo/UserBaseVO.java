@@ -35,4 +35,5 @@ public class UserBaseVO {
    private String storeIntro;
    private Date userWithdrawYmd;
    private Date userRegYmd;
+   private String userTermsAgreeFl;
 }

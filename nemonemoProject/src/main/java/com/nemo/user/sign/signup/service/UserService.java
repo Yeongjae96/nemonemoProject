@@ -3,6 +3,7 @@ package com.nemo.user.sign.signup.service;
 import java.util.List;
 
 import com.nemo.user.sign.signup.vo.UserBaseVO;
+import com.nemo.user.sign.signup.vo.UserTermsVO;
 
 public interface UserService {
 	public int insertUser(UserBaseVO vo);
@@ -14,4 +15,5 @@ public interface UserService {
 	public int idUsercheck(String UserEmail);
 	public int addSocialUser(UserBaseVO vo);
 	public UserBaseVO getSocialUser(UserBaseVO vo);
+//	public int insertUserTerms(UserTermsVO vo);
 }

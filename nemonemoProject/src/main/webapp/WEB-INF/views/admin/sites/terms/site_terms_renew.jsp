@@ -86,8 +86,9 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                    <label class="form-label">등록자 ID(추후 세션으로 대체할 예정)</label>
-                                        <input type="text" value= "${termsVO.adminRegId}" class="form-control" id="adminRegId" name="adminRegId" required>   
+                                    <label class="form-label">등록자 ID</label>
+                                        <input type="text" class="form-control" id="adminRegId"
+											name="adminRegId" value="${admin.adminId}" readonly required > 
                                     </div>           
                                 </div>
                                <div class="form-group form-float" style="margin-top: 30px;">
