@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 header {
@@ -271,6 +272,14 @@ button, input {
 	flex-direction: row;
 	align-items: center;
 	font-size: 14px;
+}
+
+.my-menu-box:hover {
+	color:#000000;
+}
+
+.my-menu-box img {
+	margin-right: 5px;
 }
 
 .my-menu-box:last-child::after {

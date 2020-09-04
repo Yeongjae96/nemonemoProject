@@ -41,7 +41,7 @@ $(function() {
 	initSideNavbar();
 	initSearchEvent();
 	initJJim();
-
+	
 });
 
 /* 탑 메뉴 */
@@ -112,6 +112,36 @@ function initTopMenu() {
     				  + '+D 키를 눌러 즐겨찾기에 등록하실 수 있습니다.');
     	   }
       });
+      
+      const statusParam = getParam('status');
+      console.log(statusParam, 'params');
+      if((statusParam && statusParam == 'fail')) {
+    	  alert('로그인이 필요한 서비스입니다.');
+    	  document.getElementById('loginBtn').dispatchEvent(new Event('click'));
+      }
+      
+      function getParam(paramName) {
+    	  const url = window.location.search.substring(1);
+    	  if(!url.length) return null;
+    	  const tempArr = url.split('&');
+    	  
+    	  let returnValue = null;
+    	  
+    	  if(tempArr.length){
+    		  tempArr.forEach(e => {
+    			  const temp = e.split('=');
+    			  if(temp[0] == paramName) {
+    				  returnValue = temp[1];
+    				  return false;
+    			  }
+    		  });
+    	  } else if (url.indexOf('=') != -1) {
+    		  const tempUrl = url.split('=');
+    		  returnValue = tempUrl[0] == paramName ? tempUrl[1] : null;
+    	  }
+    	  
+    	  return returnValue;
+      }
 }
 
 

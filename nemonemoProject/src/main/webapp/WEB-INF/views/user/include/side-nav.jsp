@@ -11,7 +11,7 @@
                     	<input id= "userno" type = "hidden" data-userno ="${user.storeNo}">
                         <a id ="to-favorites" class="to-favorites" href="<c:url value="/shop/${user.storeNo}/favorites.do"/>">
                             <img id ="favimg" class="favimg" src="<c:url value="/resources/images/user/common/jjimheart.png"/>"
-                                width="9" height="9" alt="찜 링크">
+                                width="9" height="9" alt="찜 링크">0
                          </a>
                     </div>
                 </div>
