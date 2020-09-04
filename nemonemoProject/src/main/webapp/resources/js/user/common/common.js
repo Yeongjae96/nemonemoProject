@@ -174,19 +174,27 @@ function loadProduct(){
 	
 	const productList = document.querySelector('#rec-prd-list');
 	const $recPrdList = $('#rec-prd-list');
-	const count = document.getElementsByClassName('rec-prd-cnt')[0];
-
+	const recPrdCnt = document.querySelector('.rec-prd-cnt');
+	const recPrdPaging = document.querySelector('.rec-prd-paging');
 	
 	let getItems = JSON.parse(sessionStorage.getItem('recentlyVisitedProducts'));
-	if(!getItems) return false;
+	if(!getItems) {
+		IsEmptyRecentProduct();
+		return false;
+	}
+	let totalCnt; // 게시물 갯수
 	
 	writeDocumentFromSessionItem();
 	
 	/* 화면 구성 */
 	function writeDocumentFromSessionItem() {
-		const totalCnt = getItems.length; // 게시물 갯수
 		
+		recPrdPaging.style.display = 'flex';
+		
+		totalCnt = getItems.length; // 게시물 갯수 할당
 		$recPrdList.html('');
+		
+		/* sessionStorage 내용 화면 그리기 */
 		getItems.forEach(function(e,i){	
 		const html =
 				'<a class="rec-prd-img" data-prdno="'
@@ -203,25 +211,29 @@ function loadProduct(){
 			
 			
 			$recPrdList.append(html);
-			
-			const prdAnchor = document.getElementsByClassName('rec-prd-img');
-			const delBtn = document.getElementsByClassName('delete-rec');
-			
-			/* a 태그 클릭시 해당 게시물로 이동 */
-			for (var i = 0; i < prdAnchor.length; i++) {
-				prdAnchor[i].addEventListener('click', function(){
-					window.location.href = contextPath + 'products/' + $(this).data("prdno")+'.do';			
-				});
-			}
-			
-			/* 버튼 클릭시 해당 게시물 삭제 */
-			for (var i = 0; i < delBtn.length; i++) {
-				delBtn[i].addEventListener('click', function(e){
-					e.stopPropagation();
-					removeFromSession($(this).parent().parent().data("prdno"));
-				});
-			}
 		});
+		
+		const prdAnchor = document.getElementsByClassName('rec-prd-img');
+		const delBtn = document.getElementsByClassName('delete-rec');
+		
+		console.log('delBtn ',delBtn)
+		
+		/* a 태그 클릭시 해당 게시물로 이동 */
+		for (var i = 0; i < prdAnchor.length; i++) {
+			prdAnchor[i].addEventListener('click', function(){
+				window.location.href = contextPath + 'products/' + $(this).data("prdno")+'.do';			
+			});
+		}
+		
+		/* 버튼 클릭시 해당 게시물 삭제 */
+		for (var i = 0; i < delBtn.length; i++) {
+			delBtn[i].addEventListener('click', function(e){
+				e.stopPropagation();
+				console.log('실행됨',$(this).parent().parent().data("prdno"));
+				removeFromSession($(this).parent().parent().data("prdno"));
+			});
+		}
+		
 		
 		
 		const dataSize = 3; // 한 페이지당 보여줄 게시물 갯수
@@ -232,7 +244,7 @@ function loadProduct(){
 				
 		if(totalCnt) {
 			// 게시물 개수
-			count.innerHTML = '<span>'+ totalCnt +'</span>';
+			recPrdCnt.innerHTML = '<span>'+ totalCnt +'</span>';
 			// 총 페이지 개수
 			if(pageCnt == 0){
 				pageCnt = parseInt(totalCnt/dataSize);
@@ -240,36 +252,42 @@ function loadProduct(){
 				pageCnt = parseInt(totalCnt/dataSize) + 1;
 			}	
 			pagingText.innerHTML = '<span>' + "1/" + pageCnt +'</span>';
+		} else {
+			IsEmptyRecentProduct();
 		}
+	}
+	
+	/* 목록이 비었을때 */
+	function IsEmptyRecentProduct() {
+		recPrdCnt.innerHTML = '';
+		$recPrdList.empty();
+		const emptyStorage = 
+			'<div class="none-session">'
+			+ '<img class="empty" src="'
+			+ contextPath
+			+ 'resources/images/user/common/none_in_session.png"/>'
+			+ '<div class="empty_text">최근 본 상품이<br>없습니다.</div></div>'
 		
-		else {
-			totalCnt.innerHTML = '';
-			const emptyStorage = 
-				'<div class="none-session">'
-				+ '<img class="empty" src="'
-				+ contextPath
-				+ 'resources/images/user/common/none_in_session.png"/>'
-				+ '<div class="empty_text">최근 본 상품이<br>없습니다.</div></div>'
-			
-			$recPrdList.append(emptyStorage); 
-		}
-		
-
+		$recPrdList.append(emptyStorage); 
+		recPrdPaging.style.display = 'none';
 	}
 	
 	
 	/* 세션에서 지우기 */
 	function removeFromSession(datano){
-		let getSelectArr = new Array();
-		getSelectArr = JSON.parse(sessionStorage.getItem('recentlyVisitedProducts'));
-		let removeProductNo = getSelectArr.findIndex(i => i.productNo == datano);
-		console.dir("splice 전 : " + JSON.stringify(getSelectArr));
-		getSelectArr.splice(removeProductNo, 1);
-		console.dir("splice 후 : " + JSON.stringify(getSelectArr));
+		
+		let removeProductNo = getItems.findIndex(i => i.productNo == datano);
+		if(removeProductNo == -1) return false; // 잘못된 데이터가 들어왔을때 에러처리
+	
+		console.dir(getItems);
+		console.log(removeProductNo, 'removeProductNo');
+		
+		console.dir("splice 전 : " + JSON.stringify(getItems));
+		getItems.splice(removeProductNo, 1);
+		console.dir("splice 후 : " + JSON.stringify(getItems));
 		
 		// 새로운 변경된 arr를 덮어씌움
-		sessionStorage.setItem('recentlyVisitedProducts', JSON.stringify(getSelectArr));
-		getItems = getSelectArr;
+		sessionStorage.setItem('recentlyVisitedProducts', JSON.stringify(getItems));
 		
 		writeDocumentFromSessionItem();
 	}
@@ -295,7 +313,6 @@ function initSearchEvent() {
 	const recentlyHeader = document.querySelector('.recently-header');
 	
 	recentlyHeader.addEventListener('click',searchMenuClickEvent);
-	
 	searchInput.addEventListener('click', searchInputClickEvent);
 	searchInput.addEventListener('keyup', searchInputKeyupEvent);
 	searchAreaClose.addEventListener('click', searchAreaCloseEvent);
@@ -331,11 +348,10 @@ function initSearchEvent() {
 	}
 	/* 인기검색어 목록 불러와서 쏴주기  */
 	(function () {
-		
 		// 인기검색어 목록
 		const popularDiv = document.querySelector('.popular-div');
-		
-		const getTopList = function() {return new Promise(function(resolve, reject) {
+		const getTopList = function() {
+			return new Promise(function(resolve, reject) {
 			$.ajax({
 				url: contextPath + 'search/toplist.do',
 				method: 'get',
@@ -347,7 +363,6 @@ function initSearchEvent() {
 		
 		getTopList()
 			.then(function(data) {
-				
 				const frag = document.createDocumentFragment();
 				let div;
 				data.forEach((e, i) => {

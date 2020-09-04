@@ -18,5 +18,6 @@ public interface IStoreMapper {
 	public List<StoreReviewVO> getStoreReviewList(int storeNo);
 	public List<StoreFavoriteVO> getStoreFavoriteList(int storeNo);
 	public int deleteStoreComment(int storeCommentNo);
+	public List<StoreProductDispStVO> getStoreProductDispStList(int storeNo);
 	public int getJjimCount(int storeNo);
 }
