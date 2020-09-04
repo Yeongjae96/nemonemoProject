@@ -13,7 +13,7 @@
 <!-- 페이지 CSS  -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/store/storeinfo.css?v=<%=System.currentTimeMillis() %>"/>">
-
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
 <!-- 라이브러리 -->
 <script

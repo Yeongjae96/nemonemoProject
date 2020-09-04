@@ -18,10 +18,7 @@
 	href="<c:url value="/resources/css/user/store/reviews/reviews.css?v=<%=System.currentTimeMillis()%>"/>">
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/store/common/store_header.css?v=<%=System.currentTimeMillis()%>"/>">
-
-<!-- 해당 페이지 JS파일 -->
-<script
-	src="<c:url value="/resources/js/user/store/comments/reviews.js"/>"></script>
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
 <!-- 라이브러리 -->
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
@@ -30,7 +27,11 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
+<script>this.contextPath = "<c:url value="/"/>"</script>
 
+<!-- 해당 페이지 JS파일 -->
+<script
+	src="<c:url value="/resources/js/user/store/reviews/reviews.js"/>"></script>
 
 
 </head>

@@ -162,8 +162,16 @@
 								</div>
 							</div>
 						</div>
+						<div class="signin-common-margin">
+							<div class="input-box">
+								<input type="text" name="storeName" id="storeName" placeholder="상점명을 입력해주세요" maxlength="30">
+								<div class="fyi">* 상점명은 최대 30자까지 가능합니다.</div>
+							</div>
+						</div>
 					</div>
+					
 
+	
 					<div class="terms-check-outline">
 						<div class="all-check-outline">
 							<div class="check-margin">
@@ -246,6 +254,7 @@
 									</div>
 								</div>
 							</div> -->
+						
 							<div class="fyi">*선택항목은 동의하지 않아도 회원가입이 가능합니다</div>
 						</div>
 					</div>

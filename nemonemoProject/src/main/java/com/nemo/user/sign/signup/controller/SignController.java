@@ -40,7 +40,7 @@ public class SignController {
 			int x = userService.insertUser(vo);
 			System.out.println("x : " + x);
 			System.out.println("동의? : " + vo.getUserTermsAgreeFl());
-
+//			vo.setStoreName("상점 15호");
 			ModelAndView mav = new ModelAndView("redirect:/");
 			return mav;
 		} catch (Exception e) {

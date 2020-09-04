@@ -189,21 +189,28 @@ function checks(){
 		$("#ch-second").focus();
 		return false;
 	} 
-	
-//	if ($("#ch-third").is(":checked") == true) {
-//		
-//	} else{
-//		$("#ch-third").val('N');
-//	} 
+
+	// 상점명 공백 검사
+	if($("#storeName").val() == ""){
+		alert("상점명을 입력해주세요"); 
+		$("#storeName").focus(); 
+		return false; 
+		} 
 	
 	//선택 약관 체크 검사
 	var check = $('input:checkbox[id="ch-third"]').is(':checked');
 	if(check == true){
 		$("#ch-third").val('Y');
-	} else {
-		$("#ch-third").val('N');
-	}
+	} 
+//	else {
+//		$("#ch-third").val('N');
+//	}
 	console.log('check: ' + check);
+	console.log('check2: ' + $("#ch-third").val());
+	
+//	var storeValue = $('#storeName').val();
+////	$('input[name=storeName]').val(storeValue);
+//	console.log('storeName : ' + storeValue);
 }
 
 // 중복체크
