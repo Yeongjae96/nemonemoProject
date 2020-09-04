@@ -260,7 +260,10 @@ button, input {
 }
 
 .my-menu {
+	display: flex;
+	flex-direction: row;
 	justify-content: space-around;
+	align-items: center;
 }
 
 .my-menu-box::after {

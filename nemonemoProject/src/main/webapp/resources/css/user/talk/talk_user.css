@@ -8,7 +8,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     border: 0px;
     font: inherit;
     vertical-align: baseline;
-    font-size: 16px;
+    font-size: 15px;
     font-family: "Noto Sans KR";
 }
 
@@ -45,7 +45,7 @@ body, input, textarea, select, button {
 .talk-user-area {
     display: flex;
     flex-direction: column;
-    width: 375px;
+    width: 500px;
     height: 667px;
     background: rgb(244, 244, 250);
     position: relative;
@@ -182,11 +182,11 @@ body, input, textarea, select, button {
     width: 2rem;
     height: 2rem;
     background-position: center center;
-    background-size: 12px 12px;
-    background-color: rgb(255, 80, 88);
+    background-size: 20px 30px;
+    background-color: #FFEEFF; 
     background-repeat: no-repeat;
     border-radius: 50%;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTguMTI5IDBINy44N2E3Ljg3MSA3Ljg3MSAwIDAgMCAwIDE1Ljc0M2guMjU4YzEuMDg1IDAgMi4xNC0uMjIgMy4xMTQtLjY0bC4yNjQtLjEyIDIuOTg2Ljk3N2EuOC44IDAgMCAwIDEuMDA3LTEuMDE3bC0uODg2LTIuNjFBNy44NzEgNy44NzEgMCAwIDAgOC4xMjggMHpNOS41IDQuOEg2LjljLS4wOSAwLS4xNjkuMDgzLS4xOTMuMTdsLTEuMSAzLjk5NmEuMTk0LjE5NCAwIDAgMCAuMTkzLjI0NmgxLjQyNmwtLjgxNiAyLjUyNWEuMi4yIDAgMSAwIC4zNC4xOTdsMy41OTktMy45NzNhLjIuMiAwIDAgMC0uMTQ5LS4zMzVIOC42MDNsMS4wOC0yLjUxNWEuMjE4LjIxOCAwIDAgMC0uMDE2LS4xOTdjLS4wMzctLjA1Ni0uMS0uMTE0LS4xNjctLjExNHoiLz4KPC9zdmc+Cg==);
+    background-image: url(../../../images/common/logo/favicon.png);
 }
 
 .msg-content-head {
@@ -373,4 +373,210 @@ body, input, textarea, select, button {
     margin-top: 3px;
     font-size: 10px;
 }
+
+.talk-user-footer {
+    width: 100%;
+    background: rgb(255, 255, 255);
+    border-top: 1px solid rgb(238, 238, 238);
+    padding-bottom: 8px;
+    position: relative;
+}
+
+.footer-menu-area {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 8px;
+    -webkit-box-orient: horizontal;
+    min-height: 40px;
+}
+
+.footer-send-area {
+	width: 100%;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+}
+
+.footer-menu-btn-area {
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+.footer-menu-btn {
+    height: 2.5rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgdmlld0JveD0iMCAwIDI2IDI2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiB4PSIuNSIgeT0iLjUiIGZpbGw9IiNGRjUwNTgiIHN0cm9rZT0iI0ZGNTA1OCIgcng9IjgiLz4KICAgICAgICA8cmVjdCB3aWR0aD0iMTQiIGhlaWdodD0iMiIgeD0iNiIgeT0iMTIiIGZpbGw9IiNGRkYiIHJ4PSIxIi8+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjIiIHg9IjYiIHk9IjEyIiBmaWxsPSIjRkZGIiByeD0iMSIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMTMgMTMpIi8+CiAgICA8L2c+Cjwvc3ZnPgo=);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 26px 26px;
+    width: 46px;
+}
+
+.footer-menu-text-area {
+    flex: 1 1 0%;
+    margin-right: 10px;
+}
+
+.footer-menu-text-form {
+	background: rgb(244, 244, 250);
+    border-radius: 20px;
+    position: relative;	
+}
+
+.footer-menu-text-textarea {
+    appearance: none;
+    background: transparent;
+    outline: none;
+    border: 0px;
+    border-radius: 2px 0px 0px 2px;
+    padding: 9.5px 2.5rem 9.5px 20px;
+    line-height: 1.4;
+    resize: none;
+    overflow: auto;
+    font-size: 15px;
+	font-family: "Noto Sans KR";
+    width: 100%;
+}
+
+textarea::placeholder {
+	font-size: 13px;
+	color: #AAAAAA;
+	font-family: "Noto Sans KR";
+	text-align: left;
+	line-height:1.8;
+	
+}
+
+.talk-user-pd-area {
+	display: flex;
+    width: 100%;
+    height: 3.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 2px solid rgb(255, 80, 88);
+    padding: 0.5rem;
+    flex-direction: row;
+    z-index: 1;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+}
+
+.talk-user-pd-link {
+	display: flex;
+    flex: 1 1 0%;
+    padding-right: 0.5rem;
+    overflow: hidden;
+}
+
+.talk-user-pd-link img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2px;
+    margin-right: 0.5rem;
+}
+
+.talk-user-pd-info {
+    flex: 1 1 0%;
+    min-width: 0px;
+    line-height: 1.2;
+}
+
+.talk-user-pd-price {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.talk-user-pd-price small {
+    font-size: 13px;
+    margin-left: 2px;
+}
+
+.talk-user-pd-title {
+	display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.talk-user-pd-btn {
+    height: 2rem;
+    border-radius: 4px;
+    background: rgb(234, 233, 241);
+    font-size: 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    padding: 0px 12px;
+}
+
+.talk-user-template-area {
+    margin: 1.5rem 0px;
+    text-align: center;
+}
+
+.talk-user-template-area h2 {
+	font-size: 18px;
+    color: rgb(30, 29, 41);
+    margin: 1rem 0px 0.5rem;
+}
+
+.talk-user-template-area p {
+	font-size: 13px;
+    color: rgb(114, 112, 127);
+}
+
+.talk-user-template-list {
+	padding: 0px 2rem;
+}
+
+.talk-user-template-item {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 1.5rem;
+    height: 2.5rem;
+    list-style: none;
+    background: rgb(255, 255, 255);
+    text-indent: 1rem;
+    font-size: 15px;
+    color: rgb(51, 51, 51);
+    box-shadow: rgb(220, 219, 228) 0px 4px 8px 0px;
+}
+
+.talk-user-template-list > li {
+	margin-top: 1rem;
+}
+.talk-user-template-list:first-child {
+	margin-top: 0px;
+}
+
+.talk-user-template-item img {
+	position: absolute;
+    right: 5px;
+}
+
+.top-menu-modal {
+    width: 100%;
+    height: calc(617px);
+    background-color: rgba(0, 0, 0, 0.3);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    transition: opacity 300ms ease-out 0s;
+    will-change: opacity;
+    opacity: 1;
+}
+
+
+
+
+
+
+
 

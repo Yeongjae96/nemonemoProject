@@ -1,14 +1,17 @@
-package com.nemo.user.chat.handler;
+package com.nemo.user.talk.handler;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-public class ChatHandler extends TextWebSocketHandler {
+@Controller("talkHandler")
+public class TalkHandler extends TextWebSocketHandler {
 	
 	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
 	

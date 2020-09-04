@@ -9,7 +9,8 @@
    <title>네 모든것 내 모든것, 네모내모</title>
    <!-- 스타일 -->
    <link rel="stylesheet" href="<c:url value="/resources/css/user/talk/talk_user.css"/>">
-   
+   <link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
+
    <!-- 라이브러리 -->
    <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
    <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
@@ -32,9 +33,50 @@
 				</button>
 			</div>
 		</header>
+		<!-- 연락하기 눌렀을 떄의 상품 정보  -->
+		<div class="talk-user-pd-area">
+			<a class="talk-user-pd-link">
+				<!-- 이미지 -->
+				<img src="<c:url value="/image/product/18.img"/>">
+				<div class="talk-user-pd-info">
+					<div class="talk-user-pd-price">
+						250,000
+						<small>원</small>
+					</div>
+					<div class="talk-user-pd-title">
+						노트북
+					</div>
+				</div>
+			</a>
+			<button class="talk-user-pd-btn">
+				네모페이
+			</button>
+		</div>
+		
+		
 		<!--메신저 내용 -->
 		<div class="talk-user-msg-list">
-		<!--  아이템 1개  상용메시지 템플릿-->
+			<article class="talk-user-template-area">
+				<img src="<c:url value="/resources/images/common/logo/favicon.png"/>">
+				<h2>네모톡, 간편하게 시작해요!</h2>
+				<p>판매자에게 메시지 바로 보내기</p>
+			</article>
+			<ul class="talk-user-template-list">
+				<li class="talk-user-template-item">
+					이 상품에 관심있어요!
+					<img src="<c:url value="/resources/images/user/talk/up-arrow.svg"/>">
+				</li>
+				<li class="talk-user-template-item">
+					안녕하세요. 네모페이 되나요?
+					<img src="<c:url value="/resources/images/user/talk/up-arrow.svg"/>">
+				</li>
+				<li class="talk-user-template-item">
+					안녕하세요. 직거래 되나요?
+					<img src="<c:url value="/resources/images/user/talk/up-arrow.svg"/>">
+				</li>
+			</ul>
+		
+			<!--  아이템 1개  상용메시지 템플릿-->
 			<div class="talk-user-msg-item">
 				<div class="talk-user-msg-date">
 					2020. 9. 2 수요일
@@ -89,6 +131,26 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<!-- 메세지 보내기 창 -->
+		<div class="talk-user-footer">
+			<div class="footer-menu-area">
+			</div>
+			<div class="footer-send-area">
+				<div class="footer-menu-btn-area">
+					<button class="footer-menu-btn"></button>
+				</div>
+				<div class="footer-menu-text-area">
+					<form class="footer-menu-text-form">
+						<textarea placeholder="욕설/음란/광고/개인정보 공유를 주의바랍니다" class="footer-menu-text-textarea" rows="1" style="max-height: 63px; overflow: hidden auto; overflow-wrap: break-word; height: 40px;"></textarea>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 상위 메뉴 모달 -->
+		<div class="top-menu-modal">
+			<div class="modal-bg-area"></div>
+		
 		</div>
    </div>
    

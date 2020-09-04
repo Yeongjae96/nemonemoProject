@@ -57,6 +57,7 @@
 <title>네모내모 | ${vo.selectedProduct.productVO.productName}</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
 <!-- 페이지 CSS  -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/products/products_article.css"/>">
