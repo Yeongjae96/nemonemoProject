@@ -1,26 +1,34 @@
 package com.nemo.user.talk.handler;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.nemo.user.sign.signup.vo.UserBaseVO;
+
 @Controller("talkHandler")
 public class TalkHandler extends TextWebSocketHandler {
 	
-	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
-	
+	private Map<Integer, WebSocketSession> sessionMap = new ConcurrentHashMap<>();
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		
-		sessionList.add(session);
-		System.out.println("session 연결됨" + session.getId());
+		Map<String, Object> tempMap = session.getAttributes();
+		
+		UserBaseVO user = (UserBaseVO)tempMap.get("user");
+		if(user == null) {
+			session.close();
+			return;
+		}
+		
+		sessionMap.put(user.getUserNo(), session);
+		System.out.println("sessionMap : " + sessionMap);
 		
 	}
 	
@@ -28,7 +36,8 @@ public class TalkHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		
 		System.out.println("{}로부터 {} 받음" + session.getId() + message.getPayload());
-		for(WebSocketSession sess : sessionList) {
+		for(Integer key : sessionMap.keySet()) {
+			WebSocketSession sess = sessionMap.get(key);
 			sess.sendMessage(new TextMessage(session.getId() + " : " + message.getPayload()));
 		}
 	}
@@ -36,9 +45,14 @@ public class TalkHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		
-		sessionList.remove(session);
+		Map<String, Object> tempMap = session.getAttributes();
+		UserBaseVO user = (UserBaseVO)tempMap.get("user");
+		if(user == null) return;
+		int userNo = user.getUserNo();
+		sessionMap.remove(userNo);
+		System.out.println(sessionMap);
 		System.out.println("{} 연결 끊김 " + session.getId());
-		
+		session.close();
 	}
 	
 }

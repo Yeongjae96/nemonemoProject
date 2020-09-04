@@ -12,7 +12,7 @@ function openSocket() {
 	/* 소켓이 열렸을 때 */
 	function onOpen(evt) {
 		console.log(evt); 
-		sendMessage('열렸습니다.');
+		sendMessage({msgContent:'열렸습니다.'});
 	}
 
 	/* 서버로 부터 수신 */
@@ -28,11 +28,11 @@ function openSocket() {
 	/* 내가 정의 하는 함수 : 서버로 보내는것  */
 	function sendMessage(obj) {
 		
-		if(obj.constructor !== object) {
+		if(obj.constructor !== 'object') {
 			obj = new Object();
 			obj.msgContent = '';
 		}
-		webSocket.send(msgContent);
+		webSocket.send(obj.msgContent);
 	}
 }
 
