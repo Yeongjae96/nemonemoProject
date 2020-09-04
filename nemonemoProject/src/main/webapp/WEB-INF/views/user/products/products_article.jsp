@@ -974,21 +974,27 @@
 
             <!-- 바로구매 모달 -->
             <div class="detail-modal" id="buyModal">
+            <form name="myPurchase" id="purchases" method="POST" action="purchases.do">
                 <div class="buy-modal__area">
                     <h2 class="buy-modal__title">
                         <!-- 메인 로고 -->
                         <img src="<c:url value="/resources/images/user/products/store_1.png"/>" alt="">안전결제
                         <a href="#" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-truck"></i>
-                            안전결제란?
+                           	 안전결제란?
                         </a>
                     </h2>
                     <div class="buy-modal__content">
-                        <a class="buy-modal-content--item" target="_blank" href="#">
+                    <input type="hidden" value="${productVO.productNo}" name="productNo">
+                    <input type="hidden" value="${productVO.productSeller}" name="productSeller">
+                    <input type="hidden" value="${productVO.productName}" name="productName">
+                    <input type="hidden" value="${productVO.productFreeShippingSt}" name="productFreeShippingSt">
+                    <input type="hidden" value="${productVO.productPrice}" name="productPrice">
+                        <a class="buy-modal-content--item" target="_blank" onclick="javascript:document.myPurchase.submit();">
                             <div class="buy-content__text">
                                 <div class="buy-content__div">
                                     <h3 class="buy-content__title">
-                                        안전거래(택배거래)
+                                    	    안전거래(택배거래)
                                     </h3>
                                     <span class="buy-content__gray">안전하게 상품을 받을 때까지,<br>네모내모가 결제금액을 보관해요</span>
                                 </div>
@@ -997,6 +1003,7 @@
                         </a>
                     </div>
                 </div>
+                </form>
             </div>
 			</c:if>
             <c:if test="${productVO.productDispSt == 'F' and param.original != 1}">
@@ -1051,8 +1058,6 @@
             </c:if>
         </div>
     </div>
-	
-   
 
 	<% 
 		/* 공통 푸터 */
