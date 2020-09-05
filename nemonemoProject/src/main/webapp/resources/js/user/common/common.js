@@ -346,15 +346,13 @@ function initMyTalk() {
 		});
 	}
 	
-	async function openTalkList() {
-		const result = await loginCheck();
-		console.log(result);
-		if(result.loginStatus == 'true') {
+	loginCheck().then(function(data) {
+		if(data.loginStatus == 'true') {
 			const newWindow = window.open(contextPath + 'talk/list.do', 'talk', 'width=500px, height=667px');
 		} else {
 			document.getElementById('loginBtn').dispatchEvent(new Event('click'));
 		}
-	}
+	});
 }
 
 

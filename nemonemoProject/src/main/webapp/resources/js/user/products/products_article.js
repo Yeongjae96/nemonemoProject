@@ -74,16 +74,16 @@ function initBtn() {
 			});
 		}
 		
-		(async function getUserTalk() {
-			const obj = await getLoginStatus();
-			if(obj.loginStatus == 'true') {
+		openTalk().then(function(data) {
+			if(data.loginStatus == 'true') {
 				link = callModalLink.dataset.href;
 				const newWindow = window.open(link, 'talk', 'width=500px, height=667px');
 			} else {
 				const loginBtn = document.getElementById('loginBtn');
 				if(loginBtn) loginBtn.dispatchEvent(new Event('click'));
 			}
-		}());
+		});
+		
 	}
 	
 	
