@@ -10,6 +10,50 @@
     padding-bottom : 0px;
 }
 
+ /* Modal Content Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; 
+        padding: 20px;
+        border: 1px solid #888;
+        width: 296px; 
+        height : 223.2px;                        
+    }
+    
+    .modal-content h2{
+   		font-size: 18px;
+	    font-family: "Noto Sans KR";
+	    margin-bottom: 1rem;
+	    font-weight: bold;
+	    text-align: center;
+	    line-height: 1.4;
+    }
+    
+    .modal-content p{
+	    white-space: pre-wrap;
+	    word-break: keep-all;
+	    text-align: center;
+	    font-size: 15px;
+	    margin-bottom: 1.5rem;
+	    line-height: 1.4;
+	    font-size: 15px;
+	    font-family: "Noto Sans KR";
+    }
+    
+	#logout{
+    border-style: none;
+    outline: none;
+    border : 0px;
+    height : 39px;
+    padding-bottom : 20px;
+    padding-right : 15px;
+    font-size: 13px;
+    color:  rgb(66,66,66);      
+    font-family : "Noto Sans KR", "sans-serif";
+
+    
+}
+
 .top-nav button:focus {
 	outline: 0;
 }

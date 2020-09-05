@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.nemo.user.store.vo.StoreCommentVO;
 import com.nemo.user.store.vo.StoreFavoriteVO;
+import com.nemo.user.store.vo.StoreProductDispStVO;
 import com.nemo.user.store.vo.StoreProductVO;
 import com.nemo.user.store.vo.StoreReviewVO;
 import com.nemo.user.store.vo.StoreVO;
@@ -17,4 +18,6 @@ public interface IStoreMapper {
 	public List<StoreReviewVO> getStoreReviewList(int storeNo);
 	public List<StoreFavoriteVO> getStoreFavoriteList(int storeNo);
 	public int deleteStoreComment(int storeCommentNo);
+	public List<StoreProductDispStVO> getStoreProductDispStList(int storeNo);
+	public int getJjimCount(int storeNo);
 }

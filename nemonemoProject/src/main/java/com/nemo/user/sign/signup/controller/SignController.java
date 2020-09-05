@@ -1,9 +1,15 @@
 package com.nemo.user.sign.signup.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.nemo.common.util.ContextUtil;
 import com.nemo.user.sign.signup.service.UserService;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
 
@@ -37,7 +44,9 @@ public class SignController {
 		try {
 			vo.setUserPw(encoder.encode(vo.getUserPw()));
 			int x = userService.insertUser(vo);
-			System.out.println(x);
+			System.out.println("x : " + x);
+			System.out.println("동의? : " + vo.getUserTermsAgreeFl());
+//			vo.setStoreName("상점 15호");
 			ModelAndView mav = new ModelAndView("redirect:/");
 			return mav;
 		} catch (Exception e) {
@@ -101,8 +110,10 @@ public class SignController {
 				}
 				session.setAttribute("user", user);
 				rttr.addFlashAttribute("msg", "success");
-				mav.setViewName("redirect:/index.do");
-
+				mav.setViewName(Optional
+					.ofNullable(ContextUtil.getRequest().getHeader("Referer"))
+					.map(e -> "redirect:" + e)
+					.orElseGet(() -> new String("redirect:/index.do")));
 				return mav;
 			} else {
 				session.setAttribute("user", null);
@@ -219,4 +230,16 @@ public class SignController {
           return "home";
       }
 
+	  @GetMapping("/login/check")
+	  @ResponseBody 
+	  public ResponseEntity<Map<String, String>> isLogin() {
+		  UserBaseVO user = (UserBaseVO)ContextUtil.getAttrFromSession("user");
+		  Map<String, String> resultMap = new HashMap<>();
+		  
+		  String loginStatus = (user != null) ? "true" : "false";
+		  resultMap.put("loginStatus", loginStatus);
+		  
+		  return new ResponseEntity<Map<String, String>>(resultMap, HttpStatus.OK);
+	  }
+	  
 }

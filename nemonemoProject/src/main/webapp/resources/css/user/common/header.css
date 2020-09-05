@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 header {
@@ -193,18 +194,17 @@ button, input {
 	border-width: 0px;
 }
 
-/* 메인 로고 */
-#main-logo {
-	background-size: cover;
-	width: 100%;
-	height: 40px;
-}
-
 #main-logo-area {
     width: 136px;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
+    margin-right: 100px;
+}
+
+#main-logo-area img {
+	width: 136px;
+	height: 40px;
 }
 
 /* 검색 필드 */
@@ -248,7 +248,7 @@ button, input {
 	align-items: center;
 	width: 1024px;
 	height: 40px;
-	justify-content: space-between !important;
+	justify-content: flex-end!important;
 	padding: 0px !important;
 	margin: 0 !important;
 	margin-top: 35px;
@@ -260,20 +260,54 @@ button, input {
 }
 
 .my-menu {
-	justify-content: space-around;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+}
+
+.my-menu-box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 14px;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.my-menu-box:hover {
+	color:#000000;
+}
+
+.my-menu-box[id=myTalk]:focus {
+	outline: none;
+}
+
+
+
+.my-menu-box img {
+	margin-right: 5px;
+}
+
+.my-menu-box:last-child::after {
+	border-right: 0px;
+	padding-right: 0px;
+	margin-right: 0px;
 }
 
 .my-menu-box::after {
-	content: "";
-	position: relative;
-	top: 0px;
-	right: 0px;
-	width: 1px;
-	height: 14px;
-	box-sizing: border-box;
-	border-right: 1px solid rgb(204, 204, 204);
-	padding-right: 22px;
-	margin-right: 20px;
+    content: "";
+    position: relative;
+    top: 0px;
+    right: 0px;
+    width: 1px;
+    height: 10px;
+    box-sizing: border-box;
+    border-right: 1px solid rgb(204, 204, 204);
+    padding-right : 15px;
+    margin-right : 15px;
 }
 
 #menu-container {
@@ -661,17 +695,31 @@ a {
     display: flex;
 }
 
-.recently-menu {
+.recently-header button:focus {
+	outline: 0px;
+}
+
+.recently-menu,
+.popular-menu {
 	-webkit-box-flex: 1;
     flex-grow: 1;
     height: 50px;
-    box-sizing: border-box;
-    text-align: center;
     font-weight: 600;
-    color: rgb(247, 47, 51)!important;
+    font-size: 14px;
+    text-align: center;
     padding: 25px 0px 10px;
-    border-bottom: 2px solid rgb(247, 47, 51);
-    border-color: rgb(247, 47, 51);
+    border-bottom: 2px solid rgb(217, 217, 217);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.menu--selected {
+	border-bottom: 2px solid rgb(247, 47, 51);
+    color: rgb(247, 47, 51)!important;
 }
 
 .recently-body {
@@ -704,6 +752,42 @@ a {
 	height: 52px;
 	color: rgb(136, 136, 136);
 }
+
+.popular-area {
+	height: 100%;
+	display: none;
+}
+
+.popular-div {
+	display: flex;
+    height: 100%;
+    padding: 20px 12px;
+}
+
+.popular-list {
+	-webkit-box-flex: 1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    
+}
+
+.popular-link {
+	font-weight: bold;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.popular-rank {
+	width: 35px;
+    font-weight: 700;
+    color: rgb(247, 47, 51);
+}
+
 
 .search-close__area {
 	width: 100%;
@@ -813,4 +897,11 @@ a {
 .result-item {
 	color: rgb(247, 47, 51);
 	font-size: 14px;
+}
+
+
+.popular-link:hover {
+	background-color: #EEEEEE;
+	color: #EE5058;
+	font-weight: bold;
 }

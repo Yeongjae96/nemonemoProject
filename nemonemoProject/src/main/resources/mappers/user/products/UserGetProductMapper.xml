@@ -12,6 +12,32 @@
 	<result column="store_name" property="storeName"/>
 </resultMap>
 
+<resultMap id="getProductStoreMap" type="com.nemo.user.products.vo.UserGetSellerVO">
+	<id column="store_no" property="storeNo"/>
+	<result column="store_review_cnt" property="storeReviewCnt"/>
+	<result column="store_name" property="storeName"/>
+	<result column="store_img_no" property="storeImgNo"/>
+	<result column="store_rating" property="storeRating"/>
+	<result column="store_product_cnt" property="storeProductCnt"/>
+	<collection property="storeProductList" select="selectGetStoreProductList" column="product_seller"/>
+	<collection property="storeReviewList" select="selectReviewList" column="product_seller"/>
+</resultMap>
+
+<resultMap id="getProductStoreReviewMap" type="com.nemo.user.products.vo.UserGetProductStoreReviewVO" extends="com.nemo.user.store.repository.impl.StoreMapper.storeReviewMap">
+	<result column="store_img_no" property="storeImgNo"/>
+	<result column="store_name" property="storeName"/>
+	<result column="store_review_rating" property="storeRating"/>
+</resultMap>
+
+<resultMap id="recentlyProductMap" type="com.nemo.user.products.vo.UserRecentlyProductVO">
+	
+	<id column="product_no" property="productNo"/>
+	<result column="product_img_no" property="productImgNo"/>
+	<result column="product_name" property="productName"/>
+	<result column="product_price" property="productPrice"/>
+
+</resultMap>
+
 <select id="selectProductFromPdSeq" parameterType="int" resultMap="productDetailMap">
 	SELECT 
 		a.* , 
@@ -43,5 +69,76 @@
 	WHERE a.product_no = #{productNo} AND a.product_comment_del_fl = 'N'
 	ORDER BY a.product_comment_reg_dt desc
 </select>
+
+
+<select id="selectGetSellerVO" parameterType="int" resultMap="getProductStoreMap">
+	
+	SELECT 
+		p.product_seller,
+		u.store_no,
+		u.store_name,
+		sr.store_review_cnt,
+        sr.store_rating,
+        nvl(i.store_img_no, -1) store_img_no,
+        p.store_product_cnt
+	FROM (SELECT product_seller, count(1) AS store_product_cnt FROM product_tb WHERE product_disp_st NOT IN ('D', 'P') GROUP BY product_seller) p
+	INNER JOIN user_tb u
+	ON p.product_seller = u.user_no AND p.product_seller = #{productSeller}
+	LEFT JOIN store_img_tb i
+	ON i.store_no = u.store_no
+	LEFT JOIN (SELECT store_no, count(1) AS store_review_cnt, floor(avg(store_review_rating)) as store_rating FROM store_review_tb GROUP BY store_no) sr
+	ON sr.store_no = u.store_no
+
+</select>
+
+<select id="selectGetStoreProductList" parameterType="int" resultMap="com.nemo.user.search.products.repository.impl.SearchProductsMapper.pdPdImgMap">
+	
+	SELECT a.*
+	FROM (
+	    SELECT 
+	        ROWNUM rnum ,
+	        pd.*,
+	        img.product_img_no
+	    FROM product_tb pd
+	    INNER JOIN (SELECT product_no, min(product_img_no) AS product_img_no FROM product_img_tb GROUP BY product_no) img
+	    ON pd.product_no = img.product_no AND pd.product_seller = #{productSeller}
+	    WHERE pd.product_disp_st not IN ('D', 'P')
+	    ORDER BY img.product_no
+	) a
+	
+	WHERE <![CDATA[rnum < 3]]>
+</select>
+
+<select id="selectReviewList" parameterType="int" resultMap="getProductStoreReviewMap">
+	SELECT a.*
+	FROM ( SELECT 
+		ROWNUM rnum ,
+        s.store_no,
+        nvl(u.store_img_no, -1) store_img_no,
+        u.store_name,
+        s.store_review_rating ,
+        s.store_review_content ,
+        s.store_review_reg_dt
+    FROM store_review_tb s
+    INNER JOIN user_tb u
+    ON s.store_no = u.store_no AND s.store_no = #{productSeller}
+	) a
+	WHERE <![CDATA[rnum < 3]]>
+</select>
+
+<select id="selectRecentlyProductVO" parameterType="int" resultMap="recentlyProductMap">
+	
+	SELECT 
+        p.product_no,
+        product_name,
+        product_price,
+        product_img_no
+	FROM product_tb p
+	INNER JOIN (select product_no, min(product_img_no) AS product_img_no FROM product_img_tb GROUP BY product_no) i
+	ON p.product_no = i.product_no AND p.product_no = #{productNo}
+
+</select>
+
+
 
 </mapper>

@@ -22,9 +22,25 @@
         		b.product_img_type
 		FROM    product_tb a
 		INNER JOIN product_img_tb b
-		ON 		a.product_no = b.product_no
+		ON 		a.product_no = b.product_no AND a.product_disp_st NOT IN ('D', 'P')
 		RIGHT JOIN (select min(product_img_no) as product_img_no FROM product_img_tb group by product_no) c
 		ON 		b.product_img_no = c.product_img_no
+		INNER JOIN product_cate_tb cate
+		ON		a.product_cate_no = cate.product_cate_no
+		<if test="selectedCateName != null">
+				AND 
+				<choose>
+					<when test='selectedType == "L"'>
+						cate.product_cate_large = #{selectedCateName}
+					</when>
+					<when test='selectedType == "M"'>
+						cate.product_cate_medium = #{selectedCateName}
+					</when>
+					<when test='selectedType == "S"'>
+						cate.product_cate_small = #{selectedCateName}
+					</when>
+				</choose>
+			</if>
 		<where>
 				a.product_name LIKE '%'|| #{keyword} ||'%' OR 
 		        a.product_deal_area LIKE '%'|| #{keyword} ||'%'
@@ -41,24 +57,84 @@
         <include refid="common.PaginationMapper.footer"/>
 	</select> 
 	
-	<select id="pdCateByKeyword" parameterType="String" resultMap="groupPdCate">
+	<select id="pdCateByKeyword" parameterType="hashMap" resultMap="groupPdCate">
 		SELECT 
-		            c.product_cate_no		,
-		            b.product_cate_type		, 
-		            b.product_cate_large	, 
-		            b.product_cate_medium	, 
-		            b.product_cate_small	,
-		            sum(c.product_cate_cnt) as product_cate_cnt
-		FROM		product_tb a
-		INNER JOIN 	product_cate_tb b
-		ON 			a.product_cate_no = b.product_cate_no
-		INNER JOIN  (SELECT count(product_cate_no) AS product_cate_cnt, product_cate_no FROM product_cate_tb GROUP BY product_cate_no) c
-		ON          b.product_cate_no = c.product_cate_no
-			<where>
-		            a.product_name LIKE '%'|| #{keyword} ||'%' OR 
-		            a.product_deal_area LIKE '%'|| #{keyword} ||'%'
-			</where>
-		GROUP BY    c.product_cate_no, b.product_cate_type, b.product_cate_large, b.product_cate_medium, b.product_cate_small
+	        c2.product_cate_no,
+	        result.*
+		FROM ( 
+		    SELECT
+		    	<choose>
+					<when test='selectedType == "L"'>
+						c.product_cate_medium,
+					</when>
+					<when test='selectedType == "M"'>
+						c.product_cate_small,
+					</when>
+					<otherwise>
+						c.product_cate_large,
+					</otherwise>
+				</choose>
+		        count(1) product_cate_cnt
+		    FROM product_tb p
+		    INNER JOIN (SELECT * FROM product_cate_tb) c
+		    ON p.product_cate_no = c.product_cate_no AND p.product_disp_st NOT IN ('D', 'P', 'F')
+		    <if test="selectedCateName != null">
+				AND 
+				<choose>
+					<when test='selectedType == "L"'>
+						c.product_cate_large = #{selectedCateName}
+					</when>
+					<when test='selectedType == "M"'>
+						c.product_cate_medium = #{selectedCateName}
+					</when>
+					<when test='selectedType == "S"'>
+						c.product_cate_small = #{selectedCateName}
+					</when>
+				</choose>
+			</if>
+		    <where>
+					p.product_name LIKE '%' || #{keyword} || '%' 
+					OR p.product_deal_area LIKE '%'|| #{keyword} ||'%'
+		    </where>
+		   	GROUP BY 
+	    <choose>
+			<when test='selectedType == "L"'>
+				c.product_cate_medium
+			</when>
+			<when test='selectedType == "M"'>
+				c.product_cate_small
+			</when>
+			<otherwise>
+				c.product_cate_large
+			</otherwise>
+		</choose>
+		    
+		) result
+		INNER JOIN product_cate_tb c2
+		ON 
+		<choose>
+			<when test='selectedType == "L"'>
+				c2.product_cate_medium  = result.product_cate_medium 
+			</when>
+			<when test='selectedType == "M"'>
+				c2.product_cate_small = result.product_cate_small
+			</when>
+			<otherwise>
+				c2.product_cate_large = result.product_cate_large
+			</otherwise>
+		</choose>
+		AND c2.product_cate_type = 
+		<choose>
+			<when test='selectedType == "L"'>
+				'M'
+			</when>
+			<when test='selectedType == "M"'>
+				'S'
+			</when>
+			<otherwise>
+				'L'
+			</otherwise>
+		</choose>
 	</select>
 	
 	<select id="allProductCntByKeyword" parameterType="String" resultType="int">
@@ -68,6 +144,20 @@
             product_name LIKE '%'|| #{keyword} ||'%' OR 
             product_deal_area LIKE '%'|| #{keyword} ||'%'
 		</where>
+	</select>
+	
+	<select id="selectProductNameByKeyword" parameterType="String" resultType="String">
+		SELECT (
+		    product_name
+		) FROM (
+		    SELECT product_name, ROWNUM rnum
+		    FROM (
+		    SELECT DISTINCT (product_name)
+		    FROM product_tb
+		    WHERE product_name LIKE '%' || #{keyword} || '%' AND product_disp_st NOT IN ('D', 'P', 'F')
+		    ) a
+		)
+		WHERE <![CDATA[rnum <= 10]]>
 	</select>
 	
 	

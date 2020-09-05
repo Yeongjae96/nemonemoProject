@@ -1,0 +1,410 @@
+@charset "UTF-8";
+body * {
+    box-sizing: border-box;
+    font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    font-weight: normal;
+    color: rgb(30, 29, 41);
+    font-size: 16px;
+    outline: 0px;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, main, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    vertical-align: baseline;
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    font: inherit;
+}
+
+.purchases_block{
+    display: block;
+}
+
+.purchases_body{
+    min-width: 320px;
+    max-width: 640px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin: 0px auto;
+}
+
+.purchases_header{
+    position: sticky;
+    top: 0px;
+    line-height: 3.125rem;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(30, 29, 41);
+    background-color: rgb(255, 255, 255);
+    z-index: 9999;
+}
+
+.purchases_header h1{
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+.purchases_header_close{
+    position: absolute;
+    top: 0.625rem;
+    right: 0.625rem;
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICAgIDxwYXRoIGZpbGw9IiMzMzMiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTkuMTIxIDcuNzA3bDYuNzc4IDYuNzc3IDYuNzc5LTYuNzc3YTEgMSAwIDAgMSAxLjQxNCAxLjQxNEwxNy4zMTMgMTUuOWw2Ljc3OSA2Ljc3OWExIDEgMCAwIDEtMS40MTQgMS40MTRsLTYuNzc5LTYuNzc5LTYuNzc4IDYuNzc5YTEgMSAwIDEgMS0xLjQxNC0xLjQxNGw2Ljc3Ny02Ljc3OS02Ljc3Ny02Ljc3OGExIDEgMCAxIDEgMS40MTQtMS40MTR6Ii8+Cjwvc3ZnPgo=) center center no-repeat;
+}
+
+.purchases_body_main{
+    position: relative;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+.purchases_goods_body{
+    position: relative;
+    display: flex;
+    background: rgb(255, 255, 255);
+    padding: 0.5rem;
+    border-bottom: 1px solid rgb(220, 219, 228);
+}
+
+.purchases_goods_imgbox{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2px;
+}
+
+.purchases_goods_content{
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+}
+
+.purchases_goods_pricebody{
+    display: flex;
+}
+
+.purchases_goods_price{
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1rem;
+}
+
+.purchases_goods_title{
+    font-size: 0.875rem;
+    line-height: 1.075rem;
+    color: rgb(30, 29, 41);
+    margin: 0.25rem 0.5rem 0px 0px;
+}
+
+.purchases_tools_section{
+    position: relative;
+    padding: 0px 1rem;
+}
+
+.purchases_tools_body{
+    padding-bottom: 2.5rem;
+}
+
+.purchases_tools_table{
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+
+.purchases_tools_table tr td {
+    border-right: 1px solid rgb(234, 233, 241);
+    border-bottom: 1px solid rgb(234, 233, 241);
+    cursor: pointer;
+
+    border-color: black;
+}
+
+.purchases_tools_table tr:first-child td {
+    border-top: 1px solid rgb(234, 233, 241);
+}
+
+.purchases_tools_table tr:first-child td:last-child {
+    border-top-right-radius: 2px;
+}
+
+.purchases_tools_selectView{
+    width: 50%;
+    height: 68px;
+}
+
+.purchases_tools_selectView aside{
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.625rem;
+}
+
+.kakaoPaylabel{
+    font-size: 0.9375rem;
+    color: rgb(114, 112, 127);
+}
+
+
+.purchases_firm_payment_account{
+    width: 50%;
+    height: 68px;
+    box-shadow: rgb(30, 29, 41) 0px 0px 0px 1.5px inset;
+    border-radius: 2px;
+    border-style: double;
+    border-color: transparent;
+}
+
+
+.paymentaccountlabel{
+    font-size: 0.9375rem;
+    color: rgb(114, 112, 127);
+}
+
+.purchases_tools_section header{
+    margin-bottom: 0.5rem;
+    line-height: 3.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.purchases_tools_selectView > div {
+    display: flex;
+    height: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0px 0.75rem 0px 1.5rem;
+}
+
+.purchases_tools_table_View{
+    padding: 1.5rem 0.5rem 0.5rem;
+}
+
+.purchases_tools_table_View h3{
+    font-size: 15px;
+    margin-bottom: 1rem;
+}
+
+.purchases_tools_table_View p{
+    font-size: 13px;
+}
+
+.purchases_tools_table_View h4, .purchases_tools_table_View p {
+    color: rgb(114, 112, 127);
+}
+
+.purchases_price_section{
+    position: relative;
+    padding: 0px 1rem;
+}
+
+.purchases_price_section header{
+    line-height: 3.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.purchases_price_body{
+    padding-bottom: 2.5rem;
+}
+
+.totalprice{
+    margin-bottom: 1.5rem;
+    line-height: 3.25rem;
+    font-size: 0.875rem;
+    border-bottom: 1px solid rgb(244, 244, 250);
+}
+
+.totalprice strong{
+    margin-right: 2px;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.purchases_price_content{
+    flex-direction: column;
+}
+
+.purchases_price_content, .purchases_price_content > div, .purchases_price_content > div > div {
+    display: flex;
+}
+
+.purchases_price_explain{
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.purchases_price_column > div:first-child{
+    margin-right: 0.5rem;
+    color: rgb(114, 112, 127);
+}
+
+.purchases_price_column{
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+.purchases_price_content .purchases_price_explain + .purchases_price_explain{
+    margin-top: 0.625rem;
+}
+
+.purchases_price_column_img{
+    margin-left: 3px;
+}
+
+.purchases_terms_section{
+    position: relative;
+    padding: 0px 1rem;
+    display: block;
+    border-top: 1px solid rgb(244, 244, 250);
+}
+
+.purchases_terms_section header{
+    line-height: 3.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.purchases_terms_totalagreement{
+    position: relative;
+    line-height: 3.5rem;
+    border-bottom: 1px solid rgb(244, 244, 250);
+}
+
+input {
+    color: rgb(30, 29, 41);
+    appearance: none;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    outline: none;
+}
+
+.totalagreement_check{
+    width: 1.5rem;
+    height: 1.5rem;
+    display: none;
+}
+
+.totalagreement_check + label{
+    display: block;
+    margin-right: 0.5rem;
+    text-indent: 32px;
+    cursor: pointer;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiNDM0MyQ0MiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTI0IDEyYzAgNi42MTctNS4zODMgMTItMTIgMTJTMCAxOC42MTcgMCAxMiA1LjM4MyAwIDEyIDBzMTIgNS4zODMgMTIgMTJ6bS0yLjQgMGMwLTUuMjkzLTQuMzA3LTkuNi05LjYtOS42LTUuMjkzIDAtOS42IDQuMzA3LTkuNiA5LjYgMCA1LjI5MyA0LjMwNyA5LjYgOS42IDkuNiA1LjI5MyAwIDkuNi00LjMwNyA5LjYtOS42em0tNS42OS0zLjU1OWMuNDE1LjExMS43MzguNDM0Ljg0OS44NDguMTEuNDE1LS4wMDcuODU2LS4zMSAxLjE2bC00LjggNC44Yy0uMjI1LjIyNS0uNTMuMzUyLS44NDkuMzUyLS4zMTggMC0uNjI0LS4xMjctLjg0OC0uMzUzbC0yLjQtMi40Yy0uNDY5LS40NjgtLjQ2OS0xLjIyOCAwLTEuNjk2LjQ2OC0uNDY5IDEuMjI4LS40NjkgMS42OTYgMGwxLjU1MiAxLjU1MSAzLjk1Mi0zLjk1MWMuMzAzLS4zMDQuNzQ0LS40MjIgMS4xNTktLjMxeiIvPgo8L3N2Zz4K) left center / 1.25rem no-repeat;
+}
+
+.purchases_terms_totalagreement label{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.purchases_terms_contents{
+    padding: 1.5rem 0.25rem;
+}
+
+.purchases_terms_column{
+    position: relative;
+    text-align: left;
+    line-height: 0.875rem;
+}
+
+.purchases_terms_contents li{
+    position: relative;
+    text-align: left;
+    font-size: 0.875rem;
+    list-style: none;
+}
+
+.service_check .personal_check .sales_check{
+    display: none;
+}
+
+.purchases_terms_label{
+    position: relative;
+    display: block;
+    margin-top: 7px;
+}
+
+.purchases_terms_label .purchases_terms_label u{
+    font-size: 0.875rem;
+    color: rgb(114, 112, 127);
+}
+
+.Terms_CheckBoxWrapper label i{
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 1rem;
+    transform: translateY(2px);
+    cursor: pointer;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDEyIDEyIj4KICAgIDxwYXRoIGZpbGw9IiNDM0MyQ0MiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTQuMjIzIDEwLjhjLjE2Ny0uMDA3LjMyNC0uMDgzLjQzMi0uMjFsNy4yLTguNGMuMjE2LS4yNTIuMTg2LS42My0uMDY1LS44NDYtLjI1Mi0uMjE1LS42My0uMTg2LS44NDUuMDY2bC02Ljc4IDcuOTA4LTMuMTQtMy4xNDJjLS4xNTItLjE1Mi0uMzczLS4yMS0uNTgtLjE1NS0uMjA3LjA1NS0uMzcuMjE3LS40MjUuNDI0LS4wNTUuMjA3LjAwNC40MjguMTU2LjU4bDMuNiAzLjZjLjExMi4xMTIuMjY1LjE3NS40MjQuMTc1aC4wMjN6Ii8+Cjwvc3ZnPgo=) center center no-repeat;
+}
+
+.purchases_buy_section{
+    height: auto;
+    padding: 0px 1rem;
+    border-top: none !important;
+    display: block;
+}
+
+.purchases_buy{
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 1.125rem;
+    font-weight: bold;
+    padding: 1.125rem;
+    background: rgb(255, 80, 88);
+    background: rgb(114, 112, 127);
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    cursor:pointer;
+    text-align: center;
+}
+
+.purchases_buy button{
+    border-radius: 2px;
+}
+
+.purchases_footer{
+    font-size: 0.6875rem;
+    color: rgb(155, 153, 169);
+    word-break: keep-all;
+    padding: 1rem 1rem 2.5rem;
+    border-width: initial !important;
+    border-style: none !important;
+    border-color: initial !important;
+    border-image: initial !important;
+}
+
+.changeColor {
+    background-color: #bff0ff;
+}
+
+.highlighted {
+    background: red;
+}
+.nonhighlighted {
+    background: white;
+}
+
+.selected {
+    background-color: blue;
+}
+
+#data td {
+    border: 1px solid gray; 
+}

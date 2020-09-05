@@ -176,6 +176,41 @@ function checks(){
 		return false;
 	} 
 	
+	// 필수 약관1 검사
+	if ($("#ch-first").is(":checked") == false) {
+		alert("필수 약관을 동의해주세요");
+		$("#ch-first").focus();
+		return false;
+	} 
+	
+	// 필수 약관2 검사
+	if ($("#ch-second").is(":checked") == false) {
+		alert("필수 약관을 동의해주세요");
+		$("#ch-second").focus();
+		return false;
+	} 
+
+	// 상점명 공백 검사
+	if($("#storeName").val() == ""){
+		alert("상점명을 입력해주세요"); 
+		$("#storeName").focus(); 
+		return false; 
+		} 
+	
+	//선택 약관 체크 검사
+	var check = $('input:checkbox[id="ch-third"]').is(':checked');
+	if(check == true){
+		$("#ch-third").val('Y');
+	} 
+//	else {
+//		$("#ch-third").val('N');
+//	}
+	console.log('check: ' + check);
+	console.log('check2: ' + $("#ch-third").val());
+	
+//	var storeValue = $('#storeName').val();
+////	$('input[name=storeName]').val(storeValue);
+//	console.log('storeName : ' + storeValue);
 }
 
 // 중복체크
@@ -185,7 +220,6 @@ function idcheck(){
 		console.log(idchecks)
 		if(idchecks==false) return
 		e.preventDefault();
-		alert("회원가입 버튼 눌렀다!");
 		var query = {userEmail : $("#emailInput").val()}; // adminId 값을 query에
 															// 저장
 		$.ajax({

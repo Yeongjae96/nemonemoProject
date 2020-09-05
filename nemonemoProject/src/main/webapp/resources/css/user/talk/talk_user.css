@@ -1,0 +1,683 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean"); /* 구글 Noto 폰트 라이브러리 */
+
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, main, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    font-size: 15px;
+    font-family: "Noto Sans KR";
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
+button, input {
+    padding: 0px;
+    border: 0px;
+    overflow: visible;
+}
+
+body, input, textarea, select, button {
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    outline: 0px;
+    border: 0px;
+}
+
+.talk-user-area {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 667px;
+    background: rgb(244, 244, 250);
+    position: relative;
+}
+
+.talk-user-header {
+	width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    -webkit-box-align: center;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    z-index: 10;
+    position: relative;
+    -webkit-box-orient: horizontal;
+    padding: 0px 12px;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.talk-user-info-btn {
+	font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.talk-user-info-btn svg {
+	width: 12px!important;
+	height: 12px;
+    margin-left: 4px;
+    transform: rotate(180deg);
+    will-change: transform;
+}
+
+.talk-user-menu-area {
+	position: absolute;
+    display: flex;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+}
+
+.talk-user-menu-more svg{
+   	font-size: 1.5rem;
+    margin-right: 10px;
+    color: #CCCCCC;
+}
+
+.talk-user-msg-list {
+    flex: 1 1 0%;
+    background: rgb(244, 244, 250);
+    display: block;
+    overflow: auto;
+}
+
+.talk-user-msg-list > div {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    width: 100%;
+}
+
+.talk-user-msg-item {
+	display: inline-block;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 8px;	
+}
+
+.talk-user-msg-item:first-child {
+	padding-top:12px;
+}
+
+.talk-user-msg-date {
+	display: flex;
+    margin-bottom: 12px;
+    width: 100%;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    color: rgb(195, 194, 204);
+    font-size: 12px;
+}
+.talk-user-msg-date::before {
+	content: "";
+    flex: 1 1 0%;
+    border-top: 1px solid rgb(234, 233, 241);
+    margin-right: 0.5rem;
+}
+
+.talk-user-msg-date::after {
+	content: "";
+    flex: 1 1 0%;
+    border-top: 1px solid rgb(234, 233, 241);
+    margin-left: 0.5rem;
+}
+
+.talk-user-msg-content {
+    display: flex;
+    font-size: 15px;
+    padding: 0px 12px;
+    max-width: 100%;
+}
+
+.msg-content-area {
+    display: flex;
+    flex-shrink: 1;
+}
+
+.msg-content-padding {
+	width: 100%;
+    padding: 0.5rem;
+    display: block;
+    position: relative;
+    border: 1px solid rgb(220, 219, 228);
+    border-radius: 0.5rem 12px 0.5rem 0.5rem;
+    background: rgb(255, 255, 255);
+}
+
+.msg-content-logo {
+	position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    background-position: center center;
+    background-size: 20px 30px;
+    background-color: #FFEEFF; 
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-image: url(../../../images/common/logo/favicon.png);
+}
+
+.msg-content-head {
+	font-size: 12px;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+.msg-content-body {
+	font-size: 15px;
+    line-height: 1.4;
+    word-break: keep-all;
+    white-space: pre-wrap;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.msg-content-footer {
+	display: flex;
+    flex-direction: row;
+    margin-top: 0.5rem;
+}
+
+.msg-content-footer > :last-child {
+	margin-right: 0px;
+}
+
+.msg-content-footer > a, .msg-content-footer > button {
+	height: 2.5rem;
+} 
+
+.msg-content-footer-link {
+	    flex: 1 1 0%;
+    height: 100%;
+    border-radius: 4px;
+    font-size: 15px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    background: rgb(244, 244, 250);
+    color: rgb(63, 62, 75);
+}
+
+.talk-user-msg-time-area {
+	    display: flex;
+    flex-direction: column;
+    min-width: 2.72rem;
+    margin: 0px 0px 0px 10px;
+    font-size: 10px;
+    flex-shrink: 0;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+.talk-user-msg-time-text {
+	color: rgb(195, 194, 204);
+    margin-top: 3px;
+    text-align: right;
+    font-size: 10px;
+}
+
+.talk-user-normal-msg {
+    display: inline-block;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 8px;
+}
+
+.normal-msg-area {
+	display: flex;
+    font-size: 15px;
+    padding: 0px 12px;
+    max-width: 100%;
+    flex-direction: row-reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+}
+
+.normal-msg-flex {
+    display: flex;
+    flex-shrink: 1;
+}
+
+.normal-msg-content {
+	width: 100%;
+    height: 100%;
+    padding: 5.5px 12px;
+    position: relative;
+    flex-shrink: 1;
+    word-break: break-all;
+    white-space: pre-wrap;
+    line-height: 1.4;
+    background: rgb(224, 70, 77);
+    color: rgb(255, 255, 255);
+    border-radius: 12px 2px 12px 12px;
+}
+
+.normal-msg-time-area {
+    display: flex;
+    flex-direction: column;
+    min-width: 2.72rem;
+    margin: 0px 0px 0px 10px;
+    font-size: 10px;
+    flex-shrink: 0;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    margin: 0px 10px 0px 0px;
+    align-items: flex-end;
+}
+
+.normal-msg-status {
+	color: rgb(94, 92, 107);
+	font-size: 10px;
+}
+
+.normal-msg-time-text {
+	color: rgb(195, 194, 204);
+    margin-top: 3px;
+    text-align: right;
+	font-size: 10px;
+}
+
+.talk-user-response-msg {
+    display: inline-block;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 8px;
+    
+}
+
+.response-msg-area {
+	display: flex;
+    font-size: 15px;
+    padding: 0px 12px;
+    max-width: 100%;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+}
+
+.response-msg-img-area {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+}
+
+.response-msg-img-area img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.response-msg-area {
+	display: flex;
+    flex-shrink: 1;
+}
+
+.response-msg-text {
+	width: 100%;
+    height: 100%;
+    padding: 5.5px 12px;
+    position: relative;
+    flex-shrink: 1;
+    word-break: break-all;
+    white-space: pre-wrap;
+    line-height: 1.4;
+    background: rgb(255, 255, 255);
+    border-radius: 2px 12px 12px;
+}
+
+.response-msg-time-area {
+    display: flex;
+    flex-direction: column;
+    min-width: 2.72rem;
+    font-size: 10px;
+    flex-shrink: 0;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+.response-msg-time-text {
+	color: rgb(195, 194, 204);
+    margin-top: 3px;
+    font-size: 10px;
+}
+
+.talk-user-footer {
+    width: 100%;
+    background: rgb(255, 255, 255);
+    border-top: 1px solid rgb(238, 238, 238);
+    padding-bottom: 8px;
+    position: relative;
+}
+
+.footer-menu-area {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 8px;
+    -webkit-box-orient: horizontal;
+    min-height: 40px;
+}
+
+.footer-send-area {
+	width: 100%;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+}
+
+.footer-menu-btn-area {
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+.footer-menu-btn {
+    height: 2.5rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgdmlld0JveD0iMCAwIDI2IDI2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiB4PSIuNSIgeT0iLjUiIGZpbGw9IiNGRjUwNTgiIHN0cm9rZT0iI0ZGNTA1OCIgcng9IjgiLz4KICAgICAgICA8cmVjdCB3aWR0aD0iMTQiIGhlaWdodD0iMiIgeD0iNiIgeT0iMTIiIGZpbGw9IiNGRkYiIHJ4PSIxIi8+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjIiIHg9IjYiIHk9IjEyIiBmaWxsPSIjRkZGIiByeD0iMSIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMTMgMTMpIi8+CiAgICA8L2c+Cjwvc3ZnPgo=);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 26px 26px;
+    width: 46px;
+}
+
+.footer-menu-text-area {
+    flex: 1 1 0%;
+    margin-right: 10px;
+}
+
+.footer-menu-text-form {
+	background: rgb(244, 244, 250);
+    border-radius: 20px;
+    position: relative;	
+}
+
+.footer-menu-text-textarea {
+    appearance: none;
+    background: transparent;
+    outline: none;
+    border: 0px;
+    border-radius: 2px 0px 0px 2px;
+    padding: 9.5px 2.5rem 9.5px 20px;
+    line-height: 1.4;
+    resize: none;
+    overflow: auto;
+    font-size: 15px;
+	font-family: "Noto Sans KR";
+    width: 100%;
+}
+
+textarea::placeholder {
+	font-size: 13px;
+	color: #AAAAAA;
+	font-family: "Noto Sans KR";
+	text-align: left;
+	line-height:1.8;
+	
+}
+
+.talk-user-pd-area {
+	display: flex;
+    width: 100%;
+    height: 3.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 2px solid rgb(255, 80, 88);
+    padding: 0.5rem;
+    flex-direction: row;
+    z-index: 1;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+}
+
+.talk-user-pd-link {
+	display: flex;
+    flex: 1 1 0%;
+    padding-right: 0.5rem;
+    overflow: hidden;
+}
+
+.talk-user-pd-link img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2px;
+    margin-right: 0.5rem;
+}
+
+.talk-user-pd-info {
+    flex: 1 1 0%;
+    min-width: 0px;
+    line-height: 1.2;
+}
+
+.talk-user-pd-price {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.talk-user-pd-price small {
+    font-size: 13px;
+    margin-left: 2px;
+}
+
+.talk-user-pd-title {
+	display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.talk-user-pd-btn {
+    height: 2rem;
+    border-radius: 4px;
+    background: rgb(234, 233, 241);
+    font-size: 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    padding: 0px 12px;
+}
+
+.talk-user-template-area {
+    margin: 1.5rem 0px;
+    text-align: center;
+}
+
+.talk-user-template-area h2 {
+	font-size: 18px;
+    color: rgb(30, 29, 41);
+    margin: 1rem 0px 0.5rem;
+}
+
+.talk-user-template-area p {
+	font-size: 13px;
+    color: rgb(114, 112, 127);
+}
+
+.talk-user-template-list {
+	padding: 0px 2rem;
+}
+
+.talk-user-template-item {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 1.5rem;
+    height: 2.5rem;
+    list-style: none;
+    background: rgb(255, 255, 255);
+    text-indent: 1rem;
+    font-size: 15px;
+    color: rgb(51, 51, 51);
+    box-shadow: rgb(220, 219, 228) 0px 4px 8px 0px;
+}
+
+.talk-user-template-list > li {
+	margin-top: 1rem;
+}
+.talk-user-template-list:first-child {
+	margin-top: 0px;
+}
+
+.talk-user-template-item img {
+	position: absolute;
+    right: 5px;
+}
+
+.top-menu-modal {
+    position: fixed;
+    top: 50px;
+    left: 0px;
+    right: 0px;
+    width: 500px;
+    height: calc(617px);
+    transition: visibility 300ms ease-out 0s;
+    will-change: visibility;
+    z-index: 2;
+    visibility: hidden;
+}
+
+.modal-bg-area {
+    width: 100%;
+    height: calc(617px);
+    background-color: rgba(0, 0, 0, 0.3);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    transition: opacity 300ms ease-out 0s;
+    will-change: opacity;
+    opacity: 0;
+}
+
+.modal-menu-btn-area {
+	position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    background: rgb(255, 255, 255);
+    transition: transform 300ms ease-out 0s;
+    will-change: transform;
+    padding: 8px 14px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    justify-content: space-around;
+    transform: translate3d(0px, -100%, 0px);
+}
+
+.modal-menu-btn-alarm {
+	width: 4rem;
+    height: 4rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDIyIDIyIj4KICAgIDxwYXRoIGZpbGw9IiNGRjUwNTgiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTExIDJhNy41IDcuNSAwIDAgMSA3LjUgNy41bC0uMDAxIDQuNTk2TDIwIDE1LjMzM3YxLjgxOWwtNi4zLS4wMDF2LjYzNGEyLjcgMi43IDAgMCAxLTUuNCAwdi0uNjM0SDJ2LTEuODE4bDEuNDk5LTEuMTg4TDMuNSA5LjVBNy41IDcuNSAwIDAgMSAxMSAyeiIvPgo8L3N2Zz4K);
+    background-position: center 9px;
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    padding-top: 31px;
+    font-size: 13px;
+    text-align: center;
+    color: rgb(94, 92, 107);
+}
+
+.modal-menu-btn-report {
+    width: 4rem;
+    height: 4rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDIyIDIyIj4KICAgIDxwYXRoIGZpbGw9IiNDM0MyQ0MiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyLjMwMyA2YzEuNjU1IDAgMy4wNzEgMS4yMDkgMy4zNjcgMi44NzRMMTcuMjYyIDE3aC4yNzFjLjgwOSAwIDEuNDY3LjY3MyAxLjQ2NyAxLjV2MmMwIC4yNzYtLjIxOS41LS40ODkuNUgzLjQ5QS40OTUuNDk1IDAgMCAxIDMgMjAuNXYtMmMwLS44MjcuNjU4LTEuNSAxLjQ2Ny0xLjVoLjMyTDYuMzggOC44NzZDNi42NzUgNy4yMDkgOC4wOTEgNiA5Ljc0NyA2em00LjY2NC00LjU0MWExIDEgMCAwIDEgLjM2NiAxLjM2NmwtMSAxLjczMmExIDEgMCAxIDEtMS43MzItMWwxLTEuNzMyYTEgMSAwIDAgMSAxLjM2Ni0uMzY2ek01IDEuNDU5YTEgMSAwIDAgMSAxLjM2Ni4zNjZsMSAxLjczMmExIDEgMCAwIDEtMS43MzIgMWwtMS0xLjczMkExIDEgMCAwIDEgNSAxLjQ1OXpNMTEgMGExIDEgMCAwIDEgMSAxdjJhMSAxIDAgMSAxLTIgMFYxYTEgMSAwIDAgMSAxLTF6Ii8+Cjwvc3ZnPgo=);
+    background-position: center 9px;
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    padding-top: 31px;
+    font-size: 13px;
+    text-align: center;
+    color: rgb(94, 92, 107);
+}
+
+.modal-menu-btn-inquery {
+	width: 4rem;
+    height: 4rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDIyIDIyIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjIwIiB4PSIyIiB5PSIxIiBmaWxsPSIjQzNDMkNDIiByeD0iMiIvPgogICAgICAgIDxyZWN0IHdpZHRoPSIxMiIgaGVpZ2h0PSIyIiB4PSI1IiB5PSI1IiBmaWxsPSIjRkZGIiByeD0iMSIvPgogICAgICAgIDxyZWN0IHdpZHRoPSIxMiIgaGVpZ2h0PSIyIiB4PSI1IiB5PSIxMCIgZmlsbD0iI0ZGRiIgcng9IjEiLz4KICAgICAgICA8cGF0aCBmaWxsPSIjRkZGIiBkPSJNNiAxNWg2YTEgMSAwIDAgMSAwIDJINmExIDEgMCAwIDEgMC0yeiIvPgogICAgPC9nPgo8L3N2Zz4K);
+    background-position: center 9px;
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    padding-top: 31px;
+    font-size: 13px;
+    text-align: center;
+    color: rgb(94, 92, 107);
+}
+
+.modal-menu-btn-block {
+    width: 4rem;
+    height: 4rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDIyIDIyIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMSAxKSI+CiAgICAgICAgPGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iOC41IiBzdHJva2U9IiNDM0MyQ0MiIHN0cm9rZS13aWR0aD0iMyIvPgogICAgICAgIDxwYXRoIGZpbGw9IiNDM0MyQ0MiIGQ9Ik0xNS4wNSAzLjQwNWwyLjAyMSAyLjAyTDQuOTUgMTcuNTQ3bC0yLjAyLTIuMDJ6Ii8+CiAgICA8L2c+Cjwvc3ZnPgo=);
+    background-position: center 9px;
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    padding-top: 31px;
+    font-size: 13px;
+    text-align: center;
+    color: rgb(94, 92, 107);
+}
+
+.modal-menu-btn-exit {
+	width: 4rem;
+    height: 4rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDIyIDIyIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjIwIiB4PSIyIiB5PSIxIiBmaWxsPSIjQzNDMkNDIiByeD0iMiIvPgogICAgICAgIDxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xMC4xMTkgNS4yNjVhMSAxIDAgMCAxIC4wNTUuMDU2bDQuNDMgNC43OWExLjAxOSAxLjAxOSAwIDAgMSAuMDc0LjA3MmwuMTMyLjE0NGExIDEgMCAwIDEgMCAxLjM1N2wtNC42MTYgNC45OTVhMSAxIDAgMCAxLTEuNDY5IDBsLS4xMzMtLjE0NGExIDEgMCAwIDEgMC0xLjM1N2wyLjkzOC0zLjE4TDIgMTJWOS43MTJoOS4yNDNsLTIuNjctMi44OWExIDEgMCAwIDEgMC0xLjM1N2wuMTMyLS4xNDRhMSAxIDAgMCAxIDEuNDE0LS4wNTZ6Ii8+CiAgICA8L2c+Cjwvc3ZnPgo=);
+    background-position: center 9px;
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    padding-top: 31px;
+    font-size: 13px;
+    text-align: center;
+    color: rgb(94, 92, 107);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

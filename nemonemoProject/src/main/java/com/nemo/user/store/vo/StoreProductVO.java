@@ -15,4 +15,5 @@ public class StoreProductVO extends StoreVO{
 	private String productDispSt;
 	private int productPrice;
 	private Date productRegDt;
+	private int productImgNo;
 }

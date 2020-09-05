@@ -5,7 +5,7 @@
 	<div class="flex">
 		<!-- 로고 영역 -->
 		<a href="<c:url value="/index.do"/>" id="main-logo-area"><img
-			src="<c:url value="/resources/images/user/common/mainLogo.png"/>"
+			src="<c:url value="/resources/images/common/logo/mainLogo.png"/>"
 			alt="mainLogo" id="main-logo"></a>
 
 		<!-- 검색창 영역 -->
@@ -22,25 +22,23 @@
 				<!-- 최근검색어 영역 -->
 				<div class="search-recently__area" id="recentlyArea">
 					<div class="recently-header">
-						<a class="recently-menu"> 최근검색어 </a>
+						<button class="recently-menu"> 최근검색어 </button>
+						<button class="popular-menu"> 인기검색어</button>
 					</div>
 					<div class="recently-body">
 						<div class="recently-area">
 							<div class="recently-div">
-								<%-- 잘 모르는 div --%>
 								<div class="recently-list" id="recentlyList">
-									<!-- <div class="recently-item">
-										<button class="recently-item--title"></button>
-										<button class="recently-item--delete">
-											<i class="fas fa-times"></i>
-										</button>
-									</div> -->
 								</div>
 								<div class="recently-nothing" id="nothingRecently">
 									<i class="fas fa-file-alt fa-2x"></i>
 									<div>최근 검색어가 없습니다.</div>
 								</div>
-
+							</div>
+						</div>
+						<div class="popular-area">
+							<div class="popular-div">
+								<!-- 인기검색어가 들어갈 곳 -->
 							</div>
 						</div>
 					</div>
@@ -56,8 +54,6 @@
 					</div>
 					<div class="search-result-list">
 						<!-- 아이템 1개 -->
-						<a class="search-result-item"> <span class="result-item">오마이걸</span>
-						</a>
 					</div>
 				</div>
 				<!-- 삭제 영역 -->
@@ -73,11 +69,14 @@
 		<div class="my-menu">
 			<a class="my-menu-box" href="<c:url value="/products/new.do"/>">
 				<img src="<c:url value="/resources/images/user/common/sell2.png"/>"
-				alt="판매하기아이콘" id="sell-icon">&nbsp;&nbsp;판매하기
-			</a> <a href="${pageContext.request.contextPath}/shop/${user.storeNo }/products.do"> <img
-				src="<c:url value="/resources/images/user/common/my_store.png"/>"
-				alt="내상점아이콘" id="store-icon">&nbsp;&nbsp;내 상점
-			</a>
+				alt="판매하기아이콘" id="sell-icon">판매하기
+			</a> 
+			<a class="my-menu-box" href="<c:url value="/shop/${user.storeNo }/products.do"/>"> 
+				<img src="<c:url value="/resources/images/user/common/my_store.png"/>" alt="내상점아이콘" id="store-icon">내상점
+			</a> 
+			<button class="my-menu-box" id="myTalk"> 
+				<img src="<c:url value="/resources/images/user/common/nemo_talk.png"/>" alt="내상점아이콘" id="store-icon">네모톡
+			</button> 
 		</div>
 	</div>
 	<div class="cate-icon--area">

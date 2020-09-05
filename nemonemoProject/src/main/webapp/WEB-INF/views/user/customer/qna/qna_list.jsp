@@ -5,25 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>네모내모 | 1:1상담</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
-
 
 <!-- 페이지 CSS  -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/qna/qna_list.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/customer_nav.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/common/paging/paging.css"/>">
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>"> 
 
 
 <!-- 라이브러리 -->
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
-<script src="<c:url value="/resources/vendor/fontawsome/js/all.js"/>"></script>
+<script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- 해당 페이지 JS파일 -->
+<script> window.contextPath = "<c:url value="/"/>";</script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 <script src="<c:url value="/resources/js/user/customer/qna/qna_list.js"/>"></script>
 
@@ -65,7 +66,7 @@
             <ul class="qna_list">
        			<c:forEach var="qna" items="${qnaList}">
                 <article class="qna_article">
-                  	<input type ="hidden" value ="${qna.userNo}">
+                  	<input type ="hidden" value ="${qna.qnaRegId}">
                   	<input type ="hidden" value ="${qna.qnaNo}">
                   		<!-- 글 여는 버튼  -->
                     <button class="qna_open_btn">
@@ -86,10 +87,10 @@
                          <section class="answer_section">
                             <div class="qna_section_align">
                                 <div class="qna_content_title">
-                                    <img src="https://hawaiiseoulcdn.bunjang.net/images/crop/199870305_w300.jpg"
+                                    <img src="<c:url value="/resources/images/common/logo/favicon.png"/>"
                                         width="40" height="40" class="qna_logo_img">
                                     <div class="qna_font_div">
-                                        <h2 class="answer_h2">번장운영센터 답변</h2>
+                                        <h2 class="answer_h2">네모내모 운영센터 답변</h2>
                                         <time class="answer_time">${qna.qnaReplyYmd}</time>
                                     </div>
                                     <a class="to_anther_question" href="/nemonemoProject/customer/qna.do">다른 문의하기</a>
@@ -104,15 +105,8 @@
                         <section class="question_section">
                             <div class="qna_section_align">
                                 <div class="qna_content_title">
-                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vc
-                                    mcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij
-                                    4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcm
-                                    NsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjQiIGZpbGw9IiNEQ0RCRTQiLz4KICAgICAgICA8Zy
-                                    BmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iPgogICAgICAgICAgICA8cGF0aCBkP
-                                    SJNMjUgMjNjNi4xNDIgMCAxMSA0LjM4NyAxMSA5LjY2NyAwIC43MzYtLjU4IDEuMzMzLTEuM
-                                    jk0IDEuMzMzSDE1LjI5NEMxNC41OCAzNCAxNCAzMy40MDMgMTQgMzIuNjY3IDE0IDI3LjM4
-                                    IDE4Ljg1NCAyMyAyNSAyM3pNMjUgMTFhNSA1IDAgMSAxIDAgMTAgNS4wMSA1LjAxIDAgMCA
-                                    xLTUtNSA1IDUgMCAwIDEgNS01eiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg=="
+                                    <img
+                                src="<c:url value="/resources/images/user/qna/customer.svg"/>"
                                         width="40" height="40" class="qna_logo_img">
                                     <div class="qna_font_div">
                                         <h2 class="question_h2">문의내용</h2>

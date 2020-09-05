@@ -4,9 +4,11 @@ import java.sql.Date;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class StoreReviewVO {
 	private int storeReviewNo;
 	private int storeNo;
@@ -16,4 +18,5 @@ public class StoreReviewVO {
 	private Date storeReviewRegDt;
 	private String storeName;
 	private String productName;
+	private int productNo;
 }

@@ -162,21 +162,31 @@
 								</div>
 							</div>
 						</div>
+						<div class="signin-common-margin">
+							<div class="input-box">
+								<input type="text" name="storeName" id="storeName" placeholder="상점명을 입력해주세요" maxlength="30">
+								<div class="fyi">* 상점명은 최대 30자까지 가능합니다.</div>
+							</div>
+						</div>
 					</div>
+					
 
+	
 					<div class="terms-check-outline">
 						<div class="all-check-outline">
 							<div class="check-margin">
-								<div class="terms-check-box">
+								<!-- <div class="terms-check-box">
 									<div id="ch-all" class="terms-check"></div>
 									<div class="checkbox-info">전체동의하기</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<div class="check-padding">
 							<div class="check-margin">
 								<div class="terms-check-box">
-									<div id="ch-first" class="terms-check"></div>
+									<!-- <div id="ch-first" class="terms-check"></div> -->
+									<input id="ch-first" type="checkbox" name="chk1" value="chk1" 
+									class="terms-check">
 									<div class="checkbox-info">
 										<span class="mandatory">(필수)</span>번개장터 이용약관 동의
 									</div>
@@ -196,7 +206,9 @@
 							</div>
 							<div class="check-margin">
 								<div class="terms-check-box">
-									<div id="ch-second" class="terms-check"></div>
+									<!-- <div id="ch-second" class="terms-check"></div> -->
+									<input id="ch-second" type="checkbox" name="chk2" value="chk2" 
+									class="terms-check">
 									<div class="checkbox-info">
 										<span class="mandatory">(필수)</span>개인정보 처리 방침 동의
 									</div>
@@ -215,7 +227,9 @@
 							</div>
 							<div class="check-margin">
 								<div class="terms-check-box">
-									<div id="ch-third" class="terms-check"></div>
+									<!-- <div id="ch-third" class="terms-check"></div> -->
+									<input id="ch-third" type="checkbox" name="userTermsAgreeFl" value="" 
+									class="terms-check">
 									<div class="checkbox-info">
 										<span class="suggest">(선택)</span>위치기반서비스 동의
 									</div>
@@ -232,14 +246,15 @@
 									</div>
 								</div>
 							</div>
-							<div class="check-margin">
+							<!-- <div class="check-margin">
 								<div class="terms-check-box">
 									<div id="ch-fourth" class="terms-check"></div>
 									<div class="checkbox-info">
 										<span class="suggest">(선택)</span>이메일,SMS 광고 수신 동의
 									</div>
 								</div>
-							</div>
+							</div> -->
+						
 							<div class="fyi">*선택항목은 동의하지 않아도 회원가입이 가능합니다</div>
 						</div>
 					</div>

@@ -75,7 +75,7 @@
 	<update id="updateTerms" parameterType="com.nemo.admin.sites.terms.vo.TermsVO">
 		UPDATE terms_tb
 		SET 
-			<!-- admin_edit_id = #{adminEditId}, -->
+			admin_reg_id = #{adminRegId}, 
 			terms_content= #{termsContent, jdbcType=CLOB},
 			terms_edit_ymd = #{termsEditYmd}
 		WHERE
