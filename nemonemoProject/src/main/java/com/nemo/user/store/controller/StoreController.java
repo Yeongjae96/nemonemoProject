@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nemo.common.util.ContextUtil;
 import com.nemo.user.store.service.DeleteStoreCommentService;
@@ -75,7 +76,7 @@ public class StoreController {
 	private DeleteStoreCommentService deleteStoreCommentService;
 	
 	@GetMapping(value = {"//products","/{storeNo}/products"})
-	public ModelAndView GetStoreInfoProducts(@PathVariable("storeNo") Optional<Integer> optionalStoreNo) {
+	public ModelAndView GetStoreInfoProducts(@PathVariable("storeNo") Optional<Integer> optionalStoreNo, RedirectAttributes redirectAttributes) {
 		
 		ModelAndView mav = new ModelAndView("store/products/products");
 		
@@ -84,13 +85,11 @@ public class StoreController {
 					.getHeader("Referer"))
 					.map(requestUrl -> "redirect:" + requestUrl)
 					.orElseGet(() -> "redirect:/index.do"));
-			mav.addObject("status", "fail");
+			redirectAttributes.addFlashAttribute("loginStatus", "false");
 			return mav;
 		}
 		
 		int storeNo = optionalStoreNo.get();
-		
-		System.out.println(storeNo + "store");
 		
 		StoreVO storeVO = getStoreService.getStore(storeNo);
 		

@@ -198,6 +198,7 @@ img {
 </style>
 </head>
 <body>
+	<input type="hidden" value="${loginStatus}" id="loginStatus"/>
 	<nav class="navbar nav-expand-sm navbar-light top-nav">
 		<div class="top-menus">
 			<div class="nav-box">
@@ -211,7 +212,6 @@ img {
 				<button class="btn-layout" id="loginBtn">로그인</button>
 				<div class="login-btw-signin"></div>
 				<button class="btn-layout" onclick="location.href='sign/signup.do'">회원가입</button>
-
 			</div>
 
 			<!--오른쪽 네비 끝 -->

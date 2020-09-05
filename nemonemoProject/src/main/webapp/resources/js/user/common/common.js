@@ -31,9 +31,9 @@ const initCommonFunction = function() {/* 공통 함수 */
 	}
 }
 
-/* 상품 카테고리와 관련된 애들은 모두 이 함수가 선행이 되어야 함
- * initPdMenu
- * */
+/*
+ * 상품 카테고리와 관련된 애들은 모두 이 함수가 선행이 되어야 함 initPdMenu
+ */
 
 $(function() {
 	initCommonFunction();
@@ -146,34 +146,13 @@ function initTopMenu() {
     	   }
       });
       
-      const statusParam = getParam('status');
-      console.log(statusParam, 'params');
-      if((statusParam && statusParam == 'fail')) {
+      
+      const loginStatus = document.getElementById('loginStatus');
+      
+      if(loginStatus && loginStatus.value == 'false') {
     	  loginBtn.dispatchEvent(new Event('click'));
       }
       
-      function getParam(paramName) {
-    	  const url = window.location.search.substring(1);
-    	  if(!url.length) return null;
-    	  const tempArr = url.split('&');
-    	  
-    	  let returnValue = null;
-    	  
-    	  if(tempArr.length){
-    		  tempArr.forEach(e => {
-    			  const temp = e.split('=');
-    			  if(temp[0] == paramName) {
-    				  returnValue = temp[1];
-    				  return false;
-    			  }
-    		  });
-    	  } else if (url.indexOf('=') != -1) {
-    		  const tempUrl = url.split('=');
-    		  returnValue = tempUrl[0] == paramName ? tempUrl[1] : null;
-    	  }
-    	  
-    	  return returnValue;
-      }
 }
 
 
@@ -209,7 +188,7 @@ function initJJim(){
 			loadJJim(data);
 		},
 		error : function(err){
-			//alert("error!");
+			// alert("error!");
 		}
 	});
 	
@@ -223,7 +202,9 @@ function loadJJim(e){
 	jjimcount = parseInt(e);
 		
 	let jjim = document.getElementsByClassName('to-favorites')[0];
-	const jjimSpan = Array.prototype.filter.call(jjim.children, e => e.tagName == 'span'); // jjim자식으로부터 span 찾기
+	const jjimSpan = jjim.lastElementChild;// jjim자식으로부터
+	console.log(jjim);																						// 찾기
+	console.log(jjimSpan);																						// 찾기
 	if(jjimcount > 0){
 		document.getElementById("to-favorites").className = "to-favorites-red";
 		document.getElementById("favimg").src = contextPath + "resources/images/user/common/heart_red.png";
@@ -338,7 +319,7 @@ function loadProduct(){
 	function removeFromSession(datano){
 		
 		let removeProductNo = getItems.findIndex(i => i.productNo == datano);
-		if(removeProductNo == -1) return false; // 잘못된 데이터가 들어왔을때 에러처리			
+		if(removeProductNo == -1) return false; // 잘못된 데이터가 들어왔을때 에러처리
 		getItems.splice(removeProductNo, 1);
 		
 		// 새로운 변경된 arr를 덮어씌움
@@ -428,7 +409,7 @@ function initSearchEvent() {
 			searchAreaCloseEvent();
 		}
 	}
-	/* 인기검색어 목록 불러와서 쏴주기  */
+	/* 인기검색어 목록 불러와서 쏴주기 */
 	(function () {
 		// 인기검색어 목록
 		const popularDiv = document.querySelector('.popular-div');
@@ -605,7 +586,7 @@ function initSearchEvent() {
 	}
 	
 	/* */
-	/* localStorage에서 해당 배열로 불러오는 작업 끝난 후엔 LoadSearchHistory()를 호출하여 돔으로 표현*/
+	/* localStorage에서 해당 배열로 불러오는 작업 끝난 후엔 LoadSearchHistory()를 호출하여 돔으로 표현 */
 	function initSearchHistory() {
 		const getArr = localStorage.getItem('searchHistory');
 		if(!getArr || !getArr[0]) {
@@ -938,11 +919,10 @@ function initPdMenu(callback) {
 				url: contextPath+'products/allCateList.do',
 				method: 'get',
 				dataType: 'json',
-				success: resolve	
+				success: resolve,	
 			});
 		});
 	}
-	
 	});
 	
 }
