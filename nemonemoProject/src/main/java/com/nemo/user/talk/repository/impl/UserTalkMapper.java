@@ -1,10 +1,14 @@
-package com.nemo.user.talk.service.repository.impl;
+package com.nemo.user.talk.repository.impl;
+
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.nemo.user.talk.service.repository.IUserTalkMapper;
+import com.nemo.user.talk.repository.IUserTalkMapper;
+import com.nemo.user.talk.vo.UserTalkContactResVO;
 
 @Mapper
 public interface UserTalkMapper extends IUserTalkMapper{
-	public int 
+	
+	public UserTalkContactResVO selectContactVO(Map<String, Object> paramMap);
 }
