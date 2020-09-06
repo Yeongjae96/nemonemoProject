@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.talk.repository.impl.UserMsgMapper">
+
+	<resultMap id="msgMap" type="com.nemo.user.talk.vo.UserBaseMsgVO">
+		<id column="msg_no" property="msgNo"/>
+		<result column="talk_no" property="talkNo"/>
+		<result column="msg_sender" property="msgSender"/>
+		<result column="msg_content" property="msgContent"/>
+		<result column="msg_reg_dt" property="msgRegDt"/>
+		<result column="msg_type" property="msgType"/>
+	</resultMap>
+
+	
+
+</mapper>

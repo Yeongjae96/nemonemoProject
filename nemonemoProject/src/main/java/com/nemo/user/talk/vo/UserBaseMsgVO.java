@@ -20,6 +20,5 @@ public class UserBaseMsgVO {
 	private int msgSender;
 	private String msgContent;
 	private Timestamp msgRegDt;
-	private String msgDelFl;
 	private String msgType;
 }

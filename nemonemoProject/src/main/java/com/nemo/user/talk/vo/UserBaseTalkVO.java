@@ -13,5 +13,7 @@ import lombok.Data;
 @Data
 public class UserBaseTalkVO {
 	private int talkNo;
+	private int lowUserNo;
+	private int highUserNo;
 	private String talkSt;
 }

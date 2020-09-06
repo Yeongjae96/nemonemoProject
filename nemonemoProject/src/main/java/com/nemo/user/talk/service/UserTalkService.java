@@ -1,11 +1,10 @@
 package com.nemo.user.talk.service;
 
-import com.nemo.user.talk.vo.UserBaseMsgVO;
+import com.nemo.user.talk.vo.UserTalkContactParamVO;
+import com.nemo.user.talk.vo.UserTalkContactResVO;
 
 public interface UserTalkService {
 	
-	public int startTalk(UserBaseMsgVO vo);
-	public int sendMsg(UserBaseMsgVO vo);
-	public int endTalk(UserBaseMsgVO vo);
-	
+	public UserTalkContactResVO getContactVO(UserTalkContactParamVO vo);
+	public int createTalk(int opponentUserNo);
 }

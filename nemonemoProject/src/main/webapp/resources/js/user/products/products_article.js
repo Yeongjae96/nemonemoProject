@@ -74,7 +74,7 @@ function initBtn() {
 			});
 		}
 		
-		openTalk().then(function(data) {
+		getLoginStatus().then(function(data) {
 			if(data.loginStatus == 'true') {
 				link = callModalLink.dataset.href;
 				const newWindow = window.open(link, 'talk', 'width=500px, height=667px');

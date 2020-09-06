@@ -468,6 +468,11 @@ textarea::placeholder {
     flex: 1 1 0%;
     padding-right: 0.5rem;
     overflow: hidden;
+    cursor: pointer;
+}
+
+.talk-user-pd-link:hover {
+	
 }
 
 .talk-user-pd-link img {

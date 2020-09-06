@@ -23,9 +23,9 @@
 <body>
    <div class="talk-user-area">
 		<header class="talk-user-header">
-			<button class="talk-user-info-btn">
-				발예린
-				<i class="fas fa-chevron-up"></i>
+			<button class="talk-user-info-btn" id="headerTitle">
+				<!-- 발예린
+				<i class="fas fa-chevron-up"></i> -->
 			</button>
 			<div class="talk-user-menu-area">
 				<button class="talk-user-menu-more">
@@ -34,7 +34,7 @@
 			</div>
 		</header>
 		<!-- 연락하기 눌렀을 떄의 상품 정보  -->
-		<div class="talk-user-pd-area">
+		<%-- <div class="talk-user-pd-area">
 			<a class="talk-user-pd-link">
 				<!-- 이미지 -->
 				<img src="<c:url value="/image/product/18.img"/>">
@@ -51,7 +51,7 @@
 			<button class="talk-user-pd-btn">
 				네모페이
 			</button>
-		</div>
+		</div> --%>
 		
 		
 		<!--메신저 내용 -->
