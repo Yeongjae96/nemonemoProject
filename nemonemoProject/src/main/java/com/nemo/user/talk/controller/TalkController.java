@@ -38,6 +38,10 @@ public class TalkController {
 	public UserTalkContactResVO getContactData(@PathVariable("userNo") int userOpponentNo, @RequestParam("productNo") int productNo) {
 		UserTalkContactParamVO paramVO = new UserTalkContactParamVO(productNo, userOpponentNo);
 		UserTalkContactResVO result = userTalkService.getContactVO(paramVO);
+		if(result == null) {
+			result = new UserTalkContactResVO();
+			result.setResult("notFoundUserSession");
+		}
 		return result;
 	}
 	

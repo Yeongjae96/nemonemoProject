@@ -21,8 +21,7 @@ public class UserTalkServiceImpl implements UserTalkService {
 
 	@Autowired
 	private UserTalkMapper userTalkMapper;
-	
-	
+
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public UserTalkContactResVO getContactVO(UserTalkContactParamVO vo) {
@@ -47,7 +46,7 @@ public class UserTalkServiceImpl implements UserTalkService {
 		List<UserBaseMsgVO> msgList = userTalkMapper.selectMsgListByUserNo(paramMap); 
 		result.setMyUserNo(myUserNo);
 		result.setMsgList(msgList);
-		
+		result.setResult("success");
 		return result;
 	}
 

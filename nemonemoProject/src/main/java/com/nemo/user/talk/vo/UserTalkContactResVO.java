@@ -14,6 +14,7 @@ import lombok.Data;
  */
 @Data
 public class UserTalkContactResVO {
+	private String result;
 	private int myUserNo;
 	private int talkNo;
 	private int productImgNo;

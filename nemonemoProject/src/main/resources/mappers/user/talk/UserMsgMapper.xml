@@ -6,10 +6,33 @@
 		<id column="msg_no" property="msgNo"/>
 		<result column="talk_no" property="talkNo"/>
 		<result column="msg_sender" property="msgSender"/>
+		<result column="msg_receiver" property="msgReceiver"/>
 		<result column="msg_content" property="msgContent"/>
 		<result column="msg_reg_dt" property="msgRegDt"/>
 		<result column="msg_type" property="msgType"/>
 	</resultMap>
+
+
+	<insert id="insertUserMsg" parameterType="com.nemo.user.talk.vo.UserBaseMsgVO">
+	
+		INSERT INTO msg_tb (
+			msg_no ,
+			talk_no ,
+			msg_sender ,
+			msg_receiver ,
+			msg_content ,
+			msg_reg_dt ,
+			msg_type
+		) VALUES (
+			msg_sq.nextval,
+			#{talkNo},
+			#{msgSender},
+			#{msgReceiver},
+			#{msgContent},
+			#{msgRegDt},
+			#{msgType}
+		)
+	</insert>
 
 	
 

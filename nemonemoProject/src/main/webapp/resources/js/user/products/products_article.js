@@ -55,6 +55,10 @@ function initBtn() {
 	const callCloseBtn = document.querySelector('.call-modal__close');
 	const callModalObj = { open: [callOpenBtn, callOpen2Btn], modal: callModal, close: callCloseBtn};
 	
+	// user값
+	const url = window.location.href;
+	const userNo = url.slice(url.lastIndexOf('/')+1, url.lastIndexOf('.'));
+	
 	modalSetting(callModalObj);
 	
 	
@@ -77,7 +81,12 @@ function initBtn() {
 		getLoginStatus().then(function(data) {
 			if(data.loginStatus == 'true') {
 				link = callModalLink.dataset.href;
-				const newWindow = window.open(link, 'talk', 'width=500px, height=667px');
+				
+				const center = ',top='+(window.screen.height/2 - 333.5)+ ',left=' + (window.screen.width/2 - 250); 
+				console.log(window.screen.width, window.screen.height);
+				console.log(center);
+				
+				const newWindow = window.open(link, userNo, 'width=500px, height=667px'+center);
 			} else {
 				const loginBtn = document.getElementById('loginBtn');
 				if(loginBtn) loginBtn.dispatchEvent(new Event('click'));

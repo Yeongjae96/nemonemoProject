@@ -15,7 +15,7 @@
    <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
    <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
    <script src="<c:url value="/resources/vendor/sockjs/dist/sockjs.min.js"/>"></script>
-	<script>window.contextPath = '<c:url value="/"/>';</script>
+   <script>window.contextPath = '<c:url value="/"/>';</script>
    <!-- 스크립트 -->
    <script src="<c:url value="/resources/js/user/talk/talk_user.js"/>"></script>
    
@@ -56,7 +56,7 @@
 		
 		<!--메신저 내용 -->
 		<div class="talk-user-msg-list">
-			<article class="talk-user-template-area">
+			<%-- <article class="talk-user-template-area">
 				<img src="<c:url value="/resources/images/common/logo/favicon.png"/>">
 				<h2>네모톡, 간편하게 시작해요!</h2>
 				<p>판매자에게 메시지 바로 보내기</p>
@@ -131,7 +131,9 @@
 					</div>
 				</div>
 			</div>
+			--%>
 		</div>
+		 
 		<!-- 메세지 보내기 창 -->
 		<div class="talk-user-footer">
 			<div class="footer-menu-area">
@@ -142,11 +144,12 @@
 				</div>
 				<div class="footer-menu-text-area">
 					<form class="footer-menu-text-form">
-						<textarea placeholder="욕설/음란/광고/개인정보 공유를 주의바랍니다" class="footer-menu-text-textarea" rows="1" style="max-height: 63px; overflow: hidden auto; overflow-wrap: break-word; height: 40px;"></textarea>
+						<textarea placeholder="욕설/음란/광고/개인정보 공유를 주의바랍니다" id="msgInput" class="footer-menu-text-textarea" rows="1" style="max-height: 63px; overflow: hidden auto; overflow-wrap: break-word; height: 40px;"></textarea>
 					</form>
 				</div>
 			</div>
 		</div>
+		
 		<!-- 상위 메뉴 모달 -->
 		<div class="top-menu-modal">
 			<div class="modal-bg-area"></div>

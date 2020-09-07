@@ -3,18 +3,26 @@ package com.nemo.user.talk.handler;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
+import com.nemo.user.talk.service.UserMsgService;
+import com.nemo.user.talk.vo.UserBaseMsgVO;
 
 @Controller("talkHandler")
 public class TalkHandler extends TextWebSocketHandler {
 	
 	private Map<Integer, WebSocketSession> sessionMap = new ConcurrentHashMap<>();
+	
+	@Autowired
+	private UserMsgService msgService;
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -35,11 +43,15 @@ public class TalkHandler extends TextWebSocketHandler {
 	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		Gson gson = new GsonBuilder().create();
+		UserBaseMsgVO data = gson.fromJson(message.getPayload(), UserBaseMsgVO.class);
+		System.out.println(data);
 		
-		System.out.println("{}로부터 {} 받음" + session.getId() + message.getPayload());
-		for(Integer key : sessionMap.keySet()) {
-			WebSocketSession sess = sessionMap.get(key);
-			sess.sendMessage(new TextMessage(session.getId() + " : " + message.getPayload()));
+		msgService.recordMessage(data);
+		
+		WebSocketSession sess = sessionMap.get(data.getMsgReceiver());
+		if(sess != null ) {
+			sess.sendMessage(message);
 		}
 	}
 	

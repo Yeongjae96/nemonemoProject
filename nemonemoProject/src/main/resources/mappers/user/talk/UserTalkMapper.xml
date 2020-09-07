@@ -20,7 +20,7 @@
 		SELECT m.*
 		FROM talk_tb t
 		INNER JOIN msg_tb m
-		ON t.talk_no = m.talk_no AND t.talk_user1 = ${lowUserNo} AND t.talk_user2 = ${highUserNo}
+		ON t.talk_no = m.talk_no AND t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
 	
 	</select>
 	
@@ -28,14 +28,15 @@
 	
 		SELECT 
 		    p.product_no,
+		    t.talk_no,
 		    i.product_img_no,
 		    p.product_name,
 		    s.store_name,
 		    p.product_price,
 		    p.product_seller,
 		    prod.product_cnt,
-		    nvl(s.store_rating, 0) store_rating,
-		    nvl(s.store_review_cnt, 0) store_review_cnt
+		    nvl(st.store_rating, 0) store_rating,
+		    nvl(st.store_review_cnt, 0) store_review_cnt
 		FROM product_tb p
 		INNER JOIN (SELECT product_no, min(product_img_no) product_img_no FROM product_img_tb GROUP BY product_no) i
 		ON p.product_no = i.product_no AND p.product_no = #{productNo}
@@ -43,20 +44,26 @@
 		ON s.store_no = p.product_seller
 		INNER JOIN (SELECT product_seller, count(1) product_cnt FROM product_tb GROUP BY product_seller) prod
 		ON p.product_seller = prod.product_seller
-		LEFT JOIN (SELECT store_no, count(1) store_review_cnt, floor(avg(store_review_rating)) store_rating FROM store_review_tb GROUP BY store_no) s
-		ON p.product_seller = s.store_no
+		LEFT JOIN (SELECT store_no, count(1) store_review_cnt, floor(avg(store_review_rating)) store_rating FROM store_review_tb GROUP BY store_no) st
+		ON p.product_seller = st.store_no
+		LEFT JOIN talk_tb t
+		ON t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
 		
 	</select>
 		
 	
 	<insert id="insertTalk" parameterType="hashMap">
 		
+		<selectKey keyProperty="talkNo" resultType="int" order="BEFORE">
+			SELECT nvl(max(talk_no), 0) + 1 FROM talk_tb
+		</selectKey>
+				
 		MERGE INTO talk_tb t
 		USING dual
 		ON (t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo})
 		WHEN NOT MATCHED THEN
 			INSERT(talk_no, talk_user1, talk_user2, talk_st)
-			VALUES(talk_sq.nextval, #{lowUserNo}, #{highUserNo}, 'N')
+			VALUES(#{talkNo}, #{lowUserNo}, #{highUserNo}, 'N')
 	
 	</insert>
 	

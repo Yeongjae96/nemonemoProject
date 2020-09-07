@@ -1,5 +1,9 @@
 package com.nemo.user.talk.repository;
 
-public interface IUserMsgMapper {
+import com.nemo.user.talk.vo.UserBaseMsgVO;
 
+public interface IUserMsgMapper {
+	
+	public int insertUserMsg(UserBaseMsgVO vo);
+	
 }
