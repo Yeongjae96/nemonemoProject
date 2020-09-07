@@ -12,11 +12,11 @@ $(function() {
 });
 
 function change1() {
-	document.all("change_div").innerHTML = "<h3>카카오페이 안내</h3>\n<p>카카오페이로 간편하게 결제할 수 있는 간편 결제 서비스입니다.</p>"
+	document.all("change_div").innerHTML = "<h3>카카오페이 안내</h3>\n<p>카카오페이로 간편하게 결제할 수 있는 간편 결제 서비스입니다.</p>\n<p>안전결제를 위해 네모네모에 입금 후 물건수령이 완료되면 돈을 보냅니다.</p>"
 	document.getElementById("purchaseselect").value = "kakao";
 }
 function change2() {
-	document.all("change_div").innerHTML = "<h3>간편계좌결제 안내</h3>\n<p>미리 계좌를 등록하고 간편하게 송금할 수 있는 서비스입니다.</p>"
+	document.all("change_div").innerHTML = "<h3>계좌결제 안내</h3>\n<p>네모네모 계좌에 입금하고 안전하게 거래할 수 있는 서비스입니다.</p>"
 	document.getElementById("purchaseselect").value = "account";
 }
 
