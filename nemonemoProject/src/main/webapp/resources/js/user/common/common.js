@@ -360,24 +360,26 @@ function initMyTalk() {
 	if(!myTalkBtn) return false;
 	myTalkBtn.addEventListener('click', openTalkList);
 	
-	const loginCheck = function() {
-		return new Promise(function(resolve, reject) {
-			$.ajax({
-				url: contextPath + 'sign/login/check.do',
-				method: 'get',
-				success: resolve,
-				error: reject,
+	function openTalkList() {
+		const loginCheck = function() {
+			return new Promise(function(resolve, reject) {
+				$.ajax({
+					url: contextPath + 'sign/login/check.do',
+					method: 'get',
+					success: resolve,
+					error: reject,
+				});
 			});
+		}
+		
+		loginCheck().then(function(data) {
+			if(data.loginStatus == 'true') {
+				const newWindow = window.open(contextPath + 'talk/list.do', 'talk', 'width=500px, height=667px');
+			} else {
+				document.getElementById('loginBtn').dispatchEvent(new Event('click'));
+			}
 		});
 	}
-	
-	loginCheck().then(function(data) {
-		if(data.loginStatus == 'true') {
-			const newWindow = window.open(contextPath + 'talk/list.do', 'talk', 'width=500px, height=667px');
-		} else {
-			document.getElementById('loginBtn').dispatchEvent(new Event('click'));
-		}
-	});
 }
 
 

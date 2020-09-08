@@ -468,6 +468,11 @@ textarea::placeholder {
     flex: 1 1 0%;
     padding-right: 0.5rem;
     overflow: hidden;
+    cursor: pointer;
+}
+
+.talk-user-pd-link:hover {
+	
 }
 
 .talk-user-pd-link img {
@@ -549,6 +554,13 @@ textarea::placeholder {
     font-size: 15px;
     color: rgb(51, 51, 51);
     box-shadow: rgb(220, 219, 228) 0px 4px 8px 0px;
+    cursor: pointer;
+}
+
+.talk-user-template-item:hover {
+	background: #EE5058;
+	color: rgb(255, 255, 255);
+	box-shadow: rgb(220, 219, 228) 0px 4px 8px 0px;
 }
 
 .talk-user-template-list > li {

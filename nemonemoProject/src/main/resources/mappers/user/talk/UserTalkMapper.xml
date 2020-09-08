@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.talk.repository.impl.UserTalkMapper">
+
+	<resultMap id="contactMap" type="com.nemo.user.talk.vo.UserTalkContactResVO">
+		<id column="talk_no" property="talkNo"/>
+		<result column="product_img_no" property="productImgNo"/>
+		<result column="product_no" property="productNo"/>
+		<result column="product_name" property="productName"/>
+		<result column="product_price" property="productPrice"/>
+		<result column="product_seller" property="productSeller"/>
+		<result column="store_rating" property="storeRating"/>
+		<result column="product_cnt" property="productCnt"/>
+		<result column="store_review_cnt" property="storeReviewCnt"/>
+		<result column="store_name" property="storeName"/>
+	</resultMap>
+	
+	<select id="selectMsgListByUserNo" parameterType="hashMap" resultMap="com.nemo.user.talk.repository.impl.UserMsgMapper.msgMap">
+		
+		SELECT m.*
+		FROM talk_tb t
+		INNER JOIN msg_tb m
+		ON t.talk_no = m.talk_no AND t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
+	
+	</select>
+	
+	<select id="selectContactVO" parameterType="hashMap" resultMap="contactMap">
+	
+		SELECT 
+		    p.product_no,
+		    t.talk_no,
+		    i.product_img_no,
+		    p.product_name,
+		    s.store_name,
+		    p.product_price,
+		    p.product_seller,
+		    prod.product_cnt,
+		    nvl(st.store_rating, 0) store_rating,
+		    nvl(st.store_review_cnt, 0) store_review_cnt
+		FROM product_tb p
+		INNER JOIN (SELECT product_no, min(product_img_no) product_img_no FROM product_img_tb GROUP BY product_no) i
+		ON p.product_no = i.product_no AND p.product_no = #{productNo}
+		INNER JOIN user_tb s
+		ON s.store_no = p.product_seller
+		INNER JOIN (SELECT product_seller, count(1) product_cnt FROM product_tb GROUP BY product_seller) prod
+		ON p.product_seller = prod.product_seller
+		LEFT JOIN (SELECT store_no, count(1) store_review_cnt, floor(avg(store_review_rating)) store_rating FROM store_review_tb GROUP BY store_no) st
+		ON p.product_seller = st.store_no
+		LEFT JOIN talk_tb t
+		ON t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
+		
+	</select>
+		
+	
+	<insert id="insertTalk" parameterType="hashMap">
+		
+		<selectKey keyProperty="talkNo" resultType="int" order="BEFORE">
+			SELECT nvl(max(talk_no), 0) + 1 FROM talk_tb
+		</selectKey>
+				
+		MERGE INTO talk_tb t
+		USING dual
+		ON (t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo})
+		WHEN NOT MATCHED THEN
+			INSERT(talk_no, talk_user1, talk_user2, talk_st)
+			VALUES(#{talkNo}, #{lowUserNo}, #{highUserNo}, 'N')
+	
+	</insert>
+	
+	
+	
+	
+	
+	
+		
+
+</mapper>

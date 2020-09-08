@@ -2,6 +2,9 @@ package com.nemo.user.talk.vo;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.gson.annotations.Expose;
+
 import lombok.Data;
 
 /**
@@ -18,8 +21,9 @@ public class UserBaseMsgVO {
 	private String msgNo;
 	private int talkNo;
 	private int msgSender;
+	private int msgReceiver;
 	private String msgContent;
+	@JsonFormat(timezone = "Asia/Seoul", shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss a z")
 	private Timestamp msgRegDt;
-	private String msgDelFl;
 	private String msgType;
 }
