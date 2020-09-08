@@ -15,12 +15,29 @@
 		<result column="store_name" property="storeName"/>
 	</resultMap>
 	
+	<resultMap id="myTalkMap" type="com.nemo.user.talk.vo.UserMyTalkVO">
+		<result column="store_name" property="storeName"/>
+		<result column="store_img_no" property="storeImgNo"/>
+		<association property="lastRecentlyMsgVO" javaType="com.nemo.user.talk.vo.UserBaseMsgVO">
+			<id column="msg_no" property="msgNo"/>
+			<result column="talk_no" property="talkNo"/>
+			<result column="msg_sender" property="msgSender"/>
+			<result column="msg_receiver" property="msgReceiver"/>
+			<result column="msg_content" property="msgContent"/>
+			<result column="msg_reg_dt" property="msgRegDt"/>
+			<result column="msg_type" property="msgType"/>
+			<result column="msg_confirm_st" property="msgConfirmSt"/>
+		</association>
+	</resultMap>
+	
 	<select id="selectMsgListByUserNo" parameterType="hashMap" resultMap="com.nemo.user.talk.repository.impl.UserMsgMapper.msgMap">
 		
 		SELECT m.*
 		FROM talk_tb t
 		INNER JOIN msg_tb m
 		ON t.talk_no = m.talk_no AND t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
+		ORDER BY m.msg_reg_dt
+	
 	
 	</select>
 	
@@ -68,9 +85,49 @@
 	</insert>
 	
 	
+	<select id="selectMyTalkList" resultMap="myTalkMap">
+		
+		SELECT 
+        m.*,
+        u.store_name,
+        nvl(u.store_img_no, -1) store_img_no
+		FROM (
+		    SELECT m1.*, CASE WHEN msg_sender = #{userNo} THEN 'M'
+		                    WHEN msg_receiver = #{userNo} THEN 'Y' END AS senderType
+		    FROM msg_tb m1
+		    INNER JOIN (
+		        SELECT msg_no  
+		        FROM msg_tb m1
+		        INNER JOIN (SELECT talk_no, max(msg_reg_dt)maxDate FROM msg_tb GROUP BY talk_no) m2
+		        ON m1.msg_reg_dt = m2.maxDate
+		    ) m2
+		    ON m1.msg_no = m2.msg_no  AND (msg_sender = #{userNo} OR msg_receiver = #{userNo})
+		) m
+		INNER JOIN user_tb u
+		ON u.user_no = CASE m.senderType
+		    WHEN 'M' THEN m.msg_receiver
+		    WHEN 'Y' THEN m.msg_sender
+		END
+		ORDER BY m.talk_no desc
+		
+	</select>
 	
-	
-	
+	<select id="selectTalkMsgResVO" resultMap="contactMap">
+		SELECT 
+			t.talk_no,
+		    s.store_name,
+		    prod.product_cnt,
+		    nvl(st.store_rating, 0) store_rating,
+		    nvl(st.store_review_cnt, 0) store_review_cnt
+		FROM (SELECT * FROM user_tb WHERE user_no = #{opponentUserNo})s
+		INNER JOIN (SELECT product_seller, count(1) product_cnt FROM product_tb GROUP BY product_seller) prod
+		ON s.user_no = prod.product_seller
+		LEFT JOIN (SELECT store_no, count(1) store_review_cnt, floor(avg(store_review_rating)) store_rating FROM store_review_tb GROUP BY store_no) st
+		ON s.user_no= st.store_no
+		LEFT JOIN talk_tb t
+		ON t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
+		
+	</select>
 	
 		
 

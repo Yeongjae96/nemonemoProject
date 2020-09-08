@@ -16,7 +16,8 @@
    <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
    <script src="<c:url value="/resources/vendor/sockjs/dist/sockjs.min.js"/>"></script>
    <script>window.contextPath = '<c:url value="/"/>';</script>
-   
+   <script src="<c:url value="/resources/js/common/util/date_util.js"/>"></script>
+   <script src="<c:url value="/resources/js/common/util/dom_util.js"/>"></script>
    <!-- 스크립트 -->
    <script src="<c:url value="/resources/js/user/talk/talk_list.js"/>"></script>
 </head>
@@ -27,7 +28,7 @@
    			<div class="idontknow"></div>
    		</header>
    		<ul class="talk-list-content">
-   			<li class="talk-item">
+   			<%-- <li class="talk-item">
    				<div class="talk-item-area">
    					<a class="talk-item-image-link">
    						<img src="<c:url value="/resources/images/user/talk/base.svg"/>" alt="프로필 이미지">
@@ -40,12 +41,12 @@
    					</a>
    					<div class="talk-item-date">2020. 9. 2 수요일</div>
    					<div class="talk-item-menu-area">
-   						<div class="talk-item-menu-btn">
+   						<button class="talk-item-menu-btn">
    							<i class="fas fa-ellipsis-v"></i>
-   						</div>
+   						</button>
    					</div>
    				</div>
-   			</li>
+   			</li> --%>
    		</ul>
    		<div class="user-modal">
 	   		<div class="user-menu-modal">

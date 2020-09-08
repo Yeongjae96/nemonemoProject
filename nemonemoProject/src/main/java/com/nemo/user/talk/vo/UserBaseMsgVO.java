@@ -23,7 +23,7 @@ public class UserBaseMsgVO {
 	private int msgSender;
 	private int msgReceiver;
 	private String msgContent;
-	@JsonFormat(timezone = "Asia/Seoul", shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss a z")
 	private Timestamp msgRegDt;
 	private String msgType;
+	private String msgConfirmSt;
 }

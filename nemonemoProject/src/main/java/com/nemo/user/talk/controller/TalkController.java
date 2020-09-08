@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nemo.user.talk.service.UserMsgService;
 import com.nemo.user.talk.service.UserTalkService;
 import com.nemo.user.talk.vo.UserTalkContactParamVO;
 import com.nemo.user.talk.vo.UserTalkContactResVO;
+import com.nemo.user.talk.vo.UserTalkListResVO;
+import com.nemo.user.talk.vo.UserTalkMsgListResVO;
 
 @Controller
 @RequestMapping("/talk")
@@ -20,10 +23,18 @@ public class TalkController {
 	@Autowired
 	private UserTalkService userTalkService;
 	
+	@Autowired
+	private UserMsgService userMsgService;
+	
 	@GetMapping("/list")
 	public ModelAndView talkListPage() {
 		ModelAndView mav = new ModelAndView("talk/talk_list");
 		return mav;
+	}
+	
+	@GetMapping("/list/data")
+	public @ResponseBody UserTalkListResVO getTalkListData() {
+		return userTalkService.getTalkListVO();
 	}
 	
 	@GetMapping("/user/{userNo}")
@@ -43,6 +54,11 @@ public class TalkController {
 			result.setResult("notFoundUserSession");
 		}
 		return result;
+	}
+	@GetMapping("/user/{userNo}/list")
+	@ResponseBody
+	public UserTalkMsgListResVO getMsgData(@PathVariable("userNo") int userOpponentNo) {
+		return userTalkService.getTalkMsgListVO(userOpponentNo);
 	}
 	
 	/* @GetMapping("/user/{userNo}/msg") */

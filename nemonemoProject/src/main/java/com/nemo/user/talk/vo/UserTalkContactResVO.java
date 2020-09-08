@@ -1,8 +1,9 @@
 package com.nemo.user.talk.vo;
 
-import java.util.List;
-
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @제목 : 연락하기 VO 객체
@@ -12,19 +13,13 @@ import lombok.Data;
  * @이름 : Yeong
  * @프로그램설명 : 연락하기로 Talk을 켰을때 띄워주는 정보
  */
-@Data
-public class UserTalkContactResVO {
-	private String result;
-	private int myUserNo;
-	private int talkNo;
+@Getter
+@Setter
+@ToString(callSuper = true)
+public class UserTalkContactResVO extends UserTalkMsgListResVO{
 	private int productImgNo;
 	private int productNo;
 	private String productName;
 	private int productPrice;
 	private int productSeller;
-	private int storeRating;
-	private int productCnt;
-	private int storeReviewCnt;
-	private String storeName;
-	private List<UserBaseMsgVO> msgList;
 }

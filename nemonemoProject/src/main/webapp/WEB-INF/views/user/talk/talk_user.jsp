@@ -16,6 +16,8 @@
    <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
    <script src="<c:url value="/resources/vendor/sockjs/dist/sockjs.min.js"/>"></script>
    <script>window.contextPath = '<c:url value="/"/>';</script>
+   <script src="<c:url value="/resources/js/common/util/date_util.js"/>"></script>
+   <script src="<c:url value="/resources/js/common/util/dom_util.js"/>"></script>
    <!-- 스크립트 -->
    <script src="<c:url value="/resources/js/user/talk/talk_user.js"/>"></script>
    

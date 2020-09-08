@@ -51,19 +51,22 @@ function initBtn() {
 	// 연락하기 모달
 	const callModal = document.getElementById('callModal');
 	const callOpenBtn = document.getElementById('callBtn');
-	const callOpen2Btn = document.getElementById('bottomCallBtn');
-	const callCloseBtn = document.querySelector('.call-modal__close');
-	const callModalObj = { open: [callOpenBtn, callOpen2Btn], modal: callModal, close: callCloseBtn};
+	let callOpen2Btn;
+	let callCloseBtn;
+	let callModalObj;
 	
-	// user값
+	if(callOpenBtn) {
+		callOpen2Btn = document.getElementById('bottomCallBtn');
+		callCloseBtn = document.querySelector('.call-modal__close');
+		callModalObj = { open: [callOpenBtn, callOpen2Btn], modal: callModal, close: callCloseBtn};
+		modalSetting(callModalObj);
+	}
 	const url = window.location.href;
 	const userNo = url.slice(url.lastIndexOf('/')+1, url.lastIndexOf('.'));
 	
-	modalSetting(callModalObj);
-	
-	
+	// user값
 	const callModalLink = document.querySelector('.call-modal__link');
-	callModalLink.addEventListener('click', openTalk);
+	if(callModalLink) callModalLink.addEventListener('click', openTalk);
 	
 	function openTalk() {
 		callCloseBtn.dispatchEvent(new Event('click'));
@@ -81,11 +84,7 @@ function initBtn() {
 		getLoginStatus().then(function(data) {
 			if(data.loginStatus == 'true') {
 				link = callModalLink.dataset.href;
-				
-				const center = ',top='+(window.screen.height/2 - 333.5)+ ',left=' + (window.screen.width/2 - 250); 
-				console.log(window.screen.width, window.screen.height);
-				console.log(center);
-				
+				const center = ',top='+(window.screen.height/2 - 350)+ ',left=' + (window.screen.width/2 - 250); 
 				const newWindow = window.open(link, userNo, 'width=500px, height=667px'+center);
 			} else {
 				const loginBtn = document.getElementById('loginBtn');
@@ -354,6 +353,7 @@ function initShareBtn() {
 		
 	
 	/* 카카오 링크 */
+	if(document.getElementById('kakao-link-btn'))
 	initKakaoShare();
 	/* 페이스북 링크 : 중간 */
 //	initFbShare();
@@ -391,7 +391,6 @@ function initShareBtn() {
 	        }  
 	      ]
 	    });
-	    
 	}
 	    
 	/* 페이스북 링크 */

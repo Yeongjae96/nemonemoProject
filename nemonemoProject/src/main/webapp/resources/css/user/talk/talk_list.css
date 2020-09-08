@@ -81,6 +81,7 @@ button {
     align-items: center;
     height: 80px;
     background: rgb(255, 255, 255);
+    cursor: pointer;
 }
 
 .talk-item-image-link {
@@ -148,7 +149,9 @@ button {
 	width: 32px;
     background-color: transparent;
     cursor: pointer;
+    border: 0px;
     outline: none;
+    cursor: pointer;
 }
 
 .talk-item-menu-btn svg {
@@ -169,6 +172,7 @@ button {
 }
 
 .user-menu-modal {
+	visibility: hidden;
 	position: fixed;
     display: flex;
     top: 0px;
@@ -180,7 +184,7 @@ button {
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
-    justify-content: center;4
+    justify-content: center;
 }
 
 .user-menu-modal-bg {

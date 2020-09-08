@@ -10,6 +10,7 @@
 		<result column="msg_content" property="msgContent"/>
 		<result column="msg_reg_dt" property="msgRegDt"/>
 		<result column="msg_type" property="msgType"/>
+		<result column="msg_confirm_st" property="msgConfirmSt"/>
 	</resultMap>
 
 
