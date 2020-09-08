@@ -1,3 +1,7 @@
+/* 공통 */
+button :focus{
+  outline : none;
+  }
                                         /********** nav 시작 **********/
 .top-nav{
     display: flex;
