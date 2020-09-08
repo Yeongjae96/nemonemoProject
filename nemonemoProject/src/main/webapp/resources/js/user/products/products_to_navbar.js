@@ -55,17 +55,3 @@ function initSessionStorage(e) {
 	sessionStorage.setItem('recentlyVisitedProducts', JSON.stringify(setArr));
 }
 
-
-// 페이징 따로 만들기
-
-//function initPagination(){
-//	const pagination = new Object();
-//	const currentPage = 1;
-//	pagination.currentPage = currentPage;
-//	sessionStorage.setItem('pagination', currentPage);
-//	pagination.currentPage = currentPage;
-//	sideNavPagination();
-//}
-
-
-
