@@ -218,18 +218,23 @@ function loadJJim(e, n){
 /* 해당 상품 게시물을 side-navbar 화면에 띄우기  */
 function loadProduct(){
 	
+	/* UI 부분 */
 	const productList = document.querySelector('#rec-prd-list');
 	const $recPrdList = $('#rec-prd-list');
 	const recPrdCnt = document.querySelector('.rec-prd-cnt');
+	const prdAnchor = document.getElementsByClassName('rec-prd-img');
+	const delBtn = document.getElementsByClassName('delete-rec');
+
+	const pagingText = document.getElementsByClassName('paging-cnt')[0];	             
 	const recPrdPaging = document.querySelector('.rec-prd-paging');
 	const rightArrow = document.querySelector('#rightArrow');
 	const leftArrow = document.querySelector('#leftArrow');
-	             
-	const prdAnchor = document.getElementsByClassName('rec-prd-img');
-	const delBtn = document.getElementsByClassName('delete-rec');
 	
-	//let currentPage = 1; // 현재 보고 있는 페이지
-	let totalCnt;
+	/* 페이징 변수 */
+	let totalCnt; // 클릭한 상품 개수 
+	const dataSize = 3; // 한 페이지당 보여줄 게시물 개수
+	let pageCnt = totalCnt % dataSize; // 총 페이지 개수  
+	let currentPage = parseInt(sessionStorage.getItem('pagination')); // 현재 보고 있는 페이지
 	
 	let getItems = JSON.parse(sessionStorage.getItem('recentlyVisitedProducts'));
 	if(!getItems) {
@@ -238,27 +243,26 @@ function loadProduct(){
 	}
 	
 	writeDocumentFromSessionItem();
+	loadpagination();
 	
 	/* 화면 구성 */
 	function writeDocumentFromSessionItem() {
 		
 		recPrdPaging.style.display = 'flex';
-		totalCnt = getItems.length; // 게시물 갯수 할당
+		totalCnt = getItems.length; // 총 게시물
 		$recPrdList.html('');
 		
 		/* sessionStorage 내용 화면 그리기 */
-		const dataSize = 3; // 한 페이지당 보여줄 게시물 갯수
-		let currentPage = parseInt(sessionStorage.getItem('pagination')); // 현재 보고 있는 페이지 세션에서 parseInt
 		if(!currentPage) {
 			sessionStorage.setItem('pagination', 1);
 			currentPage = 1;
 		}
+		currentPage = sessionStorage.getItem('pagination');
 		let startNo = (currentPage-1) * dataSize; // 0, 3, 6 ...
-		let endNo = startNo + dataSize;
-		console.log(startNo, endNo);
-		
+		let endNo = (startNo + dataSize) > getItems.length ?  getItems.length : (startNo + dataSize);
+		console.log("시작번호 : ", startNo,"끝번호 : ", endNo);
+	
 		for (var i = startNo; i < endNo; i++) {
-			console.log(getItems[i].productNo);
 			const html = 
 				'<a class="rec-prd-img" data-prdno="'
 				+ getItems[i].productNo + '">' + '<img class = "prodImg" src="' + contextPath + 'image/product/'
@@ -275,7 +279,7 @@ function loadProduct(){
 			$recPrdList.append(html);
 				
 		}
-		
+	
 		
 		/* a 태그 클릭시 해당 게시물로 이동 */
 		for (var i = 0; i < prdAnchor.length; i++) {
@@ -290,33 +294,17 @@ function loadProduct(){
 				e.stopPropagation();
 				removeFromSession($(this).parent().parent().data("prdno"));
 			});
-		}
-
-		
-		// 페이징처리 변수
-		let pageCnt = totalCnt % dataSize; // 페이지 갯수  
-		const pagingText = document.getElementsByClassName('paging-cnt')[0];	
-		
-		// 화살표 클릭했을 때 
-		rightArrow.addEventListener('click', function(){
-			sessionStorage.setItem('pagination', ++currentPage);
-		});
-		
-		leftArrow.addEventListener('click', function(){
-			sessionStorage.setItem('pagination', --currentPage);
-		});
-	
-		loadpagination();
+		}	
 	}
 	
+	/* 페이징처리 화면에 그려주기 */
 	function loadpagination() {
-		alert('진입!');
 		if(totalCnt) {
 			// 게시물 개수
 			recPrdCnt.innerHTML = '<span>'+ totalCnt +'</span>';
 			// 총 페이지 개수
-			pageCnt = pageCnt%dataSize == 0 ? parseInt(totalCnt/dataSize) : parseInt(totalCnt/dataSize) + 1;
-			pagingText.innerHTML = '<span>' + seeing + '/' + pageCnt +'</span>';
+			pageCnt = pageCnt == 0 ? parseInt(totalCnt%dataSize) : parseInt(totalCnt/dataSize) + 1;	
+			pagingText.innerHTML = '<span>' + currentPage + '/' + pageCnt +'</span>';
 		} else {
 			IsEmptyRecentProduct();
 		}
@@ -346,10 +334,23 @@ function loadProduct(){
 		getItems.splice(removeProductNo, 1);
 		
 		// 새로운 변경된 arr를 덮어씌움
-		sessionStorage.setItem('recentlyVisitedProducts', JSON.stringify(getItems));
-		
+		sessionStorage.setItem('recentlyVisitedProducts', JSON.stringify(getItems));	
 		writeDocumentFromSessionItem();
 	}
+	
+	
+		rightArrow.addEventListener('click', function(){
+			sessionStorage.setItem('pagination', ++currentPage);
+			writeDocumentFromSessionItem();
+			loadpagination();
+			
+		});
+		
+		leftArrow.addEventListener('click', function(){
+			sessionStorage.setItem('pagination', --currentPage);
+			writeDocumentFromSessionItem();
+			loadpagination();
+		});
 	
 }
 
