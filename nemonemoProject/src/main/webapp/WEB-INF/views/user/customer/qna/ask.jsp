@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,7 @@
 
 
 <!-- 해당 페이지 JS파일 -->
-<script> this.contextPath = "<c:url value="/"/>"</script>
+<script> window.contextPath = "<c:url value="/"/>";</script>
 <script src="<c:url value="/resources/js/user/customer/qna/ask.js"/>"></script>
 
 
@@ -47,16 +48,15 @@
 	%>
 	<section>
 		<div class="qna-body">
-			<div class="qna-body2">
-				
+			<div class="qna-body2">			
 				<main class="qna-main"> 
 				<!-- customer 공통 nav -->
 				<jsp:include page="/WEB-INF/views/user/customer/common/customer_nav.jsp"/>
 					<hr>
 					<nav class="qna-nav">
-						<a class="qna-nav-selected" href="/nemonemoProject/customer/qna.do">1:1 상담하기
+						<a class="qna-nav-selected" href="#">1:1 상담하기
 						<div class="nav-selected-underline"></div></a> 
-						<a class="qna-nav-not-selected" href="/nemonemoProject/customer/qna/list.do">상담내역</a>
+						<a class="qna-nav-not-selected" href="<c:url value="/customer/qna/list.do"/>">상담내역</a>
 					</nav>
 					<form action="#" method="post" enctype="multipart/form-data" id="newQuestionForm">
 						<div class="qna-contents">							

@@ -40,7 +40,7 @@ $(function() {
 	initTopMenu();
 	initSideNavbar();
 	initSearchEvent();
-	initMyTalk();
+	//initMyTalk();
 	initJJim();
 });
 
@@ -130,10 +130,6 @@ function initTopMenu() {
   		});
   	})
 
-  	
-      
-      
- 
       /* 즐겨찾기 알림 */
       $('.addFavorite').on('click', function(e){ 
     	  const url = document.location.href;
@@ -145,7 +141,6 @@ function initTopMenu() {
     				  + '+D 키를 눌러 즐겨찾기에 등록하실 수 있습니다.');
     	   }
       });
-      
       
       const loginStatus = document.getElementById('loginStatus');
       
@@ -175,58 +170,72 @@ function initSideNavbar() {
 
 /* 찜 갯수 */
 function initJJim(){
-	const storeNo = $(userno).data("userno");
 	
+	/* 상점번호 체크 */
+	let storeNumLength = 0;
+	const storeNo = $(userno).data("userno");
 	$.ajax({
-		url : contextPath + `shop/storeNo/jjimcount.do`,
+		url : contextPath + 'shop/' + storeNo + '/jjimcount.do',
 		method : 'GET',
 		dataType : 'text',
 		data:{ 
 			storeNo : storeNo
-		},
-		success : function(data){
-			loadJJim(data);
-		},
-		error : function(err){
-			// alert("error!");
 		}
+	}).done(function(data){
+		if(storeNo.length == 0) storeNumLength = -1;
+		loadJJim(data, storeNo);
 	});
-	
-	
-	
 }
 
 
-function loadJJim(e){
+/* 찜 로드  */
+function loadJJim(e, n){
+	
+	let jjim = document.getElementsByClassName('to-favorites')[0];
+	const jjimSpan = jjim.lastElementChild;
 	
 	jjimcount = parseInt(e);
-		
-	let jjim = document.getElementsByClassName('to-favorites')[0];
-	const jjimSpan = jjim.lastElementChild;// jjim자식으로부터
-	console.log(jjim);																						// 찾기
-	console.log(jjimSpan);																						// 찾기
 	if(jjimcount > 0){
 		document.getElementById("to-favorites").className = "to-favorites-red";
 		document.getElementById("favimg").src = contextPath + "resources/images/user/common/heart_red.png";
 		jjimSpan.textContent = jjimcount; // span값만 바꿔주기!
 	}
+	
+	
+	/* 찜 클릭시 로그인 */
+	const toFav = document.getElementById("to-favorites");
+	toFav.addEventListener('click', function(){
+		if(n > 0){
+			window.location.href = contextPath + 'shop/' + n + '/favorites.do';
+		}else{
+			document.getElementById('loginBtn').dispatchEvent(new Event('click'));
+		}
+	});
 }
 
 
-/* 해당 상품 게시물을 side-navbar 화면에 띄우기 */
+
+/* 해당 상품 게시물을 side-navbar 화면에 띄우기  */
 function loadProduct(){
 	
 	const productList = document.querySelector('#rec-prd-list');
 	const $recPrdList = $('#rec-prd-list');
 	const recPrdCnt = document.querySelector('.rec-prd-cnt');
 	const recPrdPaging = document.querySelector('.rec-prd-paging');
+	const rightArrow = document.querySelector('#rightArrow');
+	const leftArrow = document.querySelector('#leftArrow');
+	             
+	const prdAnchor = document.getElementsByClassName('rec-prd-img');
+	const delBtn = document.getElementsByClassName('delete-rec');
+	
+	//let currentPage = 1; // 현재 보고 있는 페이지
+	let totalCnt;
 	
 	let getItems = JSON.parse(sessionStorage.getItem('recentlyVisitedProducts'));
 	if(!getItems) {
 		IsEmptyRecentProduct();
 		return false;
 	}
-	let totalCnt; // 게시물 갯수
 	
 	writeDocumentFromSessionItem();
 	
@@ -234,32 +243,39 @@ function loadProduct(){
 	function writeDocumentFromSessionItem() {
 		
 		recPrdPaging.style.display = 'flex';
-		
 		totalCnt = getItems.length; // 게시물 갯수 할당
 		$recPrdList.html('');
 		
 		/* sessionStorage 내용 화면 그리기 */
-		getItems.forEach(function(e,i){	
-		const html =
+		const dataSize = 3; // 한 페이지당 보여줄 게시물 갯수
+		let currentPage = parseInt(sessionStorage.getItem('pagination')); // 현재 보고 있는 페이지 세션에서 parseInt
+		if(!currentPage) {
+			sessionStorage.setItem('pagination', 1);
+			currentPage = 1;
+		}
+		let startNo = (currentPage-1) * dataSize; // 0, 3, 6 ...
+		let endNo = startNo + dataSize;
+		console.log(startNo, endNo);
+		
+		for (var i = startNo; i < endNo; i++) {
+			console.log(getItems[i].productNo);
+			const html = 
 				'<a class="rec-prd-img" data-prdno="'
-				+ getItems[i].productNo + '">'+ '<img class = "prodImg" src="' + contextPath + 'image/product/'
+				+ getItems[i].productNo + '">' + '<img class = "prodImg" src="' + contextPath + 'image/product/'
 				+ getItems[i].productImgNo + '.img"/>'
 				+ '<div class="prd-info">'
 				+ '<button class="delete-rec">'
-				+ '<img class ="delete-img" src= "'+ contextPath +'resources/images/user/common/delete_btn.png"/>'
+				+ '<img class ="delete-img" src= "' + contextPath + 'resources/images/user/common/delete_btn.png"/>'
 				+ ' </button>'
 				+ '<div class="rec-prd-title">'
 				+ getItems[i].productName + '</div>'
 				+ '<div class="rec-prd-price"><span>'
 				+ getItems[i].productPrice + '원</span></div></div></a>';
 			
-			
 			$recPrdList.append(html);
-		});
+				
+		}
 		
-		const prdAnchor = document.getElementsByClassName('rec-prd-img');
-		const delBtn = document.getElementsByClassName('delete-rec');
-
 		
 		/* a 태그 클릭시 해당 게시물로 이동 */
 		for (var i = 0; i < prdAnchor.length; i++) {
@@ -272,28 +288,35 @@ function loadProduct(){
 		for (var i = 0; i < delBtn.length; i++) {
 			delBtn[i].addEventListener('click', function(e){
 				e.stopPropagation();
-				console.log('실행됨',$(this).parent().parent().data("prdno"));
 				removeFromSession($(this).parent().parent().data("prdno"));
 			});
 		}
+
 		
-			
-		const dataSize = 3; // 한 페이지당 보여줄 게시물 갯수
-		let pageCnt = totalCnt % dataSize; 
+		// 페이징처리 변수
+		let pageCnt = totalCnt % dataSize; // 페이지 갯수  
+		const pagingText = document.getElementsByClassName('paging-cnt')[0];	
 		
+		// 화살표 클릭했을 때 
+		rightArrow.addEventListener('click', function(){
+			sessionStorage.setItem('pagination', ++currentPage);
+		});
 		
-		const pagingText = document.getElementsByClassName('paging-cnt')[0];
-				
+		leftArrow.addEventListener('click', function(){
+			sessionStorage.setItem('pagination', --currentPage);
+		});
+	
+		loadpagination();
+	}
+	
+	function loadpagination() {
+		alert('진입!');
 		if(totalCnt) {
 			// 게시물 개수
 			recPrdCnt.innerHTML = '<span>'+ totalCnt +'</span>';
 			// 총 페이지 개수
-			if(pageCnt == 0){
-				pageCnt = parseInt(totalCnt/dataSize);
-			}else{
-				pageCnt = parseInt(totalCnt/dataSize) + 1;
-			}	
-			pagingText.innerHTML = '<span>' + "1/" + pageCnt +'</span>';
+			pageCnt = pageCnt%dataSize == 0 ? parseInt(totalCnt/dataSize) : parseInt(totalCnt/dataSize) + 1;
+			pagingText.innerHTML = '<span>' + seeing + '/' + pageCnt +'</span>';
 		} else {
 			IsEmptyRecentProduct();
 		}
@@ -329,6 +352,8 @@ function loadProduct(){
 	}
 	
 }
+
+
 
 function initMyTalk() {
 	const myTalkBtn = document.getElementById('myTalk');
@@ -691,9 +716,7 @@ function initSearchEvent() {
 
 /*
  * 상품 카테고리와 관련된 애들은 모두 이 함수가 선행이 되어야 함
- * 
  * ex ) initPdMenu()
- * 
  * 
  */
 
@@ -745,7 +768,7 @@ function initPdMenu(callback) {
 			 * 카테고리 리스트 공통적인 부분 cateObj 속성 cateObj.arr : 카테고리가 들어있는 배열
 			 * cateObj.cateType : 대 중 소 구분 분류 cateObj.parentID : list를 추가시킬 id
 			 * cateObj.mouseOverAction: 마우스 올리면 자동으로 cateObj.nothingText: 없을때
-			 * cateObj.mdTitle: 미디움 카테고리 cateObj.smTitle: 스몰 카테고리 텍스트
+			 * cateObj.mdTitle: 미디움 카테고리 cateObj.smTitle: 스몰 카테고리 텍스트 
 			 */
 			function initCategoryList(cateObj) {
 				const cateArr = cateObj.arr;
