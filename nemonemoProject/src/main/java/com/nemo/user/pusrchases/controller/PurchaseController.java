@@ -21,9 +21,9 @@ public class PurchaseController {
 		return mav;
 	}
 
-	@GetMapping("/purchases/kakaoPay")
+	@GetMapping("/purchases/pay")
 	public ModelAndView KakaoPayPage() {
-		ModelAndView mav = new ModelAndView("purchases/kakaoPay");
+		ModelAndView mav = new ModelAndView("purchases/pay");
 		return mav;
 	}
 
@@ -32,21 +32,17 @@ public class PurchaseController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println(vo.toString());
 		
-		//mav.addObject("name", vo.getBuyerName());
-		//mav.addObject("email", vo.getBuyerEmail());
-		//mav.addObject("phone", vo.getBuyerPhone());
-		//mav.addObject("address", vo.getBuyerAddress());
 		if(vo.getPurchaseWay().equals("kakao")) {
 			mav.addObject("totalPrice", vo.getPurchasePrice());
 			mav.addObject("productName", vo.getProductName());
 
-			mav.setViewName("redirect:/purchases/kakaoPay.do");
+			mav.setViewName("redirect:/purchases/pay.do");
 		} else if (vo.getPurchaseWay().contentEquals("account")) {
 			rttr.addFlashAttribute("msg", "account");
 			mav.addObject("totalPrice", vo.getPurchasePrice());
 			mav.addObject("productName", vo.getProductName());
 
-			mav.setViewName("redirect:/purchases/kakaoPay.do");
+			mav.setViewName("redirect:/purchases/pay.do");
 		}
 
 		return mav;
