@@ -101,17 +101,19 @@
 			</div>
 		<!-- 일반 대화 메시지 아이템 1개 -->
 			<div class="talk-user-normal-msg">
-				<div class="talk-user-msg-date">2020. 9. 3 목요일</div>
 				<div class="normal-msg-area">
-					<div class="normal-msg-flex">
-						<div class="normal-msg-content">안녕하세요</div>
-					</div>
-					<div class="normal-msg-time-area">
-						<div class="normal-msg-status">
-							안읽음
+					<div class="talk-user-msg-date">2020. 9. 3 목요일</div>
+					<div class="normal-msg-area">
+						<div class="normal-msg-flex">
+							<div class="normal-msg-content">안녕하세요</div>
 						</div>
-						<div class="normal-msg-time-text">
-							오전 2:59
+						<div class="normal-msg-time-area">
+							<div class="normal-msg-status">
+								안읽음
+							</div>
+							<div class="normal-msg-time-text">
+								오전 2:59
+							</div>
 						</div>
 					</div>
 				</div>

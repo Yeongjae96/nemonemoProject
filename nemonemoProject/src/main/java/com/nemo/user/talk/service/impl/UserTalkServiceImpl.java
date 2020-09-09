@@ -15,6 +15,7 @@ import com.nemo.user.sign.signup.vo.UserBaseVO;
 import com.nemo.user.talk.repository.impl.UserTalkMapper;
 import com.nemo.user.talk.service.UserTalkService;
 import com.nemo.user.talk.vo.UserBaseMsgVO;
+import com.nemo.user.talk.vo.UserMyTalkVO;
 import com.nemo.user.talk.vo.UserTalkContactParamVO;
 import com.nemo.user.talk.vo.UserTalkContactResVO;
 import com.nemo.user.talk.vo.UserTalkListResVO;
@@ -86,10 +87,15 @@ public class UserTalkServiceImpl implements UserTalkService {
 			result.setResult("fail:login");
 			return result;
 		}
-		
+		List<UserMyTalkVO> list = userTalkMapper.selectMyTalkList(user.getUserNo());
+		System.out.println("야!!! 제대로 찍어봐 ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ" + list);
 		result.setResult("success");
-		result.setData(userTalkMapper.selectMyTalkList(user.getUserNo()));
 		result.setCurrentUserNo(user.getUserNo());
+		if(list.size() != 0) {
+			result.setData(userTalkMapper.selectMyTalkList(user.getUserNo()));
+			int opponentUserNo = list.get(0).getLastRecentlyMsgVO().getMsgSender() != AuthUtil.getCurrentUserNo() ? list.get(0).getLastRecentlyMsgVO().getMsgSender() : list.get(0).getLastRecentlyMsgVO().getMsgReceiver();
+			result.setOpponentUserNo(opponentUserNo);
+		}
 		return result;
 	}
 	

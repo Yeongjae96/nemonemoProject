@@ -23,9 +23,6 @@ public class TalkController {
 	@Autowired
 	private UserTalkService userTalkService;
 	
-	@Autowired
-	private UserMsgService userMsgService;
-	
 	@GetMapping("/list")
 	public ModelAndView talkListPage() {
 		ModelAndView mav = new ModelAndView("talk/talk_list");
@@ -51,7 +48,7 @@ public class TalkController {
 		UserTalkContactResVO result = userTalkService.getContactVO(paramVO);
 		if(result == null) {
 			result = new UserTalkContactResVO();
-			result.setResult("notFoundUserSession");
+			result.setResult("fail:login");
 		}
 		return result;
 	}

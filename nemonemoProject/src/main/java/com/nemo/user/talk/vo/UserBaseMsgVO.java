@@ -18,6 +18,7 @@ import lombok.Data;
 
 @Data
 public class UserBaseMsgVO {
+	
 	private String msgNo;
 	private int talkNo;
 	private int msgSender;

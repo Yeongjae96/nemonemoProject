@@ -40,7 +40,7 @@ $(function() {
 	initTopMenu();
 	initSideNavbar();
 	initSearchEvent();
-	//initMyTalk();
+	initMyTalk();
 	initJJim();
 });
 

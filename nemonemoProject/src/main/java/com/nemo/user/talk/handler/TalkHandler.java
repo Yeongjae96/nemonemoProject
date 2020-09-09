@@ -13,19 +13,21 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.nemo.common.util.AuthUtil;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
 import com.nemo.user.talk.service.UserMsgService;
-import com.nemo.user.talk.vo.MessageVO;
 import com.nemo.user.talk.vo.UserBaseMsgVO;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Controller("talkHandler")
 public class TalkHandler extends TextWebSocketHandler {
 	
 	private Map<Integer, WebSocketSession> talkListMap = new ConcurrentHashMap<>();
 	private Map<Integer, Map<Integer, WebSocketSession>> talkRoomMap = new ConcurrentHashMap<>();
-	private Map<Integer, WebSocketSession> personalMap = new ConcurrentHashMap<>();
 	
 	@Autowired
 	private UserMsgService msgService;
@@ -42,50 +44,154 @@ public class TalkHandler extends TextWebSocketHandler {
 		}
 	}
 	
+	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		UserBaseVO user = (UserBaseVO)session.getAttributes().get("user");
+		if(user == null) return;
+		int userNo = user.getUserNo();
+		
 		System.out.println(message.getPayload());
-		int userNo = AuthUtil.getCurrentUserNo();
-		if(userNo == -1 ) return;
 		
 		JsonElement element = JsonParser.parseString(message.getPayload());
 		String request = element.getAsJsonObject().get("request").getAsString();
 		int sender = element.getAsJsonObject().get("sender").getAsInt();
-		int  receiver = element.getAsJsonObject().get("receiver").getAsInt();
+		JsonElement receiverObj = element.getAsJsonObject().get("receiver");
+		int receiver = receiverObj != null ? receiverObj.getAsInt() : -1;
 		
 		switch(request) {
 		case "enterTalkList":
 			talkListMap.put(userNo, session);
-			System.err.println("talkListMap : " + talkListMap);
-			System.err.println("리스트 방 입장");
 			break;
+			
 		case "enterTalkRoom":
+			Map<Integer, WebSocketSession> personalMap = new ConcurrentHashMap<>();
 			personalMap.put(receiver, session);
-			talkRoomMap.put(userNo, personalMap);
-			System.err.println("talkRoomMap : " + talkRoomMap);
-			System.err.println("대화 방 입장");
+			talkRoomMap.put(sender, personalMap);
+			System.err.println("방에 들어옴 : " + talkRoomMap);
 			break;
+			
 		case "sendMsg":
-			String data = element.getAsJsonObject().get("data").getAsString();
+			System.out.println("sendMsg에 들어온 " + element);
+			JsonObject data = element.getAsJsonObject().get("data").getAsJsonObject();
 			Gson gson = new GsonBuilder().create();
 			UserBaseMsgVO json = gson.fromJson(data, UserBaseMsgVO.class);
-			msgService.recordMessage(json);
+			boolean result = msgService.recordMessage(json);
+			System.out.println(result);
+			if(talkRoomMap.get(sender) != null && talkRoomMap.get(sender).get(receiver) != null) {
+				talkRoomMap.get(sender).get(receiver).sendMessage(message);
+			}
+			
+			/*
+			 * String responseJson = makeJsonObject( new JsonEntry("response","sendMsg"),
+			 * new JsonEntry("sender", sender), new JsonEntry("receiver", receiver)
+			 * ).build();
+			 */
+			
+			String responseJson = JsonObjBuilder.makeJsonObject(
+					new JsonEntry("response","sendMsg"),
+					new JsonEntry("sender", sender),
+					new JsonEntry("receiver", receiver))
+					.addObject("data", data)
+					.build();
+			
+			TextMessage response = new TextMessage(responseJson);
+			
+			sendTalkList(sender, response);
+			sendTalkList(receiver, response);
+			
+			break;
+			
+		case "exitTalkList":
+			WebSocketSession exitTalk = talkListMap.get(sender);
+			talkListMap.remove(sender);
+			exitTalk.close();
+			break;
+			
+		case "exitTalkRoom":
+			Map<Integer, WebSocketSession> joinRoom= talkRoomMap.get(sender);
+			WebSocketSession sess = joinRoom.get(receiver);
+			joinRoom.remove(receiver);
+			if(talkRoomMap.get(sender).isEmpty()) talkRoomMap.remove(sender);
+			sess.close();
+			break;
+			
+		default: 
 			break;
 		}
 	}
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		System.out.println("afterConnectionClosed 실행");
 		Map<String, Object> tempMap = session.getAttributes();
 		UserBaseVO user = (UserBaseVO)tempMap.get("user");
 		if(user == null) return;
-		int userNo = user.getUserNo();
-		talkListMap.remove(userNo);	
-		talkRoomMap.remove(userNo);
-		System.out.println("{} 연결 끊김 " + session.getId());
-		System.err.println("talkListMap : " + talkListMap);
+		System.err.println("talkListMap	 : " + talkListMap);
 		System.err.println("talkRoomMap : " + talkRoomMap);
+	}
+	
+	// list목록에 들어와있으면 보내주고 아님 말고
+	private void sendTalkList(int no, TextMessage message) throws Exception {
+		if(talkListMap.get(no) != null) talkListMap.get(no).sendMessage(message);
+	}
+	
+	/*
+	 * private JsonObject makeJsonObject(JsonEntry... entrys) { JsonObject json =
+	 * new JsonObject(); for(JsonEntry entry : entrys) {
+	 * json.addProperty(entry.getKey(), entry.getValue()); } return json; }
+	 */
+	
+	@Data
+	@AllArgsConstructor
+	private static class JsonEntry{
+		private String key;
+		private String value;
+		
+		public JsonEntry(String key, int value) {
+			this.key = key;
+			this.value = String.valueOf(value);
+		}
+	}
+	
+	/* GSON을 이용해서 JSON을 좀더 쉽게 만들고 싶은 나의 욕망의 담긴 클래스 */
+	private static class JsonObj {
+		private JsonObject obj;
+		private static Gson gson;
+		
+		static {
+			System.out.println("gson 실행");
+			gson = new Gson();
+		}
+		
+		public JsonObj() {
+			System.out.println("JsonObj 실행");
+			obj = new JsonObject();
+		}
+		
+		private JsonObj addProperty(String key, String value) {
+			obj.addProperty(key, value);
+			return this;
+		}
+		
+		private JsonObj addObject(String key, JsonObject obj) {
+			this.obj.add(key, obj);
+			return this;
+		}
+		
+		private String build() {
+			return gson.toJson(this.obj);
+		}
+	}
+	
+	/* GSON을 이용해서 JSON을 좀더 쉽게 만들고 싶은 나의 욕망의 담긴 클래스 */
+	private static class JsonObjBuilder {
+		private static JsonObj makeJsonObject(JsonEntry... entrys) {
+			JsonObj json = new JsonObj();
+			for(JsonEntry entry : entrys) {
+				json.addProperty(entry.getKey(), entry.getValue());
+			}
+			return json;
+		}
 	}
 	
 }

@@ -85,7 +85,7 @@
 	</insert>
 	
 	
-	<select id="selectMyTalkList" resultMap="myTalkMap">
+	<select id="selectMyTalkList" parameterType="int" resultMap="myTalkMap">
 		
 		SELECT 
         m.*,
@@ -99,7 +99,7 @@
 		        SELECT msg_no  
 		        FROM msg_tb m1
 		        INNER JOIN (SELECT talk_no, max(msg_reg_dt)maxDate FROM msg_tb GROUP BY talk_no) m2
-		        ON m1.msg_reg_dt = m2.maxDate
+		        ON m1.talk_no = m2.talk_no AND m1.msg_reg_dt = m2.maxDate
 		    ) m2
 		    ON m1.msg_no = m2.msg_no  AND (msg_sender = #{userNo} OR msg_receiver = #{userNo})
 		) m

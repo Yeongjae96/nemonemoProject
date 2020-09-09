@@ -2,16 +2,19 @@ $(function() {
 	
 	window.addEventListener('beforeunload', function (e) {
 		e.preventDefault();
-		sendMessage(JSON.stringify({result: 'hi'}));
+		exitTalkRoom();
 	});
 	
 	
 	let socket;
 	let prevDate = '';
-
-	openSocket();
+	let getData;
+	
+	let isFirstMsg = false;
+	const msgListDiv = document.querySelector('.talk-user-msg-list');
+	
 	initTopMenu();
-	initUserMessage(socket);
+	initUserMessage();
 
 	/* 소켓 연결 */
 	function openSocket() {
@@ -23,13 +26,19 @@ $(function() {
 		
 		/* 소켓이 열렸을 때 */
 		function onOpen(evt) {
-			
-			/*socket.send(JSON.stringify(obj.data));*/
+			enterTalkRoom();
 		}
 	
 		/* 서버로 부터 수신 */
 		function onMessage(evt) {
-			
+			const data = evt.data
+			switch(data.response) {
+			case 'sendMsg':
+				receiveMsg(data.data);
+				break;
+			default:
+				break;
+			}
 		}
 	
 		/* 에러 발생 시 */
@@ -40,16 +49,31 @@ $(function() {
 	
 	/* 서버로 보내는것  */
 	function sendMessage(obj) {
-		if(!socket) {
-			alert('소켓 연결이 되어있지 않습니다.');
-			return false;
-		}
+		if(!(obj.request && obj.sender)) return;
+		socket.send(JSON.stringify(obj));
+	}
+	
+	/* 대화방 입장하기  */
+	function enterTalkRoom() {
+		sendMessage({
+			request: 'enterTalkRoom',
+			sender: getData.currentUserNo,
+			receiver: getData.opponentUserNo
+		});
+	}
+	
+	/* 대화방 퇴장하기  */
+	function exitTalkRoom() {
+		sendMessage({
+			request: 'exitTalkRoom',
+			sender: getData.currentUserNo,
+			receiver: getData.opponentUserNo
+		});
+	}
+	
+	/* 메세지 수신하기 */
+	function receiveMsg(data) {
 		
-		if(obj.type !== 'SendMsg') {
-			return false;
-		}
-		
-		socket.send(JSON.stringify(obj.data));
 	}
 	
 	/* 상위 메뉴 이벤트 걸어 주기 */
@@ -112,25 +136,24 @@ $(function() {
 		
 		
 		getUserData().then(writeDocumentData)
+					.then(openSocket)
 					.catch(throwError);
 		
 		/* 화면 그리기 */
 		function writeDocumentData(data) {
 			// 개발용 데이터 콘솔
-			console.log(data);
+			getData = data;
 			
 			const result = data.result.split(':');
 			
-			
 			// 에러 핸들링
 			if(result[0] == 'fail') throw new Error(result[1]);// 데이터가 없으면 error cat9ch 할 수 있게 에러 throw
-			
+			console.log(data);
 			const root = document.querySelector('.talk-user-area');
-			const msgListDiv = document.querySelector('.talk-user-msg-list');
+			
 			
 			// 현재 사용자정보
 			const currentUserNo = data.currentUserNo;
-	
 			
 			// 상단 내용 채우기
 			writeHeader();
@@ -214,6 +237,8 @@ $(function() {
 				/* 불러온 메시지가 없을 때 기본 폼 */
 				function writeNothingMsgForm() {
 					// 기본 폼 가져오기
+					isFirstMsg = true;
+					
 					let inputHTML = '';
 					inputHTML += '<article class="talk-user-template-area">';
 					inputHTML += '<img src="'+ contextPath +'resources/images/common/logo/favicon.png">'
@@ -259,7 +284,6 @@ $(function() {
 				
 				msgInput.addEventListener('keydown', send);
 				
-				
 				/* 메시지 보내기 */
 				function send(e) {
 					if(!(e.keyCode == 13 && !e.shiftKey) || !msgInput.value.trim().length) return false;
@@ -270,18 +294,27 @@ $(function() {
 							talkNo: data.talkNo,
 							msgType: 'N',
 							msgReceiver: userNo,
-							msgRegDt: new Date().toJSON(),
+							msgRegDt: new Date(),
 							msgSender: currentUserNo,
-							msgConfirmSt: 'N',
+							msgConfirmSt: 'N'
 					}
 					const msg = new SendMsg(tempObj); // 객체 만들어서
 					
-					const obj = {type: 'SendMsg',data: msg};
+					const obj = {request: 'sendMsg',sender: currentUserNo, receiver: userNo, data: msg};
 					
 					sendMessage(obj);
 					msgInput.value = ''; // 입력칸 비워준다.
 					
-					tempObj.msgRegDt = new Date(tempObj.msgRegDt).getTime();
+					if(isFirstMsg) {
+						const templateArea = document.querySelector('.talk-user-template-area');
+						const templateList = document.querySelector('.talk-user-template-list');
+						
+						templateArea.parentNode.removeChild(templateArea);
+						templateList.parentNode.removeChild(templateList);
+						isFirstMsg = false;
+					}
+					
+					
 					msgListDiv.append(writeSendMsg(tempObj));
 					msgListDiv.scrollTop = msgListDiv.scrollHeight;
 					
@@ -332,6 +365,7 @@ $(function() {
 			e = frag;
 			frag = document.createDocumentFragment();
 		}
+		
 		const msgDiv = DOMUtil.cE('div', {class: 'talk-user-normal-msg'});
 		
 		if(!prevDate || prevDate != timeStampToYYYYMMDD(e.msgRegDt)) {
@@ -346,7 +380,51 @@ $(function() {
 		const msgContent = DOMUtil.cE('div', {class: 'normal-msg-content'}, e.msgContent);
 		
 		const msgTimeArea = DOMUtil.cE('div', {class: 'normal-msg-time-area'});
-		const msgTimeStatus = (e.msgConfirmSt == 'N') ? DOMUtil.cE('div', {class: 'normal-msg-status'}, '안읽음') : '';
+		
+		const msgTimeStatus = (e.msgConfirmSt == 'N' && e.msgSender != getData.currentUserNo) ? DOMUtil.cE('div', {class: 'normal-msg-status'}, '안읽음') : '';
+		const msgTimeText = DOMUtil.cE('div', {class: 'normal-msg-time-text'}, DateUtil.format(new Date(e.msgRegDt), 'a/p hh:mm'));
+		
+		frag.append(msgDiv);
+		msgDiv.append(msgArea);
+		
+		msgArea.append(msgFlex, msgTimeArea);
+		msgFlex.append(msgContent);
+		if(msgTimeStatus) msgTimeArea.append(msgTimeStatus);
+		msgTimeArea.append(msgTimeText);
+		
+		return frag;
+	}
+	
+	/* 받은 메세지 그리기 */
+	function writeReceiveMsg(frag, e) {
+		/*
+		 * date찍는것
+		 */
+		function timeStampToYYYYMMDD(date) {
+			return DateUtil.format(new Date(date), 'yyyyMMdd');
+		}
+		
+		if(frag && frag.constructor == Object) {
+			e = frag;
+			frag = document.createDocumentFragment();
+		}
+		
+		const msgDiv = DOMUtil.cE('div', {class: 'talk-user-response-msg'});
+		
+		if(!prevDate || prevDate != timeStampToYYYYMMDD(e.msgRegDt)) {
+			prevDate = timeStampToYYYYMMDD(e.msgRegDt);
+			const dateDiv = DOMUtil.cE('div', {class: 'talk-user-msg-date'}, DateUtil.format(new Date(e.msgRegDt), 'yyyy. m1. d1 KL '));
+			msgDiv.append(dateDiv);
+		}
+		
+		const msgArea = DOMUtil.cE('div', {class: 'normal-msg-area'});
+		
+		const msgFlex = DOMUtil.cE('div', {class: 'normal-msg-flex'});
+		const msgContent = DOMUtil.cE('div', {class: 'normal-msg-content'}, e.msgContent);
+		
+		const msgTimeArea = DOMUtil.cE('div', {class: 'normal-msg-time-area'});
+		
+		const msgTimeStatus = (e.msgConfirmSt == 'N' && e.msgSender != getData.currentUserNo) ? DOMUtil.cE('div', {class: 'normal-msg-status'}, '안읽음') : '';
 		const msgTimeText = DOMUtil.cE('div', {class: 'normal-msg-time-text'}, DateUtil.format(new Date(e.msgRegDt), 'a/p hh:mm'));
 		
 		frag.append(msgDiv);
@@ -363,17 +441,19 @@ $(function() {
 	/* 소켓으로 보내줄 메시지 객체 구성 */
 	
 	/*
-	 * obj.socket 
-	 * obj.
+	 * obj.msgContent = 메세지 내용
+	 * obj.talkNo = 대화방 방번호
+	 * obj.msgType = 메시지 타입
+	 * obj.msgReceiver = 받는사람
+	 * obj.msgSender = 보내는 사람
+	 * obj.ConfirmSt = 확인여부
 	 */
-	
-	
 	function SendMsg(obj) {
 		this.msgContent = obj.msgContent;
 		this.talkNo = obj.talkNo;
 		this.msgType = obj.msgType;
 		this.msgReceiver = obj.msgReceiver;
-		this.msgRegDt = new Date().toJSON();
+		this.msgRegDt = new Date(obj.msgRegDt).toJSON();
 		this.msgSender = obj.msgSender;
 		this.msgConfirmSt = 'N';
 		return this;
