@@ -23,8 +23,8 @@
                         </div>
                     </div>
                 </div> <!-- 내상점 끝-->
-                <div class="com-outline">
-                    <!-- 알림 아웃라인 -->
+                <!-- 알림 -->
+<!--                 <div class="com-outline">
                     <div class="alert-position">
                         <a id = "alert" class="alert-font" href="#">알림</a>
                         <div class="alert-content-box">
@@ -36,8 +36,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                <!--알림 끝 -->
+                </div> -->
                 <!-- 고객센터 시작 -->
                <div class="com-outline">
                     <div class="dropdown-position">
