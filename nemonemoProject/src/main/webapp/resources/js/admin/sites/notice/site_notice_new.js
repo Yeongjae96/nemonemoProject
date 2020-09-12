@@ -29,7 +29,7 @@ function initEditor() {
 	      oAppRef: oEditors,
 	      elPlaceHolder: "noticeContent",
 	      //SmartEditor2Skin.html 파일이 존재하는 경로
-	      sSkinURI : "../../resources/vendor/smarteditor/SmartEditor2Skin.html", 
+	      sSkinURI : "../../resources/vendor/smarteditor/SmartEditor2SNotice.html", 
 	      htParams : {
 	          // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 	          bUseToolbar : true,             
@@ -47,11 +47,14 @@ function initEditor() {
 	      }, */
 	      fCreator: "createSEditor2"  
 		});
-	   $('#newBtn').click(function() {
+	   $('#newBtn').click(function(e) {
+		   e.preventDefault();
 	    	oEditors.getById["noticeContent"].exec("UPDATE_CONTENTS_FIELD", []);	
 	    	const noticeForm = document.getElementById('noticeNewForm');
 	    	
 	    	if(checkNull('inputTitle', '제목') || checkNull('noticeContent', '내용')) return false;
+	    	
+	    	console.log(document.getElementById('noticeContent').value);
 	    	
 	    	noticeForm.submit();
 	    }); 

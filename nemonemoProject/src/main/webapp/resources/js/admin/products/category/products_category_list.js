@@ -95,8 +95,9 @@ function initButtonEvent() {
 			} else if(e.target.closest('.product-category-upd-btn')) {
 				console.log('수정 기능');
 				updateAction.call(e.target);
+			} else if(e.target.closest('#useFlagTd')) {
+				updateStatus.call(e.target);
 			}
-			console.log('요상한 기능');
 		});
 		
 		// 삭제 버튼
@@ -112,14 +113,15 @@ function initButtonEvent() {
 		});	*/
 		
 		//미사용, 사용 누르면 바뀌는 토글 기능 
-		$('#useFlagTd span').click(function() {
-			const $this = $(this);
-			const changeValue = $this.text() == '미사용' ? 'Y' : 'N';
+		function updateStatus() {
+			const changeValue = this.textContent.trim() == '사용' ? 'Y' : 'N';
+			console.log(this.textContent.trim());
+			console.log(this.closest('tr').dataset.no);
 			$.ajax({
 				url: 'changeUseFl.mdo',
 				method: 'post',
 				data: {
-					productCateNo: $this.closest('tr').data('no'),
+					productCateNo: this.closest('tr').dataset.no,
 					productCateDelFl: changeValue
 				}
 			}).done(function(success) {
@@ -128,7 +130,7 @@ function initButtonEvent() {
 			}).fail(function(error) {
 				alert('상태 변경에 실패하였습니다.')
 			});
-		});
+		}
 		
 		//상품으로 돌아가기 버튼
 		$('#productBtn').click(function() {
@@ -388,6 +390,7 @@ function getCategoryList() {
 function initTable() {
 	const table = $('#product-category-list').DataTable({
 	    responsive: true,
+	    stateSave: true,
 	    "language": {
 	        "decimal":        "",
 	        "emptyTable":     "표에서 사용할 수있는 데이터가 없습니다.",

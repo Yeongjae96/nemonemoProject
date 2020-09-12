@@ -50,8 +50,10 @@ $('#result > tr > td > span').click(function() {
 const addCate = document.getElementById('product_cate');
 
 addCate.addEventListener('click', function(){
+	const status = window.localStorage.getItem('DataTables_product-category-list_/products/category/list.mdo');
+	if(status) window.localStorage.removeItem('DataTables_product-category-list_/products/category/list.mdo');
 	window.location.href = "category/list.mdo";
-	});
+});
 
 
 

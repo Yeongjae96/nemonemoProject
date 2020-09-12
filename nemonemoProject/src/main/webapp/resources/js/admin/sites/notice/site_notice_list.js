@@ -1,5 +1,6 @@
 $(function () {
     const table = $('#notice-table').DataTable({
+    	stateSave: true,
 	    responsive: true,
 	    "language": {
 	        "decimal":        "",
@@ -28,38 +29,39 @@ $(function () {
     $('#regBtn').click(function() {window.location.href='new.mdo'});
     
     /* 사용 미사용 누르면 바뀌는 클릭 이벤트*/
-    $('#result > tr > td > span').click(function() {
-    	$.ajax({
-    		url: 'flag.mdo',
-    		method:'post',
-    		data: {
-    			noticeNo: $(this).closest('tr').data('no'),
-    			noticeDelFl: $(this).text() == "사용" ? "Y" : "N"
-    		}
-    	}).done(function(data) {
-    		alert('사용여부를 변경합니다.');
-    		window.location.reload(true);
-    	}).fail(function(error) {
-    		alert('사용 여부 설정에 실패하였습니다.')
-    	});
+    $('#result').click(function(e) {
+    	const target = e.target;
+    	if(target.closest('span')) {
+    		$.ajax({
+        		url: 'flag.mdo',
+        		method:'post',
+        		data: {
+        			noticeNo: $(target).closest('tr').data('no'),
+        			noticeDelFl: $(target).text() == "사용" ? "Y" : "N"
+        		}
+        	}).done(function(data) {
+        		alert('사용여부를 변경합니다.');
+        		window.location.reload(true);
+        	}).fail(function(error) {
+        		alert('사용 여부 설정에 실패하였습니다.')
+        	});
+    	} else if(target.closest('.notice-upd-btn')) {
+    		updAction.call(e.target);
+    	} else if(target.closest('.notice-del-btn')) {
+    		delAction.call(e.target);
+    	}
+    	
     });
     
     
-    $('.notice-upd-btn').click(function() {
+    function updAction() {
     	const noticeNo = $(this)[0].dataset.noticeno;
     	window.location.href="edit.mdo?noticeNo="+noticeNo;
-    });
-    
-    
-    
-    $('#NoticeInsert').click(function() {
-    	oEditors.getById["noticeContent"].exec("UPDATE_CONTENTS_FIELD", []);	
-    	document.noticeForm.submit();
-    });	
+    }
     
     /* 삭제 버튼 기능 */
     /* 삭제 버튼을 누르면 해당 익명 함수를 실행해라 */
-    $('.notice-del-btn').click(function() {
+    function delAction() {
     	// 누른 버튼의 dataset(data-*)에 속성값인 noticeno를 noticeNo 변수에 담아라.
     	const noticeNo = $(this)[0].dataset.noticeno;
     	console.log(noticeNo);
@@ -67,7 +69,7 @@ $(function () {
     	const $frag = document.createDocumentFragment();
     	// 제이쿼리를 이용해서 동적 dom 생성( document.createElement('form') )
     	// attr(속성 부여) -> ('','') -> 단일속성, {} -> 다중속성 
-    	$form = $('<form></form>').attr({
+    	$form = $('<form>').attr({
     		action: "delete.mdo",
     		method: "POST"
     	});
@@ -84,8 +86,14 @@ $(function () {
     	$form.append($input);
     	$('body').append($frag);
     	$form[0].submit();
-    	$form.remove();
-    });
+    }
+    
+    $('#NoticeInsert').click(function() {
+    	oEditors.getById["noticeContent"].exec("UPDATE_CONTENTS_FIELD", []);	
+    	document.noticeForm.submit();
+    });	
+    
+    
     
     
     
