@@ -83,8 +83,8 @@ function deleteImage() {
 
 /* 게시물 등록 */
 function initRegBtn() {
-	$('#qnaSubmit').click(function(){
-		alert("상담 내용이 정상적으로 접수되었습니다. 답장은 영업일 기준(주말, 공휴일 제외) 1-2일 이내에 드리겠습니다.");
+	$('#banneradd').click(function(){
+		alert("배너 등록을 완료하였습니다.");
 	regAction.call(this); }); // 클릭 이벤트 안에서 function을 열면 사라질 수 있으니.. this가 window로 안바뀌게 내가 가지고 있는 this를 명시해 부름
 	
 	function regAction(){

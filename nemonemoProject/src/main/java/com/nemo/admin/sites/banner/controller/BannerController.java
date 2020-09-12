@@ -2,6 +2,8 @@ package com.nemo.admin.sites.banner.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nemo.admin.members.report.category.vo.ReportCategoryVO;
 import com.nemo.admin.sites.banner.service.BannerService;
 import com.nemo.admin.sites.banner.vo.BannerVO;
 
@@ -29,6 +30,8 @@ import com.nemo.admin.sites.banner.vo.BannerVO;
 @RequestMapping("/sites/banner")
 public class BannerController {
 
+	private Logger logger = LoggerFactory.getLogger(getClass()); //이것은 뭐 하는 것인가? //실시간으로 오류 잡을떄 사용?
+	
 	@Autowired
 	private BannerService bannerService;
 
@@ -47,13 +50,22 @@ public class BannerController {
 	
 	
 	
-	// insert
-		@RequestMapping(value = "add", method = { RequestMethod.POST })
-		public ModelAndView BannerAddAction(BannerVO vo) {
-			bannerService.insertBanner(vo);
-			ModelAndView mav = new ModelAndView("redirect:/sites/banner/list.mdo");
-			return mav;
-		}
+//	// insert
+//		@RequestMapping(value = "add", method = { RequestMethod.POST })
+//		public ModelAndView BannerAddAction(BannerVO vo) {
+//			bannerService.insertBanner(vo);
+//			ModelAndView mav = new ModelAndView("redirect:/sites/banner/list.mdo");
+//			return mav;
+//		}
+		
+		 /* 배너 등록 등록 */
+		   @PostMapping("/newBannerJson")
+		   public @ResponseBody int BannerAddAction(BannerVO vo) {
+		      logger.info("{}", vo);
+		      return bannerService.insertBanner(vo);
+		   }
+		
+		
 	
 
 	// D
