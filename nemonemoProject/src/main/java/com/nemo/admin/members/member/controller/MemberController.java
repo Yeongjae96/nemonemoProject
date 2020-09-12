@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nemo.admin.members.member.member.service.MemberService;
+import com.nemo.admin.members.member.service.MemberService;
 import com.nemo.admin.members.member.vo.AdminBaseMemberVO;
 import com.nemo.admin.members.member.vo.TermsCheckedVO;
 
@@ -24,7 +24,7 @@ import com.nemo.admin.members.member.vo.TermsCheckedVO;
  */
 
 @Controller
-@RequestMapping("/members/member")
+@RequestMapping("/members")
 public class MemberController {
 	
 	@Autowired private MemberService memberService;

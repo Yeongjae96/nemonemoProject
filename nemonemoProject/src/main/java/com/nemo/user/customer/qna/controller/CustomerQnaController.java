@@ -1,7 +1,7 @@
 package com.nemo.user.customer.qna.controller;
 
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nemo.admin.members.qna.vo.UserQnaResVO;
+import com.nemo.common.paging.PageVO;
+import com.nemo.common.util.ContextUtil;
 import com.nemo.user.customer.qna.service.CustomerQnaCategoryService;
 import com.nemo.user.customer.qna.service.CustomerQnaService;
 import com.nemo.user.customer.qna.service.InsertQnaService;
 import com.nemo.user.customer.qna.vo.UserBaseQnaCategoryVO;
 import com.nemo.user.customer.qna.vo.UserBaseQnaVO;
 import com.nemo.user.customer.qna.vo.UserNewQnaVO;
+import com.nemo.user.sign.signup.vo.UserBaseVO;
 
 /**
  * @제목 : User Customer QNA 컨트롤러
@@ -55,18 +59,27 @@ public class CustomerQnaController {
 	
 	/* 사용자가 QNA 등록 */
 	@PostMapping("/newQuestionJson")
-	public @ResponseBody int newAction(UserNewQnaVO vo, @RequestParam(value="qnaRegId") int userNo) {
-		logger.info("{}", vo);
+	public @ResponseBody int newAction(UserNewQnaVO vo) {
 		return insertQnaService.insertQna(vo);
 	}
 	
 	
 	/* QNA 리스트에 뿌려주기 */	
 	@GetMapping("/qna/list")
-	public ModelAndView qnaListPage(UserBaseQnaVO vo) {		
+	public ModelAndView qnaListPage(UserBaseQnaVO vo,
+			@RequestParam(value = "pageNo", defaultValue="1")int pageNo, //시작번호
+			@RequestParam(value = "pageSize", defaultValue="5")int pageSize // 한페이지에 보여줄 갯수
+			) {		
 		ModelAndView mav = new ModelAndView("customer/qna/qna_list");
-		List<UserBaseQnaVO> qnaList = customerQnaService.selectQnaList(vo);
-		mav.addObject("qnaList", qnaList);
+		UserBaseVO userInfo = (UserBaseVO)ContextUtil.getAttrFromSession("user");
+		vo.setQnaRegId(userInfo.getUserNo());
+		
+		PageVO pageVO = new PageVO();
+		pageVO.setPageNo(pageNo);
+		pageVO.setPageSize(pageSize);
+		
+		UserQnaResVO res = customerQnaService.selectQnaList(vo, pageVO);
+		mav.addObject("vo", res);
 		return mav;
 		
 	}

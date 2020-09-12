@@ -61,8 +61,6 @@
 
         <section class="content">
             <div class="container-fluid">
-
-
                 <!-- prod-list -->
                 <div class="row clearfix">
                     <div>
@@ -70,6 +68,7 @@
                             <div class="header">
                                 <h1>
                                     <i class="fas fa-clipboard-list"></i> 상품 정보
+                            <button type="button" class="btn bg-pink waves-effect m-r-20" id="product_cate"> 카테고리 등록</button>
                                 </h1>
                             </div>
                             <div class="body">
@@ -114,7 +113,7 @@
                                         		<span class="label label-default">판매중</span>
                                         		</c:if>
                                         		 <c:if test="${prod.productSoldDt ne NULL}">
-                                        			${prod.productSoldDt}
+                                        						${prod.productSoldDt}
                                         		</c:if>
                                         		 <c:if test="${prod.productDispSt eq 'P'}">
                                         			게시중지

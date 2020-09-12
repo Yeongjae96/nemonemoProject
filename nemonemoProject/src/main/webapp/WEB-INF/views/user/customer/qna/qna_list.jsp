@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
+<c:set var="qnaList" value="${vo.qnaVOList}"/>
+<c:set var="pageVO" value="${vo.pageVO}" scope="request"/>
+<c:set var="pageName" value="list" scope="request"/>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,9 +55,7 @@
 	<% 
 		/* 각 페이지의 특성! */
 	%>
-	<%-- paging처리에 필요한 변수  --%>
-	<c:set var="pageName" value="${vo.qnaNo}" scope="request"/> 
-	<c:set var="pageVO" value="${vo.pageVO}" scope="request"/> 
+	 
 	<section>
 		<div class="consulting_list_div">
         <main class="consulting_list_main">
@@ -57,8 +64,8 @@
 	        <hr>
         	
             <nav class="consulting_list_nav">
-                <a class="consulting_list_nav_a1" href="/nemonemoProject/customer/qna.do">1:1 상담하기</a>
-                <a class="consulting_list_nav_a2" href="#">상담내역
+                <a class="consulting_list_nav_a1" href="<c:url value="/customer/qna.do"/>">1:1 상담하기</a>
+                <a class="consulting_list_nav_a2" href="<c:url value="/customer/qna/list.do"/>">상담내역
                     <div class="title_hover"></div>
                 </a>
             </nav>
@@ -93,7 +100,7 @@
                                         <h2 class="answer_h2">네모내모 운영센터 답변</h2>
                                         <time class="answer_time">${qna.qnaReplyYmd}</time>
                                     </div>
-                                    <a class="to_anther_question" href="/nemonemoProject/customer/qna.do">다른 문의하기</a>
+                                    <a class="to_anther_question" href="<c:url value="/customer/qna.do"/>">다른 문의하기</a>
                                 </div>
                                 <div class="qna_content">
                                 ${qna.qnaAdminContent}
@@ -121,9 +128,10 @@
                     </div>
                 </article>
                </c:forEach>
-            </ul>
-            	<%-- 페이징처리에 필요한 변수  --%>
-				<jsp:include page="/WEB-INF/views/common/paging/paging.jsp"/>
+            </ul>  
+            <div class="qna_list_footer">
+            <jsp:include page="/WEB-INF/views/common/paging/paging.jsp"/>
+            </div>
         </main>
     </div>
 	</section>

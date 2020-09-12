@@ -84,8 +84,7 @@ public class QnaController {
 
 	}
 	
-	
-	
+
 	/* 답변 리뷰 페이지*/
 	@GetMapping("/reply/review")
 	public ModelAndView qnaReplyReviewPage(@RequestParam int qnaNo) {
@@ -99,9 +98,7 @@ public class QnaController {
 	@PostMapping("/reply")
 	public ModelAndView qnaReplyAction(AdminBaseQnaVO vo) {	
 		qnaService.replyQna(vo);
-	
 		ModelAndView mav = new ModelAndView("redirect:/members/qna/list.mdo");	
-		System.out.println("답변 액션 : " + vo);
 		return mav;
 	}
 	

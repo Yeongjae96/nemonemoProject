@@ -1,12 +1,12 @@
-package com.nemo.admin.members.member.member.service.impl;
+package com.nemo.admin.members.member.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nemo.admin.members.member.member.service.MemberService;
 import com.nemo.admin.members.member.repository.impl.MemberMapper;
+import com.nemo.admin.members.member.service.MemberService;
 import com.nemo.admin.members.member.vo.AdminBaseMemberVO;
 import com.nemo.admin.members.member.vo.TermsCheckedVO;
 

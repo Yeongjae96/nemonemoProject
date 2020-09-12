@@ -58,7 +58,6 @@ function initImageArea(){
 				reader.readAsDataURL(input.files[index++]);	
 			}
 			reader.readAsDataURL(input.files[index]);
-			console.log(fileBuffer);
 		}
 	
 	}
@@ -81,7 +80,6 @@ function initRegBtn() {
 	regAction.call(this); }); // 클릭 이벤트 안에서 function을 열면 사라질 수 있으니.. this가 window로 안바뀌게 내가 가지고 있는 this를 명시해 부름
 	
 	function regAction(){
-		alert("regAction!");
 		$('#newQuestionForm').ajaxForm({ // .ajaxSubmit???? 모든 태그를 다 읽음..
 			url:'newQuestionJson.do',
 			type:'post',
@@ -102,15 +100,14 @@ function initRegBtn() {
 				});
 			},
 			success: function(data){
-				alert("성공했다!!!!");
-				window.location.href="/nemonemoProject/customer/qna.do";
+				//<c:url value="/customer/qna/list.do"/>
+				window.location.href= contextPath + "customer/qna.do";
 			},
 			error: function(error){
 				alert('error : 에러', error)
 			}
 		});
 	}	// 사진등록 end 
-	
 	
 	
 	

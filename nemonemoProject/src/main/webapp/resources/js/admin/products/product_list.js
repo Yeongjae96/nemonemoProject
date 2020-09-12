@@ -45,3 +45,13 @@ $('#result > tr > td > span').click(function() {
 		alert('게시 여부 설정에 실패하였습니다.')
 	});
 });
+
+/* 카테고리 관리로 이동 */
+const addCate = document.getElementById('product_cate');
+
+addCate.addEventListener('click', function(){
+	window.location.href = "category/list.mdo";
+	});
+
+
+

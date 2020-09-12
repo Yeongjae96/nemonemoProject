@@ -81,6 +81,7 @@ function initTopMenu() {
      /* top-nav 내상점 메뉴링크 보여줌 */
      $('.mystore').mouseover(function() {
         $(".mystore-box").css("visibility", "visible");
+        $('.cs-box').css("visibility", "hidden");
         
      });
      $('.mystore-box').mouseleave(function() {
@@ -90,6 +91,8 @@ function initTopMenu() {
     /* top-nav 고객센터 메뉴링크 보여줌 */
      $('.cs').mouseover(function() {
         $('.cs-box').css("visibility", "visible");
+        $(".mystore-box").css("visibility", "hidden");
+        
      });
      $('.cs-box').mouseleave(function() {
          $('.cs-box').css("visibility", "hidden");
@@ -323,6 +326,10 @@ function loadProduct(){
 			// 총 페이지 개수
 			pageCnt = (totalCnt%dataSize == 0) ? parseInt(totalCnt/dataSize) : parseInt((totalCnt/dataSize)+1);	
 			pagingText.innerHTML = '<span>' + currentPage + '/' + pageCnt +'</span>';
+						
+			if(parseInt(currentPage) > parseInt(pageCnt)){
+				document.querySelector('#leftArrow').dispatchEvent(new Event('click'));
+			} 
 			IsArrowDisabled();
 		} else {
 			IsEmptyRecentProduct();

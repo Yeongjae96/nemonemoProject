@@ -42,13 +42,18 @@
 	</select>
 	
 	
-	<select id="selectQnaList" parameterType ="int" resultMap="userBaseQnaMap">
+	<select id="selectQnaList" parameterType ="hashMap" resultMap="userBaseQnaMap">
+		<include refid="common.PaginationMapper.header"/>
 		SELECT 
 		qna.*,
 		cate.qna_cate_name
 		FROM qna_tb qna
 		inner join (qna_cate_tb cate)
 		on (qna.qna_cate_no = cate.qna_cate_no)
+		<where>
+		QNA_REG_ID =#{userNo} 
+		</where>
+		<include refid="common.PaginationMapper.footer"/>
 		order by qna_reply_fl, qna_reply_ymd
 	</select>
 	
