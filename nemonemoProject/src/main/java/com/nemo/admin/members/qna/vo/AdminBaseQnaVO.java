@@ -20,7 +20,7 @@ public class AdminBaseQnaVO {
 	private int qnaNo;
 	private int qnaRegId;
 	private	int qnaReplyId;
-	private String qnaStoreName;
+	private String storeName;
 	private String qnaCategoryNo;
 	private String qnaCategoryName;
 	private String qnaUserContent;

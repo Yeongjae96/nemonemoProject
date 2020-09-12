@@ -96,74 +96,7 @@
                     </div>
                 </div>
                 <!-- #END# 대쉬보드 -->
-                
             </div>
-
-            <!-- 1:1문의 게시판 목록 -->
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                최근 1:1 문의
-                                <small>최근 순서대로 나열</small>
-                            </h2>
-                
-                        </div>
-                        <div class="body table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr class = "table-size">
-                                        <th>NO.</th>
-                                        <th>상점명</th>
-                                        <th>문의분류</th>
-                                        <th>문의제목</th>
-                                        <th>문의날짜</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <th>공룡이네</th>
-                                        <th>거래신고</th>
-                                        <th>사기당했어요</th>
-                                        <th>2020/02/04</th>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <th>공룡이네</th>
-                                        <th>거래신고</th>
-                                        <th>사기당했어요</th>
-                                        <th>2020/02/04</th>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <th>공룡이네</th>
-                                        <th>거래신고</th>
-                                        <th>사기당했어요</th>
-                                        <th>2020/02/04</th>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <th>공룡이네</th>
-                                        <th>거래신고</th>
-                                        <th>사기당했어요</th>
-                                        <th>2020/02/04</th>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <th>공룡이네</th>
-                                        <th>거래신고</th>
-                                        <th>사기당했어요</th>
-                                        <th>2020/02/04</th>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #END# 1:! 문의 게시판 바로가기 -->
         </section>
         
         <!-------------------------------------------SECTION--------------------------------------------------->

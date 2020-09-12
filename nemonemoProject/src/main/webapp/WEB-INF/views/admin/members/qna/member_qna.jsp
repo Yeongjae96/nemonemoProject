@@ -99,7 +99,7 @@
 										<c:forEach var="qna" items="${qnaList}">
 										<tr>
 											<td class="col-md-1">${qna.qnaNo}</td>
-											<td class="col-md-2">${qna.qnaStoreName}</td>
+											<td class="col-md-2">${qna.storeName}</td>
 											<td>${qna.qnaCategoryName}</td>
 											<td>${qna.qnaRegYmd}
 												<jsp:useBean id="now" class="java.util.Date" />

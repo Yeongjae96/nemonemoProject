@@ -9,7 +9,7 @@
 		<id column="QNA_NO" property="qnaNo"/>
 		<result column="QNA_CATE_NO" property="qnaCategoryNo"/>
 		<result column="QNA_CATE_NAME" property="qnaCategoryName"/>		
-		<result column="STORE_NAME" property="qnaStoreName"/>
+		<result column="STORE_NAME" property="storeName"/>
 		<result column="QNA_REG_ID" property="qnaRegId"/>
 		<result column="QNA_REPLY_ID" property="qnaReplyId"/>
 		<result column="QNA_USER_CONTENT" property="qnaUserContent"/>
@@ -64,7 +64,7 @@
 			QNA_REPLY_FL = #{qnaReplyFl}
 		WHERE
 			QNA_NO = #{qnaNo}
-			
+	
 	</update>
 	
 
