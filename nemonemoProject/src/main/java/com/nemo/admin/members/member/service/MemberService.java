@@ -1,4 +1,4 @@
-package com.nemo.admin.members.member.member.service;
+package com.nemo.admin.members.member.service;
 
 import java.util.List;
 

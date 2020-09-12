@@ -37,18 +37,13 @@ function initImageArea() {
 				return false;
 			}
 			let index = 0;
-			reader.onload = function(e) {
+			reader.onload = function(evt) {
 				
-				if(index >= input.files.length) {
-					return false;
-				}
 				const fileSize = input.files[index].size;
 				if(fileSize > maxSize) {
 					alert('이미지파일 사이즈는 10MB 이내로 등록 가능합니다. ');
 					return false;
 				}
-				
-				
 				const image = input.files[index];
 				// 파일 유효성 검사
 				const fileEx = image.name.slice(image.name.lastIndexOf(".")+1).toLowerCase();
@@ -63,6 +58,7 @@ function initImageArea() {
 					index=0;
 					$div.addClass('text-registry--representive').text('대표이미지');		
 				}
+				
 				const $li = $('<li></li>').attr({draggable: 'false'}).addClass('image-registry--user');
 				const $image = $('<img/>').attr({'src': this.result, alt: '상품이미지'});
 				const $closeBtn = $('<button></button>');
@@ -75,10 +71,11 @@ function initImageArea() {
 				// 전역변수 배열 데이터 추가
 				$('.products-title--div small').text(`(${$('.image-registry--user').length}/8)`);
 				
-				reader.readAsDataURL(input.files[index++]);
+				if(index < input.files.length-1) {
+					reader.readAsDataURL(input.files[++index]);
+				}
 			}
 			reader.readAsDataURL(input.files[index]);
-			console.log(fileBuffer);
 		}
 	}
 

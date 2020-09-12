@@ -81,6 +81,7 @@ function initTopMenu() {
      /* top-nav 내상점 메뉴링크 보여줌 */
      $('.mystore').mouseover(function() {
         $(".mystore-box").css("visibility", "visible");
+        $('.cs-box').css("visibility", "hidden");
         
      });
      $('.mystore-box').mouseleave(function() {
@@ -90,6 +91,8 @@ function initTopMenu() {
     /* top-nav 고객센터 메뉴링크 보여줌 */
      $('.cs').mouseover(function() {
         $('.cs-box').css("visibility", "visible");
+        $(".mystore-box").css("visibility", "hidden");
+        
      });
      $('.cs-box').mouseleave(function() {
          $('.cs-box').css("visibility", "hidden");
@@ -186,8 +189,8 @@ function initJJim(){
 			if(storeNo.length == 0) storeNumLength = -1;
 			loadJJim(data, storeNo);
 		});
-	} else {
-		const noJJim = 0;
+	}else{
+		const noJJim = 0; 
 		const notLogin = -1;
 		loadJJim(noJJim, notLogin);
 	}
@@ -241,7 +244,7 @@ function loadProduct(){
 	/* 페이징 변수 */
 	let totalCnt; // 클릭한 상품 개수 
 	const dataSize = 3; // 한 페이지당 보여줄 게시물 개수
-	let pageCnt = totalCnt % dataSize; // 총 페이지 개수  
+	let pageCnt; // 총 페이지 개수  
 	let currentPage = parseInt(sessionStorage.getItem('pagination')); // 현재 보고 있는 페이지
 	
 	let getItems = JSON.parse(sessionStorage.getItem('recentlyVisitedProducts'));
@@ -252,15 +255,16 @@ function loadProduct(){
 	
 	writeDocumentFromSessionItem();
 	loadpagination();
+	setCurrentPage();
 	
-	/* 화면 구성 */
+
+	/* sessionStorage 내용 화면 그리기 */
 	function writeDocumentFromSessionItem() {
 		
 		recPrdPaging.style.display = 'flex';
 		totalCnt = getItems.length; // 총 게시물
 		$recPrdList.html('');
 		
-		/* sessionStorage 내용 화면 그리기 */
 		if(!currentPage) {
 			sessionStorage.setItem('pagination', 1);
 			currentPage = 1;
@@ -268,7 +272,6 @@ function loadProduct(){
 		currentPage = sessionStorage.getItem('pagination');
 		let startNo = (currentPage-1) * dataSize; // 0, 3, 6 ...
 		let endNo = (startNo + dataSize) > getItems.length ?  getItems.length : (startNo + dataSize);
-		console.log("시작번호 : ", startNo,"끝번호 : ", endNo);
 	
 		for (var i = startNo; i < endNo; i++) {
 			const html = 
@@ -286,15 +289,7 @@ function loadProduct(){
 			
 			$recPrdList.append(html);
 				
-		}
-	
-		
-		/* a 태그 클릭시 해당 게시물로 이동 */
-		for (var i = 0; i < prdAnchor.length; i++) {
-			prdAnchor[i].addEventListener('click', function(){
-				window.location.href = contextPath + 'products/' + $(this).data("prdno")+'.do';			
-			});
-		}
+		}		
 		
 		/* 버튼 클릭시 해당 게시물 삭제 */
 		for (var i = 0; i < delBtn.length; i++) {
@@ -303,7 +298,27 @@ function loadProduct(){
 				removeFromSession($(this).parent().parent().data("prdno"));
 			});
 		}	
+		moveToProduct();
 	}
+	
+	
+	/* a 태그 클릭시 해당 게시물로 이동 */
+	function moveToProduct(){
+		for (var i = 0; i < prdAnchor.length; i++) {
+			prdAnchor[i].addEventListener('click', function(){
+				window.location.href = contextPath + 'products/' + $(this).data("prdno")+'.do';			
+			});
+		}		
+	}
+	
+	
+	/* 버튼 클릭시 해당 게시물 삭제 */
+	for (var i = 0; i < delBtn.length; i++) {
+		delBtn[i].addEventListener('click', function(e){
+			e.stopPropagation();
+			removeFromSession($(this).parent().parent().data("prdno"));
+		});
+	}	
 	
 	/* 페이징처리 화면에 그려주기 */
 	function loadpagination() {
@@ -311,11 +326,27 @@ function loadProduct(){
 			// 게시물 개수
 			recPrdCnt.innerHTML = '<span>'+ totalCnt +'</span>';
 			// 총 페이지 개수
-			pageCnt = pageCnt == 0 ? parseInt(totalCnt%dataSize) : parseInt(totalCnt/dataSize) + 1;	
+			pageCnt = (totalCnt%dataSize == 0) ? parseInt(totalCnt/dataSize) : parseInt((totalCnt/dataSize)+1);	
 			pagingText.innerHTML = '<span>' + currentPage + '/' + pageCnt +'</span>';
+						
+			if(parseInt(currentPage) > parseInt(pageCnt)){
+				document.querySelector('#leftArrow').dispatchEvent(new Event('click'));
+			} 
+			IsArrowDisabled();
 		} else {
 			IsEmptyRecentProduct();
-		}
+		}	
+
+	}	
+	
+	/* 네비게이션 페이징 화살표 비활성화 */
+	function IsArrowDisabled(){
+		
+		if(currentPage == pageCnt) rightArrow.disabled = true;
+		else rightArrow.disabled = false;
+		
+		if(currentPage == 1) leftArrow.disabled = true;
+		else leftArrow.disabled = false;
 	}
 	
 	/* 목록이 비었을때 */
@@ -334,7 +365,7 @@ function loadProduct(){
 	}
 	
 	
-	/* 세션에서 지우기 */
+	/* 세션에서 선택한 상품 지우기 */
 	function removeFromSession(datano){
 		
 		let removeProductNo = getItems.findIndex(i => i.productNo == datano);
@@ -344,24 +375,29 @@ function loadProduct(){
 		// 새로운 변경된 arr를 덮어씌움
 		sessionStorage.setItem('recentlyVisitedProducts', JSON.stringify(getItems));	
 		writeDocumentFromSessionItem();
+		loadpagination();
+		
 	}
 	
-	
-		rightArrow.addEventListener('click', function(){
-			sessionStorage.setItem('pagination', ++currentPage);
-			writeDocumentFromSessionItem();
-			loadpagination();
-			
-		});
+	/* 화살표 클릭시 현재 페이지 세션에 저장 */
+	function setCurrentPage(){
 		
 		leftArrow.addEventListener('click', function(){
-			sessionStorage.setItem('pagination', --currentPage);
-			writeDocumentFromSessionItem();
-			loadpagination();
+				sessionStorage.setItem('pagination', --currentPage);
+				writeDocumentFromSessionItem();
+				loadpagination();
+			});
+		
+		rightArrow.addEventListener('click', function(){
+			if(currentPage < pageCnt){
+				sessionStorage.setItem('pagination', ++currentPage);
+				writeDocumentFromSessionItem();
+				loadpagination();
+			}
 		});
-	
+		
+	}	
 }
-
 
 
 function initMyTalk() {

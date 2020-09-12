@@ -39,6 +39,7 @@ $(function () {
 /* 테이블 row 값 해당 페이지로 가져가기  */
 $('.to_reply').click(function() {
 	const qnaNo = $(this).data("qnano");
+	const storeName = $(this).data("storename");
 	window.location.href="reply.mdo?qnaNo="+qnaNo;
 	
 

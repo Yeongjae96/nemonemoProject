@@ -19,6 +19,12 @@
 	<c:set var="prevParam" value="?"/>
 </c:if>
 
+<c:if test="${empty param.pageNo}">
+	<c:set var="currentPageNo" value="1"/>
+</c:if>
+<c:if test="${not empty param.pageNo}">
+	<c:set var="currentPageNo" value="${param.pageNo}"/>
+</c:if>
 <c:if test="${pageVO ne null}">
 	<!-- 페이징 부분 -->
 	<div class="category-paging__area">
@@ -31,12 +37,13 @@
 			</c:if>
 			<c:forEach begin="${pageVO.startGroupNo}" end="${pageVO.endGroupNo}"
 				varStatus="st">
-				<c:if test="${param.pageNo eq pageVO.pageNo or pageVO.pageNo == 1}">
+				
+				<c:if test="${currentPageNo eq st.current}">
 					<a class="category-paging__page--active"
 						href="${pageName}.do${prevParam}pageNo=${st.current}">${st.current}</a>
 				</c:if>
 				<c:if
-					test="${param.pageNo ne pageVO.pageNo and pageVO.pageNo != 1}}">
+					test="${currentPageNo ne st.current}">
 					<a class="category-paging__page"
 						href="${pageName}.do${prevParam}pageNo=${st.current}">${st.current}</a>
 				</c:if>

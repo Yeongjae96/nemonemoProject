@@ -882,7 +882,7 @@
 			                                        <div class="detail-review-nothing--msg">
 			                                        	등록된 후기가 없습니다.<br>첫 후기를 등록해보세요!
 			                                        </div>
-			                                        <a class="detail-review-nothing--link" href="/shop/${productSellerVO.storeNo}/reviews.do">
+			                                        <a class="detail-review-nothing--link" href="<c:url value="/shop/${productSellerVO.storeNo}/reviews.do"/>">
 			                                        	후기작성
 			                                        </a>
 		                                       	</div>

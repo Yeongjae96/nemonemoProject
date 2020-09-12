@@ -68,9 +68,9 @@ public class Pagination {
 	/* 내부 로직 : 페이지 용 */
 	
 	private void calcTotalGroupSize() {
-		int totalGroupSize = (pageVO.getTotalPageSize() % pageVO.getGroupSize()) == 0 ?  // 전체 페이지 개수에서 한번에 보여줄 그룹이 나누어 떨어지면
-				(pageVO.getTotalPageSize() / pageVO.getGroupSize()) : 
-				(pageVO.getTotalPageSize() / pageVO.getGroupSize() + 1); // 나눈 값 :  나눈 값+1
+		int totalGroupSize = (pageVO.getTotalPageSize() % pageVO.getPageSize()) == 0 ?  // 전체 페이지 개수에서 한번에 보여줄 그룹이 나누어 떨어지면
+				(pageVO.getTotalPageSize() / pageVO.getPageSize()) : 
+				(pageVO.getTotalPageSize() / pageVO.getPageSize() + 1); // 나눈 값 :  나눈 값+1
 		
 		pageVO.setTotalGroupSize(totalGroupSize);
 	}
@@ -83,7 +83,8 @@ public class Pagination {
 	// 총 그룹 개수 구하기
 	private void calcEndGroupNo() { // 마지막 그룹 번호 계산
 		int endGroupNo = (pageVO.getStartGroupNo() * pageVO.getGroupSize() > pageVO.getTotalGroupSize()) ?  
-				pageVO.getTotalGroupSize() : (pageVO.getStartGroupNo() * pageVO.getGroupSize());
+				pageVO.getTotalGroupSize() : 
+				(pageVO.getStartGroupNo() * pageVO.getGroupSize());
 		
 		pageVO.setEndGroupNo(endGroupNo);
 	} 

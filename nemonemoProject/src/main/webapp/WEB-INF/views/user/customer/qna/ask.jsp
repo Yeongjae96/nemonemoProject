@@ -24,7 +24,6 @@
 <script src="<c:url value="/resources/vendor/jquery/jquery.form.min.js"/>"></script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
-
 <!-- 해당 페이지 JS파일 -->
 <script> window.contextPath = "<c:url value="/"/>";</script>
 <script src="<c:url value="/resources/js/user/customer/qna/ask.js"/>"></script>
@@ -54,7 +53,7 @@
 				<jsp:include page="/WEB-INF/views/user/customer/common/customer_nav.jsp"/>
 					<hr>
 					<nav class="qna-nav">
-						<a class="qna-nav-selected" href="#">1:1 상담하기
+						<a class="qna-nav-selected" href="<c:url value="/customer/qna.do"/>">1:1 상담하기
 						<div class="nav-selected-underline"></div></a> 
 						<a class="qna-nav-not-selected" href="<c:url value="/customer/qna/list.do"/>">상담내역</a>
 					</nav>
@@ -84,7 +83,7 @@
 								<button class="qna-btn-submit" id="qnaSubmit">상담신청</button>							
 							</div>
 						</div>
-						<input type="hidden" value="${user.userNo}" name=qnaRegId />
+						<input type="hidden" value="${user.userNo}" name= "qnaRegId" />
 					</form>
 				</main>
 			</div>

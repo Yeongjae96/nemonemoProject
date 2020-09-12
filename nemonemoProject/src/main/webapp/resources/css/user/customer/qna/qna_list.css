@@ -312,13 +312,9 @@ a:hover{
 	text-decoration:none;
 }
 
-/* 
-.total-nav > a {
-    color: rgb(33, 33, 33);
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.total-nav > a {
-    background-color: transparent;
-} */
+   .qna_list_footer {
+    -webkit-box-pack: center;
+    justify-content: center;
+    display : block;
+    padding-top : 50px;
+    }

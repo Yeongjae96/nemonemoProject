@@ -10,3 +10,8 @@
 #prd-list > td{
 	align : center;
 }
+
+#product_cate{
+	float : right;																			
+    margin-right: 5px;
+}
