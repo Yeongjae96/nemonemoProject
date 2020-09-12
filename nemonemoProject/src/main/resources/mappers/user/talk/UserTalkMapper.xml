@@ -13,11 +13,24 @@
 		<result column="product_cnt" property="productCnt"/>
 		<result column="store_review_cnt" property="storeReviewCnt"/>
 		<result column="store_name" property="storeName"/>
+		<result column="receiverImgNo" property="receiverImgNo"/>
+		
+	</resultMap>
+	
+	<resultMap id="talkMsgMap" type="com.nemo.user.talk.vo.UserTalkMsgListResVO">
+		<id column="talk_no" property="talkNo"/>
+		<result column="store_name" property="storeName"/>
+		<result column="product_cnt" property="productCnt"/>
+		<result column="store_rating" property="storeRating"/>
+		<result column="store_review_cnt" property="storeReviewCnt"/>
+		<result column="receiverImgNo" property="receiverImgNo"/>
+		
 	</resultMap>
 	
 	<resultMap id="myTalkMap" type="com.nemo.user.talk.vo.UserMyTalkVO">
 		<result column="store_name" property="storeName"/>
 		<result column="store_img_no" property="storeImgNo"/>
+		<result column="msg_unid_cnt" property="msgUnidCnt"/>
 		<association property="lastRecentlyMsgVO" javaType="com.nemo.user.talk.vo.UserBaseMsgVO">
 			<id column="msg_no" property="msgNo"/>
 			<result column="talk_no" property="talkNo"/>
@@ -32,12 +45,15 @@
 	
 	<select id="selectMsgListByUserNo" parameterType="hashMap" resultMap="com.nemo.user.talk.repository.impl.UserMsgMapper.msgMap">
 		
-		SELECT m.*
+		SELECT 
+			m.*,
+			nvl(u.store_img_no, -1) AS store_img_no
 		FROM talk_tb t
 		INNER JOIN msg_tb m
 		ON t.talk_no = m.talk_no AND t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
+		INNER JOIN user_tb u
+		ON m.msg_receiver = u.user_no
 		ORDER BY m.msg_reg_dt
-	
 	
 	</select>
 	
@@ -49,6 +65,7 @@
 		    i.product_img_no,
 		    p.product_name,
 		    s.store_name,
+		    nvl(s.store_img_no, -1) receiverImgNo,
 		    p.product_price,
 		    p.product_seller,
 		    prod.product_cnt,
@@ -87,7 +104,7 @@
 	
 	<select id="selectMyTalkList" parameterType="int" resultMap="myTalkMap">
 		
-		SELECT 
+		<!-- SELECT 
         m.*,
         u.store_name,
         nvl(u.store_img_no, -1) store_img_no
@@ -108,19 +125,48 @@
 		    WHEN 'M' THEN m.msg_receiver
 		    WHEN 'Y' THEN m.msg_sender
 		END
+		LEFT JOIN (SELECT msg_sender, count(1) msg_unid_cnt FROM msb_tb GROUP BY msg_no WHERE msg_confirm_st = 'N') m2
+		ON m2.
+		ORDER BY m.talk_no desc -->
+		
+		SELECT 
+        m.*,
+        u.store_name,
+        nvl(u.store_img_no, -1) store_img_no,
+        nvl(msg_unid_cnt, 0) msg_unid_cnt
+		FROM (
+		    SELECT m1.*, m3.msg_unid_cnt, CASE WHEN m1.msg_sender = #{userNo} THEN 'M'
+		                    WHEN m1.msg_receiver = #{userNo} THEN 'Y' END AS senderType
+		    FROM msg_tb m1
+		    INNER JOIN (
+		        SELECT msg_no  
+		        FROM msg_tb m1
+		        INNER JOIN (SELECT talk_no, max(msg_reg_dt)maxDate FROM msg_tb GROUP BY talk_no) m2
+		        ON m1.talk_no = m2.talk_no AND m1.msg_reg_dt = m2.maxDate
+		    ) m2
+            ON m1.msg_no = m2.msg_no  AND (msg_sender = #{userNo} OR msg_receiver = #{userNo})
+            LEFT JOIN (SELECT talk_no, count(1) AS msg_unid_cnt FROM msg_tb WHERE msg_confirm_st = 'N' AND msg_receiver = #{userNo} GROUP BY talk_no) m3
+            ON m1.talk_no = m3.talk_no
+		) m
+		INNER JOIN user_tb u
+		ON u.user_no = CASE m.senderType
+		    WHEN 'M' THEN m.msg_receiver
+		    WHEN 'Y' THEN m.msg_sender
+		END
 		ORDER BY m.talk_no desc
 		
 	</select>
 	
-	<select id="selectTalkMsgResVO" resultMap="contactMap">
+	<select id="selectTalkMsgResVO" parameterType="hashMap" resultMap="talkMsgMap">
 		SELECT 
 			t.talk_no,
 		    s.store_name,
+		    nvl(s.store_img_no, -1) AS receiverImgNo,
 		    prod.product_cnt,
 		    nvl(st.store_rating, 0) store_rating,
 		    nvl(st.store_review_cnt, 0) store_review_cnt
-		FROM (SELECT * FROM user_tb WHERE user_no = #{opponentUserNo})s
-		INNER JOIN (SELECT product_seller, count(1) product_cnt FROM product_tb GROUP BY product_seller) prod
+		FROM (SELECT * FROM user_tb WHERE user_no = #{opponentUserNo}) s
+		LEFT JOIN (SELECT product_seller, count(1) product_cnt FROM product_tb GROUP BY product_seller) prod
 		ON s.user_no = prod.product_seller
 		LEFT JOIN (SELECT store_no, count(1) store_review_cnt, floor(avg(store_review_rating)) store_rating FROM store_review_tb GROUP BY store_no) st
 		ON s.user_no= st.store_no

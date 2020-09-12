@@ -21,7 +21,6 @@ import com.nemo.user.talk.vo.UserBaseMsgVO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Controller("talkHandler")
 public class TalkHandler extends TextWebSocketHandler {
@@ -38,7 +37,6 @@ public class TalkHandler extends TextWebSocketHandler {
 		
 		UserBaseVO user = (UserBaseVO)tempMap.get("user");
 		if(user == null) {
-			System.out.println("유저정보없음");
 			session.close();
 			return;
 		}
@@ -51,8 +49,9 @@ public class TalkHandler extends TextWebSocketHandler {
 		if(user == null) return;
 		int userNo = user.getUserNo();
 		
-		System.out.println(message.getPayload());
-		
+		/*
+		 * System.out.println(message.getPayload());
+		 */		
 		JsonElement element = JsonParser.parseString(message.getPayload());
 		String request = element.getAsJsonObject().get("request").getAsString();
 		int sender = element.getAsJsonObject().get("sender").getAsInt();
@@ -62,31 +61,46 @@ public class TalkHandler extends TextWebSocketHandler {
 		switch(request) {
 		case "enterTalkList":
 			talkListMap.put(userNo, session);
+			System.err.println("목록에 들어옴 : " + talkListMap);
 			break;
 			
 		case "enterTalkRoom":
-			Map<Integer, WebSocketSession> personalMap = new ConcurrentHashMap<>();
-			personalMap.put(receiver, session);
-			talkRoomMap.put(sender, personalMap);
-			System.err.println("방에 들어옴 : " + talkRoomMap);
+			Map<Integer, WebSocketSession> personalMap;
+			if(talkRoomMap.get(receiver) == null || talkRoomMap.get(receiver).size() == 0) {
+				personalMap = new ConcurrentHashMap<>();
+				personalMap.put(sender, session);
+				talkRoomMap.put(receiver, personalMap);
+			} else {
+				personalMap = talkRoomMap.get(receiver);
+				personalMap.put(sender, session);
+			}
+			System.out.println(talkRoomMap + "새로운 방정보");
+	
+			if(talkRoomMap.get(sender) != null && talkRoomMap.get(sender).get(receiver) != null) {
+				TextMessage confirmResponse = new TextMessage("{\"response\":\"confirmMsg\"}");
+				talkRoomMap.get(sender).get(receiver).sendMessage(confirmResponse); // 대화하고있는 상대방
+				session.sendMessage(confirmResponse); // 자기자신
+			}
+			
+			UserBaseMsgVO vo = new UserBaseMsgVO();
+			vo.setMsgReceiver(sender);
+			vo.setMsgSender(receiver);
+			System.out.println(msgService.confirmMsg(vo) + "개");
 			break;
 			
 		case "sendMsg":
-			System.out.println("sendMsg에 들어온 " + element);
 			JsonObject data = element.getAsJsonObject().get("data").getAsJsonObject();
 			Gson gson = new GsonBuilder().create();
 			UserBaseMsgVO json = gson.fromJson(data, UserBaseMsgVO.class);
-			boolean result = msgService.recordMessage(json);
-			System.out.println(result);
+			
 			if(talkRoomMap.get(sender) != null && talkRoomMap.get(sender).get(receiver) != null) {
-				talkRoomMap.get(sender).get(receiver).sendMessage(message);
+				json.setMsgConfirmSt("Y");
+				data.remove("msgConfirmSt");
+				data.addProperty("msgConfirmSt", "Y");
 			}
 			
-			/*
-			 * String responseJson = makeJsonObject( new JsonEntry("response","sendMsg"),
-			 * new JsonEntry("sender", sender), new JsonEntry("receiver", receiver)
-			 * ).build();
-			 */
+			//등록
+			msgService.recordMessage(json);
 			
 			String responseJson = JsonObjBuilder.makeJsonObject(
 					new JsonEntry("response","sendMsg"),
@@ -97,25 +111,29 @@ public class TalkHandler extends TextWebSocketHandler {
 			
 			TextMessage response = new TextMessage(responseJson);
 			
+			// 상대방에게 보내기
+			if(talkRoomMap.get(sender) != null && talkRoomMap.get(sender).get(receiver) != null) {
+				talkRoomMap.get(sender).get(receiver).sendMessage(response);
+				session.sendMessage(new TextMessage("{\"response\":\"confirmMsg\"}"));
+			}
+
 			sendTalkList(sender, response);
 			sendTalkList(receiver, response);
-			
 			break;
-			
 		case "exitTalkList":
 			WebSocketSession exitTalk = talkListMap.get(sender);
 			talkListMap.remove(sender);
 			exitTalk.close();
 			break;
-			
 		case "exitTalkRoom":
-			Map<Integer, WebSocketSession> joinRoom= talkRoomMap.get(sender);
-			WebSocketSession sess = joinRoom.get(receiver);
-			joinRoom.remove(receiver);
-			if(talkRoomMap.get(sender).isEmpty()) talkRoomMap.remove(sender);
-			sess.close();
+			Map<Integer, WebSocketSession> joinRoom= talkRoomMap.get(receiver);
+			if(joinRoom != null && joinRoom.size() != 0) {
+				WebSocketSession sess = joinRoom.get(sender);
+				joinRoom.remove(sender);
+				if(talkRoomMap.get(receiver).isEmpty()) talkRoomMap.remove(receiver);
+				if(sess != null) sess.close();
+			}
 			break;
-			
 		default: 
 			break;
 		}
@@ -126,20 +144,14 @@ public class TalkHandler extends TextWebSocketHandler {
 		Map<String, Object> tempMap = session.getAttributes();
 		UserBaseVO user = (UserBaseVO)tempMap.get("user");
 		if(user == null) return;
-		System.err.println("talkListMap	 : " + talkListMap);
+		System.err.println("talkListMap	: " + talkListMap);
 		System.err.println("talkRoomMap : " + talkRoomMap);
 	}
 	
 	// list목록에 들어와있으면 보내주고 아님 말고
 	private void sendTalkList(int no, TextMessage message) throws Exception {
-		if(talkListMap.get(no) != null) talkListMap.get(no).sendMessage(message);
+		if(talkListMap.get(no) != null && talkListMap.get(no).isOpen()) talkListMap.get(no).sendMessage(message);
 	}
-	
-	/*
-	 * private JsonObject makeJsonObject(JsonEntry... entrys) { JsonObject json =
-	 * new JsonObject(); for(JsonEntry entry : entrys) {
-	 * json.addProperty(entry.getKey(), entry.getValue()); } return json; }
-	 */
 	
 	@Data
 	@AllArgsConstructor
@@ -159,12 +171,10 @@ public class TalkHandler extends TextWebSocketHandler {
 		private static Gson gson;
 		
 		static {
-			System.out.println("gson 실행");
 			gson = new Gson();
 		}
 		
 		public JsonObj() {
-			System.out.println("JsonObj 실행");
 			obj = new JsonObject();
 		}
 		

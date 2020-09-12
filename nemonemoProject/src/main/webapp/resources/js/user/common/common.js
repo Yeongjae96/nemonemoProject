@@ -174,22 +174,30 @@ function initJJim(){
 	/* 상점번호 체크 */
 	let storeNumLength = 0;
 	const storeNo = $(userno).data("userno");
-	$.ajax({
-		url : contextPath + 'shop/' + storeNo + '/jjimcount.do',
-		method : 'GET',
-		dataType : 'text',
-		data:{ 
-			storeNo : storeNo
-		}
-	}).done(function(data){
-		if(storeNo.length == 0) storeNumLength = -1;
-		loadJJim(data, storeNo);
-	});
+	if(storeNo) {
+		$.ajax({
+			url : contextPath + 'shop/' + storeNo + '/jjimcount.do',
+			method : 'GET',
+			dataType : 'text',
+			data:{ 
+				storeNo : storeNo
+			}
+		}).done(function(data){
+			if(storeNo.length == 0) storeNumLength = -1;
+			loadJJim(data, storeNo);
+		});
+	} else {
+		const noJJim = 0;
+		const notLogin = -1;
+		loadJJim(noJJim, notLogin);
+	}
 }
 
 
 /* 찜 로드  */
 function loadJJim(e, n){
+	
+	
 	
 	let jjim = document.getElementsByClassName('to-favorites')[0];
 	const jjimSpan = jjim.lastElementChild;

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.user.talk.service.UserMsgService;
 import com.nemo.user.talk.service.UserTalkService;
+import com.nemo.user.talk.vo.UserBaseMsgVO;
 import com.nemo.user.talk.vo.UserTalkContactParamVO;
 import com.nemo.user.talk.vo.UserTalkContactResVO;
 import com.nemo.user.talk.vo.UserTalkListResVO;
@@ -22,6 +24,9 @@ public class TalkController {
 	
 	@Autowired
 	private UserTalkService userTalkService;
+	
+	@Autowired
+	private UserMsgService userMsgService;
 	
 	@GetMapping("/list")
 	public ModelAndView talkListPage() {
@@ -59,5 +64,13 @@ public class TalkController {
 	}
 	
 	/* @GetMapping("/user/{userNo}/msg") */
+	
+	
+	@PostMapping("/user/{userNo}/confirm")
+	@ResponseBody
+	public int confirmMsg(UserBaseMsgVO vo) {
+		return userMsgService.confirmMsg(vo);
+	}
+	
 	
 }

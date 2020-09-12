@@ -332,6 +332,7 @@ body, input, textarea, select, button {
     flex-shrink: 0;
     width: 2rem;
     height: 2rem;
+    margin-right: 10px;
 }
 
 .response-msg-img-area img {
@@ -364,6 +365,7 @@ body, input, textarea, select, button {
     min-width: 2.72rem;
     font-size: 10px;
     flex-shrink: 0;
+    margin-left: 10px;
     -webkit-box-pack: end;
     justify-content: flex-end;
 }
@@ -678,7 +680,6 @@ textarea::placeholder {
     text-align: center;
     color: rgb(94, 92, 107);
 }
-
 
 
 

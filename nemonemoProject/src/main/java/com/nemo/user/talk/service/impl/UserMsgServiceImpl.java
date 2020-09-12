@@ -17,4 +17,9 @@ public class UserMsgServiceImpl implements UserMsgService{
 	public boolean recordMessage(UserBaseMsgVO vo) {
 		return userMsgMapper.insertUserMsg(vo) == 1 ? true : false;
 	}
+	
+	@Override
+	public int confirmMsg(UserBaseMsgVO vo) {
+		return userMsgMapper.updateConfirmSt(vo);
+	}
 }

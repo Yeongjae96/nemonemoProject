@@ -50,6 +50,7 @@ public class UserTalkServiceImpl implements UserTalkService {
 		UserTalkContactResVO result = userTalkMapper.selectContactVO(paramMap);
 		List<UserBaseMsgVO> msgList = userTalkMapper.selectMsgListByUserNo(paramMap); 
 		result.setCurrentUserNo(myUserNo);
+		result.setOpponentUserNo(vo.getUserOpponentNo());
 		result.setMsgList(msgList);
 		result.setResult("success");
 		return result;
@@ -88,7 +89,6 @@ public class UserTalkServiceImpl implements UserTalkService {
 			return result;
 		}
 		List<UserMyTalkVO> list = userTalkMapper.selectMyTalkList(user.getUserNo());
-		System.out.println("야!!! 제대로 찍어봐 ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ" + list);
 		result.setResult("success");
 		result.setCurrentUserNo(user.getUserNo());
 		if(list.size() != 0) {

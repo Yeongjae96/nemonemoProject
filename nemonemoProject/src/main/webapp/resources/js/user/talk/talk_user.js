@@ -12,8 +12,11 @@ $(function() {
 	
 	let isFirstMsg = false;
 	const msgListDiv = document.querySelector('.talk-user-msg-list');
+	const url = window.location.href.substring(1);
+	// opponentUserNo
+	const userNo = url.slice(url.lastIndexOf('/')+1, url.lastIndexOf('.'));
 	
-	initTopMenu();
+	initTopMenu();	
 	initUserMessage();
 
 	/* 소켓 연결 */
@@ -31,11 +34,14 @@ $(function() {
 	
 		/* 서버로 부터 수신 */
 		function onMessage(evt) {
-			const data = evt.data
+			const data = JSON.parse(evt.data);
 			switch(data.response) {
 			case 'sendMsg':
 				receiveMsg(data.data);
 				break;
+			case 'confirmMsg':
+				console.log('confirmMsg 실행');
+				updateConfirmStatus();
 			default:
 				break;
 			}
@@ -44,6 +50,8 @@ $(function() {
 		/* 에러 발생 시 */
 		function onError(evt) {
 			console.log(evt);
+			alert('통신이 끊겼습니다 : ', evt);
+			self.close();
 		}
 	}
 	
@@ -55,6 +63,7 @@ $(function() {
 	
 	/* 대화방 입장하기  */
 	function enterTalkRoom() {
+		console.log(getData.currentUserNo, getData.opponentUserNo);
 		sendMessage({
 			request: 'enterTalkRoom',
 			sender: getData.currentUserNo,
@@ -64,6 +73,8 @@ $(function() {
 	
 	/* 대화방 퇴장하기  */
 	function exitTalkRoom() {
+		console.log(getData.currentUserNo, getData.opponentUserNo);
+
 		sendMessage({
 			request: 'exitTalkRoom',
 			sender: getData.currentUserNo,
@@ -73,7 +84,26 @@ $(function() {
 	
 	/* 메세지 수신하기 */
 	function receiveMsg(data) {
-		
+		if(isFirstMsg) {
+			const templateArea = document.querySelector('.talk-user-template-area');
+			const templateList = document.querySelector('.talk-user-template-list');
+			
+			templateArea.parentNode.removeChild(templateArea);
+			templateList.parentNode.removeChild(templateList);
+			isFirstMsg = false;
+		}
+		msgListDiv.append(writeReceiveMsg(data));
+		msgListDiv.scrollTop = msgListDiv.scrollHeight;
+	}
+	
+	
+	/* 안읽음 삭제 */
+	function updateConfirmStatus() {
+		const notReadTags = document.querySelectorAll('.normal-msg-status');
+		Array.prototype.forEach.call(notReadTags, e => {
+			console.log(e);
+			e.parentNode.removeChild(e);
+		});
 	}
 	
 	/* 상위 메뉴 이벤트 걸어 주기 */
@@ -81,7 +111,6 @@ $(function() {
 		
 		HTMLElement.prototype.setStyle = function(styleName, style) {
 			this.setAttribute('style', styleName + ':' + style + ';');
-			console.log(styleName + ':' + style + ';');
 		}
 		
 		// 메뉴 모달 영역
@@ -102,7 +131,6 @@ $(function() {
 		
 		/* 탑 메뉴 모달 display 바꾸기 */
 		function topMenuModalChange(status) {
-			console.log(status);
 			topMenuModal.setStyle('visibility', (status ? 'visible' : 'hidden'));
 			topMenuModalBg.setStyle('opacity', (status ? 1 : 0));
 			topMenuBtnArea.setStyle('transform', (status ? 'translate3d(0px, 0px, 0px)' : 'translate3d(0px, -100%, 0px)'));
@@ -113,9 +141,6 @@ $(function() {
 	
 	function initUserMessage(socket) {
 		
-		// productNo
-		const url = window.location.href.substring(1);
-		const userNo = url.slice(url.lastIndexOf('/')+1, url.lastIndexOf('.'));
 		const parametersObj = getParamObj();
 		
 		const targetUrl = parametersObj.productNo ? 
@@ -148,7 +173,6 @@ $(function() {
 			
 			// 에러 핸들링
 			if(result[0] == 'fail') throw new Error(result[1]);// 데이터가 없으면 error cat9ch 할 수 있게 에러 throw
-			console.log(data);
 			const root = document.querySelector('.talk-user-area');
 			
 			
@@ -270,7 +294,11 @@ $(function() {
 					const frag = document.createDocumentFragment();
 					
 					msgList.forEach(e => {
-						writeSendMsg(frag, e);
+						if(getData.currentUserNo == e.msgSender) {
+							writeSendMsg(frag, e);
+						} else {
+							writeReceiveMsg(frag, e);
+						}
 					});
 					
 					msgListDiv.append(frag);
@@ -296,7 +324,8 @@ $(function() {
 							msgReceiver: userNo,
 							msgRegDt: new Date(),
 							msgSender: currentUserNo,
-							msgConfirmSt: 'N'
+							msgConfirmSt: 'N',
+							receiverImgNo: getData.receiverImgNo
 					}
 					const msg = new SendMsg(tempObj); // 객체 만들어서
 					
@@ -313,8 +342,6 @@ $(function() {
 						templateList.parentNode.removeChild(templateList);
 						isFirstMsg = false;
 					}
-					
-					
 					msgListDiv.append(writeSendMsg(tempObj));
 					msgListDiv.scrollTop = msgListDiv.scrollHeight;
 					
@@ -381,7 +408,7 @@ $(function() {
 		
 		const msgTimeArea = DOMUtil.cE('div', {class: 'normal-msg-time-area'});
 		
-		const msgTimeStatus = (e.msgConfirmSt == 'N' && e.msgSender != getData.currentUserNo) ? DOMUtil.cE('div', {class: 'normal-msg-status'}, '안읽음') : '';
+		const msgTimeStatus = (e.msgConfirmSt == 'N') ? DOMUtil.cE('div', {class: 'normal-msg-status'}, '안읽음') : '';
 		const msgTimeText = DOMUtil.cE('div', {class: 'normal-msg-time-text'}, DateUtil.format(new Date(e.msgRegDt), 'a/p hh:mm'));
 		
 		frag.append(msgDiv);
@@ -417,21 +444,25 @@ $(function() {
 			msgDiv.append(dateDiv);
 		}
 		
-		const msgArea = DOMUtil.cE('div', {class: 'normal-msg-area'});
+		const msgArea = DOMUtil.cE('div', {class: 'response-msg-area'});
+		const msgImgArea = DOMUtil.cE('div', {class: 'response-msg-img-area'});
+		const imgSrc = contextPath + (e.receiverImgNo == -1 ? 'resources/images/user/talk/base.svg' : 'image/store/' + e.receiverImgNo + '.img');
+		const imgTag = DOMUtil.cE('img', {src: imgSrc});
 		
-		const msgFlex = DOMUtil.cE('div', {class: 'normal-msg-flex'});
-		const msgContent = DOMUtil.cE('div', {class: 'normal-msg-content'}, e.msgContent);
+		const msgTextArea = DOMUtil.cE('div', {class: 'response-msg-text-area'});
+		const msgContent = DOMUtil.cE('div', {class: 'response-msg-text'}, e.msgContent);
 		
-		const msgTimeArea = DOMUtil.cE('div', {class: 'normal-msg-time-area'});
-		
+		const msgTimeArea = DOMUtil.cE('div', {class: 'response-msg-time-area'});
 		const msgTimeStatus = (e.msgConfirmSt == 'N' && e.msgSender != getData.currentUserNo) ? DOMUtil.cE('div', {class: 'normal-msg-status'}, '안읽음') : '';
-		const msgTimeText = DOMUtil.cE('div', {class: 'normal-msg-time-text'}, DateUtil.format(new Date(e.msgRegDt), 'a/p hh:mm'));
+		const msgTimeText = DOMUtil.cE('div', {class: 'response-msg-time-text'}, DateUtil.format(new Date(e.msgRegDt), 'a/p hh:mm'));
 		
 		frag.append(msgDiv);
 		msgDiv.append(msgArea);
+		msgArea.append(msgImgArea, msgTextArea, msgTimeArea);
 		
-		msgArea.append(msgFlex, msgTimeArea);
-		msgFlex.append(msgContent);
+		msgImgArea.append(imgTag);
+		msgTextArea.append(msgContent);
+		
 		if(msgTimeStatus) msgTimeArea.append(msgTimeStatus);
 		msgTimeArea.append(msgTimeText);
 		
@@ -455,6 +486,7 @@ $(function() {
 		this.msgReceiver = obj.msgReceiver;
 		this.msgRegDt = new Date(obj.msgRegDt).toJSON();
 		this.msgSender = obj.msgSender;
+		this.receiverImgNo = obj.receiverImgNo;
 		this.msgConfirmSt = 'N';
 		return this;
 	}

@@ -6,5 +6,6 @@ import lombok.Data;
 public class UserMyTalkVO {
 	private String storeName;
 	private int storeImgNo;
+	private int msgUnidCnt;
 	private UserBaseMsgVO lastRecentlyMsgVO;
 }

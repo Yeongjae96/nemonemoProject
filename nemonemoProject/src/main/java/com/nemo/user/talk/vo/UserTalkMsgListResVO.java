@@ -16,6 +16,7 @@ public class UserTalkMsgListResVO {
 	private int productCnt;
 	private int storeRating;
 	private int storeReviewCnt;
+	private int receiverImgNo;
 	private String storeName;
 	private List<UserBaseMsgVO> msgList;
 }

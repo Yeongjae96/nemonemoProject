@@ -6,7 +6,9 @@ $(function() {
 	initTalkList();
 	initUserMenuModal();
 	
-	
+	const talkListArea = document.querySelector('.talk-list-area');
+	const contentList = document.querySelector('.talk-list-content');
+
 	/* 소켓 연결 */
 	function openSocket() {
 		
@@ -41,7 +43,8 @@ $(function() {
 
 		/* 에러 발생 시 */
 		function onError(evt) {
-			console.log(evt);
+			alert('통신이 끊겼습니다 : ', evt);
+			self.close();
 		}
 	}
 
@@ -102,8 +105,6 @@ $(function() {
 	/* 사용자 메뉴 모달 */
 	function initUserMenuModal() {
 		
-		const talkListArea = document.querySelector('.talk-list-area');
-		
 		/*talkListArea.appendChild(modal);*/
 		
 	}
@@ -160,8 +161,7 @@ $(function() {
 	
 	/* writeContent */
 	function writeContent() {
-		
-		const contentList = document.querySelector('.talk-list-content');
+		contentList.innerHTML='';
 		console.dir(getData);
 		const dataArr = getData.data;
 		const myUserNo = getData.currentUserNo;
@@ -188,7 +188,10 @@ $(function() {
 			const previewContent = DOMUtil.cE('div', {class: 'talk-item-preview-content'}, msgVO.msgContent);
 			
 			const dateData = timestampToString(msgVO.msgRegDt);
-			const dateDiv = DOMUtil.cE('div',{class:'talk-item-date'}, dateData);
+			const dateDiv = DOMUtil.cE('div',{class:'talk-item-date'});
+			const dateTextNode = DOMUtil.cT(dateData);
+			console.log(e.msgUnidCnt);
+			const unidDiv = e.msgUnidCnt ? (DOMUtil.cE('div',{class:'talk-user-unid-div'}, e.msgUnidCnt)) : '';
 			
 			const menuArea = DOMUtil.cE('div',{class:'talk-item-menu-area'});
 			const menuBtn = DOMUtil.cE('button',{class:'talk-item-menu-btn'});
@@ -196,12 +199,15 @@ $(function() {
 			
 			frag.append(li);
 			li.append(div);
-			div.append(imageLink, previewLink, dateDiv, menuArea)
+			div.append(imageLink, previewLink, dateDiv, menuArea);
 			
 			imageLink.append(image);
 			
 			previewLink.append(previewDiv);
 			previewDiv.append(previewTitle, previewContent);
+			
+			dateDiv.append(dateTextNode);
+			if(unidDiv) dateDiv.append(unidDiv);
 			
 			menuArea.append(menuBtn);
 			menuBtn.append(iClass);
@@ -235,7 +241,7 @@ $(function() {
 		if(today != comparableDate) {
 			return DateUtil.format(temp, 'yyyy. m1. d1 KL');
 		};
-		return DateUtil.format(temp, 'a/p h1:mm');
+		return DateUtil.format(temp, 'a/p hh:mm');
 	}
 	
 	/* 프로미스 객체를 반환하는 함수.
@@ -255,4 +261,10 @@ $(function() {
 			});
 		});
 	}
+	
+	/* 입장 시 읽음 처리 */
+	function confirmMsgCnt() {
+		
+	}
+	
 });

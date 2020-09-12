@@ -101,7 +101,6 @@
 			</div>
 		<!-- 일반 대화 메시지 아이템 1개 -->
 			<div class="talk-user-normal-msg">
-				<div class="normal-msg-area">
 					<div class="talk-user-msg-date">2020. 9. 3 목요일</div>
 					<div class="normal-msg-area">
 						<div class="normal-msg-flex">
@@ -118,14 +117,14 @@
 					</div>
 				</div>
 			</div>
-			
+			--%>
 		<!-- 답변 일반 메시지 -->
-			<div class="talk-user-response-msg">
+			<%-- <div class="talk-user-response-msg">
 				<div class="response-msg-area">
 					<div class="response-msg-img-area">
    						<img src="<c:url value="/resources/images/user/talk/base.svg"/>" alt="프로필 이미지">
 					</div>
-					<div class="response-msg-area">
+					<div class="response-msg-text-area">
 						<div class="response-msg-text">네, 안녕하세요 테스트 데이터 마구잡이로 넣어보겠습니다. 안녕하세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>
 					</div>
 					<div class="response-msg-time-area">
@@ -134,8 +133,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			--%>
+			</div> --%>
+			
 		</div>
 		 
 		<!-- 메세지 보내기 창 -->

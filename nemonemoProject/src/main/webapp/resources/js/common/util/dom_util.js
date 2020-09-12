@@ -14,8 +14,7 @@ var DOMUtil = (function() {
 				result.setAttribute(k, v);
 			});
 		}
-		
-		if(text && typeof text == 'string') {
+		if(text && (typeof text == 'string' || typeof text == 'number')) {
 			const textNode = cT(text);
 			if(result && textNode) {
 				result.append(textNode);

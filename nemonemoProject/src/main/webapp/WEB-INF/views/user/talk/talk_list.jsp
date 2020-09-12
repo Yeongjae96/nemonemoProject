@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="kr">ㅈ
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +56,7 @@
 	   					핑구191
 	   				</h3>
 	   				<button class="user-menu-modal-item">대화방 알림 끄기</button>
-	   				<button class="user-menu-modal-item">차단	</button>
+	   				<button class="user-menu-modal-item">차단	</	button>
 	   				<button class="user-menu-modal-item">신고</button>
 	   				<button class="user-menu-modal-item">나가기</button>
 	   			</div>

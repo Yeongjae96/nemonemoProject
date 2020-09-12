@@ -23,6 +23,7 @@ public class UserBaseMsgVO {
 	private int talkNo;
 	private int msgSender;
 	private int msgReceiver;
+	private int receiverImgNo;
 	private String msgContent;
 	private Timestamp msgRegDt;
 	private String msgType;
