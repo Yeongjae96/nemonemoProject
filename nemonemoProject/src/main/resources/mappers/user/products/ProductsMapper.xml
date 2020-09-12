@@ -94,6 +94,14 @@
 		WHERE product_no = #{productNo}
 	</update>
 	
+	<select id="allProductsCntFromSeller" parameterType="hashMap" resultType="int">
+		SELECT count(1)
+		FROM product_tb
+		WHERE product_seller = #{productSeller}
+		AND product_name LIKE '%' || #{q} || '%'
+	</select>
+	
+	
 	
 </mapper>
 
