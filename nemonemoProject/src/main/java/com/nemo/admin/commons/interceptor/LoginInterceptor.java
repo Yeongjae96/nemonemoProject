@@ -20,8 +20,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request ,HttpServletResponse response , Object handler , ModelAndView modelAndView)throws Exception {
 		
 		HttpSession httpSession = request.getSession();
+		System.err.println(httpSession);
 		ModelMap modelMap = modelAndView.getModelMap();
+		System.err.println(modelMap);
 		Object managementVO = modelMap.get("admin");
+		System.err.println(managementVO);
 		
 		if(managementVO!=null) {
 			httpSession.setAttribute(Admin, managementVO);

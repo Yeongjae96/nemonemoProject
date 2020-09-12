@@ -48,6 +48,7 @@ public class FaqCategoryController {
 		return mav;
 	}
 	
+	@PostMapping("/new")
 	public ModelAndView faqCategoryNewAction(AdminBaseFaqCategoryVO vo) {
 		faqCategoryService.insertFaqCategory(vo);
 		ModelAndView mav = new ModelAndView("redirect:/sites/faq/category/list.mdo");

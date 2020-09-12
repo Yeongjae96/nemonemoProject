@@ -6,7 +6,11 @@ var table = $('#faq-list');
 $(function () {
 	
 	$('#faqInsertBtn').click(function() {window.location.href="new.mdo"});
-	$('#faqCategoryBtn').click(function() {window.location.href = 'category/list.mdo'});
+	$('#faqCategoryBtn').click(function() {
+		localStorage.removeItem('DataTables_faq-category-list_/sites/faq/category/list.mdo');
+		window.location.href = 'category/list.mdo'
+	});
+	
 	
 	
     table.dataTable({
