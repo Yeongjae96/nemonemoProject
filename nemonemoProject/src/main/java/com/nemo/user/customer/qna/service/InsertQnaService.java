@@ -15,4 +15,4 @@ import com.nemo.user.customer.qna.vo.UserNewQnaVO;
 public interface InsertQnaService {
 	public int insertQna(UserNewQnaVO vo);
 
-}
+}  

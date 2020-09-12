@@ -22,7 +22,7 @@ public class BannerVO {
 	private int bannerNo; 		// 배너 기본키
 	private int bannerOrder; 	// 배너 순서
 	private String bannerClient; // 배너 의뢰주
-	private String bannerImageUrl; // 이미지 링크
+	private String bannerImageUrl; // 이미지 링크 
 	private String bannerDestUrl; 
 	private String bannerDelFl;  // 사용여부
 	private Date bannerRegDt; //등록 날짜

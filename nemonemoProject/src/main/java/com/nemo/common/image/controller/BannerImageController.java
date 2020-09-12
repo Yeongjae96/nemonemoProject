@@ -46,7 +46,7 @@ public class BannerImageController {
 		try {
 			res.setContentType("image/" + ext);
 			res.setHeader("Content-Disposition", "inline;filename=" + fileNm+"."+ext);
-			File file = FileUtil.getFile(DirectoryName.PRODUCT, fileNm, ext);
+			File file = FileUtil.getFile(DirectoryName.BANNER, fileNm, ext);
 			if(file.exists()){
 				in = new FileInputStream(file);
 				out = new BufferedOutputStream(res.getOutputStream());
