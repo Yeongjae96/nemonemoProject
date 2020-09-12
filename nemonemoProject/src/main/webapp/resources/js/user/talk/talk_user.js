@@ -30,6 +30,7 @@ $(function() {
 		/* 소켓이 열렸을 때 */
 		function onOpen(evt) {
 			enterTalkRoom();
+			confirmTalkList();
 		}
 	
 		/* 서버로 부터 수신 */
@@ -42,8 +43,8 @@ $(function() {
 			case 'confirmMsg':
 				console.log('confirmMsg 실행');
 				updateConfirmStatus();
-			default:
 				break;
+			default:
 			}
 		}
 	
@@ -66,6 +67,15 @@ $(function() {
 		console.log(getData.currentUserNo, getData.opponentUserNo);
 		sendMessage({
 			request: 'enterTalkRoom',
+			sender: getData.currentUserNo,
+			receiver: getData.opponentUserNo
+		});
+	}
+	
+	/* 대화방 */
+	function confirmTalkList() {
+		sendMessage({
+			request: 'confirmTalkList',
 			sender: getData.currentUserNo,
 			receiver: getData.opponentUserNo
 		});
@@ -139,7 +149,7 @@ $(function() {
 	}
 	
 	
-	function initUserMessage(socket) {
+	function initUserMessage() {
 		
 		const parametersObj = getParamObj();
 		

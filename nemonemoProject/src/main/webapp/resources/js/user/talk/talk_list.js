@@ -8,7 +8,8 @@ $(function() {
 	
 	const talkListArea = document.querySelector('.talk-list-area');
 	const contentList = document.querySelector('.talk-list-content');
-
+	const talkItemElementList = document.getElementsByClassName('talk-item');
+	
 	/* 소켓 연결 */
 	function openSocket() {
 		
@@ -36,6 +37,9 @@ $(function() {
 			switch(data.response) {
 			case "sendMsg":
 				updateTalkList(data.data);
+				break;
+			case "refreshConfirmMark":
+				refreshConfirmMark(data);
 				break;
 				default:
 			}
@@ -77,7 +81,6 @@ $(function() {
 	function updateTalkList(data) {
 		console.log(data);
 		
-		const talkItemElementList = document.getElementsByClassName('talk-item');
 		let target;
 		
 		Array.from(talkItemElementList).forEach(e => {
@@ -98,6 +101,28 @@ $(function() {
 			getTalkList().then(writeContent);
 		}
 		
+		
+	}
+	
+	/* 안읽음 갯수 지우기 */
+	function refreshConfirmMark(data) {
+		let target;
+		console.dir(talkItemElementList);
+		Array.from(talkItemElementList).forEach(e => {
+			console.log(e.dataset.uid, data.receiver);
+			if(e.dataset.uid == data.receiver) {
+				target = e;
+				return false;
+			}
+		});
+		
+		if(target) {
+			const unidDiv = target.querySelector('.talk-user-unid-div');
+			if(unidDiv) {
+				unidDiv.parentNode.removeChild(unidDiv);
+				console.log('실행');
+			}
+		}
 		
 	}
 	
@@ -162,7 +187,6 @@ $(function() {
 	/* writeContent */
 	function writeContent() {
 		contentList.innerHTML='';
-		console.dir(getData);
 		const dataArr = getData.data;
 		const myUserNo = getData.currentUserNo;
 		
@@ -190,7 +214,6 @@ $(function() {
 			const dateData = timestampToString(msgVO.msgRegDt);
 			const dateDiv = DOMUtil.cE('div',{class:'talk-item-date'});
 			const dateTextNode = DOMUtil.cT(dateData);
-			console.log(e.msgUnidCnt);
 			const unidDiv = e.msgUnidCnt ? (DOMUtil.cE('div',{class:'talk-user-unid-div'}, e.msgUnidCnt)) : '';
 			
 			const menuArea = DOMUtil.cE('div',{class:'talk-item-menu-area'});

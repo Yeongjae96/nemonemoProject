@@ -1,7 +1,10 @@
 package com.nemo.user.talk.handler;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import javax.mail.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,12 +77,13 @@ public class TalkHandler extends TextWebSocketHandler {
 				personalMap = talkRoomMap.get(receiver);
 				personalMap.put(sender, session);
 			}
-			System.out.println(talkRoomMap + "새로운 방정보");
 	
 			if(talkRoomMap.get(sender) != null && talkRoomMap.get(sender).get(receiver) != null) {
 				TextMessage confirmResponse = new TextMessage("{\"response\":\"confirmMsg\"}");
-				talkRoomMap.get(sender).get(receiver).sendMessage(confirmResponse); // 대화하고있는 상대방
-				session.sendMessage(confirmResponse); // 자기자신
+				synchronized (talkRoomMap.get(sender).get(receiver)) {
+					talkRoomMap.get(sender).get(receiver).sendMessage(confirmResponse); // 대화하고있는 상대방
+					session.sendMessage(confirmResponse); // 자기자신
+				}
 			}
 			
 			UserBaseMsgVO vo = new UserBaseMsgVO();
@@ -113,12 +117,24 @@ public class TalkHandler extends TextWebSocketHandler {
 			
 			// 상대방에게 보내기
 			if(talkRoomMap.get(sender) != null && talkRoomMap.get(sender).get(receiver) != null) {
-				talkRoomMap.get(sender).get(receiver).sendMessage(response);
-				session.sendMessage(new TextMessage("{\"response\":\"confirmMsg\"}"));
+				synchronized (talkRoomMap.get(sender).get(receiver)) {
+					talkRoomMap.get(sender).get(receiver).sendMessage(response);
+				}
+				synchronized (session) {
+					session.sendMessage(new TextMessage("{\"response\":\"confirmMsg\"}"));
+				}
 			}
 
 			sendTalkList(sender, response);
 			sendTalkList(receiver, response);
+			break;
+		case "confirmTalkList":
+			String responseText = JsonObjBuilder.makeJsonObject(
+					new JsonEntry("response", "refreshConfirmMark"),
+					new JsonEntry("sender", sender),
+					new JsonEntry("receiver", receiver)).build();
+			
+			sendTalkList(sender, new TextMessage(responseText));
 			break;
 		case "exitTalkList":
 			WebSocketSession exitTalk = talkListMap.get(sender);
@@ -130,8 +146,7 @@ public class TalkHandler extends TextWebSocketHandler {
 			if(joinRoom != null && joinRoom.size() != 0) {
 				WebSocketSession sess = joinRoom.get(sender);
 				joinRoom.remove(sender);
-				if(talkRoomMap.get(receiver).isEmpty()) talkRoomMap.remove(receiver);
-				if(sess != null) sess.close();
+				if(sess != null && sess.isOpen()) sess.close();
 			}
 			break;
 		default: 
@@ -149,7 +164,7 @@ public class TalkHandler extends TextWebSocketHandler {
 	}
 	
 	// list목록에 들어와있으면 보내주고 아님 말고
-	private void sendTalkList(int no, TextMessage message) throws Exception {
+	private synchronized void sendTalkList(int no, TextMessage message) throws Exception {
 		if(talkListMap.get(no) != null && talkListMap.get(no).isOpen()) talkListMap.get(no).sendMessage(message);
 	}
 	
@@ -203,5 +218,7 @@ public class TalkHandler extends TextWebSocketHandler {
 			return json;
 		}
 	}
+	
+	
 	
 }
