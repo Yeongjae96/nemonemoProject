@@ -55,6 +55,7 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/vendor/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"/>">
 
+<script src="<c:url value="/resources/vendor/jquery/jquery.form.min.js"/>"></script>
 
 </head>
 <body class="theme-red">
@@ -198,7 +199,7 @@
 
 		<!-- 등록 카테고리 -->
 
-		<form action="add.mdo" method="post" enctype="multipart/form-data"
+		<form action="#" method="post" enctype="multipart/form-data"
 			id="imageActionForm">
 			<div class="modal fade" id="bannerModal" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
@@ -259,7 +260,7 @@
 													placeholder="배너 URL을 등록해 주세요" />
 											</div>
 										</div>
-									</div>
+									</div> 
 								</div>
 							</div>
 						</div>

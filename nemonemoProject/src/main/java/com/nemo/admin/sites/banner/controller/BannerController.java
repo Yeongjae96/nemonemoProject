@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.admin.sites.banner.service.BannerService;
+import com.nemo.admin.sites.banner.vo.AdminBannerVO;
 import com.nemo.admin.sites.banner.vo.BannerVO;
 
 /**
@@ -60,11 +61,11 @@ public class BannerController {
 		
 		 /* 배너 등록 등록 */
 		   @PostMapping("/newBannerJson")
-		   public @ResponseBody int BannerAddAction(BannerVO vo) {
+		   public @ResponseBody int BannerAddAction(AdminBannerVO vo) {
 		      logger.info("{}", vo);
 		      return bannerService.insertBanner(vo);
 		   }
-		
+	
 		
 	
 

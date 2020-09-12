@@ -242,7 +242,7 @@ function initRegBtn() {
 					console.log(data, form);
 					fileBuffer.forEach(function(e,i){ // 첫번째가 요소, 두번째가 인덱스
 						const obj = { // 임의 객체이름
-								name: 'questionImages['+i+']', 
+								name: 'bannerImages['+i+']',
 								type: 'file',
 								value: e // 요소
 						}
@@ -257,7 +257,7 @@ function initRegBtn() {
 				error: function(error){
 					alert('error : 에러', error)
 				}
-			});
+			}); // VO 있어요? 배너 이미지 VO? 말씀 하시는건가요? 네
 		}
 }// 사진등록 end
 		
