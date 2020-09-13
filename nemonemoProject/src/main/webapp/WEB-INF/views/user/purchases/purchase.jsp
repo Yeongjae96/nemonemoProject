@@ -194,11 +194,13 @@
 								</div>
 							</div>
 							<!-- 테스트 -->
+							<input type="hidden" value="${user.userNo}" name="buyerNo">
 							<input type="hidden" value="${user.userName}" name="buyerName">
 							<input type="hidden" value="${user.userPhone }" name="buyerPhone">
 							<input type="hidden" value="${user.userEmail }" name="buyerEmail">
 							<input type="hidden" value="${user.userZipcode }" name="buyerZipcode">
 							<input type="hidden" value="${user.userAddress1} ${user.userAddress2}" name="buyerAddress">
+							<input type="hidden" value=<%=productNo %> name="productNo">
 							<input type="hidden" value="<%=productName%>" name="productName">
 							<input type="hidden" value=<%=productSeller %> name="productSeller">
 						</section>

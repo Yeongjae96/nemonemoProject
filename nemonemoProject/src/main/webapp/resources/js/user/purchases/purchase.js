@@ -103,7 +103,7 @@ window.onload = function() {
 	intorignPrice = parseInt(originPrice);
 	var shippginFee = document.querySelector('#purchaseShFee').value;
 	intShippginFee = parseInt(shippginFee);
-	var discountRate = 3;
+	var discountRate = 5;
 	if (!originPrice || !discountRate) {
 		return false;
 	} else {

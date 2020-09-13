@@ -37,6 +37,9 @@
 
     if (result == 'account') {
     	$("#modal").attr("style", "display:block");
+    } else if(result=='buying'){
+    	alert("거래중인 상품입니다.");
+    	history.go(-2);
     } else {
     $(function(){
     	$("#modal").attr("style", "display:none");
@@ -108,7 +111,6 @@
 			<p>결제금액 : <%=totalPrice%>원</p>
 
 			<button type="button" id="modal_close_btn" onclick="location.href='${pageContext.request.contextPath}/index.do'">메인으로 가기</button>
-			<button type="button" id="modal_close_btn" onclick="location.href='history.go(-1)'">이전으로 가기</button>
 		</div>
 		<div class="modal_layer"></div>
 	</div>
