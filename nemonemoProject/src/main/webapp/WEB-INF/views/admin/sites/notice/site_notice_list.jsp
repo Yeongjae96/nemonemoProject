@@ -90,8 +90,10 @@
                                         		<span style="color:#EE5058; font-weight: bold;">미사용</span>
                                         	</c:if>
                                         </td>
-                                        <td class ="text-center"><button class ="notice-upd-btn btn btn-success" data-noticeNo="${notice.noticeNo}">수정</button>
-                                            <button class="notice-del-btn btn btn-danger" data-noticeNo="${notice.noticeNo}">삭제</button></td>
+                                        <td class ="text-center">
+	                                        <button class ="notice-upd-btn btn btn-success" data-noticeNo="${notice.noticeNo}">수정</button>
+	                                        <button class="notice-del-btn btn btn-danger"data-toggle="modal" data-target="#notice_delete">삭제</button>
+                                        </td>
                                     </tr>
                                     </c:forEach>
                                 </tbody>
@@ -102,6 +104,23 @@
                 </div>
             </div>
         </section>
+        
+         <!-- 삭제하시겠습니까 모달 -->
+                <div class="modal fade" id="notice_delete" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <!-- modal header-->
+                            <div class="modal-header">
+                                <h2 class="modal-title" id="noticeDeleteModal"><span></span>을 정말 삭제하시겠습니까?</h2>
+                            </div>
+                            <div class="modal-body">
+	                           	<button class="btn btn-danger" data-dismiss="modal" id="noticeDeleteBtn">삭제</button>
+                                <button class="btn btn-default" data-dismiss="modal">취소</button>
+                            </div>
+                         </div>
+                    </div>
+                </div>
         <!-------------------------------------------SECTION--------------------------------------------------->
 	
 

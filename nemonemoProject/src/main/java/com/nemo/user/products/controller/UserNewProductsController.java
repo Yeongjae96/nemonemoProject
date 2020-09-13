@@ -53,7 +53,7 @@ public class UserNewProductsController{
 	}
 	
 	@PostMapping("/newJson")
-	public @ResponseBody int newAction(UserNewProductsVO vo) {
+	public @ResponseBody int newAction(UserNewProductsVO vo) throws Exception{
 		return insertProductsService.insertProducts(vo);
 	}
 	
