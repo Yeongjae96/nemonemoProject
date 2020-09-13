@@ -29,10 +29,10 @@ function initDelModal() {
 
 
 /* 테이블 버튼 이벤트 */
-function initButtonEvent(list) {
-	return new Promise(function(resolve, reject) {
+function initButtonEvent() {
 		// 수정 버튼
-		$('.product-category-upd-btn').click(function() {
+		function updateAction(e) {
+			console.log(this);
 			$.ajax({
 				url: 'getCateJson.mdo',
 				method: 'get',
@@ -79,31 +79,49 @@ function initButtonEvent(list) {
 						$checkInput.hide();
 					}
 				});
-				resolve(list);
 			}).fail(function(err) {
 				alert('데이터 불러오기에 실패하였습니다.');
-				reject(err);
 			});
+		}
+		
+		$('#product-category-list').click(function(e) {
+			if(e.target.closest('.product-category-del-btn')) {
+				console.log('삭제 기능');
+				const $this = $(e.target);
+				const no = $this.closest('tr').data('no');
+				const title = $this.closest('tr').children('td:eq(4)').text();
+				$('#productDeleteModal span').text(`${no}번 (${title})`);
+				$('#product_category_delete')[0].dataset.no = no;
+			} else if(e.target.closest('.product-category-upd-btn')) {
+				console.log('수정 기능');
+				updateAction.call(e.target);
+			} else if(e.target.closest('#useFlagTd')) {
+				updateStatus.call(e.target);
+			}
 		});
 		
 		// 삭제 버튼
-		$('.product-category-del-btn').click(function() {
+		/*$('.product-category-del-btn').click(function() {
 			const $this = $(this);
+			console.log(this);
 			const no = $this.closest('tr').data('no');
+			console.log(no);
 			const title = $this.closest('tr').children('td:eq(4)').text();
+			console.log(title);
 			$('#productDeleteModal span').text(`${no}번 (${title})`);
 			$('#product_category_delete')[0].dataset.no = no;
-		});
+		});	*/
 		
 		//미사용, 사용 누르면 바뀌는 토글 기능 
-		$('#useFlagTd span').click(function() {
-			const $this = $(this);
-			const changeValue = $this.text() == '미사용' ? 'Y' : 'N';
+		function updateStatus() {
+			const changeValue = this.textContent.trim() == '사용' ? 'Y' : 'N';
+			console.log(this.textContent.trim());
+			console.log(this.closest('tr').dataset.no);
 			$.ajax({
 				url: 'changeUseFl.mdo',
 				method: 'post',
 				data: {
-					productCateNo: $this.closest('tr').data('no'),
+					productCateNo: this.closest('tr').dataset.no,
 					productCateDelFl: changeValue
 				}
 			}).done(function(success) {
@@ -112,7 +130,7 @@ function initButtonEvent(list) {
 			}).fail(function(error) {
 				alert('상태 변경에 실패하였습니다.')
 			});
-		});
+		}
 		
 		//상품으로 돌아가기 버튼
 		$('#productBtn').click(function() {
@@ -124,10 +142,9 @@ function initButtonEvent(list) {
 				if(e.value == data) {
 					$(e).prop('selected', true);
 					return false;
-				}
+				}	
 			});
 		}
-	});
 }
 
 /* 수정 모달 설정 */
@@ -373,6 +390,7 @@ function getCategoryList() {
 function initTable() {
 	const table = $('#product-category-list').DataTable({
 	    responsive: true,
+	    stateSave: true,
 	    "language": {
 	        "decimal":        "",
 	        "emptyTable":     "표에서 사용할 수있는 데이터가 없습니다.",

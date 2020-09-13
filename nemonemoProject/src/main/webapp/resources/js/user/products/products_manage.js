@@ -36,12 +36,12 @@ function initHeader() {
 	
 	/* 콤보박스 이벤트 2개  */
 	var headerAction = function(st) {
-		const prevParam = getPrevParam(st);
+		
 		const text = this.innerText.trim();
 		
 		let newParam;
 		if(st == 'pageSize') {
-			newParam = 'pageSize='+ text.replace(/[^0-9]+/g, '');
+			newParam = 'pageNo=1&pageSize='+ text.replace(/[^0-9]+/g, '');
 		} else if(st == 'status') {
 			switch(text) {
 				case '전체':
@@ -61,6 +61,10 @@ function initHeader() {
 			console.log('잘못된 상태값!!');
 			return false;
 		}
+		
+		st = st == 'pageSize' ? ['pageNo', 'pageSize'] : st;
+		const prevParam = getPrevParam(st);
+		console.log(prevParam);
 		let param = (prevParam + newParam);
 		window.location.search = param;
 	}
@@ -70,7 +74,7 @@ function initHeader() {
 		const titleSearchBtn = document.getElementById('titleSearchBtn');
 		const titleSearchInput = document.getElementById('titleSearchInput');
 		const titleSearchForm = document.titleSearchForm;
-		console.log(titleSearchForm);
+
 		titleSearchForm.addEventListener('submit', beforeSubmitEvent);
 		
 		function beforeSubmitEvent(event) {
@@ -86,7 +90,6 @@ function initHeader() {
 					tempInput.setAttribute('type', 'hidden');
 					tempInput.setAttribute('name', entity[0]);
 					tempInput.setAttribute('value', decodeURIComponent(entity[1]));
-					console.log(tempInput);
 					frag.appendChild(tempInput);
 				});
 			}
@@ -122,24 +125,34 @@ function initHeader() {
 	/* 파라미터 리스트 가져오기 (매개변수로 해당 키 값을 제외 시킬 수 있다. )*/
 	function getPrevParam(exceptParam) {
 		const winSearch = window.location.search;
-		console.log(winSearch,' ##');
 		if(!winSearch) { console.log('파라미터가 없습니다.'); return ''; } 
 		
 		if(!exceptParam) exceptParam = '';
+		console.log(exceptParam.constructor);
+		if((exceptParam.constructor != Array) && (exceptParam.constructor == String)) {
+			exceptParam = [exceptParam];
+		}
 		
 		let param = '';
 		const currParamArr = winSearch.substring(1).split('&');
-		console.log(currParamArr, 'aa');
 		if(currParamArr.length) param += '?';
 		
 		currParamArr.forEach(function(currParam, index) {
-			if(currParam.split('=')[0] == exceptParam) {
-				console.log(decodeURIComponent(currParam), ' 통과');
-				return true;
-			}
+			let status = false;
 			
+			console.log('currParam : ', currParam);
+			
+			exceptParam.forEach((e, i) => {
+				if(currParam.split('=')[0] == e) {
+					console.log('exceptParam : ', e);
+					status = true;
+					return false;
+				}
+			});
+			if(status) return true;
 			param += currParam;
-			console.log('11 ',param);
+			console.log('resultParam : ', param);
+			
 			if(param == '?' && index+1 == currParamArr.length) { alert('파라미터가 없어'); return '';}
 			if(index+1 <= currParamArr.length) param += '&';
 		});
@@ -167,31 +180,12 @@ function initProductSt() {
 		
 		const $target = $(e.target);
 		const prevSt = $target.closest('.product-combo-box').find('.products-manage__cbox--item').text().trim();
-		console.log($target);
-		console.log(prevSt);
-		console.log(this);
-		
 		const productNo = this.dataset.no;
 		
 		if(prevSt == $target.data('st')) {
 			alert('같은 상태입니다.');
 		}
-		switch($target.data('st')) {
-		case 'S':
-			break;
-		case 'R':
-			break;
-		case 'D':
-			break;
-		case 'F':
-			break;
-		}
 		const url = window.location.href;
-		
-		console.log('contextPath : ', contextPath);
-		console.log('productNo : ', productNo);
-		console.log('target.data  : ', $target.data('st'));
-		
 		$.ajax({
 			url: contextPath + 'products/' + productNo + '/disp.do',
 			method: 'post',

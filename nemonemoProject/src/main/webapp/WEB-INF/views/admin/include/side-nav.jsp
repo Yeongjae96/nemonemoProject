@@ -8,10 +8,10 @@
         <aside id="leftsidebar" class="sidebar">
             <!-- 어드민 정보 -->
             <div class="user-info">
-                <div>
+                <%-- <div>
                 						<!-- 로고 이미지 들어갈 곳  -->
-                    <img src="images/bungaeLogo.png" alt="User" />
-                </div>
+                    <img src="<c:url value="/resources/images/common/logo/mainLogo.png"/>" alt="User" />
+                </div> --%>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<c:if test="${admin != null}">
@@ -42,7 +42,7 @@
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="active">
-                        <a href="#">
+                        <a href="<c:url value="/index.mdo"/>">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
@@ -54,17 +54,17 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#">회원정보</a>
+                                <a href="<c:url value="/members/list.mdo"/>">회원정보</a>
                             </li>
                             <li>
-                                <a href="qna.mdo">1:1문의</a>
+                                <a href="<c:url value="/members/qna/list.mdo"/>">1:1문의</a>
+                            </li>
+                            <%--  <li>
+                                <a href="<c:url value="/management/signup.mdo"/>">회원쿠폰</a>
                             </li>
                             <li>
-                                <a href="#">회원쿠폰</a>
-                            </li>
-                            <li>
-                                <a href="#">신고관리</a>
-                            </li>
+                                <a href="<c:url value="/management/signup.mdo"/>">신고관리</a>
+                            </li> --%>
                         </ul>
                     </li>
                     <li>
@@ -74,20 +74,20 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#">카테고리 관리</a>
-                            </li>
-                            <li>
-                                <a href="#">배너(광고) 관리</a>
+                                <a href="<c:url value="/sites/banner/list.mdo"/>">배너(광고) 관리</a>
                             </li>
                             <li>
                                 <a href="<c:url value="/sites/notice/list.mdo"/>">공지사항 관리</a>
                             </li>
                             <li>
-                                <a href="#">이용약관 관리</a>
+                                <a href="<c:url value="/sites/faq/list.mdo"/>">자주묻는질문 관리</a>
                             </li>
                             <li>
-                                <a href="#">프로모션 관리</a>
+                                <a href="<c:url value="/sites/terms/list.mdo"/>">이용약관 관리</a>
                             </li>
+                           <%--  <li>
+                                <a href="<c:url value=""/>">프로모션 관리</a>
+                            </li> --%>
                         </ul>
                     </li>
                     <li>
@@ -97,7 +97,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#">상품관리</a>
+                                <a href="<c:url value="/products/list.mdo"/>">상품관리</a>
                             </li>
                         </ul>
                     </li>
@@ -108,10 +108,10 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#" class=" waves-effect waves-block">주문 내역 관리</a>
+                                <a href="<c:url value="#"/>">주문 내역 관리</a>
                             </li>
                             <li>
-                                <a href="#" class=" waves-effect waves-block">결제 관리</a>
+                                <a href="<c:url value="#"/>">결제 관리</a>
                             </li>
                         </ul>
                     </li>          
@@ -127,13 +127,13 @@
                                 </a>
                                 <ul class="ml-menu">
                                     <li>
-                                        <a href="#">총 회원 / 신규회원</a>
+                                        <a href="<c:url value="#"/>">총 회원 / 신규회원</a>
                                     </li>
                                     <li>
-                                        <a href="#">성별 / 나이대</a>
+                                        <a href="<c:url value="#"/>">성별 / 나이대</a>
                                     </li>
                                     <li>
-                                        <a href="#">찜</a>
+                                        <a href="<c:url value="#"/>">찜</a>
                                     </li>
                                     
                                 </ul>
@@ -144,16 +144,16 @@
                                 </a>
                                 <ul class="ml-menu">
                                     <li>
-                                        <a href="#">총 매출</a>
+                                        <a href="<c:url value="#"/>">총 매출</a>
                                     </li>
                                     <li>
-                                        <a href="#">카테고리별 매출</a>
+                                        <a href="<c:url value="#"/>">카테고리별 매출</a>
                                     </li>
                                     <li>
-                                        <a href="#">지역별 매출</a>
+                                        <a href="<c:url value="#"/>">지역별 매출</a>
                                     </li>
                                     <li>
-                                        <a href="#">가격대별</a>
+                                        <a href="<c:url value="#"/>">가격대별</a>
                                     </li>
                                 </ul>
                             </li>

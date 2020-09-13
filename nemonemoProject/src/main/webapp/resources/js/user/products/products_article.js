@@ -48,23 +48,101 @@ function initCategoryBox() {
 }
 
 function initBtn() {
+	// 연락하기 모달
+	const callModal = document.getElementById('callModal');
+	const callOpenBtn = document.getElementById('callBtn');
+	let callOpen2Btn;
+	let callCloseBtn;
+	let callModalObj;
+	
+	if(callOpenBtn) {
+		callOpen2Btn = document.getElementById('bottomCallBtn');
+		callCloseBtn = document.querySelector('.call-modal__close');
+		callModalObj = { open: [callOpenBtn, callOpen2Btn], modal: callModal, close: callCloseBtn};
+		modalSetting(callModalObj);
+	}
+	const url = window.location.href;
+	const userNo = url.slice(url.lastIndexOf('/')+1, url.lastIndexOf('.'));
+	
+	// user값
+	const callModalLink = document.querySelector('.call-modal__link');
+	if(callModalLink) callModalLink.addEventListener('click', openTalk);
+	
+	function openTalk() {
+		callCloseBtn.dispatchEvent(new Event('click'));
+		function getLoginStatus() {
+			return new Promise(function(resolve, reject) {
+				$.ajax({
+					url: contextPath + 'sign/login/check.do',
+					method: 'get',
+					success: resolve,
+					error: reject
+				});
+			});
+		}
+		
+		getLoginStatus().then(function(data) {
+			if(data.loginStatus == 'true') {
+				link = callModalLink.dataset.href;
+				const center = ',top='+(window.screen.height/2 - 350)+ ',left=' + (window.screen.width/2 - 250); 
+				const newWindow = window.open(link, userNo, 'width=500px, height=667px'+center);
+			} else {
+				const loginBtn = document.getElementById('loginBtn');
+				if(loginBtn) loginBtn.dispatchEvent(new Event('click'));
+			}
+		});
+		
+	}
+	
+	
 	$('#bottomCallBtn').click(function() {
 		$('#callModal').css('display', 'flex');
 	});
 	$('#bottomBuyBtn').click(function() {
 		$('#buyModal').css('display', 'flex');
 	});
-	$('#callBtn').click(function() {
-		$('#callModal').css('display', 'flex');
-	});
 
 	$('#buyBtn').click(function() {
 		$('#buyModal').css('display', 'flex');
 	});
+	
+	
 
 	$('#reportBtn').click(function() {
 		$('#productReportModal').css('display', 'flex');
 	});
+	
+	/*
+	 * modalObj
+	 * .open -> 모달 여는 버튼
+	 * .modal -> 모달태그
+	 * .close -> 닫기버튼태그
+	 */
+	
+	function modalSetting(modalObj) {
+		if(!modalObj.constructor ==  Object  || !modalObj.modal || !modalObj.close || !modalObj.open) { return false; }
+		
+		clickEvent(modalObj.open, modalOpen);
+		clickEvent(modalObj.close, modalClose);
+		
+		// 모달 열기
+		function modalOpen() {
+			modalObj.modal.style.display = 'flex';
+		}
+		
+		// 모달 닫기 
+		function modalClose() {
+			modalObj.modal.style.display = 'none';
+		}
+		
+		function clickEvent(something, callback) {
+			if(something.constructor == Array) {
+				something.forEach(e => e.addEventListener('click', callback));
+			} else if(something.constructor == HTMLButtonElement) {
+				something.addEventListener('click', callback);
+			}
+		}
+	}
 }
 
 
@@ -76,7 +154,6 @@ function initFavorite() {
 	const url = window.location.href;
 	const productNo = url.substring(url.lastIndexOf('/') + 1, url
 			.lastIndexOf('.'));
-	console.log(productNo);
 	
 	$zzimBtn.click(insertFavorite);
 	
@@ -92,7 +169,6 @@ function initFavorite() {
 		
 		
 		function toggleFavorite(status) {
-			console.log($target);
 			$.ajax({
 				url: (contextPath + 'products/favorite/') + (status ? 'new.do' : 'delete.do'),
 				method: 'post',
@@ -277,6 +353,7 @@ function initShareBtn() {
 		
 	
 	/* 카카오 링크 */
+	if(document.getElementById('kakao-link-btn'))
 	initKakaoShare();
 	/* 페이스북 링크 : 중간 */
 //	initFbShare();
@@ -314,7 +391,6 @@ function initShareBtn() {
 	        }  
 	      ]
 	    });
-	    
 	}
 	    
 	/* 페이스북 링크 */

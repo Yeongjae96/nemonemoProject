@@ -3,7 +3,7 @@
 			const menuList = document.getElementsByClassName('product-nav-link');
 			
 			const tempUrl = d.location.href;
-			const target = tempUrl.slice(tempUrl.lastIndexOf('/')+1, tempUrl.indexOf('.'));
+			const target = tempUrl.slice(tempUrl.lastIndexOf('/')+1, tempUrl.lastIndexOf('.'));
 			
 			Array.prototype.forEach.call(menuList, e => {
 				if(e.dataset.set == target) {

@@ -1,16 +1,9 @@
-
-$(function () {
-	$('.customer-nav-not-selected').eq(3).attr('class', 'customer-nav-selected');        
-});
-
-
 $(function(){
+	$('.customer-nav-not-selected').eq(3).attr('class', 'customer-nav-selected');        
 	initImageArea();
 	initRegBtn();
 	initPdMenu();
 });
-
-
 
 /* 이미지 영역 */
 const fileBuffer = []; // 파일 저장용 전역변수
@@ -65,7 +58,6 @@ function initImageArea(){
 				reader.readAsDataURL(input.files[index++]);	
 			}
 			reader.readAsDataURL(input.files[index]);
-			console.log(fileBuffer);
 		}
 	
 	}
@@ -84,11 +76,10 @@ function deleteImage() {
 /* 게시물 등록 */
 function initRegBtn() {
 	$('#qnaSubmit').click(function(){
-		alert("qna등록이 완료되었습니다.");
+
 	regAction.call(this); }); // 클릭 이벤트 안에서 function을 열면 사라질 수 있으니.. this가 window로 안바뀌게 내가 가지고 있는 this를 명시해 부름
 	
 	function regAction(){
-		alert("regAction!");
 		$('#newQuestionForm').ajaxForm({ // .ajaxSubmit???? 모든 태그를 다 읽음..
 			url:'newQuestionJson.do',
 			type:'post',
@@ -109,15 +100,14 @@ function initRegBtn() {
 				});
 			},
 			success: function(data){
-				alert("성공했다!!!!");
-				window.location.href="/nemonemoProject/customer/qna.do";
+				//<c:url value="/customer/qna/list.do"/>
+				window.location.href= contextPath + "customer/qna.do";
 			},
 			error: function(error){
 				alert('error : 에러', error)
 			}
 		});
 	}	// 사진등록 end 
-	
 	
 	
 	

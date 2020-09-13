@@ -25,18 +25,13 @@ function getData(){
 			initSessionStorage(data);
 		},
 		error : function(err){
-			alert("error!");
+			alert("product_to_navbar.js getData()에서 error!");
 		}
-	});
-	
-	
+	});	
 }
-
 
 /* 실제 sessionStorage에 상품 넣기*/
 function initSessionStorage(e) { 
-
-	console.log('init 실행');
 	
 	const getProduct = new Object();
 	getProduct.productImgNo = e.productImgNo;
@@ -44,10 +39,10 @@ function initSessionStorage(e) {
 	getProduct.productName = e.productName;
 	getProduct.productPrice = e.productPrice;
 	
-
+	
 	let getArr = sessionStorage.getItem('recentlyVisitedProducts');
 	const setArr = new Array();
-
+	
 	if(getArr != null){ // 최근 본 상품이 이미 존재할 때.
 		getArr = JSON.parse(getArr); // 배열로  만들어서 foreach 시켜줌
 		
@@ -55,17 +50,8 @@ function initSessionStorage(e) {
 			if(getArr[i].productNo == getProduct.productNo) continue;
 			setArr.push(getArr[i]);
 		}
-	}else {	// 최근 본 상품이 존재하지 않을 때
-		alert("세션 스토리지 생성!");
-	}
-	
+	}	
 	setArr.unshift(getProduct);
-	
 	sessionStorage.setItem('recentlyVisitedProducts', JSON.stringify(setArr));
 }
-
-
-
-
-
 

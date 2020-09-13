@@ -160,7 +160,8 @@
 										</tbody>
 										
 									</table>
-									<table class="table">
+									<!-- 회원 수정 코드 -->
+									<%-- <table class="table">
 										<h2><i class="fas fa-user-check" style ="margin-right : 10px;"></i>회원 수정정보</h2>
 										<tbody>
 											<tr>
@@ -192,10 +193,10 @@
                                             	</td>
 											</tr>
 										</tbody>
-									</table>
+									</table> --%>
 									<div class="btn-layout">
-										<button type="button" class="btn bg-teal btn-lg waves-effect saveBtn">저장</button>
-										<button type="button" class="btn bg-teal btn-lg waves-effect" id ="backBtn">취소</button>
+<!-- 										<button type="button" class="btn bg-teal btn-lg waves-effect saveBtn">저장</button> -->
+										<button type="button" class="btn bg-teal btn-lg waves-effect" id ="backBtn">확인</button>
 									</div>
 								</div>
 							</form>

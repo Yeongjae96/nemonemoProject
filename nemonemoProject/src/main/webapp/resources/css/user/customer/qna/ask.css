@@ -1,6 +1,10 @@
 charset "UTF-8";
 
-.a{}
+select{
+	border : none;
+	border-radius:0;
+	apperance : none;
+}
 
 .total-nav-selected {
 	display: flex;
@@ -129,6 +133,13 @@ charset "UTF-8";
 	cursor: pointer;
 	text-decoration: none;
 	background-color: transparent;
+}
+.qna-nav-selected:hover{
+	color : rgb(255, 80, 88);
+}
+.qna-nav-not-selected:hover{
+	color : black;
+	
 }
 
 .qna-contents {

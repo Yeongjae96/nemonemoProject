@@ -597,6 +597,11 @@ enlarge-modal__area * {
     position: relative;
 }
 
+.detail__area button:focus {
+	outline: 0px;
+	
+}
+
 .detail-info__btn-list > * {
     font-weight: 600;
     margin-right: 10px;
@@ -623,6 +628,7 @@ enlarge-modal__area * {
     line-height: 1;
     background: rgb(204, 204, 204);
     border: 0px;
+    font-size: 16px;
 }
 .detail-info__btn-zzim:focus {
     outline: 0;
@@ -2019,8 +2025,7 @@ svg.light {
 }
 
 .call-modal__close svg {
-    width : 16px;
-    height: 17px;
+	font-size: 16px;
 }
 
 .call-modal__profile {
@@ -2098,13 +2103,14 @@ svg.light {
     justify-content: center;
     -webkit-box-flex: 1;
     flex-grow: 1;
-    background: rgb(249, 168, 39);
+    background: rgb(249, 168, 39)!important;
     cursor: pointer;
 }
 
 .call-modal__link:hover {
-    text-decoration: none;
-    color: #212121;
+    color: rgb(249, 168, 39);
+    background-color: #FFFFFF!important;
+    border: 5px solid rgb(249, 168, 39);
 }
 
 .call-modal__link svg {

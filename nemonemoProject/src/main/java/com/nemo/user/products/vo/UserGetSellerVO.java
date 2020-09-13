@@ -16,6 +16,7 @@ import lombok.ToString;
 public class UserGetSellerVO {
 	private int storeNo;
 	private int storeImgNo;
+	private int storeRating;
 	private int storeProductCnt;
 	private int storeReviewCnt;
 	private int storeFollowCnt; // 아직 모르겠다아아아아아아아아아아아앙

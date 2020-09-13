@@ -1,9 +1,15 @@
+
 @charset "UTF-8";
 
 header {
 	font-family: Noto Sans KR;
 	box-sizing: border-box;
 	font-size: 14px;
+}
+
+input::placeholder {
+	font-size: 14px;
+	letter-spacing: -0.5px;
 }
 
 button {
@@ -16,7 +22,14 @@ button {
 }
 
 #searchIconBtn {
-	outline: 0px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+#searchIconBtn svg {
+	font-size: 16px;
 }
 
 a {
@@ -193,18 +206,17 @@ button, input {
 	border-width: 0px;
 }
 
-/* 메인 로고 */
-/* #main-logo {
-	background-size: cover;
-	width: 100%;
-	height: 40px;
-} */
-
 #main-logo-area {
-    width: 136px;
+    width: 156px;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
+    margin-right: 80px;
+}
+
+#main-logo-area img {
+	width: 156px;
+	height: 40px;
 }
 
 /* 검색 필드 */
@@ -248,7 +260,7 @@ button, input {
 	align-items: center;
 	width: 1024px;
 	height: 40px;
-	justify-content: space-between !important;
+	justify-content: flex-end!important;
 	padding: 0px !important;
 	margin: 0 !important;
 	margin-top: 35px;
@@ -262,8 +274,10 @@ button, input {
 .my-menu {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: flex-end;
 	align-items: center;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
 }
 
 .my-menu-box {
@@ -271,6 +285,22 @@ button, input {
 	flex-direction: row;
 	align-items: center;
 	font-size: 14px;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.my-menu-box:hover {
+	color:#000000;
+}
+
+.my-menu-box[id=myTalk]:focus {
+	outline: none;
+}
+
+
+
+.my-menu-box img {
+	margin-right: 5px;
 }
 
 .my-menu-box:last-child::after {
@@ -280,16 +310,16 @@ button, input {
 }
 
 .my-menu-box::after {
-	content: "";
-	position: relative;
-	top: 8px;
-	right: 0px;
-	width: 1px;
-	height: 10px;
-	box-sizing: border-box;
-	border-right: 1px solid rgb(204, 204, 204);
-	padding-right: 22px;
-	margin-right: 20px;
+    content: "";
+    position: relative;
+    top: 0px;
+    right: 0px;
+    width: 1px;
+    height: 10px;
+    box-sizing: border-box;
+    border-right: 1px solid rgb(204, 204, 204);
+    padding-right : 15px;
+    margin-right : 15px;
 }
 
 #menu-container {

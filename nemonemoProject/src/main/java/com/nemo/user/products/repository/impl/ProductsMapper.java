@@ -20,4 +20,6 @@ import com.nemo.user.products.vo.UserBaseProductsVO;
 public interface ProductsMapper extends IProductsMapper{
  	public List<UserBaseProductsVO> selectCategoryProducts(Map<String, Object> cateSeqList);
  	public int updateView(int productNo);
+ 	public int allProductsCntFromSeller(Map<String, Object> paramMap);
+ 	
 }

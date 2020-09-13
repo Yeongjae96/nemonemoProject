@@ -5,6 +5,7 @@ this.delayTimer = null;
 $(function () {
 	
 	$('#faq-category-list').dataTable({
+		stateSave: true,
         language: {
             "decimal": "",
             "emptyTable": "표에서 사용할 수있는 데이터가 없습니다.",
@@ -55,13 +56,16 @@ $(function () {
     });
     
     /* 사용 미사용 누르면 바뀌는 클릭 이벤트*/
-    $('#result > tr > td > span').click(function() {
+    $('#result').click(function(e) {
+    	const target = e.target.closest('span');
+    	if(!target) return false;
+    	console.log('실행');
     	$.ajax({
     		url: 'flag.mdo',
     		method:'post',
     		data: {
-    			faqCategoryNo: $(this).data('faqno'),
-    			faqCategoryUseFl: $(this).text() == "사용" ? "N" : "Y"
+    			faqCategoryNo: $(target).data('faqno'),
+    			faqCategoryUseFl: $(target).text() == "사용" ? "N" : "Y"
     		}
     	}).done(function(data) {
     		alert('사용여부를 변경합니다.');
@@ -71,6 +75,9 @@ $(function () {
     	});
     });
     
+    
+    	
+    
 });
 
 /* 삭제 모달 */
@@ -79,6 +86,7 @@ $(function () {
 	let categoryNo;
 	
 	$('.faq-category-del-btn').click(function() {
+		console.log(this);
 		categoryNo = $(this).data('faqno');
 		const categoryName = $(this).closest('tr').children().eq(1).text();
 		

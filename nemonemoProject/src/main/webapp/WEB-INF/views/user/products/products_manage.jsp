@@ -80,7 +80,7 @@
 								<c:set var="pageSize" value="${empty param.pageSize ? '10' : param.pageSize}"/>
 	                                <div class="products-manage__cbox--item">${pageSize}개씩</div>
                             	
-                                <input id="react-select-3-input" readonly="" tabindex="0" aria-autocomplete="list"
+                                <input readonly tabindex="0" aria-autocomplete="list"
                                     class="products-manage__cbox--input" value="">
                             </div>
                             <div class="products-manage__cbox--icon" id="countArrow">
@@ -108,7 +108,7 @@
                            		<c:set var="status" value="${empty param.status ? 'all' : param.status}"/>
                                			${allStList[status]}
                                 </div>
-                                <input id="" readonly="" tabindex="0" aria-autocomplete="list"
+                                <input readonly  aria-autocomplete="list"
                                     class="products-manage__cbox--input" value="">
                             </div>
                             <div class="products-manage__cbox--icon" id="statusArrow">
@@ -171,7 +171,7 @@
 														</c:choose>
 													</div>
 												</c:if>
-		                                        <input id="" readonly tabindex="0" aria-autocomplete="list" class="products-manage__cbox--input" value="">
+		                                        <input readonly tabindex="0" aria-autocomplete="list" class="products-manage__cbox--input" value="">
 		                                    </div>
 		                                    <div class="products-manage__cbox--icon" id="productStArrow">
 		                                        <i class="fas fa-chevron-down"></i>

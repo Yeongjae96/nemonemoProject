@@ -1,9 +1,15 @@
 package com.nemo.user.sign.signup.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.nemo.common.util.ContextUtil;
 import com.nemo.user.sign.signup.service.UserService;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
-import com.nemo.user.sign.signup.vo.UserTermsVO;
 
 @Controller
 @RequestMapping("/sign")
@@ -38,8 +44,6 @@ public class SignController {
 		try {
 			vo.setUserPw(encoder.encode(vo.getUserPw()));
 			int x = userService.insertUser(vo);
-			System.out.println("x : " + x);
-			System.out.println("동의? : " + vo.getUserTermsAgreeFl());
 //			vo.setStoreName("상점 15호");
 			ModelAndView mav = new ModelAndView("redirect:/");
 			return mav;
@@ -54,12 +58,8 @@ public class SignController {
 	@RequestMapping(value ="/signup/idUsercheck", method = {RequestMethod.POST}) 
 	public int UserIdCheck(UserBaseVO vo) {
 	
-		System.out.println("아이디 체크 컨트롤러 시작");		
 		String id = vo.getUserEmail();
-		System.out.println("어드민 아이디 " + id);
 		int idChecked = userService.idUsercheck(vo.getUserEmail());
-		System.out.println("Controller : " + idChecked); 
-	
 		return idChecked; // 이 컨트롤러의 return을 ajax data로..!!
 		
 	}
@@ -74,7 +74,6 @@ public class SignController {
 	@PostMapping("/signin")
 	public ModelAndView signinAction(UserBaseVO vo, HttpServletRequest req, RedirectAttributes rttr) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(vo.toString());
 		// 인코딩
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		// 세션
@@ -91,11 +90,8 @@ public class SignController {
 			// 암호화된 비밀번호 매칭
 			boolean pwdMatch = encoder.matches(vo.getUserPw(), user.getUserPw());
 			// 조건문
-			System.out.println(user.toString());
 			// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
-			System.out.println(user.getUserEmail());
 			if (user != null && pwdMatch == true) {
-				System.out.println(user.getUserStatus());
 				if (user.getUserStatus().equals("P") || user.getUserStatus().equals("S")) {
 					session.setAttribute("user", null);
 					rttr.addFlashAttribute("msg", "stop");
@@ -104,8 +100,10 @@ public class SignController {
 				}
 				session.setAttribute("user", user);
 				rttr.addFlashAttribute("msg", "success");
-				mav.setViewName("redirect:/index.do");
-
+				mav.setViewName(Optional
+					.ofNullable(ContextUtil.getRequest().getHeader("Referer"))
+					.map(e -> "redirect:" + e)
+					.orElseGet(() -> new String("redirect:/index.do")));
 				return mav;
 			} else {
 				session.setAttribute("user", null);
@@ -222,4 +220,16 @@ public class SignController {
           return "home";
       }
 
+	  @GetMapping("/login/check")
+	  @ResponseBody 
+	  public ResponseEntity<Map<String, String>> isLogin() {
+		  UserBaseVO user = (UserBaseVO)ContextUtil.getAttrFromSession("user");
+		  Map<String, String> resultMap = new HashMap<>();
+		  
+		  String loginStatus = (user != null) ? "true" : "false";
+		  resultMap.put("loginStatus", loginStatus);
+		  
+		  return new ResponseEntity<Map<String, String>>(resultMap, HttpStatus.OK);
+	  }
+	  
 }

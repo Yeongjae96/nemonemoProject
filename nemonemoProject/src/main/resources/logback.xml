@@ -49,10 +49,10 @@
 		로그를 남긴다. 물론 <appender-ref ref="consoleAppender" />를 추가하여 콘솔로도 로그를 남길 수 있다. -->
 
 	<!-- 모든 mapper가 같은 패키지 안에 존재할 때 -->
-	<logger name="com.nemo" level="DEBUG">
+<!-- 	<logger name="com.nemo" level="DEBUG">
 		<appender-ref ref="consoleAppender"/>
 	</logger>
-
+ -->
 
 	<!-- root는 글로벌 로거를 의미하며, 위의 logger에 해당하지 않으면 root 로거가 실행된다. -->
 	<root level="warn">
