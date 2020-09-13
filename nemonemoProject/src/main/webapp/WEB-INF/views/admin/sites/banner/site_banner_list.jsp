@@ -199,7 +199,7 @@
 
 		<!-- 등록 카테고리 -->
 
-		<form action="#" method="post" enctype="multipart/form-data"
+		<form action="newBannerJson" method="post" enctype="multipart/form-data"
 			id="imageActionForm">
 			<div class="modal fade" id="bannerModal" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">

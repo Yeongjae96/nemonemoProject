@@ -231,7 +231,7 @@ function initRegBtn() {
 		function regAction(){
 			alert("regAction!");
 			$('#imageActionForm').ajaxForm({ // .ajaxSubmit???? 모든 태그를 다 읽음..
-				url:'newBannerJson.do',
+				url:'newBannerJson.mdo',
 				type:'post',
 				enctype: "multipart/form-data", // 필수
 				dataType: 'json',
@@ -252,12 +252,12 @@ function initRegBtn() {
 				},
 				success: function(data){
 					alert("성공했다!!!!");
-					window.location.href="nemonemoProject/sites/banner/list.mdo";
+					window.location.href="nemonemoProject/index.do";
 				},
 				error: function(error){
 					alert('error : 에러', error)
 				}
-			}); // VO 있어요? 배너 이미지 VO? 말씀 하시는건가요? 네
+			}); 
 		}
 }// 사진등록 end
 		
