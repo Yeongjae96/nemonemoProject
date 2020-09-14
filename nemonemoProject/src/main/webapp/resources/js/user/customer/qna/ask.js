@@ -54,12 +54,10 @@ function initImageArea(){
 				$('.img-outline-box').append($div);
 				
 				// 전역변수 배열 데이터 추가
-				
 				reader.readAsDataURL(input.files[index++]);	
 			}
 			reader.readAsDataURL(input.files[index]);
 		}
-	
 	}
 	
 	/* 사진 삭제 함수 */
@@ -75,10 +73,12 @@ function deleteImage() {
 
 /* 게시물 등록 */
 function initRegBtn() {
-	$('#qnaSubmit').click(function(){
+	$('#qnaSubmit').click(function(e){
+		/*e.preventDefault();*/
 	regAction.call(this); }); // 클릭 이벤트 안에서 function을 열면 사라질 수 있으니.. this가 window로 안바뀌게 내가 가지고 있는 this를 명시해 부름
 	
 	function regAction(){
+		alert('실행');
 		$('#newQuestionForm').ajaxForm({ // .ajaxSubmit???? 모든 태그를 다 읽음..
 			url:'newQuestionJson.do',
 			type:'post',
@@ -100,6 +100,7 @@ function initRegBtn() {
 			},
 			success: function(data){
 				//<c:url value="/customer/qna/list.do"/>
+				alert("상담 내용이 정상적으로 접수되었습니다. 답장은 영업일 기준(주말, 공휴일 제외) 1-2일 이내에 드리겠습니다.");
 				window.location.href= contextPath + "customer/qna.do";
 			},
 			error: function(error){

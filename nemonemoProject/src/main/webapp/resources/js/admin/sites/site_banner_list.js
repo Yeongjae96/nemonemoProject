@@ -257,7 +257,7 @@ function initRegBtn() {
 				error: function(error){
 					alert('error : 에러', error)
 				}
-			}); // VO 있어요? 배너 이미지 VO? 말씀 하시는건가요? 네
+			}); 
 		}
 }// 사진등록 end
 		

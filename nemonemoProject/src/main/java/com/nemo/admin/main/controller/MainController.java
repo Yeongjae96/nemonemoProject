@@ -9,6 +9,8 @@ public class MainController {
 	
 	@GetMapping("/index")
 	public ModelAndView index() {
-		return new ModelAndView("main");
+		ModelAndView mav = new ModelAndView("main");
+
+		return mav;
 	}
 }

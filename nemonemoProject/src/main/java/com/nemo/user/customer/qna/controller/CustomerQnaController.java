@@ -73,7 +73,8 @@ public class CustomerQnaController {
 		ModelAndView mav = new ModelAndView("customer/qna/qna_list");
 		UserBaseVO userInfo = (UserBaseVO)ContextUtil.getAttrFromSession("user");
 		vo.setQnaRegId(userInfo.getUserNo());
-		
+		System.out.println("컨트롤러 : " + vo);
+		 
 		PageVO pageVO = new PageVO();
 		pageVO.setPageNo(pageNo);
 		pageVO.setPageSize(pageSize);

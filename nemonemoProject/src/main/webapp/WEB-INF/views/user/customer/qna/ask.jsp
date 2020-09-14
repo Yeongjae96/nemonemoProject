@@ -57,7 +57,7 @@
 						<div class="nav-selected-underline"></div></a> 
 						<a class="qna-nav-not-selected" href="<c:url value="/customer/qna/list.do"/>">상담내역</a>
 					</nav>
-					<form action="#" method="post" enctype="multipart/form-data" id="newQuestionForm">
+					<form method="post" enctype="multipart/form-data" id="newQuestionForm">
 						<div class="qna-contents">							
 							<div class="qna-contents-selbox">
 								<div class="selbox-container">
@@ -83,7 +83,7 @@
 								<button class="qna-btn-submit" id="qnaSubmit">상담신청</button>							
 							</div>
 						</div>
-						<input type="hidden" value="${user.userNo}" name= "qnaRegId" />
+						<input type="hidden" value="${user.userNo}" name="qnaRegId" />
 					</form>
 				</main>
 			</div>

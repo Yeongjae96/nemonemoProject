@@ -19,6 +19,7 @@ public class QnaServiceImpl implements QnaService{
 	
 	@Override
 	public List<AdminBaseQnaVO> getQnaList(AdminBaseQnaVO vo) {
+		System.out.println("admin" + vo);
 		return qnaMapper.getQnaList(vo);
 	}
 

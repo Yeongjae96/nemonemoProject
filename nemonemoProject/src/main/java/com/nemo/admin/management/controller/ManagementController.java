@@ -34,7 +34,6 @@ import com.nemo.admin.management.vo.ManagementVO;
  * 
  */
 
-
 @Controller
 @RequestMapping("/management")
 public class ManagementController {
@@ -70,12 +69,6 @@ public class ManagementController {
 		return mav;
 	}
 	
-	/* 비밀번호 찾기 띄우기 */
-	@RequestMapping(value ="/forgotpw", method = {RequestMethod.GET})
-	public ModelAndView forgotpwPage() {
-		ModelAndView mav = new ModelAndView("management/ad_forgot_password");
-		return mav;
-	}
 	
 	/* 어드민 프로필 페이지 띄우기 */
 	@RequestMapping(value ="/profile", method = {RequestMethod.GET})

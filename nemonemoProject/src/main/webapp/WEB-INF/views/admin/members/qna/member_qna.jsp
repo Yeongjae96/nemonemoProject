@@ -91,7 +91,7 @@
 											<th>작성날짜</th>
 											<th>답변날짜</th>
 											<th>상태</th>
-											<th>담당자</th>
+											<!-- <th>담당자</th> -->
 											<th>처리</th>
 										</tr>
 									</thead>
@@ -118,7 +118,7 @@
                                         		<span class="label label-default">미완료</span>
                                         	</c:if>
                                         	</td>
-                                        	<td>${qna.qnaReplyId}</td>
+                                        	<%-- <td>${qna.qnaReplyId}</td> --%>
 											<td>
 												<c:if test="${qna.qnaReplyFl eq 'Y'}">
 												<button class="btn bg-pink waves-affect to_review_reply" data-qnano="${qna.qnaNo}">답변보기</button>
