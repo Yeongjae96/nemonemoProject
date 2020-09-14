@@ -87,7 +87,7 @@ function checks(){
 	// 이메일 유효성 검사
 	if(!getMail.test($("#emailInput").val())){ 
 		alert("이메일형식에 맞게 입력해주세요") 
-		//$("#emailInput").val(""); 
+		$("#emailInput").val(""); 
 		$("#emailInput").focus(); 
 		return false; 
 		}
@@ -101,7 +101,7 @@ function checks(){
 	// 비밀번호 유효성검사
 	if(!getCheck.test($("#passInput").val())){ 
 		alert("형식에 맞게 입력해주세요"); 
-		//$("#passInput").val(""); 
+		$("#passInput").val(""); 
 		$("#passInput").focus(); 
 		return false; 
 		} 
@@ -114,7 +114,7 @@ function checks(){
 	// 비밀번호 서로확인
 	if($("#passInput").val() != $("#passInputCk").val()){ 
 		alert("비밀번호가 상이합니다"); 
-		//$("#passInput").val(""); 
+		$("#passInput").val(""); 
 		$("#passInputCk").val(""); 
 		$("#passInput").focus(); 
 		return false; 
@@ -129,7 +129,7 @@ function checks(){
 	// 이름 유효성 검사
 	if(!getName.test($("#nameInput").val())){ 
 		alert("이름형식에 맞게 입력해주세요");
-		//$("#nameInput").val(""); 
+		$("#nameInput").val(""); 
 		$("#nameInput").focus(); 
 		return false;
 	}
@@ -143,7 +143,7 @@ function checks(){
 	// 휴대폰 유효성 검사
 	if(!getPhone.test($("#phoneNumber").val())){ 
 		alert("핸드폰 번호 형식에 맞게 입력해주세요");
-		//s$("#phoneNumber").val(""); 
+		$("#phoneNumber").val(""); 
 		$("#phoneNumber").focus(); 
 		return false;
 	}
@@ -193,6 +193,7 @@ function checks(){
 	// 상점명 공백 검사
 	if($("#storeName").val() == ""){
 		alert("상점명을 입력해주세요"); 
+		$("#storeName").val(""); 
 		$("#storeName").focus(); 
 		return false; 
 		} 
