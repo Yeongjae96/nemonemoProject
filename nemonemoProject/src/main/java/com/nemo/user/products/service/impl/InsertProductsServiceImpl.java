@@ -45,7 +45,7 @@ public class InsertProductsServiceImpl implements InsertProductsService {
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public int insertProducts(UserNewProductsVO vo) {
+	public int insertProducts(UserNewProductsVO vo) throws Exception {
 
 		// 1. 상품 등록
 		
@@ -60,46 +60,43 @@ public class InsertProductsServiceImpl implements InsertProductsService {
 		
 		vo.setProductSeller(productSeller);
 		productsDAO.insertProducts(vo);
+		
 		int productNo = vo.getProductNo();
 		
 		// 2. 상품 이미지 등록
 		int imageResult = 0;
 		List<MultipartFile> fileList = vo.getProductImages();
 		List<UserBaseProductsImageVO> voList = new ArrayList<>();
-		try {
-			for (MultipartFile file : fileList) {
-	
-				UserBaseProductsImageVO imageVO = new UserBaseProductsImageVO();
-				String orgFileName = FileUtil.getOrgFileName(file.getOriginalFilename());
-				String extension = FileUtil.getExtension(file.getOriginalFilename());
-				String realFileName = FileUtil.getSaveFileNm(orgFileName);
-				String dirRealFileName = FileUtil.getSaveFileDirNm(DirectoryName.PRODUCT, realFileName, extension, false);
-				// 사진 크기 
-				BufferedImage image = ImageIO.read(file.getInputStream());
-				Integer width = image.getWidth();
-				Integer height = image.getHeight();
-				
-				long productImgFileSize = file.getSize();
-				
-				imageVO.setProductNo(productNo); // 2. productNo
-				imageVO.setProductImgOriginName(orgFileName); // 3. 사용자 파일 저장 이름
-				imageVO.setProductImgFileName(realFileName); // 4. 실제 파일 저장 이름
-				imageVO.setProductImgFileSize(productImgFileSize); // 5. 파일 크기
-				imageVO.setProductImgWidth(width); // 6. 가로 크기
-				imageVO.setProductImgHeight(height); // 7. 세로 크기
-				imageVO.setProductImgType(extension.toUpperCase()); // 8. 확장자 이름
-				
-				File dirFileName = new File(dirRealFileName);
-				FileUtil.exsitDir(dirFileName);
-				voList.add(imageVO);
-				
-				file.transferTo(dirFileName);
-			}
-			imageResult = imageMapper.insertImage(voList);
+		for (MultipartFile file : fileList) {
 
-		} catch (Exception e) {
-			log.warn("{}", e.getMessage());
-		} 
+			UserBaseProductsImageVO imageVO = new UserBaseProductsImageVO();
+			String orgFileName = FileUtil.getOrgFileName(file.getOriginalFilename());
+			String extension = FileUtil.getExtension(file.getOriginalFilename());
+			String realFileName = FileUtil.getSaveFileNm(orgFileName);
+			String dirRealFileName = FileUtil.getSaveFileDirNm(DirectoryName.PRODUCT, realFileName, extension, false);
+			// 사진 크기 
+			BufferedImage image = ImageIO.read(file.getInputStream());
+			Integer width = image.getWidth();
+			Integer height = image.getHeight();
+			
+			long productImgFileSize = file.getSize();
+			
+			imageVO.setProductNo(productNo); // 2. productNo
+			imageVO.setProductImgOriginName(orgFileName); // 3. 사용자 파일 저장 이름
+			imageVO.setProductImgFileName(realFileName); // 4. 실제 파일 저장 이름
+			imageVO.setProductImgFileSize(productImgFileSize); // 5. 파일 크기
+			imageVO.setProductImgWidth(width); // 6. 가로 크기
+			imageVO.setProductImgHeight(height); // 7. 세로 크기
+			imageVO.setProductImgType(extension.toUpperCase()); // 8. 확장자 이름
+			
+			File dirFileName = new File(dirRealFileName);
+			FileUtil.exsitDir(dirFileName);
+			voList.add(imageVO);
+			
+			file.transferTo(dirFileName);
+		}
+		imageResult = imageMapper.insertImage(voList);
+			
 		return imageResult;
 	}
 }

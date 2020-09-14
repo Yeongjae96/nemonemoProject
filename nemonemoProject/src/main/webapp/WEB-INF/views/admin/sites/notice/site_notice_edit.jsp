@@ -88,8 +88,8 @@
 								<div class="faq-row">
 									<label class="">공지사항 사용 여부</label>
 									<div class="radio-area">
-										<label><input type="radio" value="Y" name="useFlag"/>사용</label> 
-										<label><input type="radio" value="N" name="useFlag"/>미사용</label> 
+										<label><input type="radio" value="N" name="useFlag"/>사용</label> 
+										<label><input type="radio" value="Y" name="useFlag"/>미사용</label> 
 									</div>
 								</div>
 								<div class="faq-row">

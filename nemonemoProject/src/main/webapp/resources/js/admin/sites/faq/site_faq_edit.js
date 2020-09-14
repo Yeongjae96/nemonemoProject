@@ -89,7 +89,6 @@ function postUpdateAction() {
 		faqContent: $('#faqContent').val(),
 		faqUseFlag: $('.radio-area input[type="radio"]:checked').val()
 	};
-	
 	$.ajax({
 		url:'edit.mdo',
 		method: 'post',
