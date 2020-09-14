@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nemo.admin.sites.notice.service.DeleteNoticeService;
 import com.nemo.admin.sites.notice.service.InsertNoticeService;
@@ -58,23 +59,27 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.POST})
-	public ModelAndView noticeEditAction(AdminBaseNoticeVO vo) {
+	public ModelAndView noticeEditAction(AdminBaseNoticeVO vo, RedirectAttributes redirectAttributes) {
 		//Service 
-		updateNoticeService.updateNotice(vo);
+		int result = updateNoticeService.updateNotice(vo);
+		addWorkResult(result, "edit", redirectAttributes);
 		return new ModelAndView("redirect:/sites/notice/list.mdo");
 	}
 	
 	@RequestMapping(value = "/new", method= {RequestMethod.POST})
-	public ModelAndView noticeInsertAction(AdminBaseNoticeVO vo) {
+	public ModelAndView noticeInsertAction(AdminBaseNoticeVO vo, RedirectAttributes redirectAttributes) {
 		
-		insertNoticeService.insertNotice(vo);
+		int result = insertNoticeService.insertNotice(vo);
+		addWorkResult(result, "new", redirectAttributes);
 		ModelAndView mav = new ModelAndView("redirect:/sites/notice/list.mdo");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/delete", method= {RequestMethod.POST})
-	public ModelAndView noticeDeleteAction(@RequestParam int noticeNo) {
-		deleteNoticeService.deleteNotice(noticeNo);
+	public ModelAndView noticeDeleteAction(@RequestParam int noticeNo, RedirectAttributes redirectAttributes) {
+		int result = deleteNoticeService.deleteNotice(noticeNo);
+		
+		addWorkResult(result, "delete", redirectAttributes);
 		
 		ModelAndView mav = new ModelAndView("redirect:/sites/notice/list.mdo");
 		return mav;
@@ -95,6 +100,23 @@ public class NoticeController {
 	@GetMapping("/getNoticeJson")
 	public @ResponseBody AdminBaseNoticeVO getNoticeJson(@RequestParam int noticeNo) {
 		return selectNoticeService.getNotice(noticeNo);
+	}
+
+	private void addWorkResult(int result, String workName, RedirectAttributes redirectAttributes) {
+		String work = "";
+		switch(workName) {
+		case "delete":
+			work = result > 0 ? "delete:success" : "delete:fail";
+			break;
+		case "new":
+			work = result > 0? "new:success" : "new:fail";
+			break;
+		case "edit":
+			work = result > 0 ?  "edit:success" : "edit:fail";
+			break;
+		default:
+		}
+		redirectAttributes.addFlashAttribute("work", work);
 	}
 	
 }

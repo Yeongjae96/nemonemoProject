@@ -1,4 +1,26 @@
 $(function () {
+	
+	/* 함수 실행 */
+	(function(target) {
+		const workStatus = target.value;
+		if(workStatus) {
+			const arr = workStatus.split(':');
+			let msg;
+			switch(arr[0]) {
+			case 'edit':
+				msg = arr[1] == 'success' ? '수정에 성공하였습니다.' : '수정에 실패하셨습니다.';
+				break;
+			case 'new':
+				msg = arr[1] == 'success' ? '등록에 성공하였습니다.' : '등록에 실패하셨습니다.';
+				break;
+			case 'delete':
+				msg= arr[1] == 'success' ? '삭제에 성공하였습니다.' : '삭제에 실패하셨습니다.';
+				break;
+			}
+			alert(msg);
+		}
+	}(document.getElementById('workStatus')))
+	
 	const noticeDeleteSpan = document.getElementById('noticeDeleteModal').querySelector('span')
     const noticeDeleteModal = document.getElementById('notice_delete');
 	
@@ -99,7 +121,6 @@ $(function () {
     	$frag.append($form);
     	$form.append($input);
     	$('body').append($frag);
-    	alert('성공적으로 삭제되었습니다.');
     	$form[0].submit();
     }
     

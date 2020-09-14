@@ -187,7 +187,7 @@
 								<div class="products-content--div">
 									<div class="products-price--div">
 										<input type="text" placeholder="숫자만 입력해주세요."
-											class="" id="priceInput" name="productPrice"> 원
+											class="" id="priceInput" name="productPrice" autocomplete="off"> 원
 									</div>
 									<div id="price-validation-text" class="invisible">
 										<i class="fas fa-ban"></i>
@@ -226,7 +226,7 @@
 											<!-- TAG INPUT태그 -->
 											<div class="products-tag--div3">
 												<input type="text" placeholder="연관태그를 입력해주세요. (최대 5개)"
-													value="" id="tagInput">
+													value="" id="tagInput" autocomplete="off">
 											</div>
 										</div>
 									</div>
@@ -253,7 +253,7 @@
 								<div class="products-title--div">수량</div>
 								<div class="products-content--div">
 									<div class="products-count--div">
-										<input id= "quantityInput" type="text" class="products-count--input" name="productQty" placeholder="수량을 입력해주세요">개
+										<input id= "quantityInput" type="text" class="products-count--input" name="productQty" placeholder="수량을 입력해주세요" autocomplete="off">개
 									</div>
 								</div>
 							</li>
