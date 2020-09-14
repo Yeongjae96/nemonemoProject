@@ -228,8 +228,9 @@
 							<div class="check-margin">
 								<div class="terms-check-box">
 									<!-- <div id="ch-third" class="terms-check"></div> -->
-									<input id="ch-third" type="checkbox" name="userTermsAgreeFl" value="" 
+									<input id="ch-third" type="checkbox" name="" value="" 
 									class="terms-check">
+									<input id="ch-thirdHidden" type="hidden" name="userTermsAgreeFl" />
 									<div class="checkbox-info">
 										<span class="suggest">(선택)</span>위치기반서비스 동의
 									</div>
