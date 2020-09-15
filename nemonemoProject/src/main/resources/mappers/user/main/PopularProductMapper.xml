@@ -41,6 +41,7 @@
 		    product_tb p
 		    inner join product_cate_tb c
 		    on(p.product_cate_no = c.product_cate_no)
+		ORDER BY p.product_view desc
 	</select> 
 	
 </mapper>

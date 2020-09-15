@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.user.main.service.GetPopularCateListService;
 import com.nemo.user.main.service.GetPopularProductListService;
+import com.nemo.user.main.service.GetRecommendProductList2Service;
+import com.nemo.user.main.service.GetRecommendProductList3Service;
 import com.nemo.user.main.service.GetRecommendProductListService;
 import com.nemo.user.main.vo.PopularCateVO;
 import com.nemo.user.main.vo.PopularProductVO;
@@ -29,6 +31,8 @@ import com.nemo.user.main.vo.RecommendProductVO;
 public class MainController {
 	
 	@Autowired private GetRecommendProductListService getRecommendProductListService;
+	@Autowired private GetRecommendProductList2Service getRecommendProductList2Service;
+	@Autowired private GetRecommendProductList3Service getRecommendProductList3Service;
 	@Autowired private GetPopularCateListService getPopularCateListService;
 	@Autowired private GetPopularProductListService getPopularProductListService;
 	
@@ -37,12 +41,16 @@ public class MainController {
 		List<RecommendProductVO> recommendProductList = getRecommendProductListService.getRecommendProductList();
 		List<PopularCateVO> popularCateList = getPopularCateListService.getPopularCateList();
 		List<PopularProductVO> popularProductList = getPopularProductListService.getPopularProductList();
+		List<RecommendProductVO> recommendProductList2 = getRecommendProductList2Service.getRecommendProductList2();
+		List<RecommendProductVO> recommendProductList3 = getRecommendProductList3Service.getRecommendProductList3();
 		
 		ModelAndView mav = new ModelAndView("main");
 		
 		mav.addObject("recommendProductList", recommendProductList);
 		mav.addObject("popularCateList", popularCateList);
 		mav.addObject("popularProductList", popularProductList);
+		mav.addObject("recommendProductList2", recommendProductList2);
+		mav.addObject("recommendProductList3", recommendProductList3);
 		
 		
 		return mav;

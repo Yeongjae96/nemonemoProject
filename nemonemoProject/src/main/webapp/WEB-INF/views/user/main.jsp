@@ -18,6 +18,7 @@
 	href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
 <!-- 라이브러리 -->
 <script
@@ -135,13 +136,13 @@
 							<div class="swiper-slide">
 								<div class="bx_group">
 									<c:forEach var="recommendProductList"
-										items="${recommendProductList}" varStatus="status">
+										items="${recommendProductList}" varStatus="status" begin="0" end="4">
 										<div>
 											<a
 												href="${pageContext.request.contextPath}/products/${recommendProductList.productNo }.do">
 												<div class="main-recommend-box-pic">
 													<img
-														src="<c:url value="/resources/images/user/main/rec1.jpg"/>"
+														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
 														alt="추천상품1">
 												</div>
 
@@ -153,10 +154,53 @@
 										</div>
 									</c:forEach>
 								</div>
-
 							</div>
+							<div class="swiper-slide">
+								<div class="bx_group">
+									<c:forEach var="recommendProductList2"
+										items="${recommendProductList2}" varStatus="status" begin="0" end="4">
+										<div>
+											<a
+												href="${pageContext.request.contextPath}/products/${recommendProductList2.productNo }.do">
+												<div class="main-recommend-box-pic">
+													<img
+														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
+														alt="추천상품1">
+												</div>
+												<div class="main-recommend-box-title">${recommendProductList2.productName }</div>
+												<div class="main-recommend-box-price">
+													⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅ <br> <b>${recommendProductList2.productPrice }</b>원
+												</div>
+											</a>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="bx_group">
+									<c:forEach var="recommendProductList3"
+										items="${recommendProductList3}" varStatus="status" begin="0" end="4">
+										<div>
+											<a
+												href="${pageContext.request.contextPath}/products/${recommendProductList3.productNo }.do">
+												<div class="main-recommend-box-pic">
+													<img
+														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
+														alt="추천상품1">
+												</div>
 
+												<div class="main-recommend-box-title">${recommendProductList3.productName }</div>
+												<div class="main-recommend-box-price">
+													⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅ <br> <b>${recommendProductList3.productPrice }</b>원
+												</div>
+											</a>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							
 						</div>
+						
 						<!-- Add Arrows -->
 						<div class="swiper-button-next"></div>
 						<div class="swiper-button-prev"></div>
@@ -183,16 +227,16 @@
 
 					<br>
 					<c:forEach var="popularProductList"
-										items="${popularProductList}">
+										items="${popularProductList}" begin="0" end="11">
 						<div class="main-popular-body" id="${popularProductList.productCateNo}">
 							<div id="" class="main-popular-div">
-								<div class="main-popular-all-title" > ${popularProductList.productCateLarge}</div>
+								<div class="main-popular-all-title"> ${popularProductList.productCateLarge}</div>
 								<div class="main-popular-contents">
 										<div class="main-popular-content-div">
-											<a class="main-popular-content-a"
+											<a class="main-popular-content-a" 
 												href="${pageContext.request.contextPath}/products/${popularProductList.productNo }.do">
 												<div class="main-popular-contents-div">
-													<img
+													<img 
 														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
 														width="194" height="194" alt="상품 이미지">
 												</div>
@@ -209,7 +253,6 @@
 																integerOnly="true" var="oldDays" scope="request" />
 															<fmt:parseNumber value="${now.time}" integerOnly="true"
 																var="nowDays" scope="page" />
-
 															<c:choose>
 																<c:when test="${nowDays-oldDays < (1000*60)}">
 																	<fmt:parseNumber value="${(nowDays-oldDays) / (1000)}"
