@@ -17,70 +17,12 @@
 	</resultMap>
 	
 	<select id="getPopularCateList" resultMap="popularCateMap">
-		 SELECT distinct 
-		 	product_cate_large 
+		 SELECT 
+        	product_cate_large, product_cate_no
 		 FROM 
 		 	product_cate_tb
+    	WHERE 
+    		ROWID IN(SELECT MAX(ROWID) FROM product_cate_tb GROUP BY product_cate_large)
 	</select>
-	
-	
-	<!-- <select id="selectTypeCategoryList" parameterType="String" resultMap="productsCateMap">
-		
-		SELECT *
-		FROM product_cate_tb
-		<where>
-			<if test='productCateType != null'>
-				OR product_cate_type = 'L' 
-			</if>
-			<if test='productCateType == "M" or productCateType == "S"'>
-				OR product_cate_type = 'M'
-			</if>
-			<if test='productCateType == "S"'>
-				OR product_cate_type = 'S'
-			</if>
-			
-		</where>
-		
-		ORDER BY 
-			product_cate_order desc,
-			product_cate_no desc
-	</select>
-	
-	<select id="selectChildrenCateNums" parameterType="hashMap" resultType="Integer">
-					SELECT PRODUCT_CATE_NO
-					FROM PRODUCT_CATE_TB
-			<where>
-			<choose>
-			
-			<when test='productCateType == "L"'>
-					PRODUCT_CATE_LARGE = 
-					(
-						SELECT PRODUCT_CATE_LARGE
-			</when>
-			<when test='productCateType == "M"'>
-					PRODUCT_CATE_MEDIUM = 
-					(
-						SELECT PRODUCT_CATE_MEDIUM
-			</when>
-			<otherwise>
-					PRODUCT_CATE_SMALL = 
-					(
-						SELECT PRODUCT_CATE_SMALL
-			</otherwise>
-			</choose>
-						FROM PRODUCT_CATE_TB
-						WHERE PRODUCT_CATE_NO = #{productCateNo}
-					)
-			</where>
-	</select>
-
-	<select id="searchCateSeq" parameterType="int" resultMap="productsCateMap">
-		SELECT *
-		FROM product_cate_tb
-		WHERE product_cate_no = #{productCateNo}
-	
-	</select> -->
-	
-
 
 </mapper>

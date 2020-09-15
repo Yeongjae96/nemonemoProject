@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nemo.user.main.service.GetPopularCateListService;
@@ -31,7 +32,7 @@ public class MainController {
 	@Autowired private GetPopularCateListService getPopularCateListService;
 	@Autowired private GetPopularProductListService getPopularProductListService;
 	
-	@GetMapping("/index")
+	@GetMapping(value= {"/index"})
 	public ModelAndView index() {
 		List<RecommendProductVO> recommendProductList = getRecommendProductListService.getRecommendProductList();
 		List<PopularCateVO> popularCateList = getPopularCateListService.getPopularCateList();
@@ -42,6 +43,7 @@ public class MainController {
 		mav.addObject("recommendProductList", recommendProductList);
 		mav.addObject("popularCateList", popularCateList);
 		mav.addObject("popularProductList", popularProductList);
+		
 		
 		return mav;
 	}

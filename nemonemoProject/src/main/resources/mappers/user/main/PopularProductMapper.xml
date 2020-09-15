@@ -21,12 +21,26 @@
 		<result column="product_reg_dt" property="productRegDt"/>
 		<result column="product_edit_dt" property="productEditDt"/>
 		<result column="product_view" property="productView"/>
+		<result column="admin_reg_id" property="adminRegId"/>
+		<result column="admin_edit_id" property="adminEditId"/>
+		<result column="product_cate_type" property="productCateType"/>
+		<result column="product_cate_large" property="productCateLarge"/>
+		<result column="product_cate_medium" property="productCateMedium"/>
+		<result column="product_cate_small" property="productCateSmall"/>
+		<result column="product_cate_order" property="productCateOrder"/>
+		<result column="product_cate_del_fl" property="productCateDelFl"/>
+		<result column="product_cate_reg_ymd" property="productCateRegYmd"/>
+		<result column="product_cate_edit_ymd" property="productCateEditYmd"/>
 	</resultMap>
 	
 	<select id="getPopularProductList" parameterType="com.nemo.user.main.vo.PopularProductVO" resultMap="popularProductMap">
-		SELECT
-		 	*
-		 FROM 
-		 	product_tb
+		SELECT 
+		    p.*,
+		    c.*
+		FROM
+		    product_tb p
+		    inner join product_cate_tb c
+		    on(p.product_cate_no = c.product_cate_no)
 	</select> 
+	
 </mapper>

@@ -43,7 +43,8 @@
 					<c:set var="storeBtn1" value="${user.storeNo}" />
 					<c:set var="storeBtn2" value="${storeVO.storeNo }" />
 
-					<c:if test="${storeBtn1 eq storeBtn2}">
+					<c:choose>
+					<c:when test="${storeBtn1 eq storeBtn2}">
 						<div class="product_all13">
 							<a class="product_all14 product_all14_1"
 								href="${pageContext.request.contextPath}/shop/${storeVO.storeNo }/info.do">내
@@ -51,7 +52,20 @@
 								href="${pageContext.request.contextPath}/products/manage.do">내
 								상품 관리</a>
 						</div>
-					</c:if>
+					</c:when>
+					 <c:otherwise>
+					 <div class="product_all13">
+							<a class="product_all14 product_all14_1"
+								href="${pageContext.request.contextPath}/talk/user/${storeVO.storeNo }.do">연락하기</a> 
+						</div>
+					 </c:otherwise>
+					</c:choose>
+
+
+
+
+
+
 				</div>
 			</div>
 		</div>

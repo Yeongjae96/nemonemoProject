@@ -28,7 +28,7 @@
 		FROM 
 			product_tb 
 		WHERE
-			product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 5
+			product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 9
 		ORDER BY product_view DESC
 	</select> 
 </mapper>
