@@ -28,6 +28,7 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
+<script src="<c:url value="/resources/js/user/store/store_header.js"/>"></script>
 <script>this.contextPath = "<c:url value="/"/>"</script>
 
 <!-- 해당 페이지 JS파일 -->

@@ -40,8 +40,7 @@
 						</c:when>
 						<c:otherwise>
 							<div class="product_all13">
-								<a class="product_all14 product_all14_1"
-									href="${pageContext.request.contextPath}/talk/user/${storeVO.storeNo }.do">연락하기</a>
+								<a class="product_all14 product_all14_1" id="contactBtn" data-userno="${storeVO.userNo}">연락하기</a>
 							</div>
 						</c:otherwise>
 					</c:choose>
