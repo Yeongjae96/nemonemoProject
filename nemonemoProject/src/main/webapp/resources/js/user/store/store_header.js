@@ -6,9 +6,9 @@ $(document).ready(function(){
     $("#contactBtn").on("click", function(){ 
     	const userno = $(this)[0].dataset.userno;
     	window.open(
-        		getContextPath()+"/talk/user/"+userno+".do", 
-        		"_blank", 
-        		"width=500,height=617"
+        		contextPath+"talk/user/"+userno+".do", 
+        		userno, 
+        		"width=500,height=667"
         )
     });
 });

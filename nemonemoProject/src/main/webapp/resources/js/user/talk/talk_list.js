@@ -46,6 +46,7 @@ $(function() {
 				break;
 			case "deleteTalkRoom":
 				deleteTalkRoom(data);
+				break;
 				default:
 			}
 		}
@@ -70,8 +71,8 @@ $(function() {
 	function deleteTalkRoom(data) {
 		const li = document.querySelectorAll('li.talk-item');
 		console.log(data);
-		
-		[].prototype.forEach.call(li, (e, i) => {
+ 		
+		Array.prototype.forEach.call(li, (e, i) => {
 			console.log(i, '번째 : ', e);
 			if(e.dataset.uid == data.receiver) {
 				console.log('맞음');
@@ -128,9 +129,7 @@ $(function() {
 	/* 안읽음 갯수 지우기 */
 	function refreshConfirmMark(data) {
 		let target;
-		console.dir(talkItemElementList);
 		Array.from(talkItemElementList).forEach(e => {
-			console.log(e.dataset.uid, data.receiver);
 			if(e.dataset.uid == data.receiver) {
 				target = e;
 				return false;
