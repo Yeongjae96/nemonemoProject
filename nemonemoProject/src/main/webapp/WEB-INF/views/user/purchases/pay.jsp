@@ -35,12 +35,17 @@
 	<script>
     var result = '${msg}';
 
-    if (result == 'account') {
-    	$("#modal").attr("style", "display:block");
-    } else if(result=='buying'){
+	if(result=='buying'){
+		$("#modal").attr("style", "display:none");
     	alert("거래중인 상품입니다.");
     	history.go(-2);
-    } else {
+    } else if(result=='success'){
+    	$("#modal").attr("style", "display:none");
+    	alert("거래 완료 상품입니다.");
+    	history.go(-2);
+    } else if (result == 'account') {
+    	$("#modal").attr("style", "display:block");
+    } else  {
     $(function(){
     	$("#modal").attr("style", "display:none");
         var IMP = window.IMP; // 생략가능

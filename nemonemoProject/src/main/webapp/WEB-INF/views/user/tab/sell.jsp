@@ -44,10 +44,13 @@
 											<p>구매 방법 : 카카오 페이</p>
 										</c:if>
 										<c:if test="${list.purchasePaySt eq 'N'}">
-											<p>인수 상태 : 물품 인수중</p>
+											<p>인수 상태 : <b style="color:blue;">물품 인수중</b></p>
 										</c:if>
 										<c:if test="${list.purchasePaySt eq 'Y'}">
 											<p>인수 상태 : 물품 인수 확인</p>
+										</c:if>
+										<c:if test="${list.purchasePaySt eq 'C'}">
+											<p>인수 상태 : <b style="color:red;">거래 취소</b></p>
 										</c:if>
 										<p>구매 자 : <c:out value="${list.buyerName}" />
 										<p>구매자 핸드폰 번호 : <c:out value="${list.buyerPhone}" />

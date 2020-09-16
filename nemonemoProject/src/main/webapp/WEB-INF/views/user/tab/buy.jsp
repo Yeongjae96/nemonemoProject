@@ -13,10 +13,20 @@
 <script>
 function submitCheck() {
  if (confirm("인수확인을 누르시겠습니까?") == true){    //확인
+	 document.getElementById("purchasePaySt").value = 'Y';
      document.upPaySt.submit();
  }else{   //취소
      return false;
  }
+}
+
+function submitCancel() {
+	if (confirm("거래를 취소 하시겠습니까?") == true){    //확인
+		 document.getElementById("purchasePaySt").value = 'C';
+	     document.upPaySt.submit();
+	 }else{   //취소
+	     return false;
+	 }
 }
 var result = '${msg}';
 if (result == 'success') {
@@ -63,22 +73,28 @@ if (result == 'success') {
 													<p>구매 방법 : 카카오 페이</p>
 												</c:if>
 												<c:if test="${list.purchasePaySt eq 'N'}">
-													<p>인수 상태 : 물품 인수중</p>
+													<p>인수 상태 : <b style="color:blue;">물품 인수중</b></p>
 												</c:if>
 												<c:if test="${list.purchasePaySt eq 'Y'}">
 													<p>인수 상태 : 물품 인수 확인</p>
+												</c:if>
+												<c:if test="${list.purchasePaySt eq 'C'}">
+													<p>인수 상태 : <b style="color:red;">거래 취소</b></p>
 												</c:if>
 												<p>ZIPCODE : <c:out value="${list.buyerZipcode}" /></p>
 												<p>발송 주소 : <c:out value="${list.buyerAddress}" /></p>
 												
 												
 												<input type="hidden" value="${list.purchaseNo}" name="purchaseNo">
-												<input type="hidden" value="${list.purchasePaySt}" name="purchasePaySt">
+												<input type="hidden" value="${list.purchasePaySt}" name="purchasePaySt" id="purchasePaySt">
 												<input type="hidden" value="${list.productNo}" name="productNo">
 												<input type="hidden" value="${list.productSeller}" name="productSeller">
 												<input type="hidden" value="${list.buyerNo}" name="buyerNo">
 												<input type="hidden" value="${user.userNo}" name="userNo">
-												<button type="submit" onclick="submitCheck()">인수 인계 확인</button>
+												<div>
+													<button type="submit" onclick="submitCheck()" id="okbutton">인수 인계 확인</button>
+													<button type="submit" onclick="submitCancel()" id="cancelbutton">거래 취소</button>
+												</div>
 											</form>
 										</div>
 									</c:forEach>

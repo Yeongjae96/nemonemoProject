@@ -43,4 +43,12 @@ public class PurchaseServiceImpl implements PurchaseService{
 		// TODO Auto-generated method stub
 		return purchaseDAO.purchasecheck(productNo);
 	}
+
+	@Override
+	public List<PurchasesVO> getSelectList(PurchasesVO vo) {
+		// TODO Auto-generated method stub
+		return purchaseDAO.getSelectList(vo);
+	}
+
+
 }

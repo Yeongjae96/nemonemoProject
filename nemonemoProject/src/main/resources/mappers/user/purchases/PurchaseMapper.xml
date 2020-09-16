@@ -83,11 +83,23 @@
 			PURCHASE_NO
 	</select>
 	
+	<select id="getSelectList" parameterType="com.nemo.user.purchases.vo.PurchasesVO" resultMap="purdhaseMap">
+		SELECT 
+			*
+		FROM 
+			PURCHASES_TB
+		WHERE 
+			PRODUCT_NO = #{productNo}
+		ORDER BY
+			PURCHASE_NO
+	</select>
+	
+	
 	<update id="upPaySt" parameterType="com.nemo.user.purchases.vo.PurchasesVO">
     	UPDATE 
     		PURCHASES_TB
     	SET
-    		PURCHASE_PAY_ST='Y'
+    		PURCHASE_PAY_ST=#{purchasePaySt}
 		WHERE
 			PURCHASE_NO=#{purchaseNo}
     </update>

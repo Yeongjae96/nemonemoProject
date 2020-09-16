@@ -25,11 +25,11 @@
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="<c:url value="/management/profile.mdo"/>"><i class="material-icons">person</i>직원관리</a></li>
+                            <li><a href="<c:url value="${pageContext.request.contextPath}/management/profile.mdo"/>"><i class="material-icons">person</i>직원관리</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="<c:url value="/management/signup.mdo"/>"><i class="material-icons">group</i>관리자추가</a></li>                  
+                            <li><a href="<c:url value="${pageContext.request.contextPath}/management/signup.mdo"/>"><i class="material-icons">group</i>관리자추가</a></li>                  
                             <li role="separator" class="divider"></li>
-                            <li><a href="<c:url value="/management/logout.mdo"/>"><i class="material-icons">input</i>로그아웃</a></li>
+                            <li><a href="<c:url value="${pageContext.request.contextPath}/management/logout.mdo"/>"><i class="material-icons">input</i>로그아웃</a></li>
                         </ul>
                     </div>
                 </div>
@@ -108,10 +108,10 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#" class=" waves-effect waves-block">주문 내역 관리</a>
+                                <a href="<c:url value="/transaction/orderList.mdo"/>" class=" waves-effect waves-block">주문 내역 관리</a>
                             </li>
                             <li>
-                                <a href="#" class=" waves-effect waves-block">결제 관리</a>
+                                <a href="<c:url value="/transaction/paymentList.mdo"/>" class=" waves-effect waves-block">결제 관리</a>
                             </li>
                         </ul>
                     </li>          

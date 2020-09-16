@@ -65,9 +65,9 @@ public class PurchaseController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println(vo.toString());
 
-		int productNo = vo.getProductNo();
+		List<PurchasesVO> getlist = purchaseService.getSelectList(vo);
 		
-		if (purchaseService.purchasecheck(productNo) == 0) {
+		if (getlist == null) {
 			if (vo.getPurchaseWay().equals("kakao")) {
 
 				purchaseService.insertPay(vo);
@@ -88,11 +88,41 @@ public class PurchaseController {
 				mav.setViewName("redirect:/purchases/pay.do");
 			}
 		} else {
-			rttr.addFlashAttribute("msg", "buying");
+			for(int i=0; i<getlist.size(); i++) {
+				if(getlist.get(i).getPurchasePaySt().equals("N")) {
+					rttr.addFlashAttribute("msg", "buying");
 
-			mav.addObject("totalPrice", vo.getPurchasePrice());
-			mav.addObject("productName", vo.getProductName());
-			mav.setViewName("redirect:/purchases/pay.do");
+					mav.addObject("totalPrice", vo.getPurchasePrice());
+					mav.addObject("productName", vo.getProductName());
+					mav.setViewName("redirect:/purchases/pay.do");
+				} else if (getlist.get(i).getPurchasePaySt().equals("Y")) {
+					rttr.addFlashAttribute("msg", "success");
+
+					mav.addObject("totalPrice", vo.getPurchasePrice());
+					mav.addObject("productName", vo.getProductName());
+					mav.setViewName("redirect:/purchases/pay.do");
+				} else {
+					if (vo.getPurchaseWay().equals("kakao")) {
+
+						purchaseService.insertPay(vo);
+
+						mav.addObject("totalPrice", vo.getPurchasePrice());
+						mav.addObject("productName", vo.getProductName());
+
+						mav.setViewName("redirect:/purchases/pay.do");
+					} else if (vo.getPurchaseWay().contentEquals("account")) {
+
+						purchaseService.insertPay(vo);
+
+						// 카카오 거래는 상관없지만 계좌거래시 입금할 것을 모달로 띄우기위해 메세지 전달하여 모달을 띄우는 용도
+						rttr.addFlashAttribute("msg", "account");
+						mav.addObject("totalPrice", vo.getPurchasePrice());
+						mav.addObject("productName", vo.getProductName());
+
+						mav.setViewName("redirect:/purchases/pay.do");
+					}
+				}
+			}
 		}
 
 		return mav;

@@ -11,4 +11,5 @@ public interface IPurchaseMapper {
 	public int purchasecheck(int productNo);
 	public List<PurchasesVO> buyList(PurchasesVO vo);
 	public List<PurchasesVO> sellList(PurchasesVO vo);
+	public List<PurchasesVO> getSelectList(PurchasesVO vo);
 }
