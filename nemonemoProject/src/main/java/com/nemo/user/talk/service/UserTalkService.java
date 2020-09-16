@@ -16,3 +16,4 @@ public interface UserTalkService {
 	
 	public int exitTalk(Map<String, Object> param);
 }
+	

@@ -137,15 +137,30 @@ public class TalkHandler extends TextWebSocketHandler {
 			sendTalkList(sender, new TextMessage(responseText));
 			break;	
 		case "deleteTalk":
-			
 			Map<String, Object> param = new HashMap<>();
 			
+			JsonElement talkNoObj = element.getAsJsonObject().get("talkNo");
+			int talkNo = talkNoObj != null ? talkNoObj.getAsInt() : -1;
+
+			JsonElement regDateObj = element.getAsJsonObject().get("regDate");
+			long regDate = regDateObj != null ? regDateObj.getAsLong() : -1;
+			System.out.println(regDate);
 			
-			
+			param.put("talkNo", talkNo);
+			param.put("currentUserNo", sender);
+			param.put("opponentUserNo", receiver);
+			param.put("regDate", regDate);
 			
 			talkService.exitTalk(param);
 			
-			
+			if(talkListMap.containsKey(sender)) {
+				String exitTalkResponse = JsonObjBuilder.makeJsonObject(
+							new JsonEntry("response", "deleteTalkRoom"),
+							new JsonEntry("sender", sender),
+							new JsonEntry("receiver", receiver)
+						).build();
+				sendTalkList(sender, exitTalkResponse);
+			}
 			break;
 		case "exitTalkList":
 			WebSocketSession exitTalk = talkListMap.get(sender);
@@ -177,6 +192,10 @@ public class TalkHandler extends TextWebSocketHandler {
 	// list목록에 들어와있으면 보내주고 아님 말고
 	private synchronized void sendTalkList(int no, TextMessage message) throws Exception {
 		if(talkListMap.get(no) != null && talkListMap.get(no).isOpen()) talkListMap.get(no).sendMessage(message);
+	}
+	// list목록에 들어와있으면 보내주고 아님 말고
+	private synchronized void sendTalkList(int no, String message) throws Exception {
+		if(talkListMap.get(no) != null && talkListMap.get(no).isOpen()) talkListMap.get(no).sendMessage(new TextMessage(message));
 	}
 	
 	@Data

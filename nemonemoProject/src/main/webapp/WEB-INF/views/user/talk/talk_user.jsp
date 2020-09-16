@@ -55,26 +55,7 @@
 		
 		<!--메신저 내용 -->
 		<div class="talk-user-msg-list">
-			<%-- <article class="talk-user-template-area">
-				<img src="<c:url value="/resources/images/common/logo/favicon.png"/>">
-				<h2>네모톡, 간편하게 시작해요!</h2>
-				<p>판매자에게 메시지 바로 보내기</p>
-			</article>
-			<ul class="talk-user-template-list">
-				<li class="talk-user-template-item">
-					이 상품에 관심있어요!
-					<img src="<c:url value="/resources/images/user/talk/up-arrow.svg"/>">
-				</li>
-				<li class="talk-user-template-item">
-					안녕하세요. 네모페이 되나요?
-					<img src="<c:url value="/resources/images/user/talk/up-arrow.svg"/>">
-				</li>
-				<li class="talk-user-template-item">
-					안녕하세요. 직거래 되나요?
-					<img src="<c:url value="/resources/images/user/talk/up-arrow.svg"/>">
-				</li>
-			</ul>
-		
+			<%-- 
 			<!--  아이템 1개  상용메시지 템플릿-->
 			<div class="talk-user-msg-item">
 				<div class="talk-user-msg-date">
@@ -96,44 +77,8 @@
 					</div>
 				</div>
 			</div>
-		<!-- 일반 대화 메시지 아이템 1개 -->
-			<div class="talk-user-normal-msg">
-					<div class="talk-user-msg-date">2020. 9. 3 목요일</div>
-					<div class="normal-msg-area">
-						<div class="normal-msg-flex">
-							<div class="normal-msg-content">안녕하세요</div>
-						</div>
-						<div class="normal-msg-time-area">
-							<div class="normal-msg-status">
-								안읽음
-							</div>
-							<div class="normal-msg-time-text">
-								오전 2:59
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			--%>
-		<!-- 답변 일반 메시지 -->
-			<%-- <div class="talk-user-response-msg">
-				<div class="response-msg-area">
-					<div class="response-msg-img-area">
-   						<img src="<c:url value="/resources/images/user/talk/base.svg"/>" alt="프로필 이미지">
-					</div>
-					<div class="response-msg-text-area">
-						<div class="response-msg-text">네, 안녕하세요 테스트 데이터 마구잡이로 넣어보겠습니다. 안녕하세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>
-					</div>
-					<div class="response-msg-time-area">
-						<div class="response-msg-time-text">
-							오전 2:59
-						</div>
-					</div>
-				</div>
-			</div> --%>
-			
+		--%>
 		</div>
-		 
 		<!-- 메세지 보내기 창 -->
 		<div class="talk-user-footer">
 			<div class="footer-menu-area">

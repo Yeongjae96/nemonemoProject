@@ -85,8 +85,6 @@ $(function() {
 	
 	/* 대화방 퇴장하기  */
 	function exitTalkRoom() {
-		console.log(getData.currentUserNo, getData.opponentUserNo);
-
 		sendMessage({
 			request: 'exitTalkRoom',
 			sender: getData.currentUserNo,
@@ -305,8 +303,6 @@ $(function() {
 					// =========================== TOPMENU ===========================
 					// =========================== TOPMENU ===========================
 					
-					
-					
 					let status = false;
 					// top 메뉴 보여주는거 
 					(function () {
@@ -322,6 +318,9 @@ $(function() {
 							topMenuModalChange(status);
 						});
 					}());
+					
+					topMenuBtnArea.addEventListener('click', menuAreaAction);
+					
 					// top 메뉴 버튼클릭 Action
 					function menuAreaAction(e) {
 						const target = e.target.closest('button');
@@ -333,15 +332,15 @@ $(function() {
 						}
 						
 						function deleteAction() {
-							// 나가기
+							// 채팅방 나가기 액션
 							sendMessage({
 								request: 'deleteTalk',
 								talkNo: getData.talkNo,
 								sender: getData.currentUserNo,
 								receiver: getData.opponentUserNo,
-								regDate: new Date(),
+								regDate: new Date().getTime(),
 							});
-							
+							// 나가기
 							self.close();
 						}
 					}

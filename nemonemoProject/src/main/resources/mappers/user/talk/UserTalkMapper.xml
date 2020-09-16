@@ -56,9 +56,13 @@
 		<where>
 			<if test="currentUserNo == lowUserNo">
 				t.talk_low_exit_dt &lt; m.msg_reg_dt
+				OR
+				t.talk_low_exit_dt is null
 			</if>
 			<if test="currentUserNo == highUserNo">
 				t.talk_high_exit_dt &lt; m.msg_reg_dt
+				OR
+				t.talk_high_exit_dt is null
 			</if>
 		</where>
 		ORDER BY m.msg_reg_dt
@@ -128,6 +132,20 @@
 		        ON m1.talk_no = m2.talk_no AND m1.msg_reg_dt = m2.maxDate
 		    ) m2
             ON m1.msg_no = m2.msg_no  AND (msg_sender = #{userNo} OR msg_receiver = #{userNo})
+            INNER JOIN (
+            	SELECT m.msg_no
+				FROM talk_tb t
+				INNER JOIN msg_tb m
+				ON t.talk_no = m.talk_no
+				WHERE talk_user1 = #{userNo} AND (t.TALK_LOW_EXIT_DT &lt; m.msg_reg_dt OR t.TALK_LOW_EXIT_DT IS NULL)
+				UNION
+				SELECT m.msg_no
+				FROM talk_tb t
+				INNER JOIN msg_tb m
+				ON t.talk_no = m.talk_no
+				WHERE talk_user2 = #{userNo} AND (t.TALK_HIGH_EXIT_DT &lt; m.msg_reg_dt OR t.TALK_HIGH_EXIT_DT IS NULL)
+            ) tt
+            ON m1.msg_no = tt.msg_no
             LEFT JOIN (SELECT talk_no, count(1) AS msg_unid_cnt FROM msg_tb WHERE msg_confirm_st = 'N' AND msg_receiver = #{userNo} GROUP BY talk_no) m3
             ON m1.talk_no = m3.talk_no
 		) m
@@ -159,13 +177,14 @@
 	
 	<update id="exitTalk" parameterType="hashMap">
 		UPDATE talk_tb
-		SET 
-		<if test="currentUserNo == lowUserNo">
-			talk_low_exit_dt = SYSDATE
-		</if>
-		<if test="currentUserNo == highUserNo">
-			talk_high_exit_dt = SYSDATE
-		</if>
+		<set>
+			<if test="currentUserNo == lowUserNo">
+				talk_low_exit_dt = SYSDATE
+			</if>
+			<if test="currentUserNo == highUserNo">
+				talk_high_exit_dt = SYSDATE
+			</if>
+		</set>
 		<where>
 			talk_no = #{talkNo}
 		</where>

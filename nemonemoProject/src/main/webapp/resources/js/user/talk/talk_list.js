@@ -44,6 +44,8 @@ $(function() {
 			case "refreshConfirmMark":
 				refreshConfirmMark(data);
 				break;
+			case "deleteTalkRoom":
+				deleteTalkRoom(data);
 				default:
 			}
 		}
@@ -63,7 +65,23 @@ $(function() {
 		}
 		socket.send(JSON.stringify(obj));
 	}
-
+	
+	/* 방을 나갔을때 해당 룸 삭제하는 로직 */
+	function deleteTalkRoom(data) {
+		const li = document.querySelectorAll('li.talk-item');
+		console.log(data);
+		
+		[].prototype.forEach.call(li, (e, i) => {
+			console.log(i, '번째 : ', e);
+			if(e.dataset.uid == data.receiver) {
+				console.log('맞음');
+				e.parentNode.removeChild(e);
+				return false;
+			}
+		});
+	}
+	
+	
 	/* 소켓 연결 성공 시 에 들어 갔다는 함수 */
 	function enterTalkList() {
 		sendMessage({

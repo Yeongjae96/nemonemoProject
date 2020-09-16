@@ -1,5 +1,6 @@
 package com.nemo.user.talk.service.impl;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,11 +135,12 @@ public class UserTalkServiceImpl implements UserTalkService {
 	@Override
 	public int exitTalk(Map<String, Object> param) {
 		
-		int userNo = AuthUtil.getCurrentUserNo();
 		int talkNo = (Integer)param.get("talkNo");
 		int sender = (Integer)param.get("currentUserNo");
 		int receiver = (Integer)param.get("opponentUserNo");
-
+		long regDate = (Long)param.get("regDate");
+		Timestamp time = new Timestamp(regDate);
+		
 		Map<String, Object> paramMap = new HashMap<>();
 		
 		int lowUserNo = sender < receiver ? sender : receiver; 
@@ -147,7 +149,9 @@ public class UserTalkServiceImpl implements UserTalkService {
 		paramMap.put("lowUserNo", lowUserNo);
 		paramMap.put("highUserNo", highUserNo);
 		paramMap.put("talkNo", talkNo);
-		paramMap.put("currentUserNo", userNo);
+		paramMap.put("currentUserNo", sender);
+		paramMap.put("time", time);
+		
 		
 		return userTalkMapper.exitTalk(paramMap);
 	}
