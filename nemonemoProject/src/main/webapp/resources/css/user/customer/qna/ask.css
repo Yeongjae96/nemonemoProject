@@ -275,8 +275,10 @@ select{
 button {
 	background-color: transparent;
 	cursor: pointer;
-	outline: none;
+	outline: 0;
+	border: 0;
 }
+
 
 .addImg {
 	width: 164px;
@@ -324,6 +326,8 @@ img {
 	-webkit-font-smoothing: antialiased;
 	direction: ltr;
 	text-align: left;
+	border:none;
+	outline : none;
 }
 
 .qna-add-file::after {

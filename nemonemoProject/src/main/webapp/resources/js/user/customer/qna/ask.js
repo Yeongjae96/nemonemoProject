@@ -74,10 +74,6 @@ function deleteImage() {
 /* 게시물 등록 */
 function initRegBtn() {
 
-	$('#qnaSubmit').click(function(){
-
-	regAction.call(this); }); // 클릭 이벤트 안에서 function을 열면 사라질 수 있으니.. this가 window로 안바뀌게 내가 가지고 있는 this를 명시해 부름
-
 	$('#qnaSubmit').click(function(e){
 		/*e.preventDefault();*/
 	regAction.call(this); }); 
