@@ -1,5 +1,6 @@
 package com.nemo.user.talk.handler;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -136,7 +137,13 @@ public class TalkHandler extends TextWebSocketHandler {
 			sendTalkList(sender, new TextMessage(responseText));
 			break;	
 		case "deleteTalk":
-			talkService.
+			
+			Map<String, Object> param = new HashMap<>();
+			
+			
+			
+			
+			talkService.exitTalk(param);
 			
 			
 			break;
