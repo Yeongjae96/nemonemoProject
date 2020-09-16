@@ -58,14 +58,5 @@
 	
 	
 
-<!-- 
-	<select id="selectImage" parameterType="int" resultMap="qnaImgMap">
-
-		SELECT *
-		FROM qna_img_tb
-		WHERE qna_img_no = #{qnaImgNo}
-
-	</select> -->
-
 
 </mapper>

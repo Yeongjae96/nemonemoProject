@@ -402,7 +402,7 @@ $(function() {
 					let inputHTML = '';
 					inputHTML += '<article class="talk-user-template-area">';
 					inputHTML += '<img src="'+ contextPath +'resources/images/common/logo/favicon.png">'
-					inputHTML += '<h2>네모톡, 간편하게 시작해요!</h2>';
+					inputHTML += '<h2>네모톡, 간편하게 시작해요!</h2>';아
 					inputHTML += '<p>판매자에게 메시지 바로 보내기</p>';
 					inputHTML += '</article>';
 					inputHTML += '<ul class="talk-user-template-list">';
