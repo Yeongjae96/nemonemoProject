@@ -21,15 +21,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public int insertUser(UserBaseVO vo) {
-//		vo.setStoreName("상점");
 		return userDAO.insertUser(vo);
 	}
-
-//	@Override
-//	public int insertUserTerms(UserTermsVO vo) {
-//		vo.setTermAgreeYmd(new Date(System.currentTimeMillis()));
-//		return userDAO.insertUserTerms(vo);
-//	}
 	
 	@Override
 	public int updateUser(UserBaseVO vo) {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,7 @@
 	href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
 <!-- 라이브러리 -->
 <script
@@ -135,50 +137,71 @@
 							<div class="swiper-slide">
 								<div class="bx_group">
 									<c:forEach var="recommendProductList"
-										items="${recommendProductList}" varStatus="status">
+										items="${recommendProductList}" varStatus="status" begin="0" end="4">
 										<div>
 											<a
 												href="${pageContext.request.contextPath}/products/${recommendProductList.productNo }.do">
 												<div class="main-recommend-box-pic">
 													<img
-														src="<c:url value="/resources/images/user/main/rec1.jpg"/>"
+														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
 														alt="추천상품1">
 												</div>
 
 												<div class="main-recommend-box-title">${recommendProductList.productName }</div>
 												<div class="main-recommend-box-price">
-													⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅ <br>
-													<b>${recommendProductList.productPrice }</b>원
+													⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅ <br> <b>${recommendProductList.productPrice }</b>원
 												</div>
 											</a>
 										</div>
 									</c:forEach>
 								</div>
-
 							</div>
+							<div class="swiper-slide">
+								<div class="bx_group">
+									<c:forEach var="recommendProductList2"
+										items="${recommendProductList2}" varStatus="status" begin="0" end="4">
+										<div>
+											<a
+												href="${pageContext.request.contextPath}/products/${recommendProductList2.productNo }.do">
+												<div class="main-recommend-box-pic">
+													<img
+														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
+														alt="추천상품1">
+												</div>
+												<div class="main-recommend-box-title">${recommendProductList2.productName }</div>
+												<div class="main-recommend-box-price">
+													⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅ <br> <b>${recommendProductList2.productPrice }</b>원
+												</div>
+											</a>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="bx_group">
+									<c:forEach var="recommendProductList3"
+										items="${recommendProductList3}" varStatus="status" begin="0" end="4">
+										<div>
+											<a
+												href="${pageContext.request.contextPath}/products/${recommendProductList3.productNo }.do">
+												<div class="main-recommend-box-pic">
+													<img
+														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
+														alt="추천상품1">
+												</div>
 
-
-							<%--  <c:if test="${status.count % 4 == 0}">
-                            <div class="swiper-slide">
-                              <div class="bx_group">
-                                  <div>
-                                    <div class="main-recommend-box-pic">
-                                        <img src="<c:url value="/resources/images/user/main/rec1.jpg"/>" alt="추천상품1"></div>
-                                    <div class="main-recommend-box-title">${recommendProductList.productName }</div>
-                                    <div class="main-recommend-box-price">- - - - - - - - - - - - - - - -  <br><b>${recommendProductList.productPrice }</b>원</div>
-                                </div>
-                                </div>
-                            </div>
-                            </c:if> --%>
-
-
-							<!--  <div class="swiper-slide">
-                                <div class="bx_group">
-                                    <div>box1</div>
-                                    <div>box2</div>
-                                </div>
-                            </div>  -->
+												<div class="main-recommend-box-title">${recommendProductList3.productName }</div>
+												<div class="main-recommend-box-price">
+													⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅ <br> <b>${recommendProductList3.productPrice }</b>원
+												</div>
+											</a>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							
 						</div>
+						
 						<!-- Add Arrows -->
 						<div class="swiper-button-next"></div>
 						<div class="swiper-button-prev"></div>
@@ -188,132 +211,8 @@
 
 				<!-- 추천상품 영역 끝-->
 				<!--카테고리별 인기상품 영역-->
-				<%-- <div class="main-popular">
-                        <div class="main-popular-title"><h4>카테고리별 인기 상품</h4></div><br>
-                        <div id="main-popular-scroll"> 
-                        <c:forEach var="popularCateList" items="${popularCateList}" varStatus="status">
-                        	<span>${popularCateList.productCateLarge}</span>
-                        </c:forEach>
-                    </div>
-                    <br>
-                    <c:forEach var="popularCateList" items="${popularCateList}" varStatus="status">
-                   	<div ><h5>${popularCateList.productCateLarge}</h5></div><br>
-                    <div class="main-popular-gallery">
-                        <div class="gallery2">
-                        <a target="_blank" href="<c:url value="/resources/images/user/main/pop1.jpg"/>">
-                          <img src="<c:url value="/resources/images/user/main/pop1.jpg"/>" alt="cat1" >
-                        </a>
-                        <div class="desc">아디다스 슬리퍼
-                            <div class="desc-price"><b>20,000</b>원
-                        </div>
-                      </div>
-                    </div>
-                </div> 
-                
-                </c:forEach> 
-                <!--카테고리 탭-->
-                
-                <!-- ---------------- -->
-                <div class="main-popular">
-                    <div class="main-popular-title"><h4>카테고리별 인기 상품</h4></div><br>
-                
-                <div class="main-popular-gallery">
-                    <div class="gallery2">
-                    <a target="_blank" href="<c:url value="/resources/images/user/main/pop1.jpg"/>">
-                      <img src="<c:url value="/resources/images/user/main/pop1.jpg"/>" alt="cat1" >
-                    </a>
-                    <div class="desc">아디다스 슬리퍼
-                        <div class="desc-price"><b>20,000</b>원
-                    </div>
-                  </div>
-                </div>
-                    <div class="gallery2">
-                    <a target="_blank" href="<c:url value="/resources/images/user/main/pop2.jpg"/>">
-                      <img src="<c:url value="/resources/images/user/main/pop2.jpg"/>" alt="cat1" >
-                    </a>
-                    <div class="desc">슈프림 백팩
-                        <div class="desc-price"><b>50,000</b>원
-                    </div>
-                  </div>
-                </div>
-                    <div class="gallery2">
-                    <a target="_blank" href="<c:url value="/resources/images/user/main/pop3.jpg"/>">
-                      <img src="<c:url value="/resources/images/user/main/pop3.jpg"/>" alt="cat1" >
-                    </a>
-                    <div class="desc">이지부스트
-                        <div class="desc-price"><b>320,000</b>원
-                    </div>
-                  </div>
-                </div>
-                    <div class="gallery2">
-                    <a target="_blank" href="<c:url value="/resources/images/user/main/pop4.jpg"/>">
-                      <img src="<c:url value="/resources/images/user/main/pop4.jpg"/>" alt="cat1" >
-                    </a>
-                    <div class="desc">샤넬백
-                        <div class="desc-price"><b>260,000</b>원
-                    </div>
-                  </div>
-                </div>
-                    <div class="gallery2">
-                    <a target="_blank" href="<c:url value="/resources/images/user/main/pop5.jpg"/>">
-                      <img src="<c:url value="/resources/images/user/main/pop5.jpg"/>" alt="cat1" >
-                    </a>
-                    <div class="desc">금팔찌 급처로 팝니다.
-                        <div class="desc-price"><b>250,000</b>원
-                        <!-- <div class="desc-time">2시간 전</div> -->
-                    </div>
-                  </div>
-                </div>
-                    <div class="gallery2">
-                    <a target="_blank" href="<c:url value="/resources/images/user/main/pop5.jpg"/>">
-                      <img src="<c:url value="/resources/images/user/main/pop5.jpg"/>" alt="cat1" >
-                    </a>
-                    <div class="desc">금팔찌 급처..
-                        <div class="desc-price"><b>연락요망</b>
-                            <!-- <div class="desc-time">2시간 전</div> -->
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="gallery2">
-                    <a target="_blank" href="<c:url value="/resources/images/user/main/pop4.jpg"/>">
-                      <img src="<c:url value="/resources/images/user/main/pop4.jpg"/>" alt="cat1" >
-                    </a>
-                    <div class="desc">샤넬백
-                        <div class="desc-price"><b>260,000</b>원
-                    </div>
-                  </div>
-                </div>
-                <div class="gallery2">
-                    <a target="_blank" href="<c:url value="/resources/images/user/main/pop4.jpg"/>">
-                      <img src="<c:url value="/resources/images/user/main/pop4.jpg"/>" alt="cat1" >
-                    </a>
-                    <div class="desc">샤넬백
-                        <div class="desc-price"><b>260,000</b>원
-                    </div>
-                  </div>
-                </div>
-                <div class="gallery2">
-                    <a target="_blank" href="<c:url value="/resources/images/user/main/pop4.jpg"/>">
-                      <img src="<c:url value="/resources/images/user/main/pop4.jpg"/>" alt="cat1" >
-                    </a>
-                    <div class="desc">샤넬백
-                        <div class="desc-price"><b>260,000</b>원
-                    </div>
-                  </div>
-                </div>
-                <div class="gallery2">
-                    <a target="_blank" href="<c:url value="/resources/images/user/main/pop4.jpg"/>">
-                      <img src="<c:url value="/resources/images/user/main/pop4.jpg"/>" alt="cat1" >
-                    </a>
-                    <div class="desc">샤넬백
-                        <div class="desc-price"><b>260,000</b>원
-                    </div>
-                  </div>
-                </div>
-            </div> 
-         </div> --%>
 
+				<!--카테고리 탭-->
 
 				<div class="main-popular">
 					<div class="main-popular-title">
@@ -323,43 +222,78 @@
 					<div id="main-popular-scroll">
 						<c:forEach var="popularCateList" items="${popularCateList}"
 							varStatus="status">
-							<span>${popularCateList.productCateLarge}</span>
+							<span><a href="#${popularCateList.productCateNo}">${popularCateList.productCateLarge}</a></span>
 						</c:forEach>
 					</div>
+					<!--카테고리 탭 끝-->
+
 					<br>
-					<c:forEach var="popularCateList" items="${popularCateList}">
-					<div class="main-popular-body">
-						<div id="" class="main-popular-div">
-							<div class="main-popular-all-title">
-								${popularCateList.productCateLarge}
-							</div>
-							<%-- <c:set var="cate_no" value="${popularProductList.productCateNo}"/> --%>
-							<div class="main-popular-contents">
-							<c:forEach var="popularProductList" items="${popularProductList}">
-								<div class="main-popular-content-div">
-									<a class="main-popular-content-a" href="${pageContext.request.contextPath}/products/${popularProductList.productNo }.do">
-										<div class="main-popular-contents-div">
-											<img src="<c:url value="/resources/images/user/store/storeProfile.png"/>" width="194" height="194" alt="상품 이미지">
-										</div>
-										<div class="main-popular-content-disc">
-											<div class="main-popular-content-disc-title">${popularProductList.productName} </div>
-											<div class="main-popular-content-disc-pNt">
-												<div class="main-popular-content-disc-price">${popularProductList.productPrice}</div>
-												<div class="main-popular-content-disc-time">
-													<span>${popularProductList.productRegDt}</span>
+					<c:forEach var="popularProductList"
+										items="${popularProductList}" begin="0" end="11">
+						<div class="main-popular-body" id="${popularProductList.productCateNo}">
+							<div id="" class="main-popular-div">
+								<div class="main-popular-all-title"> ${popularProductList.productCateLarge}</div>
+								<div class="main-popular-contents">
+										<div class="main-popular-content-div">
+											<a class="main-popular-content-a" 
+												href="${pageContext.request.contextPath}/products/${popularProductList.productNo }.do">
+												<div class="main-popular-contents-div">
+													<img 
+														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
+														width="194" height="194" alt="상품 이미지">
 												</div>
-											</div>
+												<div class="main-popular-content-disc">
+													<div class="main-popular-content-disc-title">
+														${popularProductList.productName}
+													</div>
+													<div class="main-popular-content-disc-pNt">
+														<div class="main-popular-content-disc-price">${popularProductList.productPrice}</div>
+														<div class="main-popular-content-disc-time">
+															<jsp:useBean id="now" class="java.util.Date" />
+															<fmt:parseNumber
+																value="${popularProductList.productRegDt.time}"
+																integerOnly="true" var="oldDays" scope="request" />
+															<fmt:parseNumber value="${now.time}" integerOnly="true"
+																var="nowDays" scope="page" />
+															<c:choose>
+																<c:when test="${nowDays-oldDays < (1000*60)}">
+																	<fmt:parseNumber value="${(nowDays-oldDays) / (1000)}"
+																		integerOnly="true" var="secDate" />
+																	<span><c:out value="${secDate}" /> 초 전</span>
+																</c:when>
+																<c:when test="${(nowDays-oldDays) < (1000*60*60)}">
+																	<fmt:parseNumber
+																		value="${(nowDays-oldDays) / (1000*60)}"
+																		integerOnly="true" var="minDate" />
+																	<span><c:out value="${minDate}" /> 분 전</span>
+																</c:when>
+																<c:when test="${(nowDays-oldDays) < (1000*60*60*24)}">
+																	<fmt:parseNumber
+																		value="${(nowDays-oldDays) / (1000*60*60)}"
+																		integerOnly="true" var="hourDate" />
+																	<span><c:out value="${hourDate}" /> 시간 전</span>
+																</c:when>
+																<c:otherwise>
+																	<fmt:parseNumber
+																		value="${(nowDays-oldDays) / (1000*60*60*24)}"
+																		integerOnly="true" var="dayDate" />
+																	<span><c:out value="${dayDate }" /> 일 전</span>
+																</c:otherwise>
+															</c:choose>
+														</div>
+													</div>
+												</div>
+											</a>
 										</div>
-										</a>
 								</div>
-								</c:forEach>
 							</div>
 						</div>
-					</div>
-					<hr>
+						<hr>
 					</c:forEach>
 				</div>
 			</div>
+		</div>
+
 	</section>
 	<% 
 		/* 공통 푸터 */

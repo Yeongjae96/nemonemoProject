@@ -26,9 +26,32 @@
 	<select id="getRecommendProductList" parameterType="com.nemo.user.main.vo.RecommendProductVO" resultMap="recommendProductMap">
 		SELECT *
 		FROM 
-			product_tb 
+            (SELECT *
+             FROM product_tb
+             ORDER BY product_view DESC
+             )
 		WHERE
 			product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 5
-		ORDER BY product_view DESC
+	</select> 
+	<select id="getRecommendProductList2" parameterType="com.nemo.user.main.vo.RecommendProductVO" resultMap="recommendProductMap">
+		SELECT *
+		FROM 
+            (SELECT *
+             FROM product_tb
+             ORDER BY product_reg_dt DESC
+             )
+		WHERE
+			product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 5
+		
+	</select> 
+	<select id="getRecommendProductList3" parameterType="com.nemo.user.main.vo.RecommendProductVO" resultMap="recommendProductMap">
+		SELECT *
+		FROM 
+            (SELECT *
+             FROM product_tb
+             ORDER BY product_tag ASC
+             )
+		WHERE
+			product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 5
 	</select> 
 </mapper>

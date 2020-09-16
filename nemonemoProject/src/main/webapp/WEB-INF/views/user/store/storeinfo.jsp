@@ -34,14 +34,14 @@
 				<div class="storeedit-title">상점 정보 수정하기</div>
 				<div class="storeedit-box">
 					<div class="info-input-outline">
-						<div class="storeedit-common-margin">
+						<!-- <div class="storeedit-common-margin">
 							<div class="input-box">
 								<div class="upstore-info">
 									<label>상점 이미지</label>
 								</div>
 								<input type="file" multiple="multiple" id="inputFile" name="" style="margin-top:26px">
 							</div>
-						</div>
+						</div> -->
 						<div class="storeedit-common-margin">
 							<div class="input-box">
 								<div class="upstore-info">

@@ -28,4 +28,14 @@ public class PopularProductVO {
 	private Timestamp productRegDt;
 	private Date productEditDt;
 	private int productView;
+	private int adminRegId;
+	private int adminEditId;
+	private String productCateType;
+	private String productCateLarge;
+	private String productCateMedium;
+	private String productCateSmall;
+	private String productCateDelFl;
+	private int productCateOrder;
+	private Date productCateRegYmd;
+	private Date productCateEditYmd;
 }
