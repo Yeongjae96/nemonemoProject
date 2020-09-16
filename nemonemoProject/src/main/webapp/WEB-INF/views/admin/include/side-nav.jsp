@@ -60,11 +60,11 @@
                                 <a href="<c:url value="/members/qna/list.mdo"/>">1:1문의</a>
                             </li>
                             <%--  <li>
-                                <a href="<c:url value="/management/signup.mdo"/>">회원쿠폰</a>
-                            </li>
-                            <li>
-                                <a href="<c:url value="/management/signup.mdo"/>">신고관리</a>
+                                <a href="<c:url value=""/>">회원쿠폰</a>
                             </li> --%>
+                            <li>
+                                <a href="<c:url value="/members/report/list.mdo"/>">신고관리</a>
+                            </li>
                         </ul>
                     </li>
                     <li>
