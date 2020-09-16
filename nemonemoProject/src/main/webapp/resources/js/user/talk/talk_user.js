@@ -332,17 +332,37 @@ $(function() {
 						case 'products':
 							nextUrl = contextPath + 'shop/' + getData.opponentUserNo + '/products.do';
 							break;
+						case 'store':
+							nextUrl = contextPath + 'shop/' + getData.opponentUserNo + '/products.do';
+							break;
 							default:
 						}
 
-						// 이동 시키는 부분
+						parentMove(nextUrl);
+						
+					}
+					
+					
+					(function() {
+						const storeLink = document.querySelector('.modal-store-button-area');
+						storeLink.addEventListener('click', e=> {
+							const target = e.target.closest('.modal-store-button-link');
+							if(target) {
+								const nextUrl = contextPath + 'shop/' + getData.opponentUserNo + '/products.do';
+								parentMove(nextUrl);
+							}
+						});
+					}());
+					
+					// 최상위 부모창 이동
+					function parentMove(nextUrl) {
 						if(opener && opener.opener) {
 							opener.opener.window.location.href = nextUrl;
 						} else if (opener) {
 							opener.window.location.href = nextUrl;
 						}
-						
 					}
+					
 					
 					// =========================== TOPMENU ===========================
 					// =========================== TOPMENU ===========================
