@@ -219,7 +219,7 @@ img {
 				<!-- 오른쪽 네비 -->
 				<button class="btn-layout" id="loginBtn">로그인</button>
 				<div class="login-btw-signin"></div>
-				<button class="btn-layout" onclick="location.href='sign/signup.do'">회원가입</button>
+				<button class="btn-layout" onclick="location.href='${pageContext.request.contextPath}/sign/signup.do'">회원가입</button>
 			</div>
 
 			<!--오른쪽 네비 끝 -->
@@ -270,8 +270,7 @@ img {
 							width="100%" height="50px" />
 						</a>
 						<p id="login-form-result"></p>
-						
-						 <script type="text/javascript">
+						<script type="text/javascript">
 						Kakao.init('febc31efd1b6f21901d27fb57cc55aa7');
 							function loginFormWithKakao() {
 								Kakao.Auth.loginForm({

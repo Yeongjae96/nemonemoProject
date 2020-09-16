@@ -35,13 +35,12 @@
 	
 	<select id="getPopularProductList" parameterType="com.nemo.user.main.vo.PopularProductVO" resultMap="popularProductMap">
 		SELECT 
-		    p.*,
-		    c.*
+		    *
 		FROM
-		    product_tb p
-		    inner join product_cate_tb c
-		    on(p.product_cate_no = c.product_cate_no)
-		ORDER BY p.product_view desc
+		    product_tb
+        WHERE 
+        	product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 41
+		ORDER BY product_view desc
 	</select> 
 	
 </mapper>

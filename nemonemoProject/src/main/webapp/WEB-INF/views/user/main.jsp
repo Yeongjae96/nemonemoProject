@@ -18,7 +18,8 @@
 	href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
+<link rel="shortcut icon"
+	href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
 <!-- 라이브러리 -->
 <script
@@ -137,7 +138,8 @@
 							<div class="swiper-slide">
 								<div class="bx_group">
 									<c:forEach var="recommendProductList"
-										items="${recommendProductList}" varStatus="status" begin="0" end="4">
+										items="${recommendProductList}" varStatus="status" begin="0"
+										end="4">
 										<div>
 											<a
 												href="${pageContext.request.contextPath}/products/${recommendProductList.productNo }.do">
@@ -159,7 +161,8 @@
 							<div class="swiper-slide">
 								<div class="bx_group">
 									<c:forEach var="recommendProductList2"
-										items="${recommendProductList2}" varStatus="status" begin="0" end="4">
+										items="${recommendProductList2}" varStatus="status" begin="0"
+										end="4">
 										<div>
 											<a
 												href="${pageContext.request.contextPath}/products/${recommendProductList2.productNo }.do">
@@ -180,7 +183,8 @@
 							<div class="swiper-slide">
 								<div class="bx_group">
 									<c:forEach var="recommendProductList3"
-										items="${recommendProductList3}" varStatus="status" begin="0" end="4">
+										items="${recommendProductList3}" varStatus="status" begin="0"
+										end="4">
 										<div>
 											<a
 												href="${pageContext.request.contextPath}/products/${recommendProductList3.productNo }.do">
@@ -199,9 +203,9 @@
 									</c:forEach>
 								</div>
 							</div>
-							
+
 						</div>
-						
+
 						<!-- Add Arrows -->
 						<div class="swiper-button-next"></div>
 						<div class="swiper-button-prev"></div>
@@ -216,80 +220,78 @@
 
 				<div class="main-popular">
 					<div class="main-popular-title">
-						<h4>카테고리별 인기 상품</h4>
+						<h4>전체 카테고리 인기 상품</h4>
 					</div>
 					<br>
-					<div id="main-popular-scroll">
+					<%-- <div id="main-popular-scroll">
 						<c:forEach var="popularCateList" items="${popularCateList}"
 							varStatus="status">
 							<span><a href="#${popularCateList.productCateNo}">${popularCateList.productCateLarge}</a></span>
 						</c:forEach>
-					</div>
+					</div> --%>
 					<!--카테고리 탭 끝-->
 
 					<br>
-					<c:forEach var="popularProductList"
-										items="${popularProductList}" begin="0" end="11">
-						<div class="main-popular-body" id="${popularProductList.productCateNo}">
+					
+						<div class="main-popular-body">
 							<div id="" class="main-popular-div">
-								<div class="main-popular-all-title"> ${popularProductList.productCateLarge}</div>
+								<%-- <div class="main-popular-all-title"> ${popularProductList.productCateLarge}</div> --%>
 								<div class="main-popular-contents">
-										<div class="main-popular-content-div">
-											<a class="main-popular-content-a" 
-												href="${pageContext.request.contextPath}/products/${popularProductList.productNo }.do">
-												<div class="main-popular-contents-div">
-													<img 
-														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
-														width="194" height="194" alt="상품 이미지">
-												</div>
-												<div class="main-popular-content-disc">
-													<div class="main-popular-content-disc-title">
-														${popularProductList.productName}
+								<c:forEach var="popularProductList" items="${popularProductList}">
+									<div class="main-popular-content-div">
+										<a class="main-popular-content-a"
+											href="${pageContext.request.contextPath}/products/${popularProductList.productNo }.do">
+											<div class="main-popular-contents-div">
+												<img
+													src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
+													width="194" height="194" alt="상품 이미지">
+											</div>
+											<div class="main-popular-content-disc">
+												<div class="main-popular-content-disc-title">
+													${popularProductList.productName}</div>
+												<div class="main-popular-content-disc-pNt">
+													<div class="main-popular-content-disc-price">${popularProductList.productPrice}</div>
+													<div class="main-popular-content-disc-time">
+														<jsp:useBean id="now" class="java.util.Date" />
+														<fmt:parseNumber
+															value="${popularProductList.productRegDt.time}"
+															integerOnly="true" var="oldDays" scope="request" />
+														<fmt:parseNumber value="${now.time}" integerOnly="true"
+															var="nowDays" scope="page" />
+														<c:choose>
+															<c:when test="${nowDays-oldDays < (1000*60)}">
+																<fmt:parseNumber value="${(nowDays-oldDays) / (1000)}"
+																	integerOnly="true" var="secDate" />
+																<span><c:out value="${secDate}" /> 초 전</span>
+															</c:when>
+															<c:when test="${(nowDays-oldDays) < (1000*60*60)}">
+																<fmt:parseNumber
+																	value="${(nowDays-oldDays) / (1000*60)}"
+																	integerOnly="true" var="minDate" />
+																<span><c:out value="${minDate}" /> 분 전</span>
+															</c:when>
+															<c:when test="${(nowDays-oldDays) < (1000*60*60*24)}">
+																<fmt:parseNumber
+																	value="${(nowDays-oldDays) / (1000*60*60)}"
+																	integerOnly="true" var="hourDate" />
+																<span><c:out value="${hourDate}" /> 시간 전</span>
+															</c:when>
+															<c:otherwise>
+																<fmt:parseNumber
+																	value="${(nowDays-oldDays) / (1000*60*60*24)}"
+																	integerOnly="true" var="dayDate" />
+																<span><c:out value="${dayDate }" /> 일 전</span>
+															</c:otherwise>
+														</c:choose>
 													</div>
-													<div class="main-popular-content-disc-pNt">
-														<div class="main-popular-content-disc-price">${popularProductList.productPrice}</div>
-														<div class="main-popular-content-disc-time">
-															<jsp:useBean id="now" class="java.util.Date" />
-															<fmt:parseNumber
-																value="${popularProductList.productRegDt.time}"
-																integerOnly="true" var="oldDays" scope="request" />
-															<fmt:parseNumber value="${now.time}" integerOnly="true"
-																var="nowDays" scope="page" />
-															<c:choose>
-																<c:when test="${nowDays-oldDays < (1000*60)}">
-																	<fmt:parseNumber value="${(nowDays-oldDays) / (1000)}"
-																		integerOnly="true" var="secDate" />
-																	<span><c:out value="${secDate}" /> 초 전</span>
-																</c:when>
-																<c:when test="${(nowDays-oldDays) < (1000*60*60)}">
-																	<fmt:parseNumber
-																		value="${(nowDays-oldDays) / (1000*60)}"
-																		integerOnly="true" var="minDate" />
-																	<span><c:out value="${minDate}" /> 분 전</span>
-																</c:when>
-																<c:when test="${(nowDays-oldDays) < (1000*60*60*24)}">
-																	<fmt:parseNumber
-																		value="${(nowDays-oldDays) / (1000*60*60)}"
-																		integerOnly="true" var="hourDate" />
-																	<span><c:out value="${hourDate}" /> 시간 전</span>
-																</c:when>
-																<c:otherwise>
-																	<fmt:parseNumber
-																		value="${(nowDays-oldDays) / (1000*60*60*24)}"
-																		integerOnly="true" var="dayDate" />
-																	<span><c:out value="${dayDate }" /> 일 전</span>
-																</c:otherwise>
-															</c:choose>
-														</div>
-													</div>
 												</div>
-											</a>
-										</div>
+											</div>
+										</a>
+									</div>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
-						<hr>
-					</c:forEach>
 				</div>
 			</div>
 		</div>
