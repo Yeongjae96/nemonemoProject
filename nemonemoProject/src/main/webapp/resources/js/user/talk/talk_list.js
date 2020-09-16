@@ -10,6 +10,8 @@ $(function() {
 	const contentList = document.querySelector('.talk-list-content');
 	const talkItemElementList = document.getElementsByClassName('talk-item');
 	
+	let openWindow;
+	
 	/* 소켓 연결 */
 	function openSocket() {
 		
@@ -17,6 +19,7 @@ $(function() {
 		window.addEventListener('beforeunload', function (e) {
 			e.preventDefault();
 			exitTalkList();
+			openWindow.window.opener = window.opener;
 		});
 		const wsUri = "ws://" + location.host +contextPath + "talk/open.do";
 		socket = new WebSocket(wsUri);
@@ -250,7 +253,7 @@ $(function() {
 			const targetUser = tg.dataset.uid;
 			
 			const setting = 'width=500px,height=667px,top='+(window.screen.height/2 - 375)+ ',left=' + (window.screen.width/2 - 250); 
-			window.open(contextPath + 'talk/user/' + targetUser + '.do',targetUser, setting);
+			openWindow = window.open(contextPath + 'talk/user/' + targetUser + '.do',targetUser, setting);
 		}
 	}
 	

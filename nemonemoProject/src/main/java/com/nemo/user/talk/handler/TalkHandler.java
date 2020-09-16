@@ -1,10 +1,7 @@
 package com.nemo.user.talk.handler;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import javax.mail.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,9 +49,6 @@ public class TalkHandler extends TextWebSocketHandler {
 		if(user == null) return;
 		int userNo = user.getUserNo();
 		
-		/*
-		 * System.out.println(message.getPayload());
-		 */		
 		JsonElement element = JsonParser.parseString(message.getPayload());
 		String request = element.getAsJsonObject().get("request").getAsString();
 		int sender = element.getAsJsonObject().get("sender").getAsInt();
@@ -77,6 +71,8 @@ public class TalkHandler extends TextWebSocketHandler {
 				personalMap = talkRoomMap.get(receiver);
 				personalMap.put(sender, session);
 			}
+			
+			System.out.println(talkRoomMap + "들어왔어요!!");
 	
 			if(talkRoomMap.get(sender) != null && talkRoomMap.get(sender).get(receiver) != null) {
 				TextMessage confirmResponse = new TextMessage("{\"response\":\"confirmMsg\"}");

@@ -7,7 +7,7 @@ header {
 	font-size: 14px;
 }
 
-input::placeholder {
+#searchInput::placeholder {
 	font-size: 14px;
 	letter-spacing: -0.5px;
 }
