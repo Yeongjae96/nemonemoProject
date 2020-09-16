@@ -1,4 +1,7 @@
 $(function() {
+	HTMLElement.prototype.setStyle = function(styleName, style) {
+		this.setAttribute('style', styleName + ':' + style + ';');
+	}
 	
 	window.addEventListener('beforeunload', function (e) {
 		e.preventDefault();
@@ -117,65 +120,7 @@ $(function() {
 	
 	/* 상위 메뉴 이벤트 걸어 주기 */
 	function initTopMenu() {
-		HTMLElement.prototype.setStyle = function(styleName, style) {
-			this.setAttribute('style', styleName + ':' + style + ';');
-		}
-		// 메뉴 모달 영역
-		const topMenuModal = document.querySelector('.top-menu-modal');
-		const topMenuModalBg = document.querySelector('.modal-bg-area');
-		const topMenuBtnArea = document.querySelector('.modal-menu-btn-area');
-		const menuArea = document.querySelector('.talk-user-menu-area');
-		const topMenuBtn = document.querySelector('.fa-ellipsis-v');
 		
-		// 메뉴 모달 영역
-		const storeModal = document.querySelector('.modal-store-area');
-		// top 메뉴 보여주는거 
-		(function () {
-			let status = false;
-			// 메뉴 클릭하면 topMenuModal 띄우기
-			menuArea.addEventListener('click', function() {
-				status = !status;
-				topMenuModalChange(status);
-			});
-			
-			// 메뉴 외의 topMenuModal 감추기
-			topMenuModalBg.addEventListener('click', function() {
-				status = false;	
-				topMenuModalChange(status);
-			});
-		}());
-		// top 메뉴 버튼클릭 Action
-		function menuAreaAction(e) {
-			const target = e.target.closest('button');
-			const command = target ? target.dataset.action : ''
-			switch (command) {
-			case 'exit':
-				deleteAction();
-				break;
-			}
-			
-			function deleteAction() {
-				// 나가기
-				sendMessage({
-					request: 'deleteTalk',
-					talkNo: getData.talkNo,
-					sender: getData.currentUserNo,
-					receiver: getData.opponentUserNo,
-					regDate: new Date(),
-				});
-				
-				self.close();
-			}
-		}
-		
-		
-		/* 탑 메뉴 모달 display 바꾸기 */
-		function topMenuModalChange(status) {
-			topMenuModal.setStyle('visibility', (status ? 'visible' : 'hidden'));
-			topMenuModalBg.setStyle('opacity', (status ? 1 : 0));
-			topMenuBtnArea.setStyle('transform', (status ? 'translate3d(0px, 0px, 0px)' : 'translate3d(0px, -100%, 0px)'));
-			topMenuBtn.style.color = (status ? 'rgb(21,25,29)' : '#CCCCCC');
-		}
 	}
 	
 	
@@ -233,6 +178,10 @@ $(function() {
 				if(parametersObj.productNo) writePdArea();
 				
 				function writeTitleArea() {
+					
+					//==============변수선언 ===================
+					//==============변수선언 ===================
+					//==============변수선언 ===================
 					// 제목 영역
 					const headerTitle = document.getElementById('headerTitle');
 					// 제목 DOM 생성
@@ -249,11 +198,19 @@ $(function() {
 					const productCnt = document.getElementById('productCnt');
 					const reviewCnt = document.getElementById('reviewCnt');
 					
+					// 메뉴 모달 영역
+					const topMenuModal = document.querySelector('.top-menu-modal');
+					const topMenuModalBg = document.querySelector('.modal-bg-area');
+					const topMenuBtnArea = document.querySelector('.modal-menu-btn-area');
+					const menuArea = document.querySelector('.talk-user-menu-area');
+					const topMenuBtn = document.querySelector('.fa-ellipsis-v');
+					
+					// 메뉴 모달 영역
+					const storeModal = document.querySelector('.modal-store-area');
+					
 					// 개수 설정
 					productCnt.textContent = getData.productCnt;
 					reviewCnt.textContent = getData.storeReviewCnt;
-					
-					console.log(top);
 					
 					// 별 갯수 
 					writeRating(document.getElementById('starArea'),getData.storeRating);
@@ -270,6 +227,10 @@ $(function() {
 					
 					/* 열고 닫기 */
 					function toggleStoreArea() {
+						if(topMenuModal.style.visibility == 'visible') {
+							status = false;
+							topMenuModalChange(false);
+						}
 						toggleClass(modalStoreArea, 'modal-visible');
 						toggleClass(modalStoreContent, 'modal-transform');
 						toggleClass(modalStoreBg, 'modal-opacity');
@@ -278,7 +239,6 @@ $(function() {
 					
 					/* 클래스 붙여주고 떼주기 */
 					function toggleClass(element, className) {
-						console.log(element, className);
 						var check = new RegExp("(\\s|^)" + className + "(\\s|$)");
 						if(check.test(element.className)) {
 							element.className = element.className.replace(check, " ").trim();
@@ -339,6 +299,61 @@ $(function() {
 							opener.window.location.href = nextUrl;
 						}
 						
+					}
+					
+					// =========================== TOPMENU ===========================
+					// =========================== TOPMENU ===========================
+					// =========================== TOPMENU ===========================
+					
+					
+					
+					let status = false;
+					// top 메뉴 보여주는거 
+					(function () {
+						// 메뉴 클릭하면 topMenuModal 띄우기
+						menuArea.addEventListener('click', function() {
+							status = !status;
+							topMenuModalChange(status);
+						});
+						
+						// 메뉴 외의 topMenuModal 감추기
+						topMenuModalBg.addEventListener('click', function() {
+							status = false;	
+							topMenuModalChange(status);
+						});
+					}());
+					// top 메뉴 버튼클릭 Action
+					function menuAreaAction(e) {
+						const target = e.target.closest('button');
+						const command = target ? target.dataset.action : '';
+						switch (command) {
+						case 'exit':
+							deleteAction();
+							break;
+						}
+						
+						function deleteAction() {
+							// 나가기
+							sendMessage({
+								request: 'deleteTalk',
+								talkNo: getData.talkNo,
+								sender: getData.currentUserNo,
+								receiver: getData.opponentUserNo,
+								regDate: new Date(),
+							});
+							
+							self.close();
+						}
+					}
+					
+					
+					/* 탑 메뉴 모달 display 바꾸기 */
+					function topMenuModalChange(status) {
+						if(modalStoreArea.classList.contains('modal-visible')) toggleStoreArea();
+						topMenuModal.setStyle('visibility', (status ? 'visible' : 'hidden'));
+						topMenuModalBg.setStyle('opacity', (status ? 1 : 0));
+						topMenuBtnArea.setStyle('transform', (status ? 'translate3d(0px, 0px, 0px)' : 'translate3d(0px, -100%, 0px)'));
+						topMenuBtn.style.color = (status ? 'rgb(21,25,29)' : '#CCCCCC');
 					}
 				}
 				
@@ -402,7 +417,7 @@ $(function() {
 					let inputHTML = '';
 					inputHTML += '<article class="talk-user-template-area">';
 					inputHTML += '<img src="'+ contextPath +'resources/images/common/logo/favicon.png">'
-					inputHTML += '<h2>네모톡, 간편하게 시작해요!</h2>';아
+					inputHTML += '<h2>네모톡, 간편하게 시작해요!</h2>';
 					inputHTML += '<p>판매자에게 메시지 바로 보내기</p>';
 					inputHTML += '</article>';
 					inputHTML += '<ul class="talk-user-template-list">';

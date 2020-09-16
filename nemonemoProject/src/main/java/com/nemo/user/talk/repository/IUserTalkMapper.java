@@ -12,4 +12,5 @@ public interface IUserTalkMapper {
 	public int getTalkList(UserBaseTalkVO vo);
 	public List<UserBaseMsgVO> selectMsgListByUserNo(Map<String, Object> paramMap);
 	public List<UserMyTalkVO> selectMyTalkList(int userNo);
+	public int exitTalk(Map<String, Object> paramMap);
 }

@@ -53,6 +53,14 @@
 		ON t.talk_no = m.talk_no AND t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
 		INNER JOIN user_tb u
 		ON m.msg_receiver = u.user_no
+		<where>
+			<if test="currentUserNo == lowUserNo">
+				t.talk_low_exit_dt &lt; m.msg_reg_dt
+			</if>
+			<if test="currentUserNo == highUserNo">
+				t.talk_high_exit_dt &lt; m.msg_reg_dt
+			</if>
+		</where>
 		ORDER BY m.msg_reg_dt
 	
 	</select>
@@ -104,31 +112,6 @@
 	
 	<select id="selectMyTalkList" parameterType="int" resultMap="myTalkMap">
 		
-		<!-- SELECT 
-        m.*,
-        u.store_name,
-        nvl(u.store_img_no, -1) store_img_no
-		FROM (
-		    SELECT m1.*, CASE WHEN msg_sender = #{userNo} THEN 'M'
-		                    WHEN msg_receiver = #{userNo} THEN 'Y' END AS senderType
-		    FROM msg_tb m1
-		    INNER JOIN (
-		        SELECT msg_no  
-		        FROM msg_tb m1
-		        INNER JOIN (SELECT talk_no, max(msg_reg_dt)maxDate FROM msg_tb GROUP BY talk_no) m2
-		        ON m1.talk_no = m2.talk_no AND m1.msg_reg_dt = m2.maxDate
-		    ) m2
-		    ON m1.msg_no = m2.msg_no  AND (msg_sender = #{userNo} OR msg_receiver = #{userNo})
-		) m
-		INNER JOIN user_tb u
-		ON u.user_no = CASE m.senderType
-		    WHEN 'M' THEN m.msg_receiver
-		    WHEN 'Y' THEN m.msg_sender
-		END
-		LEFT JOIN (SELECT msg_sender, count(1) msg_unid_cnt FROM msb_tb GROUP BY msg_no WHERE msg_confirm_st = 'N') m2
-		ON m2.
-		ORDER BY m.talk_no desc -->
-		
 		SELECT 
         m.*,
         u.store_name,
@@ -172,9 +155,21 @@
 		ON s.user_no= st.store_no
 		LEFT JOIN talk_tb t
 		ON t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
-		
 	</select>
 	
-		
+	<update id="exitTalk" parameterType="hashMap">
+		UPDATE talk_tb
+		SET 
+		<if test="currentUserNo == lowUserNo">
+			talk_low_exit_dt = SYSDATE
+		</if>
+		<if test="currentUserNo == highUserNo">
+			talk_high_exit_dt = SYSDATE
+		</if>
+		<where>
+			talk_no = #{talkNo}
+		</where>
+	</update>
+	
 
 </mapper>

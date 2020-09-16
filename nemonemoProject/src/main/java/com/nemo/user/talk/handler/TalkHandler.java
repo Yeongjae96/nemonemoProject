@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.nemo.user.sign.signup.vo.UserBaseVO;
 import com.nemo.user.talk.service.UserMsgService;
+import com.nemo.user.talk.service.UserTalkService;
 import com.nemo.user.talk.vo.UserBaseMsgVO;
 
 import lombok.AllArgsConstructor;
@@ -30,6 +31,9 @@ public class TalkHandler extends TextWebSocketHandler {
 	
 	@Autowired
 	private UserMsgService msgService;
+	
+	@Autowired
+	private UserTalkService talkService;
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -60,7 +64,6 @@ public class TalkHandler extends TextWebSocketHandler {
 			talkListMap.put(userNo, session);
 			System.err.println("목록에 들어옴 : " + talkListMap);
 			break;
-			
 		case "enterTalkRoom":
 			Map<Integer, WebSocketSession> personalMap;
 			if(talkRoomMap.get(receiver) == null || talkRoomMap.get(receiver).size() == 0) {
@@ -131,8 +134,11 @@ public class TalkHandler extends TextWebSocketHandler {
 					new JsonEntry("receiver", receiver)).build();
 			
 			sendTalkList(sender, new TextMessage(responseText));
-			break;
+			break;	
 		case "deleteTalk":
+			talkService.
+			
+			
 			break;
 		case "exitTalkList":
 			WebSocketSession exitTalk = talkListMap.get(sender);

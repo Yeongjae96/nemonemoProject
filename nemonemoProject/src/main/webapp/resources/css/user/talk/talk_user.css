@@ -746,6 +746,13 @@ textarea::placeholder {
     align-items: center;
     padding: 0px 3rem 0px 1.5rem;
     position: relative;
+    cursor: pointer;
+}
+
+.modal-store-link:hover {
+	background-color: #AAAAAA;
+	color: rgb(21, 25, 28);
+	
 }
 
 .modal-store-link::after {

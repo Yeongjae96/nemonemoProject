@@ -23,9 +23,4 @@ public class UserMsgServiceImpl implements UserMsgService{
 		return userMsgMapper.updateConfirmSt(vo);
 	}
 	
-	@Override
-	public int deleteMsg(UserBaseMsgVO vo) {
-		
-		return 0;
-	}
 }
