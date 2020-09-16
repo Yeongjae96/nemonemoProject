@@ -94,8 +94,13 @@
                                                 <td>${member.userNo}</td>
                                                 <td>${member.userEmail}</td>
                                                 <td>${member.storeName}</td>
-                                                <td><jsp:include page="/WEB-INF/views/common/paging/paging.jsp"/>
-                                                	${member.storeAvgRating}</td>
+                                                <td>
+                                                	<jsp:include
+													page="/WEB-INF/views/user/products/common/rating.jsp">
+													<jsp:param value="${member.storeAvgRating}"
+														name="rating"/>
+												</jsp:include>
+												</td>
                                                 <td>${member.userPhone}</td>
                                                 <td>${member.userRegYmd}</td>
                                                 <td class ="text-center"><button type="button" class ="btn bg-indigo waves-affect mem-upd-btn"
