@@ -91,4 +91,10 @@ th{
 	font-size : 20px;
 }
 
+#qnaUserContent{
+	white-space: nowrap;
+	padding : 10px; 
+}
+
+
 

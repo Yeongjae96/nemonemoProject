@@ -149,14 +149,10 @@
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
 		
-
 	<script>
-
-	$('.backToListBtn').click(function() {
-		alert("hi");
+		$('.backToListBtn').click(function() {
 		window.location.href="../list.mdo"});
 	</script>
-
 
 </body>
 </html>

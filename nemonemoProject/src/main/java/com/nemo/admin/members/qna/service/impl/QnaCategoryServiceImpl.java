@@ -22,8 +22,6 @@ public class QnaCategoryServiceImpl implements QnaCategoryService {
 
 	@Override
 	public int insertQnaCategory(QnaCategoryVO vo) {
-// 중복확인 어케하지.. 
-//		if(qnaCategoryMapper.checkCategoryName(vo.getQnaCategoryName()) == 1)
 		return qnaCategoryMapper.insertQnaCategory(vo);
 	}
 

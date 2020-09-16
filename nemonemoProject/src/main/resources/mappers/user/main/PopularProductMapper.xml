@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.nemo.user.main.respository.IMainMapper">
+	<resultMap id="popularProductMap" type="com.nemo.user.main.vo.PopularProductVO">
+		<id column="product_no" property="productNo"/>	
+		<result column="product_seller" property="productSeller"/>
+		<result column="product_cate_no" property="productCateNo"/>
+		<result column="product_name" property="productName"/>
+		<result column="product_deal_area" property="productDealArea"/>
+		<result column="product_used_st" property="productUsedSt"/>
+		<result column="product_disp_st" property="productDispSt"/>
+		<result column="product_exch_st" property="productExchSt"/>
+		<result column="product_sold_dt" property="productSoldDt"/>
+		<result column="product_price" property="productPrice"/>
+		<result column="product_free_shipping_st" property="productFreeShippingSt"/>
+		<result column="product_info" property="productInfo"/>
+		<result column="product_tag" property="productTag"/>
+		<result column="product_qty" property="productQty"/>
+		<result column="product_reg_dt" property="productRegDt"/>
+		<result column="product_edit_dt" property="productEditDt"/>
+		<result column="product_view" property="productView"/>
+		<result column="admin_reg_id" property="adminRegId"/>
+		<result column="admin_edit_id" property="adminEditId"/>
+		<result column="product_cate_type" property="productCateType"/>
+		<result column="product_cate_large" property="productCateLarge"/>
+		<result column="product_cate_medium" property="productCateMedium"/>
+		<result column="product_cate_small" property="productCateSmall"/>
+		<result column="product_cate_order" property="productCateOrder"/>
+		<result column="product_cate_del_fl" property="productCateDelFl"/>
+		<result column="product_cate_reg_ymd" property="productCateRegYmd"/>
+		<result column="product_cate_edit_ymd" property="productCateEditYmd"/>
+	</resultMap>
+	
+	<select id="getPopularProductList" parameterType="com.nemo.user.main.vo.PopularProductVO" resultMap="popularProductMap">
+		SELECT 
+		    p.*,
+		    c.*
+		FROM
+		    product_tb p
+		    inner join product_cate_tb c
+		    on(p.product_cate_no = c.product_cate_no)
+		ORDER BY p.product_view desc
+	</select> 
+	
+</mapper>

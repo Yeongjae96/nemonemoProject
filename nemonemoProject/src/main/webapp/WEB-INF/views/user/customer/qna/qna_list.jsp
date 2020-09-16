@@ -97,7 +97,7 @@
                                     <img src="<c:url value="/resources/images/common/logo/favicon.png"/>"
                                         width="40" height="40" class="qna_logo_img">
                                     <div class="qna_font_div">
-                                        <h2 class="answer_h2">네모내모 운영센터 답변</h2>
+                                        <h2 class="answer_h2">네모내모운영센터 답변</h2>
                                         <time class="answer_time">${qna.qnaReplyYmd}</time>
                                     </div>
                                     <a class="to_anther_question" href="<c:url value="/customer/qna.do"/>">다른 문의하기</a>

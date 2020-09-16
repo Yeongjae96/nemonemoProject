@@ -32,9 +32,9 @@ public class LoginAdminServiceImpl implements LoginAdminService {
 	
 	@Override
 	public ManagementVO loginAdmin(ManagementVO vo){
-		System.out.println("serv : " + vo.toString());
+		//System.out.println("serv : " + vo.toString());
 		ManagementVO result = managementDAO.loginAdmin(vo);
-		System.out.println("serv result : " + result);
+		//System.out.println("serv result : " + result);
 		return result;
 	}
 

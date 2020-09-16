@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.nemo.admin.members.report.category.vo.ReportCategoryVO;
 import com.nemo.admin.sites.banner.repository.impl.BannerMapper;
 import com.nemo.admin.sites.banner.service.BannerService;
+import com.nemo.admin.sites.banner.vo.AdminBannerVO;
 import com.nemo.admin.sites.banner.vo.BannerVO;
 
 
@@ -59,9 +60,11 @@ public class BannerServiceImpl implements BannerService {
 	}
 
 
+
+
 	@Override
-	public int insertBanner(BannerVO vo) {
-		
+	public int insertBanner(AdminBannerVO vo) {
+		// TODO Auto-generated method stub
 		return BannerDAO.insertBanner(vo);
 	}
 	

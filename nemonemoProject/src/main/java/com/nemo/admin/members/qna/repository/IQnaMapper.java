@@ -16,6 +16,7 @@ import com.nemo.admin.members.qna.vo.AdminBaseQnaVO;
 
 public interface IQnaMapper {
 	public List<AdminBaseQnaVO> getQnaList(AdminBaseQnaVO vo);
+	public List<AdminBaseQnaVO> getRecentQnaList(AdminBaseQnaVO vo);
 	public AdminBaseQnaVO getQna(int qnaNo);
 	public int replyQna(AdminBaseQnaVO vo);
 	public List<AdminBaseQnaImageVO> selectImageList(int qnaNo) throws Exception;

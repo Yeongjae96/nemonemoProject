@@ -9,7 +9,7 @@
 		<id column="QNA_NO" property="qnaNo"/>
 		<result column="QNA_CATE_NO" property="qnaCategoryNo"/>
 		<result column="QNA_CATE_NAME" property="qnaCategoryName"/>		
-		<result column="STORE_NAME" property="qnaStoreName"/>
+		<result column="STORE_NAME" property="storeName"/>
 		<result column="QNA_REG_ID" property="qnaRegId"/>
 		<result column="QNA_REPLY_ID" property="qnaReplyId"/>
 		<result column="QNA_USER_CONTENT" property="qnaUserContent"/>
@@ -18,8 +18,6 @@
 		<result column="QNA_REPLY_YMD" property="qnaReplyYmd"/>
 		<result column="QNA_REPLY_FL" property="qnaReplyFl"/>
 	</resultMap>
-
-
 
 	
 	<select id="getQnaList" resultMap="qnaResponseMap">
@@ -35,6 +33,22 @@
 		on (qna.qna_reg_id = mem.user_no)
 		
 		order by qna_reply_fl desc
+
+	</select>
+	
+	<select id="getRecentQnaList" resultMap="qnaResponseMap">
+	
+		SELECT 
+			qna.*,
+			cate.qna_cate_name,
+			mem.store_name
+		FROM qna_tb qna
+			inner join (qna_cate_tb cate)
+		on (qna.qna_cate_no = cate.qna_cate_no)
+			inner join (user_tb mem)
+		on (qna.qna_reg_id = mem.user_no)
+		
+		 where TO_CHAR(QNA_REG_YMD) = TO_CHAR(SYSDATE, 'YY/MM/DD')
 
 	</select>
 	
@@ -64,7 +78,7 @@
 			QNA_REPLY_FL = #{qnaReplyFl}
 		WHERE
 			QNA_NO = #{qnaNo}
-			
+	
 	</update>
 	
 

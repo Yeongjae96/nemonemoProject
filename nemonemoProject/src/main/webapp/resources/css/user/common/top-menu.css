@@ -308,6 +308,7 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-family: "Noto Sans KR";
 }
 /*확인 버튼*/
 .confirm_logout {

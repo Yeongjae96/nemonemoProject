@@ -1,4 +1,5 @@
 
+
 $(function() {
 	initBanner();
 	initPdMenu();
@@ -26,6 +27,16 @@ function initBanner() {
 			nextEl: '.swiper-button-next',
 			prevEl: '.swiper-button-prev',
 		},
+		autoplay: true,
+		slidesPerView : 4, // 동시에 보여줄 슬라이드 갯수
+		spaceBetween : 30, // 슬라이드간 간격
+		slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
+//
+//		// 그룹수가 맞지 않을 경우 빈칸으로 메우기
+//		// 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
+		loopFillGroupWithBlank : true,
+
+		loop : true, // 무한 반복
 	});
 	
 	$(".items").not('.slick-initialized').slick({
@@ -34,5 +45,5 @@ function initBanner() {
 		autoplaySpeed: 3000 /* 이미지가 다른 이미지로 넘어 갈때의 텀 */,
 	});
 
-	/* 광고 배너 끝 */
+	/* 광고 배너, 메인 배너 끝 */
 }

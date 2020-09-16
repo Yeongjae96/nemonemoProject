@@ -31,11 +31,11 @@ public class CustomerQnaServiceImpl implements CustomerQnaService {
 		qnaMapperParamMap.put("startNo", startNo);
 		qnaMapperParamMap.put("endNo", endNo);
 		qnaMapperParamMap.put("userNo", vo.getQnaRegId());
+		System.out.println("서비스 : " + vo);
 	
 		List<UserBaseQnaVO> arrList = customerQnaMapper.selectQnaList(qnaMapperParamMap); 
 		
 		PageVO returnPageVO = page.getCalcPageVO(arrList.size());
-		System.out.println("왜 안대냐 : " + returnPageVO);
 		UserQnaResVO res = new UserQnaResVO();
 		res.setQnaVOList(arrList);
 		res.setPageVO(returnPageVO);
