@@ -110,7 +110,8 @@ $(function() {
 	/* 안읽음 삭제 */
 	function updateConfirmStatus() {
 		const notReadTags = document.querySelectorAll('.normal-msg-status');
-		Array.prototype.forEach.call(notReadTags, e => {
+		console.log(notReadTags);
+		Array.prototype.forEach.call(notReadTags, function(e) {
 			console.log(e);
 			e.parentNode.removeChild(e);
 		});
@@ -177,6 +178,38 @@ $(function() {
 				
 				function writeTitleArea() {
 					
+					let topMenuStatus = false;
+					
+					// 함수 선언 
+					var closeModalFn = (function() {
+						let st = false;
+						function privateOpen() { st = true; privateDisplay(st); }
+						function privateClose() { st = false; privateDisplay(st); }
+						function privateToggle() { st = !status; privateDisplay(st); }
+						function privateDisplay(status) {
+							if(st) {
+								topMenuStatus=false; topMenuModalChange(topMenuStatus);
+								closeModal.classList.add('modal-visible');
+								closeModalBg.classList.add('modal-opacity');
+							} else {
+								closeModal.classList.remove('modal-visible');
+								closeModalBg.classList.remove('modal-opacity');
+							}
+						}
+						return {
+							open : function() {
+								privateOpen();
+							},
+							close : function() {
+								privateClose();
+							},
+							toggle : function() {
+								privateToggle();
+							}
+						}
+					}());
+					
+					
 					//==============변수선언 ===================
 					//==============변수선언 ===================
 					//==============변수선언 ===================
@@ -203,6 +236,14 @@ $(function() {
 					const menuArea = document.querySelector('.talk-user-menu-area');
 					const topMenuBtn = document.querySelector('.fa-ellipsis-v');
 					
+					
+					// 닫기 모달 영역
+					const closeModal = document.querySelector('.close-modal');
+					const closeModalBg = document.querySelector('.close-modal-bg');
+					const closeModalCancel = document.querySelector('.close-modal-cancel');
+					const closeModalYes = document.querySelector('.close-modal-yes');
+					
+					
 					// 메뉴 모달 영역
 					const storeModal = document.querySelector('.modal-store-area');
 					
@@ -223,17 +264,24 @@ $(function() {
 					/* 상점 폼 닫기 */
 					modalStoreBg.addEventListener('click', toggleStoreArea);
 					
+					/* 나가기 모달 닫기 */
+					closeModalBg.addEventListener('click', closeModalFn.close);
+					closeModalCancel.addEventListener('click', closeModalFn.close);
+					closeModalYes.addEventListener('click', deleteAction);
+					
 					/* 열고 닫기 */
 					function toggleStoreArea() {
 						if(topMenuModal.style.visibility == 'visible') {
-							status = false;
-							topMenuModalChange(false);
+							topMenuStatus = false;
+							topMenuModalChange(topMenuStatus);
 						}
 						toggleClass(modalStoreArea, 'modal-visible');
 						toggleClass(modalStoreContent, 'modal-transform');
 						toggleClass(modalStoreBg, 'modal-opacity');
 						headerTitle.querySelector('svg').classList.toggle('modal-rotate-180');
 					}
+					
+					
 					
 					/* 클래스 붙여주고 떼주기 */
 					function toggleClass(element, className) {
@@ -254,9 +302,6 @@ $(function() {
 						const bigStarCnt = parseInt(rating / 2);
 						const smallStarFl = rating % 2 != 0;
 						const nothingStarCnt = 5 - bigStarCnt;
-						console.log(bigStarCnt);
-						console.log(smallStarFl);
-						console.log(nothingStarCnt);
 						for(let i = 0; i < bigStarCnt ; i++) {
 							const img = DOMUtil.cE('img', {src: contextPath + 'resources/images/common/star/star.png'});
 							frag.append(img);
@@ -303,19 +348,20 @@ $(function() {
 					// =========================== TOPMENU ===========================
 					// =========================== TOPMENU ===========================
 					
-					let status = false;
+					console.log('status outer : ' , topMenuStatus);
 					// top 메뉴 보여주는거 
 					(function () {
 						// 메뉴 클릭하면 topMenuModal 띄우기
 						menuArea.addEventListener('click', function() {
-							status = !status;
-							topMenuModalChange(status);
+							console.log('status inner : ' , topMenuStatus);
+							topMenuStatus = !topMenuStatus;
+							topMenuModalChange(topMenuStatus);
 						});
 						
 						// 메뉴 외의 topMenuModal 감추기
 						topMenuModalBg.addEventListener('click', function() {
-							status = false;	
-							topMenuModalChange(status);
+							topMenuStatus = false;	
+							topMenuModalChange(topMenuStatus);
 						});
 					}());
 					
@@ -327,24 +373,23 @@ $(function() {
 						const command = target ? target.dataset.action : '';
 						switch (command) {
 						case 'exit':
-							deleteAction();
+							closeModalFn.open();
 							break;
-						}
-						
-						function deleteAction() {
-							// 채팅방 나가기 액션
-							sendMessage({
-								request: 'deleteTalk',
-								talkNo: getData.talkNo,
-								sender: getData.currentUserNo,
-								receiver: getData.opponentUserNo,
-								regDate: new Date().getTime(),
-							});
-							// 나가기
-							self.close();
 						}
 					}
 					
+					// 채팅방 나가기 액션
+					function deleteAction() {
+						sendMessage({
+							request: 'deleteTalk',
+							talkNo: getData.talkNo,
+							sender: getData.currentUserNo,
+							receiver: getData.opponentUserNo,
+							regDate: new Date().getTime(),
+						});
+						// 나가기
+						self.close();
+					}
 					
 					/* 탑 메뉴 모달 display 바꾸기 */
 					function topMenuModalChange(status) {

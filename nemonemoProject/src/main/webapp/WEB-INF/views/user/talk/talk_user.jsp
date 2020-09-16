@@ -1,29 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>네 모든것 내 모든것, 네모내모</title>
-   <!-- 스타일 -->
-   <link rel="stylesheet" href="<c:url value="/resources/css/user/talk/talk_user.css"/>">
-   <link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>네 모든것 내 모든것, 네모내모</title>
+<!-- 스타일 -->
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/user/talk/talk_user.css"/>">
+<link rel="shortcut icon"
+	href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
-   <!-- 라이브러리 -->
-   <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
-   <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
-   <script src="<c:url value="/resources/vendor/sockjs/dist/sockjs.min.js"/>"></script>
-   <script>window.contextPath = '<c:url value="/"/>';</script>
-   <script src="<c:url value="/resources/js/common/util/date_util.js"/>"></script>
-   <script src="<c:url value="/resources/js/common/util/dom_util.js"/>"></script>
-   <!-- 스크립트 -->
-   <script src="<c:url value="/resources/js/user/talk/talk_user.js"/>"></script>
-   
+<!-- 라이브러리 -->
+<script
+	src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
+<script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
+<script
+	src="<c:url value="/resources/vendor/sockjs/dist/sockjs.min.js"/>"></script>
+<script>
+	window.contextPath = '<c:url value="/"/>';
+</script>
+<script src="<c:url value="/resources/js/common/util/date_util.js"/>"></script>
+<script src="<c:url value="/resources/js/common/util/dom_util.js"/>"></script>
+<!-- 스크립트 -->
+<script src="<c:url value="/resources/js/user/talk/talk_user.js"/>"></script>
+
 </head>
 <body>
-   <div class="talk-user-area">
+	<div class="talk-user-area">
 		<header class="talk-user-header">
 			<button class="talk-user-info-btn" id="headerTitle"></button>
 			<div class="talk-user-menu-area">
@@ -51,8 +57,8 @@
 				네모페이
 			</button>
 		</div> --%>
-		
-		
+
+
 		<!--메신저 내용 -->
 		<div class="talk-user-msg-list">
 			<%-- 
@@ -81,20 +87,21 @@
 		</div>
 		<!-- 메세지 보내기 창 -->
 		<div class="talk-user-footer">
-			<div class="footer-menu-area">
-			</div>
+			<div class="footer-menu-area"></div>
 			<div class="footer-send-area">
 				<div class="footer-menu-btn-area">
 					<button class="footer-menu-btn"></button>
 				</div>
 				<div class="footer-menu-text-area">
 					<form class="footer-menu-text-form">
-						<textarea placeholder="욕설/음란/광고/개인정보 공유를 주의바랍니다" id="msgInput" class="footer-menu-text-textarea" rows="1" style="max-height: 63px; overflow: hidden auto; overflow-wrap: break-word; height: 40px;"></textarea>
+						<textarea placeholder="욕설/음란/광고/개인정보 공유를 주의바랍니다" id="msgInput"
+							class="footer-menu-text-textarea" rows="1"
+							style="max-height: 63px; overflow: hidden auto; overflow-wrap: break-word; height: 40px;"></textarea>
 					</form>
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- 상위 메뉴 모달 -->
 		<div class="top-menu-modal">
 			<div class="modal-bg-area"></div>
@@ -106,7 +113,7 @@
 				<button class="modal-menu-btn-exit" data-action="exit">나가기</button>
 			</div>
 		</div>
-		
+
 		<div class="modal-store-area">
 			<div class="modal-store-bg"></div>
 			<div class="modal-store-content">
@@ -120,10 +127,11 @@
 								<div class="modal-star-area" id="starArea"></div>
 							</div>
 						</div>
-					</a>
-					<a class="modal-store-link" data-target="products">
+					</a> <a class="modal-store-link" data-target="products">
 						<div class="modal-store-title">판매상품</div>
-						<div class="modal-store-content-div"><b id="productCnt">0</b></div>
+						<div class="modal-store-content-div">
+							<b id="productCnt">0</b>
+						</div>
 					</a>
 					<!-- <button type="button" class="sc-fFTYTi dgGyZU">
 						<div class="sc-bTiqRo fwNFUy">판매내역</div>
@@ -146,7 +154,21 @@
 				</div>
 			</div>
 		</div>
-   </div>
-   
+
+		<!-- 삭제하시겠습니까 모달 -->
+		<div class="close-modal">
+			<div class="close-modal-area">
+				<div class="close-modal-content">
+					<div class="close-modal-text">대화방을 나가면 대화 내용이 모두 삭제됩니다.<br>대화방을 나가시겠습니까?</div>
+					<div class="close-modal-btn-area">
+						<button class="close-modal-cancel">아니오</button>
+						<button class="close-modal-yes">예</button>
+					</div>
+				</div>
+				<div class="close-modal-bg"></div>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

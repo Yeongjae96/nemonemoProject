@@ -4,7 +4,6 @@ $(function() {
 	let getData;
 	
 	initTalkList();
-	initUserMenuModal();
 	
 	const talkListArea = document.querySelector('.talk-list-area');
 	const contentList = document.querySelector('.talk-list-content');
@@ -145,18 +144,9 @@ $(function() {
 		}
 		
 	}
-	
-
-	/* 사용자 메뉴 모달 */
-	function initUserMenuModal() {
-		
-		/*talkListArea.appendChild(modal);*/
-		
-	}
 
 	/* 데이터 가져와서 뿌리기 */
 	function initTalkList() {
-		
 		
 		getTalkList().then(writeDocument)
 					.then(openSocket)
@@ -182,12 +172,12 @@ $(function() {
 			
 			/* writeHeader */
 			function writeHeader() {
-				const listTitle = document.querySelector('.list-header-title');
 				
 			}
 			
 			/* setModalEvent */
 			function setModalEvent() {
+				
 				
 			}
 		}
@@ -204,6 +194,104 @@ $(function() {
 		}
 	}
 	
+	const userModal = document.querySelector('.user-modal');
+	const userModalBg = document.querySelector('.user-menu-modal-bg');
+	const userModalList = document.querySelector('.user-menu-modal-list');
+	const userModalTitle = document.querySelector('.user-menu-modal-title');
+	
+	userModalList.addEventListener('click', userModalAction);
+	
+	/* user Modal */
+	const userModalFn = (function () {
+		let privateStatus = false;
+		function open() {
+			display(true);
+		}
+		function close() {
+			display(false);
+		}
+		
+		function display(status) {
+			privateStatus = status;
+			if(status) {
+				userModal.classList.add('modal-visible');
+				userModalBg.classList.add('modal-opacity');
+			} else {
+				userModal.classList.remove('modal-visible');
+				userModalBg.classList.remove('modal-opacity');
+			}
+		}
+		
+		return {open : function() {open();}, close : function() {close();}, isOpen : function () {return privateStatus;}}
+	}());
+	
+	/* close Modal */
+	var closeModalFn = (function(closeModal, closeModalBg) {
+		
+		const ok = document.querySelector('.close-modal-yes');
+		const cancel = document.querySelector('.close-modal-cancel');
+		let no;
+		let st = false;
+		function privateOpen() { st = true; privateDisplay(st); }
+		function privateClose() { st = false; privateDisplay(st); }
+		function privateToggle() { st = !status; privateDisplay(st); }
+		function privateDisplay(status) {
+			if(st) {
+				if(userModalFn.isOpen()) userModalFn.close();
+				closeModal.classList.add('modal-visible');
+				closeModalBg.classList.add('modal-opacity');
+			} else {
+				closeModal.classList.remove('modal-visible');
+				closeModalBg.classList.remove('modal-opacity');
+			}
+		}
+		
+		cancel.addEventListener('click', privateClose);
+		closeModalBg.addEventListener('click', privateClose);
+		
+		return {
+			open : function() {
+				privateOpen();
+			},
+			close : function() {
+				privateClose();
+			},
+			toggle : function() {
+				privateToggle();
+			},
+			callback : function(cb) {
+				ok.addEventListener('click', cb);
+			},
+			setNo : function(setNo) { no = setNo; }
+		}
+	}(document.querySelector('.close-modal'), document.querySelector('.close-modal-bg')));
+	
+	
+	
+	function userModalAction(e) {
+		const target = e.target.closest('button');
+		const command = target ? target.dataset.action : ''
+		switch (command) {
+		case 'exit':
+			closeModalFn.setNo();
+			closeModalFn.open();
+			break;
+		}
+	}
+	
+    closeModalFn.callback(e => {
+		sendMessage({
+			request: 'deleteTalk',
+			sender: getData.currentUserNo,
+			receiver: document.querySelector('.user-menu-modal-title').dataset.uid,
+			regDate: new Date().getTime(),
+			talkNo: document.querySelector('.user-menu-modal-title').dataset.tid
+		});
+		
+		closeModalFn.close();
+	});
+	
+	
 	/* writeContent */
 	function writeContent() {
 		contentList.innerHTML='';
@@ -212,6 +300,8 @@ $(function() {
 		
 		const frag = document.createDocumentFragment();
 		if(!dataArr) return false;
+		console.log(getData);
+		
 		dataArr.forEach(e => {
 			const msgVO = e.lastRecentlyMsgVO;
 			/* 리스트를 document에 그려준다.  */
@@ -255,6 +345,16 @@ $(function() {
 			menuArea.append(menuBtn);
 			menuBtn.append(iClass);
 			
+			menuBtn.addEventListener('click', ev => {
+				ev.stopPropagation();
+				const target = ev.target;
+				if(target.closest('button.talk-item-menu-btn')) {
+					userModalTitle.textContent = e.storeName;
+					userModalTitle.dataset.uid = opponentUserNo;
+					userModalTitle.dataset.tid = msgVO.talkNo;
+					userModalFn.open();
+				}
+			});
 		});
 		
 		/* 클릭시 대화방 이동 */
