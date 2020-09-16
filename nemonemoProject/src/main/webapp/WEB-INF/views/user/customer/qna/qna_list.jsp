@@ -112,8 +112,7 @@
                         <section class="question_section">
                             <div class="qna_section_align">
                                 <div class="qna_content_title">
-                                    <img
-                                src="<c:url value="/resources/images/user/qna/customer.svg"/>"
+                                    <img src="<c:url value="/resources/images/user/qna/customer.svg"/>"
                                         width="40" height="40" class="qna_logo_img">
                                     <div class="qna_font_div">
                                         <h2 class="question_h2">문의내용</h2>

@@ -29,4 +29,18 @@ public class DailyCountServiceImpl implements DailyCountService{
 		return dailyCountMapper.getDailyQnaCnt(vo);
 	}
 
+	@Override
+	public int getDailyPurchaseCnt(DailyCountVO vo) {
+		vo.setDate(today);	
+		return dailyCountMapper.getDailyPurchaseCnt(vo);
+	}
+
+	@Override
+	public int getDailyNewProductCnt(DailyCountVO vo) {
+		vo.setDate(today);	
+		return dailyCountMapper.getDailyNewProductCnt(vo);
+	}
+	
+	
+
 }

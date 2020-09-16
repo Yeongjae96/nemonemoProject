@@ -6,8 +6,7 @@
 <mapper
 	namespace="com.nemo.admin.management.repository.impl.ManagementMapper">
   
-	<resultMap id="managementMap"
-		type="com.nemo.admin.management.vo.ManagementVO">
+	<resultMap id="managementMap" type="com.nemo.admin.management.vo.ManagementVO">
 		<id column="admin_no" property="adminNo" />
 		<result column="admin_id" property="adminId" />
 		<result column="admin_pw" property="adminPw" />

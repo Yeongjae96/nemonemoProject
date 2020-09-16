@@ -27,6 +27,23 @@
 		WHERE 
 			TO_CHAR(QNA_REG_YMD) = TO_CHAR(SYSDATE, 'YY/MM/DD')
     </select>
-
+    
+    <select id="getDailyPurchaseCnt" resultType="int">
+    	SELECT 
+			COUNT(*) 
+		FROM 
+			PURCHASES_TB
+		WHERE 
+			TO_CHAR(PURCHASE_DT) = TO_CHAR(SYSDATE, 'YY/MM/DD')
+	</select>
+	
+	<select id="getDailyNewProductCnt" resultType="int">
+    	SELECT 
+			COUNT(*) 
+		FROM 
+			product_tb
+		WHERE 
+			TO_CHAR(PRODUCT_REG_DT) = TO_CHAR(SYSDATE, 'YY/MM/DD')
+	</select>
 
 </mapper>

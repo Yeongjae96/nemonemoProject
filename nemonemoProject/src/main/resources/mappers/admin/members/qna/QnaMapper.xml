@@ -47,8 +47,9 @@
 		on (qna.qna_cate_no = cate.qna_cate_no)
 			inner join (user_tb mem)
 		on (qna.qna_reg_id = mem.user_no)
-		
-		 where TO_CHAR(QNA_REG_YMD) = TO_CHAR(SYSDATE, 'YY/MM/DD')
+			where TO_CHAR(QNA_REG_YMD) = TO_CHAR(SYSDATE, 'YY/MM/DD')
+			
+		order by qna_no desc
 
 	</select>
 	
