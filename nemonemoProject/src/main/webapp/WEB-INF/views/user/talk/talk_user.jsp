@@ -158,7 +158,7 @@
 				<button class="modal-menu-btn-report">신고</button>
 				<button class="modal-menu-btn-inquery">신고조회</button>
 				<button class="modal-menu-btn-block">차단</button> -->
-				<button class="modal-menu-btn-exit">나가기</button>
+				<button class="modal-menu-btn-exit" data-action="exit">나가기</button>
 			</div>
 		</div>
 		
