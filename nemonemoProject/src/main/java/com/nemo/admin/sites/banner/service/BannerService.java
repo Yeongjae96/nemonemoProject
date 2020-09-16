@@ -29,7 +29,7 @@ public interface BannerService {
 	public BannerVO getBannerNo(int bannerNO);
 	
 	//데이터 삽입
-	public int insertBanner(AdminBannerVO vo); 
+	public int insertBanner(AdminBannerVO vo) throws Exception; 
 	
 
 

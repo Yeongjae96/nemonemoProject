@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.nemo.admin.sites.banner.repository.impl.BannerImageMapper">
-	
-	<resultMap id="bannerImgMap" type="com.nemo.admin.sites.banner.vo.BannerImageVO">
-		<id column="BANNER_IMG_NO" property="bannerImgNo"/>
-		<result column="BANNER_NO" property="bannerNo"/>
-		<result column="BANNER_IMG_ORIGIN_NAME" property="bannerImgOriginName"/>
-		<result column="BANNER_IMG_FILE_NAME" property="bannerImgFileName"/>
-		<result column="BANNER_IMG_FILE_SIZE" property="bannerImgFileSize"/>
-		<result column=" BANNER_IMG_WIDTH" property="bannerImgWidth"/>
-		<result column="BANNER_IMG_HEIGHT" property="bannerImgHeight"/>
-		<result column="BANNER_IMG_TYPE" property="bannerImgType"/>
-		<result column="BANNER_IMG_DATE" property="bannerImgDt"/>
+<mapper
+	namespace="com.nemo.admin.sites.banner.repository.impl.BannerImageMapper">
+
+	<resultMap id="bannerImgMap"
+		type="com.nemo.admin.sites.banner.vo.BannerImageVO">
+		<id column="BANNER_IMG_NO" property="bannerImgNo" />
+		<result column="BANNER_NO" property="bannerNo" />
+		<result column="BANNER_IMG_ORIGIN_NAME"
+			property="bannerImgOriginName" />
+		<result column="BANNER_IMG_FILE_NAME"
+			property="bannerImgFileName" />
+		<result column="BANNER_IMG_FILE_SIZE"
+			property="bannerImgFileSize" />
+		<result column=" BANNER_IMG_WIDTH" property="bannerImgWidth" />
+		<result column="BANNER_IMG_HEIGHT" property="bannerImgHeight" />
+		<result column="BANNER_IMG_TYPE" property="bannerImgType" />
+		<result column="BANNER_IMG_DATE" property="bannerImgDt" />
 	</resultMap>
-	
-	<insert id="insertBannerImage" 
-		parameterType="com.nemo.admin.sites.banner.vo.BannerImageVO">
-	
-	<!-- <foreach collection="list" item="i" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL"> -->
-		INSERT BANNER_IMG_TB 
-		INTO banner_img_tb (
+
+	<update id="insertImage" parameterType="java.util.List">
+
+		<foreach collection="list" item="i" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+			
+			INTO banner_img_tb (
 			banner_img_no,
 			banner_no,
 			banner_img_origin_name,
@@ -28,45 +32,41 @@
 			banner_img_width,
 			banner_img_height,
 			banner_img_type
-		) VALUES (
-			get_seq('banner_img_sq'),
-			#{bannerNo},
-			#{bannerImgOriginName},
-			#{bannerImgFileName},
-			#{bannerImgFileSize},
-			#{bannerImgWidth},
-			#{bannerImgHeight},
-			#{bannerImgType}
-		)
-		<selectKey keyColumn="bannerImgNo" order="AFTER"> SELECT banner_img_sq.currval FROM dual </selectKey>
-	</insert>
-	
-	
-	<!-- <select id="selectPresentiveImg" parameterType="list" resultMap="storeImgMap">
+			) VALUES (
+			(SELECT NVL(MAX(banner_img_no), 0) + 1 FROM banner_img_tb),
+			#{i.bannerNo},
+			#{i.bannerImgOriginName},
+			#{i.bannerImgFileName},
+			#{i.bannerImgFileSize},
+			#{i.bannerImgWidth},
+			#{i.bannerImgHeight},
+			#{i.bannerImgType}
+			)
+		</foreach>
 		
-		SELECT a.* 
-		FROM store_img_tb a
-		WHERE store_img_no IN (
-		    SELECT min(store_img_no)
-		    FROM store_img_tb
-		    <where>
-			store_no
-			<foreach collection="list" open="IN (" close= ")" item="i" separator=",">
-				#{i.storeNo}
-			</foreach>
-		</where>
-		    GROUP BY store_no
-		)
-		ORDER BY store_no
-	</select> -->
-	
-	<select id="selectBannerImage" parameterType="int" resultMap="bannerImgMap">
-		
+	</update>
+
+
+	<!-- <select id="selectPresentiveImg" parameterType="list" resultMap="storeImgMap"> 
+		SELECT a.* FROM store_img_tb a WHERE store_img_no IN ( SELECT min(store_img_no) 
+		FROM store_img_tb <where> store_no <foreach collection="list" open="IN (" 
+		close= ")" item="i" separator=","> #{i.storeNo} </foreach> </where> GROUP 
+		BY store_no ) ORDER BY store_no </select> -->
+
+
+
+	<select id="selectBannerImage" parameterType="int"
+		resultMap="bannerImgMap">
+
 		SELECT *
 		FROM banner_img_tb
-		WHERE banner_img_no = #{bannerImgNo}
-		
+		WHERE banner_img_no =
+		#{bannerImgNo}
+
 	</select>
-	
-	
+
+
+
+
+
 </mapper>

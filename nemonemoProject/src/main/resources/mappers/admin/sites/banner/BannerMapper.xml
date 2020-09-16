@@ -63,11 +63,17 @@
 	
 	<!-- 배너 인서트 -->
 	
+	
+	
 	<insert id="insertBanner"
 		parameterType="com.nemo.admin.sites.banner.vo.BannerVO">
 
+		<selectKey keyProperty="bannerNo" order="BEFORE" resultType="int">
+			SELECT BANNER_SQ.nextval FROM DUAL
+		</selectKey>
+	
 		INSERT INTO BANNER_TB
-		VALUES (BANNER_SQ.nextval,
+		VALUES (#{bannerNo},
 		#{bannerOrder}, #{bannerClient},
 		#{bannerImageUrl},#{bannerDestUrl},default,default)
 

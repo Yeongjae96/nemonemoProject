@@ -75,19 +75,20 @@ public class BannerServiceImpl implements BannerService {
 	// 배너와 이미지 insert!!
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public int insertBanner(AdminBannerVO vo) {
+	public int insertBanner(AdminBannerVO vo) throws Exception {
 
-		// 배너 등록
-		BannerDAO.insertBanner(vo);
+		System.out.println("insertBanner's VO : " + vo);
 		
-		int bannerNo = vo.getBannerNo();
-
-		// 2. QNA 이미지 등록
+		// 배너 등록
+		int bannerNo = BannerDAO.insertBanner(vo);
+		
+		System.out.println("bannerNo : " + bannerNo);
+		
+		// 2. 이미지 등록
 		int imageResult = 0;
 		List<MultipartFile> fileList = vo.getBannerImages();
 		List<BannerImageVO> voList = new ArrayList<>();
 
-		try {
 			for (MultipartFile file : fileList) {
 				BannerImageVO imageVO = new BannerImageVO();
 				String orgFileName = FileUtil.getOrgFileName(file.getOriginalFilename());
@@ -126,11 +127,10 @@ public class BannerServiceImpl implements BannerService {
 
 				file.transferTo(dirFileName);
 
-			}
 
+			System.out.println("voList : " + voList);
+			
 			imageResult = imageMapper.insertImage(voList);
-		} catch (Exception e) {
-			logger.warn("{}", e.getMessage());
 		}
 		return imageResult;
 	}
