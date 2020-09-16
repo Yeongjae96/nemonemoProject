@@ -52,6 +52,7 @@
 
 	
 	  <!-------------------------------------------SECTION--------------------------------------------------->
+	  <input type="hidden" id="workStatus" value="${work}"/>
         <section class="content">
             <div class="container-fluid">
                 <div class="card">
@@ -67,7 +68,7 @@
                             <table id="notice-table" class="table table-bordered table-striped table-hover display">
                                 <thead>
                                     <tr class="notice-tr">
-                                    	<th width="15%">공지 번호</th>
+                                    	<th width="10%">공지 번호</th>
                                         <th width="20%">공지 제목</th>
                                         <th width="10%">게시일</th>
                                         <th width="10%">수정일</th>

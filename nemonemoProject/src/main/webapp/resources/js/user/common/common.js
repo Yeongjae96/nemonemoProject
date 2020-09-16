@@ -200,8 +200,6 @@ function initJJim(){
 /* 찜 로드  */
 function loadJJim(e, n){
 	
-	
-	
 	let jjim = document.getElementsByClassName('to-favorites')[0];
 	const jjimSpan = jjim.lastElementChild;
 	
