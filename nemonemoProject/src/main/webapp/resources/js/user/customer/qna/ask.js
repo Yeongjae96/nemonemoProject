@@ -54,12 +54,10 @@ function initImageArea(){
 				$('.img-outline-box').append($div);
 				
 				// 전역변수 배열 데이터 추가
-				
 				reader.readAsDataURL(input.files[index++]);	
 			}
 			reader.readAsDataURL(input.files[index]);
 		}
-	
 	}
 	
 	/* 사진 삭제 함수 */
@@ -75,15 +73,21 @@ function deleteImage() {
 
 /* 게시물 등록 */
 function initRegBtn() {
+<<<<<<< HEAD
 	$('#qnaSubmit').click(function(){
 
 	regAction.call(this); }); // 클릭 이벤트 안에서 function을 열면 사라질 수 있으니.. this가 window로 안바뀌게 내가 가지고 있는 this를 명시해 부름
+=======
+	$('#qnaSubmit').click(function(e){
+		/*e.preventDefault();*/
+	regAction.call(this); }); 
+>>>>>>> main+purchase
 	
 	function regAction(){
-		$('#newQuestionForm').ajaxForm({ // .ajaxSubmit???? 모든 태그를 다 읽음..
+		$('#newQuestionForm').ajaxForm({ 
 			url:'newQuestionJson.do',
 			type:'post',
-			enctype: "multipart/form-data", // 필수
+			enctype: "multipart/form-data", 
 			dataType: 'json',
 			beforeSubmit : function(data, form, option){ // data는 실질적으로 보내는 데이터
 				// 동적 사진 정보 동적 할당
@@ -101,6 +105,7 @@ function initRegBtn() {
 			},
 			success: function(data){
 				//<c:url value="/customer/qna/list.do"/>
+				alert("상담 내용이 정상적으로 접수되었습니다. 답장은 영업일 기준(주말, 공휴일 제외) 1-2일 이내에 드리겠습니다.");
 				window.location.href= contextPath + "customer/qna.do";
 			},
 			error: function(error){

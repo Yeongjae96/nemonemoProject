@@ -9,8 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>네모내모</title>
-    <!-- Favicon-->
-
+<!-- Favicon-->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 
 <!-- Google Fonts -->
@@ -64,30 +63,6 @@
 	%>
 	
 	      <!-------------------------------------------SECTION--------------------------------------------------->
-        
-<!-- 컨텐츠 -->
-    <!-- 모달 시작-->
-    <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title text-center modal-col-red" id="smallModalLabel" >주의</h3>
-                </div>
-                <div class="modal-body">
-                    <h3 class="text-center">활동 중지</h3>
-                    <h5 class="text-center"> 확인 버튼을 누르시면</h5> 
-                        <h5 class="text-center">해당 고객은의 활동은 중지됩니다.</h5>
-                            <h5 class="text-center">중지 하시겠습니까?</h5>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button id ="del-confirm" type="button" class="btn btn-link waves-effect" data-dismiss="modal">삭제</button>
-                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">취소</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--모달 끝-->
 
         <section class="content">
             <div class="container-fluid">
@@ -107,7 +82,7 @@
                                                 <th>번호</th>
                                                 <th>이메일</th>
                                                 <th>상점명</th>
-                                                <th>등급</th>
+                                                <th>별점</th>
                                                 <th>연락처</th>
                                                 <th>가입일</th>
                                                 <th>처리</th>
@@ -119,14 +94,13 @@
                                                 <td>${member.userNo}</td>
                                                 <td>${member.userEmail}</td>
                                                 <td>${member.storeName}</td>
-                                                <td><c:if test="${member.userStatus eq 'N'}">활동중</c:if>
-                                                	<c:if test="${member.userStatus eq 'V'}">
-                                                	<span class="label label-warning">VIP</span></c:if>
-                                                	<c:if test="${member.userStatus eq 'P'}">
-                                                	 <span class="label label-danger">계정정지</span></c:if>
-                                                	<c:if test="${member.userStatus eq 'W'}">                                                	 
-                                                	<span class="label label-default">탈퇴</span></c:if>                                            
-                                                </td>
+                                                <td>
+                                                	<jsp:include
+													page="/WEB-INF/views/user/products/common/rating.jsp">
+													<jsp:param value="${member.storeAvgRating}"
+														name="rating"/>
+												</jsp:include>
+												</td>
                                                 <td>${member.userPhone}</td>
                                                 <td>${member.userRegYmd}</td>
                                                 <td class ="text-center"><button type="button" class ="btn bg-indigo waves-affect mem-upd-btn"
@@ -196,6 +170,7 @@
 	<!-- 개인 JS -->
 	<script
 		src="<c:url value ="/resources/js/admin/members/member/member_list.js"/>"></script>
+		
 
 
 </body>

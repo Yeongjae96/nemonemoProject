@@ -21,6 +21,7 @@
 		
 		SELECT *
 		FROM product_cate_tb
+		WHERE PRODUCT_CATE_DEL_FL = 'N'
 		ORDER BY 
 			product_cate_order desc,
 			product_cate_no desc

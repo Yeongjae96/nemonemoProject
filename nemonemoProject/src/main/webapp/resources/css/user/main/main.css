@@ -184,7 +184,7 @@
     
     .second_content{
         background-color: white;
-        height : 3000px;
+        height:3000px;
                                       
     }
 
@@ -560,6 +560,7 @@ a.top {
 /* main contents - 인기 상품 */
  .main-popular{
     height: 1000px;
+    margin-top:20px;
 }
 
 .main-popular-title{
@@ -576,7 +577,7 @@ a.top {
     text-align: left;
     height: 60px;
     margin-bottom: 10px;
-    width: 98%;
+    width: 100%;
     border: solid 1px #F9F9F9;
   }
   
@@ -774,7 +775,84 @@ a.top {
   } 
 
 
+.main-popular-div:last-child {
+    padding-bottom: 0px;
+    border-bottom: 0px;
+    margin-bottom: 0px;
+}
 
+.main-popular-div {
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgb(102, 102, 102);
+    margin-bottom: 40px;
+}
 
+.main-popular-all-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
 
-=
+.main-popular-all-title a {
+    color: rgb(204, 204, 204);
+    margin-left: 10px;
+}
+
+.main-popular-contents {
+    display: flex;
+    flex-wrap: wrap;
+}
+.main-popular-content-div {
+    width: 196px;
+    margin-right: 11px;
+    margin-bottom: 11px;
+}
+
+.main-popular-content-a {
+    border: 1px solid rgb(238, 238, 238);
+    background: rgb(255, 255, 255);
+    display: block;
+}
+.main-popular-contents-div {
+    position: relative;
+    width: 100%;
+    height: 194px;
+}
+
+.main-popular-content-disc {
+    padding: 15px 10px;
+    height: 80px;
+}
+
+.main-popular-content-disc-title {
+    position: relative;
+    font-size: 14px;
+    padding-bottom: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.main-popular-content-disc-pNt {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 20px;
+}
+.main-popular-content-disc-price {
+    font-size: 16px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.main-popular-content-disc-price::after {
+    content: "원";
+    font-size: 13px;
+    margin-left: 3px;
+}
+.main-popular-content-disc-time {
+    font-size: 12px;
+    color: rgb(136, 136, 136);
+}

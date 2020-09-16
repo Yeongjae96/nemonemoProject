@@ -64,7 +64,7 @@ font-weight: bold;
 }
 
 .buy_6 li {
-    width: calc(33.3333%);
+    width: calc(50%);
     height: 2.875rem
 }
 
@@ -87,7 +87,7 @@ font-weight: bold;
 /*판매 버튼 부분*/
 
 .buy_6 li {
-    width: calc(33.3333%);
+    width: calc(50%);
     height: 2.875rem;
 }
 
@@ -284,6 +284,34 @@ button {
 /*거래내역 x*/
 .by_1 {
     color: rgb(136, 136, 136);
-    margin: 30px 0px 100px;
+    margin: 20px 0px 100px;
     text-align: center;
+}
+
+.by_2 {
+    color: rgb(136, 136, 136);
+    margin: 20px 0px 10px;
+    text-align: left;
+}
+
+.buy_div{
+	border: solid 1px black;
+}
+
+.buy_div p{
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.buy_div button{
+	color: rgb(255, 255, 255);
+    background: rgb(247, 0, 0);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(223, 0, 0);
+    font-size: 14px;
+    width: 100px;
+    height: 30px;
+    margin-left: 10px;
 }

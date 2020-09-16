@@ -33,6 +33,7 @@ public class MemberController {
 	public ModelAndView listPage(AdminBaseMemberVO vo) {
 		ModelAndView mav = new ModelAndView("members/member/member_list");
 		List<AdminBaseMemberVO> members = memberService.getMemberList(vo);
+		System.out.println(members);
 		mav.addObject("memberList", members);
 		return mav;
 	}

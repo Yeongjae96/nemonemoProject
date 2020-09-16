@@ -34,7 +34,6 @@ import com.nemo.admin.management.vo.ManagementVO;
  * 
  */
 
-
 @Controller
 @RequestMapping("/management")
 public class ManagementController {
@@ -70,12 +69,6 @@ public class ManagementController {
 		return mav;
 	}
 	
-	/* 비밀번호 찾기 띄우기 */
-	@RequestMapping(value ="/forgotpw", method = {RequestMethod.GET})
-	public ModelAndView forgotpwPage() {
-		ModelAndView mav = new ModelAndView("management/ad_forgot_password");
-		return mav;
-	}
 	
 	/* 어드민 프로필 페이지 띄우기 */
 	@RequestMapping(value ="/profile", method = {RequestMethod.GET})
@@ -128,7 +121,7 @@ public class ManagementController {
 			if (login != null && pwdMatch == true && login.getAdminUse().equals(check)) {
 				session.setAttribute("admin", login);
 				System.out.println("세션값 : " + session.getAttribute("admin"));
-				return "redirect:/management/adminmain.mdo";
+				return "redirect:/index.mdo";
 			} else {
 				session.setAttribute("admin", null);
 				rttr.addFlashAttribute("msg", false);

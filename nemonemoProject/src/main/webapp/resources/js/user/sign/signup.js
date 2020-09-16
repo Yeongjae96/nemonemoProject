@@ -150,7 +150,7 @@ function checks(){
 	
 	// Zip코드 공백검사
 	if($("#zipcodeInput").val() == ""){
-		alert("집코드를 검색해주세요"); 
+		alert("우편번호를 검색해주세요"); 
 		$("#zipcodeInput").focus(); 
 		return false; 
 		} 
@@ -164,7 +164,7 @@ function checks(){
 	
 	// 주소2 공백 검사
 	if($("#address2Input").val() == ""){
-		alert("상세주소를을 입력해주세요"); 
+		alert("상세주소를 입력해주세요"); 
 		$("#nameInput").focus(); 
 		return false; 
 		} 
@@ -193,6 +193,7 @@ function checks(){
 	// 상점명 공백 검사
 	if($("#storeName").val() == ""){
 		alert("상점명을 입력해주세요"); 
+		$("#storeName").val(""); 
 		$("#storeName").focus(); 
 		return false; 
 		} 
@@ -200,14 +201,14 @@ function checks(){
 	//선택 약관 체크 검사
 	var check = $('input:checkbox[id="ch-third"]').is(':checked');
 	if(check == true){
-		$("#ch-third").val('Y');
+		$("#ch-thirdHidden").val('Y');
 	} 
-//	else {
-//		$("#ch-third").val('N');
-//	}
+	else {
+		$("#ch-thirdHidden").val('N');
+	}
 	console.log('check: ' + check);
 	console.log('check2: ' + $("#ch-third").val());
-	
+
 //	var storeValue = $('#storeName').val();
 ////	$('input[name=storeName]').val(storeValue);
 //	console.log('storeName : ' + storeValue);

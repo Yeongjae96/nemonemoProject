@@ -199,7 +199,7 @@
 		                        	<c:if test="${p.productEditDt != null}"><fmt:formatDate value="${p.productEditDt}" var="date" pattern="yyyy-MM-dd HH:mm"/></c:if>
 									${date}
 								</td>
-		                        <td><button type="button" class="products-manage__up-btn">UP</button>
+		                        <td><!-- <button type="button" class="products-manage__up-btn">UP</button> -->
 		                            <a class="products-manage__modify-link" href="<c:url value="/products/${p.productNo}/edit.do"/>">수정</a></td>
 		                    </tr>
 	                    </c:forEach>
@@ -218,7 +218,24 @@
         </div>
 
     </div>
+    
+    <div id="modal">
+    	<div class="st-modal-area">
+	    	<div class="st-modal-div">
+	    		<div class="st-modal-content">
+	    			<div class="st-modal-msg-area"><div class="st-modal-msg-text"><p>상태 변경되었습니다.</p></div></div>
+	    			<div class="st-modal-btn-area">
+	    				<button class="st-modal-btn">확인</button>
+	    			</div>
+	    			<div class="st-modal-bg"></div>
+	    		</div>
+	    	</div>
+    	</div>
+    </div>
+    
 	</section>
+	
+	
 	<% 
 		/* 공통 푸터 */
 	%>

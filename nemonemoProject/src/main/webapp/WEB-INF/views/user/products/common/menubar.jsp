@@ -10,7 +10,7 @@
 			<a href="<c:url value="/products/manage.do"/>" class="product-nav-link" data-set="manage">상품관리</a>
 		</div>
 		<div class="product-nav-item">
-			<a href="<c:url value="/products/new.do"/>" class="product-nav-link" data-set="buy">구매/판매
+			<a href="<c:url value="/tab/purchases.do?user=${user.userNo} "/>" class="product-nav-link" data-set="buy">구매/판매
 				내역</a>
 		</div>
 	</nav>

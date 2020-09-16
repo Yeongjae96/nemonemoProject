@@ -58,13 +58,12 @@ $(function() {
 	
 	/* 서버로 보내는것  */
 	function sendMessage(obj) {
-		if(!(obj.request && obj.sender)) return;
+		if(!(obj.request && obj.sender)) return false;
 		socket.send(JSON.stringify(obj));
 	}
 	
 	/* 대화방 입장하기  */
 	function enterTalkRoom() {
-		console.log(getData.currentUserNo, getData.opponentUserNo);
 		sendMessage({
 			request: 'enterTalkRoom',
 			sender: getData.currentUserNo,
@@ -118,11 +117,9 @@ $(function() {
 	
 	/* 상위 메뉴 이벤트 걸어 주기 */
 	function initTopMenu() {
-		
 		HTMLElement.prototype.setStyle = function(styleName, style) {
 			this.setAttribute('style', styleName + ':' + style + ';');
 		}
-		
 		// 메뉴 모달 영역
 		const topMenuModal = document.querySelector('.top-menu-modal');
 		const topMenuModalBg = document.querySelector('.modal-bg-area');
@@ -130,13 +127,46 @@ $(function() {
 		const menuArea = document.querySelector('.talk-user-menu-area');
 		const topMenuBtn = document.querySelector('.fa-ellipsis-v');
 		
-		// 메뉴 클릭하면 topMenuModal 띄우기
-		menuArea.addEventListener('click', function() {
-			topMenuModalChange(true);});
-		// 메뉴 외의 topMenuModal 감추기
-		topMenuModalBg.addEventListener('click', function() {
-			topMenuModalChange(false);
-		});
+		// 메뉴 모달 영역
+		const storeModal = document.querySelector('.modal-store-area');
+		// top 메뉴 보여주는거 
+		(function () {
+			let status = false;
+			// 메뉴 클릭하면 topMenuModal 띄우기
+			menuArea.addEventListener('click', function() {
+				status = !status;
+				topMenuModalChange(status);
+			});
+			
+			// 메뉴 외의 topMenuModal 감추기
+			topMenuModalBg.addEventListener('click', function() {
+				status = false;	
+				topMenuModalChange(status);
+			});
+		}());
+		// top 메뉴 버튼클릭 Action
+		function menuAreaAction(e) {
+			const target = e.target.closest('button');
+			const command = target ? target.dataset.action : ''
+			switch (command) {
+			case 'exit':
+				deleteAction();
+				break;
+			}
+			
+			function deleteAction() {
+				// 나가기
+				sendMessage({
+					request: 'deleteTalk',
+					talkNo: getData.talkNo,
+					sender: getData.currentUserNo,
+					receiver: getData.opponentUserNo,
+					regDate: new Date(),
+				});
+				
+				self.close();
+			}
+		}
 		
 		
 		/* 탑 메뉴 모달 display 바꾸기 */
@@ -163,7 +193,7 @@ $(function() {
 					url: targetUrl,
 					method: 'get',
 					data: parametersObj,
-					success: resolve,
+					success: d => {console.log(d); resolve(d);},
 					error: reject
 				});
 			});
@@ -208,12 +238,108 @@ $(function() {
 					// 제목 DOM 생성
 					const frag = document.createDocumentFragment();
 					const storeName = DOMUtil.cT(data.storeName); // 텍스트 노드
-					const bArrow = DOMUtil.cE('i', {'class': 'fas fa-chevron-up'});
-					
+					const bArrow = DOMUtil.cE('i', {'class': 'fas fa-chevron-down'});
+
+					// 상점 모달
+					const modalStoreArea = document.querySelector('.modal-store-area');
+					const modalStoreContent = document.querySelector('.modal-store-content');
+					const modalStoreBg = document.querySelector('.modal-store-bg');
 					frag.append(storeName, bArrow);
+					
+					const productCnt = document.getElementById('productCnt');
+					const reviewCnt = document.getElementById('reviewCnt');
+					
+					// 개수 설정
+					productCnt.textContent = getData.productCnt;
+					reviewCnt.textContent = getData.storeReviewCnt;
+					
+					console.log(top);
+					
+					// 별 갯수 
+					writeRating(document.getElementById('starArea'),getData.storeRating);
+					
+					// 링크 연결
+					modalStoreContent.addEventListener('click', storeModalAction);
 					
 					// 상품 영역
 					headerTitle.appendChild(frag);
+					headerTitle.addEventListener('click', toggleStoreArea);
+					
+					/* 상점 폼 닫기 */
+					modalStoreBg.addEventListener('click', toggleStoreArea);
+					
+					/* 열고 닫기 */
+					function toggleStoreArea() {
+						toggleClass(modalStoreArea, 'modal-visible');
+						toggleClass(modalStoreContent, 'modal-transform');
+						toggleClass(modalStoreBg, 'modal-opacity');
+						headerTitle.querySelector('svg').classList.toggle('modal-rotate-180');
+					}
+					
+					/* 클래스 붙여주고 떼주기 */
+					function toggleClass(element, className) {
+						console.log(element, className);
+						var check = new RegExp("(\\s|^)" + className + "(\\s|$)");
+						if(check.test(element.className)) {
+							element.className = element.className.replace(check, " ").trim();
+						} else {
+							element.className += " " + className;
+						}
+					}
+					
+					/* 별 그려주기 ! */
+					function writeRating(element, rating) {
+						
+						// 그려줄 starElement
+						const frag = document.createDocumentFragment();
+						
+						const bigStarCnt = parseInt(rating / 2);
+						const smallStarFl = rating % 2 != 0;
+						const nothingStarCnt = 5 - bigStarCnt;
+						console.log(bigStarCnt);
+						console.log(smallStarFl);
+						console.log(nothingStarCnt);
+						for(let i = 0; i < bigStarCnt ; i++) {
+							const img = DOMUtil.cE('img', {src: contextPath + 'resources/images/common/star/star.png'});
+							frag.append(img);
+						}
+						
+						if(smallStarFl) {
+							const img = DOMUtil.cE('img', {src: contextPath + 'resources/images/common/start/halfstart.png'});
+							frag.append(img);
+						}
+						
+						for(let i = 0; i< nothingStarCnt ; i++) {
+							const img = DOMUtil.cE('img', {src: contextPath + 'resources/images/common/star/zero.png'})
+							frag.append(img);
+						}
+						element.append(frag);
+					}
+					
+					/* 액션 분기 처리 */
+					function storeModalAction(e) {
+						const target = e.target.closest('a');
+						const next = target ? target.dataset.target.trim() : null;
+						if(!next) return false;
+						let nextUrl;
+						switch(next) {
+						case 'reviews':
+							nextUrl = contextPath + 'shop/' + getData.opponentUserNo + '/reviews.do';
+							break;
+						case 'products':
+							nextUrl = contextPath + 'shop/' + getData.opponentUserNo + '/products.do';
+							break;
+							default:
+						}
+
+						// 이동 시키는 부분
+						if(opener && opener.opener) {
+							opener.opener.window.location.href = nextUrl;
+						} else if (opener) {
+							opener.window.location.href = nextUrl;
+						}
+						
+					}
 				}
 				
 				/* 상품 내용 뿌리기 */
@@ -276,25 +402,38 @@ $(function() {
 					let inputHTML = '';
 					inputHTML += '<article class="talk-user-template-area">';
 					inputHTML += '<img src="'+ contextPath +'resources/images/common/logo/favicon.png">'
-					inputHTML += '<h2>네모톡, 간편하게 시작해요!</h2>';
+					inputHTML += '<h2>네모톡, 간편하게 시작해요!</h2>';아
 					inputHTML += '<p>판매자에게 메시지 바로 보내기</p>';
-					inputHTML += '</article>'
-					inputHTML += '<ul class="talk-user-template-list">'
-					inputHTML += '<li class="talk-user-template-item">'
-					inputHTML += '이 상품에 관심있어요!'
-					inputHTML += '<img src="'+ contextPath +'resources/images/user/talk/up-arrow.svg">'
-					inputHTML += '</li>'
-					inputHTML += '<li class="talk-user-template-item">'
-					inputHTML += '안녕하세요. 네모페이 되나요?'
-					inputHTML += '<img src="'+ contextPath +'resources/images/user/talk/up-arrow.svg">'
-					inputHTML += '</li>'
-					inputHTML += '<li class="talk-user-template-item">'
-					inputHTML += '안녕하세요. 직거래 되나요?'
-					inputHTML += '<img src="'+ contextPath +'resources/images/user/talk/up-arrow.svg">'
-					inputHTML += '</li>'
-					inputHTML += '</ul>'
+					inputHTML += '</article>';
+					inputHTML += '<ul class="talk-user-template-list">';
+					inputHTML += '<li class="talk-user-template-item">';
+					inputHTML += '이 상품에 관심있어요!';
+					inputHTML += '<img src="'+ contextPath +'resources/images/user/talk/up-arrow.svg">';
+					inputHTML += '</li>';
+					inputHTML += '<li class="talk-user-template-item">';
+					inputHTML += '안녕하세요. 네모페이 되나요?';
+					inputHTML += '<img src="'+ contextPath +'resources/images/user/talk/up-arrow.svg">';
+					inputHTML += '</li>';
+					inputHTML += '<li class="talk-user-template-item">';
+					inputHTML += '안녕하세요. 직거래 되나요?';
+					inputHTML += '<img src="'+ contextPath +'resources/images/user/talk/up-arrow.svg">';
+					inputHTML += '</li>';
+					inputHTML += '</ul>';
 						
 					msgListDiv.innerHTML = inputHTML;
+					
+					const talkUserTemplateArea = document.querySelector('.talk-user-template-list');
+					talkUserTemplateArea.addEventListener('click', templateAction);
+					console.log(talkUserTemplateArea);
+					/* 템플릿 전송  */
+					function templateAction(e) {
+						const target = e.target.closest('li');
+						if(!target) return false;
+						const sendMsg = target.textContent;
+						sendTemplate.call(this, sendMsg);
+					}
+					
+					
 				}
 				
 				/* 불러온 메시지 리스트가 있을 때 기본 폼 */
@@ -317,45 +456,8 @@ $(function() {
 			
 			/* 아래부분 이벤트 걸어주기 */
 			function writeFooter() {
-				
 				const msgInput = document.getElementById('msgInput');
-				
 				msgInput.addEventListener('keydown', send);
-				
-				/* 메시지 보내기 */
-				function send(e) {
-					if(!(e.keyCode == 13 && !e.shiftKey) || !msgInput.value.trim().length) return false;
-					e.preventDefault();
-					const userMsg = msgInput.value; // 텍스트
-					const tempObj = {
-							msgContent: userMsg,
-							talkNo: data.talkNo,
-							msgType: 'N',
-							msgReceiver: userNo,
-							msgRegDt: new Date(),
-							msgSender: currentUserNo,
-							msgConfirmSt: 'N',
-							receiverImgNo: getData.receiverImgNo
-					}
-					const msg = new SendMsg(tempObj); // 객체 만들어서
-					
-					const obj = {request: 'sendMsg',sender: currentUserNo, receiver: userNo, data: msg};
-					
-					sendMessage(obj);
-					msgInput.value = ''; // 입력칸 비워준다.
-					
-					if(isFirstMsg) {
-						const templateArea = document.querySelector('.talk-user-template-area');
-						const templateList = document.querySelector('.talk-user-template-list');
-						
-						templateArea.parentNode.removeChild(templateArea);
-						templateList.parentNode.removeChild(templateList);
-						isFirstMsg = false;
-					}
-					msgListDiv.append(writeSendMsg(tempObj));
-					msgListDiv.scrollTop = msgListDiv.scrollHeight;
-					
-				}
 			}
 		}
 		
@@ -389,7 +491,7 @@ $(function() {
 		}
 	}
 	
-	/* 내 메세지 그리기 */
+	/* 내 메세지 그리기 */	
 	function writeSendMsg(frag, e) {
 		/*
 		 * date찍는것
@@ -501,6 +603,55 @@ $(function() {
 		return this;
 	}
 
+	/* 키보드로 메시지 보내기 */
+	function send(e) {
+		if(!(e.keyCode == 13 && !e.shiftKey) || !msgInput.value.trim().length) return false;
+		e.preventDefault();
+		
+		sendAction();
+	}
+	
+	/* 템플릿으로 메시지 보내기 */
+	function sendTemplate(msgText) {
+		sendAction(msgText);
+	}
+	
+	
+	/* 실제 메세지를 보내는 함수 	*/
+	function sendAction(msgText) {
+		console.log(getData);
+		const userMsg = msgText ? msgText : msgInput.value; // 텍스트
+		const currentUserNo = getData.currentUserNo;
+		const opponentUserNo = getData.opponentUserNo;
+		const tempObj = {
+				msgContent: userMsg,
+				talkNo: getData.talkNo,
+				msgType: 'N',
+				msgReceiver: opponentUserNo,
+				msgRegDt: new Date(),
+				msgSender: currentUserNo,
+				msgConfirmSt: 'N',
+				receiverImgNo: getData.receiverImgNo
+		}
+		const msg = new SendMsg(tempObj); // 객체 만들어서
+		
+		const obj = {request: 'sendMsg',sender: currentUserNo, receiver: userNo, data: msg};
+		
+		sendMessage(obj);
+		msgInput.value = ''; // 입력칸 비워준다.
+		
+		if(isFirstMsg) {
+			const templateArea = document.querySelector('.talk-user-template-area');
+			const templateList = document.querySelector('.talk-user-template-list');
+			
+			templateArea.parentNode.removeChild(templateArea);
+			templateList.parentNode.removeChild(templateList);
+			isFirstMsg = false;
+		}
+		msgListDiv.append(writeSendMsg(tempObj));
+		msgListDiv.scrollTop = msgListDiv.scrollHeight;
+	}
+	
 });
 
 

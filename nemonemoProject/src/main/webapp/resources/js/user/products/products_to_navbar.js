@@ -25,7 +25,6 @@ function getData(){
 			initSessionStorage(data);
 		},
 		error : function(err){
-			alert("product_to_navbar.js getData()에서 error!");
 		}
 	});	
 }

@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <c:set var="rating" value="${param.rating}"/>
 <fmt:parseNumber var="light" value="${rating / 2}" integerOnly="true" />
 <fmt:parseNumber var="zero" value="${(10 - rating) / 2 }" integerOnly="true"/>

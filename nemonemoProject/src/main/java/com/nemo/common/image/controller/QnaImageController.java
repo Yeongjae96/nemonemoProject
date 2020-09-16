@@ -32,20 +32,17 @@ public class QnaImageController {
 	public @ResponseBody void qnaImg(@PathVariable int qnaImgNo) {
 		
 		UserBaseQnaImageVO vo = qnaFileService.getFile(qnaImgNo);
-		
 		String fileNm = vo.getQnaImgFileName();
 		String ext = vo.getQnaImgType();
 		
 		BufferedOutputStream out = null;
 		InputStream in = null;
-		System.out.println("파일 컨트롤러 입장");
 		HttpServletResponse res = ContextUtil.getResponse();
 		try {
 			res.setContentType("image/" + ext);
-			res.setHeader("Content-Disposition", "inline;filename=" + fileNm);
+			res.setHeader("Content-Disposition", "inline;filename=" + fileNm+"."+ext);
 			File file = FileUtil.getFile(DirectoryName.QNA, fileNm, ext);
 			if(file.exists()){
-				System.out.println("file 존재함");
 				in = new FileInputStream(file);
 				out = new BufferedOutputStream(res.getOutputStream());
 				int len;

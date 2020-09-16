@@ -25,10 +25,7 @@
 <body>
    <div class="talk-user-area">
 		<header class="talk-user-header">
-			<button class="talk-user-info-btn" id="headerTitle">
-				<!-- 발예린
-				<i class="fas fa-chevron-up"></i> -->
-			</button>
+			<button class="talk-user-info-btn" id="headerTitle"></button>
 			<div class="talk-user-menu-area">
 				<button class="talk-user-menu-more">
 					<i class="fas fa-ellipsis-v"></i>
@@ -157,11 +154,51 @@
 		<div class="top-menu-modal">
 			<div class="modal-bg-area"></div>
 			<div class="modal-menu-btn-area">
-				<button class="modal-menu-btn-alarm">알림<b>ON</b></button>
+				<!-- <button class="modal-menu-btn-alarm">알림<b>ON</b></button>
 				<button class="modal-menu-btn-report">신고</button>
 				<button class="modal-menu-btn-inquery">신고조회</button>
-				<button class="modal-menu-btn-block">차단</button>
-				<button class="modal-menu-btn-exit">나가기</button>
+				<button class="modal-menu-btn-block">차단</button> -->
+				<button class="modal-menu-btn-exit" data-action="exit">나가기</button>
+			</div>
+		</div>
+		
+		<div class="modal-store-area">
+			<div class="modal-store-bg"></div>
+			<div class="modal-store-content">
+				<div class="modal-store-body">
+					<a class="modal-store-link" data-target="reviews">
+						<div class="modal-store-title">상점후기</div>
+						<div class="modal-store-content-div">
+							<div class="modal-store-content-area">
+								<b id="reviewCnt">0</b>
+								<!-- 별이 들어갈 곳  -->
+								<div class="modal-star-area" id="starArea"></div>
+							</div>
+						</div>
+					</a>
+					<a class="modal-store-link" data-target="products">
+						<div class="modal-store-title">판매상품</div>
+						<div class="modal-store-content-div"><b id="productCnt">0</b></div>
+					</a>
+					<!-- <button type="button" class="sc-fFTYTi dgGyZU">
+						<div class="sc-bTiqRo fwNFUy">판매내역</div>
+						<div class="sc-bEufUU pgUNz"><b>0</b></div>
+					</button> -->
+					<!-- <div class="sc-dlyikq eENyIS">
+						<div class="sc-bTiqRo fwNFUy">연락시간</div>
+						<div class="sc-bEufUU pgUNz">오전 7시 ~ 오후 10시</div>
+					</div> -->
+					<!-- <button type="button" class="sc-fFTYTi dgGyZU">
+						<div class="sc-bTiqRo fwNFUy">유의사항</div>
+						<div class="sc-bEufUU pgUNz">
+							<div class="sc-gFXMyG ibZyZT">설명잘읽으시고 구매부탁드립니다</div>
+						</div>
+					</button> -->
+				</div>
+				<div class="modal-store-button-area">
+					<!-- <button class="sc-RmnOB gGKDin">사기 신고조회</button> -->
+					<a class="modal-store-button-link">상점 바로가기</a>
+				</div>
 			</div>
 		</div>
    </div>

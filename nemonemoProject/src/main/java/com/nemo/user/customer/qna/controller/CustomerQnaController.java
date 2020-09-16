@@ -1,8 +1,6 @@
 package com.nemo.user.customer.qna.controller;
 
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +71,7 @@ public class CustomerQnaController {
 		ModelAndView mav = new ModelAndView("customer/qna/qna_list");
 		UserBaseVO userInfo = (UserBaseVO)ContextUtil.getAttrFromSession("user");
 		vo.setQnaRegId(userInfo.getUserNo());
-		
+		 
 		PageVO pageVO = new PageVO();
 		pageVO.setPageNo(pageNo);
 		pageVO.setPageSize(pageSize);

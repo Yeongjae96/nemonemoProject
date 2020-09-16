@@ -112,7 +112,7 @@
 														data-imgnm = "${imgFile.qnaImgOriginName}"
 														data-imgtype="${imgFile.qnaImgType}"
 														style = "cursor : pointer;">
-														${imgFile.qnaImgFileName}.${imgFile.qnaImgType}</a> <br>
+														${imgFile.qnaImgOriginName}.${imgFile.qnaImgType}</a> <br>
 													</c:forEach>
 												</td>
 											</tr>
@@ -159,6 +159,33 @@
 	<!-- Custom Js -->
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
+		
+	<script>
+
+	var oEditors = [];
+			   nhn.husky.EZCreator.createInIFrame({
+			      oAppRef: oEditors,
+			      elPlaceHolder: "qnaAdminContent",
+			      sSkinURI : "../../resources/vendor/smarteditor/SmartEditor2Skin.html", 
+			      htParams : {
+			          bUseToolbar : true,             
+			          bUseVerticalResizer : true,     
+			          bUseModeChanger : true,         
+			          fOnBeforeUnload : function(){
+			          }
+			      }, 
+			       fOnAppLoad : function(){
+			          oEditors.getById["qnaAdminContent"].exec("PASTE_HTML", [contentData]);
+			      },
+			      fCreator: "createSEditor2" 
+				});
+			   $('#replyBtn').click(function() {
+					oEditors.getById["qnaAdminContent"].exec("UPDATE_CONTENTS_FIELD", []);	 	
+			    	termsEditForm.submit();
+			    });
+			   $('.replyCancelBtn').click(function() {window.location.href="qna/list.mdo"});
+	
+	</script>
 
 </body>
 </html>

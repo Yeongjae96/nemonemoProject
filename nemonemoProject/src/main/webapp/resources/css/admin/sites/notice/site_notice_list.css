@@ -205,3 +205,42 @@
 	margin-top: 25px;
 	min-height: 450px;
 }
+
+
+#notice_delete .modal-body {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+
+#noticeDeleteModal span {
+	color: #EE5058;
+	margin-right: 15px;
+}
+
+#notice_delete .modal-dialog {
+	display: flex;
+	flex: 1 1 0%;
+}
+
+#notice_delete .modal-content {
+	width: 100%;
+	min-width: 700px;
+	min-height: 0px;
+}
+
+#noticeDelete {
+	margin-right: 15px;
+}
+
+#notice_delete .modal-content .modal-body button {
+	width: 75px;
+	height: 50px;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+#notice_delete .modal-content .modal-body button:first-child{
+	margin-right: 15px;
+}

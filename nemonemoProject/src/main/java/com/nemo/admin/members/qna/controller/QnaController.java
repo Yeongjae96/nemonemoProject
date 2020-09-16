@@ -68,15 +68,16 @@ public class QnaController {
 		String originalFileName = vo.getQnaImgOriginName();
 		String imgType = vo.getQnaImgType();
 		
-		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[] 형식으로 변환한다.
+		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
 		byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray
 							(new File("C:\\upload\\qna\\" + originalFileName + "." + imgType));
-		
+		System.out.println("오리지널 파일 : " + originalFileName);
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);
 		response.setHeader("Content-Disposition", "attachment; fileName =\""
 							+ URLEncoder.encode(originalFileName, "UTF-8") +"." 
 							+ URLEncoder.encode(imgType, "UTF-8")   +"\";");
+		System.out.println(response.getHeader(originalFileName));
 		response.getOutputStream().write(fileByte);
 		response.getOutputStream().flush();
 		response.getOutputStream().close();

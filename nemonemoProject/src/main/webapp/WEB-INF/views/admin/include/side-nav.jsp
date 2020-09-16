@@ -8,28 +8,28 @@
         <aside id="leftsidebar" class="sidebar">
             <!-- 어드민 정보 -->
             <div class="user-info">
-                <%-- <div>
+                <div>
                 						<!-- 로고 이미지 들어갈 곳  -->
-                    <img src="<c:url value="/resources/images/common/logo/mainLogo.png"/>" alt="User" />
-                </div> --%>
+                    <img src="<c:url value="/resources/images/common/logo/favicon.png"/>" alt="User" />
+                </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<c:if test="${admin != null}">
-							<p>${admin.adminId}님 안녕하세요.</p>
+							${admin.adminId}님 안녕하세요
 						</c:if>
 						<c:if test="${admin == null}">
-							<p>로그인 해주시길 바랍니다</p>
+							로그인 해주시길 바랍니다
 						</c:if>
 					</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="<c:url value="/management/profile.mdo"/>"><i class="material-icons">person</i>직원관리</a></li>
+                            <li><a href="<c:url value="${pageContext.request.contextPath}/management/profile.mdo"/>"><i class="material-icons">person</i>직원관리</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="<c:url value="/management/signup.mdo"/>"><i class="material-icons">group</i>관리자추가</a></li>                  
+                            <li><a href="<c:url value="${pageContext.request.contextPath}/management/signup.mdo"/>"><i class="material-icons">group</i>관리자추가</a></li>                  
                             <li role="separator" class="divider"></li>
-                            <li><a href="<c:url value="/management/logout.mdo"/>"><i class="material-icons">input</i>로그아웃</a></li>
+                            <li><a href="<c:url value="${pageContext.request.contextPath}/management/logout.mdo"/>"><i class="material-icons">input</i>로그아웃</a></li>
                         </ul>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                             </li> --%>
                         </ul>
                     </li>
-                    <li>
+                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">swap_calls</i>
                             <span>상품 관리</span>
@@ -101,21 +101,22 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                   <li>
                         <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                             <i class="material-icons">attach_money</i>
                             <span>거래 관리</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<c:url value="#"/>">주문 내역 관리</a>
+                                <a href="<c:url value="/transaction/orderList.mdo"/>" class=" waves-effect waves-block">주문 내역 관리</a>
                             </li>
                             <li>
-                                <a href="<c:url value="#"/>">결제 관리</a>
+                                <a href="<c:url value="/transaction/paymentList.mdo"/>" class=" waves-effect waves-block">결제 관리</a>
+
                             </li>
                         </ul>
-                    </li>          
-                    <li>
+                    </li>      
+                   <%--  <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">trending_down</i>
                             <span>통계</span>
@@ -158,8 +159,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
-                    <li>
+                    </li> --%>
 
                 </ul> <!-- 메인 메뉴 ul 끝-->
                 

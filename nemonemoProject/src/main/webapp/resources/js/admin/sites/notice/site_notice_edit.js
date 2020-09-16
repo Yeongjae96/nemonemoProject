@@ -54,14 +54,12 @@ function sizeCheck(textId, sizeId, size) {
 function postUpdateAction() {
 	oEditors.getById["faqContent"].exec("UPDATE_CONTENTS_FIELD", []);	
 	if(checkNull('inputTitle', '제목') || checkNull('faqContent', '내용')) return false;
-	
 	const param = {
 		noticeNo: getParam('noticeNo'),
 		noticeTitle: $('#inputTitle').val(),
 		noticeContent: $('#faqContent').val(),
-		noticeFlag: $('.radio-area input[type="radio"]:checked').val()
+		noticeDelFl: $('.radio-area input[type="radio"]:checked').val()
 	};
-	
 	$.ajax({
 		url:'edit.mdo',
 		method: 'post',

@@ -57,7 +57,8 @@
 		UPDATE notice_tb 
 		SET 
 			notice_title = #{noticeTitle}, 
-			notice_content = #{noticeContent}, 
+			notice_content = #{noticeContent},
+			notice_del_fl = #{noticeDelFl},
 			notice_edit_ymd = sysdate
 		WHERE 
 			notice_no = #{noticeNo} 

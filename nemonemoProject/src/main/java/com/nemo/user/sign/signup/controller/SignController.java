@@ -44,7 +44,9 @@ public class SignController {
 		try {
 			vo.setUserPw(encoder.encode(vo.getUserPw()));
 			int x = userService.insertUser(vo);
-//			vo.setStoreName("상점 15호");
+
+			System.out.println("x : " + x);
+
 			ModelAndView mav = new ModelAndView("redirect:/");
 			return mav;
 		} catch (Exception e) {

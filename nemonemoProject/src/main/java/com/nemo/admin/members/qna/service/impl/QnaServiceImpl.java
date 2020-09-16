@@ -33,5 +33,10 @@ public class QnaServiceImpl implements QnaService{
 		return qnaMapper.selectImageList(qnaNo);
 	}
 
+	@Override
+	public List<AdminBaseQnaVO> getRecentQnaList(AdminBaseQnaVO vo) {
+		return qnaMapper.getRecentQnaList(vo);
+	}
+
 
 }
