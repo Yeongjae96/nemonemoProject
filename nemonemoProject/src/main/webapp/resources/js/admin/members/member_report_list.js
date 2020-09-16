@@ -85,7 +85,7 @@ $('#reportCategoryBtnz').click(function() {window.location.href = 'http://localh
 
 	let reportCategoryNO;
 
-	$('.banner-del-btn').click(
+	$('.Category-del-btn').click(
 			function() {
 				reportCategoryNO = $(this).data('reportcategoryno');
 				const reportCategoryName = $(this).closest('tr').children().eq(
