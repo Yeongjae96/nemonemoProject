@@ -54,7 +54,7 @@
 		QNA_REG_ID =#{userNo} 
 		</where>
 		<include refid="common.PaginationMapper.footer"/>
-		order by qna_reply_fl, qna_reply_ymd
+		order by qna_reg_ymd DESC, qna_reply_ymd ASC
 	</select>
 	
 	

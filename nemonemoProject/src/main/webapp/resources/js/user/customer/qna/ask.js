@@ -75,14 +75,13 @@ function deleteImage() {
 function initRegBtn() {
 	$('#qnaSubmit').click(function(e){
 		/*e.preventDefault();*/
-	regAction.call(this); }); // 클릭 이벤트 안에서 function을 열면 사라질 수 있으니.. this가 window로 안바뀌게 내가 가지고 있는 this를 명시해 부름
+	regAction.call(this); }); 
 	
 	function regAction(){
-		alert('실행');
-		$('#newQuestionForm').ajaxForm({ // .ajaxSubmit???? 모든 태그를 다 읽음..
+		$('#newQuestionForm').ajaxForm({ 
 			url:'newQuestionJson.do',
 			type:'post',
-			enctype: "multipart/form-data", // 필수
+			enctype: "multipart/form-data", 
 			dataType: 'json',
 			beforeSubmit : function(data, form, option){ // data는 실질적으로 보내는 데이터
 				// 동적 사진 정보 동적 할당

@@ -121,7 +121,7 @@ public class ManagementController {
 			if (login != null && pwdMatch == true && login.getAdminUse().equals(check)) {
 				session.setAttribute("admin", login);
 				System.out.println("세션값 : " + session.getAttribute("admin"));
-				return "redirect:/management/adminmain.mdo";
+				return "redirect:/index.mdo";
 			} else {
 				session.setAttribute("admin", null);
 				rttr.addFlashAttribute("msg", false);

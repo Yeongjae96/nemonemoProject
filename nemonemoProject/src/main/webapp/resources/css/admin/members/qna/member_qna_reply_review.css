@@ -82,3 +82,12 @@ th{
 #fasmargin{
 	margin-right:20px !important;
 }
+
+#qnaUserContent{
+	white-space: nowrap;
+	padding : 10px; 
+}
+#qnaAdminContent{
+	white-space: nowrap;
+	padding : 10px; 
+}

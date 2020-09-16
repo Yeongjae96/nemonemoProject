@@ -18,11 +18,10 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/admin/common/style.css"/>">
     <!--  테마 색상  -->
 	<link rel="stylesheet" href="<c:url value="/resources/vendor/common/stylesheets/theme-red.css"/>">
-	<!-- JQuery DataTable Css -->
-	<link rel="stylesheet" href="<c:url value="/resources/vendor/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"/>">
 	<!-- FontAwesome -->
-	<link rel="stylesheet" href="https:cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+	<!-- Favicon-->
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	
 </head>
 <body class="theme-red">
@@ -45,7 +44,7 @@
             <div class="container-fluid">
                 <!-- 대쉬보드 -->
                 <div class="block-header">
-                    <h2>DASHBOARD</h2>
+                    <h1>DASHBOARD</h1>
                 </div>
                 <div class="row clearfix">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -56,7 +55,7 @@
                             <div class="content">
                                 <div class="text">새로운 1:1 문의</div>
                                 <div class="number count-to" data-from="0" data-to="257" data-speed="1000"
-                                    data-fresh-interval="20"></div>
+                                    data-fresh-interval="20">${qnaCnt}</div>
                             </div>
                         </div>
                     </div>
@@ -68,7 +67,7 @@
                             <div class="content">
                                 <div class="text">새로운 회원</div>
                                 <div class="number count-to" data-from="0" data-to="1225" data-speed="1000"
-                                    data-fresh-interval="20"></div>
+                                    data-fresh-interval="20">${memberCnt}</div>
                             </div>
                         </div>
                     </div>
@@ -78,8 +77,8 @@
                                 <i class="material-icons">equalizer</i>
                             </div>
                             <div class="content">
-                                <div class="text">DAILY SALES</div>
-                                <div class="number">200,000원</div>
+                                <div class="text">새로운 판매 게시물</div>
+                                <div class="number"></div>
                             </div>
                         </div>
                     </div>
@@ -89,13 +88,49 @@
                                 <i class="material-icons">equalizer</i>
                             </div>
                             <div class="content">
-                                <div class="text">TOTAL SALES</div>
-                                <div class="number">$125 543</div>
+                                <div class="text">거래금액</div>
+                                <div class="number"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- #END# 대쉬보드 -->
+                  <!-- Basic Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                               <i class="fas fa-user-check" style ="margin-right : 10px;"></i>최근 고객 문의
+                            </h2>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>상점명</th>
+                                        <th>문의분류</th>
+                                        <th>문의날짜</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<c:forEach var="qna" items="${qnaList}">
+                                    <tr>
+                                        <th scope="row">${qna.qnaNo}</th>
+                                        <td>${qna.storeName}</td>
+                                        <td><a href="<c:url value="members/qna/reply.mdo?qnaNo=${qna.qnaNo}"/>">${qna.qnaCategoryName}</a></td>
+                                        <td>${qna.qnaRegYmd}</td>
+                                    </tr>
+                                    </c:forEach>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Basic Table -->
             </div>
         </section>
         
@@ -113,23 +148,9 @@
 	<!-- Waves Effect Plugin Js -->
 	<script src="<c:url value ="/resources/vendor/plugins/node-waves/waves.js"/>"></script>
 		
-	<!-- Jquery DataTable Plugin Js -->    	
-    	<script src="<c:url value ="/resources/vendor/plugins/jquery-datatable/jquery.dataTables.js"/>"></script>
-    	<script src="<c:url value ="/resources/vendor/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"/>"></script>
-    	<script src="<c:url value ="/resources/vendor/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"/>"></script>
-    	<script src="<c:url value ="/resources/vendor/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"/>"></script>
-    	<script src="<c:url value ="/resources/vendor/plugins/jquery-datatable/extensions/export/jszip.min.js"/>"></script>
-    	<script src="<c:url value ="/resources/vendor/plugins/jquery-datatable/extensions/export/pdfmake.min.js"/>"></script>
-    	<script src="<c:url value ="/resources/vendor/plugins/jquery-datatable/extensions/export/vfs_fonts.js"/>"></script>
-    	<script src="<c:url value ="/resources/vendor/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"/>"></script>
-    	<script src="<c:url value ="/resources/vendor/plugins/jquery-datatable/extensions/export/buttons.print.min.js"/>"></script>
-
 	<!-- Custom Js -->
 	<script src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
 	<script src="<c:url value ="/resources/vendor/puglins/jquery-datatable/jquery-datatable.js"/>"></script>
-	
-	<!-- 개인 JS -->
-	<script src="<c:url value ="/resources/js/admin/products/product_list.js"/>"></script>
 		
 
 

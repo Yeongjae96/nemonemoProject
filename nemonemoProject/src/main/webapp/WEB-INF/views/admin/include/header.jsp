@@ -9,8 +9,12 @@
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                
-                <a class="navbar-brand" href="<c:url value="/index.mdo"/>">Administration</a>
+                <div class ="logoImage">
+                	<a class="navbar-brand" href="<c:url value="/index.mdo"/>">
+                 		<img alt="mainLogo" src="<c:url value="/resources/images/common/logo/mainLogo_2.png"/>">
+                	</a>
+                </div>
+<%--                 <a class="navbar-brand" href="<c:url value="/index.mdo"/>"></a> --%>
             </div>
         </div>
     </nav>

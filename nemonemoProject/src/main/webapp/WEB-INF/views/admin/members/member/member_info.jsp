@@ -41,9 +41,10 @@
 <!-- 개인 CSS -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/admin/members/member/member_info.css"/>">
-	
+
 <!-- FontAwesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 
 
 </head>
@@ -67,7 +68,7 @@
 			<div class="block-header"></div>
 			<div class="card">
 				<div class="header">
-				
+
 					<h1>회원정보</h1>
 				</div>
 				<div class="row clearfix">
@@ -76,9 +77,12 @@
 							<form id="form_validation" method="POST">
 								<div class="table-responsive">
 									<table class="table">
-									<h2><i class="fas fa-user-circle" style ="margin-right : 10px;"></i>회원 개인정보</h2>
+										<h2>
+											<i class="fas fa-user-circle" style="margin-right: 10px;"></i>회원
+											개인정보
+										</h2>
 										<tbody>
-										
+
 											<tr>
 												<th>이름<i class="fas fa-angle-right"></i></th>
 												<td class="col-md-4">${memberVO.userName}</td>
@@ -89,76 +93,72 @@
 												<th>아이디<i class="fas fa-angle-right"></i></th>
 												<td>${memberVO.userEmail}</td>
 												<th>성별<i class="fas fa-angle-right"></i></th>
-												<td>
-												<c:if test="${memberVO.userGender eq 'F'}">여성</c:if>
-												<c:if test="${memberVO.userGender eq 'M'}">남성</c:if>
-												<c:if test="${memberVO.userGender eq 'E'}">기타</c:if>
-												</td>
-												
+												<td><c:if test="${memberVO.userGender eq 'F'}">여성</c:if>
+													<c:if test="${memberVO.userGender eq 'M'}">남성</c:if> <c:if
+														test="${memberVO.userGender eq 'E'}">기타</c:if></td>
+
 											</tr>
 											<tr>
 												<th>계좌번호<i class="fas fa-angle-right"></i></th>
 												<td>${memberVO.userAccount}</td>
 												<th>인증여부<i class="fas fa-angle-right"></i></th>
-												<td>
-													<c:if test="${memberVO.userAuthCheck eq 'N'}">아니오</c:if>
-													<c:if test="${memberVO.userGender eq 'Y'}">완료</c:if>
-												</td>
-												
+												<td><c:if test="${memberVO.userAuthCheck eq 'N'}">아니오</c:if>
+													<c:if test="${memberVO.userGender eq 'Y'}">완료</c:if></td>
+
 											</tr>
 											<tr>
 												<th>총 주문건수<i class="fas fa-angle-right"></i></th>
 												<td><label> 10 건 </label>
-													<button type="button" class="btn bg-teal waves-effect" 
-													data-toggle="modal" data-target="#registryModal">상세보기</button></td>
+													<button type="button" class="btn bg-teal waves-effect"
+														data-toggle="modal" data-target="#registryModal">상세보기</button></td>
 												<th>연락처<i class="fas fa-angle-right"></i></th>
 												<td>${memberVO.userPhone}</td>
 											</tr>
 											<tr>
 												<th>주소<i class="fas fa-angle-right"></i></th>
-												<td class="addr-box" colspan ="3">
-													<div class="upd-addr">
-														${memberVO.userAddress1} 
-														${memberVO.userAddress2}
-													</div>
+												<td class="addr-box" colspan="3">
+													<div class="upd-addr">${memberVO.userAddress1}
+														${memberVO.userAddress2}</div>
 												</td>
 											</tr>
 											<tr>
-											<th>약관 동의여부<i class="fas fa-angle-right"></i></th>
-												<td colspan ="4">
-														<label for="term-service">이용약관</label>  
+												<th>약관 동의여부<i class="fas fa-angle-right"></i></th>
+												<td colspan="4"><label for="term-service">이용약관</label>
+													<c:forEach var="vo" items="${termsVO}">
+														<c:if
+															test="${vo.termsTitle eq 'S' and vo.termsAgreeFl eq 'Y'}">
+															<i class="fas fa-check" style="color: red;"></i>
+														</c:if>
+														<c:if
+															test="${vo.termsTitle eq 'S' and vo.termsAgreeFl eq 'N'}">
+															<i class="fas fa-times" style="color: red;"></i>
+														</c:if>
+													</c:forEach> <br> <label for="location-service">위치서비스기반</label> <c:forEach
+														var="vo" items="${termsVO}">
+														<c:if
+															test="${vo.termsTitle eq 'P' and vo.termsAgreeFl eq 'Y'}">
+															<i class="fas fa-check" style="color: red;"></i>
+														</c:if>
+														<c:if
+															test="${vo.termsTitle eq 'P' and vo.termsAgreeFl eq 'N'}">
+															<i class="fas fa-times" style="color: red;"></i>
+														</c:if>
+													</c:forEach> 
+														<br> 
+														<label for="privacy-policy">개인정보보호</label> 
 														<c:forEach var="vo" items="${termsVO}">
-														<c:if test="${vo.termsTitle eq 'S' and vo.termsAgreeFl eq 'Y'}">
-														<i class="fas fa-check" style ="color : red;"></i>
+														<c:if
+															test="${vo.termsTitle eq 'L' and vo.termsAgreeFl eq 'Y'}">
+															<i class="fas fa-check" style="color: red;"></i>
 														</c:if>
-														<c:if test="${vo.termsTitle eq 'S' and vo.termsAgreeFl eq 'N'}">
-														<i class="fas fa-times" style ="color : red;"></i>
+														<c:if
+															test="${vo.termsTitle eq 'L' and vo.termsAgreeFl eq 'N'}">
+															<i class="fas fa-times" style="color: red;"></i>
 														</c:if>
-														</c:forEach>
-														<br>
-														<label for="location-service">위치서비스기반</label>
-														<c:forEach var="vo" items="${termsVO}">
-														<c:if test="${vo.termsTitle eq 'P' and vo.termsAgreeFl eq 'Y'}">
-														<i class="fas fa-check" style ="color : red;"></i>
-														</c:if>
-														<c:if test="${vo.termsTitle eq 'P' and vo.termsAgreeFl eq 'N'}">
-														<i class="fas fa-times" style ="color : red;"></i>
-														</c:if>
-														</c:forEach>
-														<br>
-														<label for="privacy-policy">개인정보보호</label>
-														<c:forEach var="vo" items="${termsVO}"> 
-														<c:if test="${vo.termsTitle eq 'L' and vo.termsAgreeFl eq 'Y'}">
-														<i class="fas fa-check" style ="color : red;"></i>
-														</c:if>
-														<c:if test="${vo.termsTitle eq 'L' and vo.termsAgreeFl eq 'N'}">
-														<i class="fas fa-times" style ="color : red;"></i>
-														</c:if>
-														</c:forEach>
-												</td>
-											</tr>				
+													</c:forEach></td>
+											</tr>
 										</tbody>
-										
+
 									</table>
 									<!-- 회원 수정 코드 -->
 									<%-- <table class="table">
@@ -195,8 +195,9 @@
 										</tbody>
 									</table> --%>
 									<div class="btn-layout">
-<!-- 										<button type="button" class="btn bg-teal btn-lg waves-effect saveBtn">저장</button> -->
-										<button type="button" class="btn bg-teal btn-lg waves-effect" id ="backBtn">확인</button>
+										<!--<button type="button" class="btn bg-teal btn-lg waves-effect saveBtn">저장</button> -->
+										<button type="button" class="btn bg-teal btn-lg waves-effect"
+											id="backBtn">확인</button>
 									</div>
 								</div>
 							</form>
@@ -213,7 +214,9 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<div class="header">
-							<h2><i class="fas fa-won-sign" style ="margin-right : 20px;"></i>거래내역</h2>
+							<h2>
+								<i class="fas fa-won-sign" style="margin-right: 20px;"></i>거래내역
+							</h2>
 						</div>
 						<div class="body table-responsive">
 							<table class="table">
@@ -241,14 +244,15 @@
 										<td></td>
 										<td></td>
 									</tr>
-							
+
 								</tbody>
 							</table>
 						</div>
 					</div>
 					<div class="modal-footer">
 						<div class="modal-flex--center">
-							<button type="button" class="btn bg-teal btn-lg waves-effect doneBtn"
+							<button type="button"
+								class="btn bg-teal btn-lg waves-effect doneBtn"
 								data-dismiss="modal">확인</button>
 						</div>
 					</div>
@@ -285,10 +289,9 @@
 		src="<c:url value ="/resources/vendor/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"/>"></script>
 
 	<!-- 개인 JS -->
-	<script
-		src="<c:url value ="/resources/js/admin/members/member/member_info.js"/>"></script>
+	<script src="<c:url value ="/resources/js/admin/members/member/member_info.js"/>"></script>
 	<script>var contextPath = "${pageContext.request.contextPath}";</script>
-	
+
 	<script>
 	$('.saveBtn').click(function() {
 	alert($('input[name=isVip]:checked').val());
@@ -296,7 +299,7 @@
 		});
 
 	</script>
-	
+
 
 </body>
 </html>

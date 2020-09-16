@@ -186,10 +186,6 @@
 				</div>
 				<br>
 
-
-
-
-
 				<!-- 추천상품 영역 끝-->
 				<!--카테고리별 인기상품 영역-->
 				<%-- <div class="main-popular">
@@ -362,7 +358,6 @@
 					</div>
 					<hr>
 					</c:forEach>
-					
 				</div>
 			</div>
 	</section>

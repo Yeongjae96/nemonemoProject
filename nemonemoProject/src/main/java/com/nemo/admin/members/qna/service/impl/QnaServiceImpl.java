@@ -19,7 +19,6 @@ public class QnaServiceImpl implements QnaService{
 	
 	@Override
 	public List<AdminBaseQnaVO> getQnaList(AdminBaseQnaVO vo) {
-		System.out.println("admin" + vo);
 		return qnaMapper.getQnaList(vo);
 	}
 
@@ -32,6 +31,11 @@ public class QnaServiceImpl implements QnaService{
 	@Override
 	public List<AdminBaseQnaImageVO> selectImageList(int qnaNo) throws Exception {
 		return qnaMapper.selectImageList(qnaNo);
+	}
+
+	@Override
+	public List<AdminBaseQnaVO> getRecentQnaList(AdminBaseQnaVO vo) {
+		return qnaMapper.getRecentQnaList(vo);
 	}
 
 
