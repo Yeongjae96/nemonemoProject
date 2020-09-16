@@ -61,12 +61,13 @@ public class BannerController {
 		
 		 /* 배너 등록 등록 */
 		   @PostMapping("/newBannerJson")
-		   public @ResponseBody int BannerAddAction(AdminBannerVO vo) {
-		      logger.info("{}", vo);
-		      return bannerService.insertBanner(vo);
+		   public @ResponseBody int BannerAddAction(AdminBannerVO vo) throws Exception{
+		      System.out.println(vo);
+			   return bannerService.insertBanner(vo);
 		   }
 	
-		
+		// 1. insertImage라는 메서드는 Mapper에 존재하지 않습니다. 그래서 에러가뜹니다. 테이블에도 들어가지않고,
+		// 해결방안) insertImage를 만들어주거나, 만드신 insertBannerImage를 사용하세요 (ServiceImpl)
 	
 
 	// D

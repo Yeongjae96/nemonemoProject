@@ -148,7 +148,6 @@ $('.banner-upd-btn').click(function() {
 $(function(){
 	initImageArea(); // 이미지 올렸을떄 화면에 미리 띄움
 	initRegBtn();	// 이미지 업로드
-	initPdMenu();	// 메인 카테고리를 띄울 수 있음
 });
 
 
@@ -223,43 +222,44 @@ function deleteImage() {
 	
 /* 게시물 등록 */
 function initRegBtn() {
-		$('#banneradd').click(function(){
-			alert("배너 등록이 완료되었습니다.");
-		regAction.call(this); }); // 클릭 이벤트 안에서 function을 열면 사라질 수 있으니.. this가
+	$('#banneradd').click(function(e){
+		/*e.preventDefault();*/
+		regAction.call(this); 
+	}); // 클릭 이벤트 안에서 function을 열면 사라질 수 있으니.. this가
 									// window로 안바뀌게 내가 가지고 있는 this를 명시해 부름
 		
-		function regAction(){
-			alert("regAction!");
-			$('#imageActionForm').ajaxForm({ // .ajaxSubmit???? 모든 태그를 다 읽음..
-				url:'newBannerJson.do',
-				type:'post',
-				enctype: "multipart/form-data", // 필수
-				dataType: 'json',
-				beforeSubmit : function(data, form, option){ // data는 실질적으로
-																// 보내는 데이터
-					// 동적 사진 정보 동적 할당
-					console.dir(fileBuffer);
-					console.log(data, form);
-					fileBuffer.forEach(function(e,i){ // 첫번째가 요소, 두번째가 인덱스
-						const obj = { // 임의 객체이름
-								name: 'bannerImages['+i+']',
-								type: 'file',
-								value: e // 요소
-						}
-						data.push(obj);
-						console.log("after data : ", data);
-					});
-				},
-				success: function(data){
-					alert("성공했다!!!!");
-					window.location.href="nemonemoProject/sites/banner/list.mdo";
-				},
-				error: function(error){
-					alert('error : 에러', error)
-				}
-			}); 
-		}
-}// 사진등록 end
+
+	function regAction(){
+		$('#imageActionForm').ajaxForm({ // .ajaxSubmit???? 모든 태그를 다 읽음..
+			url:'newBannerJson.mdo',
+			type:'post',
+			enctype: "multipart/form-data", // 필수
+			dataType: 'json',
+			beforeSubmit : function(data, form, option){ // data는 실질적으로
+															// 보내는 데이터
+				// 동적 사진 정보 동적 할당
+				console.dir(fileBuffer);
+				console.log(data, form);
+				fileBuffer.forEach(function(e,i){ // 첫번째가 요소, 두번째가 인덱스
+					const obj = { // 임의 객체이름
+							name: 'bannerImages['+i+']',
+							type: 'file',
+							value: e // 요소
+					}
+					data.push(obj);
+					console.log("after data : ", data);
+				});
+			},
+			success: function(data){
+				alert('등록에 성공하였습니다.');
+				window.location.reload(true);
+			},
+			error: function(error){
+				alert('error : 에러', error)
+			}
+		});
+	}
+}
 		
 
 

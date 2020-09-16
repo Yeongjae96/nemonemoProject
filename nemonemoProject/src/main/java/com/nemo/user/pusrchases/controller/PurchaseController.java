@@ -67,7 +67,7 @@ public class PurchaseController {
 
 		List<PurchasesVO> getlist = purchaseService.getSelectList(vo);
 		
-		if (getlist == null) {
+		if (getlist.isEmpty()) {
 			if (vo.getPurchaseWay().equals("kakao")) {
 
 				purchaseService.insertPay(vo);

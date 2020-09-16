@@ -29,6 +29,6 @@
 		FROM 
 			PURCHASES_TB 
 		ORDER BY
-			PURCHASE_NO
+			PURCHASE_DT DESC
 	</select>
 </mapper>

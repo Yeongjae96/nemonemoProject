@@ -55,8 +55,6 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/vendor/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"/>">
 
-<script src="<c:url value="/resources/vendor/jquery/jquery.form.min.js"/>"></script>
-
 </head>
 <body class="theme-red">
 
@@ -199,7 +197,7 @@
 
 		<!-- 등록 카테고리 -->
 
-		<form action="#" method="post" enctype="multipart/form-data"
+		<form method="post" enctype="multipart/form-data"
 			id="imageActionForm">
 			<div class="modal fade" id="bannerModal" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
@@ -303,6 +301,8 @@
 	<!-- Jquery Core Js -->
 	<script
 		src="<c:url value ="/resources/vendor/plugins/jquery/jquery.js"/>"></script>
+	<!-- Jquery Form Js -->
+	<script src="<c:url value="/resources/vendor/jquery/jquery.form.min.js"/>"></script>
 
 	<!-- Bootstrap Core Js -->
 	<script

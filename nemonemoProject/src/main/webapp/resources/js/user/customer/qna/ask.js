@@ -73,9 +73,11 @@ function deleteImage() {
 
 /* 게시물 등록 */
 function initRegBtn() {
+
 	$('#qnaSubmit').click(function(e){
 		/*e.preventDefault();*/
 	regAction.call(this); }); 
+
 	
 	function regAction(){
 		$('#newQuestionForm').ajaxForm({ 
@@ -98,7 +100,6 @@ function initRegBtn() {
 				});
 			},
 			success: function(data){
-				//<c:url value="/customer/qna/list.do"/>
 				alert("상담 내용이 정상적으로 접수되었습니다. 답장은 영업일 기준(주말, 공휴일 제외) 1-2일 이내에 드리겠습니다.");
 				window.location.href= contextPath + "customer/qna.do";
 			},

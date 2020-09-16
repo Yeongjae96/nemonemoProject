@@ -69,7 +69,7 @@
 		WHERE 
 			BUYER_NO = #{buyerNo}
 		ORDER BY
-			PURCHASE_NO
+			PURCHASE_DT DESC
 	</select>
 	
 	<select id="sellList" parameterType="com.nemo.user.purchases.vo.PurchasesVO" resultMap="purdhaseMap">
@@ -80,7 +80,7 @@
 		WHERE 
 			PRODUCT_SELLER = #{productSeller}
 		ORDER BY
-			PURCHASE_NO
+			PURCHASE_DT DESC
 	</select>
 	
 	<select id="getSelectList" parameterType="com.nemo.user.purchases.vo.PurchasesVO" resultMap="purdhaseMap">
