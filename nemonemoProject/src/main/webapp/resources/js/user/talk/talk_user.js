@@ -129,15 +129,22 @@ $(function() {
 		
 		// 메뉴 모달 영역
 		const storeModal = document.querySelector('.modal-store-area');
+		// top 메뉴 status
+		(function () {
+			let status = false;
+			// 메뉴 클릭하면 topMenuModal 띄우기
+			menuArea.addEventListener('click', function() {
+				status = !status;
+				topMenuModalChange(status);
+			});
+			
+			// 메뉴 외의 topMenuModal 감추기
+			topMenuModalBg.addEventListener('click', function() {
+				status = false;	
+				topMenuModalChange(status);
+			});
+		}());
 		
-		
-		// 메뉴 클릭하면 topMenuModal 띄우기
-		menuArea.addEventListener('click', function() {
-			topMenuModalChange(true);});
-		// 메뉴 외의 topMenuModal 감추기
-		topMenuModalBg.addEventListener('click', function() {
-			topMenuModalChange(false);
-		});
 		
 		/* 탑 메뉴 모달 display 바꾸기 */
 		function topMenuModalChange(status) {
