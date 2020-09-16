@@ -9,5 +9,5 @@ import com.nemo.user.talk.vo.UserBaseMsgVO;
 public interface UserMsgMapper extends IUserMsgMapper{
 	
 	public int updateConfirmSt(UserBaseMsgVO vo);
-	
+	public int deleteMsg(UserBaseMsgVO vo);
 }

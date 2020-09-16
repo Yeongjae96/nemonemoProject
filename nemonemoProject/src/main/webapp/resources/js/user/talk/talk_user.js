@@ -58,7 +58,7 @@ $(function() {
 	
 	/* 서버로 보내는것  */
 	function sendMessage(obj) {
-		if(!(obj.request && obj.sender)) return;
+		if(!(obj.request && obj.sender)) return false;
 		socket.send(JSON.stringify(obj));
 	}
 	
@@ -129,7 +129,7 @@ $(function() {
 		
 		// 메뉴 모달 영역
 		const storeModal = document.querySelector('.modal-store-area');
-		// top 메뉴 status
+		// top 메뉴 보여주는거 
 		(function () {
 			let status = false;
 			// 메뉴 클릭하면 topMenuModal 띄우기
@@ -144,6 +144,29 @@ $(function() {
 				topMenuModalChange(status);
 			});
 		}());
+		// top 메뉴 버튼클릭 Action
+		function menuAreaAction(e) {
+			const target = e.target.closest('button');
+			const command = target ? target.dataset.action : ''
+			switch (command) {
+			case 'exit':
+				deleteAction();
+				break;
+			}
+			
+			function deleteAction() {
+				// 나가기
+				sendMessage({
+					request: 'deleteTalk',
+					talkNo: getData.talkNo,
+					sender: getData.currentUserNo,
+					receiver: getData.opponentUserNo,
+					regDate: new Date(),
+				});
+				
+				self.close();
+			}
+		}
 		
 		
 		/* 탑 메뉴 모달 display 바꾸기 */

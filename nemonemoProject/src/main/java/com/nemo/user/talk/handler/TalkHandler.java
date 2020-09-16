@@ -132,6 +132,8 @@ public class TalkHandler extends TextWebSocketHandler {
 			
 			sendTalkList(sender, new TextMessage(responseText));
 			break;
+		case "deleteTalk":
+			break;
 		case "exitTalkList":
 			WebSocketSession exitTalk = talkListMap.get(sender);
 			talkListMap.remove(sender);

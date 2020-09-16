@@ -22,4 +22,10 @@ public class UserMsgServiceImpl implements UserMsgService{
 	public int confirmMsg(UserBaseMsgVO vo) {
 		return userMsgMapper.updateConfirmSt(vo);
 	}
+	
+	@Override
+	public int deleteMsg(UserBaseMsgVO vo) {
+		
+		return 0;
+	}
 }
