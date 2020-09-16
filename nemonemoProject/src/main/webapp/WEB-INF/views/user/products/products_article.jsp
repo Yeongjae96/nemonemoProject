@@ -994,7 +994,7 @@
                     <input type="hidden" value="${productVO.productName}" name="productName">
                     <input type="hidden" value="${productVO.productFreeShippingSt}" name="productFreeShippingSt">
                     <input type="hidden" value="${productVO.productPrice}" name="productPrice">
-                        <a class="buy-modal-content--item" target="_blank" onclick="javascript:document.myPurchase.submit();">
+                        <a class="buy-modal-content--item" target="_blank" onclick="javascript:document.myPurchase.submit();return false;" href="#">
                             <div class="buy-content__text">
                                 <div class="buy-content__div">
                                     <h3 class="buy-content__title">

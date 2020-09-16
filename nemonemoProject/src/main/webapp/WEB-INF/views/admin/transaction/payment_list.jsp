@@ -121,97 +121,42 @@
 									<thead>
 										<tr>
 											<th>결제 번호</th>
+											<th>상품 번호</th>
+											<th>판매 회원번호</th>
+											<th>상품명</th>
+											<th>상품가격</th>
+											<th>거래방법</th>
+											<th>인수 상태</th>
 											<th>구매자</th>
-											<th>판매자</th>
 											<th>거래 일자</th>
-											<th>결제 상태</th>
-											<th>승인 상태</th>
 											<th>송금</th>
-
 										</tr>
 									</thead>
 									<tbody>
+										<c:choose>
+											<c:when test="${empty boardList }">
+												<p>판매한 내역이 없습니다!</p>
+											</c:when>
+											<c:when test="${!empty boardList}">
+												<c:forEach var="list" items="${boardList}">
+													<c:if test="${list.purchasePaySt eq 'Y'}">
+														<tr>
+															<td><c:out value="${list.purchaseNo}" /></td>
+															<td><c:out value="${list.productNo}" /></td>
+															<td><c:out value="${list.productSeller}" /></td>
+															<td><c:out value="${list.productName}" /></td>
+															<td><c:out value="${list.purchasePrice}" /></td>
+															<td><c:out value="${list.purchaseWay}" /></td>
+															<td>물품 인수 확인</td>
+															<td><c:out value="${list.buyerName}" /></td>
+															<td><c:out value="${list.puchaseDt}" /></td>
+															<td><button type="button" class="btn bg-indigo waves-affect to_reply">송금하기</button></td>
+														</tr>
+												</c:if>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 										<tr>
-											<td>12334</td>
-											<td>상점1102호</td>
-											<td>상점55호</td>
-											<td>2020/07/21 <span class="label label-warning">New</span>
-											</td>
-											<td>미완료</td>
-											<td><span class="label label-default">미완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">송금하기</button></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>상점1102호</td>
-											<td>상점55호</td>
-											<td>2020/07/21</td>
-											<td>완료</td>
-											<td><span class="label label-primary">승인완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">송금하기</button></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>상점1102호</td>
-											<td>상점55호</td>
-											<td>2020/07/21</td>
-											<td>완료</td>
-											<td><span class="label label-primary">승인완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">송금하기</button></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>상점1102호</td>
-											<td>상점55호</td>
-											<td>2020/07/21</td>
-											<td>완료</td>
-											<td><span class="label label-primary">승인완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">송금하기</button></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>상점1102호</td>
-											<td>상점55호</td>
-											<td>2020/07/21</td>
-											<td>미완료</td>
-											<td><span class="label label-default">미완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">송금하기</button></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>상점1102호</td>
-											<td>상점55호</td>
-											<td>2020/07/21</td>
-											<td>미완료</td>
-											<td><span class="label label-default">미완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">송금하기</button></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>상점1102호</td>
-											<td>상점55호</td>
-											<td>2020/07/21</td>
-											<td>미완료</td>
-											<td><span class="label label-default">미완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">송금하기</button></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>상점1102호</td>
-											<td>상점55호</td>
-											<td>2020/07/21</td>
-											<td>미완료</td>
-											<td><span class="label label-default">미완료</span></td>
-											<td><button type="button"
-													class="btn bg-indigo waves-affect to_reply">송금하기</button></td>
-										</tr>
 									</tbody>
 								</table>
 							</div>
