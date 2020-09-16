@@ -55,6 +55,7 @@ public class QnaController {
 		List<AdminBaseQnaImageVO> imageList = qnaService.selectImageList(qnaNo);
 		ModelAndView mav = new ModelAndView("members/qna/member_qna_reply");
 		AdminBaseQnaVO qnaVO = selectQnaService.getQna(qnaNo);
+		System.out.println(qnaVO);
 		mav.addObject("qnaVO", qnaVO);
 		mav.addObject("imageList", imageList);
 		return mav;
