@@ -16,7 +16,7 @@
 <script>
 	alert('로그인 해주십시오');
 	/* window.location.href = '${pageContext.request.contextPath}'; */
-	histroy.go(-1);
+	window.histroy.go(-1);;
 </script>
 </c:if>
 <c:if test="${user != null}">
