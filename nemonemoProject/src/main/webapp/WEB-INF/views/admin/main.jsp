@@ -150,8 +150,6 @@
 		
 	<!-- Custom Js -->
 	<script src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
-	<script src="<c:url value ="/resources/vendor/puglins/jquery-datatable/jquery-datatable.js"/>"></script>
-		
 
 
 </body>

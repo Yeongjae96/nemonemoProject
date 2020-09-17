@@ -363,17 +363,14 @@ $(function() {
 						}
 					}
 					
-					
 					// =========================== TOPMENU ===========================
 					// =========================== TOPMENU ===========================
 					// =========================== TOPMENU ===========================
 					
-					console.log('status outer : ' , topMenuStatus);
 					// top 메뉴 보여주는거 
 					(function () {
 						// 메뉴 클릭하면 topMenuModal 띄우기
 						menuArea.addEventListener('click', function() {
-							console.log('status inner : ' , topMenuStatus);
 							topMenuStatus = !topMenuStatus;
 							topMenuModalChange(topMenuStatus);
 						});
