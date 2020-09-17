@@ -234,7 +234,7 @@
 											<label for="personal" class="purchases_terms_label"><i
 												id="personal" onclick="changepersonal()"></i> <u
 												class="purchases_terms_link"> <a
-													href="https://pay2.bunjang.co.kr/terms/personal?orderId=8826748">개인정보
+													href="#">개인정보
 														수집 및 이용</a></u> 동의 </label>
 										</div>
 									</li>
@@ -245,7 +245,7 @@
 											<label for="sales" class="purchases_terms_label"><i
 												id="sales" onclick="changesales()"></i> <u
 												class="purchases_terms_link"> <a
-													href="https://pay2.bunjang.co.kr/terms/sales?orderId=8826748">개인정보
+													href="#">개인정보
 														판매자 제공</a></u> 동의 </label>
 										</div>
 									</li>
@@ -257,8 +257,8 @@
 							<button class="purchases_buy" type="submit" id="buybtn" disabled></button>
 						</section>
 						<input type="hidden" value=0 id="pullPrice" name="purchasePrice">
-						<section class="purchases_footer">"번개장터_컨시어지" 상점의 판매상품을
-							제외한 모든 상품들에 대하여, 번개장터㈜는 통신판매중개자로서 중고거래마켓 번개장터의 거래 당사자가 아니며,
+						<section class="purchases_footer">"네모내모_컨시어지" 상점의 판매상품을
+							제외한 모든 상품들에 대하여, 네모내모㈜는 통신판매중개자로서 네모거래마켓 네모장터의 거래 당사자가 아니며,
 							입점판매자가 등록한 상품정보 및 거래에 대해 책임을 지지 않습니다.</section>
 					</div>
 					<div class="Overlay__OverlayDiv-zwvsg4-0 zTKwr"></div>

@@ -27,7 +27,7 @@
                         
                         <c:choose>
 							<c:when test="${empty boardList }">
-								<div class="sl_1">판매한 내역이 없습니다!</div>
+								<div class="sl_1">판매한 내역이 없습니다</div>
 							</c:when>
 							<c:when test="${!empty boardList}">
 								<div class="sl_2">

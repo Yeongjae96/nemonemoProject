@@ -82,4 +82,7 @@
 	.footer__logo a > img {
 		margin-right: 8px;
 	}
+	a:hover{
+		color : black;
+	}
     

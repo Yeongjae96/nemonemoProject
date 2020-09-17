@@ -12,8 +12,7 @@
 	name="viewport">
 <title>네모내모</title>
 <!-- Favicon-->
-
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>"> 
 
 <!-- Google Fonts -->
 <link
@@ -108,7 +107,7 @@
 											</tr>
 											<tr>
 												<th>총 주문건수<i class="fas fa-angle-right"></i></th>
-												<td><label> 10 건 </label>
+												<td><label> 0 </label>
 													<button type="button" class="btn bg-teal waves-effect"
 														data-toggle="modal" data-target="#registryModal">상세보기</button></td>
 												<th>연락처<i class="fas fa-angle-right"></i></th>
