@@ -45,7 +45,10 @@
 		WHERE msg_receiver = #{msgReceiver} AND msg_sender = #{msgSender} AND msg_confirm_st = 'N'
 		
 	</update>
+
 	
-	
+
+
+
 
 </mapper>

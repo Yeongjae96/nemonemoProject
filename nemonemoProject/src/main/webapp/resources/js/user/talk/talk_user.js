@@ -1,4 +1,7 @@
 $(function() {
+	HTMLElement.prototype.setStyle = function(styleName, style) {
+		this.setAttribute('style', styleName + ':' + style + ';');
+	}
 	
 	window.addEventListener('beforeunload', function (e) {
 		e.preventDefault();
@@ -82,8 +85,6 @@ $(function() {
 	
 	/* 대화방 퇴장하기  */
 	function exitTalkRoom() {
-		console.log(getData.currentUserNo, getData.opponentUserNo);
-
 		sendMessage({
 			request: 'exitTalkRoom',
 			sender: getData.currentUserNo,
@@ -109,7 +110,8 @@ $(function() {
 	/* 안읽음 삭제 */
 	function updateConfirmStatus() {
 		const notReadTags = document.querySelectorAll('.normal-msg-status');
-		Array.prototype.forEach.call(notReadTags, e => {
+		console.log(notReadTags);
+		Array.prototype.forEach.call(notReadTags, function(e) {
 			console.log(e);
 			e.parentNode.removeChild(e);
 		});
@@ -117,65 +119,7 @@ $(function() {
 	
 	/* 상위 메뉴 이벤트 걸어 주기 */
 	function initTopMenu() {
-		HTMLElement.prototype.setStyle = function(styleName, style) {
-			this.setAttribute('style', styleName + ':' + style + ';');
-		}
-		// 메뉴 모달 영역
-		const topMenuModal = document.querySelector('.top-menu-modal');
-		const topMenuModalBg = document.querySelector('.modal-bg-area');
-		const topMenuBtnArea = document.querySelector('.modal-menu-btn-area');
-		const menuArea = document.querySelector('.talk-user-menu-area');
-		const topMenuBtn = document.querySelector('.fa-ellipsis-v');
 		
-		// 메뉴 모달 영역
-		const storeModal = document.querySelector('.modal-store-area');
-		// top 메뉴 보여주는거 
-		(function () {
-			let status = false;
-			// 메뉴 클릭하면 topMenuModal 띄우기
-			menuArea.addEventListener('click', function() {
-				status = !status;
-				topMenuModalChange(status);
-			});
-			
-			// 메뉴 외의 topMenuModal 감추기
-			topMenuModalBg.addEventListener('click', function() {
-				status = false;	
-				topMenuModalChange(status);
-			});
-		}());
-		// top 메뉴 버튼클릭 Action
-		function menuAreaAction(e) {
-			const target = e.target.closest('button');
-			const command = target ? target.dataset.action : ''
-			switch (command) {
-			case 'exit':
-				deleteAction();
-				break;
-			}
-			
-			function deleteAction() {
-				// 나가기
-				sendMessage({
-					request: 'deleteTalk',
-					talkNo: getData.talkNo,
-					sender: getData.currentUserNo,
-					receiver: getData.opponentUserNo,
-					regDate: new Date(),
-				});
-				
-				self.close();
-			}
-		}
-		
-		
-		/* 탑 메뉴 모달 display 바꾸기 */
-		function topMenuModalChange(status) {
-			topMenuModal.setStyle('visibility', (status ? 'visible' : 'hidden'));
-			topMenuModalBg.setStyle('opacity', (status ? 1 : 0));
-			topMenuBtnArea.setStyle('transform', (status ? 'translate3d(0px, 0px, 0px)' : 'translate3d(0px, -100%, 0px)'));
-			topMenuBtn.style.color = (status ? 'rgb(21,25,29)' : '#CCCCCC');
-		}
 	}
 	
 	
@@ -233,6 +177,42 @@ $(function() {
 				if(parametersObj.productNo) writePdArea();
 				
 				function writeTitleArea() {
+					
+					let topMenuStatus = false;
+					
+					// 함수 선언 
+					var closeModalFn = (function() {
+						let st = false;
+						function privateOpen() { st = true; privateDisplay(st); }
+						function privateClose() { st = false; privateDisplay(st); }
+						function privateToggle() { st = !status; privateDisplay(st); }
+						function privateDisplay(status) {
+							if(st) {
+								topMenuStatus=false; topMenuModalChange(topMenuStatus);
+								closeModal.classList.add('modal-visible');
+								closeModalBg.classList.add('modal-opacity');
+							} else {
+								closeModal.classList.remove('modal-visible');
+								closeModalBg.classList.remove('modal-opacity');
+							}
+						}
+						return {
+							open : function() {
+								privateOpen();
+							},
+							close : function() {
+								privateClose();
+							},
+							toggle : function() {
+								privateToggle();
+							}
+						}
+					}());
+					
+					
+					//==============변수선언 ===================
+					//==============변수선언 ===================
+					//==============변수선언 ===================
 					// 제목 영역
 					const headerTitle = document.getElementById('headerTitle');
 					// 제목 DOM 생성
@@ -249,11 +229,27 @@ $(function() {
 					const productCnt = document.getElementById('productCnt');
 					const reviewCnt = document.getElementById('reviewCnt');
 					
+					// 메뉴 모달 영역
+					const topMenuModal = document.querySelector('.top-menu-modal');
+					const topMenuModalBg = document.querySelector('.modal-bg-area');
+					const topMenuBtnArea = document.querySelector('.modal-menu-btn-area');
+					const menuArea = document.querySelector('.talk-user-menu-area');
+					const topMenuBtn = document.querySelector('.fa-ellipsis-v');
+					
+					
+					// 닫기 모달 영역
+					const closeModal = document.querySelector('.close-modal');
+					const closeModalBg = document.querySelector('.close-modal-bg');
+					const closeModalCancel = document.querySelector('.close-modal-cancel');
+					const closeModalYes = document.querySelector('.close-modal-yes');
+					
+					
+					// 메뉴 모달 영역
+					const storeModal = document.querySelector('.modal-store-area');
+					
 					// 개수 설정
 					productCnt.textContent = getData.productCnt;
 					reviewCnt.textContent = getData.storeReviewCnt;
-					
-					console.log(top);
 					
 					// 별 갯수 
 					writeRating(document.getElementById('starArea'),getData.storeRating);
@@ -268,17 +264,27 @@ $(function() {
 					/* 상점 폼 닫기 */
 					modalStoreBg.addEventListener('click', toggleStoreArea);
 					
+					/* 나가기 모달 닫기 */
+					closeModalBg.addEventListener('click', closeModalFn.close);
+					closeModalCancel.addEventListener('click', closeModalFn.close);
+					closeModalYes.addEventListener('click', deleteAction);
+					
 					/* 열고 닫기 */
 					function toggleStoreArea() {
+						if(topMenuModal.style.visibility == 'visible') {
+							topMenuStatus = false;
+							topMenuModalChange(topMenuStatus);
+						}
 						toggleClass(modalStoreArea, 'modal-visible');
 						toggleClass(modalStoreContent, 'modal-transform');
 						toggleClass(modalStoreBg, 'modal-opacity');
 						headerTitle.querySelector('svg').classList.toggle('modal-rotate-180');
 					}
 					
+					
+					
 					/* 클래스 붙여주고 떼주기 */
 					function toggleClass(element, className) {
-						console.log(element, className);
 						var check = new RegExp("(\\s|^)" + className + "(\\s|$)");
 						if(check.test(element.className)) {
 							element.className = element.className.replace(check, " ").trim();
@@ -296,9 +302,6 @@ $(function() {
 						const bigStarCnt = parseInt(rating / 2);
 						const smallStarFl = rating % 2 != 0;
 						const nothingStarCnt = 5 - bigStarCnt;
-						console.log(bigStarCnt);
-						console.log(smallStarFl);
-						console.log(nothingStarCnt);
 						for(let i = 0; i < bigStarCnt ; i++) {
 							const img = DOMUtil.cE('img', {src: contextPath + 'resources/images/common/star/star.png'});
 							frag.append(img);
@@ -329,16 +332,92 @@ $(function() {
 						case 'products':
 							nextUrl = contextPath + 'shop/' + getData.opponentUserNo + '/products.do';
 							break;
+						case 'store':
+							nextUrl = contextPath + 'shop/' + getData.opponentUserNo + '/products.do';
+							break;
 							default:
 						}
 
-						// 이동 시키는 부분
+						parentMove(nextUrl);
+						
+					}
+					
+					
+					(function() {
+						const storeLink = document.querySelector('.modal-store-button-area');
+						storeLink.addEventListener('click', e=> {
+							const target = e.target.closest('.modal-store-button-link');
+							if(target) {
+								const nextUrl = contextPath + 'shop/' + getData.opponentUserNo + '/products.do';
+								parentMove(nextUrl);
+							}
+						});
+					}());
+					
+					// 최상위 부모창 이동
+					function parentMove(nextUrl) {
 						if(opener && opener.opener) {
 							opener.opener.window.location.href = nextUrl;
 						} else if (opener) {
 							opener.window.location.href = nextUrl;
 						}
+					}
+					
+					
+					// =========================== TOPMENU ===========================
+					// =========================== TOPMENU ===========================
+					// =========================== TOPMENU ===========================
+					
+					console.log('status outer : ' , topMenuStatus);
+					// top 메뉴 보여주는거 
+					(function () {
+						// 메뉴 클릭하면 topMenuModal 띄우기
+						menuArea.addEventListener('click', function() {
+							console.log('status inner : ' , topMenuStatus);
+							topMenuStatus = !topMenuStatus;
+							topMenuModalChange(topMenuStatus);
+						});
 						
+						// 메뉴 외의 topMenuModal 감추기
+						topMenuModalBg.addEventListener('click', function() {
+							topMenuStatus = false;	
+							topMenuModalChange(topMenuStatus);
+						});
+					}());
+					
+					topMenuBtnArea.addEventListener('click', menuAreaAction);
+					
+					// top 메뉴 버튼클릭 Action
+					function menuAreaAction(e) {
+						const target = e.target.closest('button');
+						const command = target ? target.dataset.action : '';
+						switch (command) {
+						case 'exit':
+							closeModalFn.open();
+							break;
+						}
+					}
+					
+					// 채팅방 나가기 액션
+					function deleteAction() {
+						sendMessage({
+							request: 'deleteTalk',
+							talkNo: getData.talkNo,
+							sender: getData.currentUserNo,
+							receiver: getData.opponentUserNo,
+							regDate: new Date().getTime(),
+						});
+						// 나가기
+						self.close();
+					}
+					
+					/* 탑 메뉴 모달 display 바꾸기 */
+					function topMenuModalChange(status) {
+						if(modalStoreArea.classList.contains('modal-visible')) toggleStoreArea();
+						topMenuModal.setStyle('visibility', (status ? 'visible' : 'hidden'));
+						topMenuModalBg.setStyle('opacity', (status ? 1 : 0));
+						topMenuBtnArea.setStyle('transform', (status ? 'translate3d(0px, 0px, 0px)' : 'translate3d(0px, -100%, 0px)'));
+						topMenuBtn.style.color = (status ? 'rgb(21,25,29)' : '#CCCCCC');
 					}
 				}
 				
@@ -402,7 +481,7 @@ $(function() {
 					let inputHTML = '';
 					inputHTML += '<article class="talk-user-template-area">';
 					inputHTML += '<img src="'+ contextPath +'resources/images/common/logo/favicon.png">'
-					inputHTML += '<h2>네모톡, 간편하게 시작해요!</h2>';아
+					inputHTML += '<h2>네모톡, 간편하게 시작해요!</h2>';
 					inputHTML += '<p>판매자에게 메시지 바로 보내기</p>';
 					inputHTML += '</article>';
 					inputHTML += '<ul class="talk-user-template-list">';

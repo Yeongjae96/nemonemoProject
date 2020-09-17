@@ -52,18 +52,28 @@
 	   		<div class="user-menu-modal">
 	   			<div class="user-menu-modal-bg"></div>
 	   			<div class="user-menu-modal-list">
-	   				<h3 class="user-menu-modal-title">
-	   					핑구191
-	   				</h3>
-	   				<button class="user-menu-modal-item">대화방 알림 끄기</button>
+	   				<h3 class="user-menu-modal-title"></h3>
+	   				<!-- <button class="user-menu-modal-item">대화방 알림 끄기</button>
 	   				<button class="user-menu-modal-item">차단	</	button>
-	   				<button class="user-menu-modal-item">신고</button>
-	   				<button class="user-menu-modal-item">나가기</button>
+	   				<button class="user-menu-modal-item">신고</button> -->
+	   				<button class="user-menu-modal-item" data-action="exit">나가기</button>
 	   			</div>
 	   		</div>
    		</div>
    		
-   		
+   		<!-- 삭제하시겠습니까 모달 -->
+		<div class="close-modal">
+			<div class="close-modal-area">
+				<div class="close-modal-content">
+					<div class="close-modal-text">대화방을 나가면 대화 내용이 모두 삭제됩니다.<br>대화방을 나가시겠습니까?</div>
+					<div class="close-modal-btn-area">
+						<button class="close-modal-cancel">아니오</button>
+						<button class="close-modal-yes">예</button>
+					</div>
+				</div>
+				<div class="close-modal-bg"></div>
+			</div>
+		</div>
    		
    </div>
    

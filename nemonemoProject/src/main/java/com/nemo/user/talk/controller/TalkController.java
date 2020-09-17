@@ -63,9 +63,6 @@ public class TalkController {
 		return userTalkService.getTalkMsgListVO(userOpponentNo);
 	}
 	
-	/* @GetMapping("/user/{userNo}/msg") */
-	
-	
 	@PostMapping("/user/{userNo}/confirm")
 	@ResponseBody
 	public int confirmMsg(UserBaseMsgVO vo) {
