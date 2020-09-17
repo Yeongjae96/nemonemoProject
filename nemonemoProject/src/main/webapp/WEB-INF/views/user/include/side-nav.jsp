@@ -9,7 +9,8 @@
                     <div class="jjim-text">찜한상품</div>
                     <div class="jjim-cnt">
                     	<input id= "userno" type = "hidden" data-userno ="${user.storeNo}">
-                        <a id ="to-favorites" class="to-favorites" href="<c:url value="/shop/${user.storeNo}/favorites.do"/>">
+                    	<!-- href="<c:url value="/shop/${user.storeNo}/favorites.do"/>" -->
+                        <a id ="to-favorites" class="to-favorites">
                             <img id ="favimg" class="favimg" src="<c:url value="/resources/images/user/common/jjimheart.png"/>"
                                 width="9" height="9" alt="찜 링크"><span>0</span>
                          </a>
@@ -27,11 +28,11 @@
                     </div>
                     <div class="rec-prd-paging">
                         <!--페이징 처리-->
-                        <button class="paging-arrow">
+                        <button id = "leftArrow" class="paging-arrow">
                             <img src="<c:url value="/resources/images/user/common/leftarrow.png"/>"
                                 width="5" height="9" alt="화살표 아이콘"></button>
                         <div class="paging-cnt"></div>
-                        <button class="paging-arrow"><img
+                        <button id = "rightArrow" class="paging-arrow"><img
                                 src="<c:url value="/resources/images/user/common/rightarrow.png"/>"
                                 width="5" height="9" alt="화살표 아이콘"></button>
                     </div>

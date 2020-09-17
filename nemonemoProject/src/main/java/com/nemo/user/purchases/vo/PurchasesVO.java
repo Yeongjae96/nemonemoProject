@@ -16,6 +16,8 @@ public class PurchasesVO {
 	private Date puchaseDt;
 	private int purchaseShFee;
 	private String purchaseWay;
+	private String purchasePaySt;
+	private int buyerNo;
 	private String buyerName;
 	private String buyerPhone;
 	private String buyerEmail;

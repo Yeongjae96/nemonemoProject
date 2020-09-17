@@ -44,9 +44,9 @@ public class SignController {
 		try {
 			vo.setUserPw(encoder.encode(vo.getUserPw()));
 			int x = userService.insertUser(vo);
+
 			System.out.println("x : " + x);
-			System.out.println("동의? : " + vo.getUserTermsAgreeFl());
-//			vo.setStoreName("상점 15호");
+
 			ModelAndView mav = new ModelAndView("redirect:/");
 			return mav;
 		} catch (Exception e) {
@@ -60,12 +60,8 @@ public class SignController {
 	@RequestMapping(value ="/signup/idUsercheck", method = {RequestMethod.POST}) 
 	public int UserIdCheck(UserBaseVO vo) {
 	
-		System.out.println("아이디 체크 컨트롤러 시작");		
 		String id = vo.getUserEmail();
-		System.out.println("어드민 아이디 " + id);
 		int idChecked = userService.idUsercheck(vo.getUserEmail());
-		System.out.println("Controller : " + idChecked); 
-	
 		return idChecked; // 이 컨트롤러의 return을 ajax data로..!!
 		
 	}
@@ -80,7 +76,6 @@ public class SignController {
 	@PostMapping("/signin")
 	public ModelAndView signinAction(UserBaseVO vo, HttpServletRequest req, RedirectAttributes rttr) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(vo.toString());
 		// 인코딩
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		// 세션
@@ -97,11 +92,8 @@ public class SignController {
 			// 암호화된 비밀번호 매칭
 			boolean pwdMatch = encoder.matches(vo.getUserPw(), user.getUserPw());
 			// 조건문
-			System.out.println(user.toString());
 			// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
-			System.out.println(user.getUserEmail());
 			if (user != null && pwdMatch == true) {
-				System.out.println(user.getUserStatus());
 				if (user.getUserStatus().equals("P") || user.getUserStatus().equals("S")) {
 					session.setAttribute("user", null);
 					rttr.addFlashAttribute("msg", "stop");

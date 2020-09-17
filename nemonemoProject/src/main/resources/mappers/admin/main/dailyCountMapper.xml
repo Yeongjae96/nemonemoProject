@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.nemo.admin.main.repository.Impl.DailyCountMapper">
+  
+
+	<!-- 당일 회원가입 수   -->
+	
+	<select id="getDailyMemberCnt" resultType="int">
+    	SELECT 
+			COUNT(*) 
+		FROM 
+			USER_TB
+		WHERE 
+			TO_CHAR(USER_REG_YMD) = TO_CHAR(SYSDATE, 'YY/MM/DD')
+    </select>
+    
+    <!-- 1:1문의 수 -->
+    
+    <select id="getDailyQnaCnt" resultType="int">
+    	SELECT 
+			COUNT(*) 
+		FROM 
+			QNA_TB
+		WHERE 
+			TO_CHAR(QNA_REG_YMD) = TO_CHAR(SYSDATE, 'YY/MM/DD')
+    </select>
+    
+    <select id="getDailyPurchaseCnt" resultType="int">
+    	SELECT 
+			COUNT(*) 
+		FROM 
+			PURCHASES_TB
+		WHERE 
+			TO_CHAR(PURCHASE_DT) = TO_CHAR(SYSDATE, 'YY/MM/DD')
+	</select>
+	
+	<select id="getDailyNewProductCnt" resultType="int">
+    	SELECT 
+			COUNT(*) 
+		FROM 
+			product_tb
+		WHERE 
+			TO_CHAR(PRODUCT_REG_DT) = TO_CHAR(SYSDATE, 'YY/MM/DD')
+	</select>
+
+</mapper>

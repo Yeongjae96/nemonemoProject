@@ -26,6 +26,7 @@
 		<result column="store_name" property="storeName" />
 		<result column="store_intro" property="storeIntro" />
 		<result column="store_rating" property="storeRating" />
+		<result column="store_avg_rating" property="storeAvgRating"/>
 	</resultMap>
 	
 	
@@ -37,17 +38,16 @@
 		<result column="terms_agree_ymd" property="termsAgreeYmd"/>
 		<result column="terms_title" property="termsTitle"/>
 	</resultMap>
+	
 
 
 	<select id="getTerms" parameterType="int" resultMap ="termscheckedMap">
 		
 		SELECT
-		 
 			hist.*,
             u.user_no,
             n.terms_no,
             n.terms_title
-
 		FROM terms_hist_tb hist
             LEFT OUTER JOIN user_tb u on hist.user_no = u.user_no
             LEFT OUTER JOIN terms_tb n on hist.terms_no = n.terms_no
@@ -59,13 +59,18 @@
 
 	<select id="getMemberList" parameterType="com.nemo.admin.members.member.vo.AdminBaseMemberVO"
 								resultMap="memberMap">
-		SELECT 
-				* 
-		FROM
-			USER_TB
-		order by user_no
+		
+		SELECT r.store_avg_rating ,u.*
+    		FROM user_tb u
+   		LEFT JOIN 
+   			(select store_no, floor(avg(store_review_rating)) 
+   		AS 
+   			store_avg_rating FROM store_review_tb GROUP BY store_no)r
+    	ON u.user_no = r.store_no
 
 	</select>
+	
+
 	
 	<select id="getMember" parameterType="int" resultMap ="memberMap">
 		SELECT 
@@ -75,9 +80,6 @@
 		WHERE 
 			user_no = #{userNo}	
 	</select>
-
-
-
 
 
 </mapper>

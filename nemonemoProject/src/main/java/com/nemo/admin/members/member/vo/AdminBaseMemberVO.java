@@ -26,6 +26,6 @@ public class AdminBaseMemberVO {
 	private String storeName;
 	private String storeIntro;
 	private int storeRating;
-	
+	private int storeAvgRating;
 	
 }

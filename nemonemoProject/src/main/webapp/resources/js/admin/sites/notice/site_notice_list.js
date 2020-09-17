@@ -1,5 +1,31 @@
 $(function () {
-    const table = $('#notice-table').DataTable({
+	
+	/* 함수 실행 */
+	(function(target) {
+		const workStatus = target.value;
+		if(workStatus) {
+			const arr = workStatus.split(':');
+			let msg;
+			switch(arr[0]) {
+			case 'edit':
+				msg = arr[1] == 'success' ? '수정에 성공하였습니다.' : '수정에 실패하셨습니다.';
+				break;
+			case 'new':
+				msg = arr[1] == 'success' ? '등록에 성공하였습니다.' : '등록에 실패하셨습니다.';
+				break;
+			case 'delete':
+				msg= arr[1] == 'success' ? '삭제에 성공하였습니다.' : '삭제에 실패하셨습니다.';
+				break;
+			}
+			alert(msg);
+		}
+	}(document.getElementById('workStatus')))
+	
+	const noticeDeleteSpan = document.getElementById('noticeDeleteModal').querySelector('span')
+    const noticeDeleteModal = document.getElementById('notice_delete');
+	
+	const table = $('#notice-table').DataTable({
+    	stateSave: true,
 	    responsive: true,
 	    "language": {
 	        "decimal":        "",
@@ -28,55 +54,67 @@ $(function () {
     $('#regBtn').click(function() {window.location.href='new.mdo'});
     
     /* 사용 미사용 누르면 바뀌는 클릭 이벤트*/
-    $('#result > tr > td > span').click(function() {
-    	$.ajax({
-    		url: 'flag.mdo',
-    		method:'post',
-    		data: {
-    			noticeNo: $(this).closest('tr').data('no'),
-    			noticeDelFl: $(this).text() == "사용" ? "Y" : "N"
+    $('#result').click(function(e) {
+    	const target = e.target;
+    	if(target.closest('span')) {
+    		$.ajax({
+        		url: 'flag.mdo',
+        		method:'post',
+        		data: {
+        			noticeNo: $(target).closest('tr').data('no'),
+        			noticeDelFl: $(target).text() == "사용" ? "Y" : "N"
+        		}
+        	}).done(function(data) {
+        		alert('사용여부를 변경합니다.');
+        		window.location.reload(true);
+        	}).fail(function(error) {
+        		alert('사용 여부 설정에 실패하였습니다.')
+        	});
+    	} else if(target.closest('.notice-upd-btn')) {
+    		updAction.call(e.target);
+    	} else if(target.closest('.notice-del-btn')) {
+    		/*delAction.call(e.target);*/
+    		const tr = target.closest('tr');
+    		const no = findTdData(tr, 0);
+    		const title = findTdData(tr, 1);
+    		
+    		noticeDeleteSpan.textContent = no + '번 ' + '(' + title +')';
+    		noticeDeleteSpan.closest('.modal').dataset.no = no;
+    		
+    		function findTdData(trElement, tdIndex) {
+    			return trElement.children[tdIndex].textContent;
     		}
-    	}).done(function(data) {
-    		alert('사용여부를 변경합니다.');
-    		window.location.reload(true);
-    	}).fail(function(error) {
-    		alert('사용 여부 설정에 실패하였습니다.')
-    	});
+    	}
     });
-    
-    
-    $('.notice-upd-btn').click(function() {
+    function updAction() {
     	const noticeNo = $(this)[0].dataset.noticeno;
     	window.location.href="edit.mdo?noticeNo="+noticeNo;
-    });
+    }
     
-    
-    
-    $('#NoticeInsert').click(function() {
-    	oEditors.getById["noticeContent"].exec("UPDATE_CONTENTS_FIELD", []);	
-    	document.noticeForm.submit();
-    });	
+    noticeDeleteModal.addEventListener('click',action);
+    function action(e) {
+    	if(e.target.closest('#noticeDeleteBtn')) {
+    		delAction(this.dataset.no);
+    	}
+    }
     
     /* 삭제 버튼 기능 */
     /* 삭제 버튼을 누르면 해당 익명 함수를 실행해라 */
-    $('.notice-del-btn').click(function() {
+    function delAction(data) {
     	// 누른 버튼의 dataset(data-*)에 속성값인 noticeno를 noticeNo 변수에 담아라.
-    	const noticeNo = $(this)[0].dataset.noticeno;
-    	console.log(noticeNo);
-    	
-    	const $frag = document.createDocumentFragment();
+    	const $frag = $(document.createDocumentFragment());
     	// 제이쿼리를 이용해서 동적 dom 생성( document.createElement('form') )
     	// attr(속성 부여) -> ('','') -> 단일속성, {} -> 다중속성 
-    	$form = $('<form></form>').attr({
+    	const $form = $('<form>').attr({
     		action: "delete.mdo",
     		method: "POST"
     	});
     	// attr(속성 부여) -> ('','') -> 단일속성, {} -> 다중속성 
     	// input의 name은 파라미터의 키값, value는 값
-    	$input = $('<input/>').attr({
+    	const $input = $('<input/>').attr({
     		type: 'hidden',
     		name: 'noticeNo',
-    		value: noticeNo,
+    		value: data,
     	});
     	
     	/* form안에 만든 input값을 넣어주겠다. */
@@ -84,10 +122,12 @@ $(function () {
     	$form.append($input);
     	$('body').append($frag);
     	$form[0].submit();
-    	$form.remove();
-    });
+    }
     
-    
+    $('#NoticeInsert').click(function() {
+    	oEditors.getById["noticeContent"].exec("UPDATE_CONTENTS_FIELD", []);	
+    	document.noticeForm.submit();
+    });	
     
 });
 

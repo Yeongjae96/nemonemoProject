@@ -16,5 +16,5 @@ import com.nemo.user.products.vo.UserNewProductsVO;
  * -------	--------	-------------	
  */
 public interface InsertProductsService {
-	public int insertProducts(UserNewProductsVO vo);
+	public int insertProducts(UserNewProductsVO vo) throws Exception;
 }

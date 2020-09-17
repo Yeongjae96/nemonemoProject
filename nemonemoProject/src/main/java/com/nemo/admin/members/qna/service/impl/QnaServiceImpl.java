@@ -32,10 +32,11 @@ public class QnaServiceImpl implements QnaService{
 	public List<AdminBaseQnaImageVO> selectImageList(int qnaNo) throws Exception {
 		return qnaMapper.selectImageList(qnaNo);
 	}
-	
-//	@Override
-//	public AdminBaseQnaVO getQna(int qnaNo) {
-//		return qnaMapper.getQna(qnaNo);
-//	}
+
+	@Override
+	public List<AdminBaseQnaVO> getRecentQnaList(AdminBaseQnaVO vo) {
+		return qnaMapper.getRecentQnaList(vo);
+	}
+
 
 }

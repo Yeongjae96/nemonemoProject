@@ -2,6 +2,7 @@ package com.nemo.admin.sites.banner.service;
 
 import java.util.List;
 
+import com.nemo.admin.sites.banner.vo.AdminBannerVO;
 import com.nemo.admin.sites.banner.vo.BannerVO;
 
 /**
@@ -28,8 +29,8 @@ public interface BannerService {
 	public BannerVO getBannerNo(int bannerNO);
 	
 	//데이터 삽입
-	public int insertBanner(BannerVO vo);
+	public int insertBanner(AdminBannerVO vo) throws Exception; 
 	
-	
+
 
 }

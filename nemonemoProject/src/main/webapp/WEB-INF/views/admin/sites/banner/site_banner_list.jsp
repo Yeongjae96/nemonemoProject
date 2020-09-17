@@ -55,7 +55,6 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/vendor/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"/>">
 
-
 </head>
 <body class="theme-red">
 
@@ -198,7 +197,8 @@
 
 		<!-- 등록 카테고리 -->
 
-		<form action="add.mdo" method="post">
+		<form method="post" enctype="multipart/form-data"
+			id="imageActionForm">
 			<div class="modal fade" id="bannerModal" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
@@ -212,15 +212,10 @@
 
 
 								<div id="con">
-
-
-
-
 									<div class="modal-flex--body" id="hiden1">
 										<p>
 											<strong>배너 순서 등록</strong>
 										</p>
-
 										<div class="form-group form-group-lg">
 											<div class="form-line">
 												<input type="text" name="bannerOrder" class="form-control"
@@ -229,7 +224,6 @@
 										</div>
 
 									</div>
-
 									<div class="modal-flex--body" id="hiden2">
 										<p>
 											<strong>배너 의뢰주 등록</strong>
@@ -241,9 +235,7 @@
 													placeholder="의뢰주(기업)을 입력해주세요" />
 											</div>
 										</div>
-
 									</div>
-
 									<div class="modal-flex--body" id="hiden3">
 										<p>
 											<strong>배너 URL 등록</strong>
@@ -255,48 +247,35 @@
 													class="form-control" placeholder="배너 URL을 등록해 주세요" />
 											</div>
 										</div>
-
 									</div>
-
-
 									<div class="modal-flex--body" id="hiden4">
 										<p>
 											<strong>배너 링크 등록</strong>
 										</p>
-
 										<div class="form-group form-group-lg">
 											<div class="form-line">
 												<input type="text" name="bannerDestUrl" class="form-control"
 													placeholder="배너 URL을 등록해 주세요" />
 											</div>
 										</div>
-
-									</div>
-
-
-
-									<div class="modal-flex--body" id="hiden5">
-										<p>
-											<strong>배너 이미지 등록</strong>
-										</p>
-
-										<div class="form-group form-group-lg">
-											<div class="form-line">
-												<input type="file" name="bannerOrder" class="form-control">
-											</div>
-										</div>
-
-									</div>
-
+									</div> 
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
 							<div class="modal-flex--center">
+							<div class="img-outline-box">	
+							<!-- 사진첨부 -->								 
+							</div>
+							<div class="banner-btn-group">
+								<input type="file" multiple="multiple" id ="inputFile" class="banner-add-file"> 
 								<input type="submit" class="btn btn-link waves-effect bg-blue"
-									id="categoryModalRegistryBtn" value="등록" />
-								<button type="button" class="btn btn-link waves-effect bg-red"
-									data-dismiss="modal">취소</button>
+									id="banneradd" value="등록" />
+									<button type="button" class="btn btn-link waves-effect bg-red"
+									data-dismiss="modal">취소</button>						
+							</div>
+							
+								
 							</div>
 						</div>
 
@@ -322,6 +301,8 @@
 	<!-- Jquery Core Js -->
 	<script
 		src="<c:url value ="/resources/vendor/plugins/jquery/jquery.js"/>"></script>
+	<!-- Jquery Form Js -->
+	<script src="<c:url value="/resources/vendor/jquery/jquery.form.min.js"/>"></script>
 
 	<!-- Bootstrap Core Js -->
 	<script

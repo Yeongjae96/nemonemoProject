@@ -3,7 +3,113 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.nemo.user.pusrchases.repository.impl.PurchaseMapper">
-
 	
+	<resultMap type="com.nemo.user.purchases.vo.PurchasesVO" id="purdhaseMap">
+      <id column="PURCHASE_NO" property="purchaseNo"/>
+      <result column="ORDER_NO" property="orderNo" />
+      <result column="PRODUCT_NO" property="productNo" />
+      <result column="PRODUCT_SELLER" property="productSeller" />
+      <result column="PRODUCT_NAME" property="productName" />
+      <result column="PURCHASE_PRICE" property="purchasePrice" />
+      <result column="PURCHASE_DT" property="puchaseDt"/>
+      <result column="PURCHASE_SH_FEE" property="purchaseShFee" />
+      <result column="PURCHASE_WAY" property="purchaseWay" />
+      <result column="PURCHASE_PAY_ST" property="purchasePaySt" />
+      <result column="BUYER_NO" property="buyerNo" />
+      <result column="BUYER_NAME" property="buyerName" />
+      <result column="BUYER_PHONE" property="buyerPhone" />
+      <result column="BUYER_EMAIL" property="buyerEmail" />
+      <result column="BUYER_ZIPCODE" property="buyerZipcode" />
+      <result column="BUYER_ADDRESS" property="buyerAddress" />
+   </resultMap>
+	
+	<insert id="insertPay" parameterType="com.nemo.user.purchases.vo.PurchasesVO">
+		INSERT INTO
+			PURCHASES_TB
+				(
+					PURCHASE_NO,
+					ORDER_NO,
+					PRODUCT_NO,
+					PRODUCT_SELLER,
+					PRODUCT_NAME,
+					PURCHASE_PRICE,
+					PURCHASE_SH_FEE,
+					PURCHASE_WAY,
+					BUYER_NO,
+					BUYER_NAME,
+					BUYER_PHONE,
+					BUYER_EMAIL,
+					BUYER_ZIPCODE,
+					BUYER_ADDRESS
+				)
+			VALUES 
+				( 
+				PURCHASE_NO_seq.nextval,
+				ORDER_NO_seq.nextval, 
+				#{productNo},
+				#{productSeller},
+				#{productName},
+				#{purchasePrice},
+				#{purchaseShFee},
+				#{purchaseWay},
+				#{buyerNo},
+				#{buyerName},
+				#{buyerPhone},
+				#{buyerEmail},
+				#{buyerZipcode},
+				#{buyerAddress} 
+				)
+	</insert>
+
+	<select id="buyList" parameterType="com.nemo.user.purchases.vo.PurchasesVO" resultMap="purdhaseMap">
+		SELECT 
+			*
+		FROM 
+			PURCHASES_TB 
+		WHERE 
+			BUYER_NO = #{buyerNo}
+		ORDER BY
+			PURCHASE_DT DESC
+	</select>
+	
+	<select id="sellList" parameterType="com.nemo.user.purchases.vo.PurchasesVO" resultMap="purdhaseMap">
+		SELECT 
+			*
+		FROM 
+			PURCHASES_TB 
+		WHERE 
+			PRODUCT_SELLER = #{productSeller}
+		ORDER BY
+			PURCHASE_DT DESC
+	</select>
+	
+	<select id="getSelectList" parameterType="com.nemo.user.purchases.vo.PurchasesVO" resultMap="purdhaseMap">
+		SELECT 
+			*
+		FROM 
+			PURCHASES_TB
+		WHERE 
+			PRODUCT_NO = #{productNo}
+		ORDER BY
+			PURCHASE_NO
+	</select>
+	
+	
+	<update id="upPaySt" parameterType="com.nemo.user.purchases.vo.PurchasesVO">
+    	UPDATE 
+    		PURCHASES_TB
+    	SET
+    		PURCHASE_PAY_ST=#{purchasePaySt}
+		WHERE
+			PURCHASE_NO=#{purchaseNo}
+    </update>
+	
+	<select id="purchasecheck" 
+    	parameterType="int" resultType="int">
+    	SELECT COUNT(*) FROM 
+    		PURCHASES_TB
+    	WHERE
+    		 PRODUCT_NO = #{productNo}
+    </select>
 
 </mapper>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +24,8 @@
 <script src="<c:url value="/resources/vendor/jquery/jquery.form.min.js"/>"></script>
 <script src="<c:url value="/resources/js/user/common/common.js"/>"></script>
 
-
 <!-- 해당 페이지 JS파일 -->
-<script> this.contextPath = "<c:url value="/"/>"</script>
+<script> window.contextPath = "<c:url value="/"/>";</script>
 <script src="<c:url value="/resources/js/user/customer/qna/ask.js"/>"></script>
 
 
@@ -47,18 +47,17 @@
 	%>
 	<section>
 		<div class="qna-body">
-			<div class="qna-body2">
-				
+			<div class="qna-body2">			
 				<main class="qna-main"> 
 				<!-- customer 공통 nav -->
 				<jsp:include page="/WEB-INF/views/user/customer/common/customer_nav.jsp"/>
 					<hr>
 					<nav class="qna-nav">
-						<a class="qna-nav-selected" href="/nemonemoProject/customer/qna.do">1:1 상담하기
+						<a class="qna-nav-selected" href="<c:url value="/customer/qna.do"/>">1:1 상담하기
 						<div class="nav-selected-underline"></div></a> 
-						<a class="qna-nav-not-selected" href="/nemonemoProject/customer/qna/list.do">상담내역</a>
+						<a class="qna-nav-not-selected" href="<c:url value="/customer/qna/list.do"/>">상담내역</a>
 					</nav>
-					<form action="#" method="post" enctype="multipart/form-data" id="newQuestionForm">
+					<form method="post" enctype="multipart/form-data" id="newQuestionForm">
 						<div class="qna-contents">							
 							<div class="qna-contents-selbox">
 								<div class="selbox-container">
@@ -84,7 +83,7 @@
 								<button class="qna-btn-submit" id="qnaSubmit">상담신청</button>							
 							</div>
 						</div>
-						<input type="hidden" value="${user.userNo}" name=qnaRegId />
+						<input type="hidden" value="${user.userNo}" name="qnaRegId" />
 					</form>
 				</main>
 			</div>

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	//parameter로 넘겨주면 되는 값들
 	
@@ -17,7 +16,7 @@
 <script>
 	alert('로그인 해주십시오');
 	/* window.location.href = '${pageContext.request.contextPath}'; */
-	histroy.go(-1);
+	window.history.go(-1);
 </script>
 </c:if>
 <c:if test="${user != null}">
@@ -144,6 +143,7 @@
 									<h3>카카오페이 안내</h3>
 									<div>
 										<p>카카오페이로 간편하게 결제할 수 있는 간편 결제 서비스입니다.</p>
+										<p>안전결제를 위해 네모네모에 입금 후 물건수령이 완료되면 돈을 보냅니다.</p>
 									</div>
 								</div>
 							</div>
@@ -194,11 +194,13 @@
 								</div>
 							</div>
 							<!-- 테스트 -->
+							<input type="hidden" value="${user.userNo}" name="buyerNo">
 							<input type="hidden" value="${user.userName}" name="buyerName">
 							<input type="hidden" value="${user.userPhone }" name="buyerPhone">
 							<input type="hidden" value="${user.userEmail }" name="buyerEmail">
 							<input type="hidden" value="${user.userZipcode }" name="buyerZipcode">
 							<input type="hidden" value="${user.userAddress1} ${user.userAddress2}" name="buyerAddress">
+							<input type="hidden" value=<%=productNo %> name="productNo">
 							<input type="hidden" value="<%=productName%>" name="productName">
 							<input type="hidden" value=<%=productSeller %> name="productSeller">
 						</section>

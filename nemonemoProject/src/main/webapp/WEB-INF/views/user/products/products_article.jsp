@@ -557,7 +557,7 @@
 	                <div class="detail-explain__div">
 	                    <div class="detail-explain__tabs">
 	                        <div class="detail-explain__tab">
-	                            <span>상품 정보</span> &
+	                            <span>상품 정보</span> 
 	                            <span class="detail-explain-span">상품문의</span>
 	                            <span class="tab__count">(${fn:length(commentList)})</span>
 	                        </div>
@@ -642,9 +642,16 @@
 	                                <c:forEach var="comment" items="${commentList}">
 		                                <div class="detail-history__area" data-commentno="${comment.productCommentNo}">
 		                                    <div class="detail-history__item">
-		                                        <a class="detail-history__left" href="#">
-		                                            <img src="<c:url value="/resources/images/user/products/image_1.jpg"/>" alt="프로필 이미지">
-		                                        </a>
+		                                    	<c:if test="${comment.storeImgNo == -1}">
+			                                        <a class="detail-history__left" href="#">
+			                                            <img src="<c:url value="/resources/images/user/qna/customer.svg"/>" alt="프로필 이미지">
+			                                        </a>
+		                                    	</c:if>
+		                                    	<c:if test="${comment.storeImgNo != -1}">
+			                                        <a class="detail-history__left" href="#">
+			                                            <img src="<c:url value="/image/store/${comment.storeImgNo}.img"/>" alt="프로필 이미지">
+			                                        </a>
+		                                    	</c:if>
 		                                        <div class="detail-history__right">
 		                                            <div class="detail-right__head">
 		                                                <div class="detail-right__title">${comment.storeName}</div>
@@ -882,7 +889,7 @@
 			                                        <div class="detail-review-nothing--msg">
 			                                        	등록된 후기가 없습니다.<br>첫 후기를 등록해보세요!
 			                                        </div>
-			                                        <a class="detail-review-nothing--link" href="/shop/${productSellerVO.storeNo}/reviews.do">
+			                                        <a class="detail-review-nothing--link" href="<c:url value="/shop/${productSellerVO.storeNo}/reviews.do"/>">
 			                                        	후기작성
 			                                        </a>
 		                                       	</div>
@@ -994,7 +1001,7 @@
                     <input type="hidden" value="${productVO.productName}" name="productName">
                     <input type="hidden" value="${productVO.productFreeShippingSt}" name="productFreeShippingSt">
                     <input type="hidden" value="${productVO.productPrice}" name="productPrice">
-                        <a class="buy-modal-content--item" target="_blank" onclick="javascript:document.myPurchase.submit();">
+                        <a class="buy-modal-content--item" target="_blank" onclick="javascript:document.myPurchase.submit();return false;" href="#">
                             <div class="buy-content__text">
                                 <div class="buy-content__div">
                                     <h3 class="buy-content__title">

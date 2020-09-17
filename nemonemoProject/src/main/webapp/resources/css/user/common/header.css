@@ -7,6 +7,11 @@ header {
 	font-size: 14px;
 }
 
+#searchInput::placeholder {
+	font-size: 14px;
+	letter-spacing: -0.5px;
+}
+
 button {
 	font-size: 13px;
 	font-family: "Noto Sans KR", "sans-serif";
@@ -17,7 +22,14 @@ button {
 }
 
 #searchIconBtn {
-	outline: 0px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+#searchIconBtn svg {
+	font-size: 16px;
 }
 
 a {
@@ -195,15 +207,15 @@ button, input {
 }
 
 #main-logo-area {
-    width: 136px;
+    width: 156px;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    margin-right: 100px;
+    margin-right: 80px;
 }
 
 #main-logo-area img {
-	width: 136px;
+	width: 156px;
 	height: 40px;
 }
 

@@ -1,6 +1,7 @@
 package com.nemo.user.customer.qna.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import com.nemo.user.customer.qna.vo.UserBaseQnaCategoryVO;
 import com.nemo.user.customer.qna.vo.UserBaseQnaVO;
@@ -13,6 +14,6 @@ public interface ICustomerQnaMapper {
 	
 	/* QNA CRUD */
 	public int insertQna(UserBaseQnaVO vo);
-	public List<UserBaseQnaVO> selectQnaList(UserBaseQnaVO vo);
+	public List<UserBaseQnaVO> selectQnaList(Map<String, Object> qnaMapperParamMap);
 
 }

@@ -16,27 +16,21 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 
 <!-- Google Fonts -->
-<link
-	href="https:fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+<link href="https:fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
 	rel="stylesheet" type="text/css">
-<link href="https:fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet" type="text/css">
+<link href="https:fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
 <!-- Bootstrap Core Css -->
-<link rel="stylesheet"
-	href="<c:url value="/resources/vendor/plugins/bootstrap/css/bootstrap.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/vendor/plugins/bootstrap/css/bootstrap.css"/>">
 
 <!-- Animation Css -->
-<link rel="stylesheet"
-	href="<c:url value="/resources/vendor/plugins/animate-css/animate.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/vendor/plugins/animate-css/animate.css"/>">
 
 <!-- common CSS -->
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/admin/common/style.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/admin/common/style.css"/>">
 
 <!--  테마 색상  -->
-<link rel="stylesheet"
-	href="<c:url value="/resources/vendor/common/stylesheets/theme-red.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/vendor/common/stylesheets/theme-red.css"/>">
 
 <!-- 개인 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/admin/members/qna/member_qna_reply.css"/>">
@@ -45,12 +39,11 @@
 <!-- FontAwesome -->
 <link rel="stylesheet" href="https:cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 
-	<!-- Jquery Core Js -->
-	<script
-		src="<c:url value ="/resources/vendor/plugins/jquery/jquery.js"/>"></script>
+<!-- Jquery Core Js -->
+<script src="<c:url value ="/resources/vendor/plugins/jquery/jquery.js"/>"></script>
 
 	<!-- 개인 JS -->
-<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script> 
+	<script src="<c:url value ="/resources/vendor/smarteditor/js/HuskyEZCreator.js"/>"></script> 
 	<script> var contextPath = "${pageContext.request.contextPath}";</script>
 	<script src="<c:url value ="/resources/js/admin/members/qna/member_qna_reply.js"/>"></script>
 
@@ -72,7 +65,6 @@
 		/* 각 페이지의 SECTION */
 	%>
 
-
 	<!-------------------------------------------SECTION--------------------------------------------------->
 	<section class="content">
 		<div class="container-fluid">
@@ -92,8 +84,8 @@
 										</thead>
 											<tbody>
 											<tr>
-												<th><i class="fas fa-user"></i>고객아이디</th>
-												<td>${qnaVO.qnaRegId}</td>
+												<th><i class="fas fa-user"></i>상점명</th>
+												<td>${qnaVO.storeName}</td>
 								
 											</tr>
 											<tr>
@@ -120,10 +112,8 @@
 														data-imgnm = "${imgFile.qnaImgOriginName}"
 														data-imgtype="${imgFile.qnaImgType}"
 														style = "cursor : pointer;">
-														${imgFile.qnaImgFileName}.${imgFile.qnaImgType}</a> <br>
-														
+														${imgFile.qnaImgOriginName}.${imgFile.qnaImgType}</a> <br>
 													</c:forEach>
-													
 												</td>
 											</tr>
 											<tr>
@@ -158,7 +148,6 @@
 	<script
 		src="<c:url value ="/resources/vendor/plugins/bootstrap/js/bootstrap.js"/>"></script>
 
-
 	<!-- Slimscroll Plugin Js -->
 	<script
 		src="<c:url value ="/resources/vendor/plugins/jquery-slimscroll/jquery.slimscroll.js"/>"></script>
@@ -171,37 +160,32 @@
 	<script
 		src="<c:url value ="/resources/vendor/common/javascript/pages/admin.js"/>"></script>
 		
-	<!-- JS파일 스마트에디터 경로를 못찾음  -->
-<script>
- 	var oEditors = [];
- 		   nhn.husky.EZCreator.createInIFrame({
- 		      oAppRef: oEditors,
- 		      elPlaceHolder: "qnaAdminContent",
- 		      SmartEditor2Skin.html 파일이 존재하는 경로
- 		      sSkinURI : "../../resources/vendor/smarteditor/SmartEditor2Skin.html", 
- 		      htParams : {
- 		           툴바 사용 여부 (true:사용/ false:사용하지 않음)
- 		          bUseToolbar : true,             
- 		           입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
- 		          bUseVerticalResizer : true,     
- 		           모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
- 		          bUseModeChanger : true,         
- 		          fOnBeforeUnload : function(){
- 		          }
- 		      }, 
- 		       fOnAppLoad : function(){
- 		          oEditors.getById["qnaAdminContent"].exec("PASTE_HTML", [contentData]);
- 		      },
- 		      fCreator: "createSEditor2" 
- 			});
- 		   $('#replyBtn').click(function() {
- 				oEditors.getById["qnaAdminContent"].exec("UPDATE_CONTENTS_FIELD", []);	 	
- 		    	termsEditForm.submit();
- 		    });
- 		   $('.replyCancelBtn').click(function() {window.location.href="qna/list.mdo"});
-	
-</script>
+	<script>
 
+	var oEditors = [];
+			   nhn.husky.EZCreator.createInIFrame({
+			      oAppRef: oEditors,
+			      elPlaceHolder: "qnaAdminContent",
+			      sSkinURI : "../../resources/vendor/smarteditor/SmartEditor2Skin.html", 
+			      htParams : {
+			          bUseToolbar : true,             
+			          bUseVerticalResizer : true,     
+			          bUseModeChanger : true,         
+			          fOnBeforeUnload : function(){
+			          }
+			      }, 
+			       fOnAppLoad : function(){
+			          oEditors.getById["qnaAdminContent"].exec("PASTE_HTML", [contentData]);
+			      },
+			      fCreator: "createSEditor2" 
+				});
+			   $('#replyBtn').click(function() {
+					oEditors.getById["qnaAdminContent"].exec("UPDATE_CONTENTS_FIELD", []);	 	
+			    	termsEditForm.submit();
+			    });
+			   $('.replyCancelBtn').click(function() {window.location.href="qna/list.mdo"});
+	
+	</script>
 
 </body>
 </html>

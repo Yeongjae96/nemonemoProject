@@ -59,7 +59,7 @@
 </head>
 <body class="theme-red">
 
-	<% 
+	<%
 		/* 공통 Header and Nav */
 	%>
 	<header>
@@ -67,7 +67,7 @@
 		<jsp:include page="/WEB-INF/views/admin/include/side-nav.jsp" />
 	</header>
 
-	<% 
+	<%
 		/* 각 페이지의 SECTION */
 	%>
 
@@ -82,142 +82,50 @@
 							<h1>전체 주문 내역</h1>
 						</div>
 						<div class="body">
-							<div class="table-responsive">
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  m-p-0">
-									<h4 class="col-lg-2 col-md-2 col-sm-2 col-xs-2">기간검색</h4>
-									<div class="m-b-0 col-lg-2 col-md-2 col-sm-2 col-xs-2 m-p-0">
-										<div class="input-group date" id="members_prev">
-											<div class="form-line">
-												<input type="text" class="form-control"
-													placeholder="날짜를 입력해주세요">
-											</div>
-											<span class="input-group-addon"> <i
-												class="material-icons">date_range</i>
-											</span>
-										</div>
-									</div>
-									<div class="col-xs-1 text-c m-p-0">
-										<span class="very-strong-word">-</span>
-									</div>
-									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 m-p-0">
-										<div class="input-group date" id="members_next">
-											<div class="form-line">
-												<input type="text" class="form-control"
-													placeholder="날짜를 입력해주세요">
-											</div>
-											<span class="input-group-addon"> <i
-												class="material-icons">date_range</i>
-											</span>
-										</div>
-									</div>
-									<button type="button"
-										class="btn btn-danger waves-effect m-l-50">
-										<span>찾기</span>
-									</button>
-								</div>
-								<div class="clearfix"></div>
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-p-0">
-									<h4 class=" col-lg-2 col-md-2 col-sm2 col-xs-2">저장하기</h4>
-									<button class="btn waves-effect bg-pink"
-										id="statics-image__btn">이미지 파일</button>
-									<button class="btn waves-effect bg-pink">CSV</button>
-									<button class="btn waves-effect bg-pink">엑셀 파일</button>
-								</div>
-								<div class="clearfix"></div>
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-p-0">
-									<h4 class="col-lg-2 col-md-2 col-sm2 col-xs-2">기간별로 보기</h4>
-									<button class="btn waves-effect bg-pink"
-										id="statics-image__btn">연간</button>
-									<button class="btn waves-effect bg-pink">월간</button>
-									<button class="btn waves-effect bg-pink">주간</button>
-								</div>
 								<table id="mem-care-list"
 									class="table table-bordered table-striped table-hover dataTable display text-center">
 									<thead>
 										<tr>
-											<th>주문 번호</th>
 											<th>결제 번호</th>
+											<th>상품 번호</th>
+											<th>판매 회원번호</th>
 											<th>상품명</th>
-											<th>거래유형</th>
+											<th>상품가격</th>
+											<th>거래방법</th>
+											<th>인수 상태</th>
 											<th>구매자</th>
-											<th>판매자</th>
 											<th>거래 일자</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>342</td>
-											<td>젤리셔스</td>
-											<td>직거래 <span class="label label-warning">New</span>
-											</td>
-											<td>상점523호</td>
-											<td>상점234호</td>
-											<td>2020/07/21</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>342</td>
-											<td>젤리셔스</td>
-											<td>직거래</td>
-											<td>상점523호</td>
-											<td>상점523호</td>
-											<td>2020/07/21</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>342</td>
-											<td>젤리셔스</td>
-											<td>직거래</td>
-											<td>상점523호</td>
-											<td>상점523호</td>
-											<td>2020/07/21</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>342</td>
-											<td>젤리셔스</td>
-											<td>안전거래</td>
-											<td>상점523호</td>
-											<td>상점523호</td>
-											<td>2020/07/21</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>342</td>
-											<td>젤리셔스</td>
-											<td>안전거래</td>
-											<td>상점523호</td>
-											<td>상점2143호</td>
-											<td>2020/07/21</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>342</td>
-											<td>젤리셔스</td>
-											<td>안전거래</td>
-											<td>상점523호</td>
-											<td>상점2143호</td>
-											<td>2020/07/21</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>342</td>
-											<td>젤리셔스</td>
-											<td>안전거래</td>
-											<td>상점523호</td>
-											<td>상점2143호</td>
-											<td>2020/07/21</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>342</td>
-											<td>젤리셔스</td>
-											<td>안전거래</td>
-											<td>상점523호</td>
-											<td>상점2143호</td>
-											<td>2020/07/21</td>
-										</tr>
+										<c:choose>
+											<c:when test="${empty boardList }">
+												<p>판매한 내역이 없습니다!</p>
+											</c:when>
+											<c:when test="${!empty boardList}">
+												<c:forEach var="list" items="${boardList}">
+													<tr>
+														<td><c:out value="${list.purchaseNo}" /></td>
+														<td><c:out value="${list.productNo}" /></td>
+														<td><c:out value="${list.productSeller}" /></td>
+														<td><c:out value="${list.productName}" /></td>
+														<td><c:out value="${list.purchasePrice}" /></td>
+														<td><c:out value="${list.purchaseWay}" /></td>
+														<c:if test="${list.purchasePaySt eq 'Y'}">
+															<td style="color:blue;">물품 인수 확인</td>
+														</c:if>
+														<c:if test="${list.purchasePaySt eq 'N'}">
+															<td>물품 인수 중</td>
+														</c:if>
+														<c:if test="${list.purchasePaySt eq 'C'}">
+															<td style="color:red;">거래 취소</td>
+														</c:if>
+														<td><c:out value="${list.buyerName}" /></td>
+														<td><c:out value="${list.puchaseDt}" /></td>
+													</tr>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 									</tbody>
 								</table>
 							</div>
@@ -278,8 +186,10 @@
 
 
 	<!-- Date Picker bootstrap -->
-    <script src="<c:url value ="/resources/vendor/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"/>"></script>
-    <script src="<c:url value ="/resources/vendor/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"/>"></script>
+	<script
+		src="<c:url value ="/resources/vendor/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"/>"></script>
+	<script
+		src="<c:url value ="/resources/vendor/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"/>"></script>
 
 	<!-- 개인 JS -->
 	<script

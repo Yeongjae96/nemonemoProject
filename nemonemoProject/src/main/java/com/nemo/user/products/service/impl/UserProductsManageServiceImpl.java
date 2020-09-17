@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.nemo.common.paging.PageVO;
 import com.nemo.common.paging.Pagination;
+import com.nemo.common.util.AuthUtil;
 import com.nemo.common.util.ContextUtil;
+import com.nemo.user.products.repository.impl.ProductsMapper;
 import com.nemo.user.products.repository.impl.UserProductsManageMapper;
 import com.nemo.user.products.service.UserProductsManageService;
 import com.nemo.user.products.vo.UserProductsManageResVO;
@@ -21,6 +23,9 @@ public class UserProductsManageServiceImpl implements UserProductsManageService{
 	
 	@Autowired
 	private UserProductsManageMapper userProductsManageMapper;
+	
+	@Autowired
+	private ProductsMapper productsMapper;
 	
 	@Override
 	public UserProductsManageResVO getAllUserProducts(Map<String, Object> manageParamMap) {
@@ -46,7 +51,11 @@ public class UserProductsManageServiceImpl implements UserProductsManageService{
 		
 		List<UserProductsManageVO> productsManageVOList = userProductsManageMapper.getAllUserProducts(manageMapperParamMap);
 		
-		PageVO returnPageVO = page.getCalcPageVO(productsManageVOList.size());
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("productSeller", AuthUtil.getCurrentUserNo());
+		paramMap.put("q", manageParamMap.get("keyword"));
+		
+		PageVO returnPageVO = page.getCalcPageVO(productsMapper.allProductsCntFromSeller(paramMap));
 		
 		UserProductsManageResVO result = new UserProductsManageResVO();
 		result.setProductsManageVOList(productsManageVOList);;

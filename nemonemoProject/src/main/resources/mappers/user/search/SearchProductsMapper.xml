@@ -22,7 +22,7 @@
         		b.product_img_type
 		FROM    product_tb a
 		INNER JOIN product_img_tb b
-		ON 		a.product_no = b.product_no AND a.product_disp_st NOT IN ('D', 'P')
+		ON 		a.product_no = b.product_no AND a.product_disp_st NOT IN ('D', 'P', 'F')
 		RIGHT JOIN (select min(product_img_no) as product_img_no FROM product_img_tb group by product_no) c
 		ON 		b.product_img_no = c.product_img_no
 		INNER JOIN product_cate_tb cate

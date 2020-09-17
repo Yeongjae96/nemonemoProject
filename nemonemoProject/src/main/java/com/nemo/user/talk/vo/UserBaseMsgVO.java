@@ -2,6 +2,9 @@ package com.nemo.user.talk.vo;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.gson.annotations.Expose;
+
 import lombok.Data;
 
 /**
@@ -15,11 +18,14 @@ import lombok.Data;
 
 @Data
 public class UserBaseMsgVO {
+	
 	private String msgNo;
 	private int talkNo;
 	private int msgSender;
+	private int msgReceiver;
+	private int receiverImgNo;
 	private String msgContent;
 	private Timestamp msgRegDt;
-	private String msgDelFl;
 	private String msgType;
+	private String msgConfirmSt;
 }

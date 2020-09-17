@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+
 .consulting_list_div{
     display: flex;
     -webkit-box-pack: center;
@@ -23,10 +25,12 @@ a {
     color: rgb(33, 33, 33);
     cursor: pointer;
     text-decoration: none;
+
 }
 a {
     background-color: transparent;
 }
+
 button {
     cursor: pointer;
     outline: none !important;
@@ -58,6 +62,12 @@ button {
     position: relative;
     color: rgb(255, 80, 88);
     flex: 1 1 0%;
+}
+.consulting_list_nav_a1:hover{
+	color : black;
+}
+.consulting_list_nav_a2:hover{
+	color : rgb(255, 80, 88);
 }
 
 .title_hover{
@@ -138,7 +148,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .qna_arrow{
-   /*  transform: rotate(180deg); */
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAQCAYAAAAI0W+oAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAXNJREFUeNqslK1Pw1AUxV9fmoq5Ldl/MCSaBLkEAQkIPgxzTUABjoRMsAJmCQ4HJGAAw8yCwGFQaCyOKSpgZmIGzk1OyU1Zu7fRm/yWvtvec1777p0XRVFgjLkGZ+DFFBtzYBeEPn5uwAZYAPPgrSCTGngAVRBY/HTBNxOPoFKASYVaVWp3xegWRGoX97KDf5gE1KhxfSwelosTGkrUwRXwpjDxWFvnWjSP5CIxktcLwRPXDdCawqjFWkOtkNq/RhJDsKaa4VAVuUSDNYYa69Q0aSOJL7AI4hGfIS/0546p8akfsCOKZDfLYMCD7aiDzWrjDp8dsPbPiNiMYhncLX7fsmrVdCQjUeaz21lDb3N2egeaqeErqfsl5pK3barOnchIog3O1d/JBc9BuGTO8LqdJ+Q7HPQemOGBS2e9M7+p2nhnnIiLkbToKngGs+BA3XvlveE4Ees4I32wBD5ULmau7yLgTzCQPbAC9rk+Zc4pfgQYAOZsSsrHKCoBAAAAAElFTkSuQmCC);
     background-size: cover;
     width: 13px;
@@ -186,6 +195,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     position: relative;
     border-bottom: 1px solid rgb(238, 238, 238);
+    font-family : "Noto Sans KR";
     
 }
 
@@ -234,10 +244,9 @@ h1, h2, h3, h4, h5, h6 {
     white-space: normal;
     text-align : start;
     display: block;
-/*     margin-block-start: 1em;
-    margin-block-end: 1em;
-     margin-inline-start: 0px;
-    margin-inline-end: 0px; */
+	padding : 20px;
+	font-family : "Noto Sans KR";
+	font-size : 14px;
 }
 .answer_section{
 	position: relative;
@@ -298,13 +307,13 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     flex: 1 1 0%;
 }
-/* 
-.total-nav > a {
-    color: rgb(33, 33, 33);
-    cursor: pointer;
-    text-decoration: none;
+a:hover{
+	text-decoration:none;
 }
 
-.total-nav > a {
-    background-color: transparent;
-} */
+   .qna_list_footer {
+    -webkit-box-pack: center;
+    justify-content: center;
+    display : block;
+    padding-top : 50px;
+    }

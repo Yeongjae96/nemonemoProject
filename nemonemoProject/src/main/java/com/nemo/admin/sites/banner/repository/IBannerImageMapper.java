@@ -5,7 +5,7 @@ import com.nemo.admin.sites.banner.vo.BannerImageVO;
 
 public interface IBannerImageMapper {
 	
-	public int insertBannerImage(BannerImageVO vo);
+	public int insertImage(BannerImageVO vo);
 	public BannerImageVO selectBannerImage(int bannerImgNo);
 
 }

@@ -48,7 +48,6 @@ $(function () {
     			$('#qnaCateNameUpd').val(data.qnaCategoryName);
     			$('#qnaCategoryUseFl').val(data.qnaCategoryUseFl)
     			$('#qnaCategoryUpdate').click(function() {
-    				alert("수정하자!");
     					$.ajax({
     						url: 'edit.mdo',
     						method: 'post',

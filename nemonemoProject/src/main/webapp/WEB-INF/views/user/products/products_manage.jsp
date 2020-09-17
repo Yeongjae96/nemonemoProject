@@ -80,7 +80,7 @@
 								<c:set var="pageSize" value="${empty param.pageSize ? '10' : param.pageSize}"/>
 	                                <div class="products-manage__cbox--item">${pageSize}개씩</div>
                             	
-                                <input id="react-select-3-input" readonly="" tabindex="0" aria-autocomplete="list"
+                                <input readonly tabindex="0" aria-autocomplete="list"
                                     class="products-manage__cbox--input" value="">
                             </div>
                             <div class="products-manage__cbox--icon" id="countArrow">
@@ -108,7 +108,7 @@
                            		<c:set var="status" value="${empty param.status ? 'all' : param.status}"/>
                                			${allStList[status]}
                                 </div>
-                                <input id="" readonly="" tabindex="0" aria-autocomplete="list"
+                                <input readonly  aria-autocomplete="list"
                                     class="products-manage__cbox--input" value="">
                             </div>
                             <div class="products-manage__cbox--icon" id="statusArrow">
@@ -171,7 +171,7 @@
 														</c:choose>
 													</div>
 												</c:if>
-		                                        <input id="" readonly tabindex="0" aria-autocomplete="list" class="products-manage__cbox--input" value="">
+		                                        <input readonly tabindex="0" aria-autocomplete="list" class="products-manage__cbox--input" value="">
 		                                    </div>
 		                                    <div class="products-manage__cbox--icon" id="productStArrow">
 		                                        <i class="fas fa-chevron-down"></i>
@@ -199,7 +199,7 @@
 		                        	<c:if test="${p.productEditDt != null}"><fmt:formatDate value="${p.productEditDt}" var="date" pattern="yyyy-MM-dd HH:mm"/></c:if>
 									${date}
 								</td>
-		                        <td><button type="button" class="products-manage__up-btn">UP</button>
+		                        <td><!-- <button type="button" class="products-manage__up-btn">UP</button> -->
 		                            <a class="products-manage__modify-link" href="<c:url value="/products/${p.productNo}/edit.do"/>">수정</a></td>
 		                    </tr>
 	                    </c:forEach>
@@ -218,7 +218,24 @@
         </div>
 
     </div>
+    
+    <div id="modal">
+    	<div class="st-modal-area">
+	    	<div class="st-modal-div">
+	    		<div class="st-modal-content">
+	    			<div class="st-modal-msg-area"><div class="st-modal-msg-text"><p>상태 변경되었습니다.</p></div></div>
+	    			<div class="st-modal-btn-area">
+	    				<button class="st-modal-btn">확인</button>
+	    			</div>
+	    			<div class="st-modal-bg"></div>
+	    		</div>
+	    	</div>
+    	</div>
+    </div>
+    
 	</section>
+	
+	
 	<% 
 		/* 공통 푸터 */
 	%>

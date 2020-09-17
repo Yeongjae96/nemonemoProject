@@ -1,6 +1,23 @@
 charset "UTF-8";
 
-.a{}
+select{
+	border : none;
+	border-radius:0;
+	appearance : none;
+}
+
+.selbox_size :focus{
+	outline : none;
+}
+
+#qnaCategoryName{
+	font-family : "Noto Sans KR";
+}
+
+.qna-add-file{
+	font-family : "Noto Sans KR";
+	font-size : 14px;
+}
 
 .total-nav-selected {
 	display: flex;
@@ -130,6 +147,13 @@ charset "UTF-8";
 	text-decoration: none;
 	background-color: transparent;
 }
+.qna-nav-selected:hover{
+	color : rgb(255, 80, 88);
+}
+.qna-nav-not-selected:hover{
+	color : black;
+	
+}
 
 .qna-contents {
 	margin-top: 10px;
@@ -188,6 +212,7 @@ charset "UTF-8";
 }
 
 
+
 .qna-contents-selbox-box {
 	width: 100%;
 	height: 3rem;
@@ -210,21 +235,6 @@ charset "UTF-8";
 	padding: 2px 8px;
 	overflow: hidden;
 }
-
-/* .reason2{
-	color: rgb(51, 51, 51);
-	margin-left: 2px;
-	margin-right: 2px;
-	max-width: calc(100% - 8px);
-	position: absolute;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	top: 50%;
-	transform: translateY(-50%);
-	box-sizing: border-box;
-	overflow: hidden;
-} */
-
 
 
 
@@ -265,8 +275,10 @@ charset "UTF-8";
 button {
 	background-color: transparent;
 	cursor: pointer;
-	outline: none;
+	outline: 0;
+	border: 0;
 }
+
 
 .addImg {
 	width: 164px;
@@ -314,6 +326,8 @@ img {
 	-webkit-font-smoothing: antialiased;
 	direction: ltr;
 	text-align: left;
+	border:none;
+	outline : none;
 }
 
 .qna-add-file::after {
@@ -335,6 +349,7 @@ img {
 	border-style: solid;
 	border-color: rgb(245, 245, 245);
 	border-image: initial;
+	
 }
 
 .qna-btn-submit {
@@ -346,6 +361,7 @@ img {
 	border-radius: 2px;
 	background: rgb(255, 80, 88);
 	border: none;
+	font-size : 14px;
 }
 
 .reason {

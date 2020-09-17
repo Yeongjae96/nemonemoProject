@@ -108,7 +108,8 @@
                                         		<span style="color:blue;">사용</span>
                                         	</c:if>
                                         	<c:if test="${faq.faqUseFlag ne 'Y'}">
-                                        		<span style="color:#EE5058; font-weight: bold;"">미사용</span>
+                                        		<span style="colo
+                                        		r:#EE5058; font-weight: bold;"">미사용</span>
                                         	</c:if>
                                         </td>
                                         <td class ="text-center">

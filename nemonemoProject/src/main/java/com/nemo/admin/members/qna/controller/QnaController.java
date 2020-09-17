@@ -68,15 +68,15 @@ public class QnaController {
 		String originalFileName = vo.getQnaImgOriginName();
 		String imgType = vo.getQnaImgType();
 		
-		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[] 형식으로 변환한다.
+		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
 		byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray
 							(new File("C:\\upload\\qna\\" + originalFileName + "." + imgType));
-		
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);
 		response.setHeader("Content-Disposition", "attachment; fileName =\""
 							+ URLEncoder.encode(originalFileName, "UTF-8") +"." 
 							+ URLEncoder.encode(imgType, "UTF-8")   +"\";");
+		System.out.println(response.getHeader(originalFileName));
 		response.getOutputStream().write(fileByte);
 		response.getOutputStream().flush();
 		response.getOutputStream().close();
@@ -84,8 +84,7 @@ public class QnaController {
 
 	}
 	
-	
-	
+
 	/* 답변 리뷰 페이지*/
 	@GetMapping("/reply/review")
 	public ModelAndView qnaReplyReviewPage(@RequestParam int qnaNo) {
@@ -99,9 +98,7 @@ public class QnaController {
 	@PostMapping("/reply")
 	public ModelAndView qnaReplyAction(AdminBaseQnaVO vo) {	
 		qnaService.replyQna(vo);
-	
 		ModelAndView mav = new ModelAndView("redirect:/members/qna/list.mdo");	
-		System.out.println("답변 액션 : " + vo);
 		return mav;
 	}
 	

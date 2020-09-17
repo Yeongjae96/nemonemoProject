@@ -6,6 +6,7 @@ import com.nemo.admin.members.qna.vo.AdminBaseQnaImageVO;
 import com.nemo.admin.members.qna.vo.AdminBaseQnaVO;
 
 /**
+ * 
  * @제목 : Qna 서비스
  * @패키지이름 : com.nemo.admin.members.qna.service
  * @파일이름 : QnaService.java
@@ -20,5 +21,5 @@ public interface QnaService {
 	public List<AdminBaseQnaVO> getQnaList(AdminBaseQnaVO vo);
 	public int replyQna(AdminBaseQnaVO vo);
 	public List<AdminBaseQnaImageVO> selectImageList(int qnaNo) throws Exception;
-
+	public List<AdminBaseQnaVO> getRecentQnaList(AdminBaseQnaVO vo);
 }

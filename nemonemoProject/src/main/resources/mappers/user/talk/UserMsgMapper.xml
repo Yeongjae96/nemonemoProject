@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.talk.repository.impl.UserMsgMapper">
+
+	<resultMap id="msgMap" type="com.nemo.user.talk.vo.UserBaseMsgVO">
+		<id column="msg_no" property="msgNo"/>
+		<result column="talk_no" property="talkNo"/>
+		<result column="msg_sender" property="msgSender"/>
+		<result column="msg_receiver" property="msgReceiver"/>
+		<result column="msg_content" property="msgContent"/>
+		<result column="msg_reg_dt" property="msgRegDt"/>
+		<result column="msg_type" property="msgType"/>
+		<result column="msg_confirm_st" property="msgConfirmSt"/>
+		<result column="store_img_no" property="receiverImgNo"/>
+	</resultMap>
+
+
+	<insert id="insertUserMsg" parameterType="com.nemo.user.talk.vo.UserBaseMsgVO">
+	
+		INSERT INTO msg_tb (
+			msg_no ,
+			talk_no ,
+			msg_sender ,
+			msg_receiver ,
+			msg_content ,
+			msg_reg_dt ,
+			msg_type ,
+			msg_confirm_st
+		) VALUES (
+			msg_sq.nextval,
+			#{talkNo},
+			#{msgSender},
+			#{msgReceiver},
+			#{msgContent},
+			#{msgRegDt},
+			#{msgType},
+			#{msgConfirmSt}
+		)
+	</insert>
+	
+	<update id="updateConfirmSt" parameterType="com.nemo.user.talk.vo.UserBaseMsgVO">
+	
+		UPDATE MSG_TB
+		SET msg_confirm_st = 'Y'
+		WHERE msg_receiver = #{msgReceiver} AND msg_sender = #{msgSender} AND msg_confirm_st = 'N'
+		
+	</update>
+
+	
+
+
+
+
+</mapper>

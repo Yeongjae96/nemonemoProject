@@ -628,6 +628,7 @@ enlarge-modal__area * {
     line-height: 1;
     background: rgb(204, 204, 204);
     border: 0px;
+    font-size: 16px;
 }
 .detail-info__btn-zzim:focus {
     outline: 0;

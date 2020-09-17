@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.user.talk.repository.impl.UserTalkMapper">
+
+	<resultMap id="contactMap" type="com.nemo.user.talk.vo.UserTalkContactResVO">
+		<id column="talk_no" property="talkNo"/>
+		<result column="product_img_no" property="productImgNo"/>
+		<result column="product_no" property="productNo"/>
+		<result column="product_name" property="productName"/>
+		<result column="product_price" property="productPrice"/>
+		<result column="product_seller" property="productSeller"/>
+		<result column="store_rating" property="storeRating"/>
+		<result column="product_cnt" property="productCnt"/>
+		<result column="store_review_cnt" property="storeReviewCnt"/>
+		<result column="store_name" property="storeName"/>
+		<result column="receiverImgNo" property="receiverImgNo"/>
+		
+	</resultMap>
+	
+	<resultMap id="talkMsgMap" type="com.nemo.user.talk.vo.UserTalkMsgListResVO">
+		<id column="talk_no" property="talkNo"/>
+		<result column="store_name" property="storeName"/>
+		<result column="product_cnt" property="productCnt"/>
+		<result column="store_rating" property="storeRating"/>
+		<result column="store_review_cnt" property="storeReviewCnt"/>
+		<result column="receiverImgNo" property="receiverImgNo"/>
+		
+	</resultMap>
+	
+	<resultMap id="myTalkMap" type="com.nemo.user.talk.vo.UserMyTalkVO">
+		<result column="store_name" property="storeName"/>
+		<result column="store_img_no" property="storeImgNo"/>
+		<result column="msg_unid_cnt" property="msgUnidCnt"/>
+		<association property="lastRecentlyMsgVO" javaType="com.nemo.user.talk.vo.UserBaseMsgVO">
+			<id column="msg_no" property="msgNo"/>
+			<result column="talk_no" property="talkNo"/>
+			<result column="msg_sender" property="msgSender"/>
+			<result column="msg_receiver" property="msgReceiver"/>
+			<result column="msg_content" property="msgContent"/>
+			<result column="msg_reg_dt" property="msgRegDt"/>
+			<result column="msg_type" property="msgType"/>
+			<result column="msg_confirm_st" property="msgConfirmSt"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectMsgListByUserNo" parameterType="hashMap" resultMap="com.nemo.user.talk.repository.impl.UserMsgMapper.msgMap">
+		
+		SELECT 
+			m.*,
+			nvl(u.store_img_no, -1) AS store_img_no
+		FROM talk_tb t
+		INNER JOIN msg_tb m
+		ON t.talk_no = m.talk_no AND t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
+		INNER JOIN user_tb u
+		ON m.msg_receiver = u.user_no
+		<where>
+			<if test="currentUserNo == lowUserNo">
+				t.talk_low_exit_dt &lt; m.msg_reg_dt
+				OR
+				t.talk_low_exit_dt is null
+			</if>
+			<if test="currentUserNo == highUserNo">
+				t.talk_high_exit_dt &lt; m.msg_reg_dt
+				OR
+				t.talk_high_exit_dt is null
+			</if>
+		</where>
+		ORDER BY m.msg_reg_dt
+	
+	</select>
+	
+	<select id="selectContactVO" parameterType="hashMap" resultMap="contactMap">
+	
+		SELECT 
+		    p.product_no,
+		    t.talk_no,
+		    i.product_img_no,
+		    p.product_name,
+		    s.store_name,
+		    nvl(s.store_img_no, -1) receiverImgNo,
+		    p.product_price,
+		    p.product_seller,
+		    prod.product_cnt,
+		    nvl(st.store_rating, 0) store_rating,
+		    nvl(st.store_review_cnt, 0) store_review_cnt
+		FROM product_tb p
+		INNER JOIN (SELECT product_no, min(product_img_no) product_img_no FROM product_img_tb GROUP BY product_no) i
+		ON p.product_no = i.product_no AND p.product_no = #{productNo}
+		INNER JOIN user_tb s
+		ON s.store_no = p.product_seller
+		INNER JOIN (SELECT product_seller, count(1) product_cnt FROM product_tb GROUP BY product_seller) prod
+		ON p.product_seller = prod.product_seller
+		LEFT JOIN (SELECT store_no, count(1) store_review_cnt, floor(avg(store_review_rating)) store_rating FROM store_review_tb GROUP BY store_no) st
+		ON p.product_seller = st.store_no
+		LEFT JOIN talk_tb t
+		ON t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
+		
+	</select>
+		
+	
+	<insert id="insertTalk" parameterType="hashMap">
+		
+		<selectKey keyProperty="talkNo" resultType="int" order="BEFORE">
+			SELECT nvl(max(talk_no), 0) + 1 FROM talk_tb
+		</selectKey>
+				
+		MERGE INTO talk_tb t
+		USING dual
+		ON (t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo})
+		WHEN NOT MATCHED THEN
+			INSERT(talk_no, talk_user1, talk_user2, talk_st)
+			VALUES(#{talkNo}, #{lowUserNo}, #{highUserNo}, 'N')
+	
+	</insert>
+	
+	
+	<select id="selectMyTalkList" parameterType="int" resultMap="myTalkMap">
+		
+		SELECT 
+        m.*,
+        u.store_name,
+        nvl(u.store_img_no, -1) store_img_no,
+        nvl(msg_unid_cnt, 0) msg_unid_cnt
+		FROM (
+		    SELECT m1.*, m3.msg_unid_cnt, CASE WHEN m1.msg_sender = #{userNo} THEN 'M'
+		                    WHEN m1.msg_receiver = #{userNo} THEN 'Y' END AS senderType
+		    FROM msg_tb m1
+		    INNER JOIN (
+		        SELECT msg_no  
+		        FROM msg_tb m1
+		        INNER JOIN (SELECT talk_no, max(msg_reg_dt)maxDate FROM msg_tb GROUP BY talk_no) m2
+		        ON m1.talk_no = m2.talk_no AND m1.msg_reg_dt = m2.maxDate
+		    ) m2
+            ON m1.msg_no = m2.msg_no  AND (msg_sender = #{userNo} OR msg_receiver = #{userNo})
+            INNER JOIN (
+            	SELECT m.msg_no
+				FROM talk_tb t
+				INNER JOIN msg_tb m
+				ON t.talk_no = m.talk_no
+				WHERE talk_user1 = #{userNo} AND (t.TALK_LOW_EXIT_DT &lt; m.msg_reg_dt OR t.TALK_LOW_EXIT_DT IS NULL)
+				UNION
+				SELECT m.msg_no
+				FROM talk_tb t
+				INNER JOIN msg_tb m
+				ON t.talk_no = m.talk_no
+				WHERE talk_user2 = #{userNo} AND (t.TALK_HIGH_EXIT_DT &lt; m.msg_reg_dt OR t.TALK_HIGH_EXIT_DT IS NULL)
+            ) tt
+            ON m1.msg_no = tt.msg_no
+            LEFT JOIN (SELECT talk_no, count(1) AS msg_unid_cnt FROM msg_tb WHERE msg_confirm_st = 'N' AND msg_receiver = #{userNo} GROUP BY talk_no) m3
+            ON m1.talk_no = m3.talk_no
+		) m
+		INNER JOIN user_tb u
+		ON u.user_no = CASE m.senderType
+		    WHEN 'M' THEN m.msg_receiver
+		    WHEN 'Y' THEN m.msg_sender
+		END
+		ORDER BY m.talk_no desc
+		
+	</select>
+	
+	<select id="selectTalkMsgResVO" parameterType="hashMap" resultMap="talkMsgMap">
+		SELECT 
+			t.talk_no,
+		    s.store_name,
+		    nvl(s.store_img_no, -1) AS receiverImgNo,
+		    prod.product_cnt,
+		    nvl(st.store_rating, 0) store_rating,
+		    nvl(st.store_review_cnt, 0) store_review_cnt
+		FROM (SELECT * FROM user_tb WHERE user_no = #{opponentUserNo}) s
+		LEFT JOIN (SELECT product_seller, count(1) product_cnt FROM product_tb GROUP BY product_seller) prod
+		ON s.user_no = prod.product_seller
+		LEFT JOIN (SELECT store_no, count(1) store_review_cnt, floor(avg(store_review_rating)) store_rating FROM store_review_tb GROUP BY store_no) st
+		ON s.user_no= st.store_no
+		LEFT JOIN talk_tb t
+		ON t.talk_user1 = #{lowUserNo} AND t.talk_user2 = #{highUserNo}
+	</select>
+	
+	<update id="exitTalk" parameterType="hashMap">
+		UPDATE talk_tb
+		<set>
+			<if test="currentUserNo == lowUserNo">
+				talk_low_exit_dt = SYSDATE
+			</if>
+			<if test="currentUserNo == highUserNo">
+				talk_high_exit_dt = SYSDATE
+			</if>
+		</set>
+		<where>
+			talk_no = #{talkNo}
+		</where>
+	</update>
+	
+
+</mapper>

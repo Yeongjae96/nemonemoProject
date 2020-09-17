@@ -40,7 +40,7 @@
 		)
 		
 		</foreach>
-		<selectKey keyColumn="productImgNo" order="AFTER"> SELECT product_img_sq.currval FROM dual </selectKey>
+		<selectKey keyColumn="productImgNo" order="AFTER"> SELECT product_img_sq.currval FROM dual</selectKey>
 	</insert>
 	
 	

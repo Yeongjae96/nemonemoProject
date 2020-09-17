@@ -10,6 +10,7 @@
 
 <resultMap id="commentMap" type="hashMap" extends="com.nemo.user.products.repository.impl.UserProductsCommentsMapper.productCommentMap">
 	<result column="store_name" property="storeName"/>
+	<result column="store_img_no" property="storeImgNo"/>
 </resultMap>
 
 <resultMap id="getProductStoreMap" type="com.nemo.user.products.vo.UserGetSellerVO">
@@ -62,7 +63,7 @@
 </select>
 
 <select id="selectCommentsList" parameterType="int" resultMap="commentMap">
-	SELECT a.*, b.store_name
+	SELECT a.*, b.store_name, nvl(b.store_img_no, -1) AS store_img_no
 	FROM product_comment_tb a
 	INNER JOIN user_tb b
 	ON a.product_comment_writer = b.user_no
