@@ -47,21 +47,26 @@
 		on (qna.qna_cate_no = cate.qna_cate_no)
 			inner join (user_tb mem)
 		on (qna.qna_reg_id = mem.user_no)
-		
-		 where TO_CHAR(QNA_REG_YMD) = TO_CHAR(SYSDATE, 'YY/MM/DD')
+			where TO_CHAR(QNA_REG_YMD) = TO_CHAR(SYSDATE, 'YY/MM/DD')
+			
+		order by qna_no desc
 
 	</select>
 	
 
 		<!-- QNA row 값 하나  -->
 	<select id= "getQna" parameterType="int" resultMap="qnaResponseMap">
+			
 		SELECT
 			qna.*,
-			cate.qna_cate_name
+			cate.qna_cate_name,
+            mem.store_name
 		FROM
 			QNA_TB qna
 			inner join (qna_cate_tb cate)
 			on (qna.qna_cate_no = cate.qna_cate_no)
+            inner join (user_tb mem)
+            on (qna.qna_reg_id = mem.user_no)
 		WHERE 
 			QNA_NO = #{qnaNo}
 	</select>

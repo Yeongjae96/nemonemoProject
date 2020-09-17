@@ -78,7 +78,7 @@
                             </div>
                             <div class="content">
                                 <div class="text">새로운 판매 게시물</div>
-                                <div class="number"></div>
+                                <div class="number">${productCnt}</div>
                             </div>
                         </div>
                     </div>
@@ -88,8 +88,8 @@
                                 <i class="material-icons">equalizer</i>
                             </div>
                             <div class="content">
-                                <div class="text">거래금액</div>
-                                <div class="number"></div>
+                                <div class="text">거래건수</div>
+                                <div class="number">${purchaseCnt}</div>
                             </div>
                         </div>
                     </div>

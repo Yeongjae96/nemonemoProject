@@ -71,7 +71,6 @@ public class QnaController {
 		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
 		byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray
 							(new File("C:\\upload\\qna\\" + originalFileName + "." + imgType));
-		System.out.println("오리지널 파일 : " + originalFileName);
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);
 		response.setHeader("Content-Disposition", "attachment; fileName =\""
