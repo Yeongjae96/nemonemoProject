@@ -63,47 +63,14 @@
                     <div class="header">
                         <h1>카테고리별 판매 현황</h1>
                     </div>
+                    
                     <div class="body">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 list__b" style="margin-bottom: 25px; border-bottom: 1px solid #AAAAAA">
-                            <button type="button" class="btn btn-success waves-effect">
-                                <span>패션/잡화</span>
-                            </button>
-                            <button type="button" class="btn btn-danger waves-effect">
-                                <span>디지털/가전</span>
-                            </buttom>
-                            </button>
-                            <button type="button" class="btn btn-danger waves-effect">
-                                <span>여성의류</span>
-                            </button>
-                            <button type="button" class="btn btn-danger waves-effect">
-                                <span>남성의류</span>
-                            </button>
-                            <button type="button" class="btn btn-danger waves-effect">
-                                <span>도서/티켓취미/애완</span>
-                            </button>
-                            <button type="button" class="btn btn-danger waves-effect">
-                                <span>생활/문구/가구/식품</span>
-                            </button>
-                            <button type="button" class="btn btn-danger waves-effect">
-                                <span>유아동/출산</span>
-                            </button>
-                            <button type="button" class="btn btn-danger waves-effect">
-                                <span>스타굿즈</span>
-                            </button>
-                            <button type="button" class="btn btn-danger waves-effect">
-                                <span>뷰티/미용</span>
-                            </button>
-                            <button type="button" class="btn btn-danger waves-effect">
-                                <span>스포츠/레저</span>
-                            </button>
-                            <button type="button" class="btn btn-danger waves-effect">
-                                <span>기타</span>
-                            </button>
-                            <button type="button" class="btn btn-danger waves-effect">
-                                <span>재능</span>
-                            </button>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  m-p-0" >
+						<ul class="nav nav-tabs m-t-5">
+						  <li role="presentation" class="active"><a href="#">Home</a></li>
+						  <li role="presentation"><a href="#">Profile</a></li>
+						  <li role="presentation"><a href="#">Messages</a></li>
+						</ul>
+                        <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  m-p-0" >
                             <h4 class="col-lg-2 col-md-2 col-sm-2 col-xs-2">기간검색</h4>
                             <div class="m-b-0 col-lg-2 col-md-2 col-sm-2 col-xs-2 m-p-0">
                                 <div class="input-group date" id="sales_product_prev">
@@ -131,8 +98,8 @@
                             <button type="button" class="btn btn-danger waves-effect m-l-50">
                                 <span>찾기</span>
                             </button>
-                        </div>
-                        <div class="clearfix"></div>
+                        </div> -->
+                       <!--  <div class="clearfix"></div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-p-0">
                             <h4 class="col-lg-2 col-md-2 col-sm2 col-xs-2">저장하기</h4>
                             <button class="btn waves-effect bg-pink" id="statics-image__btn">이미지 파일</button>
@@ -146,8 +113,9 @@
                             <button class="btn waves-effect bg-pink">주간</button>
                         </div>
                         <div></div>
+                        <div class="clearfix"></div> -->
                         <div class="clearfix"></div>
-                        <div id="bar_chart" class="graph"></div>
+                        <div id="bar_chart" class="graph m-t-5"></div>
                     </div>
                 </div>
                 <!-- #END# Line Chart -->
