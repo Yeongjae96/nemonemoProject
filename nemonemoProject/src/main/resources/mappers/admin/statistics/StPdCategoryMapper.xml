@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nemo.admin.statistics.repository.impl.StPdCategoryMapper">
+	
+	<resultMap id="stCateMap" type="hashMap">
+		<id column="product_cate_no" property="productCateNo"/>
+		<result column="product_cate_large" property="productCateLarge"/>
+		<result column="product_cate_del_fl" property="productCateDelFl"/>
+	</resultMap>
+
+	<select id="selectLargeCategories" resultMap="stCateMap">
+		
+		SELECT 
+			product_cate_no,
+			product_cate_large,
+			product_cate_del_fl
+		FROM product_cate_tb
+		WHERE product_cate_type = 'L'
+	
+	</select>
+
+
+	
+</mapper>
