@@ -11,27 +11,13 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-function submitCheck() {
- if (confirm("인수확인을 누르시겠습니까?") == true){    //확인
-	 document.getElementById("purchasePaySt").value = 'Y';
-     document.upPaySt.submit();
- }else{   //취소
-     return false;
- }
-}
 
-function submitCancel() {
-	if (confirm("거래를 취소 하시겠습니까?") == true){    //확인
-		 document.getElementById("purchasePaySt").value = 'C';
-	     document.upPaySt.submit();
-	 }else{   //취소
-	     return false;
-	 }
-}
-var result = '${msg}';
-if (result == 'success') {
-	alert("인수확인이 되었습니다.");
-}
+	var result = '${msg}';
+	if (result == 'success') {
+		alert("인수확인이 되었습니다.");
+	} else if (result =='cancel') {
+		alert("거래가 취소되었습니다.")
+	}
 </script>
 </head>
 
@@ -61,7 +47,7 @@ if (result == 'success') {
 								<div class="by_2">
 									<c:forEach var="list" items="${boardList}">
 										<div class="by_2 buy_div">
-											<form name="upPaySt" id="buylist" method="POST" action="updateSt.do">
+											<form name="upPaySt" id="buylist" method="POST">
 												<p>주문 번호 : <c:out value="${list.purchaseNo}" /></p>
 												<p>상품 번호 : <c:out value="${list.productNo}" />&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;상품 이름 : <c:out value="${list.productName}" /></p>
 												<p>상품 가격 : <c:out value="${list.purchasePrice}" /></p>
@@ -91,9 +77,10 @@ if (result == 'success') {
 												<input type="hidden" value="${list.productSeller}" name="productSeller">
 												<input type="hidden" value="${list.buyerNo}" name="buyerNo">
 												<input type="hidden" value="${user.userNo}" name="userNo">
+												
 												<div>
-													<button type="submit" onclick="submitCheck()" id="okbutton">인수 인계 확인</button>
-													<button type="submit" onclick="submitCancel()" id="cancelbutton">거래 취소</button>
+													<input type="submit" value="물품 인수 확인" onclick="javascript: form.action='updateSt.do';"/>
+													<input type="submit" value="상품 거래 취소" onclick="javascript: form.action='cancelSt.do';"/>
 												</div>
 											</form>
 										</div>
