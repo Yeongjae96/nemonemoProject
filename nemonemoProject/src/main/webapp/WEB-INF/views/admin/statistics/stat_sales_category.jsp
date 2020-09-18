@@ -70,7 +70,7 @@
 							  <li role="presentation" data-cno="${lg.productCateNo}"><a href="#">${lg.productCateLarge}</a></li>
 							</c:forEach>
 							<li>
-								<i class="material-icons">arrow</i>
+								<i class="material-icons">more</i>
 							</li>
 						</ul>
 						
