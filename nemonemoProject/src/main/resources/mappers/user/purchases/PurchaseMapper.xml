@@ -99,9 +99,27 @@
     	UPDATE 
     		PURCHASES_TB
     	SET
-    		PURCHASE_PAY_ST=#{purchasePaySt}
+    		PURCHASE_PAY_ST='Y'
 		WHERE
 			PURCHASE_NO=#{purchaseNo}
+    </update>
+    
+    <update id="CancelPaySt" parameterType="com.nemo.user.purchases.vo.PurchasesVO">
+    	UPDATE 
+    		PURCHASES_TB
+    	SET
+    		PURCHASE_PAY_ST='C'
+		WHERE
+			PURCHASE_NO=#{purchaseNo}
+    </update>
+    
+    <update id="upProductSt" parameterType="com.nemo.user.purchases.vo.PurchasesVO">
+    	UPDATE 
+    		PRODUCT_TB
+    	SET
+    		PRODUCT_DISP_ST='F'
+		WHERE
+			PRODUCT_NO=#{productNo}
     </update>
 	
 	<select id="purchasecheck" 
@@ -111,5 +129,6 @@
     	WHERE
     		 PRODUCT_NO = #{productNo}
     </select>
+
 
 </mapper>
