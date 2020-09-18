@@ -14,11 +14,11 @@
                 <!--내 상점 시작-->
                 <div class="com-outline">
                     <div class="dropdown-position">
-                        <a class="mystore" href="#">내상점</a>
+                        <a class="mystore" href="<c:url value="/shop/${user.storeNo}/products.do"/>">내상점</a>
                         <div class="mystore-box">
-                            <button type="button" class="mystore-menu" onclick="location.href='#'">내상품</button>
-                            <button type="button" class="mystore-menu" onclick="location.href='${pageContext.request.contextPath}/sign/info.do' ">내계정</button>
-                            <button type="button" class="mystore-menu" onclick="location.href='#'">찜한상품</button>
+                            <button type="button" class="mystore-menu" onclick="location.href='${pageContext.request.contextPath}/shop/${user.storeNo}/products.do'">내상품</button>
+                            <button type="button" class="mystore-menu" onclick="location.href='${pageContext.request.contextPath}/sign/info.do'">내계정</button>
+                            <button type="button" class="mystore-menu" onclick="location.href='${pageContext.request.contextPath}/shop/${user.storeNo}/favorites.do'">찜한상품</button>
                             <button type="button" class="mystore-menu" onclick="location.href='${pageContext.request.contextPath}/sign/setting.do'">계정설정</button>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                 <!-- 고객센터 시작 -->
                <div class="com-outline">
                     <div class="dropdown-position">
-                        <div class="cs">고객센터</div>
+                        <div class="cs"> <a class="cs-menu" href="<c:url value="/customer/notice.do"/>">고객센터</a></div>
                         <div class="cs-box">
                             <a class="cs-menu" href="<c:url value="/customer/notice.do"/>">공지사항</a>
                             <a class="cs-menu" href="<c:url value="/customer/policy.do"/>">운영정책</a>
