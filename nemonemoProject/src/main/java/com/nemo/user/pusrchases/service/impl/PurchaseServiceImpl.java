@@ -56,5 +56,11 @@ public class PurchaseServiceImpl implements PurchaseService{
 		return purchaseDAO.CancelPaySt(vo);
 	}
 
+	@Override
+	public int upProductSt(PurchasesVO vo) {
+		// TODO Auto-generated method stub
+		return purchaseDAO.upProductSt(vo);
+	}
+
 
 }

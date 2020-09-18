@@ -134,6 +134,7 @@ public class PurchaseController {
 		System.out.println(vo.toString());
 		String user = userNo;
 		purchaseService.upPaySt(vo);
+		purchaseService.upProductSt(vo);
 		rttr.addFlashAttribute("msg", "success");
 		mav.setViewName("redirect:/tab/purchases.do?user="+user);
 		return mav;
