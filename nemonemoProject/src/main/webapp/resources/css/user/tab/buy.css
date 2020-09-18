@@ -304,14 +304,14 @@ button {
 	margin-bottom: 10px;
 }
 
-.buy_div button{
+.buy_div input{
 	color: rgb(255, 255, 255);
     background: rgb(247, 0, 0);
     border-width: 1px;
     border-style: solid;
     border-color: rgb(223, 0, 0);
-    font-size: 14px;
-    width: 100px;
+    font-size: 17px;
+    width: 130px;
     height: 30px;
     margin-left: 10px;
 }

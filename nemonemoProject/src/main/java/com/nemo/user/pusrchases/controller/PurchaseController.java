@@ -138,5 +138,16 @@ public class PurchaseController {
 		mav.setViewName("redirect:/tab/purchases.do?user="+user);
 		return mav;
 	}
+	
+	@RequestMapping(value = "/tab/cancelSt", method = { RequestMethod.POST })
+	public ModelAndView CancelPurchaseStAction(String userNo,PurchasesVO vo, HttpServletRequest req, RedirectAttributes rttr) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println(vo.toString());
+		String user = userNo;
+		purchaseService.CancelPaySt(vo);
+		rttr.addFlashAttribute("msg", "cancel");
+		mav.setViewName("redirect:/tab/purchases.do?user="+user);
+		return mav;
+	}
 
 }

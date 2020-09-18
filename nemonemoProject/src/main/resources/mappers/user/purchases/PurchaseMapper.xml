@@ -99,7 +99,16 @@
     	UPDATE 
     		PURCHASES_TB
     	SET
-    		PURCHASE_PAY_ST=#{purchasePaySt}
+    		PURCHASE_PAY_ST='Y'
+		WHERE
+			PURCHASE_NO=#{purchaseNo}
+    </update>
+    
+    <update id="CancelPaySt" parameterType="com.nemo.user.purchases.vo.PurchasesVO">
+    	UPDATE 
+    		PURCHASES_TB
+    	SET
+    		PURCHASE_PAY_ST='C'
 		WHERE
 			PURCHASE_NO=#{purchaseNo}
     </update>
