@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>네모내모</title>
+    <title>네모내모 | 회원 리스트</title>
 <!-- Favicon-->
 <link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>"> 
 

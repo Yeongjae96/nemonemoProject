@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>번개장터 | 탈퇴</title>
+<title>네모내모 | 탈퇴</title>
 <!-- 공통 CSS -->
 
 
@@ -16,6 +16,10 @@
 	href="<c:url value="https://assets.bunjang.co.kr/static/bundle/css/6b29cf2da9df.css"/>"> --%>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/user/withdraw/withdraw.css"/>">
+<link rel="shortcut icon"
+	href="<c:url value="/resources/images/common/logo/favicon.png"/>">
+	
+	
 <!-- 라이브러리 -->
 <script
 	src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
@@ -109,8 +113,8 @@
 				<address>
 					<p class="mb_newline"></p>
 					<p>
-						<strong>번개장터(주) 대표이사</strong> 장원귀 <span><strong>개인정보보호담당자</strong>
-							김철우</span>
+						<strong>네모내모(주) 대표이사</strong> 김네모 <span><strong>개인정보보호담당자</strong>
+							박네모</span>
 					</p>
 					<p>
 						<strong>사업자등록번호</strong> 113-86-45836 <span><strong>통신판매업신고</strong>
@@ -126,7 +130,7 @@
 					</p>
 					<p></p>
 				</address>
-				<div class="txtmsg">번개장터(주)는 통신판매중개자로서 중고거래마켓 번개장터의 거래 당사자가
+				<div class="txtmsg">네모내모(주)는 통신판매중개자로서 중고거래마켓 네모내모의 거래 당사자가
 					아니며, 입점판매자가 등록한 상품정보 및 거래에 대해 책임을 지지 않습니다.</div>
 				<div class="copyright">Copyright ⓒ QUICKET Co, Ltd. All rights
 					reserved</div>

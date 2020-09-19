@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상점 정보 수정 페이지</title>
+<title>네모내모 | 상점 정보수정</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/common/common.css"/>">

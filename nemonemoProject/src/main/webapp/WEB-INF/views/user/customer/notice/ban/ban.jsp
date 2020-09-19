@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>번개장터 | 거래 금지 품목 안내</title>
+<title>네모내모 | 거래 금지 품목 안내</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/ban.css"/>">

@@ -10,7 +10,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>네모내모</title>
+<title>네모내모 | Q&A 카테고리</title>
 <!-- Favicon-->
 <link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>"> 
 

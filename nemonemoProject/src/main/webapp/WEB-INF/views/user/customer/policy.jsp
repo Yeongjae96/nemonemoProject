@@ -6,14 +6,15 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<title>운영정책</title>
+<title>네모내모 | 운영정책</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
 
 <!-- 페이지 CSS  -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/customer_nav.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/policy.css"/>">
-
+<link rel="shortcut icon"
+	href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
 <!-- 라이브러리 -->
 <script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
@@ -61,8 +62,8 @@
                             <div class="policy-contents-li-icon1"></div>
                             <div class="policy-contents-li-content">
                                 <h2>거래 금지 품목 거래시 제재 받을 수 있습니다</h2>
-                                <p>전자 통신판매법 등에 의해 저촉되어 인터넷 거래기준에 적용되는 상품으로 1회 적발시 즉시 이용제한이 될 수 있습니다.</p><a
-                                    href="ban.html">거래 금지 품목 보기</a>
+                                <p>전자 통신판매법 등에 의해 저촉되어 인터넷 거래기준에 적용되는 상품으로 1회 적발시 즉시 이용제한이 될 수 있습니다.</p>
+<!--                                 <a href="ban.html">거래 금지 품목 보기</a> -->
                             </div>
                         </li>
                         <li class="policy-contents-li">
@@ -75,7 +76,7 @@
                         <li class="policy-contents-li">
                             <div class="policy-contents-li-icon3"></div>
                             <div class="policy-contents-li-content">
-                                <h2>상품, 댓글의 10회 이상 도배, 번개톡 도배 등록을 피해주세요</h2>
+                                <h2>상품, 댓글의 10회 이상 도배, 네모톡 도배 등록을 피해주세요</h2>
                             </div>
                         </li>
                         <li class="policy-contents-li">
@@ -109,8 +110,7 @@
                     </ul>
                     <footer class="policy-contents-footer">
                         <div class="policy-contents-footer-img"></div>
-                        <figure class="policy-contents-footer-img2"><img src="img_manage_4out_step.d654e7f6.png" width="315"
-                                alt="4진아웃 절차"></figure>
+                       
                         <div class="policy-contents-footer-logo">
                             <div class="policy-contents-footer-logo-img"></div>
                         </div>

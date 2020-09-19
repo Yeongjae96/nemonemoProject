@@ -4,8 +4,9 @@
 <html lang="kr">
 <head>
 <meta charset="utf-8">
-<title>거래내역</title>
+<title>네모내모 | 판매내역</title>
 <link rel="stylesheet" href="<c:url value="/resources/css/user/tab/sell.css"/>">
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
 
 
 </head>
