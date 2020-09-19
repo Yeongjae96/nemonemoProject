@@ -152,6 +152,7 @@
 													<c:forEach var="lg" items="${lgCate}">
 														<li class="products-category-item">
 															<c:if test="${productCateVO.productCateLarge == lg.productCateLarge}">
+																<input type="hidden" id="etcSt" value="true"/>
 																<button class="products-category-btn--selected" data-cateno="${lg.productCateNo}">${lg.productCateLarge}
 																</button>
 															</c:if>

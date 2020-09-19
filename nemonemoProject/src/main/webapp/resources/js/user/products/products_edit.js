@@ -152,9 +152,13 @@ function initCategoryArea() {
 			const $smCate = $('#smCategory');
 			
 			const $lgCateLi = $lgCate.children('li');
-			const $mdCateLi = $lgCate.children('md');
-			const $smCateLi = $lgCate.children('sm');
-
+			const $mdCateLi = $mdCate.children('li');
+			const $smCateLi = $smCate.children('li');
+			
+			const etcSt = document.getElementById('etcSt');
+			
+			
+			
 			// 이전에 눌렀던 버튼들
 			let prevLgClass;
 			let prevMdClass;
@@ -165,10 +169,10 @@ function initCategoryArea() {
 				if($e.hasClass('products-category-btn--selected')) {
 					prevLgClass = $e;
 				}
-				
 				$e.click(lgAction);
 			});
 			$mdCateLi.each((i,e) => {
+				console.log(i, e);
 				const $e = $(e).children('button');
 				if($e.hasClass('products-category-btn--selected')) 
 					prevMdClass = $e;
@@ -211,6 +215,16 @@ function initCategoryArea() {
 			// 라지 카테고리 실행
 //			initCategoryList(cateLgObj);
 
+			
+			if(!etcSt) {
+				const etc = document.querySelector('#lgCategory').children;
+				Array.from(etc).some.call(etc, e => {
+					const target = e.children[0];
+					if(target.textContent.replace(/[\s\t\n]+/g, "") == '기타') {
+						target.dispatchEvent(new Event('click'));
+					}
+				});
+			}
 			
 			
 			// 대 분류 클릭 이벤트
