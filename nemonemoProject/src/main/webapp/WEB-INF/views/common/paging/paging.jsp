@@ -37,7 +37,6 @@
 			</c:if>
 			<c:forEach begin="${pageVO.startGroupNo}" end="${pageVO.endGroupNo}"
 				varStatus="st">
-				
 				<c:if test="${currentPageNo eq st.current}">
 					<a class="category-paging__page--active"
 						href="${pageName}.do${prevParam}pageNo=${st.current}">${st.current}</a>

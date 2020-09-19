@@ -102,6 +102,14 @@
 	</select>
 	
 	
+	<select id="pdCntFromPdCateNo" parameterType="int" resultType="int">
+		SELECT count(1)
+		FROM product_tb
+		WHERE product_cate_no = #{productCateNo}
+		AND <![CDATA[product_disp_st NOT IN ('D', 'P')]]>
+	</select>
+	
+	
 	
 </mapper>
 

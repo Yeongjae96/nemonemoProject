@@ -91,8 +91,10 @@ public class CategoryServiceImpl implements CategoryService {
 		List<UserBaseProductsVO> productList = productMapper.selectCategoryProducts(selectCatePdParamMap); // 
 		if(productList.size() == 0) return resultVO;
 		
-		PageVO page = paging.getCalcPageVO(productList.size());
-		resultVO.setPageVO(page);
+		int totalPdSize = productMapper.pdCntFromPdCateNo(productCateNo);
+		
+		PageVO page = paging.getCalcPageVO(totalPdSize);
+		resultVO.setPageVO(page);	
 		
 		// 3. 상품 이미지 리스트
 		List<UserBaseProductsImageVO> pdImgArticle = imageMapper.selectPresentiveImg(productList);
