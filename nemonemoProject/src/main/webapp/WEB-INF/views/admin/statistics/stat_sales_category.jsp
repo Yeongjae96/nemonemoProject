@@ -38,7 +38,7 @@
 	<link rel="stylesheet" href="<c:url value="/resources/vendor/common/stylesheets/theme-red.css"/>">
 	
 		<!-- 개인 CSS -->
-	<link rel="stylesheet" href="<c:url value="/resources/css/admin/statistics/stat_sales_product.css"/>">
+	<link rel="stylesheet" href="<c:url value="/resources/css/admin/statistics/stat_sales_category.css"/>">
 	
 </head>
 <body class="theme-red">
@@ -65,11 +65,15 @@
                     </div>
                     
                     <div class="body">
-						<ul class="nav nav-tabs m-t-5">
-						  <li role="presentation" class="active"><a href="#">Home</a></li>
-						  <li role="presentation"><a href="#">Profile</a></li>
-						  <li role="presentation"><a href="#">Messages</a></li>
+						<ul class="nav nav-tabs m-t-5" id="cateList">
+							<c:forEach var="lg" items="${largeCategory.data}" end="8">
+							  <li role="presentation" data-cno="${lg.productCateNo}"><a href="#">${lg.productCateLarge}</a></li>
+							</c:forEach>
+							<li>
+								<i class="material-icons">more</i>
+							</li>
 						</ul>
+						
                         <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  m-p-0" >
                             <h4 class="col-lg-2 col-md-2 col-sm-2 col-xs-2">기간검색</h4>
                             <div class="m-b-0 col-lg-2 col-md-2 col-sm-2 col-xs-2 m-p-0">
@@ -134,10 +138,8 @@
 
         <!-- Slimscroll Plugin Js -->
 		<script src="<c:url value ="/resources/vendor/plugins/jquery-slimscroll/jquery.slimscroll.js"/>"></script>
-
          <!-- Waves Effect Plugin Js -->
        		 <script src="<c:url value ="/resources/vendor/plugins/node-waves/waves.js"/>"></script>
-        
         
 		<!-- Jquery CountTo Plugin Js -->
    		<script src="<c:url value ="/resources/vendor/plugins/jquery-countto/jquery.countTo.js"/>"></script>
@@ -163,6 +165,7 @@
     	<!-- 개인 JS -->
 		<script src="<c:url  value ="/resources/js/admin/statistics/stat_sales_datepicker.js"/>"></script>
 		<script src="<c:url value ="/resources/vendor/pages/charts/morris.js"/>"></script>
+		<script src="<c:url value="/resources/js/admin/statistics/category/stat_sale_category.js"/>"></script>
 	
 </body>
 </html>

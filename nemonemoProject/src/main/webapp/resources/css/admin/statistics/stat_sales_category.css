@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+
+#cateList {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+#cateList > * {
+	margin-right: 10px;
+}
+
+#cateList > *:last-child {
+	margin-right: 0px;	
+}
