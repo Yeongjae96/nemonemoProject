@@ -39,7 +39,7 @@
 		FROM
 		    product_tb
         WHERE 
-        	product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 41
+        	product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 33
 		ORDER BY product_view desc
 	</select> 
 	

@@ -86,9 +86,9 @@
                             <li>
                                 <a href="<c:url value="/sites/terms/list.mdo"/>">이용약관 관리</a>
                             </li>
-                           <%--  <li>
-                                <a href="<c:url value=""/>">프로모션 관리</a>
-                            </li> --%>
+                            <li>
+                                <a href="<c:url value="/sites/coupon/list.mdo"/>">프로모션 관리</a>
+                            </li>
                         </ul>
                     </li>
                      <li>
