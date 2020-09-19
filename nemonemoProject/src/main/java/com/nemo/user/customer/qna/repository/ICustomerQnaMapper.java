@@ -15,5 +15,7 @@ public interface ICustomerQnaMapper {
 	/* QNA CRUD */
 	public int insertQna(UserBaseQnaVO vo);
 	public List<UserBaseQnaVO> selectQnaList(Map<String, Object> qnaMapperParamMap);
+	
+	public int selectQnaListFromUserNo(UserBaseQnaVO userBaseQnaVO);
 
 }

@@ -258,6 +258,8 @@ select{
 	border-color: initial;
 	border-image: initial;
 	overflow: auto;
+	padding: 15px;
+	font-family: "Noto Sans KR";
 }
 
 .img-outline-box {

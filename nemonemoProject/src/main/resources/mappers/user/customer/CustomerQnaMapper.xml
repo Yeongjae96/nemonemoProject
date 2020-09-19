@@ -10,8 +10,6 @@
 		<result column="QNA_CATE_USE_FL" property="qnaCategoryUseFl"/>
 	</resultMap>
 	
-	
-	
 	<resultMap type="com.nemo.user.customer.qna.vo.UserBaseQnaVO" id="userBaseQnaMap">
 		<id column="QNA_NO" property="qnaNo"/>
 		<result column="QNA_CATE_NO" property="qnaCategoryNo"/>
@@ -58,6 +56,18 @@
 		</where>
 		order by qna_reg_ymd DESC, qna_reply_ymd ASC
 		<include refid="common.PaginationMapper.footer"/>
+	</select>
+	
+	
+	<select id="selectQnaListFromUserNo" parameterType="com.nemo.user.customer.qna.vo.UserBaseQnaVO" resultType="int">
+		SELECT 
+			count(1)
+		FROM 
+			qna_tb qna
+		inner join 
+			(qna_cate_tb) cate
+		on 
+			(qna.qna_cate_no = cate.qna_cate_no) AND qna.qna_reg_id = #{qnaRegId}
 	</select>
 	
 	

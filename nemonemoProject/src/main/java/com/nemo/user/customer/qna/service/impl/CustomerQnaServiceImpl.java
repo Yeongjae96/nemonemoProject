@@ -34,7 +34,9 @@ public class CustomerQnaServiceImpl implements CustomerQnaService {
 	
 		List<UserBaseQnaVO> arrList = customerQnaMapper.selectQnaList(qnaMapperParamMap); 
 		
-		PageVO returnPageVO = page.getCalcPageVO(arrList.size());
+		int qnaListSize = customerQnaMapper.selectQnaListFromUserNo(vo);
+		
+		PageVO returnPageVO = page.getCalcPageVO(qnaListSize);
 		UserQnaResVO res = new UserQnaResVO();
 		res.setQnaVOList(arrList);
 		res.setPageVO(returnPageVO);

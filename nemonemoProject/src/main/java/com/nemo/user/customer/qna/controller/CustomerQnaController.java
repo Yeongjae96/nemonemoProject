@@ -1,6 +1,8 @@
 package com.nemo.user.customer.qna.controller;
 
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nemo.admin.members.qna.vo.UserQnaResVO;
 import com.nemo.common.paging.PageVO;
@@ -66,10 +69,19 @@ public class CustomerQnaController {
 	@GetMapping("/qna/list")
 	public ModelAndView qnaListPage(UserBaseQnaVO vo,
 			@RequestParam(value = "pageNo", defaultValue="1")int pageNo, //시작번호
-			@RequestParam(value = "pageSize", defaultValue="5")int pageSize // 한페이지에 보여줄 갯수
+			@RequestParam(value = "pageSize", defaultValue="5")int pageSize, // 한페이지에 보여줄 갯수
+			RedirectAttributes redirectAttributes
 			) {		
 		ModelAndView mav = new ModelAndView("customer/qna/qna_list");
 		UserBaseVO userInfo = (UserBaseVO)ContextUtil.getAttrFromSession("user");
+		if(userInfo == null) {
+			mav.setViewName(Optional.ofNullable(ContextUtil.getRequest()
+					.getHeader("Referer"))
+					.map(requestUrl -> "redirect:" + requestUrl)
+					.orElseGet(() -> "redirect:/index.do"));
+			redirectAttributes.addFlashAttribute("loginStatus", "false");
+			return mav;
+		}
 		vo.setQnaRegId(userInfo.getUserNo());
 		 
 		PageVO pageVO = new PageVO();
