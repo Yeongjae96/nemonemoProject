@@ -76,16 +76,15 @@ public class TalkHandler extends TextWebSocketHandler {
 				personalMap.put(sender, session);
 			}
 			
-			System.out.println(talkRoomMap + "들어왔어요!!");
-			TextMessage confirmResponse = new TextMessage("{\"response\":\"confirmMsg\"}");
-
 			if(talkRoomMap.get(sender) != null && talkRoomMap.get(sender).get(receiver) != null) {
+				TextMessage confirmResponse = new TextMessage("{\"response\":\"confirmMyMsg\"}");
 				synchronized (talkRoomMap.get(sender).get(receiver)) {
 					talkRoomMap.get(sender).get(receiver).sendMessage(confirmResponse); // 대화하고있는 상대방
 					session.sendMessage(confirmResponse); // 자기자신
 				}
 			}
 			if(talkRoomMap.get(receiver) != null && talkRoomMap.get(receiver).get(sender) != null) {
+				TextMessage confirmResponse = new TextMessage("{\"response\":\"confirmMsg\"}");
 				synchronized (talkRoomMap.get(receiver).get(sender)) {
 					talkRoomMap.get(receiver).get(sender).sendMessage(confirmResponse); // 대화하고있는 상대방
 				}

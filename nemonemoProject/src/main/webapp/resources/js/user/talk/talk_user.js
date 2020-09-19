@@ -44,8 +44,10 @@ $(function() {
 				receiveMsg(data.data);
 				break;
 			case 'confirmMsg':
-				console.log('confirmMsg 실행');
 				updateConfirmStatus();
+				break;
+			case 'confirmMyMsg':
+				updateConfirmMyStatus();
 				break;
 			default:
 			}
@@ -109,11 +111,23 @@ $(function() {
 	
 	/* 안읽음 삭제 */
 	function updateConfirmStatus() {
+		
+		
 		const notReadTags = document.querySelectorAll('.normal-msg-status');
-		console.log(notReadTags);
 		Array.prototype.forEach.call(notReadTags, function(e) {
-			console.log(e);
+			console.log('talk-response-msg : ',e.closest('.talk-user-response-msg'));
+			console.log('talk-normal-msg : ',e.closest('.talk-user-normal-msg'));
 			e.parentNode.removeChild(e);
+		});
+	}
+	
+	/* 내 안읽음 삭제 */
+	function updateConfirmMyStatus() {
+		const myTags = document.querySelectorAll('.talk-user-normal-msg');
+		Array.prototype.forEach.call(myTags, function(e) {
+			const notReadTag = e.querySelector('.normal-msg-status');
+			if(!notReadTag) return true;
+			notReadTag.parentNode.removeChild(notReadTag);
 		});
 	}
 	
