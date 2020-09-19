@@ -26,7 +26,7 @@
 			SELECT a.product_cate_no, a.product_cate_type, a.product_cate_large, a.product_cate_medium, a.product_cate_small
 			FROM product_cate_tb a
 			INNER JOIN (SELECT product_cate_no, product_cate_type, product_cate_large, product_cate_medium, product_cate_small FROM product_cate_tb WHERE product_cate_no = #{productCateNo}) b
-			ON a.product_cate_no = b.product_cate_no and a.product_cate_large = b.product_cate_large AND a.product_cate_type = 'M'
+			ON a.product_cate_large = b.product_cate_large AND a.product_cate_type = 'M'
 		<if test='productCateType != "L"'>
 		UNION ALL
 			SELECT a.product_cate_no, a.product_cate_type, a.product_cate_large, a.product_cate_medium, a.product_cate_small
@@ -54,26 +54,6 @@
 				product_tag = #{productTag},
 				product_qty = #{productQty},
 				product_edit_dt = SYSDATE
-		   
-				
-		<!-- UPDATE (
-			SELECT *
-			FROM product_tb
-			WHERE product_no = #{productNo}
-		) SET (
-			product_cate_no = #{productCateNo},
-			product_name = #{productName},
-			product_deal_area = #{productDealArea},
-			product_used_st = #{productUsedSt},
-			product_exch_st = #{productExchSt},
-			product_free_shipping_st = #{productFreeShippingSt},
-			product_price = #{productPrice},
-			product_info = #{productInfo},
-			product_tag = #{productTag},
-			product_qty = #{productQty},
-			product_edit_dt = sysdate
-		) -->
-	
 	</update>
 	
 	<update id="editProductDisp" parameterType="com.nemo.user.products.vo.UserProductsEditDispVO">

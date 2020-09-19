@@ -22,8 +22,6 @@
 		</c:when>
 	</c:choose>
 </c:forEach>
-
-
 <!DOCTYPE html>
 <html>
 <head>
