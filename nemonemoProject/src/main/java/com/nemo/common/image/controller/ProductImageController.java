@@ -40,6 +40,7 @@ public class ProductImageController {
 		if(vo == null) return;
 		
 		String fileNm = vo.getProductImgFileName();
+		System.out.println(fileNm);
 		String ext = vo.getProductImgType();
 		
 		BufferedOutputStream out = null;
@@ -49,8 +50,10 @@ public class ProductImageController {
 		res.setCharacterEncoding("utf-8");
 		try {
 			res.setContentType("image/" + ext);
-			res.setHeader("Content-Disposition", "inline;filename=" + fileNm+"."+ext);
+			res.setHeader("Content-Disposition", "inline;filename=" + fileNm+"."+ext.toLowerCase());
 			File file = FileUtil.getFile(DirectoryName.PRODUCT, fileNm, ext);
+			res.setHeader("readable", String.valueOf(file.canRead()));
+			res.setHeader("fileString", file.toString());
 			if(file.exists()){
 				in = new FileInputStream(file);
 				out = new BufferedOutputStream(res.getOutputStream());

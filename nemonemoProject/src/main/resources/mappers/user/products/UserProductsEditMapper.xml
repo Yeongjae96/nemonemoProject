@@ -11,11 +11,11 @@
 	<select id="getProductEditVO" parameterType="int" resultMap="productEditMap">
 		SELECT a.*, b.*, c.*
 		FROM product_tb a
-		LEFT JOIN (product_img_tb) b
-		ON (a.product_no = b.product_no AND product_img_del_fl = 'N')
-		INNER JOIN (product_cate_tb) c
+		LEFT JOIN (SELECT product_no, product_img_del_fl, min(product_img_no) product_img_no FROM product_img_tb GROUP BY product_no, product_img_del_fl) b
+		ON (a.product_no = b.product_no AND b.product_img_del_fl = 'N')
+		LEFT JOIN (product_cate_tb) c
 		ON (a.product_cate_no = c.product_cate_no)
-        WHERE a.product_no = #{productNo}
+		WHERE a.product_no = ${productNo}
 	</select>
 	
 	<select id="getProductCateList" parameterType="hashMap" resultMap="com.nemo.user.products.repository.impl.UserProductsCategoryMapper.productsCateMap">

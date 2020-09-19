@@ -39,6 +39,7 @@ $(function() {
 		/* 서버로 부터 수신 */
 		function onMessage(evt) {
 			const data = JSON.parse(evt.data);
+			console.log(evt.data);
 			switch(data.response) {
 			case 'sendMsg':
 				receiveMsg(data.data);
@@ -123,7 +124,7 @@ $(function() {
 	
 	/* 내 안읽음 삭제 */
 	function updateConfirmMyStatus() {
-		const myTags = document.querySelectorAll('.talk-user-normal-msg');
+		const myTags = document.querySelectorAll('.talk-user-response-msg');
 		Array.prototype.forEach.call(myTags, function(e) {
 			const notReadTag = e.querySelector('.normal-msg-status');
 			if(!notReadTag) return true;

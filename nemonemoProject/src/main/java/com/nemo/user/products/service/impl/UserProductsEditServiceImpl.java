@@ -56,7 +56,7 @@ public class UserProductsEditServiceImpl implements UserProductsEditService{
 		
 		//뿌려줄 카테고리 리스트
 		List<UserBaseProductsCategoryVO> cateList = userProductsEditMapper.getProductCateList(paramMap);
-		
+			
 		List<UserBaseProductsCategoryVO> large = new ArrayList<>();
 		List<UserBaseProductsCategoryVO> medium = new ArrayList<>();
 		List<UserBaseProductsCategoryVO> small = new ArrayList<>();

@@ -29,7 +29,7 @@ public class FileUtil {
     			.append(dirName.getDirectoryName())
     			.append(fileName)
     			.append(".")
-    			.append(fileExt);
+    			.append(fileExt.toLowerCase());
     	return new File(realFile.toString());
     }
     
