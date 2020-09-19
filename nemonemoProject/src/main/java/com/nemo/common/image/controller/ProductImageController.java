@@ -40,7 +40,6 @@ public class ProductImageController {
 		if(vo == null) return;
 		
 		String fileNm = vo.getProductImgFileName();
-		System.out.println(fileNm);
 		String ext = vo.getProductImgType();
 		
 		BufferedOutputStream out = null;
