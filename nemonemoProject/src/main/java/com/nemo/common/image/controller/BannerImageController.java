@@ -45,7 +45,7 @@ public class BannerImageController {
 		res.setCharacterEncoding("utf-8");
 		try {
 			res.setContentType("image/" + ext);
-			res.setHeader("Content-Disposition", "inline;filename=" + fileNm+"."+ext);
+			res.setHeader("Content-Disposition", "inline;filename=" + fileNm+"."+ext.toLowerCase());
 			File file = FileUtil.getFile(DirectoryName.BANNER, fileNm, ext);
 			if(file.exists()){
 				in = new FileInputStream(file);

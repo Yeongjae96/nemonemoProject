@@ -44,7 +44,7 @@ public class StoreImageController {
 		HttpServletResponse res = ContextUtil.getResponse();
 		try {
 			res.setContentType("image/" + ext);
-			res.setHeader("Content-Disposition", "inline;filename=" + fileNm);
+			res.setHeader("Content-Disposition", "inline;filename=" + fileNm +"."+ext.toLowerCase());
 			File file = FileUtil.getFile(DirectoryName.STORE, fileNm, ext);
 			if(file.exists()){
 				in = new FileInputStream(file);
