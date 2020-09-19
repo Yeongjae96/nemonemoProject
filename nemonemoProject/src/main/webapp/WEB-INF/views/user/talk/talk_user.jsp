@@ -38,27 +38,6 @@
 				</button>
 			</div>
 		</header>
-		<!-- 연락하기 눌렀을 떄의 상품 정보  -->
-		<%-- <div class="talk-user-pd-area">
-			<a class="talk-user-pd-link">
-				<!-- 이미지 -->
-				<img src="<c:url value="/image/product/18.img"/>">
-				<div class="talk-user-pd-info">
-					<div class="talk-user-pd-price">
-						250,000
-						<small>원</small>
-					</div>
-					<div class="talk-user-pd-title">
-						노트북
-					</div>
-				</div>
-			</a>
-			<button class="talk-user-pd-btn">
-				네모페이
-			</button>
-		</div> --%>
-
-
 		<!--메신저 내용 -->
 		<div class="talk-user-msg-list">
 			<%-- 
