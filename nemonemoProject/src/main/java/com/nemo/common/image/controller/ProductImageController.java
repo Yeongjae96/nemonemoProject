@@ -52,8 +52,6 @@ public class ProductImageController {
 			res.setContentType("image/" + ext);
 			res.setHeader("Content-Disposition", "inline;filename=" + fileNm+"."+ext.toLowerCase());
 			File file = FileUtil.getFile(DirectoryName.PRODUCT, fileNm, ext);
-			res.setHeader("readable", String.valueOf(file.canRead()));
-			res.setHeader("fileString", file.toString());
 			if(file.exists()){
 				in = new FileInputStream(file);
 				out = new BufferedOutputStream(res.getOutputStream());
