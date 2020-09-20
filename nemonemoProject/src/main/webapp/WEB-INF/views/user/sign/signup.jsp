@@ -188,7 +188,7 @@
 									<input id="ch-first" type="checkbox" name="chk1" value="chk1" 
 									class="terms-check">
 									<div class="checkbox-info">
-										<span class="mandatory">(필수)</span>번개장터 이용약관 동의
+										<span class="mandatory">(필수)</span>네모내모 이용약관 동의
 									</div>
 									
 									<button id="show1" class="show-btn show-bt1" type="button" onclick="zzz();">
@@ -199,7 +199,7 @@
 								</div>
 								<div class="hide-term" id="term-1">
 									<div class="terms-second-scroll">
-										<iframe title="번개장터 이용약관"
+										<iframe title="네모내모 이용약관"
 											src="${pageContext.request.contextPath}/terms/service.do"></iframe>
 									</div>
 								</div>
@@ -220,7 +220,7 @@
 								</div>
 								<div class="hide-term" id="term-2">
 									<div class="terms-second-scroll">
-										<iframe title="번개장터 개인정보 처리 방침"
+										<iframe title="네모내모 개인정보 처리 방침"
 											src="${pageContext.request.contextPath}/terms/privacy.do"></iframe>
 									</div>
 								</div>
@@ -242,7 +242,7 @@
 								</div>
 								<div class="hide-term" id="term-3">
 									<div class="terms-second-scroll">
-										<iframe title="번개장터 위치기반서비스 이용약관"
+										<iframe title="네모내모 위치기반서비스 이용약관"
 											src="${pageContext.request.contextPath}/terms/location.do"></iframe>
 									</div>
 								</div>

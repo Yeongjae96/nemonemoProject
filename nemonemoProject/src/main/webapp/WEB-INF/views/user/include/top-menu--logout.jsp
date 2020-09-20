@@ -62,7 +62,7 @@
 		<div class="modal-content">
 			<div class="logout_h2">
 				<h2>로그아웃</h2>
-				<p>로그아웃 시 6개월 이상 경과된 번개톡 대화 내용이 모두 삭제됩니다. 계속하시겠습니까?</p>
+				<p>로그아웃 시 6개월 이상 경과된 네모톡 대화 내용이 모두 삭제됩니다. 계속하시겠습니까?</p>
 			</div>
 			<div class=logout_button_group>
 				<div>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>네 모든것 내 모든것!, 네모내모</title>
+<title>네모내모 | 상품등록</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/common/common.css"/>">

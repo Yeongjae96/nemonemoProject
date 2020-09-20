@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean");
 .footerwrap {
 	align-content: center;
 	margin-right: 250px;
@@ -22,7 +22,8 @@
 
 html, body {
 	width: 100%;
-	height: 100%
+	height: 100%;
+	font-family : "Noto Sans KR";
 }
 
 body {
@@ -82,7 +83,6 @@ table td img {
 }
 
 em, span {
-	font-family: inherit;
 	color: inherit;
 	font-size: inherit;
 	line-height: inherit
@@ -5424,7 +5424,6 @@ body.a-height .modalwrap {
 
 .modalwrap .modalwrap--lookaround {
 	height: 17px;
-	font-family: AppleSDGothicNeo;
 	font-size: 14px;
 	font-weight: normal;
 	font-style: normal;
@@ -5449,7 +5448,6 @@ body.a-height .modalwrap {
 
 .modalwrap--content__title {
 	margin-top: 17px;
-	font-family: AppleSDGothicNeo;
 	font-size: 38px;
 	letter-spacing: -0.8px;
 	color: #ffffff;
@@ -5458,7 +5456,6 @@ body.a-height .modalwrap {
 }
 
 .modalwrap--content__desc {
-	font-family: AppleSDGothicNeo;
 	font-size: 22px;
 	font-weight: 200;
 	letter-spacing: -1.4px;
@@ -5466,7 +5463,6 @@ body.a-height .modalwrap {
 }
 
 .modalwarp--btnlist__desc {
-	font-family: AppleSDGothicNeo;
 	font-size: 15px;
 	font-weight: 200;
 	letter-spacing: -1px;
@@ -5506,7 +5502,6 @@ body.a-height .modalwrap {
 	position: absolute;
 	left: 50%;
 	margin-left: -65px;
-	font-family: AppleSDGothicNeo;
 	font-size: 16px;
 	color: #ffffff;
 	line-height: 28px
@@ -5531,7 +5526,6 @@ body.a-height .modalwrap {
 .modalwarp--footer {
 	position: absolute;
 	opacity: 0.7;
-	font-family: AppleSDGothicNeo;
 	font-size: 13px;
 	font-weight: normal;
 	font-style: normal;
@@ -6067,7 +6061,6 @@ body.a-height .modalwrap {
 
 .layout-popup__title {
 	text-align: center;
-	font-family: AppleSDGothicNeo;
 	font-size: 21px;
 	line-height: 21px;
 	font-weight: 300;
@@ -6078,7 +6071,6 @@ body.a-height .modalwrap {
 }
 
 .layout-popup__content {
-	font-family: AppleSDGothicNeo;
 	font-size: 16px;
 	font-weight: 300;
 	letter-spacing: -0.9px;
@@ -6089,7 +6081,6 @@ body.a-height .modalwrap {
 }
 
 .layout-popup__small-content {
-	font-family: AppleSDGothicNeo;
 	font-size: 14px;
 	font-weight: 300;
 	letter-spacing: -0.9px;
@@ -6161,7 +6152,6 @@ body.a-height .modalwrap {
 
 .layout-popup__footer--btn {
 	margin-left: 24px;
-	font-family: AppleSDGothicNeo;
 	font-size: 12px;
 	font-weight: 300;
 	letter-spacing: -0.8px;
@@ -6171,7 +6161,6 @@ body.a-height .modalwrap {
 }
 
 .layout-popup__footer--close {
-	font-family: AppleSDGothicNeo;
 	font-size: 12px;
 	font-weight: 300;
 	letter-spacing: -0.8px;
@@ -6263,10 +6252,6 @@ body.a-height .modalwrap {
 }
 
 @media ( min-width :960px) {
-	* {
-		font-family: 'ë‹ì›€', Dotum, 'Apple SD Gothic Neo', Helvetica,
-			sans-serif
-	}
 	body {
 		scrollbar-base-color: #E8E8E8;
 		scrollbar-3dlight-color: #E8E8E8;

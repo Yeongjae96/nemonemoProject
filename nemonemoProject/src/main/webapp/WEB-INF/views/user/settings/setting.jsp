@@ -7,10 +7,13 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/user/settings/setting.css"/>">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<title>취향을 잇는 거래, 번개장터</title>
+<title>네모내모 | 계정 설정</title>
 <!-- <style data-styled="" data-styled-version="4.4.1"></style> -->
 <!-- <script charset="utf-8" src="/pc-static/js/Settings.df0e54c6.chunk.js"></script> -->
 <%-- <script src="<c:url value="/resources/js/user/settings/setting.js"/>"></script> --%>
+<link rel="shortcut icon"
+	href="<c:url value="/resources/images/common/logo/favicon.png"/>">
+
 <script>
 $(function() {
 	$('#logoutBtn').click(function() {
@@ -46,7 +49,7 @@ $(function() {
 		<div class="modal-content">
 			<div class="logout_h2">
 				<h2>로그아웃</h2>
-				<p>로그아웃 시 6개월 이상 경과된 번개톡 대화 내용이 모두 삭제됩니다. 계속하시겠습니까?</p>
+				<p>로그아웃 시 6개월 이상 경과된 네모톡 대화 내용이 모두 삭제됩니다. 계속하시겠습니까?</p>
 			</div>
 			<div class=logout_button_group>
 				<div>

@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>네모내모!</title>
+<title>네모내모 | 내 상품관리</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/common/common.css"/>">

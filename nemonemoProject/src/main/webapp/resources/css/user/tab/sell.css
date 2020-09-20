@@ -1,7 +1,7 @@
 /*전체영역 부분*/
-
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean");
 .sell_1{
-
+	font-family : "Noto Sans KR";
     display: block;
 }
 
@@ -61,6 +61,7 @@ font-weight: bold;
 
 .sell_6 li.selected {
     border-bottom: 2px solid rgb(255, 80, 88);
+    
 }
 
 .sell_6 li {
@@ -75,6 +76,8 @@ font-weight: bold;
 .sell_6 li.selected button {
     font-weight: bold;
     color: rgb(255, 80, 88);
+    cursor: pointer;
+    font-family : "Noto Sans KR";
 }
 
 .sell_6 li button {
@@ -82,6 +85,8 @@ font-weight: bold;
     line-height: 2.875rem;
     font-size: 0.875rem;
     color: rgb(102, 102, 102);
+    cursor: pointer;
+    font-family : "Noto Sans KR";
 }
 
 /*판매 버튼 부분*/

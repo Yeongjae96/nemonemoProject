@@ -6,13 +6,16 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>네모내모 | 공지사항</title>
 <!-- 공통 CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/common/common.css"/>">
 
 <!-- 페이지 CSS  -->
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/customer_nav.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/user/customer/notice.css"/>">
+<link rel="shortcut icon"
+	href="<c:url value="/resources/images/common/logo/favicon.png"/>">
+
 
 
 <!-- 라이브러리 -->
@@ -71,106 +74,7 @@
 							</article>
 						</li>
 						</c:forEach>
-						<%-- <c:otherwise>
-							<li class="notice-list-li">
-								데이터가 존재 하지 않습니다.
-							</li>
-						</c:otherwise> --%>
-						
-						<!-- <li class="notice-list-li">
-							<article class="notice-list-art">
-								<button class="notice-list-btn">
-									<div class="notice-list-title">
-										<h1>[공지] 번개장터 개인정보처리방침 개정 안내</h1>
-										<time class="notice-list-time">2020/07/15</time>
-									</div>
-									<span class="notice-list-arrow"></span>
-								</button>
-								<div class="notice-list-content">
-										<strong style="box-sizing: border-box;"
-											data-renderer-mark="true">[최신 사기 수법 안내]</strong><br>
-									새상품은 받은날로부터 7일 이내 반품 및 환불이 가능합니다. (판매자가 사업자 일 경우 해당) 상품이<br>
-										불량이라면 동일한 상품으로 교환이나 환불을 받아보시고, 변심이시라면 왕복택배비는 구매자께서 부담하셔야 합니다.<br>
-									<br>&lt;반품기간 및 반품운송비&gt;<br>
-									<br>: 상품상세설명에 반품불가라고 표기하더라도 관련법이 우선하므로 구매자의 반품시 이를 받아주어야 함.<br>
-									<br>- 구매자 단순변심 : 상품 수령 후 7일 이내 (구매자 반품비 부담)<br>
-									<br>- 표시/광고와 상이 : 상품 수령 후 3개월 이내 또는 사실을 안 날로부터 30일 이내 (판매자
-										반품비 부담)<br>
-								</div>
-							</article>
-						</li>
-						<li class="notice-list-li">
-							<article class="notice-list-art">
-								<button class="notice-list-btn">
-									<div class="notice-list-title">
-										<h1>[공지] 번개장터 개인정보처리방침 개정 안내</h1>
-										<time class="notice-list-time">2020/07/15</time>
-									</div>
-									<span class="notice-list-arrow"></span>
-								</button>
-								<div class="notice-list-content">
-									<br>
-										<strong style="box-sizing: border-box;"
-											data-renderer-mark="true">[최신 사기 수법 안내]</strong>
-									<br>
-									<br>새상품은 받은날로부터 7일 이내 반품 및 환불이 가능합니다. (판매자가 사업자 일 경우 해당) 상품이
-										불량이라면 동일한 상품으로 교환이나 환불을 받아보시고, 변심이시라면 왕복택배비는 구매자께서 부담하셔야 합니다.<br>
-									<br>&lt;반품기간 및 반품운송비&gt;<br>
-									<br>: 상품상세설명에 반품불가라고 표기하더라도 관련법이 우선하므로 구매자의 반품시 이를 받아주어야 함.<br>
-									<br>- 구매자 단순변심 : 상품 수령 후 7일 이내 (구매자 반품비 부담)<br>
-									<br>- 표시/광고와 상이 : 상품 수령 후 3개월 이내 또는 사실을 안 날로부터 30일 이내 (판매자
-										반품비 부담)<br>
-								</div>
-							</article>
-						</li>
-						<li class="notice-list-li">
-							<article class="notice-list-art">
-								<button class="notice-list-btn">
-									<div class="notice-list-title">
-										<h1>[공지] 번개장터 개인정보처리방침 개정 안내</h1>
-										<time class="notice-list-time">2020/07/15</time>
-									</div>
-									<span class="notice-list-arrow"></span>
-								</button>
-								<div class="notice-list-content">
-									<br>
-										<strong style="box-sizing: border-box;"
-											data-renderer-mark="true">[최신 사기 수법 안내]</strong>
-									<br>
-									<br>새상품은 받은날로부터 7일 이내 반품 및 환불이 가능합니다. (판매자가 사업자 일 경우 해당) 상품이
-										불량이라면 동일한 상품으로 교환이나 환불을 받아보시고, 변심이시라면 왕복택배비는 구매자께서 부담하셔야 합니다.<br>
-									<br>&lt;반품기간 및 반품운송비&gt;<br>
-									<br>: 상품상세설명에 반품불가라고 표기하더라도 관련법이 우선하므로 구매자의 반품시 이를 받아주어야 함.<br>
-									<br>- 구매자 단순변심 : 상품 수령 후 7일 이내 (구매자 반품비 부담)<br>
-									<br>- 표시/광고와 상이 : 상품 수령 후 3개월 이내 또는 사실을 안 날로부터 30일 이내 (판매자
-										반품비 부담)<br>
-								</div>
-							</article>
-						</li>
-						<li class="notice-list-li">
-							<article class="notice-list-art">
-								<button class="notice-list-btn">
-									<div class="notice-list-title">
-										<h1>[공지] 번개장터 개인정보처리방침 개정 안내</h1>
-										<time class="notice-list-time">2020/07/15</time>
-									</div>
-									<span class="notice-list-arrow"></span>
-								</button>
-								<div class="notice-list-content">
-									<br>
-										<strong style="box-sizing: border-box;"
-											data-renderer-mark="true">[최신 사기 수법 안내]</strong>
-									<br>
-									<br>새상품은 받은날로부터 7일 이내 반품 및 환불이 가능합니다. (판매자가 사업자 일 경우 해당) 상품이
-										불량이라면 동일한 상품으로 교환이나 환불을 받아보시고, 변심이시라면 왕복택배비는 구매자께서 부담하셔야 합니다.<br>
-									<br>&lt;반품기간 및 반품운송비&gt;<br>
-									<br>: 상품상세설명에 반품불가라고 표기하더라도 관련법이 우선하므로 구매자의 반품시 이를 받아주어야 함.<br>
-									<br>- 구매자 단순변심 : 상품 수령 후 7일 이내 (구매자 반품비 부담)<br>
-									<br>- 표시/광고와 상이 : 상품 수령 후 3개월 이내 또는 사실을 안 날로부터 30일 이내 (판매자
-										반품비 부담)<br>
-								</div>
-							</article>
-						</li> -->
+					
 					</ul>
 				</main>
 			</div>

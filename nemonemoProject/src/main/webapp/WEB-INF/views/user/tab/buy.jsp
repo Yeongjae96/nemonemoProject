@@ -5,12 +5,18 @@
 <html lang="kr">
 <head>
 <meta charset="utf-8">
-<title>거래내역</title>
+<title>네모내모 | 구매내역</title>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/tab/buy.css"/>">
+<link rel="shortcut icon" href="<c:url value="/resources/images/common/logo/favicon.png"/>">
+	
+	
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
+
+
 
 	var result = '${msg}';
 	if (result == 'success') {

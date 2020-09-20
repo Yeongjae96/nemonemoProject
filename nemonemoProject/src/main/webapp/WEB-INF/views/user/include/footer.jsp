@@ -20,7 +20,7 @@
             	<a href="https://www.notion.so/BUNJANG-35a8c66ae6ce4ac187625c297925ae96"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAABWtJREFUWAmlV0tInUcUPlfj+/0KkUQQdeWrglShEEGxKxGiiMaVIIggFhRXIqgbqwuRNFhKWuKqEAxkmSAqhsboQpBWiS/sRkVFfL+fdfp9U+fv1Xuv92oOfP/Mf2bmnPPPnDnn/Da5AymlfDDdHwgEgoFQIAyIuMITtDXANPATMGCz2Y7QuiSbGYFw9rOAJCDqCpFoDagkHKDSEIBGeAG30Z8YbIARH11N0gZAeTQm9ACFriYeHR3J/v6+7O3tye7urmxvb8vW1pZsbm7KxsaGbtknLzg4WIqLi+X58+cU9w/wI9AOQ47JsCdjwK9gVo2MjMiHDx9kbW1N1tfXtTAqokIqPzw8lIuLC/v1uu/t7S2BgYESEhKisbOzo2WUlJTIixcv5PHjx5w3DPwAIyb0oquHDV/PM5xfWlqKSU1N1V8YHR0tEREREh4eLpGRkRIVFXUN5BFhYWEaVBwUFCQBAQHi6+sr3K03b95IQ0ODhIaGSnd3txQVFVHlHtAE/AxDFBkCA54Ap58+fSJDcaC9vR2sr6fZ2VmVm5ursEOqtrZWYSeN0Lfo0LcsA06Gh4e1AWRxAaxXJycnZoHb9uzsTB0cHCj4g8Juqrm5OTU5Oan6+vpUWlqalp2RkaFwzEbW7+jgc7EDUPr358+f/Z4+fUqbLMrLy5PKykq9rfQDZ6BT0j+Mj9BPjo+PNSxBdh0eyfj4uCQlJe2DnfjAbsyhOzQ0JIQ74rnz/OmI9A3eAuOQVEhf4Xhvb6+srq7KysoKDfCDXP9bDaDirKwswTlaDkeBBBVQEUHFVODv7y9+fn7i4+MjXl6OIYK79Pr1azOmj8WtAW1tbZKfn+9uEzwaf/DAUZ0j54YoZ19yfn4ucFB9zjExMYKbY6368uWLTExM6JjBWPLw4UOpqqrS4/A3a57pOO6TGblq7Rd1dHRIZmamwJuFMSMlJUVevnxpreBcvtfU1Eh1dbW8e/dOH5c1wUnHrQH2axiceM7T09OyuLioQ3Bra6t+5zzuxKtXr6SpibEGoRVfXlZWpvuuHncygF9VWlp6TRbDbl1dnRWiaYQ5a8SGa3OdvdzJAAowQun1hgYGBvSXm3f7YzM8V+2dDTCCmGjoD4aam5tlfn7evHrc3tuA2NhY6erqEmZCEtNwfX297tvfCs245XFvAxhuc3JypKKiwhL//v17nQUZmDylextgFDBQxcXFmVdpbGwUJCHr3V3nqw149OiRMD4YWlhYkJ4eFleekTGAWdGzFU5mlZeXy7Nnz6yR09NTq++uQwN4WU+ZsTxxHjPH3HUqIK+zs1NXTXy/C9GATWAyOTlZO5W7xaYmnJmZkbGxMSvvJyYmCqOiPTFneETY/mJAVzCo/3SaxELdDg4OckhTS0uLio+PV0jHivOys7PV8vKyGVYwTpdecEqFG6JGR0etMXYQSbVMVl8gllsshnRZRh/4jVwUkwoZ0DLCGHB5eamQ5dTU1JRCHlDIdApnzSUOhKrIgUcGcoODATod4ww53gBbvkEt/y1LJp4pyQQannN6errmOXtwu+l8BtgZQY1ogaV+f3+/XgpdbHUO/z+Rg4OBZDR/IN5HFxQUCL5eCgsL9U8GAw9rQtaA9rhZD7Ik51zWC8ZfqM0QKyZm04SEhC3wkq4ZwEkwogTNW2yzjZGO99pTYvHCdG3qQ/4rmPqQZRz/L3hd+VGgXqDcwQCOwAj+SjWysuFR8O+INaD5EbnZmhrR1IkMxQRrQxc0Cn45jnXRlQG+mPALUOlCwE027xv/+w6vwJKbf0HErh220Z8CPkL5Cdr/HIEdZ4Sd+B78FuA7gPH1L8AIpRLiAOAvOEGhDIPndGy0bulfo8qAMKN/LyYAAAAASUVORK5CYII=" width="16" alt="Notion 아이콘">회사소개</a>
             </div>
             <div id="about">
-                중고 거래 서비스 번개장터와 중고 컨시어지 서비스 셀잇을 만듭니다. 누구나, 무엇이든 쉽고 편하고 안전하게 거래하는 세상을 꿈꾸고 있습니다.
+                중고 거래 서비스 네모내모와 중고 컨시어지 서비스 셀잇을 만듭니다. 누구나, 무엇이든 쉽고 편하고 안전하게 거래하는 세상을 꿈꾸고 있습니다.
             </div>
             <div id="about-sns">
                 <div class="sc-cMhqgX fEpSg"><a href="#" target="_blank" rel="noopener noreferrer"
@@ -35,10 +35,10 @@
                             width="24" alt="Instagram 아이콘"></a></div>
             </div>
             <div>
-                대표이사 : 이재후 개인정보보호담당자 : 이동주 사업자등록정보 : 113-86-45836 통신판매업신고 : 2019-서울서초-1126<br>
+                대표이사 : 김네모 개인정보보호담당자 : 박네모 사업자등록정보 : 113-86-45836 통신판매업신고 : 2019-서울서초-1126<br>
                 주소 : 서울특별시 서초구 서초대로38길 12 마제스타시티 타워2 지하1층 TEL/FAX 02-598-8240/02-598-8241<br>
                 호스팅서비스 제공자 : Amazon Web Services (AWS)<br>
-                번개장터㈜는 통신판매중개자로서 중고거래마켓 번개장터의 거래 당사자가 아니며, 입점판매가 등록한 상품정보 및 거래에 대해 책임을 지지 않습니다.
+                네모내모㈜는 통신판매중개자로서 중고거래마켓 네모내모의 거래 당사자가 아니며, 입점판매가 등록한 상품정보 및 거래에 대해 책임을 지지 않습니다.
             </div>
             <div style="height : 20px;">
             </div>

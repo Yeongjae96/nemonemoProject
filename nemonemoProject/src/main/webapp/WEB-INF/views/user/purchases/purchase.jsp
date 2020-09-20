@@ -149,20 +149,7 @@
 							</div>
 						</section>
 						<input onclick="changevalue()" type="hidden" value="kakao" name="purchaseWay" id="purchaseselect"></input>
-						<!-- 쿠폰-->
-						<!-- <section class="DefaultPanel__Panel-sc-1aguack-0 gtzuKj">
-                        <header>번개포인트</header>
-                        <div class="DefaultPanel__Content-sc-1aguack-1 iwOJBt">
-                            <div class="PointPanel__ItemWrapper-sc-1oi4jkj-0 sbLNC"><input inputmode="numeric"
-                                    placeholder="포인트 입력" class="PointPanel__CustomNumberFormat-sc-1oi4jkj-1 jhKNCf"
-                                    type="text" value=""><button class="DeleteButton-dvbt9f-0 cKaIjL"></button><button
-                                    class="PointPanel__SetMaxPointButton-sc-1oi4jkj-2 cwFTmw">전액사용</button></div>
-                            <p class="PointPanel__EnablePoint-sc-1oi4jkj-3 eAqPdU">사용 가능한 포인트 <b>0P</b></p>
-                            <p class="PointWarningMessage__WarningMessage-ij96h0-0 bdoOpY">번개포인트는 1회 사용 시 최대 5만원까지 100원 단위로
-                                상품금액에서 차감됩니다.</p>
-                        </div>
-                    </section>
-                    <div class="View__Margin-hv4joa-0 bggehq"></div> -->
+						
 
 						<!--결제 금액-->
 						<section class="purchases_price_section">
@@ -217,16 +204,7 @@
 								</div>
 
 								<ul class="purchases_terms_contents">
-									<!-- <li class="purchases_terms_column">
-									<div class="Terms_CheckBoxWrapper">
-										<input type="checkbox" name="service" class="service_check">
-										<label for="service" class="purchases_terms_label"><i
-											id="service" onclick="changeservice()"></i> <u
-											class="purchases_terms_link"> <a
-												href="https://pay2.bunjang.co.kr/terms/service?orderId=8826748">번개페이
-													서비스 이용약관</a></u> 동의 <br> </label>
-									</div>
-								</li> -->
+								
 
 									<li class="purchases_terms_column">
 										<div class="Terms_CheckBoxWrapper">
@@ -258,7 +236,7 @@
 						</section>
 						<input type="hidden" value=0 id="pullPrice" name="purchasePrice">
 						<section class="purchases_footer">"네모내모_컨시어지" 상점의 판매상품을
-							제외한 모든 상품들에 대하여, 네모내모㈜는 통신판매중개자로서 네모거래마켓 네모장터의 거래 당사자가 아니며,
+							제외한 모든 상품들에 대하여, 네모내모㈜는 통신판매중개자로서 네모거래마켓 네모내모의 거래 당사자가 아니며,
 							입점판매자가 등록한 상품정보 및 거래에 대해 책임을 지지 않습니다.</section>
 					</div>
 					<div class="Overlay__OverlayDiv-zwvsg4-0 zTKwr"></div>
