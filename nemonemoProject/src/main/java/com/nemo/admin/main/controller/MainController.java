@@ -1,8 +1,6 @@
 package com.nemo.admin.main.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +27,7 @@ public class MainController {
 		int productCnt = dailyCountService.getDailyNewProductCnt(vo);
 		
 		List<AdminBaseQnaVO> recentQnaList = qnaService.getRecentQnaList(recentList);
+		
 		
 		mav.addObject("memberCnt", memberCnt);
 		mav.addObject("qnaCnt", qnaCnt);

@@ -13,4 +13,5 @@ public interface PurchaseService {
 	public List<PurchasesVO> buyList(PurchasesVO vo);
 	public List<PurchasesVO> sellList(PurchasesVO vo);
 	public List<PurchasesVO> getSelectList(PurchasesVO vo);
+	public List<PurchasesVO> getUserPurchases(int buyerNo);
 }

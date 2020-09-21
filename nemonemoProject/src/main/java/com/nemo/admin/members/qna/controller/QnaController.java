@@ -64,19 +64,18 @@ public class QnaController {
 	@GetMapping("/reply/filedown")
 	public void fileDown(AdminBaseQnaImageVO vo, HttpServletResponse response) throws Exception {
 
-		//String qnaImgFileName = vo.getQnaImgFileName();
-		String originalFileName = vo.getQnaImgOriginName();
+		String qnaImgFileName = vo.getQnaImgFileName();
 		String imgType = vo.getQnaImgType();
+		System.out.println("다운로드 파일 정보 : " + vo);
 		
 		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
 		byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray
-							(new File("C:\\upload\\qna\\" + originalFileName + "." + imgType));
+							(new File("C:\\upload\\qna\\" + qnaImgFileName + "." + imgType));
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);
 		response.setHeader("Content-Disposition", "attachment; fileName =\""
-							+ URLEncoder.encode(originalFileName, "UTF-8") +"." 
+							+ URLEncoder.encode(qnaImgFileName, "UTF-8") +"." 
 							+ URLEncoder.encode(imgType, "UTF-8")   +"\";");
-		System.out.println(response.getHeader(originalFileName));
 		response.getOutputStream().write(fileByte);
 		response.getOutputStream().flush();
 		response.getOutputStream().close();

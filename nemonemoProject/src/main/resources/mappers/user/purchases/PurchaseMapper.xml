@@ -129,6 +129,13 @@
     	WHERE
     		 PRODUCT_NO = #{productNo}
     </select>
+    
+
+        
+     <select id="getUserPurchases" parameterType="int" resultMap="purdhaseMap">
+    	    select * from purchases_tb
+    	    where BUYER_NO = #{buyerNo}
+    </select>
 
 
 </mapper>

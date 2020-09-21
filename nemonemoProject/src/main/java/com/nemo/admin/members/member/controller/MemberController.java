@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.nemo.admin.members.member.service.MemberService;
 import com.nemo.admin.members.member.vo.AdminBaseMemberVO;
 import com.nemo.admin.members.member.vo.TermsCheckedVO;
+import com.nemo.user.purchases.vo.PurchasesVO;
+import com.nemo.user.pusrchases.service.PurchaseService;
 
 /**
  * @제목 : 관리자 자주묻는 질문 카테고리 컨트롤러
@@ -28,12 +30,12 @@ import com.nemo.admin.members.member.vo.TermsCheckedVO;
 public class MemberController {
 	
 	@Autowired private MemberService memberService;
+	@Autowired private PurchaseService purchaseService;
 	
 	@GetMapping("/list")
 	public ModelAndView listPage(AdminBaseMemberVO vo) {
 		ModelAndView mav = new ModelAndView("members/member/member_list");
 		List<AdminBaseMemberVO> members = memberService.getMemberList(vo);
-		System.out.println(members);
 		mav.addObject("memberList", members);
 		return mav;
 	}
@@ -43,9 +45,10 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView("members/member/member_info");
 		AdminBaseMemberVO memberVO = memberService.getMember(userNo);
 		List<TermsCheckedVO> termsVO = memberService.getTerms(userNo);
+		List<PurchasesVO> purchaseVO = purchaseService.getUserPurchases(userNo);
 		mav.addObject("memberVO", memberVO);
 		mav.addObject("termsVO", termsVO);
-		System.out.println(termsVO);
+		mav.addObject("purchaseList", purchaseVO);
 		return mav;
 	}
 }

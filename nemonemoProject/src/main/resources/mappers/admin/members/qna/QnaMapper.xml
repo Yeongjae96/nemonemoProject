@@ -48,6 +48,7 @@
 			inner join (user_tb mem)
 		on (qna.qna_reg_id = mem.user_no)
 			where TO_CHAR(QNA_REG_YMD) = TO_CHAR(SYSDATE, 'YY/MM/DD')
+		AND QNA_REPLY_FL = 'N'
 			
 		order by qna_no desc
 

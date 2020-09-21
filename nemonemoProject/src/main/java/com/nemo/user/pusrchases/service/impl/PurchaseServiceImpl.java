@@ -62,5 +62,10 @@ public class PurchaseServiceImpl implements PurchaseService{
 		return purchaseDAO.upProductSt(vo);
 	}
 
+	@Override
+	public List<PurchasesVO> getUserPurchases(int buyerNo) {
+		return purchaseDAO.getUserPurchases(buyerNo);
+	}
+
 
 }

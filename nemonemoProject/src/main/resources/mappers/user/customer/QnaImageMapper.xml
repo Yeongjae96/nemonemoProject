@@ -44,18 +44,7 @@
 		<selectKey keyColumn="qnaImgNo" order="AFTER"> SELECT qna_img_sq.currval FROM dual </selectKey>
 	</insert>
 	
-	
-	
-	<!-- 첨부파일 다운 -->
-	<select id="selectImageInfo" parameterType="hashMap" resultType="hashMap">
-		SELECT 
-			qna_img_file_name,
-			qna_img_origin_name
-		FROM 
-		WHERE qna_img_no = #{qnaImgNo}
-	</select>
-	
-	
+
 	
 
 

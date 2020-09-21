@@ -109,9 +109,10 @@
 													<c:forEach var="imgFile" items="${imageList}">
 														<a class ="imgAnchor" data-imgno = "${imgFile.qnaImgNo}"
 														data-imgnm = "${imgFile.qnaImgOriginName}"
+														data-filenm ="${imgFile.qnaImgFileName}"
 														data-imgtype="${imgFile.qnaImgType}"
 														style = "cursor : pointer;">
-														${imgFile.qnaImgOriginName}.${imgFile.qnaImgType}</a> <br>
+														${imgFile.qnaImgFileName}.${imgFile.qnaImgType}</a> <br>
 													</c:forEach>
 												</td>
 											</tr>

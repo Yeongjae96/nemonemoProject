@@ -119,7 +119,8 @@
                                     <tr>
                                         <th scope="row">${qna.qnaNo}</th>
                                         <td>${qna.storeName}</td>
-                                        <td><a href="<c:url value="members/qna/reply.mdo?qnaNo=${qna.qnaNo}"/>">${qna.qnaCategoryName}</a></td>
+                                        <td>
+                                        <a href="<c:url value="members/qna/reply.mdo?qnaNo=${qna.qnaNo}"/>">${qna.qnaCategoryName}</a></td>
                                         <td>${qna.qnaRegYmd}</td>
                                     </tr>
                                     </c:forEach>

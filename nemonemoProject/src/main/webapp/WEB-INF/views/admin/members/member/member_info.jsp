@@ -106,8 +106,8 @@
 
 											</tr>
 											<tr>
-												<th>총 주문건수<i class="fas fa-angle-right"></i></th>
-												<td><label> 0 </label>
+												<th>주문내역<i class="fas fa-angle-right"></i></th>
+												<td>
 													<button type="button" class="btn bg-teal waves-effect"
 														data-toggle="modal" data-target="#registryModal">상세보기</button></td>
 												<th>연락처<i class="fas fa-angle-right"></i></th>
@@ -223,27 +223,19 @@
 									<tr>
 										<th>#</th>
 										<th>거래 날짜</th>
-										<th>카테고리</th>
 										<th>상품</th>
 										<th>거래 금액</th>
 									</tr>
 								</thead>
 								<tbody>
+								<c:forEach var="purchase" items="${purchaseList}">
 									<tr>
-										<th scope="row">1</th>
-										<td>2020/07/23</td>
-										<td>전자기기</td>
-										<td>에어팟</td>
-										<td>50000원</td>
+										<th scope="row">${purchase.purchaseNo}</th>
+										<td>${purchase.puchaseDt}</td>
+										<td>${purchase.productName}</td>
+										<td>${purchase.purchasePrice}</td>
 									</tr>
-									<tr>
-										<th scope="row">1</th>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-
+								</c:forEach>
 								</tbody>
 							</table>
 						</div>
