@@ -47,6 +47,7 @@ public class FaqController {
 	
 	@PostMapping("/new")
 	public ModelAndView faqNewAction(AdminBaseFaqVO vo) {
+		faqService.insertFaq(vo);
 		ModelAndView mav = new ModelAndView("redirect:/sites/faq/list.mdo");
 		return mav;
 	}
