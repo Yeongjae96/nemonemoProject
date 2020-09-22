@@ -11,9 +11,9 @@
     int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
  */    
     String name = "네모네모 주식회사";
-    String email = "NemoNemoCp@naver.com";
-    String phone = "010-2525-2525";
-    String address = "주식회사 네모네모 서울시 종로구 어딘가";
+    String email = "partner@nemo.co.kr";
+    String phone = "010-111-2222";
+    String address = "서울특별시 네모구 네모동 지하1층";
     String zipCode ="01234";
     String productName= (String)request.getParameter("productName");
     int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
@@ -111,7 +111,7 @@
 
 			<p>예금주 : 네모네모 주식회사</p>
 			<p>계좌번호 : 030-05-044444-033</p>
-			<p>연락처 : 010-2525-2525</p>
+			<p>연락처 : 010-111-2222</p>
 			<p>상품 이름 : <%=productName%></p>
 			<p>결제금액 : <%=totalPrice%>원</p>
 

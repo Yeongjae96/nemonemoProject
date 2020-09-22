@@ -36,21 +36,21 @@
             </div>
             <div>
                 대표이사 : 김네모 개인정보보호담당자 : 박네모 사업자등록정보 : 113-86-45836 통신판매업신고 : 2019-서울서초-1126<br>
-                주소 : 서울특별시 서초구 서초대로38길 12 마제스타시티 타워2 지하1층 TEL/FAX 02-598-8240/02-598-8241<br>
+                주소 : 서울특별시 네모구 네모동 지하1층 TEL/FAX 010-111-2222/02-123-4567<br>
                 호스팅서비스 제공자 : Amazon Web Services (AWS)<br>
                 네모내모㈜는 통신판매중개자로서 중고거래마켓 네모내모의 거래 당사자가 아니며, 입점판매가 등록한 상품정보 및 거래에 대해 책임을 지지 않습니다.
             </div>
             <div style="height : 20px;">
             </div>
             <div style="display : flex;">
-                Copyright ⓒ Bungaejangter Inc. All rights reserved.
+                Copyright ⓒ Nemojangter Inc. All rights reserved.
                 <div style="margin-left : 340px;">
                     <span>고객센터</span>
-                    02-598-8240
+                    02-123-4567
                 </div>
                 <div style="margin-left : 20px;">
                     <span>제휴문의</span>
-                    partner@bunjang.co.kr
+                    partner@nemo.co.kr
                 </div>
             </div>
         </div>
