@@ -44,10 +44,7 @@ public class ReportListController {
 	@RequestMapping(value = "edit", method = { RequestMethod.POST })
 	public ModelAndView ListEditAction(ReportListVO vo) {
 
-		System.out.println("edit POST cont : " + vo);
-
 		listService.updateList(vo);
-
 		return new ModelAndView("redirect:/members/report/list.mdo");
 	}
 
@@ -55,9 +52,7 @@ public class ReportListController {
 	public ModelAndView ListEditPage(@RequestParam int reportNO) {
 
 		ModelAndView mav = new ModelAndView("members/report/member_report_list_edit");
-		System.out.println("edit cont : " + reportNO);
 		ReportListVO reportListVO = listService.getUpdateList(reportNO);
-
 		mav.addObject("reportListVO", reportListVO);
 
 		return mav;

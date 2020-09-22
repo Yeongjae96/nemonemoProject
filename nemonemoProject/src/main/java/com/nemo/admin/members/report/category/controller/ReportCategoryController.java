@@ -52,10 +52,7 @@ public class ReportCategoryController {
 		return mav;
 	}
 
-	
-		//ajax 사용시 ResponseBody가 필요하다.
-	
-		@RequestMapping(value = "/category/delete", method = { RequestMethod.POST })
+			@RequestMapping(value = "/category/delete", method = { RequestMethod.POST })
 		public @ResponseBody int CategoryDeleteAction(@RequestParam int reportCategoryNO) {
 			return categoryService.deleteCategory(reportCategoryNO);
 			
@@ -67,7 +64,6 @@ public class ReportCategoryController {
 	public ModelAndView CategoryEditPage(@RequestParam int reportCategoryNO) {
 
 		ModelAndView mav = new ModelAndView("members/report/category/member_report_category_edit");
-		System.out.println("edit cont : " + reportCategoryNO);
 		ReportCategoryVO reportCategoryVO = categoryService.getCategory(reportCategoryNO);	
 
 		mav.addObject("reportCategoryVO",reportCategoryVO);
@@ -78,11 +74,7 @@ public class ReportCategoryController {
 
 	@RequestMapping(value = "/category/edit", method = { RequestMethod.POST })
 	public ModelAndView CategoryEditAction(ReportCategoryVO vo) {
-
-		System.out.println("edit POST cont : " + vo);
-
 		categoryService.updateCategory(vo);
-
 		return new ModelAndView("redirect:/members/report/category/list.mdo");
 	}
 

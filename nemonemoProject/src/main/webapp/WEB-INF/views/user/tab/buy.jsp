@@ -83,11 +83,14 @@
 												<input type="hidden" value="${list.productSeller}" name="productSeller">
 												<input type="hidden" value="${list.buyerNo}" name="buyerNo">
 												<input type="hidden" value="${user.userNo}" name="userNo">
-												
-												<div>
-													<input type="submit" value="물품 인수 확인" onclick="javascript: form.action='updateSt.do';"/>
-													<input type="submit" value="상품 거래 취소" onclick="javascript: form.action='cancelSt.do';"/>
-												</div>
+												<c:if test="${list.purchasePaySt eq 'N'}">
+													<div>
+														<input type="submit" value="물품 인수 확인"
+															onclick="javascript: form.action='updateSt.do';" /> 
+															<input type="submit" value="상품 거래 취소"
+															onclick="javascript: form.action='cancelSt.do';" />
+													</div>
+												</c:if>
 											</form>
 										</div>
 									</c:forEach>

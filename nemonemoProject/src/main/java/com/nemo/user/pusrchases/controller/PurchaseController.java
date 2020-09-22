@@ -63,7 +63,6 @@ public class PurchaseController {
 	@RequestMapping(value = "/purchases", method = { RequestMethod.POST })
 	public ModelAndView purchaseKaKaoAction(PurchasesVO vo, HttpServletRequest req, RedirectAttributes rttr) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(vo.toString());
 
 		List<PurchasesVO> getlist = purchaseService.getSelectList(vo);
 		
@@ -131,7 +130,6 @@ public class PurchaseController {
 	@RequestMapping(value = "/tab/updateSt", method = { RequestMethod.POST })
 	public ModelAndView updatePurchaseStAction(String userNo,PurchasesVO vo, HttpServletRequest req, RedirectAttributes rttr) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(vo.toString());
 		String user = userNo;
 		purchaseService.upPaySt(vo);
 		purchaseService.upProductSt(vo);
@@ -143,7 +141,6 @@ public class PurchaseController {
 	@RequestMapping(value = "/tab/cancelSt", method = { RequestMethod.POST })
 	public ModelAndView CancelPurchaseStAction(String userNo,PurchasesVO vo, HttpServletRequest req, RedirectAttributes rttr) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(vo.toString());
 		String user = userNo;
 		purchaseService.CancelPaySt(vo);
 		rttr.addFlashAttribute("msg", "cancel");

@@ -54,7 +54,6 @@ public class QnaCategoryController {
 	@PostMapping("/new")
 	public ModelAndView qnaCategoryNewAction(QnaCategoryVO vo) {
 		qnaCategoryService.insertQnaCategory(vo);
-		System.out.println("qna 추가 : " + vo);
 		ModelAndView mav = new ModelAndView("redirect:/members/qna/category/list.mdo");
 		return mav;
 	}
@@ -63,14 +62,12 @@ public class QnaCategoryController {
 	@GetMapping("/edit")
 	@ResponseBody
 	public QnaCategoryVO qnaCategoryEditJSON(@RequestParam int qnaCategoryNo) {
-		System.out.println("수정할 번호 : " + qnaCategoryNo);
 		return qnaCategoryService.getQnaCategory(qnaCategoryNo);
 	}
 	
 	@PostMapping("/edit")
 	@ResponseBody
 	public int qnaCategoryEditPostJSON(QnaCategoryVO vo) {
-		System.out.println("수정될 ROW : " + vo);
 		return qnaCategoryService.updateQnaCategory(vo);
 	}
 	
@@ -85,7 +82,6 @@ public class QnaCategoryController {
 	@PostMapping("/flag")
 	@ResponseBody
 	public int qnaCategoryFlagEditPostJSON(@RequestParam Map<String, Object> useFlagUpdateParamMap) {
-		System.out.println("사용여부" + useFlagUpdateParamMap);
 		return qnaCategoryUseFlagService.updateUseFlag(useFlagUpdateParamMap);
 	}
 	

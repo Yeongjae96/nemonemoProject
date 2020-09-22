@@ -33,7 +33,6 @@ public class ProductsController {
 	@PostMapping("/flagJson")
 	@ResponseBody
 	public int displayFlagAction(@RequestParam Map<String, Object> dispFlagParamMap) {
-		System.out.println("사용여부" + dispFlagParamMap);
 		return productsService.displayProductFlag(dispFlagParamMap);
 	}
 	

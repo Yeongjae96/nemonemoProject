@@ -46,7 +46,6 @@ public class TermsHistController {
 				
 		ModelAndView mav = new ModelAndView("members/terms/member_term");
 		mav.addObject("termsHistList", termsHistList);
-		System.out.println(" 리턴 데이터2 : "+ termsHistList);
 		return mav;
 	}
 	

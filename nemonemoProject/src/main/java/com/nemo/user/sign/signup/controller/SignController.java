@@ -43,10 +43,7 @@ public class SignController {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		try {
 			vo.setUserPw(encoder.encode(vo.getUserPw()));
-			int x = userService.insertUser(vo);
-
-			System.out.println("x : " + x);
-
+			userService.insertUser(vo);
 			ModelAndView mav = new ModelAndView("redirect:/");
 			return mav;
 		} catch (Exception e) {

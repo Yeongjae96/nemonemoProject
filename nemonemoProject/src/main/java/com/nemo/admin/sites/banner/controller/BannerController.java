@@ -40,10 +40,8 @@ public class BannerController {
 	@GetMapping("list")
 	public ModelAndView BannerPage(BannerVO vo) {
 		ModelAndView mav = new ModelAndView("sites/banner/site_banner_list");
-
 		List<BannerVO> data = bannerService.getBannerList(vo);
 		mav.addObject("bannerList", data);
-
 		return mav;
 
 	}
@@ -62,7 +60,6 @@ public class BannerController {
 		 /* 배너 등록 등록 */
 		   @PostMapping("/newBannerJson")
 		   public @ResponseBody int BannerAddAction(AdminBannerVO vo) throws Exception{
-		      System.out.println(vo);
 			   return bannerService.insertBanner(vo);
 		   }
 	
@@ -84,13 +81,9 @@ public class BannerController {
 	// 수정 하려는 배너 테이블 기본키를 가지고 옴
 	@GetMapping("edit")
 	public ModelAndView BannerEditPage(@RequestParam int bannerNo) {
-
 		ModelAndView mav = new ModelAndView("sites/banner/site_banner_edit");
-		System.out.println("edit cont : " + bannerNo);
 		BannerVO bannerVO = bannerService.getBannerNo(bannerNo);
-		System.out.println(bannerVO.toString());
 		mav.addObject("bannerVO", bannerVO);
-
 		return mav;
 
 	}

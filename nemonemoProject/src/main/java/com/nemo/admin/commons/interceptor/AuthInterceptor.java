@@ -30,7 +30,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
 		// 그렇지 않은 페이지는 세션검사후 세션에 담겨있는 값(admin)이 없으면 세션비우고 로그인 페이지로 보내버림
 		HttpSession session = request.getSession();
-		System.out.println("세션 : " + session.getAttribute("admin"));
 		ManagementVO admin = (ManagementVO) session.getAttribute("admin");
 
 		if (admin == null) {

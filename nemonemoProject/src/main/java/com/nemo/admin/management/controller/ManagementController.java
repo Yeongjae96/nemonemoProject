@@ -94,7 +94,6 @@ public class ManagementController {
 	@RequestMapping(value ="/profile/delete", method= {RequestMethod.POST})
 	public ModelAndView adminDeleteAction(ManagementVO vo) {
 		deleteAdminService.deleteAdmin(vo);
-		System.out.println("활동중지 : " + vo);
 		ModelAndView mav = new ModelAndView("redirect:/management/profile.mdo");
 		return mav;
 	}
@@ -109,9 +108,7 @@ public class ManagementController {
 		String check = "Y";
 		// 세션
 		HttpSession session = req.getSession();
-		System.out.println(req.getContextPath());
-		// 로그인
-		// 예외처리 보함
+		// 로그인 예외처리 보함
 		try {
 			ManagementVO login = loginAdminService.loginAdmin(vo);
 			// 암호화된 비밀번호 매칭
@@ -120,7 +117,6 @@ public class ManagementController {
 			// 로그인값이 있고 암호화된 비밀번호가 있고 사용가능여부가 Y상태여야 로그인가능
 			if (login != null && pwdMatch == true && login.getAdminUse().equals(check)) {
 				session.setAttribute("admin", login);
-				System.out.println("세션값 : " + session.getAttribute("admin"));
 				return "redirect:/index.mdo";
 			} else {
 				session.setAttribute("admin", null);

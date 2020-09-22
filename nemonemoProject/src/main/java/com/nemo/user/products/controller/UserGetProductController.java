@@ -33,7 +33,6 @@ public class UserGetProductController {
 	@RequestMapping(value = "/purchases", method = { RequestMethod.POST })
 	public ModelAndView purchaseAction(UserBaseProductsVO vo, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(vo.toString());
 		mav.setViewName("redirect:/purchases.do");
 
 		mav.addObject("productNo", vo.getProductNo());

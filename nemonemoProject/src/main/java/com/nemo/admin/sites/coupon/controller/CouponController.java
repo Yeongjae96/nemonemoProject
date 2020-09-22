@@ -48,25 +48,21 @@ public class CouponController {
 		ModelAndView mav = new ModelAndView("sites/coupon/site_coupon_list");
 		List<CouponVO> data = selectCouponListService.getCouponList(vo);
 		mav.addObject("couponList", data);
-		System.out.println("리턴 데이터 : "+ data);
 		return mav;
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.GET})
 	public ModelAndView CouponEdit(@RequestParam int couponNo) {
-		System.out.println("들어옴");
 		ModelAndView mav = new ModelAndView("sites/coupon/site_coupon_edit");
 		CouponVO couponVO = selectCouponService.getCoupon(couponNo);
 		
 		mav.addObject("couponVO", couponVO);
-		System.out.println("에디또");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/edit", method= {RequestMethod.POST})
 	public ModelAndView CouponEditAction(CouponVO vo) {
 		updateCouponService.updateCoupon(vo);
-		System.out.println("에띠또 포스트");
 		return new ModelAndView("redirect:/sites/coupon/list.mdo");
 	}
 	
@@ -83,7 +79,6 @@ public class CouponController {
 	@RequestMapping(value = "/delete", method= {RequestMethod.POST})
 	public ModelAndView CouponDeleteAction(@RequestParam int couponNo) {
 		deleteCouponService.deleteCoupon(couponNo);
-		System.out.println("삭제");
 		ModelAndView mav = new ModelAndView("redirect:/sites/coupon/list.mdo");
 		return mav;
 	}
