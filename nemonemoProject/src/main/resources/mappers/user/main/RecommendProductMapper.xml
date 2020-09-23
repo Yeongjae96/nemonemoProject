@@ -26,50 +26,77 @@
 	
 	<select id="getRecommendProductList" parameterType="com.nemo.user.main.vo.RecommendProductVO" resultMap="recommendProductMap">
 			
-		SELECT 
-        	p.*,
-        	i.product_img_no
-        
-		FROM    
+		SELECT a.*
+			from
+		(SELECT ROWNUM r, prod.*
+			from
+		(SELECT
+			p.*,i.product_img_no
+		FROM
 			product_tb p
-        INNER JOIN 
-        	product_img_tb i
-        on (p.product_no = i.product_no)
+		INNER JOIN
+			product_img_tb i
+		ON
+			(p.product_no = i.product_no)
 		WHERE
-			product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 5
-        ORDER BY product_view DESC
+			product_disp_st NOT IN ('D', 'P')
+		AND
+			i.product_img_no =
+			(SELECT max(product_img_no)
+			from product_img_tb where product_no = p.product_no)
+		ORDER BY
+			product_view desc )prod)a
+		WHERE a.r &lt; 5  
         
 	</select> 
 	<select id="getRecommendProductList2" parameterType="com.nemo.user.main.vo.RecommendProductVO" resultMap="recommendProductMap">
 			
-		SELECT 
-        	p.*,
-        	i.product_img_no
-        
-		FROM   
-			product_tb p
-        INNER JOIN product_img_tb i
-        on (p.product_no = i.product_no)
+        SELECT a.*
+		FROM
+			(SELECT ROWNUM r,  prod.*
+		FROM
+			(SELECT p.*,i.product_img_no
+		FROM 
+        	product_tb p  
+        INNER JOIN 
+        	product_img_tb i
+        ON      
+        	(p.product_no = i.product_no)
 		WHERE
-			product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 5
-        ORDER BY 
-        	product_reg_dt DESC
+        	product_disp_st NOT IN ('D', 'P')
+        AND
+        	i.product_img_no = 
+        	(select max(product_img_no) 
+        	from product_img_tb where product_no = p.product_no)
+		ORDER BY 
+        	product_reg_dt desc )prod)a
+		WHERE a.r &lt; 5
 		
 	</select> 
 	<select id="getRecommendProductList3" parameterType="com.nemo.user.main.vo.RecommendProductVO" resultMap="recommendProductMap">
-			
-		SELECT 
-        	p.*,
-        	i.product_img_no
-		FROM    
+
+		SELECT a.*
+			from
+		(SELECT ROWNUM r, prod.*
+			from
+		(SELECT
+			p.*,i.product_img_no
+		FROM
 			product_tb p
-        INNER JOIN 
-        	product_img_tb i
-        on (p.product_no = i.product_no)
+		INNER JOIN
+			product_img_tb i
+		ON
+			(p.product_no = i.product_no)
 		WHERE
-			product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 5
-        ORDER BY 
-        	product_tag ASC
+			product_disp_st NOT IN ('D', 'P')
+		AND
+			i.product_img_no =
+			(SELECT max(product_img_no)
+			from product_img_tb where product_no = p.product_no)
+		ORDER BY
+			product_tag ASC )prod)a
+		WHERE a.r &lt; 5       	
+
         
 	</select> 
 </mapper>

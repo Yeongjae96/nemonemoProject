@@ -46,8 +46,6 @@ public class MainController {
 		
 		ModelAndView mav = new ModelAndView("main");
 		
-		System.out.println(recommendProductList);
-		
 		mav.addObject("recommendProductList", recommendProductList);
 		mav.addObject("popularCateList", popularCateList);
 		mav.addObject("popularProductList", popularProductList);

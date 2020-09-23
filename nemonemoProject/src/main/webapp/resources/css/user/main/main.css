@@ -130,15 +130,26 @@
         text-decoration : none;
     }
                 
-    .largest_section{
+    .banner_section{
     display: flex;
     flex-direction: column;
-    width: 1024;
-    /* width: 1024px; */
+    justify-content: center;
+    align-items: center; 
+                     
+    }
+    .recommend_section{
+      display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    }
+    
+    .popular_section{
+     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-       
-                     
+    background-color: #F9F9F9;
     }
 
     .banner{
@@ -177,7 +188,6 @@
     
     .second_content{
         background-color: white;
-        height:3000px;
         width: 1024px;
     }
     
@@ -405,7 +415,9 @@ a.top {
 }
 
 .main-popular-title{
-    padding-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: "Noto Sans KR";
 }
 
 /* 스크롤 탭 */
@@ -639,10 +651,11 @@ a.top {
 .main-popular-contents {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom : 100px;
 }
 .main-popular-content-div {
     width: 196px;
-    margin-right: 11px;
+    margin-right: 8px;
     margin-bottom: 11px;
 }
 

@@ -102,7 +102,7 @@
 	<%
 		/* 각 페이지의 특성! */
 	%>
-	<section class="largest_section">
+	<section class="banner_section">
 		<!-- banner -->
 		<section class="banner">
 			<div>
@@ -122,7 +122,8 @@
 			</div>
 		</section>
 		<!-- banner end -->
-
+	</section>
+	<section class="recommend_section">
 		<!-- contents 영역 -->
 		<div class="second_content_back">
 			<!--좌우 여백을 제외한 실질적인 contents 영역-->
@@ -220,6 +221,8 @@
 						<!-- Add Arrows -->
 						<div class="swiper-button-next"></div>
 						<div class="swiper-button-prev"></div>
+						</div>
+						</div>
 					</div>
 				</div>
 				<br>
@@ -227,21 +230,12 @@
 				<!-- 추천상품 영역 끝-->
 				<!--카테고리별 인기상품 영역-->
 				<!--카테고리 탭-->
-
+	</section>
+		<section class="popular_section">
 				<div class="main-popular">
 					<div class="main-popular-title">
-						<h4>전체 카테고리 인기 상품</h4>
+						<h4>전체 카테고리 인기상품</h4>
 					</div>
-					<br>
-					<%-- <div id="main-popular-scroll">
-						<c:forEach var="popularCateList" items="${popularCateList}"
-							varStatus="status">
-							<span><a href="#${popularCateList.productCateNo}">${popularCateList.productCateLarge}</a></span>
-						</c:forEach>
-					</div> --%>
-					<!--카테고리 탭 끝-->
-
-					<br>
 						<div class="main-popular-body">
 							<div id="" class="main-popular-div">
 								<div class="main-popular-contents">
@@ -300,8 +294,7 @@
 							</div>
 						</div>
 				</div>
-			</div>
-		</div>
+	
 
 	</section>
 	<% 
