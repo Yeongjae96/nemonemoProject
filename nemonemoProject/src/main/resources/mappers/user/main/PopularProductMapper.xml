@@ -5,6 +5,7 @@
 <mapper namespace="com.nemo.user.main.respository.IMainMapper">
 	<resultMap id="popularProductMap" type="com.nemo.user.main.vo.PopularProductVO">
 		<id column="product_no" property="productNo"/>	
+		<result column="product_img_no" property="productImgNo"/>
 		<result column="product_seller" property="productSeller"/>
 		<result column="product_cate_no" property="productCateNo"/>
 		<result column="product_name" property="productName"/>
@@ -34,13 +35,20 @@
 	</resultMap>
 	
 	<select id="getPopularProductList" parameterType="com.nemo.user.main.vo.PopularProductVO" resultMap="popularProductMap">
-		SELECT 
-		    *
-		FROM
-		    product_tb
-        WHERE 
-        	product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 33
-		ORDER BY product_view desc
+		
+		SELECT  
+				p.*,
+        		i.product_img_no
+        FROM 
+        		product_tb p             
+        INNER JOIN 
+        		product_img_tb i
+        ON      
+            (p.product_no = i.product_no)
+		WHERE
+                product_disp_st NOT IN ('D', 'P')
+        ORDER BY 
+                product_view DESC
 	</select> 
 	
 </mapper>

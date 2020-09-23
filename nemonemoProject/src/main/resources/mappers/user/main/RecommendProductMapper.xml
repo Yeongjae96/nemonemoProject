@@ -5,6 +5,7 @@
 <mapper namespace="com.nemo.user.main.respository.IMainMapper">
 	<resultMap id="recommendProductMap" type="com.nemo.user.main.vo.RecommendProductVO">
 		<id column="product_no" property="productNo"/>	
+		<result column="product_img_no" property="productImgNo"/>
 		<result column="product_seller" property="productSeller"/>
 		<result column="product_cate_no" property="productCateNo"/>
 		<result column="product_name" property="productName"/>
@@ -24,34 +25,51 @@
 	</resultMap>
 	
 	<select id="getRecommendProductList" parameterType="com.nemo.user.main.vo.RecommendProductVO" resultMap="recommendProductMap">
-		SELECT *
-		FROM 
-            (SELECT *
-             FROM product_tb
-             ORDER BY product_view DESC
-             )
+			
+		SELECT 
+        	p.*,
+        	i.product_img_no
+        
+		FROM    
+			product_tb p
+        INNER JOIN 
+        	product_img_tb i
+        on (p.product_no = i.product_no)
 		WHERE
 			product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 5
+        ORDER BY product_view DESC
+        
 	</select> 
 	<select id="getRecommendProductList2" parameterType="com.nemo.user.main.vo.RecommendProductVO" resultMap="recommendProductMap">
-		SELECT *
-		FROM 
-            (SELECT *
-             FROM product_tb
-             ORDER BY product_reg_dt DESC
-             )
+			
+		SELECT 
+        	p.*,
+        	i.product_img_no
+        
+		FROM   
+			product_tb p
+        INNER JOIN product_img_tb i
+        on (p.product_no = i.product_no)
 		WHERE
 			product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 5
+        ORDER BY 
+        	product_reg_dt DESC
 		
 	</select> 
 	<select id="getRecommendProductList3" parameterType="com.nemo.user.main.vo.RecommendProductVO" resultMap="recommendProductMap">
-		SELECT *
-		FROM 
-            (SELECT *
-             FROM product_tb
-             ORDER BY product_tag ASC
-             )
+			
+		SELECT 
+        	p.*,
+        	i.product_img_no
+		FROM    
+			product_tb p
+        INNER JOIN 
+        	product_img_tb i
+        on (p.product_no = i.product_no)
 		WHERE
 			product_disp_st NOT IN ('D', 'P') AND ROWNUM &lt; 5
+        ORDER BY 
+        	product_tag ASC
+        
 	</select> 
 </mapper>

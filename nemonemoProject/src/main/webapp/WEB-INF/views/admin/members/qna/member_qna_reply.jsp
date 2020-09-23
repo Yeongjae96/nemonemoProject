@@ -97,7 +97,7 @@
 											</tr>
 											<tr>
 												<th><i class="fas fa-book"></i>문의내용</th>
-												<td><textarea cols="120" rows="20"
+												<td><textarea cols="120" rows="10"
 														id="qnaUserContent" name="qnaUserContent" disabled>
 														<c:out value="${qnaVO.qnaUserContent}" />
                                                 </textarea></td>

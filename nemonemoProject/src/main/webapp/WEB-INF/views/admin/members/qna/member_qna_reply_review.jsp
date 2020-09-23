@@ -82,7 +82,7 @@
 											<tbody>
 											<tr>
 												<th><i class="fas fa-user"></i>고객 아이디 </th>
-												<td>${qnaVO.qnaRegId}</td>
+												<td>${qnaVO.storeName}</td>
 								
 											</tr>
 											<tr>
@@ -95,7 +95,7 @@
 											</tr>
 											<tr>
 												<th><i class="fas fa-book"></i>문의내용 </th>
-												<td><textarea cols="120" rows="20"
+												<td><textarea cols="120" rows="10"
 														id="qnaUserContent" name="qnaUserContent" disabled>
 														<c:out value="${qnaVO.qnaUserContent}" />
                                                 </textarea></td>
@@ -104,9 +104,7 @@
 											<tr>
 												<th><i class="fas fa-pen-square"></i>네모내모 답변</th>
 												<td>
-													<textarea cols="120" rows="20" name="qnaAdminContent" id="qnaAdminContent" disabled>
-													<c:out value="${qnaVO.qnaAdminContent}" />
-													</textarea>
+													${qnaVO.qnaAdminContent}
 												</td>
 											</tr>
 											</tbody>									

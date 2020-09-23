@@ -12,6 +12,7 @@ import lombok.Data;
 @Data
 public class PopularProductVO {
 	private int productNo;
+	private int productImgNo;
 	private int productSeller;
 	private int productCateNo;
 	private String productName;

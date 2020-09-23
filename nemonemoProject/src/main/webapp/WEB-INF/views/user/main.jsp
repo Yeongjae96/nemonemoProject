@@ -102,7 +102,7 @@
 	<%
 		/* 각 페이지의 특성! */
 	%>
-	<section>
+	<section class="largest_section">
 		<!-- banner -->
 		<section class="banner">
 			<div>
@@ -144,14 +144,20 @@
 											<a
 												href="${pageContext.request.contextPath}/products/${recommendProductList.productNo }.do">
 												<div class="main-recommend-box-pic">
-													<img
-														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
-														alt="추천상품1">
+													<img src="<c:url value="/image/product/${recommendProductList.productImgNo}.img"/>" 
+													width="194" height="194"alt="추천상품1" />
 												</div>
 
-												<div class="main-recommend-box-title">${recommendProductList.productName }</div>
+												<div class="main-recommend-box-title">${recommendProductList.productName}
+													<c:if test="${recommendProductList.productFreeShippingSt eq 'Y'}">
+													<br><p class="freeshipping">무료배송</p>
+	                                  			 	</c:if>
+												</div>
 												<div class="main-recommend-box-price">
-													⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅ <br> <b>${recommendProductList.productPrice }</b>원
+												
+													⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅ <br> 
+													
+													<b>${recommendProductList.productPrice}</b>원
 												</div>
 											</a>
 										</div>
@@ -164,14 +170,16 @@
 										items="${recommendProductList2}" varStatus="status" begin="0"
 										end="4">
 										<div>
-											<a
-												href="${pageContext.request.contextPath}/products/${recommendProductList2.productNo }.do">
+											<a href="${pageContext.request.contextPath}/products/${recommendProductList2.productNo }.do">
 												<div class="main-recommend-box-pic">
-													<img
-														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
-														alt="추천상품1">
+													<img src="<c:url value="/image/product/${recommendProductList2.productImgNo}.img"/>" 
+													width="194" height="194"alt="추천상품2" />
 												</div>
-												<div class="main-recommend-box-title">${recommendProductList2.productName }</div>
+												<div class="main-recommend-box-title">${recommendProductList2.productName}
+												<c:if test="${recommendProductList2.productFreeShippingSt eq 'Y'}">
+													<br><p class="freeshipping">무료배송</p>
+	                                  			 	</c:if>
+												</div>
 												<div class="main-recommend-box-price">
 													⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅ <br> <b>${recommendProductList2.productPrice }</b>원
 												</div>
@@ -189,12 +197,15 @@
 											<a
 												href="${pageContext.request.contextPath}/products/${recommendProductList3.productNo }.do">
 												<div class="main-recommend-box-pic">
-													<img
-														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
-														alt="추천상품1">
+													<img src="<c:url value="/image/product/${recommendProductList3.productImgNo}.img"/>" 
+													width="194" height="194"alt="추천상품3" />
 												</div>
 
-												<div class="main-recommend-box-title">${recommendProductList3.productName }</div>
+												<div class="main-recommend-box-title">${recommendProductList3.productName}
+													<c:if test="${recommendProductList3.productFreeShippingSt eq 'Y'}">
+													<br><p class="freeshipping">무료배송</p>
+	                                  			 	</c:if>
+												</div>
 												<div class="main-recommend-box-price">
 													⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅ <br> <b>${recommendProductList3.productPrice }</b>원
 												</div>
@@ -215,7 +226,6 @@
 
 				<!-- 추천상품 영역 끝-->
 				<!--카테고리별 인기상품 영역-->
-
 				<!--카테고리 탭-->
 
 				<div class="main-popular">
@@ -232,19 +242,16 @@
 					<!--카테고리 탭 끝-->
 
 					<br>
-					
 						<div class="main-popular-body">
 							<div id="" class="main-popular-div">
-								<%-- <div class="main-popular-all-title"> ${popularProductList.productCateLarge}</div> --%>
 								<div class="main-popular-contents">
 								<c:forEach var="popularProductList" items="${popularProductList}">
 									<div class="main-popular-content-div">
 										<a class="main-popular-content-a"
 											href="${pageContext.request.contextPath}/products/${popularProductList.productNo }.do">
 											<div class="main-popular-contents-div">
-												<img
-													src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
-													width="194" height="194" alt="상품 이미지">
+												<img src="<c:url value="/image/product/${popularProductList.productImgNo}.img"/>" 
+													width="194" height="194" alt="상세 상품 이미지" />
 											</div>
 											<div class="main-popular-content-disc">
 												<div class="main-popular-content-disc-title">
