@@ -906,12 +906,11 @@ display: flex;
 .product_all89:nth-last-child(-n+5):nth-child(5n+1){
 
     margin-bottom: 0px;
-
 }
 
 .product_all89{
-        width: 32%;
-        margin-right: 10px; 
+/*         width: 32%; */
+        margin-right: 8px; 
         margin-bottom: 11px;
 
 }
@@ -935,7 +934,8 @@ display: flex;
 }
 
 .product_all91 > img{
-    width : 100%;
+    width : 194px;
+    height: 194px;
    
 }
 

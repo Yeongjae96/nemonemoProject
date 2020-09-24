@@ -16,12 +16,31 @@
 	</resultMap>
     
     <select id="getStoreProductList" parameterType="int" resultMap="storeProductMap">
-    	SELECT 
+<!--     	SELECT 
 			prod.*
 		FROM
 			product_tb prod, user_tb sto
 		WHERE
-			sto.store_no(+) = prod.product_seller and prod.product_seller=#{storeNo}
+			sto.store_no(+) = prod.product_seller and prod.product_seller=#{storeNo} -->
+			
+		SELECT 
+     		prod.*,
+     		i.product_img_no
+		FROM 
+   			 product_tb prod
+    	INNER JOIN 
+    		product_img_tb i
+    	ON (prod.product_no = i.product_no)
+    	
+		WHERE
+    		product_seller = #{storeNo}
+    	AND
+        	i.product_img_no = 
+        	(select max(product_img_no) 
+        	from product_img_tb where product_no = prod.product_no)
+        ORDER BY
+        	product_reg_dt desc
+    		
     </select>
     
 </mapper>

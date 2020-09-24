@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import lombok.Data;
 
 @Data
-public class StoreVO{
+public class StoreVO {
 	private int userNo;
 	private int storeNo;
 	private String userEmail;

@@ -102,17 +102,16 @@
 								<div class="product_all88" id="result">
 									<c:forEach var="storeProductVO" items="${storeProductVO}">
 										<div class="product_all89">
-											<a data-pid="128683129" class="product_all90"
+											<a class="product_all90"
 												href="${pageContext.request.contextPath}/products/${storeProductVO.productNo }.do">
 												<div class="product_all91">
-													<img
-														src="<c:url value="/resources/images/user/store/storeProfile.png"/>"
-														alt="상품 이미지" style="width: 100%">
+													<img src="<c:url value="/image/product/${storeProductVO.productImgNo}.img"/>" 
+													alt="추천상품1" />
 												</div>
 												<div class="product_all92">
 													<div class="product_all93">${storeProductVO.productName }</div>
 													<div class="product_all94">
-														<div class="product_all95">${storeProductVO.productPrice }</div>
+														<div class="product_all95">${storeProductVO.productPrice}</div>
 														<div class="product_all96">
 															<span>${storeProductVO.productRegDt }</span>
 														</div>

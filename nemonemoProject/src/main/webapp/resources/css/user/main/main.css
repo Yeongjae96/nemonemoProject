@@ -2,10 +2,6 @@
 
                                         /********** nav 시작 **********/
 
-  .left-nav{
-    margin-bottom: 20px;
-	}
-
 
   .top_nav_combo{
         padding-right : 25px;
@@ -35,15 +31,20 @@
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
 
+	.dotline {
+	width: 100%;
+	height: 1px;
+	background-image: linear-gradient(to right, black 18%, rgba(255, 255, 255, 0)0%);
+	background-position: center bottom;
+	background-size: 7px 1px;
+	background-repeat: repeat-x;
+}
 
-   
+/* Modal Font */
+/* 로그아웃 */
 
-    /* Modal Font */
-    /* 로그아웃 */
-
-                                        /******************************** header 시작 **********************************/
-                                       
-    header{
+/******************************** header 시작 **********************************/
+header{
         background-color:white;
     }
 
@@ -176,7 +177,7 @@
     }
 
     .banner button.slick-next {
-        right: 0%;
+        right: -0.5%;
         background:none;
     }
 
@@ -353,6 +354,7 @@ a.top {
   .bx_group{
       display: flex;
       width: 100%;
+      margin-bottom:40px;
   }
   .bx_group > div{
       flex:1;
@@ -691,6 +693,7 @@ a.top {
     -webkit-box-align: center;
     align-items: center;
     height: 20px;
+    padding-bottom : 15px;
 }
 .main-popular-content-disc-price {
     font-size: 16px;

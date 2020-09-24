@@ -100,7 +100,7 @@ public class StoreController {
 		List<StoreReviewVO> storeReviewVO = getStoreReviewListService.getStoreReviewList(storeNo);
 		List<StoreFavoriteVO> storeFavoriteVO = getStoreFavoriteListService.getStoreFavoriteList(storeNo);
 		
-		System.out.println("스토어넘버 : " + storeProductVO);
+		
 		mav.addObject("storeVO", storeVO);
 		mav.addObject("storeProductVO", storeProductVO);
 		mav.addObject("storeProductDispStVO", storeProductDispStVO);

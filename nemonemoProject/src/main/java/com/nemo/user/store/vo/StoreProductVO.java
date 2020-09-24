@@ -4,9 +4,11 @@ import java.sql.Date;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class StoreProductVO extends StoreVO{
 	private int productNo;
 	private int productSeller;
@@ -16,4 +18,5 @@ public class StoreProductVO extends StoreVO{
 	private int productPrice;
 	private Date productRegDt;
 	private int productImgNo;
+	
 }

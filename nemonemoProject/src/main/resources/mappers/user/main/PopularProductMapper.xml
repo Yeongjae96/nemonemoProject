@@ -36,23 +36,28 @@
 	
 	<select id="getPopularProductList" parameterType="com.nemo.user.main.vo.PopularProductVO" resultMap="popularProductMap">
 		
-		SELECT  
-				p.*,
-        		i.product_img_no
-        FROM 
-        		product_tb p             
+    SELECT a.*
+		FROM
+			(SELECT ROWNUM r,  prod.*
+		FROM
+			(SELECT p.*,i.product_img_no
+		FROM 
+        	product_tb p  
         INNER JOIN 
-        		product_img_tb i
+        	product_img_tb i
         ON      
-            (p.product_no = i.product_no)
+        	(p.product_no = i.product_no)
 		WHERE
-                product_disp_st NOT IN ('D', 'P')
+        	product_disp_st NOT IN ('D', 'P')
         AND
-    		i.product_img_no = 
-    		(select max(product_img_no) 
-    			from product_img_tb where product_no = p.product_no)
-        ORDER BY 
-                product_view DESC
+        	i.product_img_no = 
+        	(select max(product_img_no) 
+        	from product_img_tb where product_no = p.product_no)
+		ORDER BY 
+        	product_view ASC )prod)a
+        	
+		WHERE a.r &lt; 31
+		
 	</select> 
 	
 </mapper>

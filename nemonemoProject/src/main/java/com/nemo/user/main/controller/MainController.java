@@ -39,19 +39,18 @@ public class MainController {
 	@GetMapping(value= {"/index"})
 	public ModelAndView index() {
 		List<RecommendProductVO> recommendProductList = getRecommendProductListService.getRecommendProductList();
-		List<PopularCateVO> popularCateList = getPopularCateListService.getPopularCateList();
-		List<PopularProductVO> popularProductList = getPopularProductListService.getPopularProductList();
 		List<RecommendProductVO> recommendProductList2 = getRecommendProductList2Service.getRecommendProductList2();
 		List<RecommendProductVO> recommendProductList3 = getRecommendProductList3Service.getRecommendProductList3();
+		List<PopularCateVO> popularCateList = getPopularCateListService.getPopularCateList();
+		List<PopularProductVO> popularProductList = getPopularProductListService.getPopularProductList();
 		
 		ModelAndView mav = new ModelAndView("main");
 		
 		mav.addObject("recommendProductList", recommendProductList);
-		mav.addObject("popularCateList", popularCateList);
-		mav.addObject("popularProductList", popularProductList);
 		mav.addObject("recommendProductList2", recommendProductList2);
 		mav.addObject("recommendProductList3", recommendProductList3);
-		
+		mav.addObject("popularCateList", popularCateList);
+		mav.addObject("popularProductList", popularProductList);
 		
 		return mav;
 	}
