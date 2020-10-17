@@ -39,7 +39,7 @@
 				<div class="container_inner">
 					<div class="loginwrap">
 						<button type="button" onclick="goBack()" class="btn_close">닫기</button>
-						<form method="post" action="/nemonemoProject/sign/withdraw.do"
+						<form method="post" action="withdraw.do"
 							name="withdraw">
 							<input type="hidden" value="${user.userNo}" id="userNo"
 								name="userNo">

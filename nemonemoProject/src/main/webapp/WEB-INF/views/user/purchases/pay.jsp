@@ -91,7 +91,7 @@
                     }
                 });
                 //성공시 이동할 페이지
-                location.href='<%=request.getContextPath()%>	?msg='+msg;
+                location.href='http://ec2-3-34-129-122.ap-northeast-2.compute.amazonaws.com/index.do';
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
