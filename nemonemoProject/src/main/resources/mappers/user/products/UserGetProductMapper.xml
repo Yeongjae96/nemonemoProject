@@ -129,14 +129,19 @@
 
 <select id="selectRecentlyProductVO" parameterType="int" resultMap="recentlyProductMap">
 	
-	SELECT 
-        p.product_no,
-        product_name,
-        product_price,
-        product_img_no
-	FROM product_tb p
-	INNER JOIN (select product_no, min(product_img_no) AS product_img_no FROM product_img_tb GROUP BY product_no) i
-	ON p.product_no = i.product_no AND p.product_no = #{productNo}
+		SELECT p.product_no,
+		       product_name,
+			   product_price,
+			   product_img_no
+		  FROM product_tb p
+    INNER JOIN (SELECT product_no
+                     , PRODUCT_IMG_DEL_FL
+                     , min(product_img_no) AS product_img_no
+  				  FROM product_img_tb
+  			  GROUP BY product_no, PRODUCT_IMG_DEL_FL) i
+		    ON p.product_no = i.product_no
+		   AND p.product_no = #{productNo}
+		   AND i.PRODUCT_IMG_DEL_FL = 'N'	z
 
 </select>
 

@@ -19,8 +19,18 @@
 	<insert id="insertAdmin"
 		parameterType="com.nemo.admin.management.vo.ManagementVO">
 
-		INSERT INTO ADMIN_TB
-		VALUES (admin_sq.nextval, #{adminId}, #{adminPw}, #{adminEmail}, #{adminUse})
+		INSERT INTO ADMIN_TB (
+			 admin_no
+		   , admin_id
+		   , admin_pw
+	       , admin_email
+	       , admin_use)
+	    VALUES (
+		    admin_sq.nextval
+		  , #{adminId}
+		  , #{adminPw}
+		  , #{adminEmail}
+		  , #{adminUse})
 		<!-- 리턴값을 주기 위한 <selectKey keyProperty="adminNo" keyColumn="ADMIN_NO" resultType="Integer" 
 			order="AFTER"> SELECT ADMIN_sq.currval FROM dual </selectKey> -->
 
@@ -37,12 +47,9 @@
 		admin_pw,
 		admin_email,
 		admin_use
-		FROM
-		ADMIN_TB
+		FROM ADMIN_TB
 		WHERE admin_id=#{adminId}
 	</select>
-	<!-- WHERE admin_id=#{adminId} AND admin_pw=RPAD(#{adminPw}, 60, ' ') -->
-	<!-- WHERE admin_id=#{adminId} AND admin_pw=#{adminPw} -->
 
 
 	<!-- 아이디 중복확인  -->

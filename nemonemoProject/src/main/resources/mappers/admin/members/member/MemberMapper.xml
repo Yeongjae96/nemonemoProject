@@ -62,10 +62,11 @@
 		
 		SELECT r.store_avg_rating ,u.*
     		FROM user_tb u
-   		LEFT JOIN 
-   			(select store_no, floor(avg(store_review_rating)) 
-   		AS 
-   			store_avg_rating FROM store_review_tb GROUP BY store_no)r
+   		LEFT JOIN (
+   		    select store_no
+   		         , floor(avg(store_review_rating)) AS store_avg_rating
+   		      FROM store_review_tb
+   		  GROUP BY store_no) r
     	ON u.user_no = r.store_no
 
 	</select>

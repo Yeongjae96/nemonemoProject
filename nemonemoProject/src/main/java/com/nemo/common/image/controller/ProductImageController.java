@@ -63,8 +63,7 @@ public class ProductImageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if(out != null){ try { out.flush(); } catch (IOException e) { e.printStackTrace(); } }
-			if(out != null){ try { out.close(); } catch (IOException e) { e.printStackTrace(); } }
+			if(out != null){ try { out.flush(); out.close(); } catch (IOException e) { e.printStackTrace(); } }
 			if(in != null){ try { in.close(); } catch (IOException e) { e.printStackTrace(); } }
 		}
 		

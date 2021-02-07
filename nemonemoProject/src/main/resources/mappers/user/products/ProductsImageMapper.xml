@@ -50,7 +50,7 @@
 		FROM product_img_tb a
 		WHERE product_img_no IN (
 		    SELECT min(product_img_no)
-		    FROM product_img_tb
+		    FROM (SELECT * FROM product_img_tb WHERE PRODUCT_IMG_DEL_FL = 'N')
 		    <where>
 			product_no
 			<foreach collection="list" open="IN (" close= ")" item="i" separator=",">

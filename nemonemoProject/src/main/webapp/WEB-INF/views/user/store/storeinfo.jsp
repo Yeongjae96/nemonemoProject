@@ -53,15 +53,18 @@
 						</div>
 						<div class="storeedit-common-margin">
 							<div class="input-box" style="height:400px;">
+
 								<div class="upstore-info" >
 									<label>상점 소개</label>
 								</div>
-								<textarea id="storeIntro" name="storeIntro" maxlength="100"
-									placeholder="상점 소개를 입력해주세요" style="width:400px; height:300px;" >${storeVO.storeIntro }</textarea>
+								<textarea id="storeIntro" name="storeIntro" maxlength="100" rows="1" spellcheck="false"
+									placeholder="상점 소개를 입력해주세요" style="width:400px; height:300px; resize: none;" >${storeVO.storeIntro }</textarea>
 							</div>
 						</div>
 						<input type="hidden" value="${storeVO.storeNo}" id="storeNo" name="storeNo">
-						<button class="updatestore-btn" id="updatestore-btn">수정하기</button>
+						<div class="updatestore--div">
+							<button class="updatestore-btn" id="updatestore-btn">수정하기</button>
+						</div>
 					</div>
 				</div>
 			</div>

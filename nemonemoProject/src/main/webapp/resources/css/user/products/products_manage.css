@@ -483,7 +483,7 @@ a.product-nav-link:hover {
 		transition: opacity 150ms ease-out 0s; 
 		opacity: 1; 
 		will-change: opacity;
-		visibility: 
+		visibility: visible;
 	}
 	
 	.modal-inactive {

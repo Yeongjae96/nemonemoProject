@@ -4,8 +4,9 @@ $(function() {
 	initTable();
 	initButtonEvent();
 	getCategoryList()
-	.then(initRegModal)
-	.then(initUpdModal);
+		.then(initRegModal)
+		.then(initUpdModal)
+		.catch(error => console.log(error));
 	initDelModal();
 });
 

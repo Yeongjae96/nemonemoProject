@@ -14,7 +14,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 
-	private static final String[] EXCLUDE_URL_LIST = { "/login" };
+	private static final String[] EXCLUDE_URL_LIST = { "/login", "/signup" };
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

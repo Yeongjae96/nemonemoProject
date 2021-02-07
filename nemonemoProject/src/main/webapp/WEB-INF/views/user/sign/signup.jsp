@@ -17,19 +17,15 @@
 
 
 <!-- 라이브러리 -->
-<script
-	src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
+<script src="<c:url value="/resources/vendor/jquery/jquery-3.5.1.min.js"/>"></script>
 <script src="<c:url value="/resources/vendor/fontawesome/js/all.js"/>"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <!-- 해당 페이지 JS파일 -->
 <script>
 	var contextPath = "${pageContext.request.contextPath}"
 </script>
 <script src="<c:url value="/resources/js/user/sign/signup.js"/>"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 </head>
@@ -119,8 +115,7 @@
 								<input class="form-control" style="width: 40%; display: inline;"
 									placeholder="우편번호" name="userZipcode" id="zipcodeInput"
 									type="text" readonly="readonly">
-								<button type="button" class="btn zipcode-btn"
-									onclick="execPostCode();">
+								<button type="button" class="btn zipcode-btn" id="searchPostBtn">
 									<i class="fa fa-search"></i>우편번호
 								</button>
 							</div>
@@ -151,8 +146,8 @@
 												src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAoCAYAAACFFRgXAAAAAXNSR0IArs4c6QAAA9tJREFUWAntmFtIFGEUx93dWVHoghChGBUFZhEG2ZVIBR+CKKSHjHqISMHCpygfvOyuupIp2YMkJOiDUc+hvVQIVttDhUWRlFAEklGLhCTlld3td5adZR1ml9nZbTfCDw7nfN+5/efM+WbmG0tGEkYgELC0trZWEqoK2gcprL212WwdDodjKAkpwiEsYcmk0N7enrO4uHgPgKV6ISwWyxWXy9WlpzOzZjXjpPp0d3evWVhYeBYCO2O1Wuuys7PzMzMz1wPUiZ0fXSfVP6T6JMqVRAJMT0/fwn8H9B2Q5Q0NDe8j4rlbWlrsAHb4/f7rrB+M0JkWTVcYMBWAOU0lfYqiVGjABgHl5ua6ESahA8mqsmnAgKgXVIDuampqeimydtTU1CxxQTdlnSqf0erNzE0BplqlAN0PmDlaoTNWYrvdPih6bE/EsjOqMwWYalWHEtyhFX7ESoZ+HLATXGCe2+3eFsvWiC5uwL29vXYAHJfg8AEjSQD7UOzgh43Yx7KJG7DX691D4rWA/VlYWPg8VnBVx+POIzJ3Zq+6ZpbHDRiwJaFkw5WVlT6DiT+E7HYatI9qFvdzGMC7Q9FGokbVKHiZjM/OzuIa2MmGLdaoo055tU82NjZ6Iw3iBoxzkQSgJd5EBool19XV/W5ubv6CzUbaYjSWbaQO2wz8nvKcP8ujc0J0cbUEFRL7LeLI42xMuNHBBV7DdhT+yihh/wsq8fl8g7LZJVf446ejo2PD/Px8NaCKCZgnSp0hr9oi9At80GTp6JO61NPTs2pqauodQTezccucTueTYIV5zZ4E7BhgXCiPCegoFGwHdEY3W0IXUFtbKxUeliDkLBCuyMOckt9GlooN0ej9KL+KUjvQ7VpaWuqnwrp6rX2S5n6JQ85gNyg0tlQ1i/kAt/mcKKMNdriqmlGFVHNpCTkhZPDOv5rq5GbyWbn9W8Wxvr7+o5kAqfYJbjpJSksEUp3cTL4wYDPO6fBZAfy3q75S4ZUKayqw0hKagiR9+v9UmE/OI0JJL1GCAXUrDFAX3xgPhEROMEdS3XUBA7RMzRIpq2vp5LqA+RDqg3wh6ksnQG1uXcB8yN/lpJovJLLWKZVzipYTyjcv3MrCNxHa2tryhatD/gdo/wmoulRx2lEKGjxgcAj9JHll4bUIHJWqhP9LgyPZZUBvAtPngoKCF4JNAfkNwB6FHHJmY97PT4tUHjKX1WhkZETxeDzbAXoRxQU6IACdV3+LBU+i/F1pYdGBUfg/xbIoaZqAaY7Ul9hHvSoEmwiPGeXl5R7EdRithgula8ix3guO+9ztU/w8eRQJ5A/ThXtUNuu8qQAAAABJRU5ErkJggg=="
 												width="22" height="20" />
 										</div>
-										<label class="select-space-right">성별</label> <select
-											name="userGender" id="genderInput">
+										<label class="select-space-right">성별</label>
+										<select name="userGender" id="genderInput">
 											<option value="">선택</option>
 											<option value="M">남성</option>
 											<option value="F">여성</option>
@@ -191,7 +186,7 @@
 										<span class="mandatory">(필수)</span>네모내모 이용약관 동의
 									</div>
 									
-									<button id="show1" class="show-btn show-bt1" type="button" onclick="zzz();">
+									<button id="show1" class="show-btn show-bt1" type="button"">
 										<img
 											src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAALRJREFUOBFjYBgFgzMEqqtb5Cl1GcwMxoaGdoVfv3+d+s/EGNreXHeQHINrapod/v3/t4qRgdmU+cCBvR9sHJxOMf77vxpEHzm0/yEphlbWNtkz/P+/GuSgtpbai8wgzSBDyDEUZBjIIci+AxtIjqHYDAOZAzeQFENxGYZhIDGG4jMMq4H4DCVkGEgvI4jABZANAKlBjwBs+vAaCNIAS2MgNnJsgvhkA5ChINeSbcCoRpJCAADCUaKHyL/YQQAAAABJRU5ErkJggg=="
 											width="20" height="20" alt="회원가입 아이콘">
@@ -266,10 +261,4 @@
 		
 	</div>
 </body>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<!-- <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script> -->
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<!-- <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-analytics.js"></script> -->
 </html>

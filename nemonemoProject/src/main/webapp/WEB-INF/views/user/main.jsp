@@ -44,18 +44,10 @@
 	src="<c:url value="/resources/js/user/main/jquery.scrolltabs.js"/>"></script>
 <!-- 리다이렉트로 값을 받아 alert문 안내 -->
 <script>
-
 	var result = '${msg}';
-
 	if (result == 'success') {
-		alert("로그인 성공\n네모내모에 어서오세요!");
-	} else if (result == 'idfail') {
-		alert("아이디가 없습니다. \n회원가입 해주시길 바랍니다");
-		$(function() {
-			$('#loginModal').show();
-		})
-	} else if (result == 'passwordfail') {
-		alert("비밀번호가 틀렸습니다. \n다시 로그인해주세요.");
+	} else if (result == 'idfail' || result == 'passwordfail') {
+		alert("아이디 또는 비밀번호가 잘못 되었습니다.");
 		$(function() {
 			$('#loginModal').show();
 		})

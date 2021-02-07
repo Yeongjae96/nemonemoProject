@@ -116,19 +116,24 @@
 	
 	<select id="selectMyTalkList" parameterType="int" resultMap="myTalkMap">
 		
-		SELECT 
-        m.*,
-        u.store_name,
-        nvl(u.store_img_no, -1) store_img_no,
-        nvl(msg_unid_cnt, 0) msg_unid_cnt
+		SELECT  m.*
+        	  , u.store_name
+			  , nvl(u.store_img_no, -1) store_img_no
+			  , nvl(msg_unid_cnt, 0) msg_unid_cnt
 		FROM (
-		    SELECT m1.*, m3.msg_unid_cnt, CASE WHEN m1.msg_sender = #{userNo} THEN 'M'
-		                    WHEN m1.msg_receiver = #{userNo} THEN 'Y' END AS senderType
+		    SELECT m1.*
+		         , m3.msg_unid_cnt
+		         , CASE WHEN m1.msg_sender = #{userNo} THEN 'M'
+		           WHEN m1.msg_receiver = #{userNo} THEN 'Y' END AS senderType
 		    FROM msg_tb m1
 		    INNER JOIN (
 		        SELECT msg_no  
 		        FROM msg_tb m1
-		        INNER JOIN (SELECT talk_no, max(msg_reg_dt)maxDate FROM msg_tb GROUP BY talk_no) m2
+		        INNER JOIN (
+		            SELECT talk_no
+		                 , max(msg_reg_dt)maxDate
+		              FROM msg_tb
+		          GROUP BY talk_no ) m2
 		        ON m1.talk_no = m2.talk_no AND m1.msg_reg_dt = m2.maxDate
 		    ) m2
             ON m1.msg_no = m2.msg_no  AND (msg_sender = #{userNo} OR msg_receiver = #{userNo})

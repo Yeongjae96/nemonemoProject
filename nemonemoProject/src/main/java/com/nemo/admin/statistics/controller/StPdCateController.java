@@ -16,7 +16,7 @@ public class StPdCateController {
 	private StPdCategoryService stPdCateService;
 	
 	@GetMapping("/list")
-	public ModelAndView 카테고리별페이지() {
+	public ModelAndView categoryPages() {
 		ModelAndView mav = new ModelAndView("statistics/stat_sales_category");
 		mav.addObject("largeCategory", stPdCateService.getLargeCategories());
 		return mav;

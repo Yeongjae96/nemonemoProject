@@ -29,10 +29,8 @@ public class CustomerFaqServiceImpl implements CustomerFaqService{
 	public Map<String, Object> getFaqCategoryListAndSelectFaqList(int faqCategoryNo) {
 		
 		List<UserBaseFaqCategoryVO> faqCategoryList = customerFaqMapper.getFaqCategoryList();
-		System.out.println("faqCategoryList : " + faqCategoryList );
 		List<UserBaseFaqVO> selectFaqList = customerFaqMapper.getSelectFaqList(faqCategoryNo);
-		System.out.println("selectFaqList : " + selectFaqList);
-		
+
 		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 		resultMap.put("faqCategoryList", faqCategoryList);
 		resultMap.put("selectFaqList", selectFaqList);

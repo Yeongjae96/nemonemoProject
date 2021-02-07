@@ -3,16 +3,6 @@ let lastClickCategoryNo;
 
 $(function() {
 	initImageArea();
-	initTitleArea();
-	initCategoryArea();
-	initDealArea();
-	initRadioArea();
-	initRecentModal();
-	initPriceArea();
-	initExplainArea();
-	initTagArea();
-	initQuantityArea();
-	initRegBtn();
 });
 
 /* 이미지 영역 */
@@ -93,6 +83,28 @@ function initImageArea() {
 	};
 }
 
+
+function checks(){ 
+
+	// 상점명 공백 확인
+	if($("#storeName").val() == ""){ 
+		alert("상점명을 입력해주세요"); 
+		$("#storeName").focus(); 
+		return false; 
+	}
+
+	// 상점소개 공백 확인
+	if($("#storeIntro").val() == ""){ 
+		alert("상점소개를 입력해주세요"); 
+		$("#storeIntro").focus(); 
+		return false; 
+	}
+	
+	updateCheck();
+	
+}
+
+
 function updateCheck() {
 	if (confirm("정말 수정하시겠습니까??") == true) { // 확인
 		document.updateStore.submit();
@@ -102,26 +114,3 @@ function updateCheck() {
 	}
 
 }
-
-function checks(){ 
-	var getCheck= RegExp(/^[a-zA-Z0-9]{8,16}$/);
-	
-	// 상점명 공백 확인
-	if($("#storeName").val() == ""){ 
-		alert("상점명을 입력해주세요"); 
-		$("#storeName").focus(); 
-		return false; 
-		} 
-
-	// 상점소개 공백 확인
-	if($("#storeIntro").val() == ""){ 
-		alert("상점소개를 입력해주세요"); 
-		$("#storeIntro").focus(); 
-		return false; 
-		} 
-	
-	updateCheck();
-	
-}
-
-

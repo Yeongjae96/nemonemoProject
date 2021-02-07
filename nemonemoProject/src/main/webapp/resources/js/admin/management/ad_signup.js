@@ -1,11 +1,10 @@
-$(function(){
-	rule()
-	idcheck()
+$(function() {
+	rule();
+	idcheck();
 });
 
 // 유효성검
 function checks(){ 
-	console.log('실행');
 	var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 	var getCheck= RegExp(/^[a-zA-Z0-9]{6,16}$/);
 	var getName= RegExp(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|\*]+$/);
@@ -71,7 +70,6 @@ function rule(){
 			}
 		},
 		highlight: function (input) {
-			console.log(input);
 			$(input).parents('.form-line').addClass('error');
 		},
 		unhighlight: function (input) {
@@ -87,16 +85,14 @@ function rule(){
 // 중복체크
 function idcheck(){
 	$('.ad_signup_submit').click(function(e) { // 회원가입 버튼을 누르면
-		var idchecks = checks()
-		console.log(idchecks)
-		if(idchecks==false) return
 		e.preventDefault();
-		alert("회원가입 버튼 눌렀다!");
-		var query = {adminId : $("#adminId").val()}; // adminId 값을 query에 저장
+		if (checks() === false) return
 		$.ajax({
 			url : contextPath + "/management/signup/idcheck.mdo",
 			type : "post",
-			data : query, // 쿼리의 저장 타입은 일반 변수가 아닌 JSON, 저기 url로 보내는 데이터..!
+			data : {
+				adminId : $("#adminId").val()
+			}, // 쿼리의 저장 타입은 일반 변수가 아닌 JSON, 저기 url로 보내는 데이터..!
 			success : function(data){ // data -> ajax의 결과값이 저장되는 변수
 				if(data > 0){
 					alert("아이디가 중복되어 사용할 수 없습니다.");

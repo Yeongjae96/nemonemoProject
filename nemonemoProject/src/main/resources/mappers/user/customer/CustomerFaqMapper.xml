@@ -22,7 +22,7 @@
 	
 	<select id="getFaqCategoryStartNum" resultType="int">
 	
-		SELECT min(faq_category_no)
+		SELECT nvl(min(faq_category_no), 0)
 		FROM faq_category_tb
 		WHERE faq_category_use_fl = 'Y'
 	</select>

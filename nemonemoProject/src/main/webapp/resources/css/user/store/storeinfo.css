@@ -298,7 +298,9 @@ input {
     
 }
 
-
+updatestore--div {
+    margin-top: 50px;
+}
 
 body {
     background-color: rgb(249, 249, 249);
