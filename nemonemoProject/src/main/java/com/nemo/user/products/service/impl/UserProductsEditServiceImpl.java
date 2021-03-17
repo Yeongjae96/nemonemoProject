@@ -108,7 +108,6 @@ public class UserProductsEditServiceImpl implements UserProductsEditService{
 				String extension = FileUtil.getExtension(file.getOriginalFilename());
 				String realFileName = FileUtil.getSaveFileNm(orgFileName);
 				String dirRealFileName = FileUtil.getSaveFileDirNm(DirectoryName.PRODUCT, realFileName, extension, false);
-				// 사진 크기 
 				
 				inputStream = file.getInputStream();
 				

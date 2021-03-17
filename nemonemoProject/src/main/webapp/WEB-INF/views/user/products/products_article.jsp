@@ -217,7 +217,7 @@
                         <!-- 이미지 리스트 -->
                         <div class="swiper-container detail-info__image__list">
                             <!-- 상세 상품 이미지 1장-->
-                           	<div class="swiper-wrapper">
+                           	<div class="swiper-wrapper" id="imagesDiv">
                             	<c:forEach var="img" items="${productImgList}" varStatus="st">
                             		<div class="swiper-slide">
                             			<img src="<c:url value="/image/product/${img.productImgNo}.img"/>" alt="상세 상품 이미지" />

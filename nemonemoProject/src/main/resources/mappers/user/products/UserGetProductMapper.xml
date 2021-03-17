@@ -141,7 +141,7 @@
   			  GROUP BY product_no, PRODUCT_IMG_DEL_FL) i
 		    ON p.product_no = i.product_no
 		   AND p.product_no = #{productNo}
-		   AND i.PRODUCT_IMG_DEL_FL = 'N'	z
+		   AND i.PRODUCT_IMG_DEL_FL = 'N'
 
 </select>
 

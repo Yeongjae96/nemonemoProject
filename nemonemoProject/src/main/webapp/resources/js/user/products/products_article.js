@@ -343,7 +343,10 @@ function initShareBtn() {
 	const viewCount = $('#viewCount').text().trim();
 	const commentCount = $('.detail-comment__header').children('.detail--empha').text().trim();
 	const zzimCount = $('#zzimCount').text().trim();
-	
+
+	const imagesDiv = document.getElementById('imagesDiv');
+	const images = imagesDiv.getElementsByTagName('img');
+	console.log(imagesDiv, images);
 	/* 카테고리를 해쉬태그로 바꾸는 부분 */
 	let descriptionMsg = '';
 	$('.detail-menu-cbox__display').each((i, e) => {
@@ -357,8 +360,8 @@ function initShareBtn() {
 	initKakaoShare();
 	/* 페이스북 링크 : 중간 */
 //	initFbShare();
-	
-	
+
+
 	/* 카카오 링크 */
 	function initKakaoShare() {
 		Kakao.cleanup();
@@ -369,7 +372,8 @@ function initShareBtn() {
 	      content: {
 	        title: document.title,
 	        description: descriptionMsg,
-	        imageUrl: document.images[0].src,
+	        // imageUrl: document.images[0].src,
+		    imageUrl: images[0].src,
 	        link: {
 	          webUrl: document.location.href,
 	          mobileWebUrl: document.location.href
